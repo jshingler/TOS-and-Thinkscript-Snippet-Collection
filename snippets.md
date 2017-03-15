@@ -162,11 +162,17 @@ Revised: 01/08/14 12:51:52 AM
 Organization: The first letter indicates the category of the subject.
 
 B- = Basic platform or coding subjects, fundamental principles, fundamental examples and how-to-do's 
+
 S- = Scan
+
 C- = Coding of studies, strategies, snippets, et al that accomplish a purpose/result
+
 U- = Undefined. May be of multiple categories or just didn't comfortably fit a specific defined category
+
 T-- = A Tip or Trick on how you might use TOS or TS to accomplish a specific useful purpose
+
 ?- = In the subject's heading, ? means that the data is variable 'inputted' data defined by the user
+
 
 **Acknowledgements**
 
