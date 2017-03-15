@@ -4,15 +4,15 @@ A 'snippet' is a small piece(s) of script, oriented towards accomplishing a spec
 
 ## Table of Contents
 1. INTRODUCTION.....Page 1
-1. B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS.....Page 5
-1. B-IF EXPRESSIONS AND STATEMENTS EXPLAINED.....Page 5
-1. B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION.....Page 6
-1. B-HOW THINKSCRIPT CALCULATES.....Page 7
-1. B-COLORS AS USED IN TOS/THINKSCRIPT.....Page 8
-1. B-OFTEN USED COLORING CODE STATEMENTS.....Page 9
-1. B-IMPLEMENTING LABELS.....Page 10
-1. B-AGGREGATION.....Page 12
-1. B-EXPLANATION OF '=' , '=='AND '!' .....Page 13
+2. [B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS.....Page 5](#1)
+3. B-IF EXPRESSIONS AND STATEMENTS EXPLAINED.....Page 5
+4. B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION.....Page 6
+5. B-HOW THINKSCRIPT CALCULATES.....Page 7
+6. B-COLORS AS USED IN TOS/THINKSCRIPT.....Page 8
+7. B-OFTEN USED COLORING CODE STATEMENTS.....Page 9
+8. B-IMPLEMENTING LABELS.....Page 10
+9. B-AGGREGATION.....Page 12
+10. B-EXPLANATION OF '=' , '=='AND '!' .....Page 13
 11. B-REFERENCING OTHER STUDIES.....Page 13
 12. T-USING CUSTOM COLUMN AGGREGATION.....Page 14
 13. B+C-NORMALIZATION.....Page 15
@@ -182,7 +182,7 @@ Pre-defined and built-in are synonymous when referring to studies. Continued on 
    
 TOS & THINKSCRIPT SNIPPET COLLECTION Page 5 
 
-## B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS
+## <a name="1"></a>B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS
 TOC Return
 As shown above the study list and the inputs have info bubbles. You may add these info bubbles to your studies.
 To make an 'Info Bubble' for a study and strategy:
