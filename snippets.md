@@ -157,6 +157,7 @@ A 'snippet' is a small piece(s) of script, oriented towards accomplishing a spec
 **Legend**
 
 Click the underlined Page ? to go to that page When there, you can return to here by clicking [TOC Return](#toc) Headings appearing in the Table Of Contents above are colored blue throughout this document
+
 Revised: 01/08/14 12:51:52 AM
 
 Organization: The first letter indicates the category of the subject.
@@ -177,18 +178,28 @@ T-- = A Tip or Trick on how you might use TOS or TS to accomplish a specific use
 **Acknowledgements**
 
 The people on the ThinkScript Lounge generously contribute much time and effort helping those learning and using ThinkOrSwim and ThinkScript. Many items herein originated on the ThinkScript Lounge chatroom postings. Much credit and thanks are due those people. We are all grateful to them for their selfless contributions.
-Usage
+
+**Usage**
+
 Although a subject may not be of interest to you, the coding techniques involved may be pertinent to what you desire to code, either today or at some time in the future. It is useful to be aware of the techniques so that, when the time comes, you will know where to look to get the how-to-do specifics.
+
 Hope you find this document useful. Any suggestion for improvement or inclusion are welcome.
+
 Acronyms used herein
+
 TOS = ThinkOrSwim
+
 TS = ThinkScript
+
 WLC = An abbreviation for "Watch List Column"
+
 TOC = 'Table Of Contents' in this document
+
 PDF = Portable Document Format = the type of file format of this document. Readers of PDF files are readily available.
+
 See REFERENCES for a reader source.
-Use of '...' and "..." Often the single and double quotes are used to identify precise coding, words or statements whose
-use is not intended to include the quote marks themselves. At times coloring may also be used to do the same.
+Use of '...' and "..." Often the single and double quotes are used to identify precise coding, words or statements whose use is not intended to include the quote marks themselves. At times coloring may also be used to do the same.
+
 Pre-defined and built-in are synonymous when referring to studies. Continued on Next Page
    
 TOS & THINKSCRIPT SNIPPET COLLECTION Page 5 
