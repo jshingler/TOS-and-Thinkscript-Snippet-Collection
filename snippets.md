@@ -460,17 +460,20 @@ TOS & THINKSCRIPT SNIPPET COLLECTION Page 15
 If you want to compare two (or more) indicators that have values much different that are non-receptive to comparison, you can normalize each of the two (or more) indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1, -100 to +100, or whatever you want. Below is the code to do normalization and an example. Note that not all studies can be normalized e.g. 'AccDist' has no parameters and cannot be normalized.
 Code that does normalization
 
-'''
+```
 #Usage: 'input data = close' is substituted by an indicator and its parameters. declare lower;
 script normalizePlot {
-input data = close;
-input newRngMin = -1;
-input newRngMax = 1;
-def HHData = HighestAll( data );
-def LLData = LowestAll( data );
-plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
+  input data = close;
+  input newRngMin = -1;
+  input newRngMax = 1;
+  def HHData = HighestAll( data );
+  def LLData = LowestAll( data );
+  plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
 }
+```
+
 Examples
+```
 input price = close;
 input CCI_length = 7;
 input Momentum_length = 12;
@@ -489,9 +492,10 @@ plot WPR = newWPR;
 plot RSIWilder = newRSIWilder;
 plot Over_Bought = 80;
 plot Over_Sold = 20;
-'''
+```
    
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 16 B-COUNTING AND USE OF 'COMPOUNDVALUE'
+TOS & THINKSCRIPT SNIPPET COLLECTION Page 16 
+## <a name="14"></a>B-COUNTING AND USE OF 'COMPOUNDVALUE'
 [TOC Return](#toc)
 
 
