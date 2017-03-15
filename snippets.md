@@ -3,9 +3,9 @@
 A 'snippet' is a small piece(s) of script, oriented towards accomplishing a specific function identified by the snippet's title. A snippet is not a TOS study or strategy, although it may be. A snippet is often used in developing such studies to accomplish a specific feature or function. This PDF also takes the liberty to include TOS-platform-features that are not script snippets but may be features worth being well known by TOS users. However, the emphasis herein will be on script snippets. Some snippets may be simple or complex. While simple, the snippet may seem superfluous. They exist because this PDF is also oriented towards those learning ThinkScript from scratch. Also, the hyperlinked Table Of Contents allows one to skip to exactly the subject of interest and usage is not burdoned by the inclusion of simple snippets.
 
 ## Table of Contents
-1 INTRODUCTION.....Page 1
-2 B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS.....Page 5
-3 B-IF EXPRESSIONS AND STATEMENTS EXPLAINED.....Page 5
+1. INTRODUCTION.....Page 1
+1. B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS.....Page 5
+1. B-IF EXPRESSIONS AND STATEMENTS EXPLAINED.....Page 5
 4 B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION.....Page 6
 5 B-HOW THINKSCRIPT CALCULATES.....Page 7
 6 B-COLORS AS USED IN TOS/THINKSCRIPT.....Page 8
