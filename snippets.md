@@ -5,153 +5,153 @@ A 'snippet' is a small piece(s) of script, oriented towards accomplishing a spec
 ## <a name="toc"></a>Table of Contents
 1. INTRODUCTION.....Page 1
 2. [B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS.....Page 5](#2)
-3. [B-IF EXPRESSIONS AND STATEMENTS EXPLAINED.....Page 5](#2)
-4. [B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION.....Page 6](#2)
-5. [B-HOW THINKSCRIPT CALCULATES.....Page 7](#2)
-6. [B-COLORS AS USED IN TOS/THINKSCRIPT.....Page 8](#2)
-7. [B-OFTEN USED COLORING CODE STATEMENTS.....Page 9](#2)
-8. [B-IMPLEMENTING LABELS.....Page 10](#2)
-9. [B-AGGREGATION.....Page 12](#2)
-10. [B-EXPLANATION OF '=' , '=='AND '!' .....Page 13](#2)
-11. [B-REFERENCING OTHER STUDIES.....Page 13](#2)
-12. [T-USING CUSTOM COLUMN AGGREGATION.....Page 14](#2)
-13. [B+C-NORMALIZATION.....Page 15](#2)
-14. [B-COUNTING AND USE OF 'COMPOUNDVALUE'.....Page 16](#2)
-15. [B-LINEAR REGRESSION .....Page 16](#2)
-16. [S-LINEAR REGRESSION-VAR SCAN.....Page 17](#2)
-17. [B-TWO WAYS TO CALCULATE % CHANGE.....Page 17](#2)
-18. [B-FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS.....Page 18](#2)
-19. [B-LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE.....Page 19 ](#2)
-20. [C-UPPER & LOWER BANDS AT DEFINED PERCENT .....Page 19](#2)
-21. [C-STANDARD DEVIATION CHANNELS.....Page 19](#2)
-22. [B-THE SIMPLEST REC IN TS.....Page 20](#2)
-23. [B+C-EXAMPLE OF 4 NORMALIZATIONS.....Page 20](#2)
-24. [C-DATE LABEL IN MM/DD/YYYY FORMAT.....Page 21](#2)
-25. [B-WHAT IS SWING-HIGH, SWING-LOW.....Page 21](#2)
-26. [B-USAGE OF THE SWITCH FUNCTION.....Page 22](#2)
-27. [C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS.....Page 22 ](#2)
-28. [C-VARIOUS MARKET TIME VARIABLES .....Page 24](#2)
-29. [C-VERTICAL LINES AT START AND END TIMES.....Page 25](#2)
-30. [C-VERTICAL LINES AT INPUTTED BAR LOCATIONS.....Page 25](#2)
-31. [C-COUNTING & PLOTTING OF BARNUMBERS.....Page 26](#2)
-32. [C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS.....Page 26](#2)
-33. [C-MARKET OPEN AND LUNCH TIMES.....Page 27](#2)
-34. [C-SQUEEZE SCAN WITH MACD EXIT .....Page 27](#2)
-35. [C-SHOWING WHERE A CANDLE PATTERN EXISTS.....Page 27](#2)
-36. [C-VOLUME AS A % OF THE ??-DAY-AVERAGE.....Page 28](#2)
-37. [SC-IDENTIFY CURRENT LOW THAT HAS GAPED UP.....Page 29 ](#2)
-38. [C&S-PERCENTAGECHANGEOFANAVERAGE(SCANOR PLOT).....Page29](#2)
-39. [C-ARROW AT THE DEFINED TIME EACH DAY .....Page 30](#2)
-40. [C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE.....Page 30 ](#2)
-41. [C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE.....Page 31](#2)
-42. [C-% CHANGE OF THE FIRST BAR VALUE.....Page 31](#2)
-43. [C-% CHANGE COMPARED TO ? DAYS-AGO.....Page 32](#2)
-44. [C-LOW IS ?% ABOVE YESTERDAY'S HIGH.....Page 32](#2)
-45. [C-IMP-VOLATILITY PERCENTILE.....Page 32](#2)
-46. [C-YTD PERCENT CHANGE.....Page 32](#2)
-47. [C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE.....Page 33 ](#2)
-48. [C-ADD AN INDEX OR FUTURE LOWER CHART.....Page 34](#2)
-49. [S-SCAN FOR TRENDING CONDITIONS.....Page 35](#2)
-50. [S-SCAN FOR MACD AVG AND MACD DIVERGENCE.....Page 35](#2)
-51. [S-PRICE DIRECTION SCAN.....Page 35](#2)
-52. [S-SCAN FOR HAS-EARNINGS IN FUTURE.....Page 36](#2)
-53. [C-LINE RSI WITH MACD HISTOGRAM.....Page 36](#2)
-54. [C-MARKET SENTIMENT.....Page 37](#2)
-55. [S-SCAN FOR CORRELATED STOCKS.....Page 37](#2)
-56. [C-MARKET FORECAST PLOTTED BY REFERENCE.....Page 37](#2)
-57. [S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS.....Page 38](#2)
-58. [C-TRIPLE EMA & STD DEV MONITORING.....Page 38](#2)
-59. [C-FAST-MED-SLOW TRUE RANGE OSC.....Page 39](#2)
-60. [S-EXAMPLE OF TIME BRACKETED SCAN.....Page 39](#2)
-61. [C-CHANGE STUDIES BASED ON SYMBOL VIEWED.....Page 40](#2)
-62. [S-SCAN FOR HIGHS OR LOWS.....Page 40](#2)
-63. [C-PLOTS HIGHER-HIGHS AND LOWER-LOWS.....Page 41](#2)
-64. [T-HOW TO DECIPHER COMPLEX STUDY PLOTS.....Page 42](#2)
-65. [C-CANDLESTICK PLOTS.....Page 42](#2)
-66. [C-ATR TRAILING STOP.....Page 43](#2)
-67. [C-EARNINGS.....Page 44](#2)
-68. [C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL.....Page 45](#2)
-69. [C-TODAY'S MARKET OPENING PRICE.....Page 45](#2)
-70. [S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA.....Page 46](#2)
-71. [S-SCAN FOR CROSS OF MOVING AVERAGES.....Page 46](#2)
-72. [S-SCAN CROSS OF STANDARD DEVIATION CHANNEL.....Page 46](#2)
-73. [S-ABOVE 20-DAY MA FOR 65 DAYS.....Page 46](#2)
-74. [S-SCAN FOR 200-DAY MA.....Page 47](#2)
-75. [S-SCAN FOR A BULLISH ADX.....Page 47](#2)
-76. [S-SCAN FOR DMI.....Page 47](#2)
-77. [S-SCAN USING PRE-DEFINED CROSSOVERS.....Page 48](#2)
-78. [S-MACD SCAN.....Page 50](#2)
-79. [C-PLACING OF PLOTTED ARROWS.....Page 50](#2)
-80. [B-SPECIFYING 'AVERAGETYPE' INPUT.....Page 50](#2)
-81. [C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES.....Page 51](#2)
-82. [C-DEFINING CONDITIONS IN BUY/SELL STRATEGY.....Page 51](#2)
-83. [C- THE 'AdvanceDecline' STUDY.....Page 51](#2)
-84. [C-PLOT FOR ? DAYS FROM A DATE.....Page 53](#2)
-85. [B-ALERTS TUTORIAL.....Page 53](#2)
-86. [B-MAKE A CUSTOM SCAN TUTORIAL.....Page 53](#2)
-87. [B-MAKE A DYNAMIC WATCHLIST TUTORIAL.....Page 53](#2)
-88. [C-PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART.....Page 53](#2)
-89. [C-% VOLUME CHANGE FROM THE PREVIOUS BAR.....Page 53](#2)
-90. [C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD.....Page 54](#2)
-91. [C-PLOT DUAL MOVING AVERAGES.....Page 55](#2)
-92. [C-SIMPLE MOVING AVERAGE CROSS TRADING.....Page 55](#2)
-93. [C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY.....Page 56](#2)
-94. [C-IMPLIED VOLATILITY LABEL AND PLOT.....Page 58](#2)
-95. [C-INSIDE-BAR CODING.....Page 59](#2)
-96. [C-FIRST AND LAST BAR FOR PLACING A BUBBLE.....Page 60](#2)
-97. [C-DEFINE PREVIOUS DAY'S CLOSE.....Page 60](#2)
-98. [C-CLOUDS WITHOUT A PLOT.....Page 60](#2)
-99. [C-COUNTS OF CONSECUTIVE RISES OR DROPS OF THE CLOSE.....Page 61](#2)
-100. [B-COMPARISON TO ANOTHER INSTRUMENT.....Page 61](#2)
-101. [B-THE FOLD FUNCTION EXPLAINED.....Page 62](#2)
-102. [C-DEFINE BAR AT A TIME AND DATE.....Page 65](#2)
-103. [C-PRE/POST-MARKET SCAN & CHART.....Page 65](#2)
-104. [S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS.....Page 66](#2)
-105. [C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES.....Page 66 ](#2)
-106. [C-DEFINES AGGREGATION IN A LABEL.....Page 67](#2)
-107. [C-FIRST AND LAST BAR BUBBLES.....Page 68](#2)
-108. [C- WEIGHTED MOVING AVERAGE AND FOLD USAGE.....Page 68](#2)
-109. [T-A REFERENCE RECALL OF A STRATEGY'S RULES (SETUP).....Page 68](#2)
-110. [T-FAST ACCESS TO EDITING A STUDY.....Page 68](#2)
-111. [T-A NEW-TO-THINKSCRIPT MUST READ.....Page 69](#2)
-112. [T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES .....Page 69](#2)
-113. [T-WIZARD ACCESS FOR EDITING EXISTING STUDIES.....Page 69](#2)
-114. [T-PRE MARKET MOVERS.....Page 69](#2)
-115. [B-THE STOCHASTIC OSCILLATOR EXPLAINED.....Page 69](#2)
-116. [C-COUNTER FOR NUMBER OF UP BARS.....Page 70](#2)
-117. [C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT .....Page 70](#2)
-118. [C-PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO.....Page 71](#2)
-119. [B-ACCESSING THE CONDITION WIZARD.....Page 72](#2)
-120. [C-DATE AND TIME USAGE EXAMPLES.....Page 72](#2)
-121. [C- SCALPER'S HELPER W/ SQUEEZE.....Page 78](#2)
-122. [S-PRICE CORRELATION WITH THE SPX.....Page 80](#2)
-123. [T-VERTICAL LINES AT MARKET OPEN AND CLOSED TIMES.....Page 80](#2)
-124. [C-COLOR A PORTION OF A CHART.....Page 80](#2)
-125. [C-CLOUD USAGE VIA MOVING AVERAGES.....Page 81](#2)
-126. [T-EASILY VIEWING CHARTS OF STOCKS IN A LIST.....Page 82](#2)
-127. [C-PLOTS THE DAILY HIGH AND LOW.....Page 82](#2)
-128. [C-SELF-ADJUSTING RSI BANDS.....Page 83](#2)
-129. [C-3 MOVING AVERAGES: CHANGING COLOR.....Page 84](#2)
-130. [C-T3, ADAPTIVE SMOOTHING INDICATOR.....Page 85](#2)
-131. [C- RSI ZEROLINE OSCILLATOR.....Page 85](#2)
-132. [C-INSYNC INDEX .....Page 86](#2)
-133. [C- CLOUD A TIME INTERVAL WITHOUT PLOTS.....Page 88](#2)
-134. [C- IMPROVED TIME SERIES FORECAST STUDY.....Page 88](#2)
-135. [C-VOLATILITY LABEL.....Page 89](#2)
-136. [C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY.....Page 89](#2)
-137. [C-THE BEAUTIFUL 'GAUSSIAN RAINBOW' .....Page 91](#2)
-138. [C- PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN.....Page 95 ](#2)
-139. [C-OPENING RANGE (OR) STUDY WITH A TWIST:.....Page 95](#2)
-140. [T-CHANGING THE HEADER TEXT COLOR .....Page 98](#2)
-141. [C&S-THE MARKET FORECAST REPLICA.....Page 98](#2)
-142. [C-DRAW A LINE BETWEEN TWO PRICE POINTS.....Page 100 ](#2)
-143. [C-VOLUMELABELASAPERCENTOFANINPUTTED X-DAYS-AVGVOLUME.....Page100](#2)
-144. [C-SHOWS WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD. USED IN A WLC......Page 101 ](#2)
-145. [T-SEQUENCECOUNTER AND GRID UASGE.....Page 102](#2)
-146. [T,C-!6 EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION.....Page 102](#2)
-147. [NEXT ITEM TO BE ADDED .....Page 106](#2)
-148. [NEXT ITEM TO BE ADDED .....Page 106](#2)
-149. [REFERENCES.....Page 107](#2)
+3. [B-IF EXPRESSIONS AND STATEMENTS EXPLAINED.....Page 5](#3)
+4. [B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION.....Page 6](#4)
+5. [B-HOW THINKSCRIPT CALCULATES.....Page 7](#5)
+6. [B-COLORS AS USED IN TOS/THINKSCRIPT.....Page 8](#6)
+7. [B-OFTEN USED COLORING CODE STATEMENTS.....Page 9](#7)
+8. [B-IMPLEMENTING LABELS.....Page 10](#8)
+9. [B-AGGREGATION.....Page 12](#9)
+10. [B-EXPLANATION OF '=' , '=='AND '!' .....Page 13](#10)
+11. [B-REFERENCING OTHER STUDIES.....Page 13](#11)
+12. [T-USING CUSTOM COLUMN AGGREGATION.....Page 14](#12)
+13. [B+C-NORMALIZATION.....Page 15](#13)
+14. [B-COUNTING AND USE OF 'COMPOUNDVALUE'.....Page 16](#14)
+15. [B-LINEAR REGRESSION .....Page 16](#15)
+16. [S-LINEAR REGRESSION-VAR SCAN.....Page 17](#16)
+17. [B-TWO WAYS TO CALCULATE % CHANGE.....Page 17](#17)
+18. [B-FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS.....Page 18](#18)
+19. [B-LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE.....Page 19 ](#19)
+20. [C-UPPER & LOWER BANDS AT DEFINED PERCENT .....Page 19](#20)
+21. [C-STANDARD DEVIATION CHANNELS.....Page 19](#21)
+22. [B-THE SIMPLEST REC IN TS.....Page 20](#22)
+23. [B+C-EXAMPLE OF 4 NORMALIZATIONS.....Page 20](#23)
+24. [C-DATE LABEL IN MM/DD/YYYY FORMAT.....Page 21](#24)
+25. [B-WHAT IS SWING-HIGH, SWING-LOW.....Page 21](#25)
+26. [B-USAGE OF THE SWITCH FUNCTION.....Page 22](#26)
+27. [C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS.....Page 22 ](#27)
+28. [C-VARIOUS MARKET TIME VARIABLES .....Page 24](#28)
+29. [C-VERTICAL LINES AT START AND END TIMES.....Page 25](#29)
+30. [C-VERTICAL LINES AT INPUTTED BAR LOCATIONS.....Page 25](#30)
+31. [C-COUNTING & PLOTTING OF BARNUMBERS.....Page 26](#31)
+32. [C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS.....Page 26](#32)
+33. [C-MARKET OPEN AND LUNCH TIMES.....Page 27](#33)
+34. [C-SQUEEZE SCAN WITH MACD EXIT .....Page 27](#34)
+35. [C-SHOWING WHERE A CANDLE PATTERN EXISTS.....Page 27](#35)
+36. [C-VOLUME AS A % OF THE ??-DAY-AVERAGE.....Page 28](#36)
+37. [SC-IDENTIFY CURRENT LOW THAT HAS GAPED UP.....Page 29 ](#37)
+38. [C&S-PERCENTAGECHANGEOFANAVERAGE(SCANOR PLOT).....Page29](#38)
+39. [C-ARROW AT THE DEFINED TIME EACH DAY .....Page 30](#39)
+40. [C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE.....Page 30 ](#40)
+41. [C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE.....Page 31](#41)
+42. [C-% CHANGE OF THE FIRST BAR VALUE.....Page 31](#42)
+43. [C-% CHANGE COMPARED TO ? DAYS-AGO.....Page 32](#43)
+44. [C-LOW IS ?% ABOVE YESTERDAY'S HIGH.....Page 32](#44)
+45. [C-IMP-VOLATILITY PERCENTILE.....Page 32](#45)
+46. [C-YTD PERCENT CHANGE.....Page 32](#46)
+47. [C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE.....Page 33 ](#47)
+48. [C-ADD AN INDEX OR FUTURE LOWER CHART.....Page 34](#48)
+49. [S-SCAN FOR TRENDING CONDITIONS.....Page 35](#49)
+50. [S-SCAN FOR MACD AVG AND MACD DIVERGENCE.....Page 35](#50)
+51. [S-PRICE DIRECTION SCAN.....Page 35](#51)
+52. [S-SCAN FOR HAS-EARNINGS IN FUTURE.....Page 36](#52)
+53. [C-LINE RSI WITH MACD HISTOGRAM.....Page 36](#53)
+54. [C-MARKET SENTIMENT.....Page 37](#54)
+55. [S-SCAN FOR CORRELATED STOCKS.....Page 37](#55)
+56. [C-MARKET FORECAST PLOTTED BY REFERENCE.....Page 37](#56)
+57. [S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS.....Page 38](#57)
+58. [C-TRIPLE EMA & STD DEV MONITORING.....Page 38](#58)
+59. [C-FAST-MED-SLOW TRUE RANGE OSC.....Page 39](#59)
+60. [S-EXAMPLE OF TIME BRACKETED SCAN.....Page 39](#60)
+61. [C-CHANGE STUDIES BASED ON SYMBOL VIEWED.....Page 40](#61)
+62. [S-SCAN FOR HIGHS OR LOWS.....Page 40](#62)
+63. [C-PLOTS HIGHER-HIGHS AND LOWER-LOWS.....Page 41](#63)
+64. [T-HOW TO DECIPHER COMPLEX STUDY PLOTS.....Page 42](#64)
+65. [C-CANDLESTICK PLOTS.....Page 42](#65)
+66. [C-ATR TRAILING STOP.....Page 43](#66)
+67. [C-EARNINGS.....Page 44](#67)
+68. [C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL.....Page 45](#68)
+69. [C-TODAY'S MARKET OPENING PRICE.....Page 45](#69)
+70. [S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA.....Page 46](#70)
+71. [S-SCAN FOR CROSS OF MOVING AVERAGES.....Page 46](#71)
+72. [S-SCAN CROSS OF STANDARD DEVIATION CHANNEL.....Page 46](#72)
+73. [S-ABOVE 20-DAY MA FOR 65 DAYS.....Page 46](#73)
+74. [S-SCAN FOR 200-DAY MA.....Page 47](#74)
+75. [S-SCAN FOR A BULLISH ADX.....Page 47](#75)
+76. [S-SCAN FOR DMI.....Page 47](#76)
+77. [S-SCAN USING PRE-DEFINED CROSSOVERS.....Page 48](#77)
+78. [S-MACD SCAN.....Page 50](#78)
+79. [C-PLACING OF PLOTTED ARROWS.....Page 50](#79)
+80. [B-SPECIFYING 'AVERAGETYPE' INPUT.....Page 50](#80)
+81. [C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES.....Page 51](#81)
+82. [C-DEFINING CONDITIONS IN BUY/SELL STRATEGY.....Page 51](#82)
+83. [C- THE 'AdvanceDecline' STUDY.....Page 51](#83)
+84. [C-PLOT FOR ? DAYS FROM A DATE.....Page 53](#84)
+85. [B-ALERTS TUTORIAL.....Page 53](#85)
+86. [B-MAKE A CUSTOM SCAN TUTORIAL.....Page 53](#86)
+87. [B-MAKE A DYNAMIC WATCHLIST TUTORIAL.....Page 53](#87)
+88. [C-PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART.....Page 53](#88)
+89. [C-% VOLUME CHANGE FROM THE PREVIOUS BAR.....Page 53](#89)
+90. [C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD.....Page 54](#90)
+91. [C-PLOT DUAL MOVING AVERAGES.....Page 55](#91)
+92. [C-SIMPLE MOVING AVERAGE CROSS TRADING.....Page 55](#92)
+93. [C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY.....Page 56](#93)
+94. [C-IMPLIED VOLATILITY LABEL AND PLOT.....Page 58](#94)
+95. [C-INSIDE-BAR CODING.....Page 59](#95)
+96. [C-FIRST AND LAST BAR FOR PLACING A BUBBLE.....Page 60](#96)
+97. [C-DEFINE PREVIOUS DAY'S CLOSE.....Page 60](#97)
+98. [C-CLOUDS WITHOUT A PLOT.....Page 60](#98)
+99. [C-COUNTS OF CONSECUTIVE RISES OR DROPS OF THE CLOSE.....Page 61](#99)
+100. [B-COMPARISON TO ANOTHER INSTRUMENT.....Page 61](#100)
+101. [B-THE FOLD FUNCTION EXPLAINED.....Page 62](#101)
+102. [C-DEFINE BAR AT A TIME AND DATE.....Page 65](#102)
+103. [C-PRE/POST-MARKET SCAN & CHART.....Page 65](#103)
+104. [S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS.....Page 66](#104)
+105. [C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES.....Page 66 ](#105)
+106. [C-DEFINES AGGREGATION IN A LABEL.....Page 67](#106)
+107. [C-FIRST AND LAST BAR BUBBLES.....Page 68](#107)
+108. [C- WEIGHTED MOVING AVERAGE AND FOLD USAGE.....Page 68](#108)
+109. [T-A REFERENCE RECALL OF A STRATEGY'S RULES (SETUP).....Page 68](#109)
+110. [T-FAST ACCESS TO EDITING A STUDY.....Page 68](#110)
+111. [T-A NEW-TO-THINKSCRIPT MUST READ.....Page 69](#111)
+112. [T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES .....Page 69](#112)
+113. [T-WIZARD ACCESS FOR EDITING EXISTING STUDIES.....Page 69](#113)
+114. [T-PRE MARKET MOVERS.....Page 69](#114)
+115. [B-THE STOCHASTIC OSCILLATOR EXPLAINED.....Page 69](#115)
+116. [C-COUNTER FOR NUMBER OF UP BARS.....Page 70](#116)
+117. [C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT .....Page 70](#117)
+118. [C-PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO.....Page 71](#118)
+119. [B-ACCESSING THE CONDITION WIZARD.....Page 72](#119)
+120. [C-DATE AND TIME USAGE EXAMPLES.....Page 72](#120)
+121. [C- SCALPER'S HELPER W/ SQUEEZE.....Page 78](#121)
+122. [S-PRICE CORRELATION WITH THE SPX.....Page 80](#122)
+123. [T-VERTICAL LINES AT MARKET OPEN AND CLOSED TIMES.....Page 80](#123)
+124. [C-COLOR A PORTION OF A CHART.....Page 80](#124)
+125. [C-CLOUD USAGE VIA MOVING AVERAGES.....Page 81](#125)
+126. [T-EASILY VIEWING CHARTS OF STOCKS IN A LIST.....Page 82](#126)
+127. [C-PLOTS THE DAILY HIGH AND LOW.....Page 82](#127)
+128. [C-SELF-ADJUSTING RSI BANDS.....Page 83](#128)
+129. [C-3 MOVING AVERAGES: CHANGING COLOR.....Page 84](#129)
+130. [C-T3, ADAPTIVE SMOOTHING INDICATOR.....Page 85](#130)
+131. [C- RSI ZEROLINE OSCILLATOR.....Page 85](#131)
+132. [C-INSYNC INDEX .....Page 86](#132)
+133. [C- CLOUD A TIME INTERVAL WITHOUT PLOTS.....Page 88](#133)
+134. [C- IMPROVED TIME SERIES FORECAST STUDY.....Page 88](#134)
+135. [C-VOLATILITY LABEL.....Page 89](#135)
+136. [C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY.....Page 89](#136)
+137. [C-THE BEAUTIFUL 'GAUSSIAN RAINBOW' .....Page 91](#137)
+138. [C- PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN.....Page 95 ](#138)
+139. [C-OPENING RANGE (OR) STUDY WITH A TWIST:.....Page 95](#139)
+140. [T-CHANGING THE HEADER TEXT COLOR .....Page 98](#140)
+141. [C&S-THE MARKET FORECAST REPLICA.....Page 98](#141)
+142. [C-DRAW A LINE BETWEEN TWO PRICE POINTS.....Page 100 ](#142)
+143. [C-VOLUMELABELASAPERCENTOFANINPUTTED X-DAYS-AVGVOLUME.....Page100](#143)
+144. [C-SHOWS WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD. USED IN A WLC......Page 101 ](#144)
+145. [T-SEQUENCECOUNTER AND GRID UASGE.....Page 102](#145)
+146. [T,C-!6 EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION.....Page 102](#146)
+147. [NEXT ITEM TO BE ADDED .....Page 106](#147)
+148. [NEXT ITEM TO BE ADDED .....Page 106](#148)
+149. [REFERENCES.....Page 107](#149)
 
 
                  Legend
@@ -203,7 +203,7 @@ Formatting is possible using HTML tags. Some of the common tags you may be inter
 <li>........... </li>
 Example of the following script and its result:
 #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.
-# B-IF EXPRESSIONS AND STATEMENTS EXPLAINED
+## <a name="3"></a>B-IF EXPRESSIONS AND STATEMENTS EXPLAINED
 [TOC Return](#toc)
 
 
@@ -239,7 +239,7 @@ if close > open {
 Maximum3 = close; } else {
 Maximum3 = open;
 Excellent examples of the power of if..then..else can be seen in these documents herein: ADD AN INDEX OR FUTURE LOWER CHART and SLOPE OF AN AVERAGE
-B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION
+## <a name="4"></a>B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION
 [TOC Return](#toc)
 
 
@@ -268,7 +268,7 @@ AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
 then Color.Green
 else if perct < 0.80 and perct > 0.50 then Color.Yellow
 else color.Red);
-B-HOW THINKSCRIPT CALCULATES
+## <a name="5"></a>B-HOW THINKSCRIPT CALCULATES
 [TOC Return](#toc)
 
 
@@ -276,7 +276,8 @@ In scans, conditional orders, and custom quotes there is only one bar, the lates
 In studies or strategies, ThinkScript runs your script once for each and every bar on your chart, regardless of the aggregation period.
 You will often hear knowledgeable programmers say with disappointment that 'ThinkScript' does not have arrays. Arrays are a common powerful programming feature for storing/recalling various data and data types. This is a limitation of ThinkScript that we must live with as best we can.
     
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 8 B-COLORS AS USED IN TOS/THINKSCRIPT
+TOS & THINKSCRIPT SNIPPET COLLECTION Page 8 
+## <a name="6"></a>B-COLORS AS USED IN TOS/THINKSCRIPT
 [TOC Return](#toc)
 
 
@@ -301,7 +302,7 @@ Reference: See all color constants
 Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e. color.CYAN or color.LIGHT_RED.
 Not all colors are defined: for example, PURPLE. You may find any color at http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F or http://en.wikipedia.org/wiki/X11_color_names . You can create that color for use in TOS by using the function 'CreateColor(double red, double green, double blue); ' similar to the RGB Code in the chart above. Each RGB component ranges in value from 0 (meaning none or 0%) to 255 (meaning the max 100% value).
 You may also assign a text-name, for later use, to any color you create via DefineGlobalColor("Purple" , CreateColor(160,32,240) );
-B-OFTEN USED COLORING CODE STATEMENTS
+## <a name="7"></a>B-OFTEN USED COLORING CODE STATEMENTS
 [TOC Return](#toc)
 
 
@@ -340,7 +341,7 @@ Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9 Reference: 
 Data.SetDefaultColor(color.RED);
 or
 Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined. ##end
-B-IMPLEMENTING LABELS
+## <a name="8"></a>B-IMPLEMENTING LABELS
 [TOC Return](#toc)
 
 
@@ -381,7 +382,7 @@ AddLabel(showLabel and barNumber != 1, (if isConf then "Confirmed " else "Unconf
 SLOPE OF AN AVERAGE herein shows how to reteieve the literal of 'AverageType' choices in a label.
 A trap to avoid:
 If your definition of the label text involves long and multiple 'if...then...else' statements, to insure that they all print, enclose each 'if...then else' statement in parentheses e.g. '(if...then...else)'. Otherwise, you may not get an error but an 'if...then...else' statement may not print. C- THE 'AdvanceDecline' STUDY herein is an excellent example of this.
-B-AGGREGATION
+## <a name="9"></a>B-AGGREGATION
 [TOC Return](#toc)
 
 
@@ -397,7 +398,8 @@ TOS & THINKSCRIPT SNIPPET COLLECTION Page 13
 settings. This is a hard-fast rule that often comes into play.
 2. Two different secondary aggregation periods cannot be used within a single variable. You can define each separately and then use the two definitions in a single statement.
 It has been observed that using more than one secondary aggregation may affect the proper plotting. Using 'Expansion Area: ? Bars to the right' in chart settings may have an improvement.
-There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL B-EXPLANATION OF '=' , '=='AND '!'
+There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL 
+## <a name="10"></a>B-EXPLANATION OF '=' , '=='AND '!'
 [TOC Return](#toc)
 
 
@@ -406,7 +408,8 @@ A single "=" is the assignment operator. The statement "input Show_ChartPeriod =
 The double "==" is the logical equality operator. The statement "if AggPeriod == AggregationPeriod.DAY then ... else...;" reads: if the variable AggPeriod equals (is the same as) AggregationPeriod.DAY then do something else (otherwise) if it's not, then do some other thing. When evaluating equality in an 'if' statement, two equal signs must be used ('==').
 The ! bang exclamation mark
 Not related to the above = and == is the "bang" (exclamation mark). As an example, use isnan() which returns true if the specified parameter is not a number, returns false otherwise. The ! ( exclamation mark called "bang" ) is a logical NOT operator. So if 'isnan(close)' is true i.e. since/when close is not a number then 'isnan(close)' reads as true. Using the "bang" and close remains not being a number, then '!isnan(close)' reads as " NOT close is not a number" or NOT true = false when close is not a number (<=0).
-B-REFERENCING OTHER STUDIES
+
+## <a name="11"></a>B-REFERENCING OTHER STUDIES
 [TOC Return](#toc)
 
 
@@ -439,7 +442,8 @@ This allows you to choose only the variables you want to change. An example is:
 def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;
 Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule.
 There are two ways of referencing constant inputs : smoothingType = "SMA" and smoothingType == smoothingType.SMA are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax . A different but related subject is referencing pre-defined studies using 'Script'. See http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
-T-USING CUSTOM COLUMN AGGREGATION
+
+## <a name="12"></a>T-USING CUSTOM COLUMN AGGREGATION
 [TOC Return](#toc)
 
 
@@ -449,12 +453,14 @@ After installing the %HL you access editing it by right-clicking the watchlist c
 Continued on Next Page
          
 TOS & THINKSCRIPT SNIPPET COLLECTION Page 15
-   B+C-NORMALIZATION
+## <a name="13"></a>B+C-NORMALIZATION
 [TOC Return](#toc)
 
 
 If you want to compare two (or more) indicators that have values much different that are non-receptive to comparison, you can normalize each of the two (or more) indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1, -100 to +100, or whatever you want. Below is the code to do normalization and an example. Note that not all studies can be normalized e.g. 'AccDist' has no parameters and cannot be normalized.
 Code that does normalization
+
+'''
 #Usage: 'input data = close' is substituted by an indicator and its parameters. declare lower;
 script normalizePlot {
 input data = close;
@@ -483,6 +489,7 @@ plot WPR = newWPR;
 plot RSIWilder = newRSIWilder;
 plot Over_Bought = 80;
 plot Over_Sold = 20;
+'''
    
 TOS & THINKSCRIPT SNIPPET COLLECTION Page 16 B-COUNTING AND USE OF 'COMPOUNDVALUE'
 [TOC Return](#toc)
