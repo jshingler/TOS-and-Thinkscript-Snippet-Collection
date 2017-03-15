@@ -154,17 +154,22 @@ A 'snippet' is a small piece(s) of script, oriented towards accomplishing a spec
 149. [REFERENCES.....Page 107](#149)
 
 
-                 Legend
-Click the underlined Page ? to go to that page When there, you can return to here by clicking TOC Return Headings appearing in the Table Of Contents above are colored blue throughout this document
+**Legend**
+
+Click the underlined Page ? to go to that page When there, you can return to here by clicking [TOC Return](#toc) Headings appearing in the Table Of Contents above are colored blue throughout this document
 Revised: 01/08/14 12:51:52 AM
+
 Organization: The first letter indicates the category of the subject.
-    B- S- C- U- T- ?-
-= Basic platform or coding subjects, fundamental principles, fundamental examples and how-to-do's = Scan
-= Coding of studies, strategies, snippets, et al that accomplish a purpose/result
-= Undefined. May be of multiple categories or just didn't comfortably fit a specific defined category
-= A Tip or Trick on how you might use TOS or TS to accomplish a specific useful purpose
-= In the subject's heading, ? means that the data is variable 'inputted' data defined by the user
-Acknowledgements
+
+B- = Basic platform or coding subjects, fundamental principles, fundamental examples and how-to-do's 
+S- = Scan
+C- = Coding of studies, strategies, snippets, et al that accomplish a purpose/result
+U- = Undefined. May be of multiple categories or just didn't comfortably fit a specific defined category
+T-- = A Tip or Trick on how you might use TOS or TS to accomplish a specific useful purpose
+?- = In the subject's heading, ? means that the data is variable 'inputted' data defined by the user
+
+**Acknowledgements**
+
 The people on the ThinkScript Lounge generously contribute much time and effort helping those learning and using ThinkOrSwim and ThinkScript. Many items herein originated on the ThinkScript Lounge chatroom postings. Much credit and thanks are due those people. We are all grateful to them for their selfless contributions.
 Usage
 Although a subject may not be of interest to you, the coding techniques involved may be pertinent to what you desire to code, either today or at some time in the future. It is useful to be aware of the techniques so that, when the time comes, you will know where to look to get the how-to-do specifics.
@@ -461,7 +466,8 @@ If you want to compare two (or more) indicators that have values much different 
 Code that does normalization
 
 ```
-#Usage: 'input data = close' is substituted by an indicator and its parameters. declare lower;
+#Usage: 'input data = close' is substituted by an indicator and its parameters. 
+declare lower;
 script normalizePlot {
   input data = close;
   input newRngMin = -1;
