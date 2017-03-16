@@ -240,40 +240,51 @@ Example of the following script and its result:
 
 There are three forms of if statements. The 'immediate-if' is the shortest and is documented at http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Functions/Others/If.html . The other two are the 'if-expression' and the 'if-statement', both of which are documented at http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Reserved%20Words/if.html . The thinkscript documentation infers that there are more forms of the if-then-else, but the additional examples are merely the base form shown with nested if-then-else statements/expressions.
 
-###The 'immediate-if' explained
+### The 'immediate-if' explained
 
-The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An example is: Plot Maximum1 = If(close > open, close, open); This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.” This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with else to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
+The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An example is: `Plot Maximum1 = If(close > open, close, open);` This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.” This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with `else` to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
 
 
 The word 'double' is often vague in its meaning in ThinkScript but it means a floating-decimal-point-number of double
 Makes the text between the tags bold. Starts a new line
 Creates indented lists
-     
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 6
 precision in programming terminology. Any further meaning-clarification is unnecessary here. The impact of 'double' is that constants such as the names of the 23 ThinkScript colors, like LIGHT_RED, BLUE, UPTICK, etc., are not floating point numbers and hence cannot be used in this immediate-if. In this case, the if-expression would be used.
-The 'if-expression' explained
-The syntax is: if close > open then close else open; An example is: plot Maximum2 = if close > open then close else open; An IF....THEN....ELSE are all required. A nesting (putting if's within if's) example, in the recommended layout for easy reading, is:
+
+### The 'if-expression' explained
+The syntax is: `if close > open then close else open;` An example is: `plot Maximum2 = if close > open then close else open;` An __IF....THEN....ELSE__ are all required. A nesting (putting if's within if's) example, in the recommended layout for easy reading, is:
+```
 plot Maximum2 = if close > open
 then close
 else if close = open
 then (low + high)/2
 else open;
+```
+
 Note that the last 'else open' relates to the 'if close > open' and applies when the intermediate 'else-if close = open' is not true. This nested-if reads as: If close is greater than the open then plot the close. If the close equals the open then plot the (low + high)/2 . If the close is not greater than the open and the close does not equal the open, then plot the open.
 The if-expression will have only one semi-colon that will terminate the entire expression, regardless of the complexity.
-The 'if-statement' explained
+
+### The 'if-statement' explained
 The syntax and example is:
+
+```
 plot Maximum3;
 if close > open [then]{
 Maximum3 = close; } else {
 Maximum3 = open; }
-The '[then]' above means that it is optional but it is recommended that it always be used for clarity. Notice that each statement is enclosed within a block (the parts enclosed in the { } ) and must end with a semi-colon.
-Comparison of all three 'if' syntaxs
+```
+The `[then]` above means that it is optional but it is recommended that it always be used for clarity. Notice that each statement is enclosed within a block (the parts enclosed in the { } ) and must end with a semi-colon.
+
+### Comparison of all three 'if' syntaxs
+
+```
 plot Maximum1 = If(close > open, close, open); # This is the immediate-if syntax
 plot Maximum2 = if close > open then close else open; # This is an if-expression plot Maximum3; # This and the lines below make up an if-statement
 if close > open {
 Maximum3 = close; } else {
 Maximum3 = open;
-Excellent examples of the power of if..then..else can be seen in these documents herein: ADD AN INDEX OR FUTURE LOWER CHART and SLOPE OF AN AVERAGE
+```
+
+Excellent examples of the power of __if..then..else__ can be seen in these documents herein: ADD AN INDEX OR FUTURE LOWER CHART and SLOPE OF AN AVERAGE
 ## <a name="4"></a>B-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION
 [TOC Return](#toc)
 
