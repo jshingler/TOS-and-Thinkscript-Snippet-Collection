@@ -231,7 +231,9 @@ Formatting is possible using HTML tags. Some of the common tags you may be inter
 ```
 
 Example of the following script and its result:
+
 #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.
+
 ## <a name="3"></a>B-IF EXPRESSIONS AND STATEMENTS EXPLAINED
 [TOC Return](#toc)
 
