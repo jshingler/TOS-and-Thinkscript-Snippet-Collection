@@ -224,9 +224,11 @@ Formatting is possible using HTML tags. Some of the common tags you may be inter
 
 ### TAGS and their PURPOSE:
 *****************************
- <b> ......... </b>     Makes the text between the tags bold.
+```
+<b> ......... </b>     Makes the text between the tags bold.
 \n                      Starts a new line  
 <li>........... </li>   Creates indented lists
+```
 
 Example of the following script and its result:
 #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.
