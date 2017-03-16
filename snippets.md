@@ -220,11 +220,14 @@ To make an 'Info Bubble' for 'Edit Studies' input
 2. The tags listed under 'TAGS and their PURPOSE:' may be used to format the desired text.
 3. An example is ---> input Length = 10 #hint Length: The number of bars used to calculate the average.
 4. Notice that the colon is placed after the input variable name (in this case Length).
-Formatting is possible using HTML tags. Some of the common tags you may be interested in are listed below: TAGS and their PURPOSE:
+Formatting is possible using HTML tags. Some of the common tags you may be interested in are listed below: 
+
+### TAGS and their PURPOSE:
 *****************************
-      <b> ......... </b>
-\n
-<li>........... </li>
+ <b> ......... </b>     Makes the text between the tags bold.
+\n                      Starts a new line  
+<li>........... </li>   Creates indented lists
+
 Example of the following script and its result:
 #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.
 ## <a name="3"></a>B-IF EXPRESSIONS AND STATEMENTS EXPLAINED
