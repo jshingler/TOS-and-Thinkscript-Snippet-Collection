@@ -333,31 +333,39 @@ AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
 
 
 In scans, conditional orders, and custom quotes there is only one bar, the latest or current bar. All scripts are run in real-time and the script processor only runs one iteration of the script. So within that context, certain functions make no sense, like barNumber(), HighestAll() to name a few, also rec variables. Functions that take a look back value or length, such as average( data, length ), highest( data, length ), etc. work because the internal logic of the function performs the action of looking back. No matter what the timeframe, in those contexts (scans, etc.), your script only runs once and only against the current (latest) bar.
-In studies or strategies, ThinkScript runs your script once for each and every bar on your chart, regardless of the aggregation period.
+
+In studies or strategies, ThinkScript runs your script once __for each and every bar__ on your chart, regardless of the aggregation period.
+
 You will often hear knowledgeable programmers say with disappointment that 'ThinkScript' does not have arrays. Arrays are a common powerful programming feature for storing/recalling various data and data types. This is a limitation of ThinkScript that we must live with as best we can.
     
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 8 
 ## <a name="6"></a>B-COLORS AS USED IN TOS/THINKSCRIPT
 [TOC Return](#toc)
 
 
 TOS has defined ten colors corresponding to index numbers on two different background colors as below:
-The colors are used via the function 'GetColor(index number);' Example: GetColor(1) as used in the HullMovingAvg previous topic. Reference: See Index Colors
-      Index no. ********
-0 1 2 3 4 5 6 7 8 9
-RGB values ********** 255,16,253 0,255,255 255,174,174 191,191,191 254,199,22 255,3,2 0,254,30 127,127,127 254,254,31 255,255,255
-Names of color ************** magenta
-cyan
-pink
-white
-gold
-red
-green dark_gray yellow white
+The colors are used via the function __'GetColor(index number);'__ Example: GetColor(1) as used in the HullMovingAvg previous topic. Reference: [See Index Colors](https://tlc.thinkorswim.com/center/charting/thinkscript/reference/Functions/Look---Feel/GetColor.html)
+
+| Index | RGB Values  | Name of Color |
+|:-----:|-------------|---------------|
+|   0   | 255,16,253  | magenta       |
+|   1   | 0,255,255   | cyan          |
+|   2   | 255,174,174 | pink          |
+|   3   | 191,191,191 | white         |
+|   4   | 254,199,22  | gold          |
+|   5   | 255,3,2     | red           |
+|   6   | 0,254,30    | green         |
+|   7   | 127,127,127 | dark_gray     |
+|   8   | 254,254,31  | yellow        |
+|   9   | 255,255,255 | white         |
+
+     
+
 RGB values for any color you desire to compose.
+
 This free tool will help you to get the
-http://www.colorschemer.com/online.html
- 
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 9 TOS has also assigned names to 23 colors per the following:
+http://www.colorschemer.com/online.html 
+
+TOS has also assigned names to 23 colors per the following:
 Reference: See all color constants
 Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e. color.CYAN or color.LIGHT_RED.
 Not all colors are defined: for example, PURPLE. You may find any color at http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F or http://en.wikipedia.org/wiki/X11_color_names . You can create that color for use in TOS by using the function 'CreateColor(double red, double green, double blue); ' similar to the RGB Code in the chart above. Each RGB component ranges in value from 0 (meaning none or 0%) to 255 (meaning the max 100% value).
