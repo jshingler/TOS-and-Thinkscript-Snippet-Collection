@@ -390,7 +390,8 @@ __Comment:__ When writing code you may not have the coloring coding at your fing
 ```
 ####### Typical chart plot settings ########
 Data.SetPaintingStrategy(PaintingStrategy.LINE);# See Others Painting Strategies below.
-Data.SetLineWeight(1);# 1 thru 5. ! is the default if 'SetLineWeight' is not defined. Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
+Data.SetLineWeight(1);# 1 thru 5. ! is the default if 'SetLineWeight' is not defined. 
+Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
 ```
 
 See all predefined color constants: [See predefined color constants](https://www.thinkorswim.com/tos/thinkScriptHelp.jsp?laf=dark#constants)
@@ -418,13 +419,18 @@ RSI.DefineColor("Normal", GetColor(7));
 ```
 
 The name "normal" above is unique to the RSI plot. Another plot cannot use the name 'normal' without redefining it.
-To define and name a color for use in multiple plots do as follows: DefineGlobalColor("normal", CreateColor(128, 0, 128));
+To define and name a color for use in multiple plots do as follows: 
+
+
+DefineGlobalColor("normal", CreateColor(128, 0, 128));
 plot signal = high > Highest(high[1]); signal.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN); signal.SetDefaultColor(GlobalColor("normal"));
 plot NinetyPercent = 0.9*close; NinetyPercent.SetDefaultColor(GlobalColor("normal"));
+
 ######### Color based on a condition ############
 plot Diff = close - close[1];
 Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK); Note that UPTICK and DOWNTICK are TOS predefined color constants
-####### Create your own color ########### plot Price = close; Price.SetDefaultColor(CreateColor(255, 220, 210));
+####### Create your own color ########### 
+plot Price = close; Price.SetDefaultColor(CreateColor(255, 220, 210));
 Or
 DefineGlobalColor("Purple" , CreateColor(160,32,240) );
 After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example: Price.SetDefaultColor(GlobalColor("Purple"));
@@ -435,6 +441,8 @@ Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9 Reference: 
 Data.SetDefaultColor(color.RED);
 or
 Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined. ##end
+
+
 ## <a name="8"></a>B-IMPLEMENTING LABELS
 [TOC Return](#toc)
 
