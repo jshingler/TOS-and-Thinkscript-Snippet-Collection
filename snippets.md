@@ -387,8 +387,8 @@ You may also assign a text-name, for later use, to any color you create via
 
 __Comment:__ When writing code you may not have the coloring coding at your finger tips. This provides a ready place to go to to get the code words to paste.
 
+### Typical chart plot settings
 ```
-####### Typical chart plot settings ########
 Data.SetPaintingStrategy(PaintingStrategy.LINE);# See Others Painting Strategies below.
 Data.SetLineWeight(1);# 1 thru 5. ! is the default if 'SetLineWeight' is not defined. 
 Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
@@ -396,22 +396,29 @@ Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
 
 See all predefined color constants: [See predefined color constants](https://www.thinkorswim.com/tos/thinkScriptHelp.jsp?laf=dark#constants)
 
+
+### Other Painting Stategies
 ```
-######## Other Painting Stategies ########
 ARROW_DOWN, ARROW_UP, BOOLEAN_ARROW_DOWN, BOOLEAN_ARROW_UP, BOOLEAN_POINTS,
-DASHES, HISTOGRAM, HORIZONTAL, LINE, LINE_VS_POINTS, LINE_VS_SQUARES, LINE_VS_TRIANGLES, POINTS, SQUARED_HISTOGRAM, SQUARES, TRIANGLES, VALUES_ABOVE, VALUES_BELOW
+DASHES, HISTOGRAM, HORIZONTAL, LINE, LINE_VS_POINTS, LINE_VS_SQUARES, LINE_VS_TRIANGLES, POINTS, 
+SQUARED_HISTOGRAM, SQUARES, TRIANGLES, VALUES_ABOVE, VALUES_BELOW
+```
+
 LINE is the default if none is specified.
 
-##### For curves define the line styles #### 
+
+### For curves define the line styles
+```
 Data.SetStyle(Curve.SHORT_DASH);
 ```
 
-__Other constants:__
+### Other constants:
            
 FIRM, LONG_DASH, MEDIUM_DASH, SHORT_DASH, POINTS
+
 SHORT_DASH is the default value of 'SetStyle'
 
-###### assign a name to a color ########## 
+### assign a name to a color
 You may assign a name to a color like:
 ```
 Plot RSI = 50 * (ChgRatio + 1);
@@ -419,12 +426,17 @@ RSI.DefineColor("Normal", GetColor(7));
 ```
 
 The name "normal" above is unique to the RSI plot. Another plot cannot use the name 'normal' without redefining it.
+
 To define and name a color for use in multiple plots do as follows: 
 
-
+```
 DefineGlobalColor("normal", CreateColor(128, 0, 128));
-plot signal = high > Highest(high[1]); signal.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN); signal.SetDefaultColor(GlobalColor("normal"));
-plot NinetyPercent = 0.9*close; NinetyPercent.SetDefaultColor(GlobalColor("normal"));
+plot signal = high > Highest(high[1]); 
+signal.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN); 
+signal.SetDefaultColor(GlobalColor("normal"));
+plot NinetyPercent = 0.9*close; 
+NinetyPercent.SetDefaultColor(GlobalColor("normal"));
+```
 
 ######### Color based on a condition ############
 plot Diff = close - close[1];
