@@ -239,8 +239,12 @@ Example of the following script and its result:
 
 
 There are three forms of if statements. The 'immediate-if' is the shortest and is documented at http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Functions/Others/If.html . The other two are the 'if-expression' and the 'if-statement', both of which are documented at http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Reserved%20Words/if.html . The thinkscript documentation infers that there are more forms of the if-then-else, but the additional examples are merely the base form shown with nested if-then-else statements/expressions.
-The 'immediate-if' explained
-The syntax is: If(double condition, double true value, double false value); This is the simplest and easiest to use. An example is: Plot Maximum1 = If(close > open, close, open); This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.” This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with else to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
+
+###The 'immediate-if' explained
+
+The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An example is: Plot Maximum1 = If(close > open, close, open); This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.” This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with else to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
+
+
 The word 'double' is often vague in its meaning in ThinkScript but it means a floating-decimal-point-number of double
 Makes the text between the tags bold. Starts a new line
 Creates indented lists
