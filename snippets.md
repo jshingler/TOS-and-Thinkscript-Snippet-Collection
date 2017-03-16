@@ -369,6 +369,10 @@ http://www.colorschemer.com/online.html
 
 TOS has also assigned names to 23 colors per the following:
 Reference: See all color constants
+
+![Color Chart](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/6-2.png?raw=true "Color Chart")
+
+
 Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e. color.CYAN or color.LIGHT_RED.
 Not all colors are defined: for example, PURPLE. You may find any color at http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F or http://en.wikipedia.org/wiki/X11_color_names . You can create that color for use in TOS by using the function 'CreateColor(double red, double green, double blue); ' similar to the RGB Code in the chart above. Each RGB component ranges in value from 0 (meaning none or 0%) to 255 (meaning the max 100% value).
 You may also assign a text-name, for later use, to any color you create via DefineGlobalColor("Purple" , CreateColor(160,32,240) );
