@@ -301,24 +301,30 @@ HMA.DefineColor("Down", GetColor(0));
 HMA.AssignValueColor(if HMA > HMA[1] then HMA.color("Up") else HMA.color("Down"));
 ```
 
-In the above HMA>HMA[1] is the condition that says IF the current HMA is greater than the previous value of the HMA, i.e. HMA > HMA[1] , THEN paint the plot with the “Up” color which is defined as color(1) OTHERWISE/ELSE paint the plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index- numbers are explained in the separate topic.
+In the above HMA>HMA[1] is the condition that says __IF__ the current HMA is greater than the previous value of the HMA, i.e. HMA > HMA[1] , __THEN__ paint the plot with the “Up” color which is defined as color(1) __OTHERWISE/ELSE__ paint the plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index- numbers are explained in the separate topic.
+
 The condition is always in a 'if.... then.... else' format. If-statements may be nested without limits. The format then becomes 'if.....then..... else if.....then.....else if.....then......else'. The closing 'else' is always present and relates to the initial if.... then when none of the nested if ...then's produce a result.
+
 Example:
 if SlowK > SlowD then color.green else if SlowK < SlowD then color.red else color.gray
+
 The multiple conditions may be used to define a conditional statements. They are joined by 'and' or its equivalent '&&'. Example: def RangeCondition = ADX > 0 && ADX < 13;# ADX is between 0 and 13
-Conditions may be nested as in this example: Diamonds.AssignValueColor(
-If BullishCondition then color.green else
-If RangeCondition then color.white else
-If BearishCondition then color.red else
-color.black);
+Conditions may be nested as in this example: 
+```
+Diamonds.AssignValueColor(
+   If BullishCondition then color.green else
+   If RangeCondition then color.white else
+   If BearishCondition then color.red else
+   color.black);
+```
 Note in the above, since color.green, color.white, color.red and color.black are constants and not double variables, the if-expression must be used and that requires the presence of all IF.....THEN.....ELSE parts.
 
 Here is another example of multiple coloring in a label:
 ```
 AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
-then Color.Green
-else if perct < 0.80 and perct > 0.50 then Color.Yellow
-else color.Red);
+  then Color.Green
+  else if perct < 0.80 and perct > 0.50 then Color.Yellow
+  else color.Red);
 ```
 
 
