@@ -206,7 +206,8 @@ TOS & THINKSCRIPT SNIPPET COLLECTION Page 5
 
 ## <a name="2"></a>B-ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS
 [TOC Return](#toc)
-
+![Info Buble](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/2-1.png?raw=true "Info Bubble")
+![Info Buble](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/2-2.png?raw=true "Info Bubble")
 
 As shown above the study list and the inputs have info bubbles. You may add these info bubbles to your studies.
 To make an 'Info Bubble' for a study and strategy:
