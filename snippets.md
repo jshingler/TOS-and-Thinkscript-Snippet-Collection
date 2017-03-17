@@ -550,20 +550,31 @@ If your definition of the label text involves long and multiple 'if...then...els
 ## <a name="9"></a>B-AGGREGATION
 [TOC Return](#toc)
 
+![Length and Aggregation](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/9-1.png?raw=true "Length and Aggregation")
+![Dropdown](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/9-2.png?raw=true "Dropdown")
 
 Each bar on a plot represents a period of time known as the primary aggregation: one minute, five minutes, day, etc.
-A chart may also have one or more secondary aggregations. Variables are assumed to be of primary aggregation and those of a secondary aggregation must have their aggregation specified every time they are used.
+
+A chart may also have one or more secondary aggregations. Variables are assumed to be of primary aggregation and __those of a secondary aggregation must have their aggregation specified__ every time they are used.
+
 A very common way of specifying the secondary aggregation is:
+
+```
 def Agg = AggregationPeriod.FIFTEEN_MIN;# Use the desired constant to specify the time
 plot Data = close(period = agg) / close(period = agg)[3];# The phrase 'period =' is always used when referring to the variable aggregation. In this case 'agg'.
+```
+
 You may need to learn other ways of specifying aggregation to read other people's code such as in the built-in DailySMA.
         
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 13
+__RULES__
 1. The secondary aggregation period cannot be less than the primary aggregation period defined by chart
 settings. This is a hard-fast rule that often comes into play.
 2. Two different secondary aggregation periods cannot be used within a single variable. You can define each separately and then use the two definitions in a single statement.
 It has been observed that using more than one secondary aggregation may affect the proper plotting. Using 'Expansion Area: ? Bars to the right' in chart settings may have an improvement.
-There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL 
+
+There is a complete tutorial named __Aggregation Tutorial,PDF__ available at http://mytrade.com/StanL 
+
+
 ## <a name="10"></a>B-EXPLANATION OF '=' , '=='AND '!'
 [TOC Return](#toc)
 
