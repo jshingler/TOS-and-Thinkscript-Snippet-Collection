@@ -629,11 +629,14 @@ There are two ways of referencing constant inputs : `smoothingType = "SMA"` and 
 
 
 Here's an interesting concept/tip that you may find very useful and it's not obvious. The '%HL Custom Column' (available at http://mytrade.com/StanL) tells where, in today's prices, a stock is now i.e. 35% means it is now at 35% of today's range (low to high). 100% means it is at its high of today's range. These numbers are based on the columns "day" aggregation. That agg can be changed to say '4 days'. The column will then tell where in the range of the last 4 days, the stock currently is. Use a month agg and it will tell where in the last month's range the stock currently is. The same concept applies to all aggs. Isn't that neat? And it is so easy to change the agg. Also custom columns have some aggs that are different from the normal chart aggs. For example 4-days is a column agg choice but is not a choice of the chart settings (the agg dropdown).
+
 The example used here, %HL, is a custom column study available at http://mytrade.com/StanL Of course, you will need to keep track of what agg you are currently using. Perhaps you can do that with the title of the custom column.
+
 After installing the %HL you access editing it by right-clicking the watchlist column headings to customize and follow the snapshots below:
-Continued on Next Page
-         
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 15
+
+![Click the scroll](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/12-1.png?raw=true "Click the scroll")
+![Click to Change Aggregation](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/12-2.png?raw=true "Click to Change Aggregation")
+
 ## <a name="13"></a>B+C-NORMALIZATION
 [TOC Return](#toc)
 
