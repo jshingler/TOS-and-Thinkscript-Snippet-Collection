@@ -988,7 +988,7 @@ Other examples of switch usage can be found at S-PRICE DIRECTION SCAN , S-PRICE 
 ## <a name="27"></a>C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS
 [TOC Return](#toc)
 
-
+```
 #Hint: Plots Horizontal lines of highest-highs and lowest-lows
 #TOS Name = HorizLines_HH_LL
 input length = 20;#hint length: The number of bars being evaluated for the HH and LL. Also is the length of the longest lines. Longer lines may show when two adjacent lines have the same HH or LL values.
@@ -1000,33 +1000,35 @@ plot LL_Lines = if b == 0 then double.nan else if ShowLo_Lines then b else doubl
 def d = Highest(high, length);
 def e = if high >= d then d else e[1];
 plot HH_Lines = if ShowHi_Lines && e == 0 then double.nan else if ShowHi_Lines then e else double.nan;
-        
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 23 HH_Lines.SetPaintingStrategy(paintingStrategy.horizontal);
-Alertnate 1:
+HH_Lines.SetPaintingStrategy(paintingStrategy.horizontal);
+```
+
+### Alertnate 1:
+```
 #hint <b> Highest High and Lowest Low lines & bubble for 3, 6 or 12 momths</b>
 declare upper;
-input timeFrame = { default threeMonths, sixMonths, twelveMonths };#hint timeFrame: select the TimeFrame desired def numBars;
+input timeFrame = { default threeMonths, sixMonths, twelveMonths };#hint timeFrame: select the TimeFrame desired
+def numBars;
 switch( timeFrame ) {
-case threeMonths: numBars = 63;
-case sixMonths: numBars = 126;
-case twelveMonths:
-  numBars
-= 252;
+  case threeMonths:
+    numBars = 63;
+  case sixMonths:
+    numBars = 126;
+  case twelveMonths:
+    numBars = 252;
 }
-def barNum
-def lastBar
-def startBar
-def numMonths
+def barNum = if IsNaN( close ) then Double.NaN else barNumber();
+def lastBar = HighestAll( barNum );
+def startBar = if lastBar <= numBars then 1 else lastBar - numBars;
+def numMonths = round( ( lastBar - startBar + 1 ) / 21, 0 );
 def Hidata;
 def Lodata;
 if barNum < startBar then {
-Hidata
-Lodata } else {
-Hidata Lodata
-= Double.NaN; = Double.NaN;
-= high; = low;
-= if IsNaN( close ) then Double.NaN else barNumber(); = HighestAll( barNum );
-= if lastBar <= numBars then 1 else lastBar - numBars; = round( ( lastBar - startBar + 1 ) / 21, 0 );
+  Hidata = Double.NaN;
+  Lodata = Double.NaN;
+} else {
+  Hidata = high;
+  Lodata = low;
 }
 def highestData = HighestAll( Hidata );
 def lowestData = LowestAll( Lodata );
@@ -1041,15 +1043,18 @@ LowestLow.SetPaintingStrategy( PaintingStrategy.LINE );
 LowestLow.SetLineWeight(5);
 LowestLow.SetDefaultColor(Color.PINK);
 LowestLow.HideBubble();
-AddChartBubble( barNum == startBar, HighestHigh, "Highest High in " + numMonths + " Months" , Color.cyan, yes ); AddChartBubble( barNum == startBar, LowestLow, "Lowest Low in " + numMonths + " Months" , Color.pink, no );
-Alertnate 2:
+AddChartBubble( barNum == startBar, HighestHigh, "Highest High in " + numMonths + " Months" , Color.cyan, yes );
+AddChartBubble( barNum == startBar, LowestLow, "Lowest Low in " + numMonths + " Months" , Color.pink, no );
+```
+
+### Alertnate 2:
+```
 #hint:<b>Plots a line for the highest in the last ? bars</b>\nHas option for a % lower plot declare upper;
 input numBars = 50;#hint numBars: The number of bars monitored
 input price = high;#hint price:Select the price to monitor
 input hidePctLowerPlot = yes;#hint hidePctLowerPlot: Yes hides the hidePctLowerPlot input PctLower = 5;#hint PctLower: define the % lower plot criteria
  
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 24
- def barNum = barNumber();
+def barNum = barNumber();
 def lastBar = HighestAll( if IsNaN(price) then 0 else barNum ); def startBar = if lastBar <= numBars then 1 else lastBar - numBars; def totBars = if lastBar <= numBars then lastBar else numBars; def data = if barNum < startBar then 0 else price;
 def highestData = HighestAll( data );
 plot HighestHigh = highestData;
@@ -1057,16 +1062,16 @@ plot PercentDown = highestData * (1 - (PctLower/100));
 HighestHigh.SetPaintingStrategy( PaintingStrategy.LINE ); HighestHigh.SetLineWeight(3); HighestHigh.AssignValueColor( color.CYAN ); #HighestHigh.SetDefaultColor(Color.CYAN); HighestHigh.HideBubble();
 PercentDown.SetStyle( Curve.SHORT_DASH ); PercentDown.SetLineWeight(1); PercentDown.SetDefaultColor(Color.RED); PercentDown.HideBubble(); PercentDown.SetHiding( hidePctLowerPlot );
 AddChartBubble( barNum == startBar, HighestHigh, "Highest High in the Past " +
-totBars +
-" bars: " + HighestHigh, color.CYAN );
+  totBars +" bars: " + HighestHigh, color.CYAN );
 AddChartBubble( barNum == startBar and !hidePctLowerPlot, PercentDown, PctLower + " % Below Highest High in the Past " + totBars + " bars: " + PercentDown,
 color.RED );
 #---------- END ---------------------
+```
 
 ## <a name="28"></a>C-VARIOUS MARKET TIME VARIABLES
 [TOC Return](#toc)
 
-
+```
 input showOnlyToday = YES;
 input Market_Open_Time = 0930;
 input Market_Close_Time = 1600;
@@ -1078,84 +1083,116 @@ def pastOpen = if((secondsTillTime(Market_Open_Time) > 0), 0, 1);# True if marke
 def firstBar = if (day[1] != day, day - 1, 0);
 #EOD stands for End of Day
 def EOD = secondsFromTime(1600) > 0; #After 4 pm, EOD is true
- 
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 25 
+```
 
 ## <a name="29"></a>C-VERTICAL LINES AT START AND END TIMES
 [TOC Return](#toc)
 
-
+```
 #hint:Places vertical lines at start and end times #TOS title = VertLines_at_START_END_times input time1 = 1000;
 input time2 = 1200;
 def StartTime = SecondsFromTime(time1) ==0;
 def EndTime = SecondsFromTime(time2) ==0; AddVerticalLine(StartTime,"Start Line",Color.RED,Curve.SHORT_DASH); AddVerticalLine(EndTime,"End Line",Color.RED,Curve.SHORT_DASH);
-A vertical line at a specific time
+```
+
+### A vertical line at a specific time
+```
 Input time = 1200;
 def starttime = secondsFromTime(time)==0;
 def ext = if starttime then close else ext[1];
 plot x = ext;
 AddVerticalLine(starttime, "Vertical Line Time!", color = Color.CYAN, stroke = Curve.POINTS);
+```
 
 ## <a name="30"></a>C-VERTICAL LINES AT INPUTTED BAR LOCATIONS
 [TOC Return](#toc)
 
-
+```
 #hint: <b>Plots a vertical line at up to 6 specified agg-bars-locations.</b>\n#LinePos1 must always be greater than 0. Set any other LinePos to zero (0) to omit its display.
 #By R. Houser Modified by StanL
+
 declare upper;
-    input linePos1 input linePos2 input linePos3 input linePos4 input linePos5 input linePos6
-= 10;#hint linePos1:Must be greater than zero
-= 20;#hint linePos2:Enter the agg-bars larger than previous input. Enter zero to omit the plot. = 50;#hint linePos3:Enter the agg-bars larger than previous input. Enter zero to omit the plot. = 100;#hint linePos4:Enter the agg-bars larger than previous input. Enter zero to omit the plot. = 150;#hint linePos5:Enter the agg-bars larger than previous input. Enter zero to omit the plot. = 200;#hint linePos6:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos1 = 10;#hint linePos1:Must be greater than zero
+input linePos2 = 20;#hint linePos2:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos3 = 50;#hint linePos3:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos4 = 100;#hint linePos4:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos5 = 150;#hint linePos5:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos6 = 200;#hint linePos6:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+
 Assert( linePos1 > 0, "linePos1 must be greater than zero" );
 Assert( linePos2 == 0 or linePos2 > linePos1, "linePos2 ("+linePos2+") must be zero or greater than linePos1 ("+linePos1+")" );
 Assert( linePos3 == 0 or linePos3 > linePos2, "linePos3 ("+linePos3+") must be zero or greater than linePos2 ("+linePos2+")" );
 Assert( linePos4 == 0 or linePos4 > linePos3, "linePos4 ("+linePos4+") must be zero or greater than linePos3 ("+linePos3+")" );
 Assert( linePos5 == 0 or linePos5 > linePos4, "linePos5 ("+linePos4+") must be zero or greater than linePos4 ("+linePos4+")" );
 Assert( linePos6 == 0 or linePos6 > linePos5, "linePos6 ("+linePos4+") must be zero or greater than linePos5 ("+linePos5+")" );
-def barNum = if IsNaN( close ) then Double.NaN else BarNumber(); def highestBarNum = HighestAll( barNum );
+
+def barNum = if IsNaN( close ) then Double.NaN else BarNumber();
+def highestBarNum = HighestAll( barNum );
 def show1 = if barNum == highestBarNum - linePos1 then yes else no;
 def show2 = if linePos2 > linePos1 and barNum == highestBarNum - linePos2 then yes else no;
- def show3 def show4 def show5 def show6
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 26
-= if linePos3 > linePos2 and barNum == highestBarNum - linePos3 then yes else no; = if linePos4 > linePos3 and barNum == highestBarNum - linePos4 then yes else no; = if linePos5 > linePos4 and barNum == highestBarNum - linePos5 then yes else no; = if linePos6 > linePos5 and barNum == highestBarNum - linePos6 then yes else no;
-AddVerticalLine( show1, linePos1+" Agg-bars", GetColor( 0 ) ); AddVerticalLine( show2, linePos2+" Agg-bars", GetColor( 1 ) ); AddVerticalLine( show3, linePos3+" Agg-bars", GetColor( 2 ) ); AddVerticalLine( show4, linePos4+" Agg-bars", GetColor( 3 ) ); AddVerticalLine( show5, linePos5+" Agg-bars", GetColor( 4 ) ); AddVerticalLine( show6, linePos6+" Agg-bars", GetColor( 5 ) );
-AddLabel(1, "Vertical lines have been placed at the inputted locations", color.white); Comment: This is a good example illustrating the use of the Assert function.
+def show3 = if linePos3 > linePos2 and barNum == highestBarNum - linePos3 then yes else no;
+def show4 = if linePos4 > linePos3 and barNum == highestBarNum - linePos4 then yes else no;
+def show5 = if linePos5 > linePos4 and barNum == highestBarNum - linePos5 then yes else no;
+def show6 = if linePos6 > linePos5 and barNum == highestBarNum - linePos6 then yes else no;
+
+AddVerticalLine( show1, linePos1+" Agg-bars", GetColor( 0 ) );
+AddVerticalLine( show2, linePos2+" Agg-bars", GetColor( 1 ) );
+AddVerticalLine( show3, linePos3+" Agg-bars", GetColor( 2 ) );
+AddVerticalLine( show4, linePos4+" Agg-bars", GetColor( 3 ) );
+AddVerticalLine( show5, linePos5+" Agg-bars", GetColor( 4 ) );
+AddVerticalLine( show6, linePos6+" Agg-bars", GetColor( 5 ) );
+AddLabel(1, "Vertical lines have been placed at the inputted locations", color.white);
+```
+
+__Comment:__ This is a good example illustrating the use of the Assert function.
 
 ## <a name="31"></a>C-COUNTING & PLOTTING OF BARNUMBERS
 [TOC Return](#toc)
 
 
 Bar-number data and counting can be very useful when debugging code. The script below may be useful.
+
+```
 # Title = Bar_Number_Plot_Interval
 #hint: Numbers the bars at inputted intervals. A line plot is also selectable. This may be shown on the upper or lower plot by using 'EDIT STUDIES'.
-Input Interval = 5;#hint Interval: Enter the desired interval for showing the bar mumber.\n 0 and 1 plots at every bar. Input BarNumbLine = Yes;#hint BarNumbLine: YES shows a line plot of bar number at the 'high' price.
+Input Interval = 5;#hint Interval: Enter the desired interval for showing the bar mumber.\n 0 and 1 plots at every bar.
+Input BarNumbLine = Yes;#hint BarNumbLine: YES shows a line plot of bar number at the 'high' price.
 def Every_Interval = interval - 1;
 plot Data = if BarNumbLine == 1 then high else double.nan;
 def barNumber = barNumber();
-Plot bn = if (barNumber -1) % Interval == 1 then barNumber else double.nan; bn.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
-plot bn_1 = if interval == 0 or interval == 1 then barNumber else double.nan; bn_1.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
+Plot bn = if (barNumber -1) % Interval == 1 then barNumber else double.nan;
+bn.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
+plot bn_1 = if interval == 0 or interval == 1 then barNumber else double.nan;
+bn_1.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
 #####################
 def TotalBars = HighestAll(barNumber());
 AddLabel( yes, "TotalBars = " + TotalBars , Color.white);
 AddLabel( yes, "Numbering Interval = " + Interval, Color.pink);
 ########### EOC ########
+```
+
 The above is a study named Bar_Number_Plot_Interval.txt available at http://mytrade.com/StanL
 
 ## <a name="32"></a>C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS
 [TOC Return](#toc)
 
-
-#hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length, default 20.
+```
+#hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length,
+default 20.
 def barnumber = barnumber();
 input length = 20;#hint Length: Looks for new highs within every Agg-bars length. <b>(Default is 20)</b>
 input gap_length = 200;#hint gap_length: If there is a large gap between new highs, this gap_length is used to find the previous highest high and it subtracts the current high bar number from the previous high barnumber. <b>\n(Default is 200)</b>
 input show_Bar_number = NO;#hint show_Bar_number:Yes shows each bar number
 def numberold1 = if highest(high, length)[1] then barnumber else double.nan;
-def signal = if highest(high, length) > highest(high, length)[1] then barnumber() else 0; def signal1 = if signal > 0 then (signal - highest(signal, length)[1]) else 0;
-    
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 27
- plot count = if signal1 > 0 and signal1 != barnumber() then signal1 else if signal1 == barnumber() then (signal1 - highest(signal[1], gap_length)) else double.nan; count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
-plot Bar_number = if show_Bar_number == yes then barnumber() else double.nan; Bar_Number.setPaintingStrategy(paintingStrategy.VALUES_BELOW);
+def signal = if highest(high, length) > highest(high, length)[1] then barnumber() else 0;
+def signal1 = if signal > 0 then (signal - highest(signal, length)[1]) else 0;
+
+plot count = if signal1 > 0 and signal1 != barnumber() then signal1 else if signal1 == barnumber() then (signal1 - highest(signal[1], gap_length)) else double.nan;
+count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
+
+plot Bar_number = if show_Bar_number == yes then barnumber() else double.nan;
+Bar_Number.setPaintingStrategy(paintingStrategy.VALUES_BELOW);
+```
 
 ## <a name="33"></a>C-MARKET OPEN AND LUNCH TIMES
 [TOC Return](#toc)
