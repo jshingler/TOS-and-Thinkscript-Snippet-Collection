@@ -947,22 +947,33 @@ def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1; AddLabel(yes,"date
 
 
 What is a swing high / low? Basically a swing high is the highest high looking a few bars back and a few bars forward. A swing low is the lowest low looking a few bars back and a few bars forward. The more bars you include in the series, the more significant the swing, but the confirmation comes further from the actual swing point. If you wanted to define a swing high as a bar high that is higher than the highs of the two bars just before it AND higher than the highs of the two bars just after it, the thinkscript code would look like this:
-Def swinghigh = if high > high[1] and high > high[2] and high > high[-1] and high > high[-2] then 1 else 0; Or if you are interested in the rise of the last 5 bars, you may use something like this:
-plot pivotHigh = if high == (highest(high, 5) and sum(high > high[-1], 5) == 5) then high else Double.NAN;
+
+`Def swinghigh = if high > high[1] and high > high[2] and high > high[-1] and high > high[-2] then 1 else 0;` 
+
+Or if you are interested in the rise of the last 5 bars, you may use something like this:
+
+`plot pivotHigh = if high == (highest(high, 5) and sum(high > high[-1], 5) == 5) then high else Double.NAN;`
+
 The code for a swing low is similar. Note that the confirmation of a swing point does not come until 2 bars after the swing high in this case. If you wanted to extend the swing check to 3 bars before and after, you would add the checks for a high > high[3] and high > high [-3]. The resulting swing will be more significant, but the signal comes 3 bars after the fact.
+
 To plot the swing high you could code it like this:
+
+```
 Plot swing_hi = if swinghigh then high else double.nan;
 swing_hi.setstyle(curve.points);
+```
+
 This would paint a dot on all the swing highs, and nothing everywhere else. The code for swing lows is similar.
 This is the simplified basics of swingHi/SwingLo. Many coders add all kinds of conditions to supplement the simplified code herein. Also the look-back and the look-forward lengths do not need to be the same.
-    
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 22 
 
 ## <a name="26"></a>B-USAGE OF THE SWITCH FUNCTION
 [TOC Return](#toc)
 
 
 Here is a example of the 'switch' function being discussed:
+
+![switch](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/26-1.png?raw=true "switch")
+
 The switch statement is used to control the flow of program execution via a multi-branch using the enum Def, and enum input: Its features are:
 • It processes an enumeration: In this case 'input exchange'. Each enum value has a case ????: where ???? is the enum value.
 • If each item in the enum's list i.e. {default NYSE, NASDAQ, AMEX}, does not have a case, then there must be a case default: In this example, each of the enums has a case so there is no case default:.
