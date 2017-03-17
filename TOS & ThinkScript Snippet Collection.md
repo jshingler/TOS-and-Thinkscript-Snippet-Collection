@@ -17280,7 +17280,8 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 new bullish close above the cloud
 
-`close crosses above Ichimoku()."Span A" within 5 bars and
+```
+close crosses above Ichimoku()."Span A" within 5 bars and
 Ichimoku()."Span A" is greater than Ichimoku()."Span B" and
 Ichimoku()."Tenkan" is greater than or equal to Ichimoku()."Kijun"
 ```
