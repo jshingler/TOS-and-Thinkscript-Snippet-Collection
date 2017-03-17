@@ -975,13 +975,14 @@ Here is a example of the 'switch' function being discussed:
 ![switch](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/26-1.png?raw=true "switch")
 
 The switch statement is used to control the flow of program execution via a multi-branch using the enum Def, and enum input: Its features are:
-• It processes an enumeration: In this case 'input exchange'. Each enum value has a case ????: where ???? is the enum value.
-• If each item in the enum's list i.e. {default NYSE, NASDAQ, AMEX}, does not have a case, then there must be a case default: In this example, each of the enums has a case so there is no case default:.
-• If a case default: is present, its code is applicable to ALL the enum values that do not have a case.
-• The variables being processed, i.e. 'def advances;' and 'def declines;', must be addressed in each case ????:
+- It processes an enumeration: In this case 'input exchange'. Each enum value has a case ????: where ???? is the enum value.
+- If each item in the enum's list i.e. {default NYSE, NASDAQ, AMEX}, does not have a case, then there must be a case default: In this example, each of the enums has a case so there is no case default:.
+- If a case default: is present, its code is applicable to ALL the enum values that do not have a case.
+- The variables being processed, i.e. 'def advances;' and 'def declines;', must be addressed in each case ????:
 Otherwise an error is produced.
-• Any enum item having a space should have that item enclosed within quotes whenever used.
-• Use of a switch inside a switch is possible but is very complex. Hence it is not addressed herein.
+- Any enum item having a space should have that item enclosed within quotes whenever used.
+- Use of a switch inside a switch is possible but is very complex. Hence it is not addressed herein.
+
 Other examples of switch usage can be found at S-PRICE DIRECTION SCAN , S-PRICE DIRECTION SCAN, C-ATR TRAILING STOP and C- THE 'AdvanceDecline' STUDY
 
 ## <a name="27"></a>C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS
