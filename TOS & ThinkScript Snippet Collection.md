@@ -168,8 +168,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - C-DEFINING CONDITIONS IN BUY/SELL STRATEGY.....Page 53
 
-
-
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  33
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
@@ -589,6 +587,9 @@ Continued on Next Page
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  88
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
+
+----
+----
 
 # BASIC CODING AND PLATFORM PRINCIPLES
 
@@ -1036,7 +1037,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ##end
 
-- IMPLEMENTING LABELS
+### IMPLEMENTING LABELS
 
 [Return to TOC](#toc)
 
@@ -2168,9 +2169,12 @@ SD values
 
 - x
 
-- STUDIES AND CODING
+----
+----
+<a name="STUDIES_AND_CODING"> </a>
+## STUDIES AND CODING
 
-- C-UPPER & LOWER BANDS AT DEFINED PERCENT
+### C-UPPER & LOWER BANDS AT DEFINED PERCENT
 
 [Return to TOC](#toc)
 
@@ -2186,13 +2190,6 @@ SD values
 
 - plot UpperBand = base * (1 + percentShift / 100);
 
-![Im1839](images/Im1839)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2929
 
@@ -16222,19 +16219,15 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - X
 
-- WATCHLIST COLUMNS
+----
+----
+
+# WATCHLIST COLUMNS
 
 - WLC-
 
 - PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  180180
 
@@ -16258,7 +16251,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- WLC-WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD
+## WLC-WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD
 
 [Return to TOC](#toc)
 
@@ -16306,7 +16299,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- WLC OF BARS-INTO-A-SQUEEZE
+## WLC OF BARS-INTO-A-SQUEEZE
 
 [Return to TOC](#toc)
 
@@ -16326,29 +16319,25 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  181181
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
 
-- SCANS
+----
+----
+<a name"SCANS"> </>
+# SCANS
 
-- S-LINEAR REGRESSION-VAR SCAN
+## S-LINEAR REGRESSION-VAR SCAN
 
 [Return to TOC](#toc)
 
-- This is a scan that works well in a dynamic watch list with your favorite companies to trade. It works well as a signal when
+This is a scan that works well in a dynamic watch list with your favorite companies to trade. It works well as a signal when a company is moving up through resistance in a trough or lower area for a long trade. Vary the "width of channel"  and “length” to suit your own preferences.
 
-- a company is moving up through resistance in a trough or lower area for a long trade. Vary the "width of channel"  and
+`Plot scan = low crosses LinearRegChVar ("width of channel" = 69, "full range" = no, "length" = 252)."LowerLR"`
 
-- “length” to suit your own preferences.
-
-- Plot scan = low crosses LinearRegChVar ("width of channel" = 69, "full range" = no, "length" = 252)."LowerLR"
-
-- S-SCAN FOR TRENDING CONDITIONS
+## S-SCAN FOR TRENDING CONDITIONS
 
 [Return to TOC](#toc)
 
@@ -16380,7 +16369,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR MACD AVG AND MACD DIVERGENCE
+## S-SCAN FOR MACD AVG AND MACD DIVERGENCE
 
 [Return to TOC](#toc)
 
@@ -16402,7 +16391,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Plot scan = Crosses( MACD( 12, 26, 9, "SMA" ).Avg, 0, CrossingDirection.Below )
 
-- S-SCAN DECLINE FOR ? BARS
+## S-SCAN DECLINE FOR ? BARS
 
 [Return to TOC](#toc)
 
@@ -16412,21 +16401,12 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-PRICE DIRECTION SCAN
+## S-PRICE DIRECTION SCAN
 
 [Return to TOC](#toc)
 
 - input price = close;
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  182182
 
@@ -16472,7 +16452,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR HAS-EARNINGS IN FUTURE
+## S-SCAN FOR HAS-EARNINGS IN FUTURE
 
 [Return to TOC](#toc)
 
@@ -16486,7 +16466,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR CORRELATED STOCKS
+## S-SCAN FOR CORRELATED STOCKS
 
 [Return to TOC](#toc)
 
@@ -16516,7 +16496,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS
+## S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS
 
 [Return to TOC](#toc)
 
@@ -16546,7 +16526,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-EXAMPLE OF TIME BRACKETED SCAN
+## S-EXAMPLE OF TIME BRACKETED SCAN
 
 [Return to TOC](#toc)
 
@@ -16568,7 +16548,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR HIGHS OR LOWS
+## S-SCAN FOR HIGHS OR LOWS
 
 [Return to TOC](#toc)
 
@@ -16638,7 +16618,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA
+## S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA
 
 [Return to TOC](#toc)
 
@@ -16660,7 +16640,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR CROSS OF MOVING AVERAGES
+## S-SCAN FOR CROSS OF MOVING AVERAGES
 
 [Return to TOC](#toc)
 
@@ -16692,7 +16672,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN CROSS OF STANDARD DEVIATION CHANNEL
+## S-SCAN CROSS OF STANDARD DEVIATION CHANNEL
 
 [Return to TOC](#toc)
 
@@ -16720,7 +16700,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-ABOVE 20-DAY MA FOR 65 DAYS
+## S-ABOVE 20-DAY MA FOR 65 DAYS
 
 [Return to TOC](#toc)
 
@@ -16736,7 +16716,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR 200-DAY MA
+## S-SCAN FOR 200-DAY MA
 
 [Return to TOC](#toc)
 
@@ -16772,7 +16752,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR A BULLISH ADX
+## S-SCAN FOR A BULLISH ADX
 
 [Return to TOC](#toc)
 
@@ -16784,7 +16764,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR DMI
+## S-SCAN FOR DMI
 
 [Return to TOC](#toc)
 
@@ -16838,7 +16818,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN USING PRE-DEFINED  CROSSOVERS
+## S-SCAN USING PRE-DEFINED  CROSSOVERS
 
 : Scan for the MACD Histogram value crossing from positive to negative or vice versa. Uses[Return to TOC](#toc)
 
@@ -17032,7 +17012,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-MACD SCAN
+## S-MACD SCAN
 
 [Return to TOC](#toc)
 
@@ -17070,7 +17050,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
+## S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
 
 [Return to TOC](#toc)
 
@@ -17092,7 +17072,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN PRICE CORRELATION WITH THE SPX
+## S-SCAN PRICE CORRELATION WITH THE SPX
 
 [Return to TOC](#toc)
 
@@ -17116,7 +17096,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-   INCREASING EARNINGS SCAN
+## S-   INCREASING EARNINGS SCAN
 
 [Return to TOC](#toc)
 
@@ -17212,7 +17192,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- S-SCAN FOR TOS' STRENGTH METER
+## S-SCAN FOR TOS' STRENGTH METER
 
 [Return to TOC](#toc)
 
@@ -17260,7 +17240,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  191191
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
 
-- S-NOTEWORTHY RESOURCE FOR PREDEFINED SCANS
+## S-NOTEWORTHY RESOURCE FOR PREDEFINED SCANS
 
 [Return to TOC](#toc)
 
@@ -17274,7 +17254,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - conflicts because the source of all data is the exchanges.  Visit the site
 
-- S-MOVING AVERAGE COMPARISON
+## S-MOVING AVERAGE COMPARISON
 
 [Return to TOC](#toc)
 
@@ -17294,61 +17274,47 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ago
 
-- S-NEW BULLISH CLOSE ABOVE THE ICHIMONU CLOUD
+## S-NEW BULLISH CLOSE ABOVE THE ICHIMONU CLOUD
 
 [Return to TOC](#toc)
 
-- new bullish close above the cloud
+new bullish close above the cloud
 
-- close crosses above Ichimoku()."Span A" within 5 bars and
+`close crosses above Ichimoku()."Span A" within 5 bars and
+Ichimoku()."Span A" is greater than Ichimoku()."Span B" and
+Ichimoku()."Tenkan" is greater than or equal to Ichimoku()."Kijun"
+```
 
-- Ichimoku()."Span A" is greater than Ichimoku()."Span B" and
-
-- Ichimoku()."Tenkan" is greater than or equal to Ichimoku()."Kijun"
-
-- S-CROSSING ABOVE & BELOW THE ICHIMOKU CLOUD
-
-[Return to TOC](#toc)
-
-- Ichimoku scan for crossing above the cloud
-
-- close crosses above Max(Ichimoku()."Span A", Ichimoku()."Span B")
-
-- Ichimoku scan for crossing below the cloud
-
-- close crosses below Min(Ichimoku()."Span A", Ichimoku()."Span B")
-
-- NEXT SCAN TO BE ADDED
+## S-CROSSING ABOVE & BELOW THE ICHIMOKU CLOUD
 
 [Return to TOC](#toc)
 
-- x
+Ichimoku scan for crossing above the cloud
 
-- NEXT SCAN TO BE ADDED
+`close crosses above Max(Ichimoku()."Span A", Ichimoku()."Span B")`
+
+Ichimoku scan for crossing below the cloud
+
+`close crosses below Min(Ichimoku()."Span A", Ichimoku()."Span B")`
+
+## NEXT SCAN TO BE ADDED
 
 [Return to TOC](#toc)
 
 - x
 
-- NEXT SCAN TO BE ADDED
+## NEXT SCAN TO BE ADDED
 
 [Return to TOC](#toc)
 
 - x
 
-![Im13](images/Im13)
+## NEXT SCAN TO BE ADDED
 
-![Im13](images/Im13)
+[Return to TOC](#toc)
 
-![Im13](images/Im13)
+- x
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  192192
 
@@ -17402,15 +17368,18 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ALERT SOUNDS
 
-- NEXT ITEM TO BE ADDED
+##NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
 - x
 
-- USAGE TIPS
+----
+----
+<a name="USAGE_TIPS"> </a>
+# USAGE TIPS
 
-- T-USING CUSTOM COLUMN AGGREGATION
+## T-USING CUSTOM COLUMN AGGREGATION
 
 )  tells where, in today's prices, a stock is now i.e. 35% means it is now at 35% of today's[Return to TOC](#toc)
 
@@ -17438,7 +17407,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - snapshots below:
 
-- T-HOW TO DECIPHER COMPLEX STUDY PLOTS
+## T-HOW TO DECIPHER COMPLEX STUDY PLOTS
 
 [Return to TOC](#toc)
 
@@ -17470,35 +17439,21 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- T-A REFERENCE RECALL OF A STRATEGY'S RULES (SETUP)
+## T-A REFERENCE RECALL OF A STRATEGY'S RULES (SETUP)
 
 [Return to TOC](#toc)
 
-- A 'setup' is a term/title applied to a  group of charts and indicators that are used to implement a trading strategy. For
+A 'setup' is a term/title applied to a  group of charts and indicators that are used to implement a trading strategy. For example, there is a 9/30 setup that is openly discussed on the internet. Also an esteemed TS coder has written the '3X oscillator' for use specifically with the 9/30 setup.
 
-- example, there is a 9/30 setup that is openly discussed on the internet. Also an esteemed TS coder has written the '3X
+Setups frequently have rules re what needs to exist to implement its buy/sell strategy. Such rules may be simple or complex but, regardless, are not easy to remember. This tip is to use TOS 'ThinkLog' to store those rules for easy reference. ThinkLog is accessed via the 'Tools/ThinkLog' tab and is a ready reference place where you could  refresh you memory on the implementation details of the 9/30 strategy's particulars.
 
-- oscillator' for use specifically with the 9/30 setup.
-
-- Setups frequently have rules re what needs to exist to implement its buy/sell strategy. Such rules may be simple or
-
-- complex but, regardless, are not easy to remember. This tip is to use TOS 'ThinkLog' to store those rules for easy
-
-- reference. ThinkLog is accessed via the 'Tools/ThinkLog' tab and is a ready reference place where you could  refresh
-
-- you memory on the implementation details of the 9/30 strategy's particulars.
-
-- T-FAST ACCESS TO EDITING A STUDY
+## T-FAST ACCESS TO EDITING A STUDY
 
 [Return to TOC](#toc)
 
-- The fastest way to edit a study is to double click on the plot on the chart. However, at times, clicking the right location
+The fastest way to edit a study is to double click on the plot on the chart. However, at times, clicking the right location can take many tries. This is where study highlighting can come in handy for finding the right place and time to double-click. Here is where highlighting hoovering is set:
 
-- can take many tries. This is where study highlighting can come in handy for finding the right place and time to double-
-
-- click. Here is where highlighting hoovering is set:
-
-- T-A NEW-TO-THINKSCRIPT MUST READ
+## T-A NEW-TO-THINKSCRIPT MUST READ
 
 [Return to TOC](#toc)
 
@@ -17524,89 +17479,56 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - sections the 'ThinkScript Tutorials' are especially pertinent.
 
-- T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES
+## T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES
 
 [Return to TOC](#toc)
 
-- Using multiple time frames to plan entries is smart ( See Article ). To facilitate implementing a multiple-time-frame
+Using multiple time frames to plan entries is smart ( See Article ). To facilitate implementing a multiple-time-frame approach consider establishing a named grid with each grid component having the charts and indicators at the time frames that you are interested in. You can navigate from one grid-box to another with a single click of the grid navigation buttons. Giving the grid a name allows you to call it up whenever you want. A 'flexible grid' would be ideal for such a purpose.
 
-- approach consider establishing a named grid with each grid component having the charts and indicators at the time
-
-- frames that you are interested in. You can navigate from one grid-box to another with a single click of the grid navigation
-
-- buttons. Giving the grid a name allows you to call it up whenever you want. A 'flexible grid' would be ideal for such a
-
-- purpose.
-
-- T-WIZARD ACCESS FOR EDITING EXISTING STUDIES
+## T-WIZARD ACCESS FOR EDITING EXISTING STUDIES
 
 [Return to TOC](#toc)
 
-- When editing existing studies and you want to use the wizard, you have two choices: 1. Open a new study. Copy the wizard
+When editing existing studies and you want to use the wizard, you have two choices: 1. Open a new study. Copy the wizard result via CTRL-C and then 'CANCEL' the new study; or 2. Use the wizard in the 'scan/stock hacker' and copy the wizard result via CTRL-C for pasting into the existing study editing.
 
-- result via CTRL-C and then 'CANCEL' the new study; or 2. Use the wizard in the 'scan/stock hacker' and copy the wizard
-
-- result via CTRL-C for pasting into the existing study editing.
-
-- T-PRE MARKET MOVERS
+## T-PRE MARKET MOVERS
 
 [Return to TOC](#toc)
 
-- Pre market scans are not very efficient.  TOS provides a good source for pre-market movers that is accessed in the left
+Pre market scans are not very efficient.  TOS provides a good source for pre-market movers that is accessed in the left panel by: (1) Click the + at the bottom of the left panel; (2) click 'Use The News'; and (3) Select Pre-Market Movers.
 
-- panel by: (1) Click the + at the bottom of the left panel; (2) click 'Use The News'; and (3) Select Pre-Market Movers.
+Note that the columns can be customized and adding a 'Send to [4] Green', for example, gives a quick chart of the stock.
 
-- Note that the columns can be customized and adding a 'Send to [4] Green', for example, gives a quick chart of the stock.
-
-- T-   VERTICAL LINES AT MARKET OPEN AND CLOSED TIMES
+## T-   VERTICAL LINES AT MARKET OPEN AND CLOSED TIMES
 
 [Return to TOC](#toc)
 
-- Granted that not all personal preferences are the same. I find that frequently changing the timeframe of charts is much
+Granted that not all personal preferences are the same. I find that frequently changing the timeframe of charts is much easier to read when I have vertical lines as market start and end times. The following code will establish those markers.
 
-- easier to read when I have vertical lines as market start and end times. The following code will establish those markers.
+The end-time markers may seem redundant and they are if you do not 'Show Extended Session' or 'Expansion Area' for stocks. Futures and Forex are a different story.
 
-- The end-time markers may seem redundant and they are if you do not 'Show Extended Session' or 'Expansion Area' for
+```
+#hint:Places vertical lines at start and end times
+#TOS title = VertLines_at_START_END_times
 
-- stocks. Futures and Forex are a different story.
+input time1 = 930;
+input time2 = 1630;
 
-- #hint:Places vertical lines at start and end times
+def StartTime = SecondsFromTime(time1) ==0;
+def EndTime = SecondsFromTime(time2) ==0;
 
-- #TOS title = VertLines_at_START_END_times
+AddVerticalLine(StartTime,"Market Open",Color.RED,Curve.SHORT_DASH);
+AddVerticalLine(EndTime," Market Closed",Color.RED,Curve.SHORT_DASH);
 
-- input time1 = 930;
+#end
+```
 
-- input time2 = 1630;
-
-- def StartTime = SecondsFromTime(time1) ==0;
-
-- def EndTime = SecondsFromTime(time2) ==0;
-
-- AddVerticalLine(StartTime,"Market Open",Color.RED,Curve.SHORT_DASH);
-
-- AddVerticalLine(EndTime," Market Closed",Color.RED,Curve.SHORT_DASH);
-
-- #end
-
-- T-EASILY VIEWING CHARTS OF STOCKS IN A LIST
+## T-EASILY VIEWING CHARTS OF STOCKS IN A LIST
 
 [Return to TOC](#toc)
 
-- Comment: You have a watchlist in either the left-hand panel or in 'Market Watch/Quotes'. Wouldn't it be nice to move
+Comment: You have a watchlist in either the left-hand panel or in 'Market Watch/Quotes'. Wouldn't it be nice to move thru the list looking at a chart for any stock that you want. This technique is too neat not to call it to your attention herein. Here is how it's done. In the left panel:
 
-- thru the list looking at a chart for any stock that you want. This technique is too neat not to call it to your attention
-
-- herein. Here is how it's done. In the left panel:
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  196196
 
@@ -17626,7 +17548,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- T-CHANGING THE HEADER TEXT COLOR
+## T-CHANGING THE HEADER TEXT COLOR
 
 [Return to TOC](#toc)
 
@@ -17666,7 +17588,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- T-SEQUENCECOUNTER AND GRID UASGE
+## T-SEQUENCECOUNTER AND GRID UASGE
 
 [Return to TOC](#toc)
 
@@ -17720,7 +17642,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - and check the privacy square.
 
-- T-NAVIGATION VIA KEYBOARD HOTKEYS vs THE MOUSE
+## T-NAVIGATION VIA KEYBOARD HOTKEYS vs THE MOUSE
 
 [Return to TOC](#toc)
 
@@ -17826,7 +17748,7 @@ There may be other hotkeys of interest to you at Go Here
 
 - #end
 
-- T-THE DREADED 'TOO COMPLEX ERROR'
+## T-THE DREADED 'TOO COMPLEX ERROR'
 
 [Return to TOC](#toc)
 
@@ -17886,7 +17808,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- T-DEFINING AND APPLYING CONDITIONS IN A STUDY
+## T-DEFINING AND APPLYING CONDITIONS IN A STUDY
 
 [Return to TOC](#toc)
 
@@ -17926,7 +17848,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - have no further use.
 
-- T-NAMING COPIED BUILTIN STUDIES
+## T-NAMING COPIED BUILTIN STUDIES
 
 [Return to TOC](#toc)
 
@@ -17938,7 +17860,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - your modified copy stay adjacent in the list and it helps you to keep track of what you may have done two months ago.
 
-- T-'PERCENTAGE VIEW' ON PRICE CHARTS
+## T-'PERCENTAGE VIEW' ON PRICE CHARTS
 
 [Return to TOC](#toc)
 
@@ -17992,7 +17914,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- T-CHANGING RIGHT EXPANSION AREA SETTING
+## T-CHANGING RIGHT EXPANSION AREA SETTING
 
 [Return to TOC](#toc)
 
@@ -18030,7 +17952,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Clicking as shown will take you to 'Chart settings/time axis' where you set the'expansion bars to the right'.
 
-- T-RENAMING STUDIES CAUTION
+## T-RENAMING STUDIES CAUTION
 
 [Return to TOC](#toc)
 
@@ -18090,7 +18012,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  204204
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
 
-- REFERENCES
+----
+----
+# REFERENCES
 
 [Return to TOC](#toc)
 
