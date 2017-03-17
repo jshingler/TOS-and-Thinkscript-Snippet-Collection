@@ -1219,21 +1219,30 @@ MACD() > MACD()[1]
 
 
 You can show/plot where any particular candle pattern exists. Below is code that shows where the popular Doji pattern exists:
-plot d = Doji();# If a Doji is present Doji() is true.The below lines format what to show at that location. d.setPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+
+```
+plot d = Doji();# If a Doji is present Doji() is true.The below lines format what to show at that location.
+d.setPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
 d.setLineWeight(2);
 d.setDefaultColor(Color.White);
-You may find this reference on the Doji of value....http://ezinearticles.com/?Candlestick-Charting-and-Reversal- Patterns---The-Doji&id=1068331
-Doji() as used above is the simplest of all candles to show because it has only a single plot. But other patterns are more complicated. For example, some candles may be bullish (up) or bearish (down) patterns. As an example on how to substitute them for the Doji() used above, we'll use Harami. When we inspect its code , we see that it has three input variables and two plots named 'bullish' and 'bearish'. In this example, we'll retain all the parameters (assuming that ThinkScript knows the best parameters to use) and show the 'bullish' plot only. The def condition above now becomes: def condition = if (Harami().Bullish , 1, 0); # Whenever Harami().Bullish is present, condition is true
+```
+
+You may find this reference on the Doji of value....http://ezinearticles.com/?Candlestick-Charting-and-Reversal-Patterns---The-Doji&id=1068331
+
+Doji() as used above is the simplest of all candles to show because it has only a single plot. But other patterns are more complicated. For example, some candles may be bullish (up) or bearish (down) patterns. As an example on how to substitute them for the Doji() used above, we'll use Harami. When we inspect its code , we see that it has three input variables and two plots named 'bullish' and 'bearish'. In this example, we'll retain all the parameters (assuming that ThinkScript knows the best parameters to use) and show the 'bullish' plot only. The def condition above now becomes:
+
+`def condition = if (Harami().Bullish , 1, 0); # Whenever Harami().Bullish is present, condition is true`
+
 The remainder of the code statements can be changed to reflect reading correctness but what plots will be unaffected if they are not changed.
-If you want to also change the candle's parameters then the code becomes as follows with you providing values for the ????. The code becomes def condition = if (Harami(length = ????, trendSetup = ????, bodyFactor = ????).Bullish , 1, 0);
+
+If you want to also change the candle's parameters then the code becomes as follows with you providing values for the ????. The code becomes `def condition = if (Harami(length = ????, trendSetup = ????, bodyFactor = ????).Bullish , 1, 0);`
+
 Note that the parameter names (length, trendSetup and bodyFactor) are exactly the same as in the Harami code.
-      
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 28 
 
 ## <a name="36"></a>C-VOLUME AS A % OF THE ??-DAY-AVERAGE
 [TOC Return](#toc)
 
-
+```
 #hint:Uses the VolumeAvg study and adds a label showing volume as the percent of the average daily volume. The average daily volume length is based on the variable inputted length.
 #Title = VolumeAvg_WithLabel
 declare lower;
@@ -1247,11 +1256,15 @@ Vol.DefineColor("Up", Color.UPTICK);
 Vol.DefineColor("Down", Color.DOWNTICK);
 Vol.AssignValueColor(if close > close[1] then Vol.color("Up") else if close < close[1] then Vol.color("Down") else GetColor(1));
 VolAvg.SetDefaultColor(GetColor(8));
+
 ##### calc label ######
 #def AggPeriod = getAggregationPeriod();
 def Pct_Avg = Volume(period = AggregationPeriod.DAY) / Average(volume(period = AggregationPeriod.DAY), length) * 100;
 AddLabel(yes, "Today's Vol = " + round(Pct_Avg,1) + " % of the " + length + "-day-average" ,color.PINK);
-Alternate 1:
+```
+
+### Alternate 1:
+```
 #Hint: <b>Shows a label of current Volume as a % of the input Period Average Volume</b>\n Colors Label based on current Volume being > or < Average Volume
 #Usage: All 'edit studies' check boxes are blank when used as a pure label only. If you want to see the percentage for any bar under your cursor, then: (1) Check the 'show study' box in edit studies; OR (2) Change 'declare upper' to 'declare lower' and check all boxes in 'edit studies'.
 declare upper;
@@ -1264,76 +1277,108 @@ plot VolPct = 100 * data;
 VolPct.hide();# can be over-ridden by the edit-studies check boxes
 addlabel(yes,"Vol as % of " + VolAvgLength + " agg-bar avg volume = " + aspercent(Round(data,2)),if data < 0 then color.RED else color.GREEN);
 # end
-Alternate 2:
+```
+
+### Alternate 2:
+```
 #hint: Plots: 1. The volume histogram; 2. The inputted agg-bar average; and 3. A arrow when the volume exceeds the inputted average with an info label.
 declare lower;
 input length = 10;#hint length:The length of the average volume plot
 input pct = 25.0;#hint pct:Plots an arrow when volume exceeds the average by this percent
-  
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 29 def _volAvg = Average( volume, length );
-defvolTest =volume>=_volAvg*(1+(pct/100));
+
+def _volAvg = Average( volume, length );
+def volTest = volume >= _volAvg * ( 1+ ( pct / 100 ) );
+
 plot Vol = volume;
 Vol.SetPaintingStrategy( PaintingStrategy.HISTOGRAM );
 Vol.SetLineWeight(3);
 Vol.DefineColor("Up", Color.UPTICK);
 Vol.DefineColor("Down", Color.DOWNTICK);
 Vol.AssignValueColor(if close > close[1] then Vol.color("Up") else if close < close[1] then Vol.color("Down") else GetColor(1));
-plot VolAvg = _volAvg; VolAvg.SetDefaultColor(GetColor(8));
-plot VolAlert = if volTest then volume * 1.30 else Double.NaN; VolAlert.SetPaintingStrategy( PaintingStrategy.ARROW_UP); VolAlert.SetDefaultColor( Color.GREEN ); VolAlert.SetLineWeight(2);
-Addlabel(yes, "Arrow shows when volume is >= "+ pct + "above the " + length +"-bar-average",color.GREEN); #end
 
+plot VolAvg = _volAvg;
+VolAvg.SetDefaultColor(GetColor(8));
+plot VolAlert = if volTest then volume * 1.30 else Double.NaN;
+VolAlert.SetPaintingStrategy( PaintingStrategy.ARROW_UP);
+VolAlert.SetDefaultColor( Color.GREEN );
+VolAlert.SetLineWeight(2);
+Addlabel(yes, "Arrow shows when volume is >= "+ pct + "above the " + length +"-bar-average",color.GREEN);
+#end
+```
 
 ## <a name="37"></a>SC-IDENTIFY CURRENT LOW THAT HAS GAPED UP
 [TOC Return](#toc)
 
-
-#Plot or scan for current low that has gaped-up by an input percent input price1 = low;#hint Price1:The post-gap-up basis
+```
+#Plot or scan for current low that has gaped-up by an input percent
+input price1 = low;#hint Price1:The post-gap-up basis
 input GapPct = 0.5;#Hint GapPct: The gap-up percent
 input price2 = high;#hint Price2: The prior gap-up-bar-basis
-input WithinBars = 15;#hint WithinBars:The number of bars-back to evaluate def x = 1+GapPct/100; # factor for above 100 %
+input WithinBars = 15;#hint WithinBars:The number of bars-back to evaluate
+def x = 1+GapPct/100; # factor for above 100 %
 def term = x*price2[1]; # = factor * previous high
 plot scan = price1 >= term;
-#To scan for above happening within the last 15 days the above would read #plot scan = price1 >= term within WithinBars bars;
-##### below items not needed for a scan ##### scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_up); scan.SetLineWeight(5);
+#To scan for above happening within the last 15 days the above would read
+#plot scan = price1 >= term within WithinBars bars;
+##### below items not needed for a scan #####
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_up);
+scan.SetLineWeight(5);
 scan.SetDefaultColor(Color.White);
+```
 
 ## <a name="38"></a>C&S-PERCENTAGE CHANGE OF AN AVERAGE (SCAN OR PLOT)
 [TOC Return](#toc)
 
-
-#Hint:Scan/plot for a increase or decrease % of an inputted Parameter and average-length #The 'Inputted Parameter' has a choice of eleven different parameters
+```
+#Hint:Scan/plot for a increase or decrease % of an inputted Parameter and average-length
+#The 'Inputted Parameter' has a choice of eleven different parameters
 #Give an up arrow where true
 input price = volume;#hint Price:Parameter being measured
-input choice = {default increase, decrease};#hint Choice: Choose Increase or Decrease % input percent = 20;#hint percent: Enter the percent increse/decrease
+input choice = {default increase, decrease};#hint Choice: Choose Increase or Decrease %
+input percent = 20;#hint percent: Enter the percent increse/decrease
 input length = 50;#hint length: The average length being evaluated
 def avg = average(price, length)[1];
-def chg = 100*(price/avg -1); plot scan;
-   
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 30
- switch (choice) { case increase:
-scan = chg >= percent; case decrease:
-scan = chg <= -percent; }
-#### Below items not needed for a scan #### #scan.setpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN); scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP); scan.SetLineWeight(5);
+def chg = 100*(price/avg -1);
+plot scan;
+
+switch (choice) {
+  case increase:
+    scan = chg >= percent;
+  case decrease:
+    scan = chg <= -percent;
+}
+
+#### Below items not needed for a scan ####
+#scan.setpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+scan.SetLineWeight(5);
 scan.SetDefaultColor(Color.White);
 AddLabel(yes,Percent + " % " + Choice + " of the " + length + "-bar-average of a selected input price",color.white);
+```
 
 ## <a name="39"></a>C-ARROW AT THE DEFINED TIME EACH DAY
 [TOC Return](#toc)
 
-
-#hint:Places an arrow at the defined time each day declare hide_on_daily;
+```
+#hint:Places an arrow at the defined time each day
+declare hide_on_daily;
 def barnumber = BarNumber();
-input time = 1000;#hint time:Time to place the arrow at def timeTest = SecondsFromTime(time) == 0;
-def plotPrice = CompoundValue(1, if timeTest then barnumber else plotPrice[1], barnumber); def data = plotPrice;
+input time = 1000;#hint time:Time to place the arrow at
+def timeTest = SecondsFromTime(time) == 0;
+def plotPrice = CompoundValue(1, if timeTest then barnumber else plotPrice[1], barnumber);
+def data = plotPrice;
 def a = barnumber - data;
-Plot Arrow = If TimeTest then close else double.nan; Arrow.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP); Arrow.SetLineWeight(5);
+Plot Arrow = If TimeTest then close else double.nan;
+Arrow.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+Arrow.SetLineWeight(5);
 Arrow.SetDefaultColor(Color.White);
 AddLabel(yes, "Arrow is at time = " + AsPrice(time) +" of each day" ,color.white);
+```
 
 ## <a name="40"></a>C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE
 [TOC Return](#toc)
 
-
+```
 #hint: <b>MovingAverage Crossover - Once Per Chart</b>\nThis study shows arrows when the price crosses the moving average. The study by default only shows the latest crossing to free up screen space for more awesome studies.\n Enjoy - Jesse (author on the Mr. Script show)
 input price = close;#hint price:Select the price of choice
 input length = 10;#hint Length:Length of the average
@@ -1345,68 +1390,94 @@ def crossingup = price crosses above avg;
 def crossingover = close("Greatest Show Ever!");
 def barnumber = barnumber();
 def count = if crossingdown or crossingup then barnumber else 0;
+
 plot onceperchartup = if MostRecentOnly and crossingUP and count == highestall(count) then low else double.nan;
-plot onceperchartdown = if MostRecentOnly and crossingdown and count == highestall(count) then high else double.nan; onceperchartdown.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_down); onceperchartup.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_UP); onceperchartup.setDefaultColor(color.light_green);
+plot onceperchartdown = if MostRecentOnly and crossingdown and count == highestall(count) then high else double.nan;
+
+onceperchartdown.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_down);
+onceperchartup.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_UP);
+onceperchartup.setDefaultColor(color.light_green);
 onceperchartdown.setDefaultColor(color.light_red);
-  
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 31
-onceperchartdown.setLineWeight(3); onceperchartup.setLineWeight(3); onceperchartdown.hidetitle(); onceperchartup.hidetitle();
-Plot CrossUp = !mostRecentOnly and crossingup; crossup.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_UP); crossup.setDefaultColor(color.light_green);
+onceperchartdown.setLineWeight(3);
+onceperchartup.setLineWeight(3);
+onceperchartdown.hidetitle();
+onceperchartup.hidetitle();
+
+Plot CrossUp = !mostRecentOnly and crossingup;
+crossup.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_UP);
+crossup.setDefaultColor(color.light_green);
 crossUp.setLineWeight(3);
 crossup.hidetitle();
-Plot Crossdown = !mostRecentOnly and crossingdown; crossdown.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_down); crossdown.setDefaultColor(color.light_red);
+
+Plot Crossdown = !mostRecentOnly and crossingdown;
+crossdown.setPaintingStrategy(paintingStrategy.bOOLEAN_ARROW_down);
+crossdown.setDefaultColor(color.light_red);
 crossdown.setLineWeight(3);
 crossdown.hidetitle();
 ### EOC ###
+```
 
 ## <a name="41"></a>C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE
 [TOC Return](#toc)
 
-
-#plot a flat line from open of first bar of day. For use on multi-day charts. def day = getDay();
+```
+#plot a flat line from open of first bar of day. For use on multi-day charts.
+def day = getDay();
 def firstBar = day != day[1];
 AssignPriceColor(if firstBar then color.ORANGE else color.CURRENT);
-def dayOpen = if firstBar then high else dayOpen[1]; plot x = dayOpen;
-Alternate 1: Line from/for yesterday's close
+def dayOpen = if firstBar then high else dayOpen[1];
+plot x = dayOpen;
+```
+
+### Alternate 1: Line from/for yesterday's close
+```
 declare upper;
 def barNum = if IsNaN( close ) then Double.NaN else BarNumber();
 def highestBar = HighestAll( barNum );
-def previousClose = if barNum == highestBar - 1 then close else Double.NaN; plot CloseLine = HighestAll( previousClose );
+def previousClose = if barNum == highestBar - 1 then close else Double.NaN;
+plot CloseLine = HighestAll( previousClose );
 CloseLine.SetDefaultColor( Color.gray);
+```
 
 ## <a name="42"></a>C-% CHANGE OF THE FIRST BAR VALUE
 [TOC Return](#toc)
 
-
+```
 #Hint:<b> Plots the %-change-of-the-first-bar-value.</b>
 declare lower;
-input price = close;#hint price:This is the variable (11 choices) that will be plotted. def close1 = First(price);#Defines the first bar value
+input price = close;#hint price:This is the variable (11 choices) that will be plotted.
+def close1 = First(price);#Defines the first bar value
 plot Data = ( price - close1) / close1 * 100;
 Plot ZeroLine = 0;
 AddLabel(1,"Shown is the %-change-of-the-first-bar-value of " + close1,color.white);
+
 #Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
-AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2) else if price == open then "The price-variable selected is open = " + Round(open,2)
+AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2)
+else if price == open then "The price-variable selected is open = " + Round(open,2)
 else if price == high then "The price-variable selected is high = " + Round(high,2)
 else if price == low then "The price-variable selected is low = " + Round(low,2)
 else if price == hl2 then "The price-variable selected is hl2 = " + Round(hl2,2)
 else if price == hlc3 then "The price-variable selected is hlc3 = " + Round(hlc3,2)
-    
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 32
-else if price == imp_volatility then "The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility) else if price == ohlc4 then "The price-variable selected is ohlc4 = " + Round(ohlc4,2)
+else if price == imp_volatility then "The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility)
+else if price == ohlc4 then "The price-variable selected is ohlc4 = " + Round(ohlc4,2)
 else if price == open_interest then "The price-variable selected is Open_interest = " + Round(open_interest,0)
 else if price == volume then "The price-variable selected is Volume = " + Round(volume,0)
-else if price == VWAP then "The price-variable selected is VWAP = " + Round(VWAP,0) else "N/A",color.white);
+else if price == VWAP then "The price-variable selected is VWAP = " + Round(VWAP,0)
+else "N/A",color.white);
+```
 
 ## <a name="43"></a>C-% CHANGE COMPARED TO ? DAYS-AGO
 [TOC Return](#toc)
 
-
-#hint:Plots and shows a label for the change compared to the past inputted-number-of-days. declare lower;
+```
+#hint:Plots and shows a label for the change compared to the past inputted-number-of-days.
+declare lower;
 input length = 30;#hint length:the number of trading days-ago for the change
 def price = close(period = AggregationPeriod.day);
 def Change = (price / price[length] - 1);
 Plot PctChange = 100 * change;
 AddLabel(yes,"% Change compared to " + length + " days ago = " + Round(PctChange, 1) + "%",color.PINK);
+```
 
 ## <a name="44"></a>C-LOW IS ?% ABOVE YESTERDAY'S HIGH
 [TOC Return](#toc)
@@ -1426,11 +1497,13 @@ scan.SetDefaultColor(Color.White);
 [TOC Return](#toc)
 
 ```
-# hint: you can also copy/paste this code to create a custom IV percentile column for a watch list def vol = impVolatility();
+# hint: you can also copy/paste this code to create a custom IV percentile column for a watch list
+def vol = impVolatility();
 def hi = highest(vol,252);#is a one-year-day value. Use 189 for 6-month-day value
 def lo = lowest(vol,252);#is a one-year-day value. Use 189 for 6-month-day value
 def perct = (vol - lo) / (hi - lo);
-AddLabel(1, "IV Percentile + " + AsPercent(perct)+ " of the yearly range", if perct > 0.80 then Color.Green
+AddLabel(1, "IV Percentile + " + AsPercent(perct)+ " of the yearly range", if perct > 0.80
+then Color.Green
 else if perct < 0.80 and perct > 0.50
 then Color.Yellow
 else color.Light_Red);
@@ -1439,28 +1512,33 @@ else color.Light_Red);
 ## <a name="46"></a>C-YTD PERCENT CHANGE
 [TOC Return](#toc)
 
-
-     
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 33
+```
 #Hint:watchlist or label YTD-percent-change
-input price = close;#hint price:<b>Must be close for intended value</b>/n An error is in the label if close is not selected def day = getDay();
+input price = close;#hint price:<b>Must be close for intended value</b>/n An error is in the label if close is not selected
+def day = getDay();
 def month = getmonth();
 def year = getyear();
 def lastDay = getLastDay();
 def lastmonth = getlastmonth();
 def lastyear = getlastyear();
 def isToday = if(day == lastDay and month == lastmonth and year== lastyear, 1, 0);
-def yearswitch = if highest(getyyyymmdd(), 300) > 20130000 then 20130102 else 20120103;
+#def yearswitch = if Highest(GetYYYYMMDD(), 300) > 20130000 then 20130102 else 20120103;# this line was in the original version and is replaced by the following
+def yearswitch = if highest(getyyyymmdd(), 300) > 20140000 then 20140102 else 20130102;
 def yearstart = if getyyyymmdd() == yearswitch then price else 0;
 def todayend = if istoday then price else 0;
-def jan1 = highest(yearstart, 300); def now = highest(todayend, 300);
+def jan1 = highest(yearstart, 300);
+def now = highest(todayend, 300);
 plot "YTD Percent Change" = round((((now - jan1)/ jan1) * 100), 2);
 "YTD Percent Change".AssignValueColor(If "YTD Percent Change" > 0 then color.Green else if "YTD Percent Change" < 0 then color.red else color.yellow);
-### Comment out the next hide code if this is used as a column watchlist ##### "YTD Percent Change".hide();#Plot has nothing of value to see
+### Comment out the next hide code if this is used as a column watchlist #####
+"YTD Percent Change".hide();#Plot has nothing of value to see
 #### Comment-out the below label if this is used as a column watchList ####
 AddLabel(1,"YTD % Change of the " + if price == close then "close = "+ "YTD Percent Change" + " %" else "'ERROR...WRONG PRICE-VARIABLE SELECTED'" ,if price == close then color.cyan else color.red);
 #### EOC ######
-Alternate = current close as percent of the last-52-week-range
+```
+
+### Alternate = current close as percent of the last-52-week-range
+```
 #Current price as % of 52-week-range
 input price = close;
 def YearHigh = highest(high, 252);
@@ -1469,6 +1547,7 @@ def YPR = round((price – YearLow) / (YearHigh – YearLow) * 100,2);
 addlabel(yes, "Current price as % of 52-week-range = "+ round(YPR,0) + " %" , Color.white);
 # If used as a custom column the below label is appropriate
 #addlabel(yes, concat(YPR, "%"), if YPR > 75 then color.green else if YPR < 25 then color.red else color.current);
+```
 
 ## <a name="47"></a>C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE
 [TOC Return](#toc)
