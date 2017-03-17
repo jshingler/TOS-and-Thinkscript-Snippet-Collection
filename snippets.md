@@ -823,7 +823,7 @@ AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
 ## <a name="19"></a>B-LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
 [TOC Return](#toc)
 
-
+```
 #Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
 input price = close;#Price automatically avails 11 choices and the label below tells which was selected.
 #Puts any of the 11 price-choices into a literal text in a label like ohlc4 = 75
@@ -839,25 +839,30 @@ else if price == open_interest then ""The price-variable selected is Open_intere
 else if price == volume then ""The price-variable selected is Volume = " + Round(volume,0)
 else if price == VWAP then ""The price-variable selected is VWAP = " + Round(VWAP,0)
 else "N/A" + price,color.white);
+```
+
 Comments: The 11 choices of Price are close, high, hl2, hlc3, imp_volatility, low, ohlc4, open, open_interest, volume, vwap.
 
 ## <a name="20"></a>C-UPPER & LOWER BANDS AT DEFINED PERCENT
 [TOC Return](#toc)
 
-
+```
 #hint:Draws upper & lower bands at defined percent
 input length = 10;#hint length:Length of base ExpAverage
 input percentShift = 5.0;#hint PercentShift: Percent of upper & lower bands from ExpAverage input price = close;#hint price: Basis for base ExpAverage
 def base = ExpAverage(price, length);
 plot UpperBand = base * (1 + percentShift / 100); UpperBand.setDefaultColor(GetColor(1));
 plot LowerBand = base * (1 - percentShift / 100); LowerBand.setDefaultColor(GetColor(1));
-assignBackgroundColor(if close > upperBand then color.Green else color.current); ### EOC ###
+assignBackgroundColor(if close > upperBand then color.Green else color.current); 
+```
 
 ## <a name="21"></a>C-STANDARD DEVIATION CHANNELS
 [TOC Return](#toc)
 
 
 Standard deviations follow the 68–95–99.7 rule. That is, that a data distribution with a 1 standard deviation (SD) contains 68% of all data. Likewise 2 SD contains 95% and 3 SD contains 99.7%.
+
+```
 #STD Deviation channel plots
 input price = close;#hint Price:The choice of what is being plotted.
 input length = 14;#hint length:The agg-bars of the average which is the basis for the SD channels input SD1Up = 1;
@@ -865,19 +870,29 @@ input SD1Dn = -1;
 input SD2Up = 2;
 input SD2Dn = -2;
         
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 20 def avg = Average(price, length);
+def avg = Average(price, length);
 def StdDev = StDev(price, length);
-plot StDev1Up = avg + (SD1up * StdDev); plot StDev1Dn = avg + (SD1dn * StdDev); plot StDev2Up = avg + (SD2up * StdDev); plot StDev2Dn = avg + (SD2dn * StdDev); plot StDev3Up = avg + (SD3up * StdDev); plot StDev3Dn = avg + (SD3dn * StdDev);
+plot StDev1Up = avg + (SD1up * StdDev); 
+plot StDev1Dn = avg + (SD1dn * StdDev); 
+plot StDev2Up = avg + (SD2up * StdDev); 
+plot StDev2Dn = avg + (SD2dn * StdDev); 
+plot StDev3Up = avg + (SD3up * StdDev); 
+plot StDev3Dn = avg + (SD3dn * StdDev);
+```
 
 ## <a name="22"></a>B-THE SIMPLEST REC IN TS
 [TOC Return](#toc)
 
 
 To comprehend a recursive statement, start with the simplest in concept. Here the previous value is recalled so 1 can be added to it to form the new value of x. In realtime coding, the +1 is replace by all kinds of conditions and resulting actions.
+
+```
 #Straight line REC = 2 to (number-of-bars + 1)
 Def x = x[1] + 1;
 plot y = x;
-Alternate: Subject to an 'if' statement: plot y = if x <= 200 then x else double.NaN ;
+```
+Alternate: Subject to an 'if' statement: 
+`plot y = if x <= 200 then x else double.NaN;`
 
 ## <a name="23"></a>B+C-EXAMPLE OF 4 NORMALIZATIONS
 [TOC Return](#toc)
@@ -925,6 +940,7 @@ def year = (Round(GetYYYYMMDD() / 10000, 0));#Thie produces the year as1,210 def
 def Day = GetDayofMonth(GetYYYYMMDD());
 def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1; AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
 ```
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/24-1.png?raw=true "label")
 
 ## <a name="25"></a>B-WHAT IS SWING-HIGH, SWING-LOW
 [TOC Return](#toc)
