@@ -642,7 +642,7 @@ After installing the %HL you access editing it by right-clicking the watchlist c
 
 
 If you want to compare two (or more) indicators that have values much different that are non-receptive to comparison, you can normalize each of the two (or more) indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1, -100 to +100, or whatever you want. Below is the code to do normalization and an example. Note that not all studies can be normalized e.g. 'AccDist' has no parameters and cannot be normalized.
-Code that does normalization
+__Code that does normalization__
 
 ```
 #Usage: 'input data = close' is substituted by an indicator and its parameters. 
@@ -657,7 +657,7 @@ script normalizePlot {
 }
 ```
 
-Examples
+__Examples__
 ```
 input price = close;
 input CCI_length = 7;
@@ -679,15 +679,17 @@ plot Over_Bought = 80;
 plot Over_Sold = 20;
 ```
    
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 16 
 ## <a name="14"></a>B-COUNTING AND USE OF 'COMPOUNDVALUE'
 [TOC Return](#toc)
 
 
 Counting is often used. This shows the construct for a 'def count' variable and also takes this opportunity to define the usage of CompoundValue to initialize this recursive variable. Previous versions of TS would require this to be written as 'Rec count = ' statement but TS corrently recognizes both 'def' and 'rec' to define a recursive variable. The below annotated picture explains how counting is accomplished. Naturally any valid condition may be substituted for the one shown.
+
+![Count](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/14-1.png?raw=true "Count")
+
 By the way, you can identify a recursive variable definition when the variable itself, in this case 'count', also appears on right side of the equal sign/equation like, in this case, 'count[1]'.
 If you have a reason to re-start the counting from 0 or 1 based on a defined condition, you place the condition after the 'else' like 'else if <condition to restart counting> then 0 ' and close with 'else count[1]'.
-Refer to PastOffset discussed at Click to read about it. In short, it says that if you have multiple past references in your code, for example 'Average(close, 11) or close[6],'the longest past reference value will be used for all past reference' regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference being used by initializing the affected calculation with the 'CompoundValue' function.
+Refer to PastOffset discussed at Click to read about it. In short, it says that if you have multiple past references in your code, for example 'Average(close, 11) or close[6], __'the longest past reference value will be used for all past reference'__ regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference being used by initializing the affected calculation with the 'CompoundValue' function.
 
 ## <a name="15"></a>B-LINEAR REGRESSION
 [TOC Return](#toc)
@@ -695,6 +697,7 @@ Refer to PastOffset discussed at Click to read about it. In short, it says that 
 
 There are several built-in Linear Regression studies in ThinkScript. This section is intended to clarify their differences and usage.
 Definition = 'Linear regression' is a mathematical procedure know as the 'least-squares method', used for drawing the best straight line thruogh a group of data points. ThinkScript's linear regression function is titled 'Inertia'. You may view it at http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Functions/Statistical/Inertia.html
+
 The key studies are:
 1. LinearRegCh100
 2. LinearRegCh50
@@ -703,24 +706,36 @@ The key studies are:
 5. LinearRegTrendline
 6. LinearRegrReversal
 7. LinearRegressionSlope
-LinearRegCh100
+
+### LinearRegCh100
+
 Uses the data of the entire plot. The upper and lower channel lines, parallel to the centerline (the true linear regression)., indicate the furthest that the data has been from the middle line The '100' in the title means that it shows the upper and lower lines at 100% of the data difference from the centerline .
-       LinearRegCh50
+
+### LinearRegCh50
  
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 17
-Is the same as the LinearRegCh100 except that the upper and lower lines ar at 50% of the of the data difference from
-the centerline in lieu of 100%.
-LinearRegChVar
+Is the same as the LinearRegCh100 except that the upper and lower lines ar at 50% of the of the data difference from the centerline in lieu of 100%.
+
+### LinearRegChVar
+
 This version allows the user to define the 'percentage-distance-from-the-centerline' of the upper and lower lines. Also, this version allows the user to select the number of bars for the linear regression plot in lieu of the previous two studies that use the entire chart (all bars).
-LinearRegCurve
+
+### LinearRegCurve
+
 Plots a single curve in which you have defined the type of price and the number of bars as the basis for the curve.
-LinearRegTrendline
+
+### LinearRegTrendline
+
 Uses the data of the entire chart. Plots a straight linear regression line for whichever of the eleven choices you have selected. The choices include other than price items such as volume and 'imp volatility'.
-LinearRegrReversal
+
+### LinearRegrReversal
+
 This study indicates "+1" when the current value of Linear Regression Curve is equal to or greater than that of the previous bar and "-1" otherwise. If you compare this to the LinearRegCurve be sure to use the same number of bars input for each study.
-LinearRegressionSlope
+
+### LinearRegressionSlope
+
 Plots the changing slope of the LinearRegCurve based on the price and length that you select.
-Note that LinearRegCurve, LinearRegTrendline, and LinearRegressionSlope all have the same eleven price input choices.
+
+Note that __LinearRegCurve, LinearRegTrendline, and LinearRegressionSlope__ all have the same eleven price input choices.
 Studies #1, #2 and #3 are very popular in searching for stocks that are at buy-low prices. You may find these especially beneficial to learn and comfortably use them.
 
 ## <a name="16"></a>S-LINEAR REGRESSION-VAR SCAN
@@ -728,32 +743,47 @@ Studies #1, #2 and #3 are very popular in searching for stocks that are at buy-l
 
 
 This is a scan that works well in a dynamic watch list with your favorite companies to trade. It works well as a signal when a company is moving up through resistance in a trough or lower area for a long trade. Vary the "width of channel" and “length” to suit your own preferences.
+
+```
 Plot scan = low crosses LinearRegChVar ("width of channel" = 69, "full range" = no, "length" = 252)."LowerLR"
+```
 
 ## <a name="17"></a>B-TWO WAYS TO CALCULATE % CHANGE
 [TOC Return](#toc)
 
 
 There are two ways to calculate a % change. You may see both ways used in coding. As an example let 10 be the original value and 15 the final value.
-First way:
+
+### First way:
 In words, final value divided by the original value; minus one; times 100. or15/10=1.5;1.5-1=0.5; 0.5 X100=50%increase
+
 Example:
+```
 def length = 10;# [10] means 10 agg-bars ago
 def price = close;# The current close
 plot PercentChg = (price / price[length] - 1) * 100;
-Second way:
+```
+
+### Second way:
 In words, the change difference (final minus the original) divided by the original value times 100. or 15 -10 = 5 = change difference; 5/10 = 0.5; 0.5 X 100 = 50% increase.
 If the difference is negative the percent is a 'decrease'.
           
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 18
+
 Example:
+```
 def length = 10;# [10] means 10 agg-bars ago
 def price = close; # The current close
 plot PercentChg = ((price - price[length])/ price) * 100;
-Additional Comments:
+```
+
+### Additional Comments:
 The two ways above relate to 'change between two numbers' but there are other percentages that can be had. For example, "value1 is what percent larger/smaller than value2." For value1 = 85 and value2 = 38 then: 85 /38 = 2.24; 2.24 X 100 = 224%. In words value1 is 224% of value2. Or, in a different way, it can be said that 2.24 -1 = 1.24 X 100 = 124% which reads reads that value1 is 124% larger than (or above) value2.
-An aside: A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan. input length = 9;
+__An aside:__ A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan. 
+```
+input length = 9;
 AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
+```
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/17-1.png?raw=true "label")
 
 ## <a name="18"></a>B-FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
 [TOC Return](#toc)
