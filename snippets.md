@@ -788,22 +788,37 @@ AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
 ## <a name="18"></a>B-FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
 [TOC Return](#toc)
 
-
 The following formatting functions are especially useful in custom columns and labels.
-An 'AsDollars' example
+
+### An 'AsDollars' example
+```
 def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings()); AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
-An 'AsText' plus 'decimal-places' example
+```
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-1.png?raw=true "label")
+
+### An 'AsText' plus 'decimal-places' example
+```
 def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings()); AddLabel(yes, "'Earnings = " + AsText(x,NumberFormat.TWO_DECIMAL_PLACES) + "'", color.cyan);
+```
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-2.png?raw=true "label")
+
 Comment: 'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR' produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown above in the 'AsDollars' example.
-An AsDollars example
-AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);
-An AsPercent example
+
+### An AsDollars example
+`AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);`
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-3.png?raw=true "label")
+
+### An AsPercent example
+```
 def Range = 1 - ((high - close)/ (high - low));
 AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
-An AsPrice example
-AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close, 10)),color.cyan);
+```
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-4.png?raw=true "label")
+
+### An AsPrice example
+`AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close, 10)),color.cyan);`
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-5.png?raw=true "label")
                
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 19 
 
 ## <a name="19"></a>B-LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
 [TOC Return](#toc)
