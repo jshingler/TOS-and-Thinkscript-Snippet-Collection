@@ -438,21 +438,37 @@ plot NinetyPercent = 0.9*close;
 NinetyPercent.SetDefaultColor(GlobalColor("normal"));
 ```
 
-######### Color based on a condition ############
+### Color based on a condition
+```
 plot Diff = close - close[1];
-Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK); Note that UPTICK and DOWNTICK are TOS predefined color constants
-####### Create your own color ########### 
-plot Price = close; Price.SetDefaultColor(CreateColor(255, 220, 210));
+Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK); 
+```
+Note that UPTICK and DOWNTICK are TOS predefined color constants
+
+### Create your own color
+
+`plot Price = close; Price.SetDefaultColor(CreateColor(255, 220, 210));`
 Or
-DefineGlobalColor("Purple" , CreateColor(160,32,240) );
-After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example: Price.SetDefaultColor(GlobalColor("Purple"));
-#### Use predefined index colors ##########
+`DefineGlobalColor("Purple" , CreateColor(160,32,240) );`
+
+After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example: 
+`Price.SetDefaultColor(GlobalColor("Purple"));`
+
+### Use predefined index colors
+
+```
 plot Price = close;
 Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9 Reference: See all color index numbers
-#### Default and global color text names ##### plot Data = close;
+```
+### Default and global color text names 
+```
+plot Data = close;
 Data.SetDefaultColor(color.RED);
+```
 or
-Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined. ##end
+`Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.` 
+
+##end
 
 
 ## <a name="8"></a>B-IMPLEMENTING LABELS
