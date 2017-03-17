@@ -579,45 +579,50 @@ There is a complete tutorial named __Aggregation Tutorial,PDF__ available at htt
 [TOC Return](#toc)
 
 
-The difference between = and ==
+### The difference between = and ==
 A single "=" is the assignment operator. The statement "input Show_ChartPeriod = yes;" reads: assign (or set) the memory location labeled 'Show_ChartPeriod' to yes (boolean TRUE);
 The double "==" is the logical equality operator. The statement "if AggPeriod == AggregationPeriod.DAY then ... else...;" reads: if the variable AggPeriod equals (is the same as) AggregationPeriod.DAY then do something else (otherwise) if it's not, then do some other thing. When evaluating equality in an 'if' statement, two equal signs must be used ('==').
-The ! bang exclamation mark
-Not related to the above = and == is the "bang" (exclamation mark). As an example, use isnan() which returns true if the specified parameter is not a number, returns false otherwise. The ! ( exclamation mark called "bang" ) is a logical NOT operator. So if 'isnan(close)' is true i.e. since/when close is not a number then 'isnan(close)' reads as true. Using the "bang" and close remains not being a number, then '!isnan(close)' reads as " NOT close is not a number" or NOT true = false when close is not a number (<=0).
+
+### The ! bang exclamation mark
+Not related to the above = and == is the "bang" (exclamation mark). As an example, use isnan() which returns `true `if the specified parameter is __not a number,__ returns `false` otherwise. The ! ( exclamation mark called "bang" ) is a logical NOT operator. So if `'isnan(close)'` is true i.e. since/when close is not a number then `'isnan(close)'` reads as true. Using the "bang" and close remains not being a number, then `'!isnan(close)'` reads as " NOT close is not a number" or NOT true = false when close is not a number (<=0).
 
 ## <a name="11"></a>B-REFERENCING OTHER STUDIES
 [TOC Return](#toc)
 
 
-This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: reference <StudyName>(parameter1=value1,.., parameterN=valueN ).<PlotName>
-A simple example is: plot MyMACD = reference MACDHistogram;
+This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: `reference <StudyName>(parameter1=value1,.., parameterN=valueN ).<PlotName>`
+
+A simple example is: `plot MyMACD = reference MACDHistogram;`
+
 Occasionally a study and a function may have the same name e.g. vwap and moneyflow. In that case:
-• Call the vwap function like ....plot MyVWAP1 = vwap;
-• Reference the vwap study like ....plot MyVWAP1 = reference VWAP;
-• The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's
-name. Example: plot MyVWAP1 = VWAP();
+• Call the vwap function like .... `plot MyVWAP1 = vwap;`
+• Reference the vwap study like .... `plot MyVWAP1 = reference VWAP;`
+• The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's name. Example: `plot MyVWAP1 = VWAP();`
+
 In studies, you may reference built-in studies but not user-defined studies in (currently). However, user-defined studies
 may be referenced in scans.
 In the following, the 'StochasticSlow' study will be used as an example for explanation.
-Specifying plots
-Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and OverSold. Referencing the SlowD plot would be via StochasticSlow().SlowD Just using StochasticSlow() would plot the SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the default parameters specified in the actual code are automatically used. Using parameters is explained below.
-Specifying parameters
-If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the
- RULES
-                
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 14
-default parameters and cannot be changed because they are in a pre-defined study which is not editable. There are three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each parameter/input has a fixed location in the list.
-Full form
+
+### Specifying plots
+Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and OverSold. Referencing the SlowD plot would be via `StochasticSlow().SlowD` Just using `StochasticSlow()` would plot the SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the default parameters specified in the actual code are automatically used. Using parameters is explained below.
+
+### Specifying parameters
+If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the default parameters and cannot be changed because they are in a pre-defined study which is __not editable.__ There are three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each parameter/input has a fixed location in the list.
+
+### Full form
 The full form specifies the input variable name with its intended value. An example is:
-def SlowK = StochasticSlow( KPeriod = 10, DPeriod = 10, priceH = High, smoothingType = "SMA" ); Any parameter not listed herein takes on its default value. Note that the names like 'KPeriod', 'DPeriod', 'priceH', 'smoothingType' and others are as defined in the actual code's input list.
-Compact Form
+`def SlowK = StochasticSlow( KPeriod = 10, DPeriod = 10, priceH = High, smoothingType = "SMA" );` Any parameter not listed herein takes on its default value. Note that the names like 'KPeriod', 'DPeriod', 'priceH', 'smoothingType' and others are as defined in the actual code's input list.
+
+### Compact Form
 The compact form is simplest in that you simply put your values in the place/position of the default parameter you wish to change. You start with the first input value as the left most value in the reference. An example is:
-def SlowK = StochasticSlow( 80, 20, 10, 10, high, low, close, "SMA" ).SlowK; Note that you cannot omit any intermediate values or modify their positions. Only the right-most parameters may be dropped off and those will then take on their default values.
-Combo Form
+`def SlowK = StochasticSlow( 80, 20, 10, 10, high, low, close, "SMA" ).SlowK;` Note that you cannot omit any intermediate values or modify their positions. Only the right-most parameters may be dropped off and those will then take on their default values.
+
+### Combo Form
 This allows you to choose only the variables you want to change. An example is:
-def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;
+``def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;`
 Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule.
-There are two ways of referencing constant inputs : smoothingType = "SMA" and smoothingType == smoothingType.SMA are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax . A different but related subject is referencing pre-defined studies using 'Script'. See http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
+
+There are two ways of referencing constant inputs : `smoothingType = "SMA"` and `smoothingType == smoothingType.SMA` __are equivalent.__ The first is the short syntax ("SMA"), while the second is the full syntax . A different but related subject is referencing pre-defined studies using 'Script'. See http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
 
 ## <a name="12"></a>T-USING CUSTOM COLUMN AGGREGATION
 [TOC Return](#toc)
