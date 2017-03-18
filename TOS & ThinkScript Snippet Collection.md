@@ -527,9 +527,9 @@ Click the underlined Page ? to go to that page When there, you can return to to 
 
 # Titles appearing in the Table Of Contents above are the same and colored blue throughout this document
 
-# Revised: 07/25/14
+## Revised: 07/25/14
 
-# Organization:
+## Organization:
 
 The first letter indicates the category of the subject.
 
@@ -545,13 +545,13 @@ T-    =  A Tip or Trick on how you might use TOS or TS to accomplish a specific 
 
 C&S-    =  On occasion, a item may also have multiple codes defining what is included inside. For example, this symbol indicates when scan code is included.
 
-# Acknowledgements
+## Acknowledgements
 
 The people on the ThinkScript Lounge and Yahoo TOS_ThinkScript generously contribute much time and effort helping those learning and using ThinkOrSwim and ThinkScript. Many items herein originated on the those chatroom postings.
 
 Much credit and thanks are due those people. We are all grateful to them for their selfless contributions.
 
-# Usage
+## Usage
 
 Although a subject may not be of interest to you, the coding techniques involved may be pertinent to what you desire to code, either today or at some time in the future. It is useful to be aware of the techniques so that, when the time comes, you will know where to look to get the how-to-do specifics.
 
@@ -593,6 +593,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 <a name="BASIC_CODING_AND_PLATFORM_PRINCIPLES"> </a>
 # BASIC CODING AND PLATFORM PRINCIPLES
 
+<a name="ADD_INFO_BUBBLES_TO_A_STUDY_OR_A_STUDYS_INPUTS"> </a>
 ## ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS
 
 [Return to TOC](#toc)
@@ -636,6 +637,7 @@ Example of the following script and its result:
 
 - #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.
 
+<a name="IF_EXPRESSIONS_AND_STATEMENTS_EXPLAINED"> </a>
 ## IF EXPRESSIONS AND STATEMENTS EXPLAINED
 
 [Return to TOC](#toc)
@@ -711,409 +713,261 @@ Excellent examples of the power of if..then..else can be seen in these documents
 
 ADD AN INDEX OR FUTURE LOWER CHART and SLOPE OF AN AVERAGE
 
-CHANGE THE COLORING OF A PLOT BASED ON A CONDITION
-
+<a name="CHANGE_THE_COLORING_OF_A_PLOT_BASED_ON_A_CONDITION"> </a>
+## CHANGE THE COLORING OF A PLOT BASED ON A CONDITION
 [Return to TOC](#toc)
 
- A very favorite feature is to change the color of a plot based on a condition that you define. The 'HullMovingAvg'
+ A very favorite feature is to change the color of a plot based on a condition that you define. The 'HullMovingAvg' illustrates this very well. Here is its code:
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1010
+```
+input price = close;
+input length = 20;
+input displace = 0;
 
-TOS & THINKSCRIPT SNIPPET COLLECTION
+plot HMA = MovingAverage(AverageType.HULL, price, length)[-displace];
 
-- illustrates this very well. Here is its code:
+HMA.DefineColor("Up", GetColor(1));
+HMA.DefineColor("Down", GetColor(0));
+HMA.AssignValueColor(if HMA > HMA[1] then HMA.color("Up") else HMA.color("Down"));
+```
 
-- input price = close;
+In the above HMA>HMA[1] is the condition that says IF the current HMA is greater than the previous value of the HMA, i.e. HMA > HMA[1] , THEN paint the plot with the “Up” color which is defined as color(1) OTHERWISE/ELSE paint the plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index-numbers are explained in the separate topic.
 
-- input length = 20;
+The condition is always in a 'if.... then.... else' format. If-statements may be nested without limits. The format thenbecomes 'if.....then..... else if.....then.....else if.....then......else'. The closing 'else' is always present and relates to the initialif.... then when none of the nested if ...then's produce a result.
 
-- input displace = 0;
+Example:
 
-- plot HMA = MovingAverage(AverageType.HULL, price, length)[-displace];
+`if SlowK > SlowD then color.green else if SlowK < SlowD then color.red else color.gray`
 
-- HMA.DefineColor("Up", GetColor(1));
+-he multiple conditions may be used to define a conditional statements. They are joined by 'and' or its equivalent '&&'.
 
-- HMA.DefineColor("Down", GetColor(0));
+Example:  
 
-- HMA.AssignValueColor(if HMA > HMA[1] then HMA.color("Up") else HMA.color("Down"));
+`def RangeCondition = ADX > 0 && ADX < 13;# ADX is between 0 and 13`
 
-- In the above HMA>HMA[1] is the condition that says IF the current HMA is greater than the previous value of the HMA,
+Conditions may be nested as in this example:
 
-- i.e. HMA > HMA[1] , THEN paint the plot with the “Up” color which is defined as color(1) OTHERWISE/ELSE paint the
+```
+Diamonds.AssignValueColor(
+  If BullishCondition then color.green else
+    If RangeCondition then color.white else
+      If BearishCondition then color.red else
+       color.black);
+```
 
-- plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index-
+Note in the above, since color.green, color.white, color.red and color.black are constants and not double variables, the if-expression must be used and that requires the presence of all IF.....THEN.....ELSE parts.
 
-- numbers are explained in the separate topic.
+Here is another example of multiple coloring in a label:
 
-- The condition is always in a 'if.... then.... else' format. If-statements may be nested without limits. The format then
+```
+AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
+  then Color.Green
+  else if perct < 0.80 and perct > 0.50
+  then Color.Yellow
+  else color.Red);
+```
 
-- becomes 'if.....then..... else if.....then.....else if.....then......else'. The closing 'else' is always present and relates to the initial
-
-- if.... then when none of the nested if ...then's produce a result.
-
-- Example:
-
-- if SlowK > SlowD then color.green else if SlowK < SlowD then color.red else color.gray
-
-- The multiple conditions may be used to define a conditional statements. They are joined by 'and' or its equivalent '&&'.
-
-- Example:  def RangeCondition = ADX > 0 && ADX < 13;# ADX is between 0 and 13
-
-- Conditions may be nested as in this example:
-
-- Diamonds.AssignValueColor(
-
-- If BullishCondition then color.green else
-
-- If RangeCondition then color.white else
-
-- If BearishCondition then color.red else
-
-- color.black);
-
-- Note in the above, since color.green, color.white, color.red and color.black are constants and not double variables, the
-
-- if-expression must be used and that requires the presence of all IF.....THEN.....ELSE parts.
-
-- Here is another example of multiple coloring in a label:
-
-- AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
-
-- then Color.Green
-
-- else if perct < 0.80 and perct > 0.50
-
-- then Color.Yellow
-
-- else color.Red);
-
-<a name"HOW_THINKSCRIPT_CALCULATES"> </a>
+<a name="HOW_THINKSCRIPT_CALCULATES"> </a>
 ## HOW THINKSCRIPT CALCULATES
 [Return to TOC](#toc)
 
-- In scans, conditional orders, and custom quotes there is only one bar, the latest or current bar. All scripts are run in
+In scans, conditional orders, and custom quotes there is only one bar, the latest or current bar. All scripts are run in  real-time and the script processor only runs one iteration of the script. So within that context, certain functions make no sense, like barNumber(), HighestAll() to name a few, also rec variables. Functions that take a look back value or length, such as average( data, length ), highest( data, length ), etc. work because the internal logic of the function performs the action of looking back. No matter what the timeframe, in those contexts (scans, etc.), your script only runs once and only  against the current (latest) bar.
 
-- real-time and the script processor only runs one iteration of the script. So within that context, certain functions make no
+In studies or strategies, ThinkScript runs your script once for each and every bar on your chart, regardless of the aggregation period.
 
-- sense, like barNumber(), HighestAll() to name a few, also rec variables. Functions that take a look back value or length,
+You will often hear knowledgeable programmers say with disappointment that 'ThinkScript' does not have arrays. Arrays are a common powerful programming feature for storing/recalling various data and data types. This is a limitation of ThinkScript that we must live with as best we can.
 
-- such as average( data, length ), highest( data, length ), etc. work because the internal logic of the function performs the
-
-- action of looking back. No matter what the timeframe, in those contexts (scans, etc.), your script only runs once and only
-
-- against the current (latest) bar.
-
-- In studies or strategies, ThinkScript runs your script once for each and every bar on your chart, regardless of the
-
-- aggregation period.
-
-- You will often hear knowledgeable programmers say with disappointment that 'ThinkScript' does not have arrays. Arrays
-
-- are a common powerful programming feature for storing/recalling various data and data types. This is a limitation of
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1111
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- ThinkScript that we must live with as best we can.
-
-- COLORS AS USED IN TOS/THINKSCRIPT
+<a name="COLORS_AS_USED_IN_TOS_THINKSCRIPT"> </a>
+## COLORS AS USED IN TOS/THINKSCRIPT
 
 [Return to TOC](#toc)
 
-- TOS has defined ten colors corresponding to index numbers on two different background colors as below:
+TOS has defined ten colors corresponding to index numbers on two different background colors as below:
 
-- The colors are used via the function 'GetColor(index number);' Example: GetColor(1) as used in the HullMovingAvg
+The colors are used via the function 'GetColor(index number);' Example: GetColor(1) as used in the HullMovingAvg previous topic. Reference: See Index Colors
 
-- previous topic. Reference: See Index Colors
+| Index | RGB Values  | Name of Color |
+|:-----:|-------------|---------------|
+|   0   | 255,16,253  | magenta       |
+|   1   | 0,255,255   | cyan          |
+|   2   | 255,174,174 | pink          |
+|   3   | 191,191,191 | white         |
+|   4   | 254,199,22  | gold          |
+|   5   | 255,3,2     | red           |
+|   6   | 0,254,30    | green         |
+|   7   | 127,127,127 | dark_gray     |
+|   8   | 254,254,31  | yellow        |
+|   9   | 255,255,255 | white         |
 
-RGB values
 
-**********
+This free tool will help you to get the RGB values for any color you desire to compose.
 
-255,16,253
+http://www.colorschemer.com/online.html
 
-0,255,255
+TOS has also assigned names to 23 colors per the following:
 
-255,174,174
+Reference: See all color constants
 
-191,191,191
+Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e. color.CYAN or color.LIGHT_RED.
 
-254,199,22
+Not all colors are defined: for example, PURPLE. You may find any color at
 
-255,3,2
+http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F  or http://en.wikipedia.org/wiki/X11_color_names . 
 
-0,254,30
+You can create that color for use in TOS by using the function 'CreateColor(double red, double green, double blue); ' similar to the RGB Code in the chart above. Each RGB component ranges in value from 0 (meaning none or 0%) to 255 (meaning the max 100% value).
 
-127,127,127
+You may also assign a text-name, for later use, to any color you create via
 
-254,254,31
+`DefineGlobalColor("Purple" , CreateColor(160,32,240) );`
 
-255,255,255
-
-- Index no.
-
-- ********
-
-- This free tool will help you to get the RGB values for any color you desire to compose.
-
-- http://www.colorschemer.com/online.html
-
-Names of color
-
-**************
-
-magenta
-
-cyan
-
-pink
-
-white
-
-gold
-
-red
-
-green
-
-dark_gray
-
-yellow
-
-white
-
-![Im13](images/Im13)
-
-![Im794](images/Im794)
-
-![Im796](images/Im796)
-
-![Im792](images/Im792)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1212
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1313
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- TOS has also assigned names to 23 colors per the following:
-
-- Reference: See all color constants
-
-- Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are
-
-- frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e.
-
-- color.CYAN or color.LIGHT_RED.
-
-- Not all colors are defined: for example, PURPLE. You may find any color at
-
-- http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F  or http://en.wikipedia.org/wiki/X11_color_names . You can
-
-- create that color for use in TOS by using the function 'CreateColor(double red, double green, double blue); ' similar to
-
-- the RGB Code in the chart above. Each RGB component ranges in value from 0 (meaning none or 0%) to 255 (meaning the
-
-- max 100% value).
-
-- You may also assign a text-name, for later use, to any color you create via
-
-- DefineGlobalColor("Purple" , CreateColor(160,32,240) );
-
-- OFTEN USED COLORING CODE STATEMENTS
+<a name="OFTEN_USED_COLORING_CODE_STATEMENTS"> </a>
+## OFTEN USED COLORING CODE STATEMENTS
 
 [Return to TOC](#toc)
 
-- Comment: When writing code you may not have the coloring coding at your finger tips. This provides a ready place to go
+Comment: When writing code you may not have the coloring coding at your finger tips. This provides a ready place to go to to get the code words to paste.
 
-- to to get the code words to paste.
+```
+####### Typical chart plot settings ########
 
-- ####### Typical chart plot settings ########
+Data.SetPaintingStrategy(PaintingStrategy.LINE);# See Others Painting Strategies below.
+Data.SetLineWeight(1);# 1 thru 5. 1 is the default if 'SetLineWeight' is not defined.
+Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
+```
 
-- Data.SetPaintingStrategy(PaintingStrategy.LINE);# See Others Painting Strategies below.
+See all predefined color constants: See predefined color constants
 
-- Data.SetLineWeight(1);# 1 thru 5. 1 is the default if 'SetLineWeight' is not defined.
-
-- Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
-
-- See all predefined color constants: See predefined color constants
-
-- ######## Other Painting Stategies ########
+```
+######## Other Painting Stategies ########
 
 - ARROW_DOWN,  ARROW_UP, BOOLEAN_ARROW_DOWN, BOOLEAN_ARROW_UP, BOOLEAN_POINTS,
-
 - DASHES, HISTOGRAM,  HORIZONTAL, LINE,  LINE_VS_POINTS, LINE_VS_SQUARES,   LINE_VS_TRIANGLES,
-
 - POINTS, SQUARED_HISTOGRAM, SQUARES, TRIANGLES,  VALUES_ABOVE,  VALUES_BELOW
+```
 
-- LINE is the default if none is specified.
+LINE is the default if none is specified.
 
-- ##### For curves define the line styles ####
+```
+##### For curves define the line styles ####
+Data.SetStyle(Curve.SHORT_DASH);
+```
 
-- Data.SetStyle(Curve.SHORT_DASH);
-
-- Other constants:
-
-![Im841](images/Im841)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1414
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
+Other constants:
 
 - FIRM,  LONG_DASH, MEDIUM_DASH,  SHORT_DASH,  POINTS
-
 - SHORT_DASH is the default value of 'SetStyle'
 
 - ###### assign a name to a color ##########
 
-- You may assign a name to a color like:
+You may assign a name to a color like:
 
-- Plot RSI = 50 * (ChgRatio + 1);
+```
+Plot RSI = 50 * (ChgRatio + 1);
+RSI.DefineColor("Normal", GetColor(7));
+```
 
-- RSI.DefineColor("Normal", GetColor(7));
+The name "normal" above is unique to the RSI plot. Another plot cannot use the name 'normal' without redefining it.
 
-- The name "normal" above is unique to the RSI plot. Another plot cannot use the name 'normal' without redefining it.
+To define and name a color for use in multiple plots do as follows:
 
-- To define and name a color for use in multiple plots do as follows:
+DefineGlobalColor("normal", CreateColor(128, 0, 128));
 
-- DefineGlobalColor("normal", CreateColor(128, 0, 128));
+plot signal = high > Highest(high[1]);
+signal.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
+signal.SetDefaultColor(GlobalColor("normal"));
 
-- plot signal = high > Highest(high[1]);
+plot NinetyPercent = 0.9*close;
 
-- signal.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
+NinetyPercent.SetDefaultColor(GlobalColor("normal"));
 
-- signal.SetDefaultColor(GlobalColor("normal"));
+######### Color based on a condition ############
 
-- plot NinetyPercent = 0.9*close;
+plot Diff = close - close[1];
+Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK);
 
-- NinetyPercent.SetDefaultColor(GlobalColor("normal"));
+Note that UPTICK and DOWNTICK are TOS predefined color constants
 
-- ######### Color based on a condition ############
+####### Create your own color ###########
+plot Price = close;
+Price.SetDefaultColor(CreateColor(255, 220, 210));
 
-- plot Diff = close - close[1];
+Or
 
-- Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK);
+DefineGlobalColor("Purple" , CreateColor(160,32,240) );
 
-- Note that UPTICK and DOWNTICK are TOS predefined color constants
+After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example:
 
-- ####### Create your own color ###########
+Price.SetDefaultColor(GlobalColor("Purple"));
+#### Use predefined index colors ##########
 
-- plot Price = close;
+plot Price = close;
+Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9
 
-- Price.SetDefaultColor(CreateColor(255, 220, 210));
+Reference: See all color index numbers
 
-- Or
+#### Default and global color text names #####
+plot Data = close;
+Data.SetDefaultColor(color.RED);
 
-- DefineGlobalColor("Purple" , CreateColor(160,32,240) );
+or
 
-- After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example:
+Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.
 
-- Price.SetDefaultColor(GlobalColor("Purple"));
+##end
 
-- #### Use predefined index colors ##########
-
-- plot Price = close;
-
-- Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9
-
-- Reference: See all color index numbers
-
-- #### Default and global color text names #####
-
-- plot Data = close;
-
-- Data.SetDefaultColor(color.RED);
-
-- or
-
-- Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.
-
-- ##end
-
-### IMPLEMENTING LABELS
+<a name="IMPLEMENTING_LABELS"> </a>
+## IMPLEMENTING LABELS
 
 [Return to TOC](#toc)
 
-- Labels are boxes of info placed at the top-left of a study. They are very useful and well worth the time to master them.
+Labels are boxes of info placed at the top-left of a study. They are very useful and well worth the time to master them.
 
-- The label function is AddLabel(boolean visible, Any text, CustomColor color); and has three components.
+The label function is AddLabel(boolean visible, Any text, CustomColor color); and has three components.
 
-- 1. ' boolean visible' is a true or false statement that defines when the label shows or doesn't show. If you use a '1'
+1. ' boolean visible' is a true or false statement that defines when the label shows or doesn't show. If you use a '1' or 'yes' here it will always show the label, Otherwise you define a condition or an input selection-value that evaluates to 'true' or 'false' and reference that condition statement here.
 
-- or 'yes' here it will always show the label, Otherwise you define a condition or an input selection-value that
+2. 'Any text' is what appears inside the label box. There are two way to compose this text using 'concat' or '+' syntax(known as the string concatenation symbol). Concat is a term that means to connect two text phrases together. This includes converting ThinkScript variable-values into text.
 
-- evaluates to 'true' or 'false' and reference that condition statement here.
+3. ' CustomColor color' defines the background color of the label box. The text font color is always black. boolean visible
 
-![Im13](images/Im13)
+This can be a 'yes' or 'no', or any condition statement or a reference to: (1) a previously defined condition statement;
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1515
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- 2. 'Any text' is what appears inside the label box. There are two way to compose this text using 'concat' or '+'
-
-- syntax(known as the string concatenation symbol). Concat is a term that means to connect two text phrases
-
-- together. This includes converting ThinkScript variable-values into text.
-
-- 3. ' CustomColor color' defines the background color of the label box. The text font color is always black.
-
-- boolean visible
-
-- This can be a 'yes' or 'no', or any condition statement or a reference to: (1) a previously defined condition statement;
-
-- or (2) an input true/false value. When this evaluates to 'true' then the label will show or, when false, will not show. This
-
-- is very handy when referring to an input whose value choices are 'yes' or 'no'. Programmers use the yes/no input in
-
-- condition statements to display or not-display certain features such as the labels or plots.
+- or (2) an input true/false value. When this evaluates to 'true' then the label will show or, when false, will not show. This is very handy when referring to an input whose value choices are 'yes' or 'no'. Programmers use the yes/no input in condition statements to display or not-display certain features such as the labels or plots.
 
 - Any text
 
-- The label's text can be defined using  using 'concat' or '+' which is known as the string concatenation symbol. Using the
+The label's text can be defined using  using 'concat' or '+' which is known as the string concatenation symbol. Using the '+' symbol is much easier to master and is recommended. Examples will help explain:
 
-- '+' symbol is much easier to master and is recommended. Examples will help explain:
+```
+input weeks = 4;
+AddLabel(yes, concat(weeks, " Weeks till expiration"),  color.YELLOW);   
+``` 
 
-- input weeks = 4;
+produces the following label:
 
-- AddLabel(yes, concat(weeks, " Weeks till expiration"),  color.YELLOW);    produces the following label:
+Using the '+' symbol …. 
 
-- Using the '+' symbol …. AddLabel(yes, weeks + " Weeks till expiration",  color.YELLOW);.....produces the same label as
+`AddLabel(yes, weeks + " Weeks till expiration",  color.YELLOW);`
 
-- above. You will find that complex texts with numerous segments are much easier to compose using the '+' symbol. There
+produces the same label as above. You will find that complex texts with numerous segments are much easier to compose using the '+' symbol. There is, however, one pitfall to be avoided using the '+' symbol as discussed below:
 
-- is, however, one pitfall to be avoided using the '+' symbol as discussed below:
+The key is when using the + syntax, one must put all calculations-within-a-label inside of parentheses. Also multiple conditions such as HiTrue && LoTrue should be within parenthesis like (HiTrue && LoTrue).To illustrate this, a  right and wrong is shown below:
 
-- The key is when using the + syntax, one must put all calculations-within-a-label inside of parentheses. Also multiple
+This works:
 
-- conditions such as HiTrue && LoTrue should be within parenthesis like (HiTrue && LoTrue).To illustrate this, a  right and
+```
+input ManADR = 25;
 
-- wrong is shown below:
+Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + (0.10 * ManADR) ,color.PINK);
+```
 
-- This works:
+This is wrong and produces an error:
 
-- input ManADR = 25;
+`Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + 0.10 * ManADR ,color.PINK);`
 
-- Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + (0.10 * ManADR) ,color.PINK);
+See also LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE  and C-% CHANGE OF THE FIRST BAR VALUE and C-ADD AN INDEX OR FUTURE LOWER CHART for examples of putting drop-down literals into label text.
 
-- This is wrong and produces an error:
-
-- Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + 0.10 * ManADR ,color.PINK);
-
-- See also LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE  and C-% CHANGE OF THE FIRST
-
-- BAR VALUE and C-ADD AN INDEX OR FUTURE LOWER CHART for examples of putting drop-down literals into label
-
-- text.
-
-- CustomColor Color
+CustomColor Color
 
 - Defines the color of the label box. Conditional coloring can also be had with the addition of if....then.....else statements.
 
@@ -1129,13 +983,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - top of the chart at a value above the plots data. The labels will then have their centerline equal to the value of the line.
 
-![Im1007](images/Im1007)
-
-![Im1009](images/Im1009)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1616
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - To make the line invisible, paint it the same color as your background.
 
@@ -1173,35 +1020,21 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - 'if...then...else' statement may not print.  C- THE 'AdvanceDecline' STUDY  herein is an excellent example of this.
 
-- AGGREGATION
+<a name="AGGREGATION"> </a>
+## AGGREGATION
 
 [Return to TOC](#toc)
 
-![Im1055](images/Im1055)
+Each bar on a plot represents a period of time known as the primary aggregation: one minute, five minutes, day, etc.
 
-![Im1057](images/Im1057)
+A chart may also have one or more secondary aggregations. Variables are assumed to be of primary aggregation and those of a secondary aggregation must have their aggregation specified every time they are used.
 
-![Im13](images/Im13)
+A very common way of specifying the secondary aggregation is:
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1717
+def Agg = AggregationPeriod.FIFTEEN_MIN;# Use the desired constant to specify the time
+plot Data = close(period = agg) / close(period = agg)[3];# The phrase 'period =' is always used when referring to the variable aggregation. In this case 'agg'.
 
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- Each bar on a plot represents a period of time known as the primary aggregation: one minute, five minutes, day, etc.
-
-- A chart may also have one or more secondary aggregations. Variables are assumed to be of primary aggregation and those
-
-- of a secondary aggregation must have their aggregation specified every time they are used.
-
-- A very common way of specifying the secondary aggregation is:
-
-- def Agg = AggregationPeriod.FIFTEEN_MIN;# Use the desired constant to specify the time
-
-- plot Data = close(period = agg) / close(period = agg)[3];# The phrase 'period =' is always used when referring to the
-
-- variable aggregation. In this case 'agg'.
-
-- You may need to learn other ways of specifying aggregation to read other people's code such as in the built-in DailySMA.
+You may need to learn other ways of specifying aggregation to read other people's code such as in the built-in DailySMA.
 
 - RULES
 
@@ -1219,13 +1052,8 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL
 
-- EXPLANATION OF '
-
-=  ' , '
-
-==   'AND '
-
-!  '
+<a name="EXPLANATION_OF_EQUAL_EQUALS_AND_NOT"> </a>
+## EXPLANATION OF '=' , '==' AND '!'
 
 [Return to TOC](#toc)
 
@@ -1253,35 +1081,22 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - false when close is not a number (<=0).
 
-- REFERENCING OTHER STUDIES
+<a name="REFERENCING_OTHER_STUDIES"> </a>
+## REFERENCING OTHER STUDIES
 
 [Return to TOC](#toc)
 
-- This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The
-
-- syntax for this procedure is: reference <StudyName>(parameter1=value1,..,
+- This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: reference <StudyName>(parameter1=value1,..,
 
 - parameterN=valueN).<PlotName>
 
-- A simple example is: plot MyMACD = reference MACDHistogram;
+A simple example is: plot MyMACD = reference MACDHistogram;
 
  
 
 - Occasionally a study and a function may have the same name e.g. vwap and moneyflow. In that case:
 
 - • Call the vwap function like ....plot MyVWAP1 = vwap;
-
-![Im1125](images/Im1125)
-
-![Im1123](images/Im1123)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1818
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - • Reference the vwap study like ....plot MyVWAP1 = reference VWAP;
 
@@ -1355,271 +1170,159 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
 
-Continued on Next Page
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  1919
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- B&C-NORMALIZATION
+<a name="NORMALIZATION"> </a>
+## B&C-NORMALIZATION
 
 [Return to TOC](#toc)
 
-- If you want to compare two (or more) indicators that have values much different that are non-receptive to comparison,
+If you want to compare two (or more) indicators that have values much different that are non-receptive to comparison, you can normalize each of the two (or more) indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1, -100 to +100, or whatever you want. Below is the code to do  normalization and an example. Note that not all studies can be normalized e.g. 'AccDist' has no parameters and cannot be normalized.
 
-- you can normalize each of the two (or more) indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1,
+Code that does normalization
 
-- -100 to +100, or whatever you want. Below is the code to do  normalization and an example. Note that not all studies can
+```
+#Usage: 'input data = close' is substituted by an indicator and its parameters.
+declare lower;
 
-- be normalized e.g. 'AccDist' has no parameters and cannot be normalized.
+script normalizePlot {
+  input data = close;
+  input newRngMin = -1;
+  input newRngMax = 1;
 
-- Code that does normalization
+  def HHData = HighestAll( data );
+  def LLData = LowestAll( data );
+  plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
+}
+```
 
-- #Usage: 'input data = close' is substituted by an indicator and its parameters.
+Examples
 
-- declare lower;
+```
+input price = close;
+input CCI_length = 7;
+input Momentum_length = 12;
+input RSI_length = 4;
+input WR_length = 10;
+input newRngMax = 100;#Maximum normalized  value
+input newRngMin = 0;#Minimum normalized  value
+input OverBought = 80;#Fixed value upper line for reference
+input OverSold = 20;#Fixed lower value line for reference
 
-- script normalizePlot {
+def newCCI = normalizePlot( CCI( CCI_length).CCI, newRngMin, newRngMax );
+def newMomentum = normalizePlot( Momentum( length = Momentum_length ).Momentum, newRngMin, newRngMax );
+def newWPR = normalizePlot( WilliamsPercentR( length = WR_length ).WR, newRngMin, newRngMax );
+def newRSIWilder = normalizePlot( RSIWilder( length = RSI_length ).RSI, newRngMin, newRngMax );
 
-- input data = close;
+plot CCI = newCCI;
+plot Momentum = newMomentum;
+plot WPR = newWPR;
+plot RSIWilder = newRSIWilder;
+plot Over_Bought = 80;
+plot Over_Sold = 20;
+```
 
-- input newRngMin = -1;
-
-- input newRngMax = 1;
-
-- def HHData = HighestAll( data );
-
-- def LLData = LowestAll( data );
-
-- plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
-
-- }
-
-- Examples
-
-- input price = close;
-
-- input CCI_length = 7;
-
-- input Momentum_length = 12;
-
-- input RSI_length = 4;
-
-- input WR_length = 10;
-
-- input newRngMax = 100;#Maximum normalized  value
-
-- input newRngMin = 0;#Minimum normalized  value
-
-- input OverBought = 80;#Fixed value upper line for reference
-
-- input OverSold = 20;#Fixed lower value line for reference
-
-- def newCCI = normalizePlot( CCI( CCI_length).CCI, newRngMin, newRngMax );
-
-- def newMomentum = normalizePlot( Momentum( length = Momentum_length ).Momentum, newRngMin, newRngMax );
-
-- def newWPR = normalizePlot( WilliamsPercentR( length = WR_length ).WR, newRngMin, newRngMax );
-
-- def newRSIWilder = normalizePlot( RSIWilder( length = RSI_length ).RSI, newRngMin, newRngMax );
-
-- plot CCI = newCCI;
-
-- plot Momentum = newMomentum;
-
-- plot WPR = newWPR;
-
-- plot RSIWilder = newRSIWilder;
-
-- plot Over_Bought = 80;
-
-- plot Over_Sold = 20;
-
-![Im1228](images/Im1228)
-
-![Im1226](images/Im1226)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2020
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- COUNTING AND USE OF 'COMPOUNDVALUE'
+<a name="COUNTING_AND_USE_OF_COMPOUNDVALUE"> </a>
+## COUNTING AND USE OF 'COMPOUNDVALUE'
 
 [Return to TOC](#toc)
 
-- Counting is often used. This shows the construct for a 'def count' variable and also takes this opportunity to define the
+Counting is often used. This shows the construct for a 'def count' variable and also takes this opportunity to define the  usage of CompoundValue to initialize this recursive variable. Previous versions of TS would require this to be written as 'Rec count = ' statement but TS corrently recognizes both 'def' and 'rec' to define a recursive variable. The below annotated picture explains how counting is accomplished. Naturally any valid condition may be substituted for the one shown.
 
-- usage of CompoundValue to initialize this recursive variable. Previous versions of TS would require this to be written as
+By the way, you can identify a recursive variable definition when the variable itself, in this case 'count', also appears on right side of the equal sign/equation like, in this case, 'count[1]'.
 
-- 'Rec count = ' statement but TS corrently recognizes both 'def' and 'rec' to define a recursive variable. The below
+If you have a reason to re-start the counting from 0 or 1 based on a defined condition, you place the condition after the 'else' like 'else if <condition to restart counting> then 0 ' and close with 'else count[1]'.
 
-- annotated picture explains how counting is accomplished. Naturally any valid condition may be substituted for the one
+Refer to PastOffset discussed at Click to read about it. In short, it says that if you have multiple past references in your code, for example 'Average(close, 11) or close[6],'the longest past reference value will be used for all past reference' regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference being used by initializing the affected calculation with the 'CompoundValue' function.
 
-- shown.
-
-- By the way, you can identify a recursive variable definition when the variable itself, in this case 'count', also appears on
-
-- right side of the equal sign/equation like, in this case, 'count[1]'.
-
-- If you have a reason to re-start the counting from 0 or 1 based on a defined condition, you place the condition after the
-
-- 'else' like 'else if <condition to restart counting> then 0 ' and close with 'else count[1]'.
-
-- Refer to PastOffset discussed at Click to read about it. In short, it says that if you have multiple past references in
-
-- your code, for example 'Average(close, 11) or close[6],'the longest past reference value will be used for all
-
-- past reference' regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference
-
-- being used by initializing the affected calculation with the 'CompoundValue' function.
-
-- LINEAR REGRESSION
+<a name="LINEAR_REGRESSION"> </a>
+## LINEAR REGRESSION
 
 [Return to TOC](#toc)
 
-- There are several built-in Linear Regression studies in ThinkScript. This section is intended to clarify their differences
+There are several built-in Linear Regression studies in ThinkScript. This section is intended to clarify their differences and usage.
 
-- and usage.
+Definition = 'Linear regression' is a mathematical procedure know as the 'least-squares method', used for drawing the best straight line thruogh a group of data points. ThinkScript's linear regression function is titled 'Inertia'. You may view it at 
 
-- Definition = 'Linear regression' is a mathematical procedure know as the 'least-squares method', used for drawing the
+http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Functions/Statistical/Inertia.html
 
-- best straight line thruogh a group of data points. ThinkScript's linear regression function is titled 'Inertia'. You may
+The key studies are:
 
-- view it at  http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Functions/Statistical/Inertia.html
+1. LinearRegCh100
+2. LinearRegCh50
+3. LinearRegChVar
+4. LinearRegCurve
+5. LinearRegTrendline
+6. LinearRegrReversal
+7. LinearRegressionSlope
 
-- The key studies are:
+### LinearRegCh100
 
-- 1. LinearRegCh100
+Uses the data of the entire plot. The upper and lower channel lines, parallel to the centerline (the true linear regression)., indicate the furthest that the data has been from the middle line  The '100' in the title means that it shows the upper and lower lines at 100% of the data difference from the centerline .
 
-- 2. LinearRegCh50
+### LinearRegCh50
 
-- 3. LinearRegChVar
+Is the same as the LinearRegCh100 except that the upper and lower lines ar at 50% of the of the data difference from the centerline in lieu of 100%.
 
-- 4. LinearRegCurve
+### LinearRegChVar
 
-- 5. LinearRegTrendline
+This version allows the user to define the 'percentage-distance-from-the-centerline' of the upper and lower lines. Also, this version allows the user to select the number of bars for the linear regression plot in lieu of the previous two studies that use the entire chart (all bars).
 
-- 6. LinearRegrReversal
+### LinearRegCurve
 
-- 7. LinearRegressionSlope
+Plots a single curve in which you have defined the type of price and the number of bars as the basis for the curve.
 
-- LinearRegCh100
+### LinearRegTrendline
 
-- Uses the data of the entire plot. The upper and lower channel lines, parallel to the centerline (the true linear
+Uses the data of the entire chart. Plots a straight linear regression line for whichever of the eleven choices you have selected. The choices include other than price items such as volume and 'imp volatility'.
 
-- regression)., indicate the furthest that the data has been from the middle line  The '100' in the title means that it
+### LinearRegrReversal
 
-- shows the upper and lower lines at 100% of the data difference from the centerline .
+This study indicates "+1" when the current value of Linear Regression Curve is equal to or greater than that of the previous bar and "-1" otherwise. If you compare this to the  LinearRegCurve be sure to use the same number of bars input for each study.
 
-- LinearRegCh50
+### LinearRegressionSlope
 
-- Is the same as the LinearRegCh100 except that the upper and lower lines ar at 50% of the of the data difference from
+Plots the changing slope of the LinearRegCurve based on the price and length that you select.
 
-![Im13](images/Im13)
+Note that  LinearRegCurve, LinearRegTrendline, and LinearRegressionSlope all have the same eleven price input choices.
 
-![Im1287](images/Im1287)
+Studies #1, #2 and #3 are very popular in searching for stocks that are at buy-low prices. You may find these especially beneficial to learn and comfortably use them.
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2121
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- the centerline in lieu of 100%.
-
-- LinearRegChVar
-
-- This version allows the user to define the 'percentage-distance-from-the-centerline' of the upper and lower lines. Also,
-
-- this version allows the user to select the number of bars for the linear regression plot in lieu of the previous two studies
-
-- that use the entire chart (all bars).
-
-- LinearRegCurve
-
-- Plots a single curve in which you have defined the type of price and the number of bars as the basis for the curve.
-
-- LinearRegTrendline
-
-- Uses the data of the entire chart. Plots a straight linear regression line for whichever of the eleven choices you have
-
-- selected. The choices include other than price items such as volume and 'imp volatility'.
-
-- LinearRegrReversal
-
-- This study indicates "+1" when the current value of Linear Regression Curve is equal to or greater than that of the
-
-- previous bar and "-1" otherwise. If you compare this to the  LinearRegCurve be sure to use the same number of bars
-
-- input for each study.
-
-- LinearRegressionSlope
-
-- Plots the changing slope of the LinearRegCurve based on the price and length that you select.
-
-- Note that  LinearRegCurve, LinearRegTrendline, and LinearRegressionSlope all have the same eleven price input
-
-- choices.
-
-- Studies #1, #2 and #3 are very popular in searching for stocks that are at buy-low prices. You may find these especially
-
-- beneficial to learn and comfortably use them.
-
-- TWO WAYS TO CALCULATE % CHANGE
+<a name="TWO_WAYS_TO_CALCULATE_PERCENT_CHANGE"> </a>
+## TWO WAYS TO CALCULATE % CHANGE
 
 [Return to TOC](#toc)
 
-- There are two ways to calculate a % change. You may see both ways used in coding.
+There are two ways to calculate a % change. You may see both ways used in coding.
 
-- As an example let 10 be the original value (B4) and 15 the final value (NOW). NOW/B4 is the "RATIO"
+As an example let 10 be the original value (B4) and 15 the final value (NOW). NOW/B4 is the "RATIO" First way:
 
-- First way:
+In words, final value divided by the original value; minus one; times 100.
+or 15/10 = 1.5; 1.5 - 1 = 0.5;  0.5  X 100 = 50 % increase
 
-- In words, final value divided by the original value; minus one; times 100.
+Example:
 
-- or 15/10 = 1.5; 1.5 - 1 = 0.5;  0.5  X 100 = 50 % increase
+```
+def length = 10;# [10] means 10 agg-bars ago This is the "B4" value
+def price = close;# The current close. This is the "NOW" value
+plot PercentChg = (price / price[length] - 1) * 100;# or (NOW / B4) - 1 is RATIO  - 1 and "RATIO - 1" multiplied by 100
+```
 
-- Example:
+equals the PERCENT CHANGE. If the "RATIO' is below or above the value of ONE, then the % change is above or below 100% respectively
 
-- def length = 10;# [10] means 10 agg-bars ago This is the "B4" value
+Second way:
 
-- def price = close;# The current close. This is the "NOW" value
+In words, the change difference (NOW minus the B4) divided by the original (B4) value times 100.
+or 15 -10 = 5 = change difference;  5/10 = 0.5;  0.5 X 100 = 50% increase.
 
-- plot PercentChg = (price / price[length] - 1) * 100;# or (NOW / B4) - 1 is RATIO  - 1 and "RATIO - 1" multiplied by 100
+If the difference (B4 - NOW) is negative the percent is also negative i.e. 'decrease'. Also if the "RATIO" (NOW/B4) is less than zero then the percent change will be negative.
 
-- equals the PERCENT CHANGE. If the "RATIO' is below or above the value of ONE, then the % change is above or below
+Example:
 
-- 100% respectively
+def length = 10;# [10] means 10 agg-bars ago
+def price = close; # The current close
 
-- Second way:
+plot PercentChg = ((price  - price[length])/ price[length]) * 100;# ((NOW-B4) / B4) * 100 which is the same as (NOW/B4 B4/B4) * 100 which is the same as (NOW/B4 - 1) * 100.  The % change is up or down if the difference is plus or minus respectively.
 
-- In words, the change difference (NOW minus the B4) divided by the original (B4) value times 100.
-
-- or 15 -10 = 5 = change difference;  5/10 = 0.5;  0.5 X 100 = 50% increase.
-
-- If the difference (B4 - NOW) is negative the percent is also negative i.e. 'decrease'. Also if the "RATIO" (NOW/B4) is
-
-- less than zero then the percent change will be negative.
-
-- Example:
-
-- def length = 10;# [10] means 10 agg-bars ago
-
-- def price = close; # The current close
-
-- plot PercentChg = ((price  - price[length])/ price[length]) * 100;# ((NOW-B4) / B4) * 100 which is the same as (NOW/B4
-
-- - B4/B4) * 100 which is the same as (NOW/B4 - 1) * 100.  The % change is up or down if the difference is plus or minus
-
-- respectively.
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2222
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Additional Comments:
 
@@ -1637,151 +1340,107 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
 
-- FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
+
+<a name="FORMATTING_WITH_AsText_AsDollars_AND_OTHERS"> </a>
+## FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
 
 [Return to TOC](#toc)
 
-- The following formatting functions are especially useful in custom columns and labels.
+The following formatting functions are especially useful in custom columns and labels.
 
-- An 'AsDollars' example
+An 'AsDollars' example
 
-- def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
+```
+def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
+AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
+```
 
-- AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
+An 'AsText' plus 'decimal-places' example
 
-- An 'AsText' plus 'decimal-places' example
+```
+def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
+AddLabel(yes, "'Earnings = " + AsText(x,NumberFormat.TWO_DECIMAL_PLACES) + "'", color.cyan);
+```
 
-- def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
+-Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR' produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown above in the 'AsDollars' example.
 
-- AddLabel(yes, "'Earnings = " + AsText(x,NumberFormat.TWO_DECIMAL_PLACES) + "'", color.cyan);
+An AsDollars example
 
-- Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and
+`AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);`
 
-- 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR'
+An AsPercent example
 
-- produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown
+```
+def Range = 1 - ((high - close)/ (high - low));
+AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
+```
 
-- above in the 'AsDollars' example.
+An AsPrice example
 
-- An AsDollars example
+`AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close, 10)),color.cyan);`
 
-- AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);
-
-- An AsPercent example
-
-- def Range = 1 - ((high - close)/ (high - low));
-
-- AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
-
-- An AsPrice example
-
-- AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close,
-
-- 10)),color.cyan);
-
-- LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
+<a name="LITERAL_TEXT_IN_LABEL_FOR_THE_11_CHOICES_OF_INPUT_PRICE"> </a>
+## LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
 
 [Return to TOC](#toc)
 
-- #Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
+```
+#Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
 
-- input price = close;#Price automatically avails 11 choices and the label below tells which was selected.
+input price = close;#Price automatically avails 11 choices and the label below tells which was selected.
 
-- #Puts any of the 11 price-choices into a literal text in a label like ohlc4 = 75
+#Puts any of the 11 price-choices into a literal text in a label like ohlc4 = 75
 
-![Im1408](images/Im1408)
+input price = close;#Price automatically avails 11 choices
 
-![Im13](images/Im13)
+AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2)
+else if price == open then ""The price-variable selected is open = " + Round(open,2)
+else if price == high then ""The price-variable selected is high = " + Round(high,2)
+else if price == low then ""The price-variable selected is low = " + Round(low,2)
+else if price == hl2 then ""The price-variable selected is hl2 = " + Round(hl2,2)
+else if price == hlc3 then ""The price-variable selected is hlc3 = " + Round(hlc3,2)
+else if price == imp_volatility then ""The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility)
+else if price == ohlc4 then ""The price-variable selected is ohlc4 = " + Round(ohlc4,2)
+else if price == open_interest then ""The price-variable selected is Open_interest = " + Round(open_interest,0)
+else if price == volume then ""The price-variable selected is Volume = " + Round(volume,0)
+else if price == VWAP then ""The price-variable selected is VWAP = " + Round(VWAP,0)
+else "N/A" + price,color.white);
+```
 
-![Im1400](images/Im1400)
+Comments: The 11 choices of Price are close, high, hl2, hlc3, imp_volatility, low, ohlc4, open, open_interest, volume,  vwap.
 
-![Im1402](images/Im1402)
-
-![Im1398](images/Im1398)
-
-![Im1404](images/Im1404)
-
-![Im1406](images/Im1406)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2323
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- input price = close;#Price automatically avails 11 choices
-
-- AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2)
-
-- else if price == open then ""The price-variable selected is open = " + Round(open,2)
-
-- else if price == high then ""The price-variable selected is high = " + Round(high,2)
-
-- else if price == low then ""The price-variable selected is low = " + Round(low,2)
-
-- else if price == hl2 then ""The price-variable selected is hl2 = " + Round(hl2,2)
-
-- else if price == hlc3 then ""The price-variable selected is hlc3 = " + Round(hlc3,2)
-
-- else if price == imp_volatility then ""The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility)
-
-- else if price == ohlc4 then ""The price-variable selected is ohlc4 = " + Round(ohlc4,2)
-
-- else if price == open_interest then ""The price-variable selected is Open_interest = " + Round(open_interest,0)
-
-- else if price == volume then ""The price-variable selected is Volume = " + Round(volume,0)
-
-- else if price == VWAP then ""The price-variable selected is VWAP = " + Round(VWAP,0)
-
-- else "N/A" + price,color.white);
-
-- Comments: The 11 choices of Price are close, high, hl2, hlc3, imp_volatility, low, ohlc4, open, open_interest, volume,  vwap.
-
-- WHAT IS SWING-HIGH, SWING-LOW
+<a name="WHAT_IS_SWING_HIGH_SWING_LOW"> </a>
+## WHAT IS SWING-HIGH, SWING-LOW
 
 [Return to TOC](#toc)
 
-- What is a swing high / low? Basically a swing high is the highest high looking a few bars back and a few bars forward. A
+What is a swing high / low? Basically a swing high is the highest high looking a few bars back and a few bars forward. A swing low is the lowest low looking a few bars back and a few bars forward. The more bars you include in the series, the more significant the swing, but the confirmation comes further from the actual swing point. If you wanted to define a swing high as a bar high that is higher than the highs of the two bars just before it AND higher than the highs of the two bars just after it, the thinkscript code would look like this:
 
-- swing low is the lowest low looking a few bars back and a few bars forward. The more bars you include in the series, the
+`Def swinghigh = if high > high[1] and high > high[2] and high > high[-1] and high > high[-2] then 1 else 0;`
 
-- more significant the swing, but the confirmation comes further from the actual swing point. If you wanted to define a
+Or if you are interested in the rise of the last 5 bars, you may use something like this:
 
-- swing high as a bar high that is higher than the highs of the two bars just before it AND higher than the highs of the
+`plot pivotHigh = if high == (highest(high, 5) and sum(high > high[-1], 5) == 5) then high else Double.NAN;`
 
-- two bars just after it, the thinkscript code would look like this:
+The code for a swing low is similar. Note that the confirmation of a swing point does not come until 2 bars after the swing high in this case. If you wanted to extend the swing check to 3 bars before and after, you would add the checks  for a high > high[3] and high > high [-3]. The resulting swing will be more significant, but the signal comes 3 bars after the fact.
 
-- Def swinghigh = if high > high[1] and high > high[2] and high > high[-1] and high > high[-2] then 1 else 0;
+To plot the swing high you could code it like this:
 
-- Or if you are interested in the rise of the last 5 bars, you may use something like this:
+```
+Plot swing_hi = if swinghigh then high else double.nan;
+swing_hi.setstyle(curve.points);
+```
 
-- plot pivotHigh = if high == (highest(high, 5) and sum(high > high[-1], 5) == 5) then high else Double.NAN;
+This would paint a dot on all the swing highs, and nothing everywhere else. The code for swing lows is similar.
 
-- The code for a swing low is similar. Note that the confirmation of a swing point does not come until 2 bars after the
+This is the simplified basics of swingHi/SwingLo. Many coders add all kinds of conditions to supplement the simplified code herein. Also the look-back and the look-forward lengths do not need to be the same.
 
-- swing high in this case. If you wanted to extend the swing check to 3 bars before and after, you would add the checks
-
-- for a high > high[3] and high > high [-3]. The resulting swing will be more significant, but the signal comes 3 bars after the
-
-- fact.
-
-- To plot the swing high you could code it like this:
-
-- Plot swing_hi = if swinghigh then high else double.nan;
-
-- swing_hi.setstyle(curve.points);
-
-- This would paint a dot on all the swing highs, and nothing everywhere else. The code for swing lows is similar.
-
-- This is the simplified basics of swingHi/SwingLo. Many coders add all kinds of conditions to supplement the simplified
-
-- code herein. Also the look-back and the look-forward lengths do not need to be the same.
-
-- COMPARISON TO ANOTHER INSTRUMENT
+<a name="COMPARISON_TO_ANOTHER_INSTRUMENT"> </a>
+## COMPARISON TO ANOTHER INSTRUMENT
 
 [Return to TOC](#toc)
 
-- Comparison to another stock, index or any instrument having a symbol.
+Comparison to another stock, index or any instrument having a symbol.
 
 - • Click 'studies' then 'Add Study' then 'Compare With'
 
@@ -1789,53 +1448,36 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - • You will then be presented with the following dialog:
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2424
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - If you have forgotten or are unsure of the symbol, you can find it easily as follows:
 
 - The comparison will be overlaid on the upper panel using the left-hand price scale. You can edit the study to change the
 
 - symbol or the type of plot, i.e. Line, Bar, Candle, or the color. Choose any aggregation but 'day' is most meaningful.
 
-- THE FOLD FUNCTION EXPLAINED
+<a name="THE_FOLD_FUNCTION_EXPLAINED"> </a>
+## THE FOLD FUNCTION EXPLAINED
 
 [Return to TOC](#toc)
 
-- The Fold syntax is: def <result> = fold <index> = <start> to <end> [ with <variable> [ = <init> ] ] [ while
+The Fold syntax is: 
 
-- <condition> ] do <expression>;
+`def <result> = fold <index> = <start> to <end> [ with <variable> [ = <init> ] ] [ while <condition> ] do <expression>;`
 
-- Each component of the fold function will be explained separately. The function is not easy to use but understanding the
+Each component of the fold function will be explained separately. The function is not easy to use but understanding the purpose of the components will help you to feel comfortable with it.
 
-- purpose of the components will help you to feel comfortable with it.
+General Comment:
 
-- General Comment:
+- The fold function is used to define the value for a named variable i.e. def <result>. You cannot operate on other variables or do anything within the fold. Studies may be used within a fold.
 
-- • The fold function is used to define the value for a named variable i.e. def <result>. You cannot operate on other
+- Rather than define a variable, the fold may be plotted directly i.e. def <result> =  becomes  Plot <result> =.
 
-- variables or do anything within the fold. Studies may be used within a fold.
+- Remember that the fold calculation is executed at every bar as ThinkScript processes from bar 1 to the last bar.
 
-- • Rather than define a variable, the fold may be plotted directly i.e. def <result> =  becomes  Plot <result> =.
+- As discussed in GetValue  below, studies may be used in the Fold function especially in the do <expression>.
 
-- • Remember that the fold calculation is executed at every bar as ThinkScript processes from bar 1 to the last bar.
+- The names assigned <index> and <variable> are persistent variables. Hence, if you have two folds in a study and you assign 'idx' to <index> in the first fold you cannot assign 'idx' to <index> in the second fold. This will create an error.
 
-- • As discussed in GetValue  below, studies may be used in the Fold function especially in the do <expression>.
-
-- • The names assigned <index> and <variable> are persistent variables. Hence, if you have two folds in a study and
-
-- you assign 'idx' to <index> in the first fold you cannot assign 'idx' to <index> in the second fold. This will create
-
-- an error.
-
-- • Fold will normally work in a scan and custom columns. Complexity may become an issue especially if the servers are
-
-- loaded up.
+- Fold will normally work in a scan and custom columns. Complexity may become an issue especially if the servers are loaded up.
 
 - fold
 
@@ -1843,119 +1485,38 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - <index> = <start> to <end>
 
-![Im1545](images/Im1545)
 
-![Im1547](images/Im1547)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2525
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- This defines how many times the fold calculation loops on each bar. You need to figure out how many times "fold" needs
-
-- to repeat itself, OR at what value it is going to stop churning away. Let's say you want a calculation to repeat 5 times.  If
-
-- the <start> is at 0 and the <end> is at 5, then the calculation will repeat 5 times. <start> is inclusive but <end> is
-
-- exclusive. When the counter gets to 5, fold stops and there is no results related to loop 5. <index> can be any name you
-
-- want but 'i' or 'index' is commonly used e.g. i = 0 to 50. The value of the index can be used in the do <expression>. When
-
-- <index> is used in the do statement, the last value of <index> is used and not the current value. The current value would
-
-- be  <index> + 1.
+- This defines how many times the fold calculation loops on each bar. You need to figure out how many times "fold" needs to repeat itself, OR at what value it is going to stop churning away. Let's say you want a calculation to repeat 5 times.  If the <start> is at 0 and the <end> is at 5, then the calculation will repeat 5 times. <start> is inclusive but <end> is exclusive. When the counter gets to 5, fold stops and there is no results related to loop 5. <index> can be any name you want but 'i' or 'index' is commonly used e.g. i = 0 to 50. The value of the index can be used in the do <expression>. When <index> is used in the do statement, the last value of <index> is used and not the current value. The current value would be  <index> + 1.
 
 - [ with <variable> [ = <init> ] ]
 
-- First of all, anything within brackets is optional. So when/why would you include this.?The answer lies in that this is an
+- First of all, anything within brackets is optional. So when/why would you include this.?The answer lies in that this is an internal variable that fold uses. So when is it needed? If the 'do' section of the fold performs a activity like 'add to', 'multiply by' or similar, it must have a previous number to 'add to' for example.  This 'with <variable>' is the value that will be added to when you see code like 'do nice + idx3'. This means that 'nice' is the with <variable> that fold has been keeping tract of internally and '+ idx3' is the current loop's calculated value that is to be added to nice.  'nice + idx3' then becomes the new value of the internal variable nice and nice is available for the next loop's calculation. <variable> can be any name you want to assign. In this example, 'nice' was used.
 
-- internal variable that fold uses. So when is it needed? If the 'do' section of the fold performs a activity like 'add to',
-
-- 'multiply by' or similar, it must have a previous number to 'add to' for example.  This 'with <variable>' is the value that
-
-- will be added to when you see code like 'do nice + idx3'. This means that 'nice' is the with <variable> that fold has been
-
-- keeping tract of internally and '+ idx3' is the current loop's calculated value that is to be added to nice.  'nice + idx3'
-
-- then becomes the new value of the internal variable nice and nice is available for the next loop's calculation. <variable>
-
-- can be any name you want to assign. In this example, 'nice' was used.
-
-- [ = <init> ] is the initial value of the 'with <variable>' and is optional. If it is omitted, then the default value of 0 is
-
-- used. <init> is a number. Since it is in brackets, it is optional if there is a  with <variable>.
+- [ = <init> ] is the initial value of the 'with <variable>' and is optional. If it is omitted, then the default value of 0 is used. <init> is a number. Since it is in brackets, it is optional if there is a  with <variable>.
 
 - [ while <condition> ]
 
-- This defines a condition, upon violation of which, the loop (not the fold itself) is terminated when calculating the fold
-
-- function and TOS procedes to the next bar. The fold will do some action but that action may be subject to certain
-
-- conditions. This [ while <condition> ] defines conditions/ limitations that are imposed on the actions that follow. The
-
-- conditions may qualify the do-actions results or they may define conditions that terminate any further loops at the
-
-- current bar. Conditions here do not preclude the 'do' statements from having an 'if' statement that may also set
-
-- conditions but those conditions are used in getting the desired result from the 'do' statement. A example would look like
+- This defines a condition, upon violation of which, the loop (not the fold itself) is terminated when calculating the fold function and TOS procedes to the next bar. The fold will do some action but that action may be subject to certain conditions. This [ while <condition> ] defines conditions/ limitations that are imposed on the actions that follow. The conditions may qualify the do-actions results or they may define conditions that terminate any further loops at the current bar. Conditions here do not preclude the 'do' statements from having an 'if' statement that may also set conditions but those conditions are used in getting the desired result from the 'do' statement. A example would look like
 
 - 'while close > 40'.
 
 - do <expression>
 
-- Defines an action to be performed, for each loop, when calculating the fold function. The  do <expression> may be  of
-
-- numerous types. For example, if it is a true/false type then the fold results will be a true/false. Or it may be a
-
-- arithmetic type like 'do nice * index' which multiplies fold's internal variable, nice, by the index value. Another example
-
-- is 'do nice + getValue(close, n, length - 1)) / length'(a simple moving average) which gets a close value; divides it by a
-
-- length variable; and adds it to the internal variable, nice. Or it may be a more complicated fold such as: fold i = 0 to 100
-
-- with price = Double.NaN while !IsNaN(price) do if getValue(high, -i) > 40 then getValue(high, -i) else Double.NaN; This
-
-- finds the next high price value greater than 40 among the following 100 bars and terminates looping if price is no longer a
-
-- number.
+- Defines an action to be performed, for each loop, when calculating the fold function. The  do <expression> may be  of numerous types. For example, if it is a true/false type then the fold results will be a true/false. Or it may be a arithmetic type like 'do nice * index' which multiplies fold's internal variable, nice, by the index value. Another example is 'do nice + getValue(close, n, length - 1)) / length'(a simple moving average) which gets a close value; divides it by a length variable; and adds it to the internal variable, nice. Or it may be a more complicated fold such as: fold i = 0 to 100 with price = Double.NaN while !IsNaN(price) do if getValue(high, -i) > 40 then getValue(high, -i) else Double.NaN; This finds the next high price value greater than 40 among the following 100 bars and terminates looping if price is no longer a number.
 
 - GetValue function
 
 - The syntax for GetValue is: GetValue(IDataHolder data, IDataHolder dynamic offset, int max offset);
 
-- A discussion of fold would not be complete without discussing the GetValue function. This function goes and gets data
+- A discussion of fold would not be complete without discussing the GetValue function. This function goes and gets data used in the do <expression>.
 
-- used in the do <expression>.
+- The third parameter, int max offset,is a fail stop value to prevent an endless loop in  the scripting engine. Ideally it  should be set to the maximum number that the dynamic index is expected to be. Set it too small and the script engine stops the loop before all index values are processed. Set it too high and you may unnecessarily be wasting server capacity. It would be OK to set it a little higher than you know is needed. If the script engine hits the stop value you'll get a run-time error message.
 
-- The third parameter, int max offset,is a fail stop value to prevent an endless loop in  the scripting engine. Ideally it
-
-- should be set to the maximum number that the dynamic index is expected to be. Set it too small and the script engine
-
-- stops the loop before all index values are processed. Set it too high and you may unnecessarily be wasting server
-
-- capacity. It would be OK to set it a little higher than you know is needed. If the script engine hits the stop value you'll
-
-- get a run-time error message.
-
-- Note that int max offset is a fixed integer value,  while  IDataHolder dynamic offset is an expression that defines the
-
-- offset value.  The expression used for the  IDataHolder dynamic offset often has a length parameter in it and that
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2626
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- length parameter is also the value used for  int max offset. Two very popular expressiona for  IDataHolder dynamic
-
-- offset are LookUpHighest(price,'look up price',length) and LookUpLowest(price,'look up price',length). The length in
-
-- these two studies is often the value that  int max offset is set to.
+Note that int max offset is a fixed integer value,  while  IDataHolder dynamic offset is an expression that defines the offset value.  The expression used for the  IDataHolder dynamic offset often has a length parameter in it and that length parameter is also the value used for  int max offset. Two very popular expressiona for  IDataHolder dynamic offset are LookUpHighest(price,'look up price',length) and LookUpLowest(price,'look up price',length). The length inthese two studies is often the value that  int max offset is set to.
 
 - do <expression>
 
-- Examples of
+Examples of
 
 - The heart of the fold function is the 'do expression' which is crucial for success but is not naturally intuitive. A number
 
@@ -2083,23 +1644,19 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - not 0 is plotted. In a study, it is more meaningful to put the 1 or 0 result in an clarifying label.
 
-- ACCESSING THE CONDITION WIZARD
+<a name="ACCESSING_THE_CONDITION_WIZARD"> </a>
+## ACCESSING THE CONDITION WIZARD
 
 [Return to TOC](#toc)
 
-- The wizard, short for 'Condition Wizard', is a valuable and beneficial tool. This item is here to insure that it is clear
+- The wizard, short for 'Condition Wizard', is a valuable and beneficial tool. This item is here to insure that it is clear about how to access the wizard. The wizard is auto accessible when coding new studies. Editing existing studies does not have the wizard accessible but the wizard in the following picture can be used and the wizard result can be copied for pasting in the existing study editing.
 
-- about how to access the wizard. The wizard is auto accessible when coding new studies. Editing existing studies does not
-
-- have the wizard accessible but the wizard in the following picture can be used and the wizard result can be copied for
-
-- pasting in the existing study editing.
-
-- In the above 'Scan/StockHacker' tab, all fundamental filters have been deleted using 'red-circled-X'.
+In the above 'Scan/StockHacker' tab, all fundamental filters have been deleted using 'red-circled-X'.
 
 - To re-establish, click 'Add Fundamental Filter'. Only a 'Study Filter' is showing now.
 
-- THE STOCHASTIC OSCILLATOR EXPLAINED
+<a name="THE_STOCHASTIC_OSCILLATOR_EXPLAINED"> </a>
+## THE STOCHASTIC OSCILLATOR EXPLAINED
 
 [Return to TOC](#toc)
 
@@ -2111,59 +1668,29 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Comment 2: While at this site check out the other indicator tutorials that may interest you. View indicator tutorial list
 
-- THE STANDAED DEVIATION (SD) EXPLAINED
+<a name="THE_STANDAED_DEVIATION_SD_EXPLAINED"> </a>
+## THE STANDAED DEVIATION (SD) EXPLAINED
 
 [Return to TOC](#toc)
 
-- The Standard Deviation (SD) is used frequently in TOS studies and its concept needs understanding.
+The Standard Deviation (SD) is used frequently in TOS studies and its concept needs understanding.If you have 100 random datapoints, they combine to have an average (a single value). The distance of each of the 100 datapoints from the average is used to calculate (via a mildly complex formula) what is called the Standard Deviation (often abbreviated as SD). In essece, the SD is a measure of dispersion of the 100 datapoints. If most datapoints are close to the average, the SD will be low (i.e. low dispersion or deviation). If most datapoints are widely scattered, the SD will be larger (i.e. high dispersion or deviation). The datapoints are assumed to be a normal distribution curve (is prevalent in most statistical analyses).
 
-- If you have 100 random datapoints, they combine to have an average (a single value). The distance of each of the 100
+See the picture below. SD of 1, 2 or 3 are arbitrary distances-from-the-average of a normal distribution curve, that people use for easy discussion or reference. A distance of +/- 1 SD from the average will include 68% of the 100
+ datapoints(0.68 X 100 = 68). A distance of +/- 2 SD from the average will include 95% of the 100 datapoints(0.95 X 100 = 95). A distance of +/- 3 SD from the average will include 99.7% of the 100 datapoints(0.997 X 100 = 99.7).
 
-- datapoints from the average is used to calculate (via a mildly complex formula) what is called the Standard Deviation
-
-- (often abbreviated as SD). In essece, the SD is a measure of dispersion of the 100 datapoints. If most datapoints are
-
-- close to the average, the SD will be low (i.e. low dispersion or deviation). If most datapoints are widely scattered, the SD
-
-- will be larger (i.e. high dispersion or deviation). The datapoints are assumed to be a normal distribution curve (is prevalent
-
-- in most statistical analyses).
-
-![Im13](images/Im13)
-
-![Im1800](images/Im1800)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2828
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- See the picture below. SD of 1, 2 or 3 are arbitrary distances-from-the-average of a normal distribution curve, that
-
-- people use for easy discussion or reference. A distance of +/- 1 SD from the average will include 68% of the 100
-
-- datapoints(0.68 X 100 = 68). A distance of +/- 2 SD from the average will include 95% of the 100 datapoints(0.95 X 100
-
-- = 95). A distance of +/- 3 SD from the average will include 99.7% of the 100 datapoints(0.997 X 100 = 99.7).
-
-- Whenever you see 'squared' or 'square root' in a technical calculation, SD is likely involved because 'squared' and 'square
-
-- root' are used to calculate the SD in that mildly complex formula .  Also, whenever someone talks of a 'Gaussian
-
-- distribution' they are talking of a 'normal distribution' curve. Likewise for 'Bell curve'.
+Whenever you see 'squared' or 'square root' in a technical calculation, SD is likely involved because 'squared' and 'square  root' are used to calculate the SD in that mildly complex formula .  Also, whenever someone talks of a 'Gaussian distribution' they are talking of a 'normal distribution' curve. Likewise for 'Bell curve'.
 
 SD values
 
-- NEXT ITEM TO BE ADDED
+<a name="NEXT_ITEM_TO_BE_ADDED"> </a>
+## NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
 - x
 
-- NEXT ITEM TO BE ADDED
+<a name="NEXT_ITEM_TO_BE_ADDED"> </a>
+## NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
@@ -2172,9 +1699,9 @@ SD values
 ----
 ----
 <a name="STUDIES_AND_CODING"> </a>
-## STUDIES AND CODING
+# STUDIES AND CODING
 
-### C-UPPER & LOWER BANDS AT DEFINED PERCENT
+## C-UPPER & LOWER BANDS AT DEFINED PERCENT
 
 [Return to TOC](#toc)
 
@@ -2190,11 +1717,6 @@ SD values
 
 - plot UpperBand = base * (1 + percentShift / 100);
 
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2929
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - UpperBand.setDefaultColor(GetColor(1));
 
 - plot LowerBand = base * (1 - percentShift / 100);
@@ -2205,13 +1727,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ### EOC ###
 
-- C-STANDARD DEVIATION CHANNELS
+## C-STANDARD DEVIATION CHANNELS
 
 [Return to TOC](#toc)
 
-- Standard deviations follow the 68–95–99.7 rule. That is, that a data distribution with a 1 standard deviation (SD)
-
-- contains 68% of all data. Likewise 2 SD contains 95% and 3 SD contains 99.7%.
+- Standard deviations follow the 68–95–99.7 rule. That is, that a data distribution with a 1 standard deviation (SD)  contains 68% of all data. Likewise 2 SD contains 95% and 3 SD contains 99.7%.
 
 - #STD Deviation channel plots
 
@@ -2249,23 +1769,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #EOC
 
-- C-THE SIMPLEST REC IN THINKSCRIPT
+## C-THE SIMPLEST REC IN THINKSCRIPT
 
 [Return to TOC](#toc)
 
-- To comprehend a recursive statement, start with the simplest in concept. Here the previous value is recalled so 1 can be
-
-- added to it to form the new value of x. In realtime coding, the +1 is replace by all kinds of conditions and resulting
-
-- actions.
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3030
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
+To comprehend a recursive statement, start with the simplest in concept. Here the previous value is recalled so 1 can be added to it to form the new value of x. In realtime coding, the +1 is replace by all kinds of conditions and resulting actions.
 
 - #Straight line REC  =  2 to (number-of-bars + 1)
 
@@ -2279,7 +1787,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #EOC
 
-- C-EXAMPLE OF 4 NORMALIZATIONS
+## C-EXAMPLE OF 4 NORMALIZATIONS
 
 [Return to TOC](#toc)
 
@@ -2345,7 +1853,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ### EOC ###
 
-- C-DATE LABEL IN MM/DD/YYYY FORMAT
+## C-DATE LABEL IN MM/DD/YYYY FORMAT
 
 [Return to TOC](#toc)
 
@@ -2357,21 +1865,13 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def Day = GetDayofMonth(GetYYYYMMDD());
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3131
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1;
 
 - AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
 
 - #end
 
-- C-USAGE OF THE SWITCH FUNCTION
+## C-USAGE OF THE SWITCH FUNCTION
 
 [Return to TOC](#toc)
 
@@ -2403,7 +1903,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - C-ATR TRAILING STOP and C- THE 'AdvanceDecline' STUDY
 
-- C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS
+## C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS
 
 [Return to TOC](#toc)
 
@@ -2422,18 +1922,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def a = Lowest(low, length);
 
 - def b = if low == a then a else b[1];
-
-![Im2025](images/Im2025)
-
-![Im13](images/Im13)
-
-![Im2027](images/Im2027)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3232
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot LL_Lines = if b == 0 then double.nan else if ShowLo_Lines then b else double.nan;
 
@@ -2533,10 +2021,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #hint:<b>Plots a line for the highest in the last ? bars</b>\nHas option for a % lower plot
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3333
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - declare upper;
 
 - input numBars = 50;#hint numBars: The number of bars monitored
@@ -2601,7 +2085,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #EOC
 
-- C-VARIOUS MARKET TIME VARIABLES
+## C-VARIOUS MARKET TIME VARIABLES
 
 [Return to TOC](#toc)
 
@@ -2625,12 +2109,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def marketOpen = if(pastOpen and !pastClose, 1, 0);# True if market is past the open but before the close i.e. market is
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3434
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - open
 
 - def firstBar = if (day[1] != day, day - 1, 0);
@@ -2641,7 +2119,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #EOC
 
-- C-VERTICAL LINES (3 STUDIES)
+## C-VERTICAL LINES (3 STUDIES)
 
 [Return to TOC](#toc)
 
@@ -2713,7 +2191,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-VERTICAL LINES AT INPUTTED BAR LOCATIONS
+## C-VERTICAL LINES AT INPUTTED BAR LOCATIONS
 
 [Return to TOC](#toc)
 
@@ -2722,14 +2200,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - any other LinePos to zero (0) to omit its display.
 
 - #By R. Houser Modified by StanL
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3535
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - declare upper;
 
@@ -2801,7 +2271,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLOT BARNUMBERS AT SPECIFIED INTERVALS
+## C-PLOT BARNUMBERS AT SPECIFIED INTERVALS
 
 [Return to TOC](#toc)
 
@@ -2816,12 +2286,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - Input Interval = 5;#hint Interval: Enter the desired interval between shown bar mumbers.\n 0 and 1 plots at every bar.
 
 - Input BarNumbLine = Yes;#hint BarNumbLine: YES shows a line plot of bar number at the 'high' price.
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3636
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def Every_Interval = interval - 1;
 
@@ -2851,7 +2315,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS
+## C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS
 
 [Return to TOC](#toc)
 
@@ -2889,7 +2353,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-MARKET OPEN AND LUNCH TIMES
+## C-MARKET OPEN AND LUNCH TIMES
 
 [Return to TOC](#toc)
 
@@ -2907,21 +2371,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SQUEEZE SCAN WITH MACD EXIT
+## C-SQUEEZE SCAN WITH MACD EXIT
 
 [Return to TOC](#toc)
 
 - # Squeeze Exit / MACD Scan
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3737
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - BollingerBandsSMA()."UpperBand" is greater than KeltnerChannels()."Upper_Band" and
 
@@ -2931,7 +2385,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SHOWING WHERE A CANDLE PATTERN  EXISTS
+## C-SHOWING WHERE A CANDLE PATTERN  EXISTS
 
 [Return to TOC](#toc)
 
@@ -2977,7 +2431,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-VOLUME AS A % OF THE ??-DAY-AVERAGE
+## C-VOLUME AS A % OF THE ??-DAY-AVERAGE
 
 [Return to TOC](#toc)
 
@@ -3010,14 +2464,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - GetColor(1));
 
 - VolAvg.SetDefaultColor(GetColor(8));
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3838
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ##### calc label ######
 
@@ -3113,7 +2559,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3939
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
 
-- C&S-IDENTIFY CURRENT LOW THAT HAS GAPED UP
+## C&S-IDENTIFY CURRENT LOW THAT HAS GAPED UP
 
 [Return to TOC](#toc)
 
@@ -3147,7 +2593,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C&S-PERCENTAGE CHANGE OF AN AVERAGE (SCAN OR  PLOT)
+## C&S-PERCENTAGE CHANGE OF AN AVERAGE (SCAN OR  PLOT)
 
 [Return to TOC](#toc)
 
@@ -3197,7 +2643,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ARROW AT THE DEFINED TIME EACH DAY
+## C-ARROW AT THE DEFINED TIME EACH DAY
 
 [Return to TOC](#toc)
 
@@ -3208,16 +2654,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def barnumber = BarNumber();
 
 - input time = 1000;#hint time:Time to place the arrow at
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4040
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def timeTest = SecondsFromTime(time) == 0;
 
@@ -3239,7 +2675,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE
+## C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE
 
 [Return to TOC](#toc)
 
@@ -3311,17 +2747,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE
+## C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE
 
 [Return to TOC](#toc)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4141
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #plot a flat line from open of first bar of day. For use on multi-day charts.
 
@@ -3351,7 +2779,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-% CHANGE OF THE FIRST BAR VALUE
+## C-% CHANGE OF THE FIRST BAR VALUE
 
 [Return to TOC](#toc)
 
@@ -3397,7 +2825,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-% CHANGE COMPARED TO ? DAYS-AGO
+## C-% CHANGE COMPARED TO ? DAYS-AGO
 
 [Return to TOC](#toc)
 
@@ -3415,17 +2843,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddLabel(yes,"% Change compared to " + length + " days ago = " + Round(PctChange, 1) + "%",color.PINK);
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4242
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #end
 
-- C-LOW IS ?% ABOVE YESTERDAY'S HIGH
+## C-LOW IS ?% ABOVE YESTERDAY'S HIGH
 
 [Return to TOC](#toc)
 
@@ -3453,7 +2873,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-IMP-VOLATILITY PERCENTILE
+## C-IMP-VOLATILITY PERCENTILE
 
 [Return to TOC](#toc)
 
@@ -3479,7 +2899,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-YTD PERCENT CHANGE
+## C-YTD PERCENT CHANGE
 
 [Return to TOC](#toc)
 
@@ -3512,16 +2932,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def todayend = if istoday then price else 0;
 
 - def jan1 = highest(yearstart, 300);
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4343
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def now = highest(todayend, 300);
 
@@ -3563,7 +2973,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE
+## C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE
 
 [Return to TOC](#toc)
 
@@ -3601,17 +3011,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ADD AN INDEX OR FUTURE LOWER CHART
+## C-ADD AN INDEX OR FUTURE LOWER CHART
 
 [Return to TOC](#toc)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4444
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - The AddChart function is unsupported in TOS, Hence there is no documentation to support its use and color formatting.
 
@@ -3677,127 +3079,75 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-LINE RSI WITH MACD HISTOGRAM
+## C-LINE RSI WITH MACD HISTOGRAM
 
 [Return to TOC](#toc)
 
-- An RSI indicator on a single line with over-bought/over-sold color indication. This RSI is in conjunction with a MACD
+An RSI indicator on a single line with over-bought/over-sold color indication. This RSI is in conjunction with a MACD
 
-- ########
+```
+########
+declare lower;
+input RSI_Wilder_length = 14;
+input RSI_Wilder_over_bought = 70;
+input RSI_Wilder_over_sold = 30;
+input RSI_Wilder_price_type = close;
+def RSIplot = RSIWilder(RSI_Wilder_length, RSI_Wilder_over_bought, RSI_Wilder_over_sold,
+RSI_Wilder_price_type);
+plot RSI_line = 0;
+RSI_line.SetPaintingStrategy(PaintingStrategy.POINTS);
+RSI_line.AssignValueColor(if RSIplot >= RSI_Wilder_over_bought then Color.RED else if RSIplot <=
+RSI_Wilder_over_sold then Color.GREEN else Color.YELLOW);
+#######################
+## MACD HISTOGRAM PLOT#####
+#######################
+input MACD_Histogram_fastLength = 12;
+input MACD_Histogram_slowLength = 26;
+input MACD_Histogram_MACDLength = 9;
+input MACD_Histogram_AverageType = {SMA, default EMA};
 
-- declare lower;
+plot Diff = MACD(MACD_Histogram_fastLength, MACD_Histogram_slowLength, MACD_Histogram_MACDLength,
 
-- input RSI_Wilder_length = 14;
+MACD_Histogram_AverageType).Diff;
+Diff.SetDefaultColor(GetColor(5));
+Diff.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Diff.SetLineWeight(3);
+Diff.DefineColor("Positive and Up", Color.GREEN);
+Diff.DefineColor("Positive and Down", Color.DARK_GREEN);
+Diff.DefineColor("Negative and Down", Color.RED);
+Diff.DefineColor("Negative and Up", Color.DARK_RED);
+Diff.AssignValueColor(if Diff >= 0 then if Diff > Diff[1] then Diff.color("Positive and Up") se Diff.color("Positive and
+Down") else if Diff < Diff[1] then Diff.color("Negative and Down") else Diff.color("Negative d Up"));
+AddLabel(yes, if RSIplot >= RSI_Wilder_over_bought then "RSI on the line is Overbought" else if Iplot <=
+RSI_Wilder_over_sold then "RSI on the line is Oversold" else "RSI on the line is Neutral",if Iplot >=
+RSI_Wilder_over_bought then Color.RED else if RSIplot <= RSI_Wilder_over_sold then Color.GREEN se
+Color.YELLOW);
+#end
+```
 
-- input RSI_Wilder_over_bought = 70;
-
-- input RSI_Wilder_over_sold = 30;
-
-- input RSI_Wilder_price_type = close;
-
-- def RSIplot = RSIWilder(RSI_Wilder_length, RSI_Wilder_over_bought, RSI_Wilder_over_sold,
-
-- RSI_Wilder_price_type);
-
-- plot RSI_line = 0;
-
-- RSI_line.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4545
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- RSI_line.AssignValueColor(if RSIplot >= RSI_Wilder_over_bought then Color.RED else if RSIplot <=
-
-- RSI_Wilder_over_sold then Color.GREEN else Color.YELLOW);
-
-- #######################
-
-- ## MACD HISTOGRAM PLOT#####
-
-- #######################
-
-- input MACD_Histogram_fastLength = 12;
-
-- input MACD_Histogram_slowLength = 26;
-
-- input MACD_Histogram_MACDLength = 9;
-
-- input MACD_Histogram_AverageType = {SMA, default EMA};
-
-- plot Diff = MACD(MACD_Histogram_fastLength, MACD_Histogram_slowLength, MACD_Histogram_MACDLength,
-
-- MACD_Histogram_AverageType).Diff;
-
-- Diff.SetDefaultColor(GetColor(5));
-
-- Diff.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-
-- Diff.SetLineWeight(3);
-
-- Diff.DefineColor("Positive and Up", Color.GREEN);
-
-- Diff.DefineColor("Positive and Down", Color.DARK_GREEN);
-
-- Diff.DefineColor("Negative and Down", Color.RED);
-
-- Diff.DefineColor("Negative and Up", Color.DARK_RED);
-
-- Diff.AssignValueColor(if Diff >= 0 then if Diff > Diff[1] then Diff.color("Positive and Up") else Diff.color("Positive and
-
-- Down") else if Diff < Diff[1] then Diff.color("Negative and Down") else Diff.color("Negative and Up"));
-
-- AddLabel(yes, if RSIplot >= RSI_Wilder_over_bought then "RSI on the line is Overbought" else if RSIplot <=
-
-- RSI_Wilder_over_sold then "RSI on the line is Oversold" else "RSI on the line is Neutral",if RSIplot >=
-
-- RSI_Wilder_over_bought then Color.RED else if RSIplot <= RSI_Wilder_over_sold then Color.GREEN else
-
-- Color.YELLOW);
-
-- #end
-
-- C-MARKET SENTIMENT
+## C-MARKET SENTIMENT
 
 [Return to TOC](#toc)
 
-- #hint: <b>Market Sentiment</b>\nThe Market Sentiment study is a popular study in Prophet Charts.
+```
+#hint: <b>Market Sentiment</b>\nThe Market Sentiment study is a popular study in Prophet Charts.
+declare lower;
+input perioda = 51;
+input periodb = 47;
+input RoundingValue = 4;
+def llow = Lowest(low, perioda);
+def c_ln = close - llow;
+def hhigh = Highest(high, perioda);
+def hn_ln = hhigh - llow;
+def numerator = Sum(c_ln, periodb);
+def denominator = Sum(hn_ln, perioda);
+plot MarketSentiment = round(100* (numerator/denominator), RoundingValue);
+marketsentiment.setDefaultColor(color.yellow);
+#end
+```
 
-- declare lower;
 
-- input perioda = 51;
-
-- input periodb = 47;
-
-- input RoundingValue = 4;
-
-- def llow = Lowest(low, perioda);
-
-- def c_ln = close - llow;
-
-- def hhigh = Highest(high, perioda);
-
-- def hn_ln = hhigh - llow;
-
-- def numerator = Sum(c_ln, periodb);
-
-- def denominator = Sum(hn_ln, perioda);
-
-- plot MarketSentiment = round(100* (numerator/denominator), RoundingValue);
-
-- marketsentiment.setDefaultColor(color.yellow);
-
-- #end
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4646
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- C-MARKET FORECAST PLOTTED BY REFERENCE
+## C-MARKET FORECAST PLOTTED BY REFERENCE
 
 [Return to TOC](#toc)
 
@@ -3825,7 +3175,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-TRIPLE EMA &  STD DEV MONITORING
+## C-TRIPLE EMA &  STD DEV MONITORING
 
 [Return to TOC](#toc)
 
@@ -3887,17 +3237,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Addlabel(1,"Above mid-line is bullish. Below is bearish.", color.cyan);
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4747
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #end
 
-- C-FAST-MED-SLOW TRUE RANGE OSC
+## C-FAST-MED-SLOW TRUE RANGE OSC
 
 [Return to TOC](#toc)
 
@@ -3957,7 +3299,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #End
 
-- C-CHANGE STUDIES BASED ON SYMBOL VIEWED
+## C-CHANGE STUDIES BASED ON SYMBOL VIEWED
 
 [Return to TOC](#toc)
 
@@ -3976,14 +3318,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - plot x;
 
 - plot y;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4848
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot z;
 
@@ -4049,7 +3383,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLOTS HIGHER-HIGHS AND LOWER-LOWS
+## C-PLOTS HIGHER-HIGHS AND LOWER-LOWS
 
 [Return to TOC](#toc)
 
@@ -4076,12 +3410,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - plot l =lower;
 
 - l.SetLineWeight(1);
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  4949
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - l.SetDefaultColor(Color.pink);
 
@@ -4115,7 +3443,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-CANDLESTICK PLOTS
+## C-CANDLESTICK PLOTS
 
 [Return to TOC](#toc)
 
@@ -4129,7 +3457,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ATR TRAILING STOP
+## C-ATR TRAILING STOP
 
 [Return to TOC](#toc)
 
@@ -4168,14 +3496,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - case modified:
 
 - loss = ATRFactor * ATRMod;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5050
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - case unmodified:
 
@@ -4271,10 +3591,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - then TrailingStop.color("Sell")
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5151
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - else TrailingStop.color("Buy"));
 
 - plot cross = close crosses trailingstop;
@@ -4283,7 +3599,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C&S-EARNINGS
+## C&S-EARNINGS
 
 [Return to TOC](#toc)
 
@@ -4333,7 +3649,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL
+## C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL
 
 [Return to TOC](#toc)
 
@@ -4363,14 +3679,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - addlabel(1,"Plot is the tangent angle of the " + length + "-bar " + If averageType == AverageType.EXPONENTIAL then
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5252
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - "Exponential average"
 
 - else if  averageType == AverageType.Hull then "Hull average"
@@ -4389,7 +3697,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-TODAY'S MARKET OPENING PRICE
+## C-TODAY'S MARKET OPENING PRICE
 
 [Return to TOC](#toc)
 
@@ -4421,7 +3729,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLACING OF PLOTTED ARROWS
+## C-PLACING OF PLOTTED ARROWS
 
 [Return to TOC](#toc)
 
@@ -4449,7 +3757,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SPECIFYING 'AVERAGETYPE' INPUT
+## C-SPECIFYING 'AVERAGETYPE' INPUT
 
 [Return to TOC](#toc)
 
@@ -4461,16 +3769,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5353
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - input length1 = 10;
 
 - def price = close;
@@ -4479,7 +3777,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
+## C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
 
 [Return to TOC](#toc)
 
@@ -4519,7 +3817,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-   DEFINING CONDITIONS IN BUY/SELL STRATEGY
+## C-   DEFINING CONDITIONS IN BUY/SELL STRATEGY
 
 [Return to TOC](#toc)
 
@@ -4543,9 +3841,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-THE 'AdvanceDecline' STUDY OF THE
-
-NYSE, NASDAQ, AMEX
+## C-THE 'AdvanceDecline' STUDY OF THE NYSE, NASDAQ, AMEX
 
 [Return to TOC](#toc)
 
@@ -4558,16 +3854,6 @@ NYSE, NASDAQ, AMEX
 - declare lower;
 
 - input type = {default "Advance/Decline Line", "Advance/Decline Line (Breadth)", "Advance/Decline Line (Daily)",
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5454
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - "Advance/Decline Ratio", "Advance/Decline Spread (Issues)", "Absolute Breadth Index"};
 
@@ -4663,10 +3949,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - else if type == type."Advance/Decline Line (Breadth)" then "Advance/Decline Line (Breadth)"
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5555
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - else if type == type."Advance/Decline Line (Daily)"  then "Advance/Decline Line (Daily)"
 
 - else if type == type."Advance/Decline Ratio" then   "Advance/Decline Ratio"
@@ -4689,7 +3971,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLOT FOR ? DAYS FROM A DATE
+## C-PLOT FOR ? DAYS FROM A DATE
 
 [Return to TOC](#toc)
 
@@ -4709,7 +3991,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-   PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART
+## C-   PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART
 
 [Return to TOC](#toc)
 
@@ -4721,7 +4003,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLACING OF PLOTTED ARROWS
+## C-PLACING OF PLOTTED ARROWS
 
 [Return to TOC](#toc)
 
@@ -4749,23 +4031,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SPECIFYING 'AVERAGETYPE' INPUT
+## C-SPECIFYING 'AVERAGETYPE' INPUT
 
 [Return to TOC](#toc)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5656
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input AverageType = {default Simple, Exponential, Weighted, Wilders, Hull};
 
@@ -4783,7 +4051,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
+## C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
 
 [Return to TOC](#toc)
 
@@ -4823,7 +4091,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-% VOLUME CHANGE FROM THE PREVIOUS BAR
+## C-% VOLUME CHANGE FROM THE PREVIOUS BAR
 
 [Return to TOC](#toc)
 
@@ -4859,14 +4127,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - addLabel(1,"Shows the % change in volume compared to the previous bar", Color.pink);
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5757
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - addLabel(1,"Yellow line = " + Ref_val + "% reference line" , Color.yellow);
 
 - addLabel(!ShowBubble,"%-value-bubbles available when above " + Ref_val + "% reference line", Color.white);
@@ -4875,7 +4135,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD
+## C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD
 
 [Return to TOC](#toc)
 
@@ -4965,13 +4225,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ###  END
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5858
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- C-PLOT DUAL MOVING AVERAGES
+## C-PLOT DUAL MOVING AVERAGES
 
 [Return to TOC](#toc)
 
@@ -5035,7 +4289,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SIMPLE MOVING AVERAGE CROSS TRADING
+## C-SIMPLE MOVING AVERAGE CROSS TRADING
 
 [Return to TOC](#toc)
 
@@ -5063,14 +4317,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - upper.SetDefaultColor(Color.RED);
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  5959
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - plot lower = ExpAverage(data = price[-displace], length = EMALength2);
 
 - lower.SetDefaultColor(Color.BLUE);
@@ -5079,7 +4325,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY
+## C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY
 
 [Return to TOC](#toc)
 
@@ -5165,12 +4411,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - slowAvg = HullMovingAvg(price, slowLength);
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6060
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - }
 
 - plot signalXup = If DoArrows Then crosses(fastAvg, slowAvg, CrossingDirection.above) else Double.nan;
@@ -5217,7 +4457,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-AVOIDING FALSE SIGNALS
+## C-AVOIDING FALSE SIGNALS
 
 [Return to TOC](#toc)
 
@@ -5261,13 +4501,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6161
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- C-USING THE SETHIDING FUNCTION
+## C-USING THE SETHIDING FUNCTION
 
 [Return to TOC](#toc)
 
@@ -5295,7 +4529,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-MOVING AVERAGE SPECTRUM
+## C-MOVING AVERAGE SPECTRUM
 
 [Return to TOC](#toc)
 
@@ -5351,21 +4585,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ## end
 
-- C-IMPLIED VOLATILITY LABEL AND PLOT
+## C-IMPLIED VOLATILITY LABEL AND PLOT
 
 [Return to TOC](#toc)
 
 - #hint: Implied Volatility label and plot
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6262
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def Imp_Vol = imp_volatility(period = aggregationPeriod.DAY);
 
@@ -5379,7 +4603,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-INSIDE-BAR CODING
+## C-INSIDE-BAR CODING
 
 [Return to TOC](#toc)
 
@@ -5447,251 +4671,147 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-IDENTIFYING AGGREGATION IN A LABEL
+## C-IDENTIFYING AGGREGATION IN A LABEL
 
 [Return to TOC](#toc)
 
-- #hint: Identifying aggregation in a label
+```
+#hint: Identifying aggregation in a label
+input Show_ChartPeriod = yes;
+def AggPeriod = getAggregationPeriod();
+AddLabel(Show_ChartPeriod,
+if AggPeriod == AggregationPeriod.DAY
+then "DAY"
+else if AggPeriod == AggregationPeriod.WEEK
+then "WEEK"
+else if AggPeriod == AggregationPeriod.MONTH
+then "MONTH"
+else if Aggperiod < AggregationPeriod.DAY
+then "<D"
+else ">M",
+Color.RED );
+#end
+```
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6363
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- input Show_ChartPeriod = yes;
-
-- def AggPeriod = getAggregationPeriod();
-
-- AddLabel(Show_ChartPeriod,
-
-- if AggPeriod == AggregationPeriod.DAY
-
-- then "DAY"
-
-- else if AggPeriod == AggregationPeriod.WEEK
-
-- then "WEEK"
-
-- else if AggPeriod == AggregationPeriod.MONTH
-
-- then "MONTH"
-
-- else if Aggperiod < AggregationPeriod.DAY
-
-- then "<D"
-
-- else ">M",
-
-- Color.RED );
-
-- #end
-
-- C-FIRST AND LAST BAR FOR PLACING A BUBBLE
+## C-FIRST AND LAST BAR FOR PLACING A BUBBLE
 
 [Return to TOC](#toc)
 
-- #hint:Selects the first and last bar for placing a bubble
+```
+#hint:Selects the first and last bar for placing a bubble
+declare upper;
+Input Offset = -10;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+Def BubbleLocation = LastBar[Offset];
+def barNum = barNumber();
+def FirstBar = if barNum == 1 then 1 else 0;
+AddLabel( yes, "Total bars = " + barNum, ), Color.pink );
+addchartbubble(BubbleLocation , close, "Last Bar", color.white);
+addchartbubble(FirstBar, close, "FirstBar", color.white);
+Comment: HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in e right margin and not on
+the chart itself.
+#end
+```
 
-- declare upper;
-
-- Input Offset = -10;
-
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
-
-- Def BubbleLocation = LastBar[Offset];
-
-- def barNum = barNumber();
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- AddLabel( yes, "Total bars = " + barNum, ), Color.pink );
-
-- addchartbubble(BubbleLocation , close, "Last Bar", color.white);
-
-- addchartbubble(FirstBar, close, "FirstBar", color.white);
-
-- Comment: HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in the right margin and not on
-
-- the chart itself.
-
-- #end
-
-- C-DEFINE PREVIOUS DAY'S CLOSE
+## C-DEFINE PREVIOUS DAY'S CLOSE
 
 [Return to TOC](#toc)
 
-- #Hint:Define Previous day's close
+```
+#Hint:Define Previous day's close
+declare upper;
+input price    = FundamentalType.Close;
+def barNum     = if IsNaN( close ) then Double.NaN else barNumber();
+def prevBarNum = HighestAll( barNum ) - 1;
+def prevPrice  = if barNum == prevBarNum then fundamental( price ) else Double.NaN;
+plot PreviousPriceLine = HighestAll( prevPrice );
+PreviousPriceLine.SetDefaultColor( CreateColor( 102, 102, 102 );
+#end
+```
 
-- declare upper;
-
-- input price    = FundamentalType.Close;
-
-- def barNum     = if IsNaN( close ) then Double.NaN else barNumber();
-
-- def prevBarNum = HighestAll( barNum ) - 1;
-
-- def prevPrice  = if barNum == prevBarNum then fundamental( price ) else Double.NaN;
-
-- plot PreviousPriceLine = HighestAll( prevPrice );
-
-- PreviousPriceLine.SetDefaultColor( CreateColor( 102, 102, 102 );
-
-- #end
-
-- C-CLOUDS WITHOUT A PLOT
+## C-CLOUDS WITHOUT A PLOT
 
 [Return to TOC](#toc)
 
-- #hint:Creating a cloud without a plot
+```
+#hint:Creating a cloud without a plot
+input CloudThicknessPercentage = 100;#Hint  CloudThicknessPercentage:Percent of the cloud ickness to be plotted
+def CloudThickness = ((close[1] - close) / 100) * CloudThicknessPercentage;
+def highh = close + CloudThickness;
+def highl = close - CloudThickness;
+AddCloud(highh, highl, Color.RED, Color.GREEN);
+#end
+```
 
-- input CloudThicknessPercentage = 100;#Hint  CloudThicknessPercentage:Percent of the cloud thickness to be plotted
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6464
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- def CloudThickness = ((close[1] - close) / 100) * CloudThicknessPercentage;
-
-- def highh = close + CloudThickness;
-
-- def highl = close - CloudThickness;
-
-- AddCloud(highh, highl, Color.RED, Color.GREEN);
-
-- #end
-
-- C-COUNTS OF CONSECUTIVE RISES OR DROPS OF THE CLOSE
+## C-COUNTS OF CONSECUTIVE RISES OR DROPS OF THE CLOSE
 
 [Return to TOC](#toc)
 
-- Comment: This is an excellent example of a simple recursive that counts
+Comment: This is an excellent example of a simple recursive that counts
 
-- #hint:Plots of counts of consecutive rises or drops of the close.
+```
+#hint:Plots of counts of consecutive rises or drops of the close.
+def count_CloseDrops =
+if Close < close[1] then count_CloseDrops[1] +1 else 0;
+plot close_going_down = count_CloseDrops ;
+close_going_down.SetPaintingStrategy(PaintingStrategy.line);
+close_going_down.SetLineWeight(1);
+close_going_down.SetDefaultColor(Color.red);
+AddLabel(yes,  "Count of consecutive drops of the CLOSE = " +  Close_going_down ,color.red);
+######### on the up side ###############
+def count_CloseUps =
+if Close > close[1] then count_CloseUps[1] +1 else 0;
+plot close_going_up = count_CloseUps ;
+close_going_up.SetPaintingStrategy(PaintingStrategy.line);
+close_going_up.SetLineWeight(1);
+close_going_up.SetDefaultColor(Color.green);
+AddLabel(yes,  "Count of consecutive rises of the CLOSE = " +  Close_going_up ,color.green);
+########## Reference lines ############
+Plot line2 = 2;
+line2.SetDefaultColor(Color.light_gray);
+Plot line4 = 4;
+line4.SetDefaultColor(Color.gray);
+Plot line6 = 6;
+line6.SetDefaultColor(Color.light_gray);
+Plot line8 = 8;
+line8.SetDefaultColor(Color.gray);
+Plot line10 = 10;
+line10.SetDefaultColor(Color.light_gray);
+Plot line12 = 12;
+line12.SetDefaultColor(Color.gray);
+#end
+```
 
-- def count_CloseDrops =
-
-- if Close < close[1] then count_CloseDrops[1] +1 else 0;
-
-- plot close_going_down = count_CloseDrops ;
-
-- close_going_down.SetPaintingStrategy(PaintingStrategy.line);
-
-- close_going_down.SetLineWeight(1);
-
-- close_going_down.SetDefaultColor(Color.red);
-
-- AddLabel(yes,  "Count of consecutive drops of the CLOSE = " +  Close_going_down ,color.red);
-
-- ######### on the up side ###############
-
-- def count_CloseUps =
-
-- if Close > close[1] then count_CloseUps[1] +1 else 0;
-
-- plot close_going_up = count_CloseUps ;
-
-- close_going_up.SetPaintingStrategy(PaintingStrategy.line);
-
-- close_going_up.SetLineWeight(1);
-
-- close_going_up.SetDefaultColor(Color.green);
-
-- AddLabel(yes,  "Count of consecutive rises of the CLOSE = " +  Close_going_up ,color.green);
-
-- ########## Reference lines ############
-
-- Plot line2 = 2;
-
-- line2.SetDefaultColor(Color.light_gray);
-
-- Plot line4 = 4;
-
-- line4.SetDefaultColor(Color.gray);
-
-- Plot line6 = 6;
-
-- line6.SetDefaultColor(Color.light_gray);
-
-- Plot line8 = 8;
-
-- line8.SetDefaultColor(Color.gray);
-
-- Plot line10 = 10;
-
-- line10.SetDefaultColor(Color.light_gray);
-
-- Plot line12 = 12;
-
-- line12.SetDefaultColor(Color.gray);
-
-- #end
-
-- C-DEFINE BAR AT A TIME AND DATE
+## C-DEFINE BAR AT A TIME AND DATE
 
 [Return to TOC](#toc)
 
-- ###### Define Bar at a time and date #######
+```
+###### Define Bar at a time and date #######
+plot Data1 = volume;
+declare hide_on_daily;
+def barnumber = BarNumber();
+input time = 1100;
+Input TodayDate = 20130104;
+def GetYMD = GetYYYYMMDD() == TodayDate;
+def timeTest = SecondsFromTime(time) == 0;
+def BarID = CompoundValue(1, if timeTest && GetYMD then barnumber else Double.nan, barnumber());
+#def BarIDNo = if(!isnan(BarID), Double.nan,barID);
+AddLabel(yes, "BarNumber at arrow = " + BarID, color.white);#?????why this doesn't show BarID
+Plot Data2 = BarID;#The barnumber value
+Data2.setPaintingStrategy(PaintingStrategy.VALUES_below); # Arrow_Down, Arrow_Points,
+Data2.SetDefaultColor(Color.Green); # for data plot
+Data2.SetLineWeight(5);
+Plot Data3 = BarID;#An arrow at the selected barnumber
+Data3.setPaintingStrategy(PaintingStrategy.Arrow_down); # Arrow_Down, Arrow_Points,
+Data3.SetDefaultColor(Color.Green); # for data plot
+Data3.SetLineWeight(5);
+AddChartBubble( timeTest && GetYMD, Volume , BarID + " is the base \nbar for comparison", lor.white, no);#Bubble
+at the selected barnumber stating the barnumber
+#end
+```
 
-- plot Data1 = volume;
-
-- declare hide_on_daily;
-
-- def barnumber = BarNumber();
-
-- input time = 1100;
-
-- Input TodayDate = 20130104;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6565
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- def GetYMD = GetYYYYMMDD() == TodayDate;
-
-- def timeTest = SecondsFromTime(time) == 0;
-
-- def BarID = CompoundValue(1, if timeTest && GetYMD then barnumber else Double.nan, barnumber());
-
-- #def BarIDNo = if(!isnan(BarID), Double.nan,barID);
-
-- AddLabel(yes, "BarNumber at arrow = " + BarID, color.white);#?????why this doesn't show BarID
-
-- Plot Data2 = BarID;#The barnumber value
-
-- Data2.setPaintingStrategy(PaintingStrategy.VALUES_below); # Arrow_Down, Arrow_Points,
-
-- Data2.SetDefaultColor(Color.Green); # for data plot
-
-- Data2.SetLineWeight(5);
-
-- Plot Data3 = BarID;#An arrow at the selected barnumber
-
-- Data3.setPaintingStrategy(PaintingStrategy.Arrow_down); # Arrow_Down, Arrow_Points,
-
-- Data3.SetDefaultColor(Color.Green); # for data plot
-
-- Data3.SetLineWeight(5);
-
-- AddChartBubble( timeTest && GetYMD, Volume , BarID + " is the base \nbar for comparison", Color.white, no);#Bubble
-
-- at the selected barnumber stating the barnumber
-
-- #end
-
-- C-PRE/POST-MARKET SCAN & CHART
+## C-PRE/POST-MARKET SCAN & CHART
 
 [Return to TOC](#toc)
 
@@ -5743,12 +4863,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - pre/postmarket
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6666
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - cond.SetPaintingStrategy(PaintingStrategy.Arrow_Up);
 
 - Comment1: Pre-market scan and chart may be had by changing 'End' to 'Begin' in the above code
@@ -5759,173 +4873,103 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES
+## C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES
 
 [Return to TOC](#toc)
 
-- #hint:Order based on value difference of three averages
+```
+#hint:Order based on value difference of three averages
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input length1 = 10;
+input length2 = 46;
+input length3 = 230;
+input val_diff = .05;
+def price = close;
+plot MovAvg1 = MovingAverage(averageType1,price, length1);
+plot MovAvg2 = MovingAverage(averageType2,price, length1);
+plot MovAvg3 = MovingAverage(averageType3,price, length1);
+plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= l_diff AND
+absValue(MovAvg2 - MovAvg3) <= val_diff;
+condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+addOrder(OrderType.BUY_AUTO, condition);
+addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
+#end
+```
 
-- input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input length1 = 10;
-
-- input length2 = 46;
-
-- input length3 = 230;
-
-- input val_diff = .05;
-
-- def price = close;
-
-- plot MovAvg1 = MovingAverage(averageType1,price, length1);
-
-- plot MovAvg2 = MovingAverage(averageType2,price, length1);
-
-- plot MovAvg3 = MovingAverage(averageType3,price, length1);
-
-- plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND
-
-- absValue(MovAvg2 - MovAvg3) <= val_diff;
-
-- condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- addOrder(OrderType.BUY_AUTO, condition);
-
-- addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
-
-- #end
-
-- C-DEFINES AGGREGATION IN A LABEL
+## C-DEFINES AGGREGATION IN A LABEL
 
 [Return to TOC](#toc)
 
-- #hint:Defines the aggregation in a label
+```
+#hint:Defines the aggregation in a label
+def AggPeriod = getAggregationPeriod();
+AddLabel(yes,concat("Aggregation Period =  ",
+if AggPeriod == AggregationPeriod.min
+then "1 MIN"
+else if AggPeriod == AggregationPeriod.Two_Min
+then "2 MINS"
+else if AggPeriod == AggregationPeriod.Three_min
+then "3 MINS"
+else if AggPeriod == AggregationPeriod.Four_Min
+then "4 MINS"
+else if AggPeriod == AggregationPeriod.Five_min
+then "5 MINS"
+else if AggPeriod == AggregationPeriod.ten_min
+then "10 MINS"
+else if AggPeriod == AggregationPeriod.fifteen_min
+then "15 MINS"
+else if AggPeriod == AggregationPeriod.Twenty_min
+then "20 MINS"
+else if AggPeriod == AggregationPeriod.Thirty_min
+then "30 MINS"
+else if AggPeriod == AggregationPeriod.hour
+then "1 HOUR"
+else if AggPeriod == AggregationPeriod.TWO_Hours
+then "2 HOURS"
+else if AggPeriod == AggregationPeriod.Four_hours
+then "4 HOURS"
+else if AggPeriod == AggregationPeriod.DAY
+then "DAY"
+else if AggPeriod == AggregationPeriod.two_DAYs
+then "2 DAYS"
+else if AggPeriod == AggregationPeriod.three_DAYs
+then "3 DAYS"
+else if AggPeriod == AggregationPeriod.four_DAYs
+then "4 DAYS"
+else if AggPeriod == AggregationPeriod.week
+then "WEEK"
+else if AggPeriod == AggregationPeriod.MONTH
+then "MONTH"
+else "Use time charts only"),
+Color.cyan);
+AddLabel(yes,"Not for TICK or RANGE bar usage",color.red);
+# end
+```
 
-- def AggPeriod = getAggregationPeriod();
-
-- AddLabel(yes,concat("Aggregation Period =  ",
-
-- if AggPeriod == AggregationPeriod.min
-
-- then "1 MIN"
-
-- else if AggPeriod == AggregationPeriod.Two_Min
-
-- then "2 MINS"
-
-- else if AggPeriod == AggregationPeriod.Three_min
-
-- then "3 MINS"
-
-- else if AggPeriod == AggregationPeriod.Four_Min
-
-- then "4 MINS"
-
-- else if AggPeriod == AggregationPeriod.Five_min
-
-- then "5 MINS"
-
-- else if AggPeriod == AggregationPeriod.ten_min
-
-- then "10 MINS"
-
-- else if AggPeriod == AggregationPeriod.fifteen_min
-
-- then "15 MINS"
-
-- else if AggPeriod == AggregationPeriod.Twenty_min
-
-- then "20 MINS"
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6767
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- else if AggPeriod == AggregationPeriod.Thirty_min
-
-- then "30 MINS"
-
-- else if AggPeriod == AggregationPeriod.hour
-
-- then "1 HOUR"
-
-- else if AggPeriod == AggregationPeriod.TWO_Hours
-
-- then "2 HOURS"
-
-- else if AggPeriod == AggregationPeriod.Four_hours
-
-- then "4 HOURS"
-
-- else if AggPeriod == AggregationPeriod.DAY
-
-- then "DAY"
-
-- else if AggPeriod == AggregationPeriod.two_DAYs
-
-- then "2 DAYS"
-
-- else if AggPeriod == AggregationPeriod.three_DAYs
-
-- then "3 DAYS"
-
-- else if AggPeriod == AggregationPeriod.four_DAYs
-
-- then "4 DAYS"
-
-- else if AggPeriod == AggregationPeriod.week
-
-- then "WEEK"
-
-- else if AggPeriod == AggregationPeriod.MONTH
-
-- then "MONTH"
-
-- else "Use time charts only"),
-
-- Color.cyan);
-
-- AddLabel(yes,"Not for TICK or RANGE bar usage",color.red);
-
-- # end
-
-- C-FIRST AND LAST BAR BUBBLES
+## C-FIRST AND LAST BAR BUBBLES
 
 [Return to TOC](#toc)
 
-- declare upper;
+```
+declare upper;
+Input Offset = -10;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+Def BubbleLocation = LastBar[Offset];
+def barNum = barNumber();
+def FirstBar = if barNum == 1 then 1 else 0;
+AddLabel( yes, "Total bars = " + barNum, ), Color.pink );
+addchartbubble(BubbleLocation , close, "Last Bar", color.white);
+addchartbubble(FirstBar, close, "FirstBar", color.white);
+```
 
-- Input Offset = -10;
+Comment  HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in the right margin and not onthe chart itself.
 
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+#end
 
-- Def BubbleLocation = LastBar[Offset];
 
-- def barNum = barNumber();
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- AddLabel( yes, "Total bars = " + barNum, ), Color.pink );
-
-- addchartbubble(BubbleLocation , close, "Last Bar", color.white);
-
-- addchartbubble(FirstBar, close, "FirstBar", color.white);
-
-- Comment  HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in the right margin and not on
-
-- the chart itself.
-
-- #end
-
-- C- WEIGHTED MOVING AVERAGE AND FOLD USAGE
+## C- WEIGHTED MOVING AVERAGE AND FOLD USAGE
 
 [Return to TOC](#toc)
 
@@ -5943,14 +4987,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - + (fold i = 0 to length
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6868
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - with t
 
 - do t + getValue((1/price[1]), i, length - 1)))
@@ -5963,7 +4999,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ##end
 
-- C-COUNTER FOR NUMBER OF UP BARS
+## C-COUNTER FOR NUMBER OF UP BARS
 
 [Return to TOC](#toc)
 
@@ -6009,7 +5045,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT
+## C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT
 
 [Return to TOC](#toc)
 
@@ -6041,14 +5077,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  6969
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - ### below 2 lines convert to a line plot  in lieu of showing values ###
 
 - #Count.SetPaintingStrategy(PaintingStrategy.line);
@@ -6071,7 +5099,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-   PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO
+## C-   PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO
 
 [Return to TOC](#toc)
 
@@ -6137,12 +5165,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - PreviousClose.HideBubble();
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7070
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #=========== ID Bubbles ===================
 
 - Def barnum = barnumber();
@@ -6175,7 +5197,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-DATE AND TIME USAGE EXAMPLES
+## C-DATE AND TIME USAGE EXAMPLES
 
 [Return to TOC](#toc)
 
@@ -6230,12 +5252,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - Comment 1: The '==2' may be changed to represent any previous days-ago
 
 - Comment 2: CountTradingDays includes the CurrentDate and the LastDate in the count
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7171
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ======== Between two input dates =========
 
@@ -17302,78 +16318,68 @@ Ichimoku scan for crossing below the cloud
 
 [Return to TOC](#toc)
 
-- x
+x
 
 ## NEXT SCAN TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
+x
 
-## NEXT SCAN TO BE ADDED
+### NEXT SCAN TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
+x
 
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  192192
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
+----
+----
+<a name="TUTORIALS"> </a>
+# TUTORIALS (HOW-TO-DO's)
 
-- TUTORIALS (HOW-TO-DO's)
-
-- ALERTS TUTORIAL
-
-[Return to TOC](#toc)
-
-- There is a complete tutorial named Alerts Tutorial.PDF available at http://mytrade.com/StanL
-
-- MAKE A CUSTOM SCAN TUTORIAL
+## ALERTS TUTORIAL
 
 [Return to TOC](#toc)
 
-- There is a complete tutorial named Make a custom scan,PDF available at http://mytrade.com/StanL
+There is a complete tutorial named Alerts Tutorial.PDF available at http://mytrade.com/StanL
 
-- MAKE A CUSTOM DYNAMIC WATCHLIST TUTORIAL
+## MAKE A CUSTOM SCAN TUTORIAL
 
 [Return to TOC](#toc)
 
-- There is a complete tutorial named Making a dynamic watchList,PDF available at http://mytrade.com/StanL
+There is a complete tutorial named Make a custom scan,PDF available at http://mytrade.com/StanL
 
-- A quick reference picture is shown below:
+## MAKE A CUSTOM DYNAMIC WATCHLIST TUTORIAL
+
+[Return to TOC](#toc)
+
+There is a complete tutorial named Making a dynamic watchList,PDF available at http://mytrade.com/StanL
+
+A quick reference picture is shown below:
 
 - The 'Next Pic' for 'step 4'is:
 
-- NEXT ITEM TO BE ADDED
+## NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im10469](images/Im10469)
-
-![Im10471](images/Im10471)
-
-![Im13](images/Im13)
+ x
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  193193
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
 
-- ALERT SOUNDS
+## ALERT SOUNDS
 
 ##NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
+ x
 
 ----
 ----
@@ -17412,31 +16418,16 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- There are some studies that have numerous plots. Deciphering what plot corresponds to particular code can be a
+- There are some studies that have numerous plots. Deciphering what plot corresponds to particular code can be a challenge. Here is a tricky way to do it.
 
-- challenge. Here is a tricky way to do it.
+Here is the situation in a Edit Studies example.
 
-- Here is the situation in a Edit Studies example.
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im1228](images/Im1228)
-
-![Im1226](images/Im1226)
-
-![Im13](images/Im13)
 
 TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  194194
 
 TOS & THINKSCRIPT SNIPPET COLLECTION
 
-- In this example, if you want to identify what plot is the ORH, you uncheck 'Show Plot' and the click 'Apply'. While doing
-
-- this you can observe which plot is ORH because it disappears. This can be reversed and redone if you missed the
-
-- observation.This works on any highlighted plot. You can also use color changes to identify various plots.
+In this example, if you want to identify what plot is the ORH, you uncheck 'Show Plot' and the click 'Apply'. While doing this you can observe which plot is ORH because it disappears. This can be reversed and redone if you missed the observation.This works on any highlighted plot. You can also use color changes to identify various plots.
 
 - #end
 
