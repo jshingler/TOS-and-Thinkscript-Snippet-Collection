@@ -15747,10 +15747,6 @@ x
 
 x
 
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  192192
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 ----
 ----
 <a name="TUTORIALS"> </a>
@@ -15776,7 +15772,7 @@ There is a complete tutorial named Making a dynamic watchList,PDF available at h
 
 A quick reference picture is shown below:
 
-- The 'Next Pic' for 'step 4'is:
+The 'Next Pic' for 'step 4'is:
 
 ## NEXT ITEM TO BE ADDED
 
@@ -15833,14 +15829,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- There are some studies that have numerous plots. Deciphering what plot corresponds to particular code can be a challenge. Here is a tricky way to do it.
+There are some studies that have numerous plots. Deciphering what plot corresponds to particular code can be a challenge. Here is a tricky way to do it.
 
 Here is the situation in a Edit Studies example.
-
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  194194
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 In this example, if you want to identify what plot is the ORH, you uncheck 'Show Plot' and the click 'Apply'. While doing this you can observe which plot is ORH because it disappears. This can be reversed and redone if you missed the observation.This works on any highlighted plot. You can also use color changes to identify various plots.
 
@@ -15916,64 +15907,47 @@ AddVerticalLine(EndTime," Market Closed",Color.RED,Curve.SHORT_DASH);
 
 Comment: You have a watchlist in either the left-hand panel or in 'Market Watch/Quotes'. Wouldn't it be nice to move thru the list looking at a chart for any stock that you want. This technique is too neat not to call it to your attention herein. Here is how it's done. In the left panel:
 
+To set the color 'Send To' buttons:
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  196196
+In the left panel                    In the Market Watch/Quotes          In the Market Watch/Quotes
 
-TOS & THINKSCRIPT SNIPPET COLLECTION
+The procedure for charting the stock is different in the two locations:
 
-- To set the color 'Send To' buttons:
+1. In the left panel, highlighting the stock will chart it:
+2. In 'Market Watch/ Quotes', clicking on the 'Send To' button (in this case the green square) will chart the stock.
 
-- In the left panel                    In the Market Watch/Quotes          In the Market Watch/Quotes
-
-- The procedure for charting the stock is different in the two locations:
-
-- 1. In the left panel, highlighting the stock will chart it:
-
-- 2. In 'Market Watch/ Quotes', clicking on the 'Send To' button (in this case the green square) will chart the
-
-- stock.
-
-- #end
+#end
 
 ## T-CHANGING THE HEADER TEXT COLOR
 
 [Return to TOC](#toc)
 
-- The header text color is set to the first color definition found in the code.
+The header text color is set to the first color definition found in the code.
 
-- Occasionally this color is hard to read if it is close to your screens background color. The following code, placed as the
+Occasionally this color is hard to read if it is close to your screens background color. The following code, placed as the top lines in your study, will reset the header text color and affect nothing else except a shown below in 'edit studies'.
 
-- top lines in your study, will reset the header text color and affect nothing else except a shown below in 'edit studies'.
+```
+plot WhiteLabel = Double.NaN;
+WhiteLabel.SetDefaultColor(Color.WHITE);#Use any color you desire
+```
 
-- plot WhiteLabel = Double.NaN;
+The above will now look like:
 
-- WhiteLabel.SetDefaultColor(Color.WHITE);#Use any color you desire
+Note that the LinearRegCh100 color cannot be changed because it is a built-in study and its code is non-editable.
 
-- The above will now look like:
+However, there are unintended consequences as shown below in this 'edit studies' screen.
 
-- Note that the LinearRegCh100 color cannot be changed because it is a built-in study and its code is non-editable.
-
-- However, there are unintended consequences as shown below in this 'edit studies' screen.
-
-- #end
+#end
 
 ## T-SEQUENCECOUNTER AND GRID UASGE
 
 [Return to TOC](#toc)
 
-- The use  of the TOS 'SequenceCounter', for intra-day trading, has an advantage when the count can be viewed ot
+The use  of the TOS 'SequenceCounter', for intra-day trading, has an advantage when the count can be viewed to multiple aggregations simultaneously. This can be done by setting up a grid of 4 components, as an example. The below picture illustrates doing this. Also configure the chart to synchronize the cursor across all grid charts via Chart settings/general tab/Synchronize crosshair position.  A tick chart seems to present a neat plot. Regular grids is suggested in lieu of flexible grids. A picture of the setup is shown below:
 
-- multiple aggregations simultaneously. This can be done by setting up a grid of 4 components, as an example. The below
+Comment: The Sequence Counter is used as an example and is not a recommended indicator: reviews are not in unison.
 
-- picture illustrates doing this. Also configure the chart to synchronize the cursor across all grid charts via Chart
-
-- settings/general tab/Synchronize crosshair position.  A tick chart seems to present a neat plot. Regular grids is
-
-- suggested in lieu of flexible grids. A picture of the setup is shown below:
-
-- Comment: The Sequence Counter is used as an example and is not a recommended indicator: reviews are not in unison.
-
-- #end
+#end
 
 ## T-ENHANCE THE LOOKS OF A HISTOGRAM PLOT
 
@@ -15981,14 +15955,12 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 To enhance the looks of a histogram, plot the same histogram data as a line and format that line as follows. Before and after pics are shown.
 
-
-- plot Histogram_Liner = Same data as for the histogram plot
-
-- Histogram_Liner.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- Histogram_Liner.SetLineWeight(1);
-
-- Histogram_Liner.SetDefaultColor(Color.CYAN);
+```
+plot Histogram_Liner = Same data as for the histogram plot
+Histogram_Liner.SetPaintingStrategy(PaintingStrategy.LINE);
+Histogram_Liner.SetLineWeight(1);
+Histogram_Liner.SetDefaultColor(Color.CYAN);
+```
 
 ## T-PRIVACY TO NOT SHOW ACCOUNT DOLLARS
 
@@ -16114,109 +16086,66 @@ Realize also that overly complex if-conditions are only one aspect that generate
 
 [Return to TOC](#toc)
 
-- When developing a strategy or adding buy/sell arrows to a  chart, it is normal to have many conditions that you are
+When developing a strategy or adding buy/sell arrows to a  chart, it is normal to have many conditions that you are considering. When you have multiple conditions, at times it is difficult to know what conditions are firing and when. This tip presents a method to sort out the confusion that may arise with multiple conditions. The below picture is used to illustrate the concept.
 
-- considering. When you have multiple conditions, at times it is difficult to know what conditions are firing and when. This
+The concept is to define each of your conditions in the format of '1 when true' and '0 when false'. Then plot each condition. Below you see 5 conditions and plots showing when each condition is true or false ( 1 or 0). Placing the cursor over an arrow, you can see what conditions are firing (are 1, true) to produce that arrow. Conversely, if arrows are not desired at a particular location, you then will see what condition to change. The reverse is also true when desired arrows do not exist because a condition is not being triggered.
 
-- tip presents a method to sort out the confusion that may arise with multiple conditions. The below picture is used to
+How to do this? You take your basic code study...the one that plotted the arrows, and change the 'plot' statements to 'def' statements. You change the condition-def statements to plot statements. You create a new study for each condition so it will be plotted or you may combine condition plots in a study if you are able to identify one condition from another by colors or type of plot. Also labels are valuable for clarifications.
 
-- illustrate the concept.
-
-- The concept is to define each of your conditions in the format of '1 when true' and '0 when false'. Then plot each
-
-- condition. Below you see 5 conditions and plots showing when each condition is true or false ( 1 or 0). Placing the cursor
-
-- over an arrow, you can see what conditions are firing (are 1, true) to produce that arrow. Conversely, if arrows are not
-
-- desired at a particular location, you then will see what condition to change. The reverse is also true when desired arrows
-
-- do not exist because a condition is not being triggered.
-
-- How to do this? You take your basic code study...the one that plotted the arrows, and change the 'plot' statements to
-
-- 'def' statements. You change the condition-def statements to plot statements. You create a new study for each
-
-- condition so it will be plotted or you may combine condition plots in a study if you are able to identify one condition from
-
-- another by colors or type of plot. Also labels are valuable for clarifications.
-
-- Don't forget to delete the studies, 5 in this example, that plotted the cnditions to preclude accumulation of studies that
-
-- have no further use.
+Don't forget to delete the studies, 5 in this example, that plotted the cnditions to preclude accumulation of studies that have no further use.
 
 ## T-NAMING COPIED BUILTIN STUDIES
 
 [Return to TOC](#toc)
 
-- There are many instances when the built-in studies are copied and reused so you may add your own features be they
+There are many instances when the built-in studies are copied and reused so you may add your own features be they technical or just look-and-feel coloring. When doing so, it is suggested that you name the new study as follows:
 
-- technical or just look-and-feel coloring. When doing so, it is suggested that you name the new study as follows:
-
-- Builtin-name + _  + your-initials. So the MACD will look like 'MACD_ME'. The benefit of doing this is that the builtin  and
-
-- your modified copy stay adjacent in the list and it helps you to keep track of what you may have done two months ago.
+Builtin-name + _  + your-initials. So the MACD will look like 'MACD_ME'. The benefit of doing this is that the builtin  and your modified copy stay adjacent in the list and it helps you to keep track of what you may have done two months ago.
 
 ## T-'PERCENTAGE VIEW' ON PRICE CHARTS
 
 [Return to TOC](#toc)
 
-- This feature enables you to view price as percentage values in lieu of dollars. This is useful when assessing price changes
+This feature enables you to view price as percentage values in lieu of dollars. This is useful when assessing price changes and comparisons. For example, the percentage of a price gap can be read by setting the initial price value to 0% and reading the gap-% value at the other end of the gap. Similarly, percent differences can be read between any two bars on the chart.
 
-- and comparisons. For example, the percentage of a price gap can be read by setting the initial price value to 0% and
+There are two modes for setting the 0% location:
 
-- reading the gap-% value at the other end of the gap. Similarly, percent differences can be read between any two bars on
+1. The first bar of the chart is set to 0%  as the default.
+2. Any bar may then be set to the 0%
 
-- the chart.
+'Percentage view' may be initiated in three ways:
 
-- There are two modes for setting the 0% location:
+1. By going to 'chart settings/price axis' tab and checking the boxes per the picture below
+2. Clicking the 'finger up pointer' as shown below:
+3. Clicking 'style' then 'Chart Scale' to bring up the same menu as above.
 
-- 1. The first bar of the chart is set to 0%  as the default.
+Setting any bar of the chart to 0%:
 
-- 2. Any bar may then be set to the 0%
+While 'percentage view' is activated, place the cursor-line over the desired bar and right click.
 
-- 'Percentage view' may be initiated in three ways:
+In the menu presented, select 'Set bar as 0%'. A horizontal 0% line will appear accross the chart at the value of the selected bar's close.
 
-- 1. By going to 'chart settings/price axis' tab and checking the boxes per the picture below
+To reset the chart to the original first bar's close, right click on the zero percent level line and choose 'Reset to default 0% level'.
 
-- 2. Clicking the 'finger up pointer' as shown below:
+The calculation for the percentage shown is: (current price – close price of 0%-selected-bar) / close price of 0%-selected-bar * 100.
 
-- 3. Clicking 'style' then 'Chart Scale' to bring up the same menu as above.
-
-- Setting any bar of the chart to 0%:
-
-- While 'percentage view' is activated, place the cursor-line over the desired bar and right click.
-
-- In the menu presented, select 'Set bar as 0%'. A horizontal 0% line will appear accross the chart at the value of the
-
-- selected bar's close.
-
-- To reset the chart to the original first bar's close, right click on the zero percent level line and choose 'Reset to default
-
-- 0% level'.
-
-- The calculation for the percentage shown is: (current price – close price of 0%-selected-bar) / close price of 0%-
-
-- selected-bar * 100.
-
-- #end
+#end
 
 ## T-CHANGING RIGHT EXPANSION AREA SETTING
 
 [Return to TOC](#toc)
 
-- There are three ways to do this. The easiest will be listed first.
+There are three ways to do this. The easiest will be listed first.
 
-- 1. Using the 'pan' tool
+1. Using the 'pan' tool
 
 - Go to 'Drawings' and select the 'Pan' tool .
 
 This icon will now show on the chart in lieu of the cursor. Simply hold- down the left mouse key and drag the chart to the left for as much right-space as you want. Return to 'drawings' and
 
-- select 'pointer' to re-establish it. The space you panned for will be recorded in 'Chart settings/time axis/expansion
+- select 'pointer' to re-establish it. The space you panned for will be recorded in 'Chart settings/time axis/expansion area'.
 
-- area'.
-
-- 2. Using the chart's lower-right symbol
+2. Using the chart's lower-right symbol
 
 - Click the symbol and this menu will appear:
 
@@ -16230,23 +16159,15 @@ This icon will now show on the chart in lieu of the cursor. Simply hold- down th
 
 [Return to TOC](#toc)
 
-- Re the recent release & Renaming studies. This feature is worthy of explanation/clarification:
+Re the recent release & Renaming studies. This feature is worthy of explanation/clarification:
 
-- If you use a study on say 15 different charts. Renaming a study will automatically change the study to the new name on
-
-- each of the 15 charts. However, there are a number of places in TOS like Study Filters, Study Alerts, Custom Quotes,
-
-- and Conditional orders that are allowed to use referenced studies. If the renamed study is referenced therein with the
-
-- old name, then that reference(old name) will be broken i.e. will no longer work and will not be changed to the new study
-
-- name. Dynamic scans are particularly vulnerable and will become ineffective if a custom referenced study is renamed.
+If you use a study on say 15 different charts. Renaming a study will automatically change the study to the new name on each of the 15 charts. However, there are a number of places in TOS like Study Filters, Study Alerts, Custom Quotes, and Conditional orders that are allowed to use referenced studies. If the renamed study is referenced therein with the old name, then that reference(old name) will be broken i.e. will no longer work and will not be changed to the new study name. Dynamic scans are particularly vulnerable and will become ineffective if a custom referenced study is renamed.
 
 ## NEXT TIP TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
+x
 
 ## NEXT TIP TO BE ADDED
 
