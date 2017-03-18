@@ -5771,7 +5771,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-SCALPER'S HELPER W/ SQUEEZE
+## C-SCALPER'S HELPER W/ SQUEEZE
 
 [Return to TOC](#toc)
 
@@ -5836,12 +5836,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def hiDiff = high - high[1];
 
 - def loDiff = low[1] - low;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7777
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def ATR = WildersAverage(TrueRange(high, close, low), diLength);
 
@@ -5939,7 +5933,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-COLOR A PORTION OF A CHART
+## C-COLOR A PORTION OF A CHART
 
 [Return to TOC](#toc)
 
@@ -5963,7 +5957,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-   CLOUD USAGE VIA MOVING AVERAGES
+## C-   CLOUD USAGE VIA MOVING AVERAGES
 
 [Return to TOC](#toc)
 
@@ -6011,14 +6005,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - else "")   ,color.cyan);
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7979
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - addlabel(1,"Fast MA(" +  fastLength  + ") is " +  (If slowAvgType == AverageType.EXPONENTIAL then "Exponential
 
 - average"
@@ -6035,7 +6021,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-PLOTS THE DAILY HIGH AND LOW
+## C-PLOTS THE DAILY HIGH AND LOW
 
 [Return to TOC](#toc)
 
@@ -6108,12 +6094,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - YesterClose.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
 
 - ############## End of Day vert line ########################
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8080
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input time = 0930;
 
@@ -6195,7 +6175,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-3 MOVING AVERAGES: CHANGING COLOR
+## C-3 MOVING AVERAGES: CHANGING COLOR
 
 [Return to TOC](#toc)
 
@@ -6206,14 +6186,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - change color, and when it is decreasing in value change color again. User is able to select color of MovingAverage line
 
 - when it is increasing or decreasing
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8181
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - declare upper;
 
@@ -6267,7 +6239,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-T3, ADAPTIVE SMOOTHING INDICATOR
+## C-T3, ADAPTIVE SMOOTHING INDICATOR
 
 [Return to TOC](#toc)
 
@@ -6301,12 +6273,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input volumeFactor  = 0.7;
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8282
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - input price         = close;
 
 - plot GD  = ExpAverage( price, period ) * ( 1 + volumeFactor ) - ( ExpAverage( ExpAverage( price, period ), period ) *
@@ -6325,7 +6291,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-RSI ZEROLINE OSCILLATOR
+## C-RSI ZEROLINE OSCILLATOR
 
 [Return to TOC](#toc)
 
@@ -6405,7 +6371,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-INSYNC INDEX
+## C-INSYNC INDEX
 
 [Return to TOC](#toc)
 
@@ -6489,12 +6455,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def sum      = bb + cci + macd + roc + sto + rsiW + bop + dp + emv + mfi;
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8484
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - # Plots
 
 - plot inSync  = expAverage(sum, smooth);
@@ -6525,7 +6485,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C- CLOUD A TIME INTERVAL WITHOUT PLOTS
+## C- CLOUD A TIME INTERVAL WITHOUT PLOTS
 
 [Return to TOC](#toc)
 
@@ -6547,7 +6507,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C- IMPROVED TIME SERIES FORECAST STUDY
+## C- IMPROVED TIME SERIES FORECAST STUDY
 
 [Return to TOC](#toc)
 
@@ -6572,14 +6532,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - input numDevUp = 2.0;#hint numDevUp:Std Deviation for the upper band
 
 - input numDevDn = -2.0;#hint numDevDn:Std Deviation for the lower band
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8585
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def smoothPrice = MovingAverage(avgType, price, avgLength);
 
@@ -6617,7 +6569,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-VOLATILITY LABEL
+## C-VOLATILITY LABEL
 
 [Return to TOC](#toc)
 
@@ -6641,7 +6593,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def DaysIV = IV / Sqrt(252);
 
-- C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY
+## C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY
 
 [Return to TOC](#toc)
 
@@ -6666,14 +6618,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - # V02.10.17.2013
 
 - declare hide_on_daily;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8686
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input n = 21;
 
@@ -6775,10 +6719,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - then Color.GREEN
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8787
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - else if IsDescending(HoursIV)
 
 - then Color.RED
@@ -6873,10 +6813,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - then Color.PLUM
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8888
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - else Color.CURRENT);
 
 - AddLabel(DisplayLabels, "ATR Chart Agg. = $" + (Round(ATR / TickSize(), 0) * TickSize()) +
@@ -6897,7 +6833,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # End Code Battle of the Bands
 
-- C-THE BEAUTIFUL 'GAUSSIAN RAINBOW'
+## C-THE BEAUTIFUL 'GAUSSIAN RAINBOW'
 
 [Return to TOC](#toc)
 
@@ -6962,12 +6898,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - rbi8         =       alpha * rbi7 + ( 1 - alpha ) * rbi8[1];
 
 - case "TWO":
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8989
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - rbi1         =       power( alpha, 2 )     * data    +
 
@@ -7171,10 +7101,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - }
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9191
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #plots
 
 - plot ga1 = rbi1; plot ga2 = rbi2; plot ga3 = rbi3; plot ga4 = rbi4;
@@ -7221,7 +7147,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-OPENING RANGE (OR) STUDY WITH A TWIST:
+## C-OPENING RANGE (OR) STUDY WITH A TWIST:
 
 [Return to TOC](#toc)
 
@@ -7260,12 +7186,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - rec ORLow = if ORLow[1] == 0 or ORActive[1] == 0 and ORActive == 1 then low else if ORActive and low < ORLow[1] then
 
 - low else ORLow[1];
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9292
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def ORWidth = ORHigh - ORLow;
 
@@ -7358,10 +7278,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - d9.SetPaintingStrategy(PaintingStrategy.POINTS);
 
 - d10.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9393
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def Span = (O - ORL2) / (ORH2 - ORL2);
 
@@ -7469,7 +7385,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C&S-THE MARKET FORECAST REPLICA
+## C&S-THE MARKET FORECAST REPLICA
 
 [Return to TOC](#toc)
 
@@ -7541,12 +7457,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - upperLine.SetDefaultColor(Color.BLUE);
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9595
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - AddLabel(yes, "Momentum = " + round(Momentum,1), Color.RED);
 
 - AddLabel(yes, "NearTerm = " +  round(NearT,1), Color.CYAN);
@@ -7613,7 +7523,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-DRAW A LINE BETWEEN TWO PRICE POINTS
+## C-DRAW A LINE BETWEEN TWO PRICE POINTS
 
 [Return to TOC](#toc)
 
@@ -7636,12 +7546,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - # ===== 'asdf' and 'asdf2' to plot and uncomment the setpaintingstrategy =====
 
 - def asdf= secondsfromtime(time1) == 0;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9696
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #asdf.setpaintingstrategy(paintingstrategy.boolean_points);
 
@@ -7677,7 +7581,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-VOLUME LABEL AS A PERCENT OF AN INPUTTED  X-DAYS-AVG-VOLUME
+## C-VOLUME LABEL AS A PERCENT OF AN INPUTTED  X-DAYS-AVG-VOLUME
 
 [Return to TOC](#toc)
 
@@ -7719,17 +7623,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Comment1: This has all the ingredients for a custom column except the label text is too verbose for a column. The lower
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9797
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - label is suitable for a custom column
 
 - #end
 
-- T&C-EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION
+## T&C-EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION
 
 [Return to TOC](#toc)
 
@@ -7808,12 +7706,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - Note that 'hlc3' may be any parameter such as open, hugh, low, hl2, volume, etc. Be sure to set the time aggregation you
 
 - desired i.e. 5 min, hour, day, etc.
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9898
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Def Example8: The following code is used to scan for stocks having future earnings.
 
@@ -8039,7 +7931,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-HOW TO SHOW WHEN A CANDLE PATTERN EXISTS ON A CHART
+## C-HOW TO SHOW WHEN A CANDLE PATTERN EXISTS ON A CHART
 
 [Return to TOC](#toc)
 
@@ -8063,7 +7955,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-DUAL SPEED STOCHASTICS
+## C-DUAL SPEED STOCHASTICS
 
 [Return to TOC](#toc)
 
@@ -8080,14 +7972,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - chart and a 5 min futures chart and I think you will get the picture. On my 3 minute or 5 minutes futures charts, I use
 
 - the same settings except for one, the second to the last choice for slowing period1 I use 9 instead of 24. It provides a
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  101101
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - more responsive Stochastic for day trading.
 
@@ -8177,10 +8061,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def cond1 = if crosses(FullK,Over_Sold,CrossingDirection.any) then 1 else 0;
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  102102
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - Plot Min_Fast = if cond1 then FullK else double.nan;
 
 - Min_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
@@ -8267,10 +8147,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - FullK1.SetPaintingStrategy(PaintingStrategy.LINE);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  103103
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - FullK1.SetLineWeight(2);
 
 - FullK1.SetDefaultColor(Color.GREEN);
@@ -8351,15 +8227,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-TODAY'S DJI OR ANY STOCK STATUS LABEL
+## C-TODAY'S DJI OR ANY STOCK STATUS LABEL
 
 [Return to TOC](#toc)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  104104
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #hint:Today's Dow Jones Industrial status. Any symbol may be substituted for the DJI. If you enter a futures symbol
 
@@ -8397,7 +8267,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-PLOT SUPPORT AND RESISTANCE LINES
+## C-PLOT SUPPORT AND RESISTANCE LINES
 
 [Return to TOC](#toc)
 
@@ -8450,12 +8320,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - else _lastMarkedLow[1], low );
 
 - #============================[ Marked High ]===================================
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  105105
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def marketHigh      = if _highInPeriod > _highInPeriod[-markPeriod] then _highInPeriod else _highInPeriod[-markPeriod];
 
@@ -8511,7 +8375,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
+## C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
 
 [Return to TOC](#toc)
 
@@ -8538,12 +8402,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - input DisplayIVPercentile = yes;
 
 - input TimePeriod = 252;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  106106
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input LowVolLimit = 20;
 
@@ -8645,7 +8503,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-DMI_OSCILLATOR WITH ARROWS AND LINES
+## C-DMI_OSCILLATOR WITH ARROWS AND LINES
 
 [Return to TOC](#toc)
 
@@ -8719,12 +8577,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - else if Osc > 0
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  108108
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - then GlobalColor("Positive")
 
 - else GlobalColor("Negative"));
@@ -8757,7 +8609,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
+## C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
 
 [Return to TOC](#toc)
 
@@ -8814,12 +8666,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def ShortLo = lowest(data, ShortTimePeriod);
 
 - plot Percentile = (data - lo) / (hi - lo) * 100;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  109109
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def lowend = Percentile < LowVolLimit;
 
@@ -8887,7 +8733,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-MINUTES-AGO SINCE A TURN-UP OF A MOVING AVERAGE
+## C-MINUTES-AGO SINCE A TURN-UP OF A MOVING AVERAGE
 
 [Return to TOC](#toc)
 
@@ -8900,12 +8746,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - stock started to turn up. Realize that the 'minutes-ago' will be different for  each aggregation. This code can be used by
 
 - having two custom columns with different aggregations like 5-mins and 15-mins. The user found those time differences
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  110110
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - between the two custom columns pertinent in his decision making. Note that every custom column has an aggregation that
 
@@ -8993,10 +8833,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #========
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  111111
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - Def MinsSinceTurn = if count_downs == 0 then count_Ups * factor else if count_Ups == 0 then count_Downs * factor
 
 - else 0 ;
@@ -9019,13 +8855,13 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-CODE FOR DAY-OF-THE-WEEK
+## C-CODE FOR DAY-OF-THE-WEEK
 
 [Return to TOC](#toc)
 
 - For coding related to the day of week (Monday, Tuesday, etc.) see an example under 'VERTICAL LINES (3 STUDIES)'.
 
-- C-   NORMALIZED MACD AND STOCHASTIC PLOTTED WITH A SQUEEZE INDICATION
+## C-   NORMALIZED MACD AND STOCHASTIC PLOTTED WITH A SQUEEZE INDICATION
 
 [Return to TOC](#toc)
 
@@ -9086,14 +8922,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - # VWAP Calculations
 
 - def v = volume;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  112112
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def p = close;
 
@@ -9182,10 +9010,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - ml.SetDefaultColor(Color.WHITE);
 
 - # BB KC Squeeze
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  113113
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def Avg = Average(close, 20);
 
@@ -9281,10 +9105,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - zeroLineCond2.SetPaintingStrategy(PaintingStrategy.Points);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  114114
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - zeroLineCond2.SetLineWeight(2);
 
 - zeroLineCond2.SetDefaultColor(Color.DarK_Green);
@@ -9325,7 +9145,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-SIMPLE EXAMPLE TO ILLUSTRATE COUNTING
+## C-SIMPLE EXAMPLE TO ILLUSTRATE COUNTING
 
 [Return to TOC](#toc)
 
@@ -9371,19 +9191,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-ILLUSTRATION OF SAME RESULT WITH DIFFERENT CODING
+## C-ILLUSTRATION OF SAME RESULT WITH DIFFERENT CODING
 
 [Return to TOC](#toc)
 
 - Comment: Some TOS studies deal with the same subject. The below code illustrates, using the DMI and DMI_Oscillator
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  115115
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - studies as examples, how you may accomplish the same result in different ways.
 
@@ -9457,7 +9269,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C&S-FLEXIBLE 200-DAY MOVING AVERAGE PLOT AND SCAN
+## C&S-FLEXIBLE 200-DAY MOVING AVERAGE PLOT AND SCAN
 
 [Return to TOC](#toc)
 
@@ -9474,12 +9286,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - input length = 200;
 
 - input averageType = AverageType.SIMPLE;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  116116
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #======= use below if aggregation is used ==========
 
@@ -9511,7 +9317,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - C-HOW TO USE
 
-A STUDY-WITHIN-A-STUDY
+## A STUDY-WITHIN-A-STUDY
 
 [Return to TOC](#toc)
 
@@ -9553,19 +9359,11 @@ A STUDY-WITHIN-A-STUDY
 
 - #end
 
-- C-AN ALTERED 'PERCENTCHG' TO MAKE IT MORE USEFUL
+## C-AN ALTERED 'PERCENTCHG' TO MAKE IT MORE USEFUL
 
 [Return to TOC](#toc)
 
 - Comment: The builtin 'PercentChg' has been altered to allow inputs for loAlert and hiAlert to be less than one. This then
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  117117
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - enables this study to be referenced/used in intra-day studies/strategies where less-than-one-percent changes are
 
@@ -9617,7 +9415,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-LINEAR REGRESSION OF THE PROJECTIONBANDS STUDY
+## C-LINEAR REGRESSION OF THE PROJECTIONBANDS STUDY
 
 [Return to TOC](#toc)
 
@@ -9651,12 +9449,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot D_Min_LR = if Min_LR_UPB == 1 then LR_UPB else double.nan;
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  118118
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - D_Min_LR.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
 
 - D_Min_LR.SetLineWeight(3);
@@ -9675,7 +9467,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-CLARIFICATION OF THE FOLLOWING THREE COMPARISON STUDIES
+## C-CLARIFICATION OF THE FOLLOWING THREE COMPARISON STUDIES
 
 [Return to TOC](#toc)
 
@@ -9701,7 +9493,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-COMPARISON OF ALL SECTORS OF THE S&P 500 (SPX)
+## C-COMPARISON OF ALL SECTORS OF THE S&P 500 (SPX)
 
 [Return to TOC](#toc)
 
@@ -9746,14 +9538,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - input symbol6 = "XLE";#hint symbol6:Normally this is the SPX's XLE
 
 - input symbol7 = "XLP";#hint symbol7:Normally this is the SPX's XLP
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  119119
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input symbol8 = "XLV";#hint symbol8:Normally this is the SPX's XLV
 
@@ -9836,10 +9620,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def Line_wt6 = If CloudSymbol == CloudSymbol.XLE then 3 else 1;
 
 - D6_XLE.SetLineWeight(Line_wt6);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  120120
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def  d_close7 = close(symbol7);
 
@@ -9929,10 +9709,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - (CloudSymbol == CloudSymbol.XLU) then D9_XLU.TakeValueColor() else if
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  121121
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - (CloudSymbol == CloudSymbol.XLF) then D10_XLF.TakeValueColor() else
 
 - color.pink);
@@ -9999,7 +9775,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-   S&P 500 SECTORS RELATIVE TO SPX = 0
+## C-   S&P 500 SECTORS RELATIVE TO SPX = 0
 
 [Return to TOC](#toc)
 
@@ -10022,12 +9798,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - selection list.</li> <li>You can enhance chart reading by expanding the vertical height or plotting alone.</li>
 
 - #Revised 3/17/14
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  122122
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - declare lower;
 
@@ -10112,10 +9882,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def  d_close4 = close(symbol4);
 
 - plot D4_XLI = ((d_close4 - close4) / close4 * 100) - D1_SPX ;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  123123
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def Line_wt4 = if CloudSymbol == CloudSymbol.XLI then 3 else 1;
 
@@ -10202,10 +9968,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - AddLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
 
 - AddLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  124124
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddLabel(showLabel, "-- -- -- = SPX zero line. Sector plots are referencec to this SPX value", Color.YELLOW);
 
@@ -10297,11 +10059,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  125125
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- C-MULTIPLE INSTRUMENTS COMPARISON
+## C-MULTIPLE INSTRUMENTS COMPARISON
 
 [Return to TOC](#toc)
 
@@ -10386,12 +10144,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - input data = close;
 
 - input Min = -10000;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  126126
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input Max = 10000;
 
@@ -10484,10 +10236,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - {
 
 - ofst1 = r1;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  127127
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ofst2 = r2;
 
@@ -10617,7 +10365,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-PERCENTAGE PRICE OSCILLATOR (PPO) WITH COMPARISON SYMBOL
+## C-PERCENTAGE PRICE OSCILLATOR (PPO) WITH COMPARISON SYMBOL
 
 [Return to TOC](#toc)
 
@@ -10677,19 +10425,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-DMI OSCILLATOR FOR AN INPUTTED SYMBOL
+## C-DMI OSCILLATOR FOR AN INPUTTED SYMBOL
 
 [Return to TOC](#toc)
 
 - Comment: The DMI is a price momentum indicator that is the driving force for the ADX trend indicator. At times you
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  129129
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - want to compare the chart's DMI with another symbol. This allows you to do that. A plot of the ADX is optionable.
 
@@ -10773,7 +10513,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- C-'ONEGLANCE', A 13-STUDY DASHBOARD
+## C-'ONEGLANCE', A 13-STUDY DASHBOARD
 
 [Return to TOC](#toc)
 
@@ -10867,23 +10607,13 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Normal is 0.00 %.
 
-- input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to
+input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to calculate this Momentum Percent. TOS default is 10.
 
-- calculate this Momentum Percent. TOS default is 10.
-
-- def mom_pct = MomentumPercent(length = MomPctLength)."Momentum, %" - 100;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  131131
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- plot MomPct_Line = 21;
-
-- MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MomPct_Line.SetLineWeight(5);
-
-- MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
+def mom_pct = MomentumPercent(length = MomPctLength)."Momentum, %" - 100;
+plot MomPct_Line = 21;
+MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MomPct_Line.SetLineWeight(5);
+MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
 
 - #=== end ====
 
@@ -10899,15 +10629,11 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
 
-- plot Ichi_Line = 24.5;
-
-- Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Ichi_Line.SetLineWeight(5);
-
-- Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
-
-- Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
+plot Ichi_Line = 24.5;
+Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Ichi_Line.SetLineWeight(5);
+Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
+Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
 
 - #=== end ===
 
@@ -10955,41 +10681,21 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #============================================
 
-- #Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When
+- #Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band when the plot turns to bearish and remains bearish until the close rises above the upper band.
 
-- the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band
+- input MOBO_length = 10;#hint MOBO_length:The agg-bars used in the standard deviation(SD) calculation to define the upper and lower bands.
 
-- when the plot turns to bearish and remains bearish until the close rises above the upper band.
+- input Num_Dev_Dn = -0.8;#hint Num_Dev_Dn:The SD of the lower band. Similar to the 2,0 SD used in the Bollinger Bands
 
-- input MOBO_length = 10;#hint MOBO_length:The agg-bars used in the standard deviation(SD) calculation to define the
+- input Num_Dev_up =  0.8;#hint Num_Dev_up:The SD of the upper band. Similar to the 2,0 SD used in the Bollinger Bands
 
-- upper and lower bands.
-
-- input Num_Dev_Dn = -0.8;#hint Num_Dev_Dn:The SD of the lower band. Similar to the 2,0 SD used in the Bollinger
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  132132
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- Bands
-
-- input Num_Dev_up =  0.8;#hint Num_Dev_up:The SD of the upper band. Similar to the 2,0 SD used in the Bollinger
-
-- Bands
-
-- def sDev = StDev(data = c, length = MOBO_length);
-
-- def Midmobo = Average(c, length = MOBO_length);
-
-- def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
-
-- def Uppermobo = Midmobo + Num_Dev_up * sDev;
-
-- def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > Lowermobo then 1 else 0;
-
-- def upmo = if upmobo  and c > Uppermobo then 1 else 0;
-
-- def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
+def sDev = StDev(data = c, length = MOBO_length);
+def Midmobo = Average(c, length = MOBO_length);
+def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
+def Uppermobo = Midmobo + Num_Dev_up * sDev;
+def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > wermobo then 1 else 0;
+def upmo = if upmobo  and c > Uppermobo then 1 else 0;
+def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
 
 - plot MOBO_Line = 31.5;
 
@@ -11003,17 +10709,12 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #==== Squeeze by Mobius @ My Trade =====
 
-- def nK            = 1.5;
-
-- def nBB           = 2.0;
-
-- def lengthsqueeze = 20;
-
-- def BBHalfWidth = StDev(c, lengthsqueeze);
-
-- def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
-
-- def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
+def nK            = 1.5;
+def nBB           = 2.0;
+def lengthsqueeze = 20;
+def BBHalfWidth = StDev(c, lengthsqueeze);
+def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
+def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
 
 - plot BBS_Ind = if isSqueezed then 50 else 50;
 
@@ -11221,49 +10922,31 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #======= HullMovingAvg ==========
 
-- input Hull_price = close;#hint Hull_price:The price basis of the HMA.
+input Hull_price = close;#hint Hull_price:The price basis of the HMA.
+input Hull_length = 20;#hint Hull_length:The agg-bars used in the HMA calculation.
+input Hull_displace = 0;#hint Hull_displace:Displacement of the HMA in agg-bars
+def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
 
-- input Hull_length = 20;#hint Hull_length:The agg-bars used in the HMA calculation.
-
-- input Hull_displace = 0;#hint Hull_displace:Displacement of the HMA in agg-bars
-
-- def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- plot Hull_Line = 42;
-
-- Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Hull_Line.SetLineWeight(5);
-
-- Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DOWNTICK);
+ plot Hull_Line = 42;
+ Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+ Hull_Line.SetLineWeight(5);
+ Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DOWNTICK);
 
 - #== end ==
 
 - #Define variables used to place a bubble
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  135135
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #========================================
 
-- #Input Offset = BarNumber() / 2;
-
-- def barNum = BarNumber();
-
-- def offset = 50;
-
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
-
-- def BubbleLocation = LastBar[offset];
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- def FirstBarValue = if barNum == 1 then 1 else 0;
-
-- def LastBarValue = if LastBar then barNum else 0;
-
-- def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
+#Input Offset = BarNumber() / 2;
+def barNum = BarNumber();
+def offset = 50;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+def BubbleLocation = LastBar[offset];
+def FirstBar = if barNum == 1 then 1 else 0;
+def FirstBarValue = if barNum == 1 then 1 else 0;
+def LastBarValue = if LastBar then barNum else 0;
+def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
 
 - #example
 
@@ -11399,9 +11082,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # End of Code
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  137137
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #MomentumPercent
 
@@ -11493,71 +11173,43 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #Bollinger Bands MOBO(MOmentum BreakOut)
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  138138
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #============================================
 
-- #Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When
+#Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band when the plot turns to bearish and remains bearish until the close rises above the upper band.
 
-- the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band
+input lengthmobo = 10;
+input Num_Dev_Dn = -0.8;
+input Num_Dev_up =  0.8;
 
-- when the plot turns to bearish and remains bearish until the close rises above the upper band.
+def sDev = StDev(data = c, length = lengthmobo);
+def Midmobo = Average(c, length = lengthmobo);
+def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
+def Uppermobo = Midmobo + Num_Dev_up * sDev;
+def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > Lowermobo then 1 else 0;
+def upmo = if upmobo  and c > Uppermobo then 1 else 0;
+def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
 
-- input lengthmobo = 10;
-
-- input Num_Dev_Dn = -0.8;
-
-- input Num_Dev_up =  0.8;
-
-- def sDev = StDev(data = c, length = lengthmobo);
-
-- def Midmobo = Average(c, length = lengthmobo);
-
-- def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
-
-- def Uppermobo = Midmobo + Num_Dev_up * sDev;
-
-- def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > Lowermobo then 1 else 0;
-
-- def upmo = if upmobo  and c > Uppermobo then 1 else 0;
-
-- def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
-
-- plot MOBO_Line = 31.5;
-
-- MOBO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MOBO_Line.SetLineWeight(5);
-
-- MOBO_Line.AssignValueColor(if upmobo == 1 then Color.UPTICK else Color.DOWNTICK);
+plot MOBO_Line = 31.5;
+MOBO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MOBO_Line.SetLineWeight(5);
+MOBO_Line.AssignValueColor(if upmobo == 1 then Color.UPTICK else Color.DOWNTICK);
 
 - #=== end ===
 
 - #==== Squeeze by Mobius @ My Trade =====
 
-- def nK            = 1.5;
+def nK            = 1.5;
+def nBB           = 2.0;
+def lengthsqueeze = 20;
+def BBHalfWidth = StDev(c, lengthsqueeze);
+def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
+def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
 
-- def nBB           = 2.0;
-
-- def lengthsqueeze = 20;
-
-- def BBHalfWidth = StDev(c, lengthsqueeze);
-
-- def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
-
-- def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
-
-- plot BBS_Ind = if isSqueezed then 50 else 50;
-
-- BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
-
-- BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- BBS_Ind.SetLineWeight(3);
-
-- BBS_Ind.HideBubble();
+plot BBS_Ind = if isSqueezed then 50 else 50;
+BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
+BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
+BBS_Ind.SetLineWeight(3);
+BBS_Ind.HideBubble();
 
 - #=== end ===
 
@@ -11578,10 +11230,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
 
 - def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  139139
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot DMIO_Line = 14;
 
@@ -12023,12 +11671,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #def HAclose = (open + high + low + close) / 4;
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  144144
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - AddLabel(1, "Plot of Tenkan - Kijun early warning of T/K strength weakening", Color.WHITE);
 
 - AddLabel(1, "A YELLOW down arrow plots at the start of a HA downtrend.Watch the HA style chart candles to see the
@@ -12122,10 +11764,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - TickSize(), 0) * TickSize();
 
 - def HAlow_EV = Round(Min(barCountLow, barCountClose[1]) /
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  145145
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - TickSize(), 0) * TickSize();
 
@@ -12287,7 +11925,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #---- End Of Code ---
 
-- C-'IchiOneGlance'--ALL MAIN ICHIMOKU CRITERIA IN DASHBOARD FORMAT
+## C-'IchiOneGlance'--ALL MAIN ICHIMOKU CRITERIA IN DASHBOARD FORMAT
 
 [Return to TOC](#toc)
 
@@ -12306,12 +11944,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - recommended to be changed. Scan coding is shown below the respective items.
 
 - #You need to show an expansion area of 30 bars (vis chart settings/time axis/expansion area) to see the projection imto
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  147147
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - the future that Ichimoku plots.
 
@@ -12559,11 +12191,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #=== end of IchiOneGlance ===
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  150150
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- C-'Ichi_Signals' -- IDENTIFIES ALL MAJOR ICHIMOKU SIGNALS FOR LEARNING OR USE
+## C-'Ichi_Signals' -- IDENTIFIES ALL MAJOR ICHIMOKU SIGNALS FOR LEARNING OR USE
 
 [Return to TOC](#toc)
 
@@ -12656,14 +12284,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - DefineGlobalColor("Bearish", Color.RED);
 
 - AddCloud("Span A", "Span B", GlobalColor("Bullish"), GlobalColor("Bearish"));
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  151151
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #=== Define global colors ===
 
@@ -13433,15 +13053,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ### end of code ###
 
-- C-AN ICHIMOKU CHART EVALUATION SETUP
+## C-AN ICHIMOKU CHART EVALUATION SETUP
 
 [Return to TOC](#toc)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  160160
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - In the ThinkScript Lounge there was a request to post the setup used when evaluating an Ichomoku chart. Below is a
 
@@ -13465,7 +13079,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-MACD BASED ON HULL MOVING AVERAGE
+## C-MACD BASED ON HULL MOVING AVERAGE
 
 [Return to TOC](#toc)
 
@@ -13492,14 +13106,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - plot Avg;
 
 - switch (AverageType) {
-
-![Im8778](images/Im8778)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  161161
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - case SMA:
 
@@ -13591,10 +13197,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - DwnArrow.SetPaintingStrategy(PaintingStrategy.ARROW_Down);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  162162
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - DwnArrow.SetLineWeight(1);
 
 - DwnArrow.HideBubble();
@@ -13625,7 +13227,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # end
 
-- C-   DMI_OSCILLATOR_SFL_FAV
+## C-   DMI_OSCILLATOR_SFL_FAV
 
 [Return to TOC](#toc)
 
@@ -13684,12 +13286,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - Hist.SetLineWeight(3);
 
 - Hist.DefineColor("Positive", Color.UPTICK);
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  163163
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Hist.DefineColor("Negative", Color.DOWNTICK);
 
@@ -13785,13 +13381,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #AddLabel(1,"Below-zero arrow value = minus " + (CrossBelowValue), color.RED);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  164164
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - # end
 
-- C-   PolarizedFractalEfficiency_SFL
+## C-   PolarizedFractalEfficiency_SFL
 
 [Return to TOC](#toc)
 
@@ -13867,19 +13459,13 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - LowerLevel.SetDefaultColor(Color.YELLOW);
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  165165
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - AddLabel(1,"Green Cloud = Bullish",Color.GREEN);
 
 - AddLabel(1,"Red Cloud = Bearish",Color.RED);
 
 - #end
 
-- C-   Three_X_Oscillator
+## C-   Three_X_Oscillator
 
 [Return to TOC](#toc)
 
@@ -13964,12 +13550,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - AggregationPeriod.THREE_MIN
 
 - else if aggPer == AggregationPeriod.TWO_MIN then
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  166166
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AggregationPeriod.FIVE_MIN
 
@@ -14069,10 +13649,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def priceH = high( period = adjAggPer );
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  167167
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - def priceL = low( period = adjAggPer );
 
 - def priceC = close( period = adjAggPer );
@@ -14153,15 +13729,9 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ### EOC ###
 
-- C-ONEGLANCE STUDY
+## C-ONEGLANCE STUDY
 
 [Return to TOC](#toc)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  168168
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #OneGlance by StanL Version 2.1 dated 7/19/14
 
@@ -14348,10 +13918,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - Ichi_Line.HideBubble();
 
 - #=== end ===
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  170170
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #===== RSI ======
 
@@ -14895,7 +14461,7 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - # End of All Code
 
-- C-ICHIONEGLANCE STUDY
+## C-ICHIONEGLANCE STUDY
 
 [Return to TOC](#toc)
 
@@ -14972,12 +14538,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - #===== Secondary Trend(ST) --- When T > K =======
 
 - def Tenkan = Ichimoku(tenkan_period, kijun_period).Tenkan;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  177177
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def ST_Bull = if Ichimoku(tenkan_period, kijun_period).Tenkan > Ichimoku(tenkan_period, kijun_period).Kijun then 1 else
 
@@ -15217,37 +14777,30 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #=== end of IchiOneGlance ===
 
-- NEXT ITEM TO BE ADDED
+## NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
-- X
+X
 
-- NEXT ITEM TO BE ADDED
-
-[Return to TOC](#toc)
-
-- X
-
-- NEXT ITEM TO BE ADDED
+## NEXT ITEM TO BE ADDED
 
 [Return to TOC](#toc)
 
-- X
+X
+
+## NEXT ITEM TO BE ADDED
+
+[Return to TOC](#toc)
+
+X
 
 ----
 ----
 <a name="WATCHLIST_COLUMNS"> </a>
 # WATCHLIST COLUMNS
 
-- WLC-
-
-- PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN
-
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  180180
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
+## WLC-PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN
 
 [Return to TOC](#toc)
 
@@ -15568,271 +15121,210 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- #hint: scan for stocks with a new 52-week-high
+```
+#hint: scan for stocks with a new 52-week-high
+# BE SURE to change D to Wk for the filter's aggregation
+Plot scan = close > highest(high,52)
+```
 
-- # BE SURE to change D to Wk for the filter's aggregation
+Alternate 1 = Stocks in top 10 percentile of their 52-week high-low range
 
-- Plot scan = close > highest(high,52)
+```
+# Hint: scan for stocks in the top 10 percentile of their 52-week high-low range
+# Set aggregation to 'day'
+input range = 252;#hint range:Number of trading days in a year
+input price = close;
+def hi = highest(high,range);
+def lo = lowest(low,range);
+def x = (price - lo) / (hi - lo) * 100;
+plot scan = x > 90;
+```
 
-- Alternate 1 = Stocks in top 10 percentile of their 52-week high-low range
+Alternate 2 = Stocks between 47% and 53% (or the middle of) their 52-week-high-low range
 
-- # Hint: scan for stocks in the top 10 percentile of their 52-week high-low range
+```
+#Hint: scan for stocks between 47% and 53% (or the middle of) their 52-week-high-low range
+input low_pct = 47;
+input hi_pct = 53;
+input range = 252;
+input price = close;
+def hi = highest(high,range);
+def lo = lowest(low,range);
+def x = (price - lo) / (hi - lo) * 100;
+plot scan = x <= hi_pct and x >= low_pct;
+```
 
-- # Set aggregation to 'day'
+Alternate 3 = scan to find stocks which made new 20-day-low
 
-- input range = 252;#hint range:Number of trading days in a year
-
-- input price = close;
-
-- def hi = highest(high,range);
-
-- def lo = lowest(low,range);
-
-- def x = (price - lo) / (hi - lo) * 100;
-
-- plot scan = x > 90;
-
-- Alternate 2 = Stocks between 47% and 53% (or the middle of) their 52-week-high-low range
-
-- #Hint: scan for stocks between 47% and 53% (or the middle of) their 52-week-high-low range
-
-- input low_pct = 47;
-
-- input hi_pct = 53;
-
-- input range = 252;
-
-- input price = close;
-
-- def hi = highest(high,range);
-
-- def lo = lowest(low,range);
-
-- def x = (price - lo) / (hi - lo) * 100;
-
-- plot scan = x <= hi_pct and x >= low_pct;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  184184
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- Alternate 3 = scan to find stocks which made new 20-day-low
-
-- input range = 20;
-
-- plot scan = Low <= Lowest(Low, range)
-
-- Alternate 4 = scan to find stocks which made new 20-day-high
-
-- input range = 20;
-
-- plot scan = High <= Highest(High, range);
-
-- #end
+```
+input range = 20;
+plot scan = Low <= Lowest(Low, range)
+Alternate 4 = scan to find stocks which made new 20-day-high
+input range = 20;
+plot scan = High <= Highest(High, range);
+#end
+```
 
 ## S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA
 
 [Return to TOC](#toc)
 
-- Alternate 1
+Alternate 1: Stocks that have a RSI under 20 for 3 days and a closing price above the 200 SMA
 
-- Stocks that have a RSI under 20 for 3 days and a closing price above the 200 SMA
+`Plot scan = (RSIWilder(length = 2) < 20 && RSIWilder(length = 2)[1] < 20 && RSIWilder(length = [2] < 20 && Close > SimpleMovingAvg(length = 200))`
 
-- Plot scan = (RSIWilder(length = 2) < 20 && RSIWilder(length = 2)[1] < 20 && RSIWilder(length = 2)[2] < 20 && Close >
+Alternate 2: stocks that have a 3-day RSI under 20 a closing price above the 200 SMA
 
-- SimpleMovingAvg(length = 200))
+`Plot Scan =(RSIWilder(length = 3) < 20 && Close > SimpleMovingAvg(length = 200))`
 
-- Alternate 2
+Comment: Set agg to day.
 
-- stocks that have a 3-day RSI under 20 a closing price above the 200 SMA
-
-- Plot Scan =(RSIWilder(length = 3) < 20 && Close > SimpleMovingAvg(length = 200))
-
-- Comment: Set agg to day.
-
-- #end
+#end
 
 ## S-SCAN FOR CROSS OF MOVING AVERAGES
 
 [Return to TOC](#toc)
 
-- Alternate 1: Today's cross of a 10-bar MA above 20-bar EMA. Set agg = day.
+Alternate 1: Today's cross of a 10-bar MA above 20-bar EMA. Set agg = day.
 
-- def MA = average(close,10); #10 bar MA
+```
+def MA = average(close,10); #10 bar MA
+def EMA = expaverage(close,20); # 20-Bar EMA
+def cross = MA[1]<EMA[1] && MA>EMA;
+```
 
-- def EMA = expaverage(close,20); # 20-Bar EMA
+Alternate 2: Cross 3 days back. Set agg = day.
 
-- def cross = MA[1]<EMA[1] && MA>EMA;
+```
+input DaysBack = 3;
+def MA = average(close,10); #10 bar MA
+def EMA = expaverage(close,20); # 20-Bar EMA
+def cross = MA[DaysBack] < EMA[DaysBack] && MA>EMA;
+```
 
-- Alternate 2: Cross 3 days back. Set agg = day.
+Alternate 3: Plot a dot below the bar that crosses and only that bar.
 
-- input DaysBack = 3;
+If you want to see a dot anytime the condition is true, then remove the '&& !cross[1]'
 
-- def MA = average(close,10); #10 bar MA
-
-- def EMA = expaverage(close,20); # 20-Bar EMA
-
-- def cross = MA[DaysBack] < EMA[DaysBack] && MA>EMA;
-
-- Alternate 3: Plot a dot below the bar that crosses and only that bar.
-
-- If you want to see a dot anytime the condition is true, then remove the '&& !cross[1]'
-
-- plot Crossing = if cross && !cross[1] then low else double.nan;
-
-- Crossing.SetPaintingStrategy(PaintingStrategy.points);
-
-- #end
+```
+plot Crossing = if cross && !cross[1] then low else double.nan;
+Crossing.SetPaintingStrategy(PaintingStrategy.points);
+```
+#end
 
 ## S-SCAN CROSS OF STANDARD DEVIATION CHANNEL
 
 [Return to TOC](#toc)
 
-- Scan for price crossing the upper/lower line of the Standard Deviation Channel (SDC).
+Scan for price crossing the upper/lower line of the Standard Deviation Channel (SDC).
 
-- def _sdcU = StandardDevChannel().UpperLine;
+```
+def _sdcU = StandardDevChannel().UpperLine;
+plot scanSDC = close >= _sdcU and close[1] < _sdcU[1];
+```
 
-- plot scanSDC = close >= _sdcU and close[1] < _sdcU[1];
+Following the same logic the sdcL would be :
 
-- Following the same logic the sdcL would be :
+```
+def _sdcL = StandardDevChannel().LowerLine;
+plot scanSDC = close <= _sdcL and close[1] > _sdcL[1];
+```
 
-- def _sdcL = StandardDevChannel().LowerLine;
 
-- plot scanSDC = close <= _sdcL and close[1] > _sdcL[1];
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  185185
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #end
+#end
 
 ## S-ABOVE 20-DAY MA FOR 65 DAYS
 
 [Return to TOC](#toc)
 
-- Scan for stocks above their 20 day MA for 65 days. Set agg = day.
+Scan for stocks above their 20 day MA for 65 days. Set agg = day.
 
-- input ConsecutiveClose = 65;#Number of days
+```
+input ConsecutiveClose = 65;#Number of days
+def avg = Average(close,20);# 20-bar average
+def above20 = if close >= avg then above20[1] + 1 else 0;
+plot scan = if above20 >= ConsecutiveClose then 1 else 0;
+```
 
-- def avg = Average(close,20);# 20-bar average
-
-- def above20 = if close >= avg then above20[1] + 1 else 0;
-
-- plot scan = if above20 >= ConsecutiveClose then 1 else 0;
-
-- #end
+#end
 
 ## S-SCAN FOR 200-DAY MA
 
 [Return to TOC](#toc)
 
-- Alternate 1: A scan that looks for stocks touching the 200-day MA. Set agg = day.
+Alternate 1: A scan that looks for stocks touching the 200-day MA. Set agg = day.
 
-- Plot scan = high > average(close,200) && low < average(close,200)
+`Plot scan = high > average(close,200) && low < average(close,200)`
 
-- Alternate 2: Price crosses the 200-day MA
+Alternate 2: Price crosses the 200-day MA
 
-- def SMA = SimpleMovingAvg( close, 200, 0 );
+```
+def SMA = SimpleMovingAvg( close, 200, 0 );
+plot SmaScan = crosses( close, SMA, CrossingDirection.Any );
+```
 
-- plot SmaScan = crosses( close, SMA, CrossingDirection.Any );
+Alternate 3: For a better study for the scan, use this.  You’ll get more hits.  This one doesn’t care if the close is above the 200-day MA as long as EITHER the close is above the 200-day MA OR the 200-day MA is bracketed.  Same for the reverse case.
 
-- Alternate 3: For a better study for the scan, use this.  You’ll get more hits.  This one doesn’t care if the close is above
+```
+def avg = Average(close, 200);
+def Bracketing = high > average(close,200) && low < average(close,200);
+def above200 = if close >= avg or Bracketing then above200[1] + 1 else 0;
+Plot scan =  above200;
+```
 
-- the 200-day MA as long as EITHER the close is above the 200-day MA OR the 200-day MA is bracketed.  Same for the
+OR
 
-- reverse case.
+```
+def below200 = if close<=avg or Bracketing then below200[1] + 1 else 0;
+Plot scan = below200;
+```
 
-- def avg = Average(close, 200);
-
-- def Bracketing = high > average(close,200) && low < average(close,200);
-
-- def above200 = if close >= avg or Bracketing then above200[1] + 1 else 0;
-
-- Plot scan =  above200;
-
-- OR
-
-- def below200 = if close<=avg or Bracketing then below200[1] + 1 else 0;
-
-- Plot scan = below200;
-
-- #end
+#end
 
 ## S-SCAN FOR A BULLISH ADX
 
 [Return to TOC](#toc)
 
-- Comment: Use the DMI along with the ADX. The ADX can be bullish or bearish depending on whether the DMIplus is
+- Comment: Use the DMI along with the ADX. The ADX can be bullish or bearish depending on whether the DMIplus is greater than the DMIminus.
 
-- greater than the DMIminus.
+`ADX()."ADX" > 40 && DIPlus()."DI+" > DIMinus()."DI-"`
 
-- ADX()."ADX" > 40 && DIPlus()."DI+" > DIMinus()."DI-"
-
-- #end
+#end
 
 ## S-SCAN FOR DMI
 
 [Return to TOC](#toc)
 
-- Comment: Use the DMI along with the ADX. The ADX can be bullish or bearish depending on whether the DMIplus is
+Comment: Use the DMI along with the ADX. The ADX can be bullish or bearish depending on whether the DMIplus is greater than the DMIminus.
 
-- greater than the DMIminus.
+Alternate 1: DMI+ crosses above DMI-
+```
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus > DMIminus and DMIplus[1] <= DMIminus[1];
+```
 
-- Alternate 1: DMI+ crosses above DMI-
+Alternate 2: DMI+ is above DMI-
+```
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus > DMIminus;
+```
 
-- def DMIplus  = DMI(length = 25)."DI+";
+Alternate 2: DMI+ crosses below DMI-
+```
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus < DMIminus and DMIplus[1] >= DMIminus[1];
+```
 
-- def DMIminus = DMI(length = 25)."DI-";
-
-- plot Scan = DMIplus > DMIminus and DMIplus[1] <= DMIminus[1];
-
-- Alternate 2: DMI+ is above DMI-
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  186186
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- def DMIplus  = DMI(length = 25)."DI+";
-
-- def DMIminus = DMI(length = 25)."DI-";
-
-- plot Scan = DMIplus > DMIminus;
-
-- Alternate 2: DMI+ crosses below DMI-
-
-- def DMIplus  = DMI(length = 25)."DI+";
-
-- def DMIminus = DMI(length = 25)."DI-";
-
-- plot Scan = DMIplus < DMIminus and DMIplus[1] >= DMIminus[1];
-
-- Alternate 2: DMI+ is below the DMI-
-
-- def DMIplus  = DMI(length = 25)."DI+";
-
-- def DMIminus = DMI(length = 25)."DI-";
-
-- plot Scan = DMIplus < DMIminus;
-
-- #end
+Alternate 2: DMI+ is below the DMI-
+```
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus < DMIminus;
+```
+#end
 
 ## S-SCAN USING PRE-DEFINED  CROSSOVERS
 
@@ -15891,12 +15383,6 @@ Crossover
 - OR
 
 - Plot MFI_below = MoneyFlowIndexCrossover(crossingType ==  crossingType.below).signal;
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  187187
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - MovingAvgCrossover: Scans for crossovers of moving averages of different types and lengths. The defaults parameters
 
@@ -15984,10 +15470,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - OR
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  188188
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - plot ROC_Pos =  RateOfChangeCrossover( crossingType = "Negative to Positive").signal;
 
 - The above reads as 'scan for when the rate of change crosses above zero (or goes positive).'
@@ -16032,85 +15514,64 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- Bullish Scan: The MACD value crosses above the MACD average while both are below zero
+Bullish Scan: The MACD value crosses above the MACD average while both are below zero
+```
+def MACD_Val = MACD(12,26,9).Value;
+def MACD_Avg = MACD(12,26,9).Avg;
+def xOver = MACD_Val [1] < MACD_Avg [1] and MACD_Val >= MACD_Avg ;
+plot bullishScan = xOver and MACD_Val < 0 and MACD_Avg < 0;
+Bearish scan: The MACD value crosses above the MACD average while both are Above zero
+def MACD_Val = MACD(12,26,9).Value;
+def MACD_Avg = MACD(12,26,9).Avg;
+def xOver = MACD_Val [1] < MACD_Avg [1] and MACD_Val >= MACD_Avg ;
+plot bearishScan = xOver and MACD_Val > 0 and MACD_Avg > 0;
+```
 
-- def MACD_Val = MACD(12,26,9).Value;
+Scanning for stocks that have just crossed over produces less hits that a scan that looks for a xOver within one (1) day.
 
-- def MACD_Avg = MACD(12,26,9).Avg;
+```
+def MACD_Val = MACD(12,26,9).Value;
+def MACD_Avg = MACD(12,26,9).Avg;
+def xOver = MACD_Val[1] < MACD_Avg[1] and MACD_Val >= MACD_Avg;
+plot bearishScan = ( xOver or xOver[1] ) and MACD_Val > 0 and MACD_Avg > 0;
+```
 
-- def xOver = MACD_Val [1] < MACD_Avg [1] and MACD_Val >= MACD_Avg ;
+Suggest: To get a meaningful scan use: 1) fundamental filter: close >=10, and 2) study filter: VolumeAvg(50) >= 500000
 
-- plot bullishScan = xOver and MACD_Val < 0 and MACD_Avg < 0;
-
-- Bearish scan: The MACD value crosses above the MACD average while both are Above zero
-
-- def MACD_Val = MACD(12,26,9).Value;
-
-- def MACD_Avg = MACD(12,26,9).Avg;
-
-- def xOver = MACD_Val [1] < MACD_Avg [1] and MACD_Val >= MACD_Avg ;
-
-- plot bearishScan = xOver and MACD_Val > 0 and MACD_Avg > 0;
-
-- Scanning for stocks that have just crossed over produces less hits that a scan that looks for a xOver within one (1) day.
-
-- def MACD_Val = MACD(12,26,9).Value;
-
-- def MACD_Avg = MACD(12,26,9).Avg;
-
-- def xOver = MACD_Val[1] < MACD_Avg[1] and MACD_Val >= MACD_Avg;
-
-- plot bearishScan = ( xOver or xOver[1] ) and MACD_Val > 0 and MACD_Avg > 0;
-
-- Suggest: To get a meaningful scan use: 1) fundamental filter: close >=10, and 2) study filter: VolumeAvg(50) >= 500000
-
-- #end
+#end
 
 ## S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
 
 [Return to TOC](#toc)
 
-- Scan for equities that have made new 52 week highs in the past 5 days.
-
-- input lookback = 5;  # past N days
-
-- def hhy = Highest( high, 252 );
-
-- plot h = Highest( high, lookback ) == hhy;
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  189189
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #end
+Scan for equities that have made new 52 week highs in the past 5 days.
+```
+input lookback = 5;  # past N days
+def hhy = Highest( high, 252 );
+plot h = Highest( high, lookback ) == hhy;
+```
+#end
 
 ## S-SCAN PRICE CORRELATION WITH THE SPX
 
 [Return to TOC](#toc)
 
-- This is a price correlation scan compared to the SPX with a correlation of 0.95 to 1.0 for the last 50 bars. Below is the
+This is a price correlation scan compared to the SPX with a correlation of 0.95 to 1.0 for the last 50 bars. Below is the picture of the StockHacker composition. Use a 'day' aggregation:
 
-- picture of the StockHacker composition. Use a 'day' aggregation:
+Alternate:
 
-- Alternate:
+```
+#hint:High correlation scan. By Mr Script
+input length = 10;#hint length: the agg-bar length being compared
+input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
 
-- #hint:High correlation scan. By Mr Script
+input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
+def x = Correlation(close, close(correlationWithSecurity), length) > .9;#greater then 0.9 indicates a high correlation
 
-- input length = 10;#hint length: the agg-bar length being compared
+plot scan = sum(x, inarow) >= inarow;
+```
 
-- input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
-
-- input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
-
-- def x = Correlation(close, close(correlationWithSecurity), length) > .9;#greater then 0.9 indicates a high correlation
-
-- plot scan = sum(x, inarow) >= inarow;
-
-- #end
+#end
 
 ## S-   INCREASING EARNINGS SCAN
 
@@ -16164,16 +15625,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - earnings are < prior quarter, we'll reset the count to 0.
 
-![Im13](images/Im13)
-
-![Im10309](images/Im10309)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  190190
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #CompoundValue is used to make sure the count initializes with a number: 0 in this case.  If it starts with Double.NaN, it
 
 - may not work.
@@ -16212,83 +15663,47 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- Comment: TOS has a column heading titled 'Strength Meter' which reads "stocks that have risen 10% in the last three
+Comment: TOS has a column heading titled 'Strength Meter' which reads "stocks that have risen 10% in the last three weeks will have their strength meter activated. The green sloped bar in the watchlist column wil then be activated. The code is presented here so you may change it to your liking. For example, you may want this to show based on 2 weeks in  lieu of 3 weeks. The reverse is also true when a down-sloped RED bar shows.This is the picture of the subject:
 
-- weeks will have their strength meter activated. The green sloped bar in the watchlist column wil then be activated. The
+```
+declare lower;
+def Agg = AggregationPeriod.Week;
+plot Data = close(period = agg) / close(period = agg)[3];
+Data.SetPaintingStrategy(PaintingStrategy.Histogram);
+Data.AssignValueColor(if Data > 1.1
+  then Color.Green
+  else if Data < .9
+  then Color.Red
+  else Color.Yellow);
+Data.SetLineWeight(3);
 
-- code is presented here so you may change it to your liking. For example, you may want this to show based on 2 weeks in
+========= scan code =========
+Plot scan = close / close[3] >= 1.1;#scan agg is set to week
+```
 
-- lieu of 3 weeks. The reverse is also true when a down-sloped RED bar shows.This is the picture of the subject:
-
-- declare lower;
-
-- def Agg = AggregationPeriod.Week;
-
-- plot Data = close(period = agg) / close(period = agg)[3];
-
-- Data.SetPaintingStrategy(PaintingStrategy.Histogram);
-
-- Data.AssignValueColor(if Data > 1.1
-
-- then Color.Green
-
-- else if Data < .9
-
-- then Color.Red
-
-- else Color.Yellow);
-
-- Data.SetLineWeight(3);
-
-- ========= scan code =========
-
-- Plot scan = close / close[3] >= 1.1;#scan agg is set to week
-
-- #end
-
-![Im13](images/Im13)
-
-![Im10358](images/Im10358)
-
-![Im10356](images/Im10356)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  191191
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
+#end
 
 ## S-NOTEWORTHY RESOURCE FOR PREDEFINED SCANS
 
 [Return to TOC](#toc)
 
-- Although TOS provides many powerful features, there are also other very useful resources on the Net. Here is a free
+Although TOS provides many powerful features, there are also other very useful resources on the Net. Here is a free one at a premier charting sites, Stock Charts, Check this out for Predefined Scans. Granted using this does not allow you to easily put stocks into a TOS watchlist but, nonetheless, this is very useful data.
 
-- one at a premier charting sites, Stock Charts, Check this out for Predefined Scans. Granted using this does not allow you
-
-- to easily put stocks into a TOS watchlist but, nonetheless, this is very useful data.
-
-- Realize that the data-feed for Stock Charts may not be the same as that for TOS but that should not likely cause any
-
-- conflicts because the source of all data is the exchanges.  Visit the site
+Realize that the data-feed for Stock Charts may not be the same as that for TOS but that should not likely cause any conflicts because the source of all data is the exchanges.  Visit the site
 
 ## S-MOVING AVERAGE COMPARISON
 
 [Return to TOC](#toc)
 
-- #Scan for MA compared to MA ? agg-bars ago
+```
+#Scan for MA compared to MA ? agg-bars ago
+input length = 10;#hint length: The length of the moving average
+input LookBack = 2;#hint LookBack: The agg-bars back moving average being compared to
+Plot scan = Average(close, length) > Average(close, length)[LookBack]);
+# The above reads as SimpleMovingAvg("length" = 10) is greater than SimpleMovingAvg("length" = 10) from 2 agg-bars ago.
+```
 
-- input length = 10;#hint length: The length of the moving average
-
-- input LookBack = 2;#hint LookBack: The agg-bars back moving average being compared to
-
-- Plot scan = Average(close, length) > Average(close, length)[LookBack]);
-
-- # The above reads as SimpleMovingAvg("length" = 10) is greater than SimpleMovingAvg("length" = 10) from 2 agg-bars
-
-- ago.
-
-- If aggregation is 'week' then 'agg-bars ago' is 2 weeks ago. If aggregation is set to 'Day' then 'agg-bars ago' is 2 days
-
-- ago
+If aggregation is 'week' then 'agg-bars ago' is 2 weeks ago. If aggregation is set to 'Day' then 'agg-bars ago' is 2 days go
 
 ## S-NEW BULLISH CLOSE ABOVE THE ICHIMONU CLOUD
 
@@ -16449,27 +15864,7 @@ The fastest way to edit a study is to double click on the plot on the chart. How
 
 [Return to TOC](#toc)
 
-- TOS has many valuable resources that may, for some, be hard to keep track of. This is a reminder of an especially
-
-![Im10533](images/Im10533)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im10535](images/Im10535)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  195195
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- valuable resource for new learners of ThinkScript as well as a refresher for you 'pros' out there. The Learning Center's
-
-- 'charting/ThinkScript' ( Click here to see it ) is a must read for all newcomers to ThinkScript. Although this has three
-
-- sections the 'ThinkScript Tutorials' are especially pertinent.
+TOS has many valuable resources that may, for some, be hard to keep track of. This is a reminder of an especially valuable resource for new learners of ThinkScript as well as a refresher for you 'pros' out there. The Learning Center's 'charting/ThinkScript' ( Click here to see it ) is a must read for all newcomers to ThinkScript. Although this has three sections the 'ThinkScript Tutorials' are especially pertinent.
 
 ## T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES
 
@@ -16558,24 +15953,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Note that the LinearRegCh100 color cannot be changed because it is a built-in study and its code is non-editable.
 
-![Im10617](images/Im10617)
-
-![Im10619](images/Im10619)
-
-![Im10621](images/Im10621)
-
-![Im10623](images/Im10623)
-
-![Im13](images/Im13)
-
-![Im10625](images/Im10625)
-
-![Im10627](images/Im10627)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  197197
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - However, there are unintended consequences as shown below in this 'edit studies' screen.
 
 - #end
@@ -16598,25 +15975,12 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #end
 
-- T-ENHANCE THE LOOKS OF A HISTOGRAM PLOT
+## T-ENHANCE THE LOOKS OF A HISTOGRAM PLOT
 
 [Return to TOC](#toc)
 
-- To enhance the looks of a histogram, plot the same histogram data as a line and format that line as follows. Before and
+To enhance the looks of a histogram, plot the same histogram data as a line and format that line as follows. Before and after pics are shown.
 
-- after pics are shown.
-
-![Im10656](images/Im10656)
-
-![Im13](images/Im13)
-
-![Im10658](images/Im10658)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  198198
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot Histogram_Liner = Same data as for the histogram plot
 
@@ -16626,35 +15990,27 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Histogram_Liner.SetDefaultColor(Color.CYAN);
 
-- T-PRIVACY TO NOT SHOW ACCOUNT DOLLARS
+## T-PRIVACY TO NOT SHOW ACCOUNT DOLLARS
 
 [Return to TOC](#toc)
 
-- To activate privacy that shows ***** instead of the dollar values, click the blue dot left of the 'Net Liq & Day Trades'
-
-- and check the privacy square.
+To activate privacy that shows ***** instead of the dollar values, click the blue dot left of the 'Net Liq & Day Trades' and check the privacy square.
 
 ## T-NAVIGATION VIA KEYBOARD HOTKEYS vs THE MOUSE
 
 [Return to TOC](#toc)
 
-- When doing a lot of coding, using the mouse provides fast traveling to various locations in the code. However, there are
+- When doing a lot of coding, using the mouse provides fast traveling to various locations in the code. However, there are keyboard hotkeys that facilitate editing activities. Below is a useful list of those available in Win 7, the TS editor and most editing programs. Some are especially useful at selecting text by letter, word, line, paragraph, window, etc. Try them out and you may adopt them as your standard way of editing in combination with using the mouse.
 
-- keyboard hotkeys that facilitate editing activities. Below is a useful list of those available in Win 7, the TS editor and
-
-- most editing programs. Some are especially useful at selecting text by letter, word, line, paragraph, window, etc. Try
-
-- them out and you may adopt them as your standard way of editing in combination with using the mouse.
-
-- Ctrl+C (or Ctrl+Insert)
+Ctrl+C (or Ctrl+Insert)
 
 Copy the selected item
 
-- Ctrl+X
+Ctrl+X
 
 Cut the selected item. Item cut becomes available for pasting.
 
-- Ctrl+V (or Shift+Insert)
+Ctrl+V (or Shift+Insert)
 
 Paste the selected item
 
@@ -16689,18 +16045,6 @@ Move the cursor to the beginning of the next paragraph
 - Ctrl+Up Arrow
 
 Move the cursor to the beginning of the previous paragraph
-
-![Im10741](images/Im10741)
-
-![Im10743](images/Im10743)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  199199
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Ctrl+Shift with an arrow key
 
@@ -16744,61 +16088,27 @@ There may be other hotkeys of interest to you at Go Here
 
 [Return to TOC](#toc)
 
-- Custom columns run in "TOS real-time".  Additionally they have CPU performance limits (which is on their servers where
+Custom columns run in "TOS real-time".  Additionally they have CPU performance limits (which is on their servers where all scripts run), so if your script has too much "stuff" in it and is pre-analyzed to take more execution time than is allowed you get the dreaded "too complex error."
 
-- all scripts run), so if your script has too much "stuff" in it and is pre-analyzed to take more execution time than is
+The solution is to pare the script down to its essence and apply some good ole brain power to the data. Say you have two plots (which always generates an error in custom columns, scans, and conditional orders) and seven to eight conditions shown as nine colors packed into a single column. How did you expect to display two numerical results in each single cell?
 
-- allowed you get the dreaded "too complex error."
+Not to mention the rainbow of colors. Not every script that works on a chart/study is worthy of putting in a custom column.
 
-- The solution is to pare the script down to its essence and apply some good ole brain power to the data. Say you have two
+Long series of 'if conditions' also can create the 'too complex error'. You may be able to eliminate the error if you break up a long series of if-conditions into simple sub-conditions and then combine the sub-conditions into an overall 'If' statement. Another example that you may try as a work-around is as follows:
 
-- plots (which always generates an error in custom columns, scans, and conditional orders) and seven to eight conditions
+```
+Cond1 = if Low[1] <= Lowest(low, 10) then 1 else 0;
+Cond2 = if close > High[1] or low[2] <=lowest(low,10) then 1 else 0;
+Cond3 = if close > high[2] or Low[3] <= Lowest(low, 10) then 1 else 0;
+Cond4 = if close > High[3] or low[4] <= lowest(low,10) then 1 else 0;
+Cond5 = if close > high[4] or low[5] <= lowest(low,10) then 1 else 0;
+Cond6 = if close > high[5]  then 1 else 0;
+Plot if Sum(cond1,cond2,cond3, cond4, cond5, cond6) = 6 then ??????? else ?????;
+```
 
-- shown as nine colors packed into a single column. How did you expect to display two numerical results in each single cell?
+Realize also that overly complex if-conditions are only one aspect that generates the 'too complex' error.  As initially said, it could be superfluous lines in your code retained when converting a study into a custom column. For example, 'PlotName.SetPaintingStrategy(PaintingStrategy.LINE);' and 'PlotName.SetLineWeight(1);' are superfluous in a custom column but contribute to TOS' evaluation of the 'too complex error'. Remember that we are not privy to what TOS uses to evaluates the 'too complex error' but you can be sure that the presence of superfluous code lines contribute to the error. In summary, make your code compact and smart with only necessary essential lines.
 
-- Not to mention the rainbow of colors. Not every script that works on a chart/study is worthy of putting in a custom
-
-- column.
-
-- Long series of 'if conditions' also can create the 'too complex error'. You may be able to eliminate the error if you break
-
-- up a long series of if-conditions into simple sub-conditions and then combine the sub-conditions into an overall 'If'
-
-- statement. Another example that you may try as a work-around is as follows:
-
-- Cond1 = if Low[1] <= Lowest(low, 10) then 1 else 0;
-
-- Cond2 = if close > High[1] or low[2] <=lowest(low,10) then 1 else 0;
-
-- Cond3 = if close > high[2] or Low[3] <= Lowest(low, 10) then 1 else 0;
-
-- Cond4 = if close > High[3] or low[4] <= lowest(low,10) then 1 else 0;
-
-- Cond5 = if close > high[4] or low[5] <= lowest(low,10) then 1 else 0;
-
-- Cond6 = if close > high[5]  then 1 else 0;
-
-- Plot if Sum(cond1,cond2,cond3, cond4, cond5, cond6) = 6 then ??????? else ?????;
-
-- Realize also that overly complex if-conditions are only one aspect that generates the 'too complex' error.  As initially
-
-- said, it could be superfluous lines in your code retained when converting a study into a custom column. For example,
-
-- 'PlotName.SetPaintingStrategy(PaintingStrategy.LINE);' and 'PlotName.SetLineWeight(1);' are superfluous in a custom
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  200200
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- column but contribute to TOS' evaluation of the 'too complex error'. Remember that we are not privy to what TOS uses
-
-- to evaluates the 'too complex error' but you can be sure that the presence of superfluous code lines contribute to the
-
-- error. In summary, make your code compact and smart with only necessary essential lines.
-
-- #end
+#end
 
 ## T-DEFINING AND APPLYING CONDITIONS IN A STUDY
 
@@ -16830,12 +16140,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - another by colors or type of plot. Also labels are valuable for clarifications.
 
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  201201
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - Don't forget to delete the studies, 5 in this example, that plotted the cnditions to preclude accumulation of studies that
 
 - have no further use.
@@ -16863,16 +16167,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - reading the gap-% value at the other end of the gap. Similarly, percent differences can be read between any two bars on
 
 - the chart.
-
-![Im10851](images/Im10851)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  202202
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - There are two modes for setting the 0% location:
 
@@ -16920,18 +16214,6 @@ This icon will now show on the chart in lieu of the cursor. Simply hold- down th
 
 - select 'pointer' to re-establish it. The space you panned for will be recorded in 'Chart settings/time axis/expansion
 
-![Im10900](images/Im10900)
-
-![Im10902](images/Im10902)
-
-![Im13](images/Im13)
-
-![Im10898](images/Im10898)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  203203
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - area'.
 
 - 2. Using the chart's lower-right symbol
@@ -16960,49 +16242,30 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - name. Dynamic scans are particularly vulnerable and will become ineffective if a custom referenced study is renamed.
 
-- NEXT TIP TO BE ADDED
+## NEXT TIP TO BE ADDED
 
 [Return to TOC](#toc)
 
 - x
 
-- NEXT TIP TO BE ADDED
+## NEXT TIP TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
+x
 
-- NEXT TIP TO BE ADDED
-
-[Return to TOC](#toc)
-
-- x
-
-- NEXT TIP TO BE ADDED
+## NEXT TIP TO BE ADDED
 
 [Return to TOC](#toc)
 
-- x
+x
 
-![Im10913](images/Im10913)
+## NEXT TIP TO BE ADDED
 
-![Im10917](images/Im10917)
+[Return to TOC](#toc)
 
-![Im10924](images/Im10924)
+x
 
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  204204
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 ----
 ----
@@ -17011,37 +16274,21 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- 1. The learning center is a valuable excellent resource: http://tlc.thinkorswim.com/center.html?
+1. The learning center is a valuable excellent resource: http://tlc.thinkorswim.com/center.html?utm_source=thinkorswim&utm_medium=tosred&utm_campaign=HelpPage
 
-- utm_source=thinkorswim&utm_medium=tosred&utm_campaign=HelpPage
+2. TOS' Tools tab/MyTrade is used by many to post useful code. It is recommended that you learn the locations of those posters to access their code listings. The author of this document has code resources posted at http://www.mytrade.com/StanL in a browser format or within TOS via TOOLS/MYTRADE/PEOPLE TAB and search for 'StanL'. MyTrade also has postings by people wishing to discuss various trades. Any TOS user is eligible to establish a MyTrade page.
 
-- 2. TOS' Tools tab/MyTrade is used by many to post useful code. It is recommended that you learn the locations of
+3. http://finance.groups.yahoo.com/group/TOS_thinkscript/  has been a popular location for help and posting of ThinkScript code. It is a free site. It has been active since 2008.
 
-- those posters to access their code listings. The author of this document has code resources posted at
+4. The site http://www.thinkscripter.com/ has subscriber and non-subscriber code by very capable coders.
 
-- http://www.mytrade.com/StanL in a browser format or within TOS via TOOLS/MYTRADE/PEOPLE TAB and
+5. The ThinkOrSwim Resource Center is invaluable to all TS coders....
 
-- search for 'StanL'. MyTrade also has postings by people wishing to discuss various trades. Any TOS user is
+http://tda.thinkorswim.com/manual/metal/thinkscript/
 
-- eligible to establish a MyTrade page.
+6. The Thinkscript Lounge presents an after-market show on Tuesday. The show, called Mr. Script, provides invaluable code examples and discussions. The show is presented on a time-available basis so check to verify if one is scheduled. This show is very useful, informative and educational for anyone involved in ThinkScript coding.
 
-- 3. http://finance.groups.yahoo.com/group/TOS_thinkscript/  has been a popular location for help and posting of
-
-- ThinkScript code. It is a free site. It has been active since 2008.
-
-- 4. The site http://www.thinkscripter.com/ has subscriber and non-subscriber code by very capable coders.
-
-- 5. The ThinkOrSwim Resource Center is invaluable to all TS coders....
-
-- http://tda.thinkorswim.com/manual/metal/thinkscript/
-
-- 6. The Thinkscript Lounge presents an after-market show on Tuesday. The show, called Mr. Script, provides
-
-- invaluable code examples and discussions. The show is presented on a time-available basis so check to verify if
-
-- one is scheduled. This show is very useful, informative and educational for anyone involved in ThinkScript coding.
-
-- 7. A popular PDF reader for this document is available at http://helpx.adobe.com/reader.html
+7. A popular PDF reader for this document is available at http://helpx.adobe.com/reader.html
 
 END OF DOCUMENT
 
