@@ -84,10 +84,6 @@
 
 # 3 [STUDIES AND CODING](#STUDIES_AND_CODING)
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  22
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - C-DATE LABEL IN MM/DD/YYYY FORMAT.....Page 30
 
 - C-USAGE OF THE SWITCH FUNCTION.....Page 31
@@ -167,10 +163,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES.....Page 53
 
 - C-DEFINING CONDITIONS IN BUY/SELL STRATEGY.....Page 53
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  33
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - C-THE 'AdvanceDecline' STUDY OF THE NYSE, NASDAQ, AMEX.....Page 53
 
@@ -252,10 +244,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - C-INSYNC INDEX .....Page 83
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  44
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - C- CLOUD A TIME INTERVAL WITHOUT PLOTS.....Page 84
 
 - C- IMPROVED TIME SERIES FORECAST STUDY.....Page 84
@@ -335,11 +323,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - C-DMI_OSCILLATOR_SFL_FAV .....Page 162
 
 - C-PolarizedFractalEfficiency_SFL.....Page 164
-
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  55
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - C-Three_X_Oscillator.....Page 165
 
@@ -423,11 +406,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - NEXT SCAN TO BE ADDED .....Page 191
 
-
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  66
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 # 6 [TUTORIALS (HOW-TO-DO'S)](#TUTORIALS)
 
@@ -514,18 +492,13 @@ A 'snippet' is a small piece(s) of script, oriented towards accomplishing a spec
 
 The emphasis herein is for learning TOS and ThinkScript from the ground up.  Numerous examples are used as a learning tool ranging from simple/basic to complex. The PDF format was selected, with extra features, like the hyperlinked Table-of-Contents, to make subjects easily found. This document also proovides a reference for future coding activities.
 
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  77
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 Hence being familar with what is available herein, will enhance recall when needed. A good PDF reader with search capability is also recommended.
 
 ## Legend
 
 Click the underlined Page ? to go to that page When there, you can return to to the TOC by clicking Return to TOC.
 
-# Titles appearing in the Table Of Contents above are the same and colored blue throughout this document
+## Titles appearing in the Table Of Contents above are the same and colored blue throughout this document
 
 ## Revised: 07/25/14
 
@@ -582,11 +555,6 @@ As this Snippet Collection grows, finding what you want becomes more difficult. 
 If you want to find something, enter what you want into the 'find' tool of the PDF reader and it will navigate you to the possible matches.  Try different 'find' entries if you are not successful. Subjects are often named differently. The most expeditious search is looking over the TOC or using 'find' in the TOC as opposed to using 'find' throughout the body of the document.
 
 Continued on Next Page
-
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  88
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 ----
 ----
@@ -656,9 +624,7 @@ There are three forms of if statements. The 'immediate-if' is the shortest and i
 
 ### The 'immediate-if' explained
 
-The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An
- example is: `Plot Maximum1 = If(close > open, close, open);` This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.”  This form is very useful as
-the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with else to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
+The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An  example is: `Plot Maximum1 = If(close > open, close, open);` This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.”  This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with else to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
 
 The word 'double' is often vague in its meaning in ThinkScript but it means a floating-decimal-point-number of double precision in programming terminology. Any further meaning-clarification is unnecessary here. The impact of 'double' is that constants such as the names of the 23 ThinkScript colors, like LIGHT_RED, BLUE, UPTICK, etc., are not floating point numbers and hence cannot be used in this immediate-if. In this case, the if-expression would be used.
 
@@ -870,6 +836,7 @@ The name "normal" above is unique to the RSI plot. Another plot cannot use the n
 
 To define and name a color for use in multiple plots do as follows:
 
+```
 DefineGlobalColor("normal", CreateColor(128, 0, 128));
 
 plot signal = high > Highest(high[1]);
@@ -879,39 +846,50 @@ signal.SetDefaultColor(GlobalColor("normal"));
 plot NinetyPercent = 0.9*close;
 
 NinetyPercent.SetDefaultColor(GlobalColor("normal"));
+```
 
 ######### Color based on a condition ############
 
+```
 plot Diff = close - close[1];
 Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK);
+```
 
 Note that UPTICK and DOWNTICK are TOS predefined color constants
 
 ####### Create your own color ###########
+```
 plot Price = close;
 Price.SetDefaultColor(CreateColor(255, 220, 210));
+```
 
 Or
 
-DefineGlobalColor("Purple" , CreateColor(160,32,240) );
+`DefineGlobalColor("Purple" , CreateColor(160,32,240) );`
 
 After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example:
 
-Price.SetDefaultColor(GlobalColor("Purple"));
+`Price.SetDefaultColor(GlobalColor("Purple"));`
+
 #### Use predefined index colors ##########
 
+```
 plot Price = close;
 Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9
+```
 
 Reference: See all color index numbers
 
 #### Default and global color text names #####
+
+```
 plot Data = close;
 Data.SetDefaultColor(color.RED);
+```
 
 or
 
-Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.
+`Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.`
 
 ##end
 
@@ -1086,89 +1064,57 @@ You may need to learn other ways of specifying aggregation to read other people'
 
 [Return to TOC](#toc)
 
-- This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: reference <StudyName>(parameter1=value1,..,
+This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: reference <StudyName>(parameter1=value1,.., parameterN=valueN).<PlotName>
 
-- parameterN=valueN).<PlotName>
+A simple example is: `plot MyMACD = reference MACDHistogram;`
 
-A simple example is: plot MyMACD = reference MACDHistogram;
+Occasionally a study and a function may have the same name e.g. vwap and moneyflow. In that case:
 
- 
+- Call the vwap function like ....plot MyVWAP1 = vwap;
 
-- Occasionally a study and a function may have the same name e.g. vwap and moneyflow. In that case:
+-  Reference the vwap study like ....plot MyVWAP1 = reference VWAP;
 
-- • Call the vwap function like ....plot MyVWAP1 = vwap;
+-  The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's name. Example: `plot MyVWAP1 = VWAP();`
 
-- • Reference the vwap study like ....plot MyVWAP1 = reference VWAP;
+In studies, you may reference built-in studies but not user-defined studies in  (currently). However, user-defined studies may be referenced in scans.
 
-- • The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's
+In the following, the 'StochasticSlow' study will be used as an example for explanation.
 
-- name. Example: plot MyVWAP1 = VWAP();
+Specifying plots
 
-- In studies, you may reference built-in studies but not user-defined studies in  (currently). However, user-defined studies
+Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and OverSold. Referencing the SlowD plot would be via  StochasticSlow().SlowD Just using StochasticSlow() would plot the SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the default parameters specified in the actual code are automatically used. Using parameters is explained below.
 
-- may be referenced in scans.
+Specifying parameters
 
-- In the following, the 'StochasticSlow' study will be used as an example for explanation.
+If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the default parameters and cannot be changed because they are in a pre-defined study which is not editable. There are three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each parameter/input has a fixed location in the list.
 
-- Specifying plots
+Full form
 
-- Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and
+The full form specifies the input variable name with its intended value. An example is:
 
-- OverSold. Referencing the SlowD plot would be via  StochasticSlow().SlowD Just using StochasticSlow() would plot the
+`def SlowK = StochasticSlow( KPeriod = 10, DPeriod = 10, priceH = High, smoothingType = "SMA" ); `
 
-- SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the
+Any parameter not listed herein takes on its default value. Note that the names like 'KPeriod', 'DPeriod', 'priceH', 'smoothingType' and others  are as defined in the actual code's input list.
 
-- default parameters specified in the actual code are automatically used. Using parameters is explained below.
+Compact Form
 
-- Specifying parameters
+The compact form is simplest in that you simply put your values in the place/position of the default parameter you wish to change. You start with the first input value as the left most value in the reference. An example is:
 
-- If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the
+`def SlowK = StochasticSlow( 80, 20, 10, 10, high, low, close, "SMA" ).SlowK; `
 
-- default parameters and cannot be changed because they are in a pre-defined study which is not editable. There are
+Note that you cannot omit any intermediate values or modify their positions. Only the right-most parameters may be dropped off and those will then take on their default values.
 
-- three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no
+Combo Form
 
-- parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each
+This allows you to choose only the variables you want to change. An example is:
 
-- parameter/input has a fixed location in the list.
+`def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;`
 
-- Full form
+Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule. There are two ways of referencing constant inputs : smoothingType = "SMA" and smoothingType == smoothingType.SMA are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax .
 
-- The full form specifies the input variable name with its intended value. An example is:
+A different but related subject is referencing pre-defined studies using 'Script'. See
 
-- def SlowK = StochasticSlow( KPeriod = 10, DPeriod = 10, priceH = High, smoothingType = "SMA" ); Any parameter
-
-- not listed herein takes on its default value. Note that the names like 'KPeriod', 'DPeriod', 'priceH', 'smoothingType' and
-
-- others  are as defined in the actual code's input list.
-
-- Compact Form
-
-- The compact form is simplest in that you simply put your values in the place/position of the default parameter you wish
-
-- to change. You start with the first input value as the left most value in the reference. An example is:
-
-- def SlowK = StochasticSlow( 80, 20, 10, 10, high, low, close, "SMA" ).SlowK; Note that you cannot omit any
-
-- intermediate values or modify their positions. Only the right-most parameters may be dropped off and those will then
-
-- take on their default values.
-
-- Combo Form
-
-- This allows you to choose only the variables you want to change. An example is:
-
-- def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;
-
-- Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule.
-
-- There are two ways of referencing constant inputs : smoothingType = "SMA" and smoothingType ==
-
-- smoothingType.SMA are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax .
-
-- A different but related subject is referencing pre-defined studies using 'Script'. See
-
-- http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
+-http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
 
 
 <a name="NORMALIZATION"> </a>
@@ -1324,22 +1270,18 @@ def price = close; # The current close
 plot PercentChg = ((price  - price[length])/ price[length]) * 100;# ((NOW-B4) / B4) * 100 which is the same as (NOW/B4 B4/B4) * 100 which is the same as (NOW/B4 - 1) * 100.  The % change is up or down if the difference is plus or minus respectively.
 
 
-- Additional Comments:
+Additional Comments:
 
-- The two ways above relate to 'change between two numbers' but there are other percentages that can be had. For
+The two ways above example,  "value1 is what percent larger/smaller than value2."  For value1 = 85 and value2 = 38 then: 85 /38 = 2.24;
 
-- example,  "value1 is what percent larger/smaller than value2."  For value1 = 85 and value2 = 38 then: 85 /38 = 2.24;
+2.24 X 100 = 224%. In words value1 is 224% of value2. Or, in a different way, it can be said that 2.24 -1 = 1.24 X 100 = 124% which reads  that value1 is 124% larger than (or above) value2.
 
-- 2.24 X 100 = 224%. In words value1 is 224% of value2. Or, in a different way, it can be said that 2.24 -1 = 1.24 X 100 =
+An aside: A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan.
 
-- 124% which reads  that value1 is 124% larger than (or above) value2.
-
-- An aside: A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan.
-
-- input length = 9;
-
-- AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
-
+```
+input length = 9;
+AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
+```
 
 <a name="FORMATTING_WITH_AsText_AsDollars_AND_OTHERS"> </a>
 ## FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
@@ -1442,17 +1384,15 @@ This is the simplified basics of swingHi/SwingLo. Many coders add all kinds of c
 
 Comparison to another stock, index or any instrument having a symbol.
 
-- • Click 'studies' then 'Add Study' then 'Compare With'
+- Click 'studies' then 'Add Study' then 'Compare With'
 
-- • If none of the ready-made comparisons have what you want, then click 'Custom Symbol....'
+- If none of the ready-made comparisons have what you want, then click 'Custom Symbol....'
 
-- • You will then be presented with the following dialog:
+- You will then be presented with the following dialog:
 
-- If you have forgotten or are unsure of the symbol, you can find it easily as follows:
+If you have forgotten or are unsure of the symbol, you can find it easily as follows:
 
-- The comparison will be overlaid on the upper panel using the left-hand price scale. You can edit the study to change the
-
-- symbol or the type of plot, i.e. Line, Bar, Candle, or the color. Choose any aggregation but 'day' is most meaningful.
+The comparison will be overlaid on the upper panel using the left-hand price scale. You can edit the study to change the symbol or the type of plot, i.e. Line, Bar, Candle, or the color. Choose any aggregation but 'day' is most meaningful.
 
 <a name="THE_FOLD_FUNCTION_EXPLAINED"> </a>
 ## THE FOLD FUNCTION EXPLAINED
@@ -1532,117 +1472,96 @@ Examples of
 
 - The initial value for the start of the first loop is 1.
 
-- Example 2 :
+Example 2 :
 
-- input price = close;
+```
+input price = close;
+input length = 9;
+plot SMA = (fold n = 0 to length with Var_ma do Var_ma + getValue(price, n, length - 1)) / length;
+```
 
-- input length = 9;
 
-- plot SMA = (fold n = 0 to length with Var_ma do Var_ma + getValue(price, n, length - 1)) / length;
+Calculates the simple moving average using fold. 9 loops are run i.e. 0 thru 8 with the internal variable named  Var_ma.
 
-- Calculates the simple moving average using fold. 9 loops are run i.e. 0 thru 8 with the internal variable named  Var_ma.
+Note the importance of the index starting with 0. The first value is getValue(price,n) or price[0] . If the index was to be 1 thru 10, the current value of price would not be included in the average because the first value would be price[1].
 
-- Note the importance of the index starting with 0. The first value is getValue(price,n) or price[0] . If the index was to be
+Example 3:
 
-- 1 thru 10, the current value of price would not be included in the average because the first value would be price[1].
+```
+input length = 10;
+def Test = fold index = 0 to length + 1 with nice = 0 do nice + index;
+AddLabel(1,"Test = " + test, color.green);
+```
 
-- Example 3:
+This simple fold sums the 'index' values. The AddLabel enables you to change any variable and predict what the label will show. If not determine where your thinking went astray.
 
-- input length = 10;
+Example 4:
 
-- def Test = fold index = 0 to length + 1 with nice = 0 do nice + index;
+```
+input length = 10;
+def bigCount = compoundValue( 1, fold idx = 1 to length with a = 0 do a + bigCount[1], 1 );
+```
 
-- AddLabel(1,"Test = " + test, color.green);
+This is interesting because it illustrates the concept of the fold and def being applied to every bar. The def causes each bar to hold the value of bigCount and the fold's 'do a + bigCount[1]' essentially causes each bar to be increased by a factor of 9 due to its looping. It is easy to see that the result will eventually reach infinity for a normal sized chart. It's not likely that you will ever use a def value in a do statement of a fold like this. This is known as a runaway calculation.
 
-- This simple fold sums the 'index' values. The AddLabel enables you to change any variable and predict what the label will
+Example 5:
 
-- show. If not determine where your thinking went astray.
+```
+input length = 10
+def smlCount = compoundValue( 1, fold idx2 = 1 to length with b = 0 do if smlCount[1] >= 1000 and b >= 1000 then 1000 else b + smlCount[1], 1 );
+```
 
-- Example 4:
+This allows 'smlCount' to rise to 1000 and then it limits smlCount toa value of 1000.
 
-- input length = 10;
+Example6:
 
-- def bigCount = compoundValue( 1, fold idx = 1 to length with a = 0 do a + bigCount[1], 1 );
+`plot Test = fold i = 0 to 4 with x = 1 do x + i;`
 
-- This is interesting because it illustrates the concept of the fold and def being applied to every bar. The def causes each
+What is the value of test? If your answer was not 7, rethink it.
+======================
 
-- bar to hold the value of bigCount and the fold's 'do a + bigCount[1]' essentially causes each bar to be increased by a
+If we change it to:
 
-- factor of 9 due to its looping. It is easy to see that the result will eventually reach infinity for a normal sized chart. It's
+`plot Test = fold i = 1 to 5 with x = 10 do x + i; `
 
-- not likely that you will ever use a def value in a do statement of a fold like this. This is known as a runaway calculation.
+What is its value?
 
-- Example 5:
+If your answer was not 20, rethink it.
 
-- input length = 10
+Example7:
 
-- def smlCount = compoundValue( 1, fold idx2 = 1 to length with b = 0 do if smlCount[1] >= 1000 and b >= 1000 then 1000
+```
+input period = 20;#hint period:Number of bars to look in
+def Hi = fold i = 0 to period with n = high do Max(n, GetValue(high, i, period - 1));
+def Lo = fold k = 0 to period with m = low do Min(m, GetValue(low, k, period - 1));
+AddLabel(1, "High in last " + period + " bars = " + Round(Hi,2), Color.GREEN);
+AddLabel(1, "Low in last " + period + " bars = "  + Round(Lo,2), Color.GREEN);
+```
 
-- else b + smlCount[1], 1 );
+Labels allow you to look at the chart and verify the values.
 
-- This allows 'smlCount' to rise to 1000 and then it limits smlCount toa value of 1000.
+Example8:
 
-- Example6:
+```
+input length = 21;
+def SDr = StDev(r, length);
+plot IVSwitch = ( fold i = 0 to length with count do count + if SDr[i] <= SDr  then 1   else 0 ) / length;
+```
 
-- plot Test = fold i = 0 to 4 with x = 1 do x + i;
+This fold counts the number of times, in the last 20 bars, the SDr (std dev of the change ratio) has fallen below the SD.
 
-- What is the value of test? If your answer was not 7, rethink it.
+Example9:
 
-- ======================
+```
+declare lower;
+input volTarget        = 200000;
+input length           = 20;
+plot atLeastVolumeTgt  = fold idx = 0 to length + 1 with s = yes while s == yes do if GetValue( volume, idx, length + 2 ) >volTarget then yes else no;
+```
 
-- If we change it to:
+The above works as a study, omit the "declare lower;" if you want to use it directly in a scan or column.
 
-- plot Test = fold i = 1 to 5 with x = 10 do x + i; What is its value?
-
-- If your answer was not 20, rethink it.
-
-- Example7:
-
-- input period = 20;#hint period:Number of bars to look in
-
-- def Hi = fold i = 0 to period with n = high do Max(n, GetValue(high, i, period - 1));
-
-- def Lo = fold k = 0 to period with m = low do Min(m, GetValue(low, k, period - 1));
-
-- AddLabel(1, "High in last " + period + " bars = " + Round(Hi,2), Color.GREEN);
-
-- AddLabel(1, "Low in last " + period + " bars = "  + Round(Lo,2), Color.GREEN);
-
-- Labels allow you to look at the chart and verify the values.
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  2727
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- Example8:
-
-- input length = 21;
-
-- def SDr = StDev(r, length);
-
-- plot IVSwitch = ( fold i = 0 to length with count do count + if SDr[i] <= SDr  then 1   else 0 ) / length;
-
-- This fold counts the number of times, in the last 20 bars, the SDr (std dev of the change ratio) has fallen below the SD.
-
-- Example9:
-
-- declare lower;
-
-- input volTarget        = 200000;
-
-- input length           = 20;
-
-- plot atLeastVolumeTgt  = fold idx = 0 to length + 1 with s = yes while s == yes do if GetValue( volume, idx, length + 2 ) >
-
-- volTarget then yes else no;
-
-- #The above works as a study, omit the "declare lower;" if you want to use it directly in a scan or column.
-
-- #This code that will check for "daily" average volume greater than 200,000 in the last 20 days, meaning that the stock
-
-- should have traded at least 200,000 shares every single day for at least the last 20 days. If it complies, 1 is plotted if
-
-- not 0 is plotted. In a study, it is more meaningful to put the 1 or 0 result in an clarifying label.
+This code that will check for "daily" average volume greater than 200,000 in the last 20 days, meaning that the stock should have traded at least 200,000 shares every single day for at least the last 20 days. If it complies, 1 is plotted if not 0 is plotted. In a study, it is more meaningful to put the 1 or 0 result in an clarifying label.
 
 <a name="ACCESSING_THE_CONDITION_WIZARD"> </a>
 ## ACCESSING THE CONDITION WIZARD
@@ -1660,13 +1579,9 @@ In the above 'Scan/StockHacker' tab, all fundamental filters have been deleted u
 
 [Return to TOC](#toc)
 
-- Comment 1: The stochastics indicator can be confusing because it is referred to as: 1. Fast Stochastics; 2. Slow
+Comment 1: The stochastics indicator can be confusing because it is referred to as: 1. Fast Stochastics; 2. Slow Stochastics; or 3. Full Stochastics. This video gives a clear explanation of the differences between the three in Part 1 and usage in Part 2. See video (2 parts)
 
-- Stochastics; or 3. Full Stochastics. This video gives a clear explanation of the differences between the three in Part 1
-
-- and usage in Part 2. See video (2 parts)
-
-- Comment 2: While at this site check out the other indicator tutorials that may interest you. View indicator tutorial list
+Comment 2: While at this site check out the other indicator tutorials that may interest you. View indicator tutorial list
 
 <a name="THE_STANDAED_DEVIATION_SD_EXPLAINED"> </a>
 ## THE STANDAED DEVIATION (SD) EXPLAINED
@@ -1705,27 +1620,20 @@ SD values
 
 [Return to TOC](#toc)
 
-- #hint:Draws upper & lower bands at defined percent
+```
+#hint:Draws upper & lower bands at defined percent
+input length = 10;#hint length:Length of base ExpAverage
+input percentShift = 5.0;#hint PercentShift: Percent of upper & lower bands from ExpAverage
+input price = close;#hint price: Basis for base ExpAverage
+def base = ExpAverage(price, length);
+plot UpperBand = base * (1 + percentShift / 100);
+UpperBand.setDefaultColor(GetColor(1));
+plot LowerBand = base * (1 - percentShift / 100);
+LowerBand.setDefaultColor(GetColor(1));
+assignBackgroundColor(if close > upperBand then color.Green else color.current);
+```
 
-- input length = 10;#hint length:Length of base ExpAverage
-
-- input percentShift = 5.0;#hint PercentShift: Percent of upper & lower bands from ExpAverage
-
-- input price = close;#hint price: Basis for base ExpAverage
-
-- def base = ExpAverage(price, length);
-
-- plot UpperBand = base * (1 + percentShift / 100);
-
-- UpperBand.setDefaultColor(GetColor(1));
-
-- plot LowerBand = base * (1 - percentShift / 100);
-
-- LowerBand.setDefaultColor(GetColor(1));
-
-- assignBackgroundColor(if close > upperBand then color.Green else color.current);
-
-- ### EOC ###
+### EOC ###
 
 ## C-STANDARD DEVIATION CHANNELS
 
@@ -1733,41 +1641,29 @@ SD values
 
 - Standard deviations follow the 68–95–99.7 rule. That is, that a data distribution with a 1 standard deviation (SD)  contains 68% of all data. Likewise 2 SD contains 95% and 3 SD contains 99.7%.
 
-- #STD Deviation channel plots
+```
+#STD Deviation channel plots
 
-- input price = close;#hint Price:The choice of what is being plotted.
+input price = close;#hint Price:The choice of what is being plotted.
+input length = 14;#hint length:The agg-bars of the average which is the basis for the SD channels
 
-- input length = 14;#hint length:The agg-bars of the average which is the basis for the SD channels
+input SD1Up = 1;
+input SD1Dn = -1;
+input SD2Up = 2;
+input SD2Dn = -2;
+input SD3Up = 3;
+input SD3Dn = -3;
+def avg = Average(price, length);
+def StdDev = StDev(price, length);
+plot StDev1Up = avg + (SD1up * StdDev);
+plot StDev1Dn = avg + (SD1dn * StdDev);
+plot StDev2Up = avg + (SD2up * StdDev);
+plot StDev2Dn = avg + (SD2dn * StdDev);
+plot StDev3Up = avg + (SD3up * StdDev);
+plot StDev3Dn = avg + (SD3dn * StdDev);
+```
 
-- input SD1Up = 1;
-
-- input SD1Dn = -1;
-
-- input SD2Up = 2;
-
-- input SD2Dn = -2;
-
-- input SD3Up = 3;
-
-- input SD3Dn = -3;
-
-- def avg = Average(price, length);
-
-- def StdDev = StDev(price, length);
-
-- plot StDev1Up = avg + (SD1up * StdDev);
-
-- plot StDev1Dn = avg + (SD1dn * StdDev);
-
-- plot StDev2Up = avg + (SD2up * StdDev);
-
-- plot StDev2Dn = avg + (SD2dn * StdDev);
-
-- plot StDev3Up = avg + (SD3up * StdDev);
-
-- plot StDev3Dn = avg + (SD3dn * StdDev);
-
-- #EOC
+#EOC
 
 ## C-THE SIMPLEST REC IN THINKSCRIPT
 
@@ -1775,101 +1671,73 @@ SD values
 
 To comprehend a recursive statement, start with the simplest in concept. Here the previous value is recalled so 1 can be added to it to form the new value of x. In realtime coding, the +1 is replace by all kinds of conditions and resulting actions.
 
-- #Straight line REC  =  2 to (number-of-bars + 1)
-
-- Def x = x[1] + 1;
-
-- plot y = x;
-
-- Alternate: Subject to an 'if' statement:
-
-- plot y =  if x <= 200 then x else double.NaN ;
-
-- #EOC
+```
+#Straight line REC  =  2 to (number-of-bars + 1)
+Def x = x[1] + 1;
+plot y = x;
+Alternate: Subject to an 'if' statement:
+plot y =  if x <= 200 then x else double.NaN ;
+#EOC
+```
 
 ## C-EXAMPLE OF 4 NORMALIZATIONS
 
 [Return to TOC](#toc)
 
-- Usage: 'input data = close' is substituted by any indicator and its parameters.
+Usage: 'input data = close' is substituted by any indicator and its parameters.
 
-- declare lower;
+```
+declare lower;
+script normalizePlot {
+input data = close;
+input newRngMin = -1;
+input newRngMax = 1;
+def HHData = HighestAll( data );
+def LLData = LowestAll( data );
+plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
+}
+```
 
-- script normalizePlot {
+Examples
 
-- input data = close;
+```
+input price = close;
+input CCI_length = 7;
+input Momentum_length = 12;
+input RSI_length = 4;
+input WR_length = 10;
+input newRngMax = 100;#Maximum normalized  value
+input newRngMin = 0;#Minimum normalized  value
+input OverBought = 80;#Fixed value upper line for reference
+input OverSold = 20;#Fixed lower value line for reference
 
-- input newRngMin = -1;
+def newCCI = normalizePlot( CCI( CCI_length).CCI, newRngMin, newRngMax );
+def newMomentum = normalizePlot( Momentum( length = Momentum_length ).Momentum, newRngMin, newRngMax );
+def newWPR = normalizePlot( WilliamsPercentR( length = WR_length ).WR, newRngMin, newRngMax );
+def newRSIWilder = normalizePlot( RSIWilder( length = RSI_length ).RSI, newRngMin, newRngMax );
 
-- input newRngMax = 1;
-
-- def HHData = HighestAll( data );
-
-- def LLData = LowestAll( data );
-
-- plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
-
-- }
-
-- Examples
-
-- input price = close;
-
-- input CCI_length = 7;
-
-- input Momentum_length = 12;
-
-- input RSI_length = 4;
-
-- input WR_length = 10;
-
-- input newRngMax = 100;#Maximum normalized  value
-
-- input newRngMin = 0;#Minimum normalized  value
-
-- input OverBought = 80;#Fixed value upper line for reference
-
-- input OverSold = 20;#Fixed lower value line for reference
-
-- def newCCI = normalizePlot( CCI( CCI_length).CCI, newRngMin, newRngMax );
-
-- def newMomentum = normalizePlot( Momentum( length = Momentum_length ).Momentum, newRngMin, newRngMax );
-
-- def newWPR = normalizePlot( WilliamsPercentR( length = WR_length ).WR, newRngMin, newRngMax );
-
-- def newRSIWilder = normalizePlot( RSIWilder( length = RSI_length ).RSI, newRngMin, newRngMax );
-
-- plot CCI = newCCI;
-
-- plot Momentum = newMomentum;
-
-- plot WPR = newWPR;
-
-- plot RSIWilder = newRSIWilder;
-
-- plot Over_Bought = 80;
-
-- plot Over_Sold = 20;
-
-- ### EOC ###
+plot CCI = newCCI;
+plot Momentum = newMomentum;
+plot WPR = newWPR;
+plot RSIWilder = newRSIWilder;
+plot Over_Bought = 80;
+plot Over_Sold = 20;
+### EOC ###
+```
 
 ## C-DATE LABEL IN MM/DD/YYYY FORMAT
 
 [Return to TOC](#toc)
 
-- #hint produces a date label in MMDDYYYY format
-
-- def year = (Round(GetYYYYMMDD() / 10000, 0));#Thie produces the year as1,210
-
-- def Month = GetMonth();
-
-- def Day = GetDayofMonth(GetYYYYMMDD());
-
-- def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1;
-
-- AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
-
-- #end
+```
+#hint produces a date label in MMDDYYYY format
+def year = (Round(GetYYYYMMDD() / 10000, 0));#Thie produces the year as1,210
+def Month = GetMonth();
+def Day = GetDayofMonth(GetYYYYMMDD());
+def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1;
+AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
+#end
+```
 
 ## C-USAGE OF THE SWITCH FUNCTION
 
@@ -1907,527 +1775,346 @@ To comprehend a recursive statement, start with the simplest in concept. Here th
 
 [Return to TOC](#toc)
 
-- #Hint: Plots Horizontal lines of highest-highs and lowest-lows
-
-- #TOS Name = HorizLines_HH_LL
-
-- input length = 20;#hint length: The number of bars being evaluated for the HH and LL. Also is the length of the longest
-
-- lines. Longer lines may show when two adjacent lines have the same HH or LL values.
-
-- input ShowHi_Lines = yes;#hint ShowHi_Lines:Shows or hides HH lines
-
-- input ShowLo_Lines = yes;#hint ShowLo_Lines:Shows or hides LL lines
-
-- def a = Lowest(low, length);
-
-- def b = if low == a then a else b[1];
-
-- plot LL_Lines = if b == 0 then double.nan else if ShowLo_Lines then b else double.nan;
-
-- LL_Lines.SetPaintingStrategy(paintingStrategy.hORIZONTAL);
-
-- def d = Highest(high, length);
-
-- def e = if high >= d then d else e[1];
-
-- plot HH_Lines = if ShowHi_Lines && e == 0 then double.nan else if ShowHi_Lines then e else double.nan;
-
-- HH_Lines.SetPaintingStrategy(paintingStrategy.horizontal);
-
-- Alertnate 1:
-
-- #hint <b> Highest High and Lowest Low lines & bubble for 3, 6 or 12 momths</b>
-
-- declare upper;
-
-- input timeFrame = { default threeMonths, sixMonths, twelveMonths };#hint timeFrame: select the TimeFrame desired
-
-- def numBars;
-
-- switch( timeFrame ) {
-
-- case threeMonths:
-
-- numBars       = 63;
-
-- case sixMonths:
-
-- numBars       = 126;
-
-- case twelveMonths:
-
-- numBars       = 252;
-
-- }
-
-- def barNum        = if IsNaN( close ) then Double.NaN else barNumber();
-
-- def lastBar       = HighestAll( barNum );
-
-- def startBar      = if lastBar <= numBars then 1 else lastBar - numBars;
-
-- def numMonths     = round( ( lastBar - startBar + 1 ) / 21, 0 );
-
-- def Hidata;
-
-- def Lodata;
-
-- if barNum < startBar then {
-
-- Hidata           = Double.NaN;
-
-- Lodata           = Double.NaN;
-
-- } else {
-
-- Hidata           = high;
-
-- Lodata           = low;
-
-- }
-
-- def highestData   = HighestAll( Hidata );
-
-- def lowestData    = LowestAll( Lodata );
-
-- plot HighestHigh  = highestData;
-
-- plot LowestLow    = LowestData;
-
-- #===================[ Look & Feel ]=====================
-
-- HighestHigh.SetPaintingStrategy( PaintingStrategy.LINE );
-
-- HighestHigh.SetLineWeight(5);
-
-- HighestHigh.SetDefaultColor(Color.PINK);
-
-- HighestHigh.HideBubble();
-
-- LowestLow.SetPaintingStrategy( PaintingStrategy.LINE );
-
-- LowestLow.SetLineWeight(5);
-
-- LowestLow.SetDefaultColor(Color.PINK);
-
-- LowestLow.HideBubble();
-
-- AddChartBubble( barNum == startBar, HighestHigh,  "Highest High in " +   numMonths +  " Months" , Color.cyan, yes );
-
-- AddChartBubble( barNum == startBar, LowestLow,    "Lowest Low in " +  numMonths  + " Months" , Color.pink, no  );
-
-- Alertnate 2:
-
-- #hint:<b>Plots a line for the highest in the last ? bars</b>\nHas option for a % lower plot
-
-- declare upper;
-
-- input numBars = 50;#hint numBars: The number of bars monitored
-
-- input price = high;#hint price:Select the price to monitor
-
-- input hidePctLowerPlot = yes;#hint hidePctLowerPlot: Yes hides the hidePctLowerPlot
-
-- input PctLower = 5;#hint PctLower: define the % lower plot criteria
-
-- def barNum = barNumber();
-
-- def lastBar = HighestAll( if IsNaN(price) then 0 else barNum );
-
-- def startBar = if lastBar <= numBars then 1 else lastBar - numBars;
-
-- def totBars = if lastBar <= numBars then lastBar else numBars;
-
-- def data = if barNum < startBar then 0 else price;
-
-- def highestData = HighestAll( data );
-
-- plot HighestHigh = highestData;
-
-- plot PercentDown = highestData * (1 - (PctLower/100));
-
-- HighestHigh.SetPaintingStrategy( PaintingStrategy.LINE );
-
-- HighestHigh.SetLineWeight(3);
-
-- HighestHigh.AssignValueColor( color.CYAN );
-
-- #HighestHigh.SetDefaultColor(Color.CYAN);
-
-- HighestHigh.HideBubble();
-
-- PercentDown.SetStyle( Curve.SHORT_DASH );
-
-- PercentDown.SetLineWeight(1);
-
-- PercentDown.SetDefaultColor(Color.RED);
-
-- PercentDown.HideBubble();
-
-- PercentDown.SetHiding( hidePctLowerPlot );
-
-- AddChartBubble( barNum == startBar, HighestHigh,
-
-- "Highest High in the Past " +
-
-- totBars +
-
-- " bars: "  + HighestHigh,
-
-- color.CYAN );
-
-- AddChartBubble( barNum == startBar and !hidePctLowerPlot, PercentDown,
-
-- PctLower + " % Below Highest High in the Past " + totBars + " bars: "  + PercentDown,
-
-- color.RED );
-
-- #EOC
+#Hint: Plots Horizontal lines of highest-highs and lowest-lows
+#TOS Name = HorizLines_HH_LL
+input length = 20;#hint length: The number of bars being evaluated for the HH and LL. Also is the length of the longest lines. Longer lines may show when two adjacent lines have the same HH or LL values.
+
+```
+input ShowHi_Lines = yes;#hint ShowHi_Lines:Shows or hides HH lines
+input ShowLo_Lines = yes;#hint ShowLo_Lines:Shows or hides LL lines
+
+def a = Lowest(low, length);
+def b = if low == a then a else b[1];
+
+plot LL_Lines = if b == 0 then double.nan else if ShowLo_Lines then b else double.nan;
+LL_Lines.SetPaintingStrategy(paintingStrategy.hORIZONTAL);
+
+def d = Highest(high, length);
+def e = if high >= d then d else e[1];
+
+plot HH_Lines = if ShowHi_Lines && e == 0 then double.nan else if ShowHi_Lines then e else double.nan;
+HH_Lines.SetPaintingStrategy(paintingStrategy.horizontal);
+```
+
+Alertnate 1:
+
+#hint <b> Highest High and Lowest Low lines & bubble for 3, 6 or 12 momths</b>
+
+declare upper;
+input timeFrame = { default threeMonths, sixMonths, twelveMonths };#hint timeFrame: select the TimeFrame desired
+
+def numBars;
+switch( timeFrame ) {
+  case threeMonths:
+    numBars       = 63;
+  case sixMonths:
+    numBars       = 126;
+  case twelveMonths:
+    numBars       = 252;
+}
+
+def barNum        = if IsNaN( close ) then Double.NaN else barNumber();
+def lastBar       = HighestAll( barNum );
+def startBar      = if lastBar <= numBars then 1 else lastBar - numBars;
+def numMonths     = round( ( lastBar - startBar + 1 ) / 21, 0 );
+def Hidata;
+def Lodata;
+
+if barNum < startBar then {
+    Hidata           = Double.NaN;
+    Lodata           = Double.NaN;
+  } else {
+    Hidata           = high;
+    Lodata           = low;
+}
+
+def highestData   = HighestAll( Hidata );
+def lowestData    = LowestAll( Lodata );
+plot HighestHigh  = highestData;
+plot LowestLow    = LowestData;
+
+#===================[ Look & Feel ]=====================
+HighestHigh.SetPaintingStrategy( PaintingStrategy.LINE );
+HighestHigh.SetLineWeight(5);
+HighestHigh.SetDefaultColor(Color.PINK);
+HighestHigh.HideBubble();
+LowestLow.SetPaintingStrategy( PaintingStrategy.LINE );
+LowestLow.SetLineWeight(5);
+LowestLow.SetDefaultColor(Color.PINK);
+LowestLow.HideBubble();
+
+AddChartBubble( barNum == startBar, HighestHigh,  "Highest High in " +   numMonths +  " Months" , Color.cyan, yes );
+AddChartBubble( barNum == startBar, LowestLow,    "Lowest Low in " +  numMonths  + " Months" , Color.pink, no  );
+
+Alertnate 2:
+
+```
+#hint:<b>Plots a line for the highest in the last ? bars</b>\nHas option for a % lower plot
+
+declare upper;
+input numBars = 50;#hint numBars: The number of bars monitored
+input price = high;#hint price:Select the price to monitor
+input hidePctLowerPlot = yes;#hint hidePctLowerPlot: Yes hides the hidePctLowerPlot
+input PctLower = 5;#hint PctLower: define the % lower plot criteria
+
+def barNum = barNumber();
+def lastBar = HighestAll( if IsNaN(price) then 0 else barNum );
+def startBar = if lastBar <= numBars then 1 else lastBar - numBars;
+def totBars = if lastBar <= numBars then lastBar else numBars;
+def data = if barNum < startBar then 0 else price;
+def highestData = HighestAll( data );
+
+plot HighestHigh = highestData;
+plot PercentDown = highestData * (1 - (PctLower/100));
+HighestHigh.SetPaintingStrategy( PaintingStrategy.LINE );
+HighestHigh.SetLineWeight(3);
+HighestHigh.AssignValueColor( color.CYAN );
+#HighestHigh.SetDefaultColor(Color.CYAN);
+HighestHigh.HideBubble();
+PercentDown.SetStyle( Curve.SHORT_DASH );
+PercentDown.SetLineWeight(1);
+PercentDown.SetDefaultColor(Color.RED);
+PercentDown.HideBubble();
+PercentDown.SetHiding( hidePctLowerPlot );
+
+AddChartBubble( barNum == startBar, HighestHigh, "Highest High in the Past " + totBars + " bars: "  + HighestHigh, color.CYAN );
+AddChartBubble( barNum == startBar and !hidePctLowerPlot, PercentDown,
+PctLower + " % Below Highest High in the Past " + totBars + " bars: "  + PercentDown,
+color.RED );
+#EOC
+```
 
 ## C-VARIOUS MARKET TIME VARIABLES
 
 [Return to TOC](#toc)
 
-- input showOnlyToday = YES;
+```
+input showOnlyToday = YES;
+input Market_Open_Time = 0930;
+input Market_Close_Time = 1600;
 
-- input Market_Open_Time = 0930;
+def day = getDay();
+def lastDay = getLastDay();
+def isToday = if(day == lastDay, 1, 0);
+def shouldPlot = if(showOnlyToday and isToday, 1, if(!showOnlyToday, 1, 0));
+def pastOpen = if((secondsTillTime(Market_Open_Time) > 0), 0, 1);# True if market is already open i.e past 9:30 AM
+def pastClose = if((secondsTillTime(Market_Close_Time) > 0), 0, 1);# True if market is already closed i.e. past 4:30 PM
+def marketOpen = if(pastOpen and !pastClose, 1, 0);# True if market is past the open but before the close i.e. market is open
 
-- input Market_Close_Time = 1600;
-
-- def day = getDay();
-
-- def lastDay = getLastDay();
-
-- def isToday = if(day == lastDay, 1, 0);
-
-- def shouldPlot = if(showOnlyToday and isToday, 1, if(!showOnlyToday, 1, 0));
-
-- def pastOpen = if((secondsTillTime(Market_Open_Time) > 0), 0, 1);# True if market is already open i.e past 9:30 AM
-
-- def pastClose = if((secondsTillTime(Market_Close_Time) > 0), 0, 1);# True if market is already closed i.e. past 4:30 PM
-
-- def marketOpen = if(pastOpen and !pastClose, 1, 0);# True if market is past the open but before the close i.e. market is
-
-- open
-
-- def firstBar = if (day[1] != day, day - 1, 0);
-
-- #EOD stands for End of Day
-
-- def EOD = secondsFromTime(1600) > 0; #After 4 pm, EOD is true
-
-- #EOC
+def firstBar = if (day[1] != day, day - 1, 0);
+#EOD stands for End of Day
+def EOD = secondsFromTime(1600) > 0; #After 4 pm, EOD is true
+#EOC
+```
 
 ## C-VERTICAL LINES (3 STUDIES)
 
 [Return to TOC](#toc)
 
-- #hint:Places vertical lines at start and end times
+```
+#hint:Places vertical lines at start and end times
+#TOS title = VertLines_at_START_END_times
+input Start = 1000;
+input End = 1200;
+def StartTime = SecondsFromTime(Start) ==0;
+def EndTime = SecondsFromTime(End) ==0;
+AddVerticalLine(StartTime,"Start",Color.GREEN,Curve.SHORT_DASH);
+AddVerticalLine(EndTime,"End",Color.GREEN,Curve.SHORT_DASH);
+```
 
-- #TOS title = VertLines_at_START_END_times
+```
+#hint:A vertical line at a specific time
+Input time = 1200;
+def starttime = secondsFromTime(time)==0;
+def ext = if starttime then close else ext[1];
+plot x = ext;
+AddVerticalLine(starttime, "Time = " + time , color = Color.Green, stroke = Curve.POINTS);
+Vertical lines with the most flexibility/options
+```
 
-- input Start = 1000;
+```
+#hint:Places vertical lines at start and end times of all days or selected days.\n Realize that, when certain times are inputted, the lines may overlap.
 
-- input End = 1200;
+#TOS title = SC_Vertical_Lines_Most_Flexible
 
-- def StartTime = SecondsFromTime(Start) ==0;
+input day_of_week = {default Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Everyday};
 
-- def EndTime = SecondsFromTime(End) ==0;
+input Start_Time = 930;
+input End_Time = 1600;
+input StartOrEnd = {default StartOnly,EndOnly,Both};
 
-- AddVerticalLine(StartTime,"Start",Color.GREEN,Curve.SHORT_DASH);
+def every = If Day_of_Week == day_of_week.Everyday then 1 else 0;
+def StartTime = SecondsFromTime(Start_Time) == 0;
+def EndTime = SecondsFromTime(End_Time) == 0;
 
-- AddVerticalLine(EndTime,"End",Color.GREEN,Curve.SHORT_DASH);
+AddVerticalLine(StartOrEnd == StartOrEnd.StartOnly && StartTime && (GetDayofWeek(GetYYYYMMDD()) == day_of_week + 1 or every),"Start_Time = " + Start_Time,Color.GREEN,Curve.SHORT_DASH);
+AddVerticalLine(StartOrEnd == StartOrEnd.EndOnly && EndTime && (GetDayofWeek(GetYYYYMMDD()) == day_of_week + 1 or every),"End_Time = " + End_Time ,Color.GREEN,Curve.SHORT_DASH);
 
-- #hint:A vertical line at a specific time
+AddVerticalLine(StartOrEnd == StartOrEnd.Both && StartTime && (GetDayofWeek(GetYYYYMMDD()) == day_of_week + 1 or every),"Start_Time = " + Start_Time,Color.GREEN,Curve.SHORT_DASH);
 
-- Input time = 1200;
+AddVerticalLine(StartOrEnd == StartOrEnd.both && EndTime && (GetDayofWeek(GetYYYYMMDD()) == day_of_week + 1 or every),"End_Time = " + End_Time,Color.GREEN,Curve.SHORT_DASH);
 
-- def starttime = secondsFromTime(time)==0;
-
-- def ext = if starttime then close else ext[1];
-
-- plot x = ext;
-
-- AddVerticalLine(starttime, "Time = " + time , color = Color.Green, stroke = Curve.POINTS);
-
-- Vertical lines with the most flexibility/options
-
-- #hint:Places vertical lines at start and end times of all days or selected days.\n Realize that, when certain times are
-
-- inputted, the lines may overlap.
-
-- #TOS title = SC_Vertical_Lines_Most_Flexible
-
-- input day_of_week = {default Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, Everyday};
-
-- input Start_Time = 930;
-
-- input End_Time = 1600;
-
-- input StartOrEnd = {default StartOnly,EndOnly,Both};
-
-- def every = If Day_of_Week == day_of_week.Everyday then 1 else 0;
-
-- def StartTime = SecondsFromTime(Start_Time) == 0;
-
-- def EndTime = SecondsFromTime(End_Time) == 0;
-
-- AddVerticalLine(StartOrEnd == StartOrEnd.StartOnly && StartTime && (GetDayofWeek(GetYYYYMMDD()) ==
-
-- day_of_week + 1 or every),"Start_Time = " + Start_Time,Color.GREEN,Curve.SHORT_DASH);
-
-- AddVerticalLine(StartOrEnd == StartOrEnd.EndOnly && EndTime && (GetDayofWeek(GetYYYYMMDD()) ==
-
-- day_of_week + 1 or every),"End_Time = " + End_Time ,Color.GREEN,Curve.SHORT_DASH);
-
-- AddVerticalLine(StartOrEnd == StartOrEnd.Both && StartTime && (GetDayofWeek(GetYYYYMMDD()) == day_of_week
-
-- + 1 or every),"Start_Time = " + Start_Time,Color.GREEN,Curve.SHORT_DASH);
-
-- AddVerticalLine(StartOrEnd == StartOrEnd.both && EndTime && (GetDayofWeek(GetYYYYMMDD()) == day_of_week + 1
-
-- or every),"End_Time = " + End_Time,Color.GREEN,Curve.SHORT_DASH);
-
-- #end
+#end
+```
 
 ## C-VERTICAL LINES AT INPUTTED BAR LOCATIONS
 
 [Return to TOC](#toc)
 
-- #hint: <b>Plots a vertical line at up to 6 specified agg-bars-locations.</b>\n#LinePos1 must always be greater than 0. Set
+```
+#hint: <b>Plots a vertical line at up to 6 specified agg-bars-locations.</b>\n#LinePos1 must always be greater than 0. Set any other LinePos to zero (0) to omit its display.
+#By R. Houser Modified by StanL
 
-- any other LinePos to zero (0) to omit its display.
+declare upper;
+input linePos1    = 10;#hint linePos1:Must be greater than zero
+input linePos2    = 20;#hint linePos2:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos3    = 50;#hint linePos3:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos4    = 100;#hint linePos4:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos5    = 150;#hint linePos5:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+input linePos6    = 200;#hint linePos6:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
 
-- #By R. Houser Modified by StanL
+Assert( linePos1 > 0, "linePos1 must be greater than zero" );
+Assert( linePos2 == 0 or linePos2 > linePos1, "linePos2 ("+linePos2+") must be zero or greater than linePos1  ("+linePos1+")" );
+Assert( linePos3 == 0 or linePos3 > linePos2, "linePos3 ("+linePos3+") must be zero or greater than linePos2  ("+linePos2+")" );
+Assert( linePos4 == 0 or linePos4 > linePos3, "linePos4 ("+linePos4+") must be zero or greater than linePos3 ("+linePos3+")" );
+Assert( linePos5 == 0 or linePos5 > linePos4, "linePos5 ("+linePos4+") must be zero or greater than linePos4 ("+linePos4+")" );
+Assert( linePos6 == 0 or linePos6 > linePos5, "linePos6 ("+linePos4+") must be zero or greater than linePos5  ("+linePos5+")" );
 
-- declare upper;
+def barNum        = if IsNaN( close ) then Double.NaN else BarNumber();
+def highestBarNum = HighestAll( barNum );
+def show1         = if barNum == highestBarNum - linePos1 then yes else no;
+def show2         = if linePos2 > linePos1 and barNum == highestBarNum - linePos2 then yes else no;
+def show3         = if linePos3 > linePos2 and barNum == highestBarNum - linePos3 then yes else no;
+def show4         = if linePos4 > linePos3 and barNum == highestBarNum - linePos4 then yes else no;
+def show5         = if linePos5 > linePos4 and barNum == highestBarNum - linePos5 then yes else no;
+def show6         = if linePos6 > linePos5 and barNum == highestBarNum - linePos6 then yes else no;
 
-- input linePos1    = 10;#hint linePos1:Must be greater than zero
+AddVerticalLine( show1, linePos1+" Agg-bars", GetColor( 0 ) );
+AddVerticalLine( show2, linePos2+" Agg-bars", GetColor( 1 ) );
+AddVerticalLine( show3, linePos3+" Agg-bars", GetColor( 2 ) );
+AddVerticalLine( show4, linePos4+" Agg-bars", GetColor( 3 ) );
+AddVerticalLine( show5, linePos5+" Agg-bars", GetColor( 4 ) );
+AddVerticalLine( show6, linePos6+" Agg-bars", GetColor( 5 ) );
+AddLabel(1, "Vertical lines have been placed at the inputted locations", color.white);
+```
 
-- input linePos2    = 20;#hint linePos2:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
+Comment: This is a good example illustrating the use of the Assert function.
 
-- input linePos3    = 50;#hint linePos3:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
-
-- input linePos4    = 100;#hint linePos4:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
-
-- input linePos5    = 150;#hint linePos5:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
-
-- input linePos6    = 200;#hint linePos6:Enter the agg-bars larger than previous input. Enter zero to omit the plot.
-
-- Assert( linePos1 > 0, "linePos1 must be greater than zero" );
-
-- Assert( linePos2 == 0 or linePos2 > linePos1, "linePos2 ("+linePos2+") must be zero or greater than linePos1
-
-- ("+linePos1+")" );
-
-- Assert( linePos3 == 0 or linePos3 > linePos2, "linePos3 ("+linePos3+") must be zero or greater than linePos2
-
-- ("+linePos2+")" );
-
-- Assert( linePos4 == 0 or linePos4 > linePos3, "linePos4 ("+linePos4+") must be zero or greater than linePos3
-
-- ("+linePos3+")" );
-
-- Assert( linePos5 == 0 or linePos5 > linePos4, "linePos5 ("+linePos4+") must be zero or greater than linePos4
-
-- ("+linePos4+")" );
-
-- Assert( linePos6 == 0 or linePos6 > linePos5, "linePos6 ("+linePos4+") must be zero or greater than linePos5
-
-- ("+linePos5+")" );
-
-- def barNum        = if IsNaN( close ) then Double.NaN else BarNumber();
-
-- def highestBarNum = HighestAll( barNum );
-
-- def show1         = if barNum == highestBarNum - linePos1 then yes else no;
-
-- def show2         = if linePos2 > linePos1 and barNum == highestBarNum - linePos2 then yes else no;
-
-- def show3         = if linePos3 > linePos2 and barNum == highestBarNum - linePos3 then yes else no;
-
-- def show4         = if linePos4 > linePos3 and barNum == highestBarNum - linePos4 then yes else no;
-
-- def show5         = if linePos5 > linePos4 and barNum == highestBarNum - linePos5 then yes else no;
-
-- def show6         = if linePos6 > linePos5 and barNum == highestBarNum - linePos6 then yes else no;
-
-- AddVerticalLine( show1, linePos1+" Agg-bars", GetColor( 0 ) );
-
-- AddVerticalLine( show2, linePos2+" Agg-bars", GetColor( 1 ) );
-
-- AddVerticalLine( show3, linePos3+" Agg-bars", GetColor( 2 ) );
-
-- AddVerticalLine( show4, linePos4+" Agg-bars", GetColor( 3 ) );
-
-- AddVerticalLine( show5, linePos5+" Agg-bars", GetColor( 4 ) );
-
-- AddVerticalLine( show6, linePos6+" Agg-bars", GetColor( 5 ) );
-
-- AddLabel(1, "Vertical lines have been placed at the inputted locations", color.white);
-
-- Comment: This is a good example illustrating the use of the Assert function.
-
-- #end
+#end
 
 ## C-PLOT BARNUMBERS AT SPECIFIED INTERVALS
 
 [Return to TOC](#toc)
 
-- Bar-number data and counting can be very useful when debugging code. The script below may be useful.
+Bar-number data and counting can be very useful when debugging code. The script below may be useful.
 
-- # Title = Bar_Number_Plot_Interval
+```
+# Title = Bar_Number_Plot_Interval
+#hint: Numbers the bars at inputted intervals. A line plot is also selectable. This may be shown on the upper or lower plot by using 'EDIT STUDIES'.
 
-- #hint: Numbers the bars at inputted intervals. A line plot is also selectable. This may be shown on the upper or lower plot
+Input Interval = 5;#hint Interval: Enter the desired interval between shown bar mumbers.\n 0 and 1 plots at every bar.
 
-- by using 'EDIT STUDIES'.
+Input BarNumbLine = Yes;#hint BarNumbLine: YES shows a line plot of bar number at the 'high' price.
 
-- Input Interval = 5;#hint Interval: Enter the desired interval between shown bar mumbers.\n 0 and 1 plots at every bar.
+def Every_Interval = interval - 1;
+plot Data = if BarNumbLine == 1 then high else double.nan;
 
-- Input BarNumbLine = Yes;#hint BarNumbLine: YES shows a line plot of bar number at the 'high' price.
+def barNumber = barNumber();
+Plot bn = if (barNumber -1) % Interval == 1 then barNumber else double.nan;
 
-- def Every_Interval = interval - 1;
+bn.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
+plot bn_1 = if interval == 0 or interval == 1 then barNumber else double.nan;
+bn_1.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
 
-- plot Data = if BarNumbLine == 1 then high else double.nan;
+#####################
+def TotalBars = HighestAll(barNumber());
+AddLabel( yes, "TotalBars =  " + TotalBars , Color.white);
+AddLabel( yes,  "Numbering Interval = " + Interval, Color.pink);
+########### EOC ########
+```
 
-- def barNumber = barNumber();
+The above is a study named Bar_Number_Plot_Interval.txt available at http://mytrade.com/StanL
 
-- Plot bn = if (barNumber -1) % Interval == 1 then barNumber else double.nan;
-
-- bn.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
-
-- plot bn_1 = if interval == 0 or interval == 1 then barNumber else double.nan;
-
-- bn_1.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
-
-- #####################
-
-- def TotalBars = HighestAll(barNumber());
-
-- AddLabel( yes, "TotalBars =  " + TotalBars , Color.white);
-
-- AddLabel( yes,  "Numbering Interval = " + Interval, Color.pink);
-
-- ########### EOC ########
-
-- The above is a study named Bar_Number_Plot_Interval.txt available at http://mytrade.com/StanL
-
-- #end
+#end
 
 ## C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS
 
 [Return to TOC](#toc)
 
-- #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length,
+```
+#hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length, default 20.
 
-- default 20.
+def barnumber = barnumber();
+input length = 20;#hint Length: Looks for new highs within every Agg-bars length. <b>(Default is 20)</b>
 
-- def barnumber = barnumber();
+input gap_length = 200;#hint gap_length: If there is a large gap between new highs, this gap_length is used to find the previous highest high and it subtracts the current high bar number from the previous high barnumber. <b>\n(Default is 200)</b>
 
-- input length = 20;#hint Length: Looks for new highs within every Agg-bars length. <b>(Default is 20)</b>
+input show_Bar_number = NO;#hint  show_Bar_number:Yes shows each bar number
 
-- input gap_length = 200;#hint gap_length: If there is a large gap between new highs, this gap_length is used to find the
+def numberold1 = if highest(high, length)[1] then barnumber else double.nan;
+def signal = if highest(high, length) > highest(high, length)[1] then barnumber() else 0;
+def signal1 = if signal > 0 then (signal - highest(signal, length)[1]) else 0;
+plot count = if signal1 > 0 and signal1 != barnumber() then signal1 else if signal1 == barnumber() then (signal1 - highest(signal[1], gap_length)) else double.nan;
 
-- previous highest high and it subtracts the current high bar number from the previous high barnumber. <b>\n(Default is
-
-- 200)</b>
-
-- input show_Bar_number = NO;#hint  show_Bar_number:Yes shows each bar number
-
-- def numberold1 = if highest(high, length)[1] then barnumber else double.nan;
-
-- def signal = if highest(high, length) > highest(high, length)[1] then barnumber() else 0;
-
-- def signal1 = if signal > 0 then (signal - highest(signal, length)[1]) else 0;
-
-- plot count = if signal1 > 0 and signal1 != barnumber() then signal1 else if signal1 == barnumber() then (signal1 -
-
-- highest(signal[1], gap_length)) else double.nan;
-
-- count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
-
-- plot Bar_number = if show_Bar_number == yes then barnumber() else double.nan;
-
-- Bar_Number.setPaintingStrategy(paintingStrategy.VALUES_BELOW);
-
-- #end
+ count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
+ plot Bar_number = if show_Bar_number == yes then barnumber() else double.nan;
+ Bar_Number.setPaintingStrategy(paintingStrategy.VALUES_BELOW);
+ #end
+ ```
 
 ## C-MARKET OPEN AND LUNCH TIMES
 
 [Return to TOC](#toc)
 
-- def NineThirty = secondsFromTime(930) > 0;
+```
+def NineThirty = secondsFromTime(930) > 0;
+def TwelveOclock = secondsFromTime(1200) > 0;
+def MarketOpen = NineThirty > 0 && NineThirty [1] <= 0;
+def LunchTime = TwelveOclock > 0 && TwelveOclock[1] <= 0;
 
-- def TwelveOclock = secondsFromTime(1200) > 0;
+AddVerticalLine(MarketOpen or LunchTime,if MarketOpen then "TIME TO TRADE!" else "LUNCH TIME",if MarketOpenthen color.GREEN else color.BLUE);
 
-- def MarketOpen = NineThirty > 0 && NineThirty [1] <= 0;
-
-- def LunchTime = TwelveOclock > 0 && TwelveOclock[1] <= 0;
-
-- AddVerticalLine(MarketOpen or LunchTime,if MarketOpen then "TIME TO TRADE!" else "LUNCH TIME",if MarketOpen
-
-- then color.GREEN else color.BLUE);
-
-- #end
+#end
+```
 
 ## C-SQUEEZE SCAN WITH MACD EXIT
 
 [Return to TOC](#toc)
 
-- # Squeeze Exit / MACD Scan
-
-- BollingerBandsSMA()."UpperBand" is greater than KeltnerChannels()."Upper_Band" and
-
-- BollingerBandsSMA()."UpperBand"[1] is less than KeltnerChannels()."Upper_Band"[1] and
-
-- MACD() > 0 and MACD() > MACD()[1]
-
-- #end
+```
+# Squeeze Exit / MACD Scan
+BollingerBandsSMA()."UpperBand" is greater than KeltnerChannels()."Upper_Band" and
+BollingerBandsSMA()."UpperBand"[1] is less than KeltnerChannels()."Upper_Band"[1] and MACD() > 0 and MACD() > MACD()[1]
+#end
+```
 
 ## C-SHOWING WHERE A CANDLE PATTERN  EXISTS
 
 [Return to TOC](#toc)
 
-- You can show/plot where any particular candle pattern exists. Below is code that shows where the popular Doji pattern
+-You can show/plot where any particular candle pattern exists. Below is code that shows where the popular Doji pattern exists:
 
-- exists:
+```
+plot d = Doji();# If a Doji is present Doji() is true.The below lines format what to show at that location.
 
-- plot d = Doji();# If a Doji is present Doji() is true.The below lines format what to show at that location.
+d.setPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+d.setLineWeight(2);
+d.setDefaultColor(Color.White);
+```
 
-- d.setPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+You may find this reference on the Doji of value....http://ezinearticles.com/?Candlestick-Charting-and-Reversal-Patterns---The-Doji&id=1068331
 
-- d.setLineWeight(2);
+Doji() as used above is the simplest of all candles to show because it has only a single plot. But other patterns are more complicated. For example, some candles may be bullish (up) or bearish (down) patterns. As an example on how to substitute them for the Doji() used above, we'll use Harami. When we inspect its code , we see that it has three input variables and two plots named 'bullish' and 'bearish'. In this example, we'll retain all the parameters (assuming that
 
-- d.setDefaultColor(Color.White);
+ThinkScript knows the best parameters to use) and show the 'bullish' plot only. The def condition above now becomes:
 
-- You may find this reference on the Doji of value....http://ezinearticles.com/?Candlestick-Charting-and-Reversal-
+`def condition = if (Harami().Bullish , 1, 0); # Whenever Harami().Bullish is present, condition is true`
 
-- Patterns---The-Doji&id=1068331
+The remainder of the code statements can be changed to reflect reading correctness but what plots will be unaffected if they are not changed.
 
-- Doji() as used above is the simplest of all candles to show because it has only a single plot. But other patterns are more
+-If you want to also change the candle's parameters then the code becomes as follows with you providing values for the ????. The code becomes `def condition = if (Harami(length = ????, trendSetup = ????, bodyFactor = ????).Bullish , 1, 0);`
 
-- complicated. For example, some candles may be bullish (up) or bearish (down) patterns. As an example on how to
-
-- substitute them for the Doji() used above, we'll use Harami. When we inspect its code , we see that it has three input
-
-- variables and two plots named 'bullish' and 'bearish'. In this example, we'll retain all the parameters (assuming that
-
-- ThinkScript knows the best parameters to use) and show the 'bullish' plot only. The def condition above now becomes:
-
-- def condition = if (Harami().Bullish , 1, 0); # Whenever Harami().Bullish is present, condition is true
-
-- The remainder of the code statements can be changed to reflect reading correctness but what plots will be unaffected
-
-- if they are not changed.
-
-- If you want to also change the candle's parameters then the code becomes as follows with you providing values for the
-
-- ????. The code becomes def condition = if (Harami(length = ????, trendSetup = ????, bodyFactor = ????).Bullish ,
-
-- 1, 0);
-
-- Note that the parameter names (length, trendSetup and  bodyFactor) are exactly the same as in the Harami code.
+Note that the parameter names (length, trendSetup and  bodyFactor) are exactly the same as in the Harami code.
 
 - #end
 
@@ -2435,543 +2122,372 @@ To comprehend a recursive statement, start with the simplest in concept. Here th
 
 [Return to TOC](#toc)
 
-- #hint:Uses the VolumeAvg study and adds a label showing volume as the percent of the average daily volume. The average
+```
+#hint:Uses the VolumeAvg study and adds a label showing volume as the percent of the average daily volume. The average  daily volume length is based on the variable inputted length.
 
-- daily volume length is based on the variable inputted length.
+#Title = VolumeAvg_WithLabel
 
-- #Title = VolumeAvg_WithLabel
+declare lower;
+declare zerobase;
+input length = 50;
 
-- declare lower;
+plot Vol = volume;
+plot VolAvg = Average(volume, length);
+Vol.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Vol.SetLineWeight(3);
+Vol.DefineColor("Up", Color.UPTICK);
+Vol.DefineColor("Down", Color.DOWNTICK);
+Vol.AssignValueColor(if close > close[1] then Vol.color("Up") else if close < close[1] then Vol.color("Down") else GetColor(1));
+VolAvg.SetDefaultColor(GetColor(8));
 
-- declare zerobase;
+##### calc label ######
+#def AggPeriod = getAggregationPeriod();
 
-- input length = 50;
+def Pct_Avg = Volume(period = AggregationPeriod.DAY) / Average(volume(period = AggregationPeriod.DAY), length) * 100;
 
-- plot Vol = volume;
+AddLabel(yes, "Today's Vol = " + round(Pct_Avg,1) + " % of the " + length + "-day-average" ,color.PINK);
+```
 
-- plot VolAvg = Average(volume, length);
+Alternate 1:
 
-- Vol.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+```
+#Hint: <b>Shows a label of current Volume as a % of the input Period Average Volume</b>\n Colors Label based on current Volume being  >  or  <  Average Volume
 
-- Vol.SetLineWeight(3);
+#Usage: All 'edit studies' check boxes are blank when used as a pure label only. If you want to see the percentage for any bar under your cursor, then: (1) Check the 'show study' box in edit studies; OR (2) Change 'declare upper' to 'declare lower' and check all boxes in 'edit studies'.
 
-- Vol.DefineColor("Up", Color.UPTICK);
+declare upper;
 
-- Vol.DefineColor("Down", Color.DOWNTICK);
+input VolAvgLength = 50;#hint VolAvgLength:Insert the base agg-bars volume length
+def data = (Volume / VolumeAvg(VolAvgLength).VolAvg)-1;#Vol as fraction of VolAvgLength
 
-- Vol.AssignValueColor(if close > close[1] then Vol.color("Up") else if close < close[1] then Vol.color("Down") else
+plot VolPct = 100 * data;
+#VolPct.SetPaintingStrategy(PaintingStrategy.LINE);
+#VolPct.SetLineWeight(1);
+#VolPct.SetDefaultColor(Color.PINK);
+VolPct.hide();# can be over-ridden by the edit-studies check boxes
+addlabel(yes,"Vol as % of " + VolAvgLength + " agg-bar avg volume = "  + aspercent(Round(data,2)),if data < 0 then color.RED else color.GREEN);
 
-- GetColor(1));
+# end
+```
 
-- VolAvg.SetDefaultColor(GetColor(8));
+Alternate 2:
 
-- ##### calc label ######
+```
+#hint: Plots: 1. The volume histogram; 2. The inputted agg-bar average; and 3. A arrow when the volume exceeds the inputted average with an info label.
 
-- #def AggPeriod = getAggregationPeriod();
+declare lower;
+input length = 10;#hint length:The length of the average volume plot
+input pct    = 25.0;#hint pct:Plots an arrow when volume exceeds the average by this percent
+def _volAvg   = Average( volume, length );
+def volTest  = volume >= _volAvg * ( 1+ ( pct / 100 ) );
+plot Vol      = volume;
+Vol.SetPaintingStrategy( PaintingStrategy.HISTOGRAM );
+Vol.SetLineWeight(3);
+Vol.DefineColor("Up", Color.UPTICK);
+Vol.DefineColor("Down", Color.DOWNTICK);
+Vol.AssignValueColor(if close > close[1] then Vol.color("Up") else if close < close[1] then Vol.color("Down") else GetColor(1));
 
-- def Pct_Avg = Volume(period = AggregationPeriod.DAY) / Average(volume(period = AggregationPeriod.DAY), length) *
+plot VolAvg   = _volAvg;
+VolAvg.SetDefaultColor(GetColor(8));
+plot VolAlert = if volTest then volume * 1.30 else Double.NaN;
+VolAlert.SetPaintingStrategy( PaintingStrategy.ARROW_UP);
+VolAlert.SetDefaultColor( Color.GREEN );
+VolAlert.SetLineWeight(2);
+Addlabel(yes, "Arrow shows when volume is >= "+ pct + "above the " + length +"-bar-average",color.GREEN);
 
-- 100;
-
-- AddLabel(yes, "Today's Vol = " + round(Pct_Avg,1) + " % of the " + length + "-day-average" ,color.PINK);
-
-- Alternate 1:
-
-- #Hint: <b>Shows a label of current Volume as a % of the input Period Average Volume</b>\n Colors Label based on
-
-- current Volume being  >  or  <  Average Volume
-
-- #Usage: All 'edit studies' check boxes are blank when used as a pure label only. If you want to see the percentage for
-
-- any bar under your cursor, then: (1) Check the 'show study' box in edit studies; OR (2) Change 'declare upper' to 'declare
-
-- lower' and check all boxes in 'edit studies'.
-
-- declare upper;
-
-- input VolAvgLength = 50;#hint VolAvgLength:Insert the base agg-bars volume length
-
-- def data = (Volume / VolumeAvg(VolAvgLength).VolAvg)-1;#Vol as fraction of VolAvgLength
-
-- plot VolPct = 100 * data;
-
-- #VolPct.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- #VolPct.SetLineWeight(1);
-
-- #VolPct.SetDefaultColor(Color.PINK);
-
-- VolPct.hide();# can be over-ridden by the edit-studies check boxes
-
-- addlabel(yes,"Vol as % of " + VolAvgLength + " agg-bar avg volume = "  + aspercent(Round(data,2)),if data < 0 then
-
-- color.RED else color.GREEN);
-
-- # end
-
-- Alternate 2:
-
-- #hint: Plots: 1. The volume histogram; 2. The inputted agg-bar average; and 3. A arrow when the volume exceeds the
-
-- inputted average with an info label.
-
-- declare lower;
-
-- input length = 10;#hint length:The length of the average volume plot
-
-- input pct    = 25.0;#hint pct:Plots an arrow when volume exceeds the average by this percent
-
-- def _volAvg   = Average( volume, length );
-
-- def volTest  = volume >= _volAvg * ( 1+ ( pct / 100 ) );
-
-- plot Vol      = volume;
-
-- Vol.SetPaintingStrategy( PaintingStrategy.HISTOGRAM );
-
-- Vol.SetLineWeight(3);
-
-- Vol.DefineColor("Up", Color.UPTICK);
-
-- Vol.DefineColor("Down", Color.DOWNTICK);
-
-- Vol.AssignValueColor(if close > close[1] then Vol.color("Up") else if close < close[1] then Vol.color("Down") else
-
-- GetColor(1));
-
-- plot VolAvg   = _volAvg;
-
-- VolAvg.SetDefaultColor(GetColor(8));
-
-- plot VolAlert = if volTest then volume * 1.30 else Double.NaN;
-
-- VolAlert.SetPaintingStrategy( PaintingStrategy.ARROW_UP);
-
-- VolAlert.SetDefaultColor( Color.GREEN );
-
-- VolAlert.SetLineWeight(2);
-
-- Addlabel(yes, "Arrow shows when volume is >= "+ pct + "above the " + length +"-bar-average",color.GREEN);
-
-- #end
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  3939
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
+#end
+```
 
 ## C&S-IDENTIFY CURRENT LOW THAT HAS GAPED UP
 
 [Return to TOC](#toc)
 
-- #Plot or scan for current low that has gaped-up by an input percent
+```
+#Plot or scan for current low that has gaped-up by an input percent
 
-- input price1 = low;#hint Price1:The post-gap-up basis
+input price1 = low;#hint Price1:The post-gap-up basis
+input GapPct = 0.5;#Hint GapPct: The gap-up percent
+input price2 = high;#hint Price2: The prior gap-up-bar-basis
+input WithinBars = 15;#hint WithinBars:The number of bars-back to evaluate
 
-- input GapPct = 0.5;#Hint GapPct: The gap-up percent
+def x = 1+GapPct/100; # factor for above 100 %
+def term = x*price2[1]; #  = factor * previous high
+plot scan = price1 >= term;
 
-- input price2 = high;#hint Price2: The prior gap-up-bar-basis
-
-- input WithinBars = 15;#hint WithinBars:The number of bars-back to evaluate
-
-- def x = 1+GapPct/100; # factor for above 100 %
-
-- def term = x*price2[1]; #  = factor * previous high
-
-- plot scan = price1 >= term;
-
-- #To scan for above happening within the last 15 days the above would read
-
-- #plot scan = price1 >= term within WithinBars bars;
-
-- ##### below items not needed for a scan #####
-
-- scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_up);
-
-- scan.SetLineWeight(5);
-
-- scan.SetDefaultColor(Color.White);
-
-- #end
+#To scan for above happening within the last 15 days the above would read
+#plot scan = price1 >= term within WithinBars bars;
+##### below items not needed for a scan #####
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_up);
+scan.SetLineWeight(5);
+scan.SetDefaultColor(Color.White);
+#end
+```
 
 ## C&S-PERCENTAGE CHANGE OF AN AVERAGE (SCAN OR  PLOT)
 
 [Return to TOC](#toc)
 
-- #Hint:Scan/plot for a increase or decrease % of an inputted Parameter and average-length
+```
+#Hint:Scan/plot for a increase or decrease % of an inputted Parameter and average-length
+#The 'Inputted Parameter' has a choice of eleven different parameters
+#Give an up arrow where true
+input price = volume;#hint Price:Parameter being measured
+input choice = {default increase, decrease};#hint Choice: Choose Increase or Decrease %
+input percent = 20;#hint percent: Enter the percent  increse/decrease
+input length = 50;#hint length: The average length being evaluated
+def avg = average(price, length)[1];
+def chg = 100*(price/avg -1);
+plot scan;
+switch (choice) {
+  case increase:
+    scan = chg >= percent;
+  case decrease:
+    scan = chg <= -percent;
+}
 
-- #The 'Inputted Parameter' has a choice of eleven different parameters
+#### Below items not needed for a scan ####
+#scan.setpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+scan.SetLineWeight(5);
+scan.SetDefaultColor(Color.White);
+AddLabel(yes,Percent + " % " + Choice + " of the " + length + "-bar-average of a selected input price",color.white);
 
-- #Give an up arrow where true
-
-- input price = volume;#hint Price:Parameter being measured
-
-- input choice = {default increase, decrease};#hint Choice: Choose Increase or Decrease %
-
-- input percent = 20;#hint percent: Enter the percent  increse/decrease
-
-- input length = 50;#hint length: The average length being evaluated
-
-- def avg = average(price, length)[1];
-
-- def chg = 100*(price/avg -1);
-
-- plot scan;
-
-- switch (choice) {
-
-- case increase:
-
-- scan = chg >= percent;
-
-- case decrease:
-
-- scan = chg <= -percent;
-
-- }
-
-- #### Below items not needed for a scan ####
-
-- #scan.setpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- scan.SetLineWeight(5);
-
-- scan.SetDefaultColor(Color.White);
-
-- AddLabel(yes,Percent + " % " + Choice + " of the " + length + "-bar-average of a selected input price",color.white);
-
-- #end
+#end
+```
 
 ## C-ARROW AT THE DEFINED TIME EACH DAY
 
 [Return to TOC](#toc)
 
-- #hint:Places an arrow at the defined time each day
+```
+#hint:Places an arrow at the defined time each day
 
-- declare hide_on_daily;
+declare hide_on_daily;
+def barnumber = BarNumber();
+input time = 1000;#hint time:Time to place the arrow at
 
-- def barnumber = BarNumber();
+def timeTest = SecondsFromTime(time) == 0;
+def plotPrice = CompoundValue(1, if timeTest then barnumber else plotPrice[1], barnumber);
+def data = plotPrice;
+def a = barnumber - data;
 
-- input time = 1000;#hint time:Time to place the arrow at
-
-- def timeTest = SecondsFromTime(time) == 0;
-
-- def plotPrice = CompoundValue(1, if timeTest then barnumber else plotPrice[1], barnumber);
-
-- def data = plotPrice;
-
-- def a = barnumber - data;
-
-- Plot Arrow = If TimeTest then close else double.nan;
-
-- Arrow.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
-
-- Arrow.SetLineWeight(5);
-
-- Arrow.SetDefaultColor(Color.White);
-
-- AddLabel(yes, "Arrow is at time = " + AsPrice(time) +" of each day" ,color.white);
-
-- #end
+Plot Arrow = If TimeTest then close else double.nan;
+Arrow.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+Arrow.SetLineWeight(5);
+Arrow.SetDefaultColor(Color.White);
+AddLabel(yes, "Arrow is at time = " + AsPrice(time) +" of each day" ,color.white);
+#end
+```
 
 ## C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE
 
 [Return to TOC](#toc)
 
-- #hint: <b>MovingAverage Crossover - Once Per Chart</b>\nThis study shows arrows when the price crosses the moving
+```
+#hint: <b>MovingAverage Crossover - Once Per Chart</b>\nThis study shows arrows when the price crosses the moving average. The study by default only shows the latest crossing to free up screen space for more awesome studies.\n Enjoy - Jesse (author on the Mr. Script show)
 
-- average. The study by default only shows the latest crossing to free up screen space for more awesome studies.\n Enjoy
+input price = close;#hint price:Select the price of choice
+input length = 10;#hint Length:Length of the average
+input averageType = AverageType.EXPONENTIAL;#hint averageType:Select the type of average desired
+input MostRecentOnly = Yes;#hint MostRecentOnly: Shows the most recent crossing only. \n <b>(Default is Yes)</b>
 
-- - Jesse (author on the Mr. Script show)
+def avg = MovingAverage(averageType, price, length);
+def crossingdown = price crosses below avg;
+def crossingup = price crosses above avg;
+def crossingover = close("Greatest Show Ever!");
+def barnumber = barnumber();
+def count = if crossingdown or crossingup then barnumber else 0;
 
-- input price = close;#hint price:Select the price of choice
+plot onceperchartup = if MostRecentOnly and crossingUP and count == highestall(count) then low else double.nan;
 
-- input length = 10;#hint Length:Length of the average
+plot onceperchartdown  = if MostRecentOnly and crossingdown and count == highestall(count) then high else double.nan;
 
-- input averageType = AverageType.EXPONENTIAL;#hint averageType:Select the type of average desired
+onceperchartdown.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_down);
+onceperchartup.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+onceperchartup.setDefaultColor(color.light_green);
+onceperchartdown.setDefaultColor(color.light_red);
+onceperchartdown.setLineWeight(3);
+onceperchartup.setLineWeight(3);
+onceperchartdown.hidetitle();
+onceperchartup.hidetitle();
 
-- input MostRecentOnly = Yes;#hint MostRecentOnly: Shows the most recent crossing only. \n <b>(Default is Yes)</b>
+Plot CrossUp = !mostRecentOnly and crossingup;
+crossup.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+crossup.setDefaultColor(color.light_green);
+crossUp.setLineWeight(3);
+crossup.hidetitle();
 
-- def avg = MovingAverage(averageType, price, length);
-
-- def crossingdown = price crosses below avg;
-
-- def crossingup = price crosses above avg;
-
-- def crossingover = close("Greatest Show Ever!");
-
-- def barnumber = barnumber();
-
-- def count = if crossingdown or crossingup then barnumber else 0;
-
-- plot onceperchartup = if MostRecentOnly and crossingUP and count == highestall(count) then low else double.nan;
-
-- plot onceperchartdown  = if MostRecentOnly and crossingdown and count == highestall(count) then high else double.nan;
-
-- onceperchartdown.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_down);
-
-- onceperchartup.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- onceperchartup.setDefaultColor(color.light_green);
-
-- onceperchartdown.setDefaultColor(color.light_red);
-
-- onceperchartdown.setLineWeight(3);
-
-- onceperchartup.setLineWeight(3);
-
-- onceperchartdown.hidetitle();
-
-- onceperchartup.hidetitle();
-
-- Plot CrossUp = !mostRecentOnly and crossingup;
-
-- crossup.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- crossup.setDefaultColor(color.light_green);
-
-- crossUp.setLineWeight(3);
-
-- crossup.hidetitle();
-
-- Plot Crossdown = !mostRecentOnly and crossingdown;
-
-- crossdown.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_down);
-
-- crossdown.setDefaultColor(color.light_red);
-
-- crossdown.setLineWeight(3);
-
-- crossdown.hidetitle();
-
-- #end
+Plot Crossdown = !mostRecentOnly and crossingdown;
+crossdown.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_down);
+crossdown.setDefaultColor(color.light_red);
+crossdown.setLineWeight(3);
+crossdown.hidetitle();
+#end
+```
 
 ## C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE
 
 [Return to TOC](#toc)
 
-- #plot a flat line from open of first bar of day. For use on multi-day charts.
+```
+#plot a flat line from open of first bar of day. For use on multi-day charts.
 
-- def day = getDay();
+def day = getDay();
+def firstBar = day != day[1];
 
-- def firstBar = day != day[1];
+AssignPriceColor(if firstBar then color.ORANGE else color.CURRENT);
+def dayOpen = if firstBar then high else dayOpen[1];
 
-- AssignPriceColor(if firstBar then color.ORANGE else color.CURRENT);
+plot x = dayOpen;
+Alternate 1: Line from/for yesterday's close
 
-- def dayOpen = if firstBar then high else dayOpen[1];
-
-- plot x = dayOpen;
-
-- Alternate 1: Line from/for yesterday's close
-
-- declare upper;
-
-- def barNum      = if IsNaN( close ) then Double.NaN else BarNumber();
-
-- def highestBar  = HighestAll( barNum );
-
-- def previousClose = if barNum == highestBar - 1 then close else Double.NaN;
-
-- plot CloseLine    = HighestAll( previousClose );
-
-- CloseLine.SetDefaultColor( Color.gray);
-
-- #end
+declare upper;
+def barNum      = if IsNaN( close ) then Double.NaN else BarNumber();
+def highestBar  = HighestAll( barNum );
+def previousClose = if barNum == highestBar - 1 then close else Double.NaN;
+plot CloseLine    = HighestAll( previousClose );
+CloseLine.SetDefaultColor( Color.gray);
+#end
+```
 
 ## C-% CHANGE OF THE FIRST BAR VALUE
 
 [Return to TOC](#toc)
 
-- #Hint:<b> Plots the %-change-of-the-first-bar-value.</b>
+```
+#Hint:<b> Plots the %-change-of-the-first-bar-value.</b>
+declare lower;
+input price = close;#hint price:This is the variable (11 choices) that will be plotted.
+def close1 = First(price);#Defines the first bar value
 
-- declare lower;
+plot Data = ( price - close1) / close1 * 100;
+Plot ZeroLine = 0;
 
-- input price = close;#hint price:This is the variable (11 choices) that will be plotted.
+AddLabel(1,"Shown is the %-change-of-the-first-bar-value of " + close1,color.white);
 
-- def close1 = First(price);#Defines the first bar value
+#Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
 
-- plot Data = ( price - close1) / close1 * 100;
-
-- Plot ZeroLine = 0;
-
-- AddLabel(1,"Shown is the %-change-of-the-first-bar-value of " + close1,color.white);
-
-- #Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
-
-- AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2)
-
-- else if price == open then "The price-variable selected is open = " + Round(open,2)
-
-- else if price == high then "The price-variable selected is high = " + Round(high,2)
-
-- else if price == low then "The price-variable selected is low = " + Round(low,2)
-
-- else if price == hl2 then "The price-variable selected is hl2 = " + Round(hl2,2)
-
-- else if price == hlc3 then "The price-variable selected is hlc3 = " + Round(hlc3,2)
-
-- else if price == imp_volatility then "The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility)
-
-- else if price == ohlc4 then "The price-variable selected is ohlc4 = " + Round(ohlc4,2)
-
-- else if price == open_interest then "The price-variable selected is Open_interest = " + Round(open_interest,0)
-
-- else if price == volume then "The price-variable selected is Volume = " + Round(volume,0)
-
-- else if price == VWAP then "The price-variable selected is VWAP = " + Round(VWAP,0)
-
-- else "N/A",color.white);
-
-- #end
+AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2)
+else if price == open then "The price-variable selected is open = " + Round(open,2)
+else if price == high then "The price-variable selected is high = " + Round(high,2)
+else if price == low then "The price-variable selected is low = " + Round(low,2)
+else if price == hl2 then "The price-variable selected is hl2 = " + Round(hl2,2)
+else if price == hlc3 then "The price-variable selected is hlc3 = " + Round(hlc3,2)
+else if price == imp_volatility then "The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility) 
+else if price == ohlc4 then "The price-variable selected is ohlc4 = " + Round(ohlc4,2)
+else if price == open_interest then "The price-variable selected is Open_interest = " + Round(open_interest,0)
+else if price == volume then "The price-variable selected is Volume = " + Round(volume,0)
+else if price == VWAP then "The price-variable selected is VWAP = " + Round(VWAP,0)
+else "N/A",color.white);
+#end
+```
 
 ## C-% CHANGE COMPARED TO ? DAYS-AGO
 
 [Return to TOC](#toc)
 
-- #hint:Plots and shows a label for the change compared to the past inputted-number-of-days.
+```
+#hint:Plots and shows a label for the change compared to the past inputted-number-of-days.
+declare lower;
 
-- declare lower;
+input length = 30;#hint length:the number of trading days-ago for the change
+def price = close(period = AggregationPeriod.day);
+def Change = (price / price[length] - 1);
 
-- input length = 30;#hint length:the number of trading days-ago for the change
-
-- def price = close(period = AggregationPeriod.day);
-
-- def Change = (price / price[length] - 1);
-
-- Plot PctChange = 100 * change;
-
-- AddLabel(yes,"% Change compared to " + length + " days ago = " + Round(PctChange, 1) + "%",color.PINK);
-
-- #end
+Plot PctChange = 100 * change;
+AddLabel(yes,"% Change compared to " + length + " days ago = " + Round(PctChange, 1) + "%",color.PINK);
+ #end
+ ```
 
 ## C-LOW IS ?% ABOVE YESTERDAY'S HIGH
 
 [Return to TOC](#toc)
 
-- #Plot or scan for current low that is ?% above yesterday's high
+```
+#Plot or scan for current low that is ?% above yesterday's high
+#this is run on a 'day' aggregation
 
-- #this is run on a 'day' aggregation
+input price1 = low;
+input percentage = 2.0;
+input price2 = high;
 
-- input price1 = low;
+def x = 1+percentage/100; # Equals 1.02 = factor for above 100 %
+def term = x*price2[1]; #  = 1.02 * previous high
 
-- input percentage = 2.0;
-
-- input price2 = high;
-
-- def x = 1+percentage/100; # Equals 1.02 = factor for above 100 %
-
-- def term = x*price2[1]; #  = 1.02 * previous high
-
-- plot scan = price1 >= term;
-
-- scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- scan.SetLineWeight(5);
-
-- scan.SetDefaultColor(Color.White);
-
-- #end
+plot scan = price1 >= term;
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+scan.SetLineWeight(5);
+scan.SetDefaultColor(Color.White);
+#end
+```
 
 ## C-IMP-VOLATILITY PERCENTILE
 
 [Return to TOC](#toc)
 
-- # hint: you can also copy/paste this code to create a custom IV percentile column for a watch list
+```
+# hint: you can also copy/paste this code to create a custom IV percentile column for a watch list
 
-- def vol = impVolatility();
+def vol = impVolatility();
+def hi = highest(vol,252);#is a one-year-day value. Use 189 for 6-month-day value
+def lo = lowest(vol,252);#is a one-year-day value. Use 189 for 6-month-day value
+def perct = (vol - lo) / (hi - lo);
 
-- def hi = highest(vol,252);#is a one-year-day value. Use 189 for 6-month-day value
-
-- def lo = lowest(vol,252);#is a one-year-day value. Use 189 for 6-month-day value
-
-- def perct = (vol - lo) / (hi - lo);
-
-- AddLabel(1, "IV Percentile + " + AsPercent(perct)+ " of the yearly range", if perct > 0.80
-
-- then Color.Green
-
-- else if perct < 0.80 and perct > 0.50
-
-- then Color.Yellow
-
-- else color.Light_Red);
-
-- #end
+AddLabel(1, "IV Percentile + " + AsPercent(perct)+ " of the yearly range", if perct > 0.80
+then Color.Green
+else if perct < 0.80 and perct > 0.50
+then Color.Yellow
+else color.Light_Red);
+#end
+```
 
 ## C-YTD PERCENT CHANGE
 
 [Return to TOC](#toc)
 
-- #Hint:watchlist or label YTD-percent-change
+```
+#Hint:watchlist or label YTD-percent-change
 
-- input price = close;#hint price:<b>Must be close for intended value</b>/n An error is in the label if close is not selected
+input price = close;#hint price:<b>Must be close for intended value</b>/n An error is in the label if close is not selected
 
-- def day = getDay();
+def day = getDay();
+def month = getmonth();
+def year = getyear();
+def lastDay = getLastDay();
+def lastmonth = getlastmonth();
+def lastyear = getlastyear();
+def isToday = if(day == lastDay and month == lastmonth and year== lastyear, 1, 0);
+#def yearswitch = if Highest(GetYYYYMMDD(), 300) > 20130000 then 20130102 else 20120103;# this line was in the original version and is replaced by the following
 
-- def month = getmonth();
+def yearswitch = if highest(getyyyymmdd(), 300) > 20140000 then 20140102 else 20130102;
+def yearstart = if getyyyymmdd() == yearswitch then price else 0;
+def todayend = if istoday then price else 0;
+def jan1 = highest(yearstart, 300);
+def now = highest(todayend, 300);
+plot "YTD Percent Change" = round((((now - jan1)/ jan1) * 100), 2);
+"YTD Percent Change".AssignValueColor(If "YTD Percent Change" > 0 then color.Green else if "YTD Percent Change" < 0 then color.red else color.yellow);
 
-- def year = getyear();
+### Comment out the next hide code if this is used as a column watchlist #####
+"YTD Percent Change".hide();#Plot has nothing of value to see
+#### Comment-out the below label if this is used as a column watchList ####
+AddLabel(1,"YTD % Change of the " + if price == close then "close = "+ "YTD Percent Change" + "  else
+"'ERROR...WRONG PRICE-VARIABLE SELECTED'"  ,if price == close then color.cyan else color.red);
+#### EOC ######
+```
 
-- def lastDay = getLastDay();
+Alternate = current close as percent of the last-52-week-range
 
-- def lastmonth = getlastmonth();
-
-- def lastyear = getlastyear();
-
-- def isToday = if(day == lastDay and month == lastmonth and year== lastyear, 1, 0);
-
-- #def yearswitch = if Highest(GetYYYYMMDD(), 300) > 20130000 then 20130102 else 20120103;# this line was in the
-
-- original version and is replaced by the following
-
-- def yearswitch = if highest(getyyyymmdd(), 300) > 20140000 then 20140102 else 20130102;
-
-- def yearstart = if getyyyymmdd() == yearswitch then price else 0;
-
-- def todayend = if istoday then price else 0;
-
-- def jan1 = highest(yearstart, 300);
-
-- def now = highest(todayend, 300);
-
-- plot "YTD Percent Change" = round((((now - jan1)/ jan1) * 100), 2);
-
-- "YTD Percent Change".AssignValueColor(If "YTD Percent Change" > 0 then color.Green else if "YTD Percent Change" < 0
-
-- then color.red else color.yellow);
-
-- ### Comment out the next hide code if this is used as a column watchlist #####
-
-- "YTD Percent Change".hide();#Plot has nothing of value to see
-
-- #### Comment-out the below label if this is used as a column watchList ####
-
-- AddLabel(1,"YTD % Change of the " + if price == close then "close = "+ "YTD Percent Change" + " %" else
-
-- "'ERROR...WRONG PRICE-VARIABLE SELECTED'"  ,if price == close then color.cyan else color.red);
-
-- #### EOC ######
-
-- Alternate = current close as percent of the last-52-week-range
-
-- #Current price as % of 52-week-range
-
-- input price = close;
-
-- def YearHigh = highest(high, 252);
-
-- def YearLow = lowest(low, 252);
-
-- def YPR = round((price – YearLow) / (YearHigh – YearLow) * 100,2);
-
-- addlabel(yes, "Current price as % of 52-week-range = "+ round(YPR,0) + " %" , Color.white);
-
-- # If used as a custom column the below label is appropriate
-
-- #addlabel(yes, concat(YPR, "%"),  if YPR > 75 then color.green else if YPR < 25 then color.red else color.current);
-
-- #end
+```
+ #Current price as % of 52-week-range
+ input price = close;
+ def YearHigh = highest(high, 252);
+ def YearLow = lowest(low, 252);
+ def YPR = round((price – YearLow) / (YearHigh – YearLow) * 100,2);
+ addlabel(yes, "Current price as % of 52-week-range = "+ round(YPR,0) + " %" , Color.white);
+ # If used as a custom column the below label is appropriate
+ #addlabel(yes, concat(YPR, "%"),  if YPR > 75 then color.green else if YPR < 25 then color.red else color.current);
+ #end
+ ```
 
 ## C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE
 
@@ -3015,69 +2531,45 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- The AddChart function is unsupported in TOS, Hence there is no documentation to support its use and color formatting.
+The AddChart function is unsupported in TOS, Hence there is no documentation to support its use and color formatting.
 
-- Also, not all chart types are supported.
+Also, not all chart types are supported.
 
-- Usage example: You may have a stock plotted on the upper panel:Say an oil company, CVX. You may want to see how its
+Usage example: You may have a stock plotted on the upper panel:Say an oil company, CVX. You may want to see how its price varies with the oil futures. The code below allows you to show the oil futures (/CL) below for comparison.
 
-- price varies with the oil futures. The code below allows you to show the oil futures (/CL) below for comparison.
+```
+declare lower;
 
-- declare lower;
+input chartType = ChartType.CANDLE;
 
-- input chartType = ChartType.CANDLE;
+input Security  =  {default "SPX", "COMP", "DJX", "HUI", "MNX", "SOX", "NDX", "OEX", "QQQQ","QQQ","RUT", "VIX", "VXO", "XAU", "QQV", "TNX","/ES","/CL"};
 
-- input Security  =  {default "SPX", "COMP", "DJX", "HUI", "MNX", "SOX", "NDX", "OEX", "QQQQ","QQQ","RUT", "VIX",
+AddChart( high  = high( Security ),
+  low   = low( Security ),
+  open  = open( Security ),
+  close = close( Security ),
+  type  = chartType );
 
-- "VXO", "XAU", "QQV", "TNX","/ES","/CL"};
-
-- AddChart( high  = high( Security ),
-
-- low   = low( Security ),
-
-- open  = open( Security ),
-
-- close = close( Security ),
-
-- type  = chartType );
-
-- AddLabel(1, if Security == Security."SPX" then "SPX = S&P 500 INDEX is showing"
-
-- else if Security == Security."COMP" then " COMP =  NASDAQ COMPOSITE is showing "
-
-- else if Security == Security."DJX" then " DJX =  DOW JONES INDUSTRIAL AVERAGE INDEX is showing"
-
-- else if Security == Security."HUI" then "HUI =  AMEX GOLD BUGS INDEX  is showing"
-
-- else if Security == Security."MNX" then "MNX = CBOE MINI NASDAQ INDEX  is showing"
-
-- else if Security == Security."SOX" then "SOX  = PHLX SEMI CONDUCTOR INDEX  is showing"
-
-- else if Security == Security."NDX" then " NDX = NASDAQ 100 INDEX INDEX is showing"
-
-- else if Security == Security."OEX" then "OEX =  S & P 100 INDEX is showing"
-
-- else if Security == Security."RUT" then " RUT = Russel 2000 Index is showing  "
-
-- else if Security == Security."QQQ" then "QQQ =  POWERSHARES QQQ is showing"
-
-- else if Security == Security."VIX" then "VIX =  CBOE MARKET VOLATILITY INDEX is showing"
-
-- else if Security == Security."VXO" then "VXO = CBOE OEX IMPLIED VOLATILITY INDEX is showing"
-
-- else if Security == Security."XAU" then " XAU = GOLD & SILVER INDEX is showing"
-
-- else if Security == Security."QQV" then "QQV =  QQQQ VOLATILITY INDEX is showing"
-
-- else if Security == Security."TNX" then " TNX =  10-YR TREASURY INDEX is showing"
-
-- else if Security == Security."/CL" then "/CL =  Light Sweet Crude Oil Futures is showing"
-
-- else if Security == Security."/ES" then "/ES = E-mini S&P 500 Index Futures is showing"
-
-- else  "ERROR – none were found", Color.WHITE);
-
-- #end
+AddLabel(1, if Security == Security."SPX" then "SPX = S&P 500 INDEX is showing"
+else if Security == Security."COMP" then " COMP =  NASDAQ COMPOSITE is showing "
+else if Security == Security."DJX" then " DJX =  DOW JONES INDUSTRIAL AVERAGE INDEX is showing"
+else if Security == Security."HUI" then "HUI =  AMEX GOLD BUGS INDEX  is showing"
+else if Security == Security."MNX" then "MNX = CBOE MINI NASDAQ INDEX  is showing"
+else if Security == Security."SOX" then "SOX  = PHLX SEMI CONDUCTOR INDEX  is showing"
+else if Security == Security."NDX" then " NDX = NASDAQ 100 INDEX INDEX is showing"
+else if Security == Security."OEX" then "OEX =  S & P 100 INDEX is showing"
+else if Security == Security."RUT" then " RUT = Russel 2000 Index is showing  "
+else if Security == Security."QQQ" then "QQQ =  POWERSHARES QQQ is showing"
+else if Security == Security."VIX" then "VIX =  CBOE MARKET VOLATILITY INDEX is showing"
+else if Security == Security."VXO" then "VXO = CBOE OEX IMPLIED VOLATILITY INDEX is showing"
+else if Security == Security."XAU" then " XAU = GOLD & SILVER INDEX is showing"
+else if Security == Security."QQV" then "QQV =  QQQQ VOLATILITY INDEX is showing"
+else if Security == Security."TNX" then " TNX =  10-YR TREASURY INDEX is showing"
+else if Security == Security."/CL" then "/CL =  Light Sweet Crude Oil Futures is showing"
+else if Security == Security."/ES" then "/ES = E-mini S&P 500 Index Futures is showing"
+else  "ERROR – none were found", Color.WHITE);
+#end
+```
 
 ## C-LINE RSI WITH MACD HISTOGRAM
 
@@ -3151,695 +2643,456 @@ marketsentiment.setDefaultColor(color.yellow);
 
 [Return to TOC](#toc)
 
-- Comment: This illustrates how to plot a study (MarketForecast) by reference.
+Comment: This illustrates how to plot a study (MarketForecast) by reference.
 
-- declare lower;
-
-- plot x = MarketForecast();#Momentum is the default plot: The first listed in the study code.
-
-- plot y = MarketForecast().NearTerm;
-
-- plot z = MarketForecast().Intermediate;
-
-- plot HighValue = 80;
-
-- plot LowValue = 20;
-
-- x.setdefaultColor(color.green);
-
-- addlabel(1,"Market Forecast Momentum",color.green);
-
-- addlabel(1,"Market Forecast NearTerm",color.pink);
-
-- addlabel(1,"Market Forecast Intermediate",color.white);
-
-- #end
+```
+declare lower;
+plot x = MarketForecast();#Momentum is the default plot: The first listed in the study code.
+plot y = MarketForecast().NearTerm;
+plot z = MarketForecast().Intermediate;
+plot HighValue = 80;
+plot LowValue = 20;
+x.setdefaultColor(color.green);
+addlabel(1,"Market Forecast Momentum",color.green);
+addlabel(1,"Market Forecast NearTerm",color.pink);
+addlabel(1,"Market Forecast Intermediate",color.white);
+#end
+```
 
 ## C-TRIPLE EMA &  STD DEV MONITORING
 
 [Return to TOC](#toc)
 
-- #by Mr. Script. Formatting added by SFL.
+```
+#by Mr. Script. Formatting added by SFL.
+#Triple EMA &  Std Dev monitoring
+#start code
+declare lower;
+input bperiod = 18;
+input TEMAavg = 8;
+input std_dev_up = 1.5;
+input std_dev_down = -1.5;
+input stdev_length = 63;
+def haopen = CompoundValue(1, ((open[1] + high[1] + low[1] + close[1]) / 4 + haopen[1]) / 2, hl2);
 
-- #Triple EMA &  Std Dev monitoring
+def haclose = ((open + high + low + close) / 4 + haopen + Max(high, haopen) + Min(low, haopen)) / 4;
 
-- #start code
+def TMA1 = TEMA(haclose, TEMAavg);
+def TMA2 = TEMA(TMA1, TEMAavg);
+def Diff = TMA1 - TMA2;
+def ZIHA = TMA1 + Diff;
+plot percB =  (TEMA(ZIHA, TEMAavg) + 2 * StDev(TEMA(ZIHA, TEMAavg), bperiod) - WMA(TEMA(ZIHA, TEMAavg), bperiod)) / (4 * StDev(TEMA(ZIHA, TEMAavg), bperiod)) * 100;
 
-- declare lower;
+#.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+percB.SetLineWeight(1);
+percB.SetDefaultColor(Color.cyan);
 
-- input bperiod = 18;
+plot overbought = 50 + std_dev_up * stdev(percB, stdev_length);
+overbought.SetLineWeight(1);
+overbought.SetDefaultColor(Color.red);
 
-- input TEMAavg = 8;
+plot oversold = 50 + std_dev_down * stdev(percB, stdev_length);
+oversold.SetLineWeight(1);
+oversold.SetDefaultColor(Color.red);
 
-- input std_dev_up = 1.5;
-
-- input std_dev_down = -1.5;
-
-- input stdev_length = 63;
-
-- def haopen = CompoundValue(1, ((open[1] + high[1] + low[1] + close[1]) / 4 + haopen[1]) / 2, hl2);
-
-- def haclose = ((open + high + low + close) / 4 + haopen + Max(high, haopen) + Min(low, haopen)) / 4;
-
-- def TMA1 = TEMA(haclose, TEMAavg);
-
-- def TMA2 = TEMA(TMA1, TEMAavg);
-
-- def Diff = TMA1 - TMA2;
-
-- def ZIHA = TMA1 + Diff;
-
-- plot percB =  (TEMA(ZIHA, TEMAavg) + 2 * StDev(TEMA(ZIHA, TEMAavg), bperiod) - WMA(TEMA(ZIHA, TEMAavg),
-
-- bperiod)) / (4 * StDev(TEMA(ZIHA, TEMAavg), bperiod)) * 100;
-
-- #.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
-
-- percB.SetLineWeight(1);
-
-- percB.SetDefaultColor(Color.cyan);
-
-- plot overbought = 50 + std_dev_up * stdev(percB, stdev_length);
-
-- overbought.SetLineWeight(1);
-
-- overbought.SetDefaultColor(Color.red);
-
-- plot oversold = 50 + std_dev_down * stdev(percB, stdev_length);
-
-- oversold.SetLineWeight(1);
-
-- oversold.SetDefaultColor(Color.red);
-
-- plot midline = 50;
-
-- Addlabel(1,"RED = overbought/oversold lines", color.light_red);
-
-- Addlabel(1,"Above mid-line is bullish. Below is bearish.", color.cyan);
-
-- #end
+plot midline = 50;
+Addlabel(1,"RED = overbought/oversold lines", color.light_red);
+Addlabel(1,"Above mid-line is bullish. Below is bearish.", color.cyan);
+#end
+```
 
 ## C-FAST-MED-SLOW TRUE RANGE OSC
 
 [Return to TOC](#toc)
 
-- #by Pacodeveux in Mr. Script show
+```
+#by Pacodeveux in Mr. Script show
+#Fast, med, slow true range osc
+declare lower;
+input fastLength = 7;
+input medLength = 14;
+input slowLength = 28;
+input FactorFast = 4;
+input FactorMed = 2;
+input FactorSlow = 1;
 
-- #Fast, med, slow true range osc
+def trRng = TrueRange(high, close, low);
+def trRngFast = sum(trRng, fastLength);
+def trRngMed = sum(trRng, medLength);
+def trRngSlow = sum(trRng, slowLength);
+def diff = close - Min(close[1], low);
+def diffFast = sum(diff, fastLength);
+def diffMed = sum(diff, medLength);
+def diffSlow = sum(diff, slowLength);
+def valFast = (diffFast / trRngFast) * factorFast;
+def valMed = (diffMed / trRngMed) * factorMed;
+def valSlow = (diffSlow / trRngSlow) * FactorSlow;
 
-- declare lower;
+Plot midLine = 0.5;
+midLine.SetLineWeight(2);
+midLine.SetDefaultColor(Color.yellow);
 
-- input fastLength = 7;
+plot UltOsc = if trRngFast == 0 or trRngMed == 0 or trRngSlow == 0 then 0
+else (valFast + valMed + valSlow) / (factorFast + factorMed + 1);
+UltOsc.SetDefaultColor(GetColor(1));
 
-- input medLength = 14;
-
-- input slowLength = 28;
-
-- input FactorFast = 4;
-
-- input FactorMed = 2;
-
-- input FactorSlow = 1;
-
-- def trRng = TrueRange(high, close, low);
-
-- def trRngFast = sum(trRng, fastLength);
-
-- def trRngMed = sum(trRng, medLength);
-
-- def trRngSlow = sum(trRng, slowLength);
-
-- def diff = close - Min(close[1], low);
-
-- def diffFast = sum(diff, fastLength);
-
-- def diffMed = sum(diff, medLength);
-
-- def diffSlow = sum(diff, slowLength);
-
-- def valFast = (diffFast / trRngFast) * factorFast;
-
-- def valMed = (diffMed / trRngMed) * factorMed;
-
-- def valSlow = (diffSlow / trRngSlow) * FactorSlow;
-
-- Plot midLine = 0.5;
-
-- midLine.SetLineWeight(2);
-
-- midLine.SetDefaultColor(Color.yellow);
-
-- plot UltOsc = if trRngFast == 0 or trRngMed == 0 or trRngSlow == 0 then 0
-
-- else (valFast + valMed + valSlow) / (factorFast + factorMed + 1);
-
-- UltOsc.SetDefaultColor(GetColor(1));
-
-- AddLabel(1,”Fast-Med-Slow True Range Oscillator”, color.white);
-
-- #End
+AddLabel(1,”Fast-Med-Slow True Range Oscillator”, color.white);
+#End
+```
 
 ## C-CHANGE STUDIES BASED ON SYMBOL VIEWED
 
 [Return to TOC](#toc)
 
-- # by Mr. Script:
+```
+# by Mr. Script:
+#Change studies based on symbol viewed
+input symbol_1 = "SPY";
+input symbol_2 = "DIA";
+input symbol_3 = "IWM";
+input symbol_4 = "AMTD";
 
-- #Change studies based on symbol viewed
+plot x;
+plot y;
+plot z;
 
-- input symbol_1 = "SPY";
-
-- input symbol_2 = "DIA";
-
-- input symbol_3 = "IWM";
-
-- input symbol_4 = "AMTD";
-
-- plot x;
-
-- plot y;
-
-- plot z;
-
-- if (GetUnderlyingSymbol() == symbol_1)
-
-- {
-
-- x = LinearRegChVar("width of channel" = 25.0, "full range" = No, length = 50).UpperLR;
-
-- y = LinearRegChVar("width of channel" = 25.0, "full range" = No, length = 50);
-
-- z = LinearRegChVar("width of channel" = 25.0, "full range" = No, length = 50).LowerLR;
-
-- }
-
-- else if (GetUnderlyingSymbol() == symbol_2)
-
-- {
-
-- x = BollingerBandsSMA().UpperBand;
-
-- y = BollingerBandsSMA();
-
-- z = BollingerBandsSMA().LowerBand;
-
-- }
-
-- else if (GetUnderlyingSymbol() == symbol_3)
-
-- {
-
-- x = close + 5;
-
-- y = hlc3;
-
-- z = close - 5;
-
-- }
-
-- else if (GetUnderlyingSymbol() == symbol_4)
-
-- {
-
-- x = SimpleMovingAvg(length = 50);
-
-- y = SimpleMovingAvg(length = 200);
-
-- Z = PPS().BuySignal;
-
-- }
-
-- else
-
-- {
-
-- x = double.nan;
-
-- y = double.nan;
-
-- z = double.nan;
-
-- }
-
-- #end
+if (GetUnderlyingSymbol() == symbol_1)
+{
+  x = LinearRegChVar("width of channel" = 25.0, "full range" = No, length = 50).UpperLR;
+  y = LinearRegChVar("width of channel" = 25.0, "full range" = No, length = 50);
+  z = LinearRegChVar("width of channel" = 25.0, "full range" = No, length = 50).LowerLR;
+}
+else if (GetUnderlyingSymbol() == symbol_2)
+{
+  x = BollingerBandsSMA().UpperBand;
+  y = BollingerBandsSMA();
+  z = BollingerBandsSMA().LowerBand;
+}
+else if (GetUnderlyingSymbol() == symbol_3)
+{
+  x = close + 5;
+  y = hlc3;
+  z = close - 5;
+}
+else if (GetUnderlyingSymbol() == symbol_4)
+{
+  x = SimpleMovingAvg(length = 50);
+  y = SimpleMovingAvg(length = 200);
+  Z = PPS().BuySignal;
+}
+else
+{
+  x = double.nan;
+  y = double.nan;
+  z = double.nan;
+}
+#end
+```
 
 ## C-PLOTS HIGHER-HIGHS AND LOWER-LOWS
 
 [Return to TOC](#toc)
 
-- # Hint: Plots consecutive (defined by number)  higher-highs AND lower-lows
+```
+# Hint: Plots consecutive (defined by number)  higher-highs AND lower-lows
 
-- input price = close;
+input price = close;
+input number = 3;#hint number: Arrows are plotted after this number of consecutives are observed
 
-- input number = 3;#hint number: Arrows are plotted after this number of consecutives are observed
+def hi = high;
+def lo = low;
+def higher = if hi > hi[1] then hi else higher[1];
+def lower = if lo < lo[1] then lo else lower[1];
 
-- def hi = high;
+plot h = higher;
+h.SetLineWeight(1);
+h.SetDefaultColor(Color.cyan);
+plot l =lower;
+l.SetLineWeight(1);
+l.SetDefaultColor(Color.pink);
 
-- def lo = low;
+def hig = higher > higher[1];
+def lowe = lower < lower[1];
 
-- def higher = if hi > hi[1] then hi else higher[1];
+plot x = sum(hig,number) >= number;
+x.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+x.SetLineWeight(1);
+x.SetDefaultColor(Color.White);
 
-- def lower = if lo < lo[1] then lo else lower[1];
+plot y = sum(lowe,number) >= number;
+y.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+y.SetLineWeight(1);
+y.SetDefaultColor(Color.yellow);
 
-- plot h = higher;
-
-- h.SetLineWeight(1);
-
-- h.SetDefaultColor(Color.cyan);
-
-- plot l =lower;
-
-- l.SetLineWeight(1);
-
-- l.SetDefaultColor(Color.pink);
-
-- def hig = higher > higher[1];
-
-- def lowe = lower < lower[1];
-
-- plot x = sum(hig,number) >= number;
-
-- x.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- x.SetLineWeight(1);
-
-- x.SetDefaultColor(Color.White);
-
-- plot y = sum(lowe,number) >= number;
-
-- y.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- y.SetLineWeight(1);
-
-- y.SetDefaultColor(Color.yellow);
-
-- AddLabel(1,"Plot of highs", color.cyan);
-
-- AddLabel(1,"Plot of lows", color.pink);
-
-- AddLabel(1,"Plot arrows of higher-highs", color.white);
-
-- AddLabel(1,"Plot arrows of lower-lows", color.yellow);
-
-- #end
+AddLabel(1,"Plot of highs", color.cyan);
+AddLabel(1,"Plot of lows", color.pink);
+AddLabel(1,"Plot arrows of higher-highs", color.white);
+AddLabel(1,"Plot arrows of lower-lows", color.yellow);
+#end
+```
 
 ## C-CANDLESTICK PLOTS
 
 [Return to TOC](#toc)
 
-- If you are interested in seeing examples of various candlesticks, there are two studies available. They are: (1) Bearish
+If you are interested in seeing examples of various candlesticks, there are two studies available. They are: (1) Bearish candle plots.txt; and (2) Bullish candle plots.txt. They are too big to include here but may be downloaded from http://mytrade.com/StanL There are many examples of coding procedures within those files. They are also excellent for correlating the looks of a candle with its title.
 
-- candle plots.txt; and (2) Bullish candle plots.txt. They are too big to include here but may be downloaded from
-
-- http://mytrade.com/StanL There are many examples of coding procedures within those files. They are also excellent for
-
-- correlating the looks of a candle with its title.
-
-- #end
+#end
 
 ## C-ATR TRAILING STOP
 
 [Return to TOC](#toc)
 
-- Trailing Stop By Jesse on the Mr. Script show
-
-- input trailType = {default modified, unmodified};
-
-- input ATRPeriod = 5;
-
-- input ATRFactor = 3.5;
-
-- input firstTrade = {default long, short};
-
-- assert(ATRFactor > 0, "'atr factor' must be positive: " + ATRFactor);
-
-- def HiLo = Min(high - low, 1.5 * Average(high - low, ATRPeriod));
-
-- def HRef = if low <= high[1]
-
-- then high - close[1]
-
-- else (high - close[1]) - 0.5 * (low - high[1]);
-
-- def LRef = if high >= low[1]
-
-- then close[1] - low
-
-- else (close[1] - low) - 0.5 * (low[1] - high);
-
-- def ATRMod = ExpAverage(Max(HiLo, Max(HRef, LRef)), 2 * ATRPeriod - 1);
-
-- def loss;
-
-- switch (trailType) {
-
-- case modified:
-
-- loss = ATRFactor * ATRMod;
-
-- case unmodified:
-
-- loss = ATRFactor * AvgTrueRange(high, close, low, ATRPeriod);
-
-- }
-
-- def state = {default init, long, short};
-
-- def trail;
-
-- switch (state[1]) {
-
-- case init:
-
-- if (!IsNaN(loss)) {
-
-- switch (firstTrade) {
-
-- case long:
-
-- state = state.long;
-
-- trail =  close - loss;
-
-- case short:
-
-- state = state.short;
-
-- trail = close + loss;
-
-- }
-
-- } else {
-
-- state = state.init;
-
-- trail = Double.NaN;
-
-- }
-
-- case long:
-
-- if (close > trail[1]) {
-
-- state = state.long;
-
-- trail = Max(trail[1], close - loss);
-
-- }
-
-- else {
-
-- state = state.short;
-
-- trail = close + loss;
-
-- }
-
-- case short:
-
-- if (close < trail[1]) {
-
-- state = state.short;
-
-- trail = Min(trail[1], close + loss);
-
-- }
-
-- else {
-
-- state = state.long;
-
-- trail =  close - loss;
-
-- }
-
-- }
-
-- def BuySignal = Crosses(state == state.long, 0, CrossingDirection.Above);
-
-- def SellSignal = Crosses(state == state.short, 0, CrossingDirection.Above);
-
-- plot TrailingStop = trail;
-
-- TrailingStop.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- TrailingStop.DefineColor("Buy", GetColor(0));
-
-- TrailingStop.DefineColor("Sell", GetColor(1));
-
-- TrailingStop.AssignValueColor(if state == state.long
-
-- then TrailingStop.color("Sell")
-
-- else TrailingStop.color("Buy"));
-
-- plot cross = close crosses trailingstop;
-
-- cross.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- #end
+Trailing Stop By Jesse on the Mr. Script show
+
+```
+input trailType = {default modified, unmodified};
+input ATRPeriod = 5;
+input ATRFactor = 3.5;
+input firstTrade = {default long, short};
+
+assert(ATRFactor > 0, "'atr factor' must be positive: " + ATRFactor);
+
+def HiLo = Min(high - low, 1.5 * Average(high - low, ATRPeriod));
+def HRef = if low <= high[1]
+  then high - close[1]
+  else (high - close[1]) - 0.5 * (low - high[1]);
+def LRef = if high >= low[1]
+  then close[1] - low
+  else (close[1] - low) - 0.5 * (low[1] - high);
+def ATRMod = ExpAverage(Max(HiLo, Max(HRef, LRef)), 2 * ATRPeriod - 1);
+def loss;
+switch (trailType) {
+  case modified:
+    loss = ATRFactor * ATRMod;
+  case unmodified:
+    loss = ATRFactor * AvgTrueRange(high, close, low, ATRPeriod);
+}
+
+def state = {default init, long, short};
+def trail;
+
+switch (state[1]) {
+  case init:
+    if (!IsNaN(loss)) {
+      switch (firstTrade) {
+        case long:
+          state = state.long;
+          trail =  close - loss;
+        case short:
+          state = state.short;
+          trail = close + loss;
+      }
+    } else {
+      state = state.init;
+      trail = Double.NaN;
+    }
+
+  case long:
+    if (close > trail[1]) {
+      state = state.long;
+      trail = Max(trail[1], close - loss);
+    } else {
+      state = state.short;
+      trail = close + loss;
+    }
+  case short:
+    if (close < trail[1]) {
+      state = state.short;
+      trail = Min(trail[1], close + loss);
+    } else {
+      state = state.long;
+      trail =  close - loss;
+    }
+}
+
+def BuySignal = Crosses(state == state.long, 0, CrossingDirection.Above);
+def SellSignal = Crosses(state == state.short, 0, CrossingDirection.Above);
+
+plot TrailingStop = trail;
+TrailingStop.SetPaintingStrategy(PaintingStrategy.POINTS);
+TrailingStop.DefineColor("Buy", GetColor(0));
+TrailingStop.DefineColor("Sell", GetColor(1));
+TrailingStop.AssignValueColor(if state == state.long
+  then TrailingStop.color("Sell")
+  else TrailingStop.color("Buy"));
+
+plot cross = close crosses trailingstop;
+cross.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+#end
+```
 
 ## C&S-EARNINGS
 
 [Return to TOC](#toc)
 
-- On Earnings by Jesse on Mr Script show
+On Earnings by Jesse on Mr Script show
 
-- #The move after earnings
+```
+#The move after earnings
+declare lower;
 
-- declare lower;
+plot EstEarning = getEstimatedEarnings();
+EstEarning.SetPaintingStrategy(PaintingStrategy.POINTS);
+plot actual_earnings= getactualearnings();
 
-- plot EstEarning = getEstimatedEarnings();
+actual_earnings.setpaintingstrategy(paintingstrategy.points);
 
-- EstEarning.SetPaintingStrategy(PaintingStrategy.POINTS);
+def c = if actual_earnings then getyyyymmdd() else double.nan;
+def d = c + 1;
+def e = if c then close(period = aggregationperiod.day) else double.nan;
+def f = if d then open(period = aggregationperiod.day)[-1] else double.nan;
 
-- plot actual_earnings= getactualearnings();
+plot "Move after earnings" = f - e;
+"Move after earnings".setpaintingstrategy(paintingstrategy.points);
 
-- actual_earnings.setpaintingstrategy(paintingstrategy.points);
-
-- def c = if actual_earnings then getyyyymmdd() else double.nan;
-
-- def d = c + 1;
-
-- def e = if c then close(period = aggregationperiod.day) else double.nan;
-
-- def f = if d then open(period = aggregationperiod.day)[-1] else double.nan;
-
-- plot "Move after earnings" = f - e;
-
-- "Move after earnings".setpaintingstrategy(paintingstrategy.points);
-
-- ###########################
-
-- #The below is how to scan for earnings
-
-- Input length = 10;#hint length: The days to scan for
-
-- def a = hasearnings();
-
-- def b = getday();
-
-- def c = if a then b else 0;
-
-- def d = average(c, length);
-
-- def e =  d[-length];
-
-- plot f = e > 0;
-
-- #end
+###########################
+#The below is how to scan for earnings
+Input length = 10;#hint length: The days to scan for
+def a = hasearnings();
+def b = getday();
+def c = if a then b else 0;
+def d = average(c, length);
+def e =  d[-length];
+plot f = e > 0;
+#end
+```
 
 ## C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL
 
 [Return to TOC](#toc)
 
-- #hint:Plots the tangent angle of the inputted average
+```
+#hint:Plots the tangent angle of the inputted average
+declare lower;
+input length = 9;#hint length:The number agg-bars of the average
+input price = close;#hint Price:The price choice being evaluated
+input averageType = AverageType.EXPONENTIAL;#hint averageType:Select the average type desired
 
-- declare lower;
+def avg = MovingAverage(averageType, price, length);
+def height = avg - avg[length];
 
-- input length = 9;#hint length:The number agg-bars of the average
+plot "Angle, deg" = ATan(height / length) * 180 / Double.Pi;
+"Angle, deg".AssignValueColor(if "Angle, deg" >= 0 then Color.green else Color.red);
+plot xavg = avg;
+plot xheight = height;
+plot ZeroLine = 0;
 
-- input price = close;#hint Price:The price choice being evaluated
+addlabel(1,"Plot is the tangent angle of the " + length + "-bar " + If averageType == AverageType.EXPONENTIAL then "Exponential average"
+else if  averageType == AverageType.Hull then "Hull average"
+else if averageType == AverageType.simple then "Simple average"
+else if averageType == AverageType.wilders then "Wilders average"
+else if averageType == AverageType.weighted then "Weighted average"
+else "" ,color.white);
+```
 
-- input averageType = AverageType.EXPONENTIAL;#hint averageType:Select the average type desired
+Comment: In the label, note the retrieval of the literal AverageType selection. The code shown is very reusable.
 
-- def avg = MovingAverage(averageType, price, length);
+Comment2: This plot follows a trend very well
 
-- def height = avg - avg[length];
-
-- plot "Angle, deg" = ATan(height / length) * 180 / Double.Pi;
-
-- "Angle, deg".AssignValueColor(if "Angle, deg" >= 0 then Color.green else Color.red);
-
-- plot xavg = avg;
-
-- plot xheight = height;
-
-- plot ZeroLine = 0;
-
-- addlabel(1,"Plot is the tangent angle of the " + length + "-bar " + If averageType == AverageType.EXPONENTIAL then
-
-- "Exponential average"
-
-- else if  averageType == AverageType.Hull then "Hull average"
-
-- else if averageType == AverageType.simple then "Simple average"
-
-- else if averageType == AverageType.wilders then "Wilders average"
-
-- else if averageType == AverageType.weighted then "Weighted average"
-
-- else "" ,color.white);
-
-- Comment: In the label, note the retrieval of the literal AverageType selection. The code shown is very reusable.
-
-- Comment2: This plot follows a trend very well
-
-- #end
+#end
 
 ## C-TODAY'S MARKET OPENING PRICE
 
 [Return to TOC](#toc)
 
-- # by Mobius©:
+```
+# by Mobius©:
+#hint: Plots a horizontal line at a value of today's market opening price
 
-- #hint: Plots a horizontal line at a value of today's market opening price
+input CashOpen = 0930;
+input Settlement = 1615;
 
-- input CashOpen = 0930;
+def Today = GetDay() == GetLastDay();
+def TodaysOpen = if SecondsFromTime(CashOpen) == 0 and
+SecondsTillTime(Settlement) >= 24300 and Today
+  then open else TodaysOpen[1];
 
-- input Settlement = 1615;
-
-- def Today = GetDay() == GetLastDay();
-
-- def TodaysOpen = if SecondsFromTime(CashOpen) == 0 and
-
-- SecondsTillTime(Settlement) >= 24300 and
-
-- Today
-
-- then open
-
-- else TodaysOpen[1];
-
-- plot DaysOpen = if TodaysOpen then TodaysOpen else Double.NaN;
-
-- DaysOpen.SetPaintingStrategy(PaintingStrategy.DASHES);
-
-- DaysOpen.SetDefaultColor(Color.WHITE);
-
-- #end
+plot DaysOpen = if TodaysOpen then TodaysOpen else Double.NaN;
+DaysOpen.SetPaintingStrategy(PaintingStrategy.DASHES);
+DaysOpen.SetDefaultColor(Color.WHITE);
+#end
+```
 
 ## C-PLACING OF PLOTTED ARROWS
 
 [Return to TOC](#toc)
 
-- When you want to move a plotted arrow you can place it with the 'values_above' or 'values_below' painting strategy
+When you want to move a plotted arrow you can place it with the 'values_above' or 'values_below' painting strategy constants. See:
 
-- constants. See:
+http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Constants/PaintingStrategy/PaintingStrategy.VALUES_ABOVE.html
 
-- http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Constants/PaintingStrategy/PaintingStrategy.VALUES
+Another method has been used that plots a value and assigns an arrow to it  with 'SetPaintingStrategy'. An example follows:
 
-- _ABOVE.html
-
-- Another method has been used that plots a value and assigns an arrow to it  with 'SetPaintingStrategy'. An example
-
-- follows:
-
-- input spacer= 3;
-
-- plot arrowdn= if BarNumber() == SundayBar and SundayOpen < FridayClose then high+ticksize()*spacer else double.nan;
-
-- ArrowDn.SetPaintingStrategy(PaintingStrategy.Arrow_Down);
-
-- ArrowDn.SetLineWeight(3);
-
-- ArrowDn.SetDefaultColor(Color.Red);
-
-- #end
+```
+put spacer= 3;
+ot arrowdn= if BarNumber() == SundayBar and SundayOpen < FridayClose then high+ticksize()pacer else double.nan;
+ArrowDn.SetPaintingStrategy(PaintingStrategy.Arrow_Down);
+ArrowDn.SetLineWeight(3);
+ArrowDn.SetDefaultColor(Color.Red);
+#end
+```
 
 ## C-SPECIFYING 'AVERAGETYPE' INPUT
 
 [Return to TOC](#toc)
 
-- input AverageType = {default Simple, Exponential, Weighted, Wilders, Hull};
+`input AverageType = {default Simple, Exponential, Weighted, Wilders, Hull};`
 
-- To specify an individual selection  use, as an example,  AverageType ==  AverageType.Weighted
+To specify an individual selection  use, as an example,  AverageType ==  AverageType.Weighted
+Example:
 
-- Example:
-
-- input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input length1 = 10;
-
-- def price = close;
-
-- plot MovAvg1 = MovingAverage(averageType1, price, length1);
-
-- #end
+```
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input length1 = 10;
+def price = close;
+plot MovAvg1 = MovingAverage(averageType1, price, length1);
+#end
+```
 
 ## C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
 
 [Return to TOC](#toc)
 
-- #hint:Order based on value difference of three averages
+```
+#hint:Order based on value difference of three averages
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input length1 = 10;
+input length2 = 46;
+input length3 = 230;
+input val_diff = .05;
 
-- input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+def price = close;
+plot MovAvg1 = MovingAverage(averageType1,price, length1);
+plot MovAvg2 = MovingAverage(averageType2,price, length1);
+plot MovAvg3 = MovingAverage(averageType3,price, length1);
+plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND  absValue(MovAvg2 - MovAvg3) <= val_diff;
+condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
 
-- input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input length1 = 10;
-
-- input length2 = 46;
-
-- input length3 = 230;
-
-- input val_diff = .05;
-
-- def price = close;
-
-- plot MovAvg1 = MovingAverage(averageType1,price, length1);
-
-- plot MovAvg2 = MovingAverage(averageType2,price, length1);
-
-- plot MovAvg3 = MovingAverage(averageType3,price, length1);
-
-- plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND
-
-- absValue(MovAvg2 - MovAvg3) <= val_diff;
-
-- condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- addOrder(OrderType.BUY_AUTO, condition);
-
-- addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
-
-- #end
+addOrder(OrderType.BUY_AUTO, condition);
+addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
+#end
+```
 
 ## C-   DEFINING CONDITIONS IN BUY/SELL STRATEGY
 
 [Return to TOC](#toc)
 
-- #Defining conditions in buy/sell strategy
+```
+ #Defining conditions in buy/sell strategy
+ def mcd = MACD();
+ def price = close;
+ def condition1 = mcd > mcd[1] AND average(price,20) > price;
+ def condition2 = price < price[1] AND price[1]< price[2];
+ def condition3 =  condition1 AND condition2;
+ def condition4 = !condition2 and !condition1;
 
-- def mcd = MACD();
-
-- def price = close;
-
-- def condition1 = mcd > mcd[1] AND average(price,20) > price;
-
-- def condition2 = price < price[1] AND price[1]< price[2];
-
-- def condition3 =  condition1 AND condition2;
-
-- def condition4 = !condition2 and !condition1;
-
-- addOrder(OrderType.BUY_AUTO, condition3);
-
-- addOrder(OrderType.SELL_TO_CLOSE,condition4);
-
-- #end
+ addOrder(OrderType.BUY_AUTO, condition3);
+ addOrder(OrderType.SELL_TO_CLOSE,condition4);
+ #end
+ ```
 
 ## C-THE 'AdvanceDecline' STUDY OF THE NYSE, NASDAQ, AMEX
 
@@ -3975,701 +3228,497 @@ marketsentiment.setDefaultColor(color.yellow);
 
 [Return to TOC](#toc)
 
-- #Hint: Plot for ? calendar (not trading) days from an inputted date\n This works only on a lower plot and <b>not for HA
+```
+#Hint: Plot for ? calendar (not trading) days from an inputted date\n This works only on a lower plot and <b>not for HA and EquiVolume charts.</b>
 
-- and EquiVolume charts.</b>
+Input DaysToPlot = 20;#hint DaysToPlot: the number of calendar days to plot.
+Input Price = Close;
+input BeginDate =20130810;#hint BeginDate: The start date in YYYYMMDD format
 
-- Input DaysToPlot = 20;#hint DaysToPlot: the number of calendar days to plot.
+plot Days = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= DaysToPlot then Price else double.NaN;
 
-- Input Price = Close;
+AddLabel(1, "If you do not see a plot, check if the chart timeframe cover the input date", Color.WHITE);
 
-- input BeginDate =20130810;#hint BeginDate: The start date in YYYYMMDD format
-
-- plot Days = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= DaysToPlot then Price else double.NaN;
-
-- AddLabel(1, "If you do not see a plot, check if the chart timeframe cover the input date", Color.WHITE);
-
-- #end
+#end
+```
 
 ## C-   PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART
 
 [Return to TOC](#toc)
 
-- #plots the current price across an entire chart..... a true snippet
+```
+#plots the current price across an entire chart..... a true snippet
 
-- input price = close;
+input price = close;
 
-- plot price_across_chart = HighestAll(if !IsNaN(price) and IsNaN(price[-1]) then price else Double.NaN);
+plot price_across_chart = HighestAll(if !IsNaN(price) and IsNaN(price[-1]) then price else Double.NaN);
 
-- #end
+#end
+```
 
 ## C-PLACING OF PLOTTED ARROWS
 
 [Return to TOC](#toc)
 
-- When you want to move a plotted arrow you can place it with the 'values_above' or 'values_below' painting strategy
+When you want to move a plotted arrow you can place it with the 'values_above' or 'values_below' painting strategy constants. See:
 
-- constants. See:
+http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Constants/PaintingStrategy/PaintingStrategy.VALUES_ABOVE.html
 
-- http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Constants/PaintingStrategy/PaintingStrategy.VALUES
+Another method has been used that plots a value and assigns an arrow to it  with 'SetPaintingStrategy'. An example follows:
 
-- _ABOVE.html
+```
+input spacer= 3;
+plot arrowdn= if BarNumber() == SundayBar and SundayOpen < FridayClose then high+ticksize()*spacer else double.nan;
 
-- Another method has been used that plots a value and assigns an arrow to it  with 'SetPaintingStrategy'. An example
+ArrowDn.SetPaintingStrategy(PaintingStrategy.Arrow_Down);
+ArrowDn.SetLineWeight(3);
+ArrowDn.SetDefaultColor(Color.Red);
+```
 
-- follows:
-
-- input spacer= 3;
-
-- plot arrowdn= if BarNumber() == SundayBar and SundayOpen < FridayClose then high+ticksize()*spacer else double.nan;
-
-- ArrowDn.SetPaintingStrategy(PaintingStrategy.Arrow_Down);
-
-- ArrowDn.SetLineWeight(3);
-
-- ArrowDn.SetDefaultColor(Color.Red);
-
-- #end
+#end
 
 ## C-SPECIFYING 'AVERAGETYPE' INPUT
 
 [Return to TOC](#toc)
 
-- input AverageType = {default Simple, Exponential, Weighted, Wilders, Hull};
+`input AverageType = {default Simple, Exponential, Weighted, Wilders, Hull};`
 
-- To specify an individual selection  use, as an example,  AverageType ==  AverageType.Weighted
+To specify an individual selection  use, as an example,  AverageType ==  AverageType.Weighted
 
-- Example:
+Example:
 
-- input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
-
-- input length1 = 10;
-
-- def price = close;
-
-- plot MovAvg1 = MovingAverage(averageType1, price, length1);
-
-- #end
+```
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input length1 = 10;
+def price = close;
+plot MovAvg1 = MovingAverage(averageType1, price, length1);
+```
+#end
 
 ## C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
 
 [Return to TOC](#toc)
 
-- #hint:Order based on value difference of three averages
+```
+#hint:Order based on value difference of three averages
 
-- input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input length1 = 10;
+input length2 = 46;
+input length3 = 230;
+input val_diff = .05;
 
-- input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+def price = close;
 
-- input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
+plot MovAvg1 = MovingAverage(averageType1,price, length1);
+plot MovAvg2 = MovingAverage(averageType2,price, length1);
+plot MovAvg3 = MovingAverage(averageType3,price, length1);
+plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND absValue(MovAvg2 - MovAvg3) <= val_diff;
 
-- input length1 = 10;
+condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+addOrder(OrderType.BUY_AUTO, condition);
+addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
+```
 
-- input length2 = 46;
-
-- input length3 = 230;
-
-- input val_diff = .05;
-
-- def price = close;
-
-- plot MovAvg1 = MovingAverage(averageType1,price, length1);
-
-- plot MovAvg2 = MovingAverage(averageType2,price, length1);
-
-- plot MovAvg3 = MovingAverage(averageType3,price, length1);
-
-- plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND
-
-- absValue(MovAvg2 - MovAvg3) <= val_diff;
-
-- condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-- addOrder(OrderType.BUY_AUTO, condition);
-
-- addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
-
-- #end
+#end
 
 ## C-% VOLUME CHANGE FROM THE PREVIOUS BAR
 
 [Return to TOC](#toc)
 
-- #hint:Shows the percentage volume change from the previous bar
+```
+#hint:Shows the percentage volume change from the previous bar
 
-- declare lower;
+declare lower;
 
-- input ShowBubble = No;#hint ShowBubble:Yes shows the over-reference-% bubble
+input ShowBubble = No;#hint ShowBubble:Yes shows the over-reference-% bubble
+input Ref_val = 25;#hint Ref_val:The reference percent
 
-- input Ref_val = 25;#hint Ref_val:The reference percent
+def Vol_Change =((volume / volume[1]) -1) * 100;
 
-- def Vol_Change =((volume / volume[1]) -1) * 100;
+plot Ratio_vol = Vol_Change;
+Ratio_vol.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Ratio_vol.AssignValueColor(if Ratio_vol >= Ref_val then Color.green else if Ratio_vol < Ref_val and Ratio_vol > 0 then
 
-- plot Ratio_vol = Vol_Change;
+Color.Light_green else Color.Light_red);
+Ratio_vol.SetLineWeight(5);
+Ratio_vol.HideBubble();
+plot RefLine = Ref_val;
+RefLine.SetDefaultColor(Color.Yellow);
+RefLine.SetLineWeight(2);
+AddChartBubble(ShowBubble && Vol_Change > Ref_val, Ratio_vol, round(Ratio_vol,0) + "%", Color.green);
 
-- Ratio_vol.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+addLabel(1,"Shows the % change in volume compared to the previous bar", Color.pink);
+addLabel(1,"Yellow line = " + Ref_val + "% reference line" , Color.yellow);
+addLabel(!ShowBubble,"%-value-bubbles available when above " + Ref_val + "% reference line", Color.white);
+addLabel(ShowBubble,"Bubble percent shown when above the " + Ref_val + "% reference line" , Color.Green);
+```
 
-- Ratio_vol.AssignValueColor(if Ratio_vol >= Ref_val then Color.green else if Ratio_vol < Ref_val and Ratio_vol > 0 then
-
-- Color.Light_green else Color.Light_red);
-
-- Ratio_vol.SetLineWeight(5);
-
-- Ratio_vol.HideBubble();
-
-- plot RefLine = Ref_val;
-
-- RefLine.SetDefaultColor(Color.Yellow);
-
-- RefLine.SetLineWeight(2);
-
-- AddChartBubble(ShowBubble && Vol_Change > Ref_val, Ratio_vol, round(Ratio_vol,0) + "%", Color.green);
-
-- addLabel(1,"Shows the % change in volume compared to the previous bar", Color.pink);
-
-- addLabel(1,"Yellow line = " + Ref_val + "% reference line" , Color.yellow);
-
-- addLabel(!ShowBubble,"%-value-bubbles available when above " + Ref_val + "% reference line", Color.white);
-
-- addLabel(ShowBubble,"Bubble percent shown when above the " + Ref_val + "% reference line" , Color.Green);
-
-- #end
+#end
 
 ## C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD
 
 [Return to TOC](#toc)
 
-- #Hint:For intraday values, plots the days highest cloud and overlays the current price cloud
+```
+#Hint:For intraday values, plots the days highest cloud and overlays the current price cloud
 
-- declare lower;
+declare lower;
 
-- input IntraDay = Yes;#Hint IntraDay:Yes for intraday only
+input IntraDay = Yes;#Hint IntraDay:Yes for intraday only
+input price = high;#hint Price:Pick the price option desired.\nHigh is the default.\nOpen_Interest and Imp_Volatility are not valid choices.
 
-- input price = high;#hint Price:Pick the price option desired.\nHigh is the default.\nOpen_Interest and Imp_Volatility are
+input Mkt_Start = 0930;#hint Mkt_Start:Show market start time e.g. 930
+input Mkt_End = 1600;#hint Mkt_End:Show market end time e.g. 1600
 
-- not valid choices.
+def Past_Mkt_Start = If((SecondsTillTime(Mkt_Start) > 0), 0, 1);
+def Past_Mkt_End = If((SecondsTillTime(Mkt_End) > 0), 0, 1);
+def MktIsOpen = If(Past_Mkt_Start and !Past_Mkt_End, 1, 0);
+def day = GetDay();
+def lastDay = GetLastDay();
+def Today = If(day == lastDay, 1, 0);
+def Show = If(IntraDay and Today, 1, If(!IntraDay, 1, 0));
+def Bar1 = If (day[1] != day, day - 1, 0);
+def HighestHigh = If(price > HighestHigh[1] and MktIsOpen, price, If(MktIsOpen and !Bar1, HighestHigh[1], price));
+def LowestLow = If(price < LowestLow[1] and MktIsOpen, price, If(MktIsOpen and LowestLow[1] > 0 and !Bar1, LowestLow[1], price));
 
-- input Mkt_Start = 0930;#hint Mkt_Start:Show market start time e.g. 930
+def Highest_High = If(MktIsOpen and Show, HighestHigh, Double.NaN);
+def Lowest_Low = If(MktIsOpen and Show, LowestLow, Double.NaN);
 
-- input Mkt_End = 1600;#hint Mkt_End:Show market end time e.g. 1600
+plot HH_LL_Pct = ((Highest_High / Lowest_Low) - 1) * 100;
+HH_LL_Pct.SetDefaultColor(Color.GREEN);
+plot Lower = 0;
+Lower.HideBubble();
+Lower.HideTitle();
 
-- def Past_Mkt_Start = If((SecondsTillTime(Mkt_Start) > 0), 0, 1);
+plot CurrentPrice = ((price / Lowest_Low) - 1) * 100;
 
-- def Past_Mkt_End = If((SecondsTillTime(Mkt_End) > 0), 0, 1);
-
-- def MktIsOpen = If(Past_Mkt_Start and !Past_Mkt_End, 1, 0);
-
-- def day = GetDay();
-
-- def lastDay = GetLastDay();
-
-- def Today = If(day == lastDay, 1, 0);
-
-- def Show = If(IntraDay and Today, 1, If(!IntraDay, 1, 0));
-
-- def Bar1 = If (day[1] != day, day - 1, 0);
-
-- def HighestHigh = If(price > HighestHigh[1] and MktIsOpen, price, If(MktIsOpen and !Bar1, HighestHigh[1], price));
-
-- def LowestLow = If(price < LowestLow[1] and MktIsOpen, price, If(MktIsOpen and LowestLow[1] > 0 and !Bar1,
-
-- LowestLow[1], price));
-
-- def Highest_High = If(MktIsOpen and Show, HighestHigh, Double.NaN);
-
-- def Lowest_Low = If(MktIsOpen and Show, LowestLow, Double.NaN);
-
-- plot HH_LL_Pct = ((Highest_High / Lowest_Low) - 1) * 100;
-
-- HH_LL_Pct.SetDefaultColor(Color.GREEN);
-
-- plot Lower = 0;
-
-- Lower.HideBubble();
-
-- Lower.HideTitle();
-
-- plot CurrentPrice = ((price / Lowest_Low) - 1) * 100;
-
-- AddCloud(HH_LL_Pct, CurrentPrice, Color.GREEN);
-
-- AddCloud(CurrentPrice, Lower, Color.WHITE);
-
-- AddLabel(1, "Green is HH cloud", Color.GREEN);
-
-- AddLabel(1, "Lower cloud is price choice", Color.VIOLET);
-
-- AddLabel(1, "Input price choice = " + (if price == close then "close"
-
-- else if price == open then "open"
-
-- else if price == high then "high"
-
-- else if price == low then "low"
-
-- else if price == hl2 then "hl2"
-
-- else if price == hlc3 then "hlc3"
-
-- else if price == IMP_VOLATILITY then "imp_volatility is not a valid choice"
-
-- else if price == ohlc4 then "ohlc4"
-
-- else if price == open_interest then "Open_interest is not a valid choice"
-
-- else if price == volume then "Volume"
-
-- else if price == vwap then "VWAP"
-
-- else "ERROR"), Color.WHITE);
-
-- ###  END
+AddCloud(HH_LL_Pct, CurrentPrice, Color.GREEN);
+AddCloud(CurrentPrice, Lower, Color.WHITE);
+AddLabel(1, "Green is HH cloud", Color.GREEN);
+AddLabel(1, "Lower cloud is price choice", Color.VIOLET);
+AddLabel(1, "Input price choice = " + (if price == close then "close"
+  else if price == open then "open"
+  else if price == high then "high"
+  else if price == low then "low"
+  else if price == hl2 then "hl2"
+  else if price == hlc3 then "hlc3"
+  else if price == IMP_VOLATILITY then "imp_volatility is not a valid choice"
+  else if price == ohlc4 then "ohlc4"
+  else if price == open_interest then "Open_interest is not a valid choice"
+  else if price == volume then "Volume"
+  else if price == vwap then "VWAP"
+  else "ERROR"), Color.WHITE);
+```
+###END
 
 ## C-PLOT DUAL MOVING AVERAGES
 
 [Return to TOC](#toc)
 
-- #hint:<b>Moving Averages</b>\nShows the ??-DAY and a ???-DAY moving averages on your intraday and day charts.
+```
+#hint:<b>Moving Averages</b>\nShows the ??-DAY and a ???-DAY moving averages on your intraday and day charts.
 
-- declare upper;
+declare upper;
+input price = close;#hint price:Select the price choice
+input MA1_length = 50;#hint MA1_length:Input a MA1 length
+input MA2_length = 200;#hint MA2_length:Input a MA2 length
+Input ShowBubbles = yes;
 
-- input price = close;#hint price:Select the price choice
+def MovAvg50 = Average(close (period = "Day"), MA1_length);
+plot MA50 =  MovAvg50;
+MA50.SetDefaultColor(Color.ORANGE);
+AddChartBubble(Isnan(Close[-1]) && ShowBubbles, MovAvg50,(MA1_length + "-Day MA"), Color.YELLOW);
 
-- input MA1_length = 50;#hint MA1_length:Input a MA1 length
+def MovAvg200 = Average(close (period = "Day"), MA2_length);
+plot MA200= MovAvg200;
+MA200.SetDefaultColor(Color.DARK_ORANGE);
+AddChartBubble(Isnan(Close[-1]) && ShowBubbles, MovAvg200, (MA2_length + "-Day MA"), Color.DARK_ORANGE);
 
-- input MA2_length = 200;#hint MA2_length:Input a MA2 length
+addLabel(1,"Mov Avg input price choice = " + (if price == close then "close"
+  else if price == open then "open"
+  else if price == high then "high"
+  else if price == low then "low"
+  else if price == hl2 then "hl2"
+  else if price == hlc3 then "hlc3"
+  else if price == imp_volatility then "imp_volatility"
+  else if price == ohlc4 then "ohlc4"
+  else if price == open_interest then "Open_interest"
+  else if price == volume then "Volume"
+  else if price == VWAP then "VWAP"
+  else "ERROR"),color.white);
+  ```
+##end
 
-- Input ShowBubbles = yes;
+Comment: A more complex study that allows all five moving average types for all nine price choices is available but is too ong (245 lines) for inclusion here. This is the abridged version using a simple moving average for the nine price choices.
 
-- def MovAvg50 = Average(close (period = "Day"), MA1_length);
-
-- plot MA50 =  MovAvg50;
-
-- MA50.SetDefaultColor(Color.ORANGE);
-
-- AddChartBubble(Isnan(Close[-1]) && ShowBubbles, MovAvg50,(MA1_length + "-Day MA"), Color.YELLOW);
-
-- def MovAvg200 = Average(close (period = "Day"), MA2_length);
-
-- plot MA200= MovAvg200;
-
-- MA200.SetDefaultColor(Color.DARK_ORANGE);
-
-- AddChartBubble(Isnan(Close[-1]) && ShowBubbles, MovAvg200, (MA2_length + "-Day MA"), Color.DARK_ORANGE);
-
-- addLabel(1,"Mov Avg input price choice = " + (if price == close then "close"
-
-- else if price == open then "open"
-
-- else if price == high then "high"
-
-- else if price == low then "low"
-
-- else if price == hl2 then "hl2"
-
-- else if price == hlc3 then "hlc3"
-
-- else if price == imp_volatility then "imp_volatility"
-
-- else if price == ohlc4 then "ohlc4"
-
-- else if price == open_interest then "Open_interest"
-
-- else if price == volume then "Volume"
-
-- else if price == VWAP then "VWAP"
-
-- else "ERROR"),color.white);
-
-- ## end
-
-- Comment: A more complex study that allows all five moving average types for all nine price choices is available but is too
-
-- long (245 lines) for inclusion here. This is the abridged version using a simple moving average for the nine price choices.
-
-- #end
+#end
 
 ## C-SIMPLE MOVING AVERAGE CROSS TRADING
 
 [Return to TOC](#toc)
 
-- Comment: The effectiveness of this system has not been verified. It is included here for its presentation value.
+Comment: The effectiveness of this system has not been verified. It is included here for its presentation value.
 
-- #BreakPointTrades.com Mechanical System
+```
+#BreakPointTrades.com Mechanical System
+#Trade the crossovers on a 15 minute chart (daily buy/sell, exit on close system).
+#SRS - 9/39 EMA
+#SKF - 29/86 EMA (so change EMALength1 to 29, EMALength2 to 86 on a 5 min chart)
 
-- #Trade the crossovers on a 15 minute chart (daily buy/sell, exit on close system).
+declare upper;
+input price = close;
+input displace = 0;
+input EMALength1 = 9;
+input EMALength2 = 39;
 
-- #SRS - 9/39 EMA
+plot upper = ExpAverage(data = price[-displace], length = EMALength1);
+upper.SetDefaultColor(Color.RED);
 
-- #SKF - 29/86 EMA (so change EMALength1 to 29, EMALength2 to 86 on a 5 min chart)
+plot lower = ExpAverage(data = price[-displace], length = EMALength2);
+lower.SetDefaultColor(Color.BLUE);
 
-- declare upper;
-
-- input price = close;
-
-- input displace = 0;
-
-- input EMALength1 = 9;
-
-- input EMALength2 = 39;
-
-- plot upper = ExpAverage(data = price[-displace], length = EMALength1);
-
-- upper.SetDefaultColor(Color.RED);
-
-- plot lower = ExpAverage(data = price[-displace], length = EMALength2);
-
-- lower.SetDefaultColor(Color.BLUE);
-
-- AddCloud(upper,lower);
-
-- #end
+AddCloud(upper,lower);
+```
+#end
 
 ## C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY
 
 [Return to TOC](#toc)
 
-- #hint: <b>Find Moving Average Xover</b>\nFinds when a fast moving average crosses over or under a slow.\n The fast
+```
+#hint: <b>Find Moving Average Xover</b>\nFinds when a fast moving average crosses over or under a slow.\n The fast average going above the slow average (bullish crossover) is a signal to buy, while the opposite situation (bearish crossover) is a signal to sell.
 
-- average going above the slow average (bullish crossover) is a signal to buy, while the opposite situation (bearish
+input price = close;#hint price: The price used to calculate the crossover. <b>(Default is CLOSE)</b>
+input fastLength = 3;#hint fastLength: The number of bars used to calculate the fast moving average. <b>(Default is 3)</b>
+input slowLength = 8;#hint slowLength: The number of bars used to calculate the slow moving average. <b>(Default is 8)</b>
+input slowAvgType = {default Simple, Exponential, Weighted, Wilders, Hull};#hint slowAvgType: Type of the fast moving average to be used for calculation. <b>(Default is Expontential)</b>
+input fastAvgType = {default Simple, Exponential, Weighted, Wilders, Hull};#hint fastAvgType: Type of the fast moving average to be used for calculation. <b>(Default is Exponential)</b>
+Input DoArrows = no;#hint DoArrows:Yes shows arrows to define crosses
+Input DoPlots = yes;#hint DoPlots: Yes shows MA plots to define crosses. Default is 'YES'
+Input DoAlerts = No;#hint DoAlerts:No turns off alerts
 
-- crossover) is a signal to sell.
+Assert( fastLength < slowLength, "fastLength ["+fastLength+"] must be less than slowLength["+slowLength+"]");
 
-- input price = close;#hint price: The price used to calculate the crossover. <b>(Default is CLOSE)</b>
+def fastAvg;
+switch (slowAvgType) {
+  case Simple:
+    fastAvg = Average(price, fastLength);
+  case Exponential:
+    fastAvg = ExpAverage(price, fastLength);
+  case Weighted:
+    fastAvg = wma(price, fastLength);
+  case Wilders:
+    fastAvg = WildersAverage(price, fastLength);
+  case Hull:
+    fastAvg = HullMovingAvg(price, fastLength);
+}
 
-- input fastLength = 3;#hint fastLength: The number of bars used to calculate the fast moving average. <b>(Default is
+def slowAvg;
+switch (fastAvgType) {
+  case Simple:
+    slowAvg = Average(price, slowLength);
+  case Exponential:
+    slowAvg = ExpAverage(price, slowLength);
+  case Weighted:
+    slowAvg = wma(price, slowLength);
+  case Wilders:
+    slowAvg = WildersAverage(price, slowLength);
+  case Hull:
+    slowAvg = HullMovingAvg(price, slowLength);
+}
 
-- 3)</b>
+plot signalXup = If DoArrows Then crosses(fastAvg, slowAvg, CrossingDirection.above) else Double.nan;
 
-- input slowLength = 8;#hint slowLength: The number of bars used to calculate the slow moving average. <b>(Default is
+signalXup.SetDefaultColor(Color.pink);
+signalXup.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+signalXup.SetLineWeight(3);
+plot signalXdn =  If DoArrows Then crosses(fastAvg, slowAvg, CrossingDirection.below) else Double.nan;
 
-- 8)</b>
+signalXdn.SetDefaultColor(Color.Green);
+signalXdn.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
+signalXdn.SetLineWeight(3);
 
-- input slowAvgType = {default Simple, Exponential, Weighted, Wilders, Hull};#hint slowAvgType: Type of the fast moving
+Alert(signalXup && DoAlerts, "UP...Fast MA Cross Above Slow MA", Alert.BAR, Sound.Ring );
+Alert(signalXdn && DoAlerts, "Down...Fast Ma Cross Below Slow MA", Alert.BAR, Sound.Bell );
 
-- average to be used for calculation. <b>(Default is Expontential)</b>
+Plot fast_Avg = If DoPlots  then Fastavg else double.nan;
+fast_Avg.SetDefaultColor(Color.pink);
+fast_Avg.SetPaintingStrategy(PaintingStrategy.line);
+fast_Avg.SetLineWeight(2);
 
-- input fastAvgType = {default Simple, Exponential, Weighted, Wilders, Hull};#hint fastAvgType: Type of the fast moving
+Plot Slo_Avg = If DoPlots  then Slowavg else double.nan;
+Slo_Avg.SetDefaultColor(Color.cyan);
+Slo_Avg.SetPaintingStrategy(PaintingStrategy.line);
+Slo_Avg.SetLineWeight(2);
 
-- average to be used for calculation. <b>(Default is Exponential)</b>
-
-- Input DoArrows = no;#hint DoArrows:Yes shows arrows to define crosses
-
-- Input DoPlots = yes;#hint DoPlots: Yes shows MA plots to define crosses. Default is 'YES'
-
-- Input DoAlerts = No;#hint DoAlerts:No turns off alerts
-
-- Assert( fastLength < slowLength, "fastLength ["+fastLength+"] must be less than slowLength["+slowLength+"]");
-
-- def fastAvg;
-
-- switch (slowAvgType) {
-
-- case Simple:
-
-- fastAvg = Average(price, fastLength);
-
-- case Exponential:
-
-- fastAvg = ExpAverage(price, fastLength);
-
-- case Weighted:
-
-- fastAvg = wma(price, fastLength);
-
-- case Wilders:
-
-- fastAvg = WildersAverage(price, fastLength);
-
-- case Hull:
-
-- fastAvg = HullMovingAvg(price, fastLength);
-
-- }
-
-- def slowAvg;
-
-- switch (fastAvgType) {
-
-- case Simple:
-
-- slowAvg = Average(price, slowLength);
-
-- case Exponential:
-
-- slowAvg = ExpAverage(price, slowLength);
-
-- case Weighted:
-
-- slowAvg = wma(price, slowLength);
-
-- case Wilders:
-
-- slowAvg = WildersAverage(price, slowLength);
-
-- case Hull:
-
-- slowAvg = HullMovingAvg(price, slowLength);
-
-- }
-
-- plot signalXup = If DoArrows Then crosses(fastAvg, slowAvg, CrossingDirection.above) else Double.nan;
-
-- signalXup.SetDefaultColor(Color.pink);
-
-- signalXup.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
-
-- signalXup.SetLineWeight(3);
-
-- plot signalXdn =  If DoArrows Then crosses(fastAvg, slowAvg, CrossingDirection.below) else Double.nan;
-
-- signalXdn.SetDefaultColor(Color.Green);
-
-- signalXdn.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- signalXdn.SetLineWeight(3);
-
-- Alert(signalXup && DoAlerts, "UP...Fast MA Cross Above Slow MA", Alert.BAR, Sound.Ring );
-
-- Alert(signalXdn && DoAlerts, "Down...Fast Ma Cross Below Slow MA", Alert.BAR, Sound.Bell );
-
-- Plot fast_Avg = If DoPlots  then Fastavg else double.nan;
-
-- fast_Avg.SetDefaultColor(Color.pink);
-
-- fast_Avg.SetPaintingStrategy(PaintingStrategy.line);
-
-- fast_Avg.SetLineWeight(2);
-
-- Plot Slo_Avg = If DoPlots  then Slowavg else double.nan;
-
-- Slo_Avg.SetDefaultColor(Color.cyan);
-
-- Slo_Avg.SetPaintingStrategy(PaintingStrategy.line);
-
-- Slo_Avg.SetLineWeight(2);
-
-- AddCloud(fastAvg, slowAvg, color.green, color.red);
-
-- AddLabel(1, "Fast MA(" + fastLength + ")",color.pink);
-
-- AddLabel(1, "Slow MA(" + slowLength + ")",color.cyan);
-
-- #end
+AddCloud(fastAvg, slowAvg, color.green, color.red);
+AddLabel(1, "Fast MA(" + fastLength + ")",color.pink);
+AddLabel(1, "Slow MA(" + slowLength + ")",color.cyan);
+#end
+```
 
 ## C-AVOIDING FALSE SIGNALS
 
 [Return to TOC](#toc)
 
-- Situation: "I want to find the best time to enter and exit an order. EMA's are great but so many times a fast line will
+Situation: "I want to find the best time to enter and exit an order. EMA's are great but so many times a fast line will cross a slow line but then turn right around and un-cross. I want a way to keep from entering and exiting orders to often.
 
-- cross a slow line but then turn right around and un-cross. I want a way to keep from entering and exiting orders to often.
+It seems like whenever the fast EMA crosses the slow EMA AND a certain amount of time passes the combination of those 3 events signals a longer term trend. When I say "long" I mean like half a day for day trading"
 
-- It seems like whenever the fast EMA crosses the slow EMA AND a certain amount of time passes the combination of
+Solution: Here's a study for you. The indicator stays 'red' after the Moving Averages cross. When it turns green you are in the safe zone. This is great for true mechanical systems to make sure you don't enter and exit on false signals.
 
-- those 3 events signals a longer term trend. When I say "long" I mean like half a day for day trading"
+```
+input price = close;
+input Shorter_Time = 10;
+input Longer_Time = 21;
+Def difference = average(data = price[1], length = Longer_Time) - average(data = price[1], length = Shorter_Time);
 
-- Solution: Here's a study for you. The indicator stays 'red' after the Moving Averages cross. When it turns green you are
-
-- in the safe zone. This is great for true mechanical systems to make sure you don't enter and exit on false signals.
-
-- input price = close;
-
-- input Shorter_Time = 10;
-
-- input Longer_Time = 21;
-
-- Def difference = average(data = price[1], length = Longer_Time) - average(data = price[1], length = Shorter_Time);
-
-- plot timer = price[1];
-
-- timer.AssignValueColor(if difference < 0 then
-
-- Color.UPTICK
-
-- else
-
-- if difference >= 0 then
-
-- Color.DOWNTICK
-
-- else
-
-- GetColor(1)
-
-- );
-
-- #end
+plot timer = price[1];
+timer.AssignValueColor(if difference < 0 then Color.UPTICK
+  else
+    if difference >= 0 then
+      Color.DOWNTICK
+    else
+      GetColor(1)
+    );
+```
+#end
 
 ## C-USING THE SETHIDING FUNCTION
 
 [Return to TOC](#toc)
 
-- #hint:This illustrates the use of the SetHiding function. which controls visibility of a plot depending on a condition. If
+```
+#hint:This illustrates the use of the SetHiding function. which controls visibility of a plot depending on a condition. If this condition is true, the plot is hidden; otherwise the plot is visible.
 
-- this condition is true, the plot is hidden; otherwise the plot is visible.
+input offset = 1 ;# Used to position the plot this amount above the high
 
-- input offset = 1 ;# Used to position the plot this amount above the high
+plot EachBar = if close < close[1] && close[1] < close[2] then high + offset else double.NaN;
+EachBar.SetPaintingStrategy(paintingStrategy.POINTS);
+EachBar.SetDefaultColor(color.LIGHT_GREEN);
+EachBar.SetLineWeight(5);
+EachBar.setHiding(if(close > reference SimpleMovingAvg(length = 21),1,0));
+Plot MA = SimpleMovingAvg(length=21);
+```
 
-- plot EachBar = if close < close[1] && close[1] < close[2] then high + offset else double.NaN;
+Comment: The above plots a light_green point (dot) whenever there are two consecutive lower closes. However,EachBar.setHiding... hides that point when it's condition is true i.e. the close > SimpleMovingAvg(21).
 
-- EachBar.SetPaintingStrategy(paintingStrategy.POINTS);
-
-- EachBar.SetDefaultColor(color.LIGHT_GREEN);
-
-- EachBar.SetLineWeight(5);
-
-- EachBar.setHiding(if(close > reference SimpleMovingAvg(length = 21),1,0));
-
-- Plot MA = SimpleMovingAvg(length=21);
-
-- Comment: The above plots a light_green point (dot) whenever there are two consecutive lower closes. However,
-
-- EachBar.setHiding... hides that point when it's condition is true i.e. the close > SimpleMovingAvg(21).
-
-- #end
+#end
 
 ## C-MOVING AVERAGE SPECTRUM
 
 [Return to TOC](#toc)
 
-- #hint:<b>Moving Average Spectrum</b>\nPlots MAs (close) from lengths of 2 to 54 in increments of 2. Colors range
+```
+#hint:<b>Moving Average Spectrum</b>\nPlots MAs (close) from lengths of 2 to 54 in increments of 2. Colors range from red/yellows, thru blues to magenta/pink respectively.\nSquashing of the colors indicate MAs are getting ready to cross and change direction.\n Consistent spacing of the lines indicate a pattern in place and maintaing the trend.
 
-- from red/yellows, thru blues to magenta/pink respectively.\nSquashing of the colors indicate MAs are getting ready to
+declare upper;
 
-- cross and change direction.\n Consistent spacing of the lines indicate a pattern in place and maintaing the trend.
+input L1 = 2;input L2 = 4;input L3 = 6;input L4 = 8;input L5 = 10;input L6 = 12;input L7 = 14;input L8 = 16;input L9 = 18;
+input L10 = 20;input L11 = 22;input L12 = 24;input L13 = 26;input L14 = 28;input L15 = 30;input L16 = 32;input L17 = 34;
+input L18 = 36;input L19 = 38;input L20 = 40;input L21 = 42;input L22 = 44;input L23 = 46;input L24 = 48;input L25 = 50;
+input L26 = 52;input L27 = 54;
 
-- declare upper;
+plot A1 = Average(close, L1);plot A2 = Average(close, L2);plot A3 = Average(close, L3);plot A4 = Average(close, L4);
+plot A5 = Average(close, L5);plot A6 = Average(close, L6);plot A7 = Average(close, L7);plot A8 = Average(close, L8);
+plot A9 = Average(close, L9);plot A10 = Average(close, L10);plot A11 = Average(close, L11);plot A12 = Average(close, L12);
 
-- input L1 = 2;input L2 = 4;input L3 = 6;input L4 = 8;input L5 = 10;input L6 = 12;input L7 = 14;input L8 = 16;input L9 = 18;
+plot A13 = Average(close, L13);plot A14 = Average(close, L14);plot A15 = Average(close, L15);
+plot A16 = Average(close, L16);plot A17 = Average(close, L17);plot A18 = Average(close, L18);
+plot A19 = Average(close, L19);plot A20 = Average(close, L20);plot A21 = Average(close, L21);
+plot A22 = Average(close, L22);plot A23 = Average(close, L23);plot A24 = Average(close, L24);
+plot A25 = Average(close, L25);plot A26 = Average(close, L26);plot A27 = Average(close, L27);
 
-- input L10 = 20;input L11 = 22;input L12 = 24;input L13 = 26;input L14 = 28;input L15 = 30;input L16 = 32;input L17 = 34;
-
-- input L18 = 36;input L19 = 38;input L20 = 40;input L21 = 42;input L22 = 44;input L23 = 46;input L24 = 48;input L25 = 50;
-
-- input L26 = 52;input L27 = 54;
-
-- plot A1 = Average(close, L1);plot A2 = Average(close, L2);plot A3 = Average(close, L3);plot A4 = Average(close, L4);
-
-- plot A5 = Average(close, L5);plot A6 = Average(close, L6);plot A7 = Average(close, L7);plot A8 = Average(close, L8);
-
-- plot A9 = Average(close, L9);plot A10 = Average(close, L10);plot A11 = Average(close, L11);plot A12 = Average(close, L12);
-
-- plot A13 = Average(close, L13);plot A14 = Average(close, L14);plot A15 = Average(close, L15);
-
-- plot A16 = Average(close, L16);plot A17 = Average(close, L17);plot A18 = Average(close, L18);
-
-- plot A19 = Average(close, L19);plot A20 = Average(close, L20);plot A21 = Average(close, L21);
-
-- plot A22 = Average(close, L22);plot A23 = Average(close, L23);plot A24 = Average(close, L24);
-
-- plot A25 = Average(close, L25);plot A26 = Average(close, L26);plot A27 = Average(close, L27);
-
-- A1.SetDefaultColor(Color.RED);A2.SetDefaultColor(Color.RED);A3.SetDefaultColor(Color.RED);
-
-- A4.SetDefaultColor(Color.ORANGE);A5.SetDefaultColor(Color.ORANGE);A6.SetDefaultColor(Color.ORANGE);
-
-- A7.SetDefaultColor(Color.YELLOW);A8.SetDefaultColor(Color.YELLOW);A9.SetDefaultColor(Color.YELLOW);
-
-- A10.SetDefaultColor(Color.GREEN);A11.SetDefaultColor(Color.GREEN);A12.SetDefaultColor(Color.GREEN);
-
-- A13.SetDefaultColor(Color.CYAN);A14.SetDefaultColor(Color.CYAN);A15.SetDefaultColor(Color.CYAN);
-
-- A16.SetDefaultColor(Color.PLUM);A17.SetDefaultColor(Color.PLUM);A18.SetDefaultColor(Color.PLUM);
-
-- A19.SetDefaultColor(Color.Violet);A20.SetDefaultColor(Color.Violet);A21.SetDefaultColor(Color.Violet);
-
-- A22.SetDefaultColor(Color.MAGENTA);A23.SetDefaultColor(Color.MAGENTA);A24.SetDefaultColor(Color.MAGENTA);
-
-- A25.SetDefaultColor(Color.PINK);A26.SetDefaultColor(Color.PINK);A27.SetDefaultColor(Color.PINK);
-
-- ## end
+A1.SetDefaultColor(Color.RED);A2.SetDefaultColor(Color.RED);A3.SetDefaultColor(Color.RED);
+A4.SetDefaultColor(Color.ORANGE);A5.SetDefaultColor(Color.ORANGE);A6.SetDefaultColor(Color.ORANGE);
+A7.SetDefaultColor(Color.YELLOW);A8.SetDefaultColor(Color.YELLOW);A9.SetDefaultColor(Color.YELLOW);
+\
+A10.SetDefaultColor(Color.GREEN);A11.SetDefaultColor(Color.GREEN);A12.SetDefaultColor(Color.GREEN);
+A13.SetDefaultColor(Color.CYAN);A14.SetDefaultColor(Color.CYAN);A15.SetDefaultColor(Color.CYAN);
+A16.SetDefaultColor(Color.PLUM);A17.SetDefaultColor(Color.PLUM);A18.SetDefaultColor(Color.PLUM);
+A19.SetDefaultColor(Color.Violet);A20.SetDefaultColor(Color.Violet);A21.SetDefaultColor(Color.Violet);
+A22.SetDefaultColor(Color.MAGENTA);A23.SetDefaultColor(Color.MAGENTA);A24.SetDefaultColor(Color.MAGENTA);
+A25.SetDefaultColor(Color.PINK);A26.SetDefaultColor(Color.PINK);A27.SetDefaultColor(Color.PINK);
+```
+#end
 
 ## C-IMPLIED VOLATILITY LABEL AND PLOT
 
 [Return to TOC](#toc)
 
-- #hint: Implied Volatility label and plot
+```
+#hint: Implied Volatility label and plot
 
-- def Imp_Vol = imp_volatility(period = aggregationPeriod.DAY);
+def Imp_Vol = imp_volatility(period = aggregationPeriod.DAY);
+def impv = CompoundValue(1, if IsNaN(Imp_Vol) then impv[1] else Imp_Vol, Imp_Vol );
+def value = impv;
 
-- def impv = CompoundValue(1, if IsNaN(Imp_Vol) then impv[1] else Imp_Vol, Imp_Vol );
-
-- def value = impv;
-
-- #AddLabel(yes, "Implied Volatility = " + AsPercent(value));
-
-- plot x = value ;
-
-- #end
+#AddLabel(yes, "Implied Volatility = " + AsPercent(value));
+plot x = value ;
+```
+#end
 
 ## C-INSIDE-BAR CODING
 
 [Return to TOC](#toc)
 
-- Comment: An inside bar is a frequent item of interest. Code related to such a bar is below:
+Comment: An inside bar is a frequent item of interest. Code related to such a bar is below:
 
-- ##### Current bar is an inside Bar: Green if true #######
+##### Current bar is an inside Bar: Green if true #######
+```
+plot Data = if high <= high [1] and low >= low[1] then 1 else 0;
+AssignBackgroundColor( if Data > 0 then Color.GREEN  else Color.BLACK );
+Data.assignValueColor(color.BLACK);
+```
 
-- plot Data = if high <= high [1] and low >= low[1] then 1 else 0;
+### Prior Bar was an inside bar and current bar's high broke above prior bar high:Green if true ###
 
-- AssignBackgroundColor( if Data > 0 then Color.GREEN  else Color.BLACK );
+```
+plot Data = if (high[1] <= high [2] and low[1] >= low[2]) and (high > high[1]) then 1 else 0;
+AssignBackgroundColor( if Data > 0 then Color.GREEN  else Color.BLACK );
+Data.assignValueColor(color.BLACK);
+```
 
-- Data.assignValueColor(color.BLACK);
+#### Prior Bar was an inside bar and current bar's low broke below prior bar's low:Red if true #####
 
-- ### Prior Bar was an inside bar and current bar's high broke above prior bar high:Green if true ###
+```
+plot Data = if (high[1] <= high [2] and low[1] >= low[2]) and (low < low[1]) then -1 else 0;
+AssignBackgroundColor( if Data < 0 then Color.RED  else Color.BLACK );
+Data.assignValueColor(color.BLACK);
+```
 
-- plot Data = if (high[1] <= high [2] and low[1] >= low[2]) and (high > high[1]) then 1 else 0;
+### Prior Bar was an inside bar and current bar broke above or below: Green above/Red below ###
 
-- AssignBackgroundColor( if Data > 0 then Color.GREEN  else Color.BLACK );
+```
+plot Data = if (high[1] <= high [2] and low[1] >= low[2]) and (high > high[1]) then 1 else if (high[1] <= high [2] and low[1] >= low[2]) and (low < low[1]) then -1 else 0;
+AssignBackgroundColor( if Data > 0 then Color.GREEN  else  if Data < 0 then Color.RED else Color.BLACK );
+Data.assignValueColor(color.BLACK);
+```
 
-- Data.assignValueColor(color.BLACK);
+### Another way to do it ###
 
-- #### Prior Bar was an inside bar and current bar's low broke below prior bar's low:Red if true #####
+```
+def InUp = (high[1] <= high [2] and low[1] >= low[2]) and (high > high[1]);
+def InDn = (high[1] <= high [2] and low[1] >= low[2]) and (low < low[1]);
+plot Data = if InUp then 1 else if InDn then -1 else 0;
+data.assignValueColor(color.BLACK);
+assignBackgroundColor(if InUp then color.UPTICK else if InDn then color.DOWNTICK else color.BLACK);
+```
 
-- plot Data = if (high[1] <= high [2] and low[1] >= low[2]) and (low < low[1]) then -1 else 0;
+####### bulld:  here is another related one ... NR7 bar #######
 
-- AssignBackgroundColor( if Data < 0 then Color.RED  else Color.BLACK );
+```
+def range = AbsValue(high - low);
+def diff = (range < range[1] and range < range[2] and range < range[3] and range < range[4] and range < range[5] and range < range[6]);
 
-- Data.assignValueColor(color.BLACK);
-
-- ### Prior Bar was an inside bar and current bar broke above or below: Green above/Red below ###
-
-- plot Data = if (high[1] <= high [2] and low[1] >= low[2]) and (high > high[1]) then 1 else if (high[1] <= high [2] and low[1] >=
-
-- low[2]) and (low < low[1]) then -1 else 0;
-
-- AssignBackgroundColor( if Data > 0 then Color.GREEN  else  if Data < 0 then Color.RED else Color.BLACK );
-
-- Data.assignValueColor(color.BLACK);
-
-- ### Another way to do it ###
-
-- def InUp = (high[1] <= high [2] and low[1] >= low[2]) and (high > high[1]);
-
-- def InDn = (high[1] <= high [2] and low[1] >= low[2]) and (low < low[1]);
-
-- plot Data = if InUp then 1 else if InDn then -1 else 0;
-
-- data.assignValueColor(color.BLACK);
-
-- assignBackgroundColor(if InUp then color.UPTICK else if InDn then color.DOWNTICK else color.BLACK);
-
-- ####### bulld:  here is another related one ... NR7 bar #######
-
-- def range = AbsValue(high - low);
-
-- def diff = (range < range[1] and range < range[2] and range < range[3] and range < range[4] and range < range[5] and range
-
-- < range[6]);
-
-- plot disp = high + (1/5);
-
-- disp.setDefaultColor(Color.White);
-
-- disp.assignValueColor(if diff > 0 then Color.White else Color.BLACK);
-
-- #end
+plot disp = high + (1/5);
+disp.setDefaultColor(Color.White);
+disp.assignValueColor(if diff > 0 then Color.White else Color.BLACK);
+```
+#end
 
 ## C-IDENTIFYING AGGREGATION IN A LABEL
 
@@ -4681,14 +3730,14 @@ input Show_ChartPeriod = yes;
 def AggPeriod = getAggregationPeriod();
 AddLabel(Show_ChartPeriod,
 if AggPeriod == AggregationPeriod.DAY
-then "DAY"
-else if AggPeriod == AggregationPeriod.WEEK
-then "WEEK"
-else if AggPeriod == AggregationPeriod.MONTH
-then "MONTH"
-else if Aggperiod < AggregationPeriod.DAY
-then "<D"
-else ">M",
+  then "DAY"
+  else if AggPeriod == AggregationPeriod.WEEK
+  then "WEEK"
+  else if AggPeriod == AggregationPeriod.MONTH
+  then "MONTH"
+  else if Aggperiod < AggregationPeriod.DAY
+  then "<D"
+  else ">M",
 Color.RED );
 #end
 ```
@@ -4699,19 +3748,21 @@ Color.RED );
 
 ```
 #hint:Selects the first and last bar for placing a bubble
+
 declare upper;
 Input Offset = -10;
 def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
 Def BubbleLocation = LastBar[Offset];
 def barNum = barNumber();
 def FirstBar = if barNum == 1 then 1 else 0;
+
 AddLabel( yes, "Total bars = " + barNum, ), Color.pink );
 addchartbubble(BubbleLocation , close, "Last Bar", color.white);
 addchartbubble(FirstBar, close, "FirstBar", color.white);
-Comment: HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in e right margin and not on
-the chart itself.
-#end
 ```
+
+Comment: HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in e right margin and not on the chart itself.
+#end
 
 ## C-DEFINE PREVIOUS DAY'S CLOSE
 
@@ -4719,6 +3770,7 @@ the chart itself.
 
 ```
 #Hint:Define Previous day's close
+
 declare upper;
 input price    = FundamentalType.Close;
 def barNum     = if IsNaN( close ) then Double.NaN else barNumber();
@@ -4735,6 +3787,7 @@ PreviousPriceLine.SetDefaultColor( CreateColor( 102, 102, 102 );
 
 ```
 #hint:Creating a cloud without a plot
+
 input CloudThicknessPercentage = 100;#Hint  CloudThicknessPercentage:Percent of the cloud ickness to be plotted
 def CloudThickness = ((close[1] - close) / 100) * CloudThicknessPercentage;
 def highh = close + CloudThickness;
@@ -4751,6 +3804,7 @@ Comment: This is an excellent example of a simple recursive that counts
 
 ```
 #hint:Plots of counts of consecutive rises or drops of the close.
+
 def count_CloseDrops =
 if Close < close[1] then count_CloseDrops[1] +1 else 0;
 plot close_going_down = count_CloseDrops ;
@@ -4758,6 +3812,7 @@ close_going_down.SetPaintingStrategy(PaintingStrategy.line);
 close_going_down.SetLineWeight(1);
 close_going_down.SetDefaultColor(Color.red);
 AddLabel(yes,  "Count of consecutive drops of the CLOSE = " +  Close_going_down ,color.red);
+
 ######### on the up side ###############
 def count_CloseUps =
 if Close > close[1] then count_CloseUps[1] +1 else 0;
@@ -4766,6 +3821,7 @@ close_going_up.SetPaintingStrategy(PaintingStrategy.line);
 close_going_up.SetLineWeight(1);
 close_going_up.SetDefaultColor(Color.green);
 AddLabel(yes,  "Count of consecutive rises of the CLOSE = " +  Close_going_up ,color.green);
+
 ########## Reference lines ############
 Plot line2 = 2;
 line2.SetDefaultColor(Color.light_gray);
@@ -4815,61 +3871,40 @@ at the selected barnumber stating the barnumber
 
 [Return to TOC](#toc)
 
-- by Mobius©
+by Mobius©
 
-- input Begin  = 0930;
+```
+input Begin  = 0930;
+input End    = 1600;
+def IsClosed = if SecondsFromTime(End) == 0 and
+SecondsTillTime(End) == 0
+then close
+else IsClosed [1];#If market IsClosed then IsClosed's value = close
+def data = if IsClosed > 0 then IsClosed else Double.NaN;
+plot cond = close(priceType = "Mark") * 1.01 > IsClosed ;#Must use Mark in Pre/PostMarket
+#Above uses 1.01 to scan for close > 1%. Change for your % desired.
 
-- input End    = 1600;
+################
+Mobius©: this is the corresponding chart study
+input Begin  = 0930;
+input End    = 1600;
 
-- def IsClosed = if SecondsFromTime(End) == 0 and
+def Islosed = if SecondsFromTime(End) == 0 and
+SecondsTillTime(End) == 0
+then close
+else IsClosed[1];#If market IsClosed then IsClosed's value = close
+plot data = if IsClosed > 0 then IsClosed else Double.NaN;#Data is the fixed line to add or subtract the percentage from for the crossing condition
 
-- SecondsTillTime(End) == 0
+data.SetPaintingStrategy(PaintingStrategy.Dashes);
+# In the plot below change 1.01 (1%)  to your desired %
+plot cond = if close(priceType = "Mark") crosses above Data * 1.01 then low else Double.NaN; #Must use Mark in pre/postmarket
 
-- then close
+cond.SetPaintingStrategy(PaintingStrategy.Arrow_Up);
+```
 
-- else IsClosed [1];#If market IsClosed then IsClosed's value = close
+Comment1: Pre-market scan and chart may be had by changing 'End' to 'Begin' in the above code
 
-- def data = if IsClosed > 0 then IsClosed else Double.NaN;
-
-- plot cond = close(priceType = "Mark") * 1.01 > IsClosed ;#Must use Mark in Pre/PostMarket
-
-- #Above uses 1.01 to scan for close > 1%. Change for your % desired.
-
-- ################
-
-- Mobius©: this is the corresponding chart study
-
-- input Begin  = 0930;
-
-- input End    = 1600;
-
-- def Islosed = if SecondsFromTime(End) == 0 and
-
-- SecondsTillTime(End) == 0
-
-- then close
-
-- else IsClosed[1];#If market IsClosed then IsClosed's value = close
-
-- plot data = if IsClosed > 0 then IsClosed else Double.NaN;#Data is the fixed line to add or subtract the percentage from
-
-- for the crossing condition
-
-- data.SetPaintingStrategy(PaintingStrategy.Dashes);
-
-- # In the plot below change 1.01 (1%)  to your desired %
-
-- plot cond = if close(priceType = "Mark") crosses above Data * 1.01 then low else Double.NaN; #Must use Mark in
-
-- pre/postmarket
-
-- cond.SetPaintingStrategy(PaintingStrategy.Arrow_Up);
-
-- Comment1: Pre-market scan and chart may be had by changing 'End' to 'Begin' in the above code
-
-- Comment2: To display pre and post- market chart displays, click the wrench to open 'Chart Settings' and then go to
-
-- 'equities' and check 'Show Extended Session'
+Comment2: To display pre and post- market chart displays, click the wrench to open 'Chart Settings' and then go to 'equities' and check 'Show Extended Session'
 
 - #end
 
@@ -4886,17 +3921,20 @@ input length1 = 10;
 input length2 = 46;
 input length3 = 230;
 input val_diff = .05;
+
 def price = close;
+
 plot MovAvg1 = MovingAverage(averageType1,price, length1);
 plot MovAvg2 = MovingAverage(averageType2,price, length1);
 plot MovAvg3 = MovingAverage(averageType3,price, length1);
-plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= l_diff AND
-absValue(MovAvg2 - MovAvg3) <= val_diff;
+plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= l_diff AND absValue(MovAvg2 - MovAvg3) <= val_diff;
+
 condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+
 addOrder(OrderType.BUY_AUTO, condition);
 addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
-#end
 ```
+#end
 
 ## C-DEFINES AGGREGATION IN A LABEL
 
@@ -4973,351 +4011,231 @@ Comment  HideBubble() Makes the last value bubble of a plot invisible. This is t
 
 [Return to TOC](#toc)
 
-- # Weighted Moving Average by Mobius
+```
+# Weighted Moving Average by Mobius
+input price = close;
+input length = 21;
+plot WMA = (fold n = 0 to length
+with s
+do s + getValue(price, n, length - 1)
++ (fold i = 0 to length
+with t
+do t + getValue((1/price[1]), i, length - 1)))
+/ length;
+```
 
-- input price = close;
+Comment: A good example of a nested fold. Note that the variable designations (n, s, i and t) cannot be duplicated in the folds.
 
-- input length = 21;
-
-- plot WMA = (fold n = 0 to length
-
-- with s
-
-- do s + getValue(price, n, length - 1)
-
-- + (fold i = 0 to length
-
-- with t
-
-- do t + getValue((1/price[1]), i, length - 1)))
-
-- / length;
-
-- #Comment: A good example of a nested fold. Note that the variable designations (n, s, i and t) cannot be duplicated in
-
-- the folds.
-
-- ##end
+##end
 
 ## C-COUNTER FOR NUMBER OF UP BARS
 
 [Return to TOC](#toc)
 
-- #hint:<b> Counts the number of bars where close  > open. </b>\n Yes/No options to show a summary label, count numbers
+```
+#hint:<b> Counts the number of bars where close  > open. </b>\n Yes/No options to show a summary label, count numbers and bar numbers.
 
-- and bar numbers.
+input ShowBarNumb = No;#hint ShowBarNumb: Yes show the bar numbers below the low.
+input ShowCountNos = yes;#hint ShowCountNos:Yes show the count of when close > open. It shows above the high.
+input ShowLabel = yes;#hint ShowLabel:yes shows a summary label of the percent of bars that are up.
 
-- input ShowBarNumb = No;#hint ShowBarNumb: Yes show the bar numbers below the low.
+Def counter_AnyDay = CompoundValue (1,if close > open then counter_AnyDay[1] + 1 else counter_AnyDay[1],1);
 
-- input ShowCountNos = yes;#hint ShowCountNos:Yes show the count of when close > open. It shows above the high.
+plot count = if close > open  &&  ShowCountNos  then counter_AnyDay else double.nan;
+Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
 
-- input ShowLabel = yes;#hint ShowLabel:yes shows a summary label of the percent of bars that are up.
+### below 2 lines convert to a line plot ###
+#Count.SetPaintingStrategy(PaintingStrategy.line);
+#Count.SetStyle(Curve.firm);
 
-- Def counter_AnyDay = CompoundValue (1,if close > open then counter_AnyDay[1] + 1 else counter_AnyDay[1],1);
+def BarNum = Barnumber();
 
-- plot count = if close > open  &&  ShowCountNos  then counter_AnyDay else double.nan;
+plot Bar_Nos = if ShowBarNumb then BarNum else Double.NaN;
+Bar_Nos.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
 
-- Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
+Addlabel(ShowLabel, counter_AnyDay + " bars (" + (AsPercent(round(counter_AnyDay / barnumber(),2))) + ") out of a total of " + Barnumber() + " bars have close > open",color.cyan);
+```
 
-- ### below 2 lines convert to a line plot ###
+Comment: This counter can be easily converted to counting whatever you want. For example, if you want to count the number of days that have risen 1%, you would substitute the term 'close > open' with '(close/close[1] > 1.01) '. Naturally the aggregation is set to what you want to count like days, hours, 15 min bars, etc. The below code illustrates how this existing code can be taken and easily modified into another study. Compare the two.
 
-- #Count.SetPaintingStrategy(PaintingStrategy.line);
-
-- #Count.SetStyle(Curve.firm);
-
-- def BarNum = Barnumber();
-
-- plot Bar_Nos = if ShowBarNumb then BarNum else Double.NaN;
-
-- Bar_Nos.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
-
-- Addlabel(ShowLabel, counter_AnyDay + " bars (" + (AsPercent(round(counter_AnyDay / barnumber(),2))) + ") out of a
-
-- total of " + Barnumber() + " bars have close > open",color.cyan);
-
-- Comment: This counter can be easily converted to counting whatever you want. For example, if you want to count the
-
-- number of days that have risen 1%, you would substitute the term 'close > open' with '(close/close[1] > 1.01) '. Naturally
-
-- the aggregation is set to what you want to count like days, hours, 15 min bars, etc. The below code illustrates how this
-
-- existing code can be taken and easily modified into another study. Compare the two.
-
-- #end
+#end
 
 ## C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT
 
 [Return to TOC](#toc)
 
-- #hint:<b> Counts the number of bars where close has risen an inputted percent. </b>\n Yes/No options for label, count
+```
+#hint:<b> Counts the number of bars where close has risen an inputted percent. </b>\n Yes/No options for label, count numbers and bar numbers.
 
-- numbers and bar numbers.
+input ShowBarNumb = No;#hint ShowBarNumb: Yes show the bar numbers below the low.
+input ShowCountNos = yes;#hint ShowCountNos:Yes show the count of occurences. It shows above the high.
+input ShowLabel = yes;#hint ShowLabel:Yes shows a summary label of the percent of bars that are up by the inputted percentage.
 
-- input ShowBarNumb = No;#hint ShowBarNumb: Yes show the bar numbers below the low.
+input PctUp = 0.5; #hint PctUp:<b>Show the percent rise desired</b>\nA stock infrequently rises more than  2% in a day.
 
-- input ShowCountNos = yes;#hint ShowCountNos:Yes show the count of occurences. It shows above the high.
+def PctFactor = 1 + (PctUp /100);
 
-- input ShowLabel = yes;#hint ShowLabel:Yes shows a summary label of the percent of bars that are up by the inputted
+Def counter_AnyDay =if close !=first(close) && (close/close[1] > PctFactor) then counter_AnyDay[1] + 1 else counter_AnyDay[1];
 
-- percentage.
+#Def counter_AnyDay = CompoundValue (1,if (close/close[1] > PctFactor) then counter_AnyDay[1] + 1 else counter_AnyDay[1],1);
 
-- input PctUp = 0.5; #hint PctUp:<b>Show the percent rise desired</b>\nA stock infrequently rises more than  2% in a day.
+plot count = if (close/close[1] > PctFactor)  &&  ShowCountNos  then counter_AnyDay else double.nan;
 
-- def PctFactor = 1 + (PctUp /100);
+Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
 
-- Def counter_AnyDay =if close !=first(close) && (close/close[1] > PctFactor) then counter_AnyDay[1] + 1 else
+### below 2 lines convert to a line plot  in lieu of showing values ###
+#Count.SetPaintingStrategy(PaintingStrategy.line);
+#Count.SetStyle(Curve.firm);
 
-- counter_AnyDay[1];
+def BarNum = Barnumber();
+plot Bar_Nos = if ShowBarNumb then BarNum else Double.NaN;
+Bar_Nos.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
 
-- #Def counter_AnyDay = CompoundValue (1,if (close/close[1] > PctFactor) then counter_AnyDay[1] + 1 else
+Addlabel(ShowLabel, counter_AnyDay + " bars (" + (AsPercent(round(counter_AnyDay / barnumber(),2))) + ") out of a total of " + Barnumber() + " bars have (close/close[1] > " + PctUp +  "%",color.cyan);
+addlabel(ShowLabel,"PctUp = " +  PctUp + "%", color.pink);
+```
 
-- counter_AnyDay[1],1);
+Comment: The label is complex and a good example of the use of '+' in lieu of the concat function.
 
-- plot count = if (close/close[1] > PctFactor)  &&  ShowCountNos  then counter_AnyDay else double.nan;
-
-- Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
-
-- ### below 2 lines convert to a line plot  in lieu of showing values ###
-
-- #Count.SetPaintingStrategy(PaintingStrategy.line);
-
-- #Count.SetStyle(Curve.firm);
-
-- def BarNum = Barnumber();
-
-- plot Bar_Nos = if ShowBarNumb then BarNum else Double.NaN;
-
-- Bar_Nos.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
-
-- Addlabel(ShowLabel, counter_AnyDay + " bars (" + (AsPercent(round(counter_AnyDay / barnumber(),2))) + ") out of a
-
-- total of " + Barnumber() + " bars have (close/close[1] > " + PctUp +  "%",color.cyan);
-
-- addlabel(ShowLabel,"PctUp = " +  PctUp + "%", color.pink);
-
-- #Comment: The label is complex and a good example of the use of '+' in lieu of the concat function.
-
-- #end
+#end
 
 ## C-   PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO
 
 [Return to TOC](#toc)
 
-- #hint:<b>Plots the high, low and close of inputted days ago</b>\n The plots persist across the entire chart.\n Bubbles
+```
+#hint:<b>Plots the high, low and close of inputted days ago</b>\n The plots persist across the entire chart.\n Bubbles identify the plots.\nWorks for all aggregations thru 'Day'.
 
-- identify the plots.\nWorks for all aggregations thru 'Day'.
+declare upper;
+input LastBubble = No;#hint LastBubble: No omits the last bubble. May affect reading of data.
+Input DaysAgo = 1;#hint DaysAgo: Excludes today
+def  AdjDaysAgo = DaysAgo + 1;#Adjusted to match  a true LastDate which includes today
 
-- declare upper;
+def day = GetDay();
+def lastDay = GetLastDay();
+def year = GetYear();
+def lastYear = GetLastYear();
+def yyyymmdd = GetYYYYMMDD();
+def lastDate = HighestAll( if day == lastDay and year == lastYear then yyyymmdd else Double.NaN );
+def currentDate = if yyyymmdd < lastDate then yyyymmdd else lastDate;
+def previousDay = if CountTradingDays( currentDate, lastDate ) == AdjDaysAgo then yes else no;
 
-- input LastBubble = No;#hint LastBubble: No omits the last bubble. May affect reading of data.
+plot PreviousHigh = HighestAll( if previousDay then high( period = "DAY" )
+else Double.NaN );
+plot PreviousLow = HighestAll( if previousDay then low( period = "DAY" )
+else Double.NaN );
+Plot PreviousClose = HighestAll( if previousDay then close( period = "DAY" ) else double.NaN);
 
-- Input DaysAgo = 1;#hint DaysAgo: Excludes today
+#================ Look & Feel ==============
+PreviousHigh.SetDefaultColor( Color.green );
+PreviousHigh.SetLineWeight( 2 );
+PreviousHigh.HideBubble();
+PreviousLow.SetDefaultColor( Color.red);
+PreviousLow.SetLineWeight( 2 );
+PreviousLow.HideBubble();
+PreviousClose.SetDefaultColor( Color.Yellow );
+PreviousClose.SetLineWeight( 2 );
+PreviousClose.HideBubble();
 
-- def  AdjDaysAgo = DaysAgo + 1;#Adjusted to match  a true LastDate which includes today
+#=========== ID Bubbles ===================
+Def barnum = barnumber();
+def FirstBar = if barNum == 1 then 1 else 0;
+addchartbubble(FirstBar, PreviousHigh, ("High of " + DaysAgo + " day(s) ago"), color.white);
+addchartbubble(FirstBar, PreviousLow, ("Low of " + DaysAgo + " day(s) ago"), color.white);
+addchartbubble(FirstBar, PreviousClose, ("Close of " + DaysAgo + " day(s) ago"), color.white);
 
-- def day = GetDay();
+#========= Last ID bubbles ==========
+Input Offset = -10;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+Def BubbleLocation = LastBar[Offset];
+addchartbubble(BubbleLocation  && LastBubble, PreviousHigh, ("High of " + DaysAgo + " day(s) ago"), color.white);
+addchartbubble(BubbleLocation  && LastBubble,PreviousLow, ("Low of " + DaysAgo + " day(s) ago"), color.white);
+addchartbubble(BubbleLocation  && LastBubble, PreviousClose, ("Close of " + DaysAgo + " day(s) ago"), color.white);
 
-- def lastDay = GetLastDay();
+Comment: The presence of 'HighestAll' in the plot statements causes to plots to persist across the entire chart. Otherwise, the plot will be for the single day defined.
+```
 
-- def year = GetYear();
-
-- def lastYear = GetLastYear();
-
-- def yyyymmdd = GetYYYYMMDD();
-
-- def lastDate = HighestAll( if day == lastDay and year == lastYear
-
-- then yyyymmdd else Double.NaN );
-
-- def currentDate = if yyyymmdd < lastDate then yyyymmdd else lastDate;
-
-- def previousDay = if CountTradingDays( currentDate, lastDate ) == AdjDaysAgo then
-
-- yes else no;
-
-- plot PreviousHigh = HighestAll( if previousDay then high( period = "DAY" )
-
-- else Double.NaN );
-
-- plot PreviousLow = HighestAll( if previousDay then low( period = "DAY" )
-
-- else Double.NaN );
-
-- Plot PreviousClose = HighestAll( if previousDay then close( period = "DAY" ) else double.NaN);
-
-- #================ Look & Feel ==============
-
-- PreviousHigh.SetDefaultColor( Color.green );
-
-- PreviousHigh.SetLineWeight( 2 );
-
-- PreviousHigh.HideBubble();
-
-- PreviousLow.SetDefaultColor( Color.red);
-
-- PreviousLow.SetLineWeight( 2 );
-
-- PreviousLow.HideBubble();
-
-- PreviousClose.SetDefaultColor( Color.Yellow );
-
-- PreviousClose.SetLineWeight( 2 );
-
-- PreviousClose.HideBubble();
-
-- #=========== ID Bubbles ===================
-
-- Def barnum = barnumber();
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- addchartbubble(FirstBar, PreviousHigh, ("High of " + DaysAgo + " day(s) ago"), color.white);
-
-- addchartbubble(FirstBar, PreviousLow, ("Low of " + DaysAgo + " day(s) ago"), color.white);
-
-- addchartbubble(FirstBar, PreviousClose, ("Close of " + DaysAgo + " day(s) ago"), color.white);
-
-- #========= Last ID bubbles ==========
-
-- Input Offset = -10;
-
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
-
-- Def BubbleLocation = LastBar[Offset];
-
-- addchartbubble(BubbleLocation  && LastBubble, PreviousHigh, ("High of " + DaysAgo + " day(s) ago"), color.white);
-
-- addchartbubble(BubbleLocation  && LastBubble,PreviousLow, ("Low of " + DaysAgo + " day(s) ago"), color.white);
-
-- addchartbubble(BubbleLocation  && LastBubble, PreviousClose, ("Close of " + DaysAgo + " day(s) ago"), color.white);
-
-- #Comment: The presence of 'HighestAll' in the plot statements causes to plots to persist across the entire chart.
-
-- Otherwise, the plot will be for the single day defined.
-
-- #end
+#end
 
 ## C-DATE AND TIME USAGE EXAMPLES
 
 [Return to TOC](#toc)
 
-- ======= Introduction and overview =======
+======= Introduction and overview =======
 
-- The date and time functions take a lot of time to learn and much usage to feel comfortable with them. Hence, this
+- The date and time functions take a lot of time to learn and much usage to feel comfortable with them. Hence, this section will be as thorough as possible with many examples to illustrate their usage. Additional examples will be added as they may surface online and in the chatroom.
 
-- section will be as thorough as possible with many examples to illustrate their usage. Additional examples will be added as
+- GetDay, GetWeek, GetMonth and GetYear all relate to the CURRENT BAR and return values that relate to the ENTIRE YEAR: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
 
-- they may surface online and in the chatroom.
+- GetLastDay, GetLastWeek, GetLastMonth and GetLastYear all relate to the LAST BAR and return values that relate to the ENTIRE YEAR: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
 
-- • GetDay, GetWeek, GetMonth and GetYear all relate to the CURRENT BAR and return values that relate to the
+- GetYYYYMMDD() is the most frequently used. Returns the date of the current bar in the YYYYMMDD format. This date corresponds to the day whose trading session contains the current bar. Note that on intraday charts, this date and the actual date might not be the same for Forex and Futures symbols.
 
-- ENTIRE YEAR: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
+- GetDayofWeek, GetDayofMonth, RegularTradingEnd and RegularTradingStart all utilize a yyyyMmDd input parameter format:The same output format as GetYYYYMMDD().
 
-- • GetLastDay, GetLastWeek, GetLastMonth and GetLastYear all relate to the LAST BAR and return values that
+- The 'fromDate', 'toDate'and 'tillDate' used in CountTradingDays, DaysFromDate and DaysTillDate are all in the YYYYMMDD format.
 
-- relate to the ENTIRE YEAR: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
+In summary, all date/time functions beginning with 'Get........', except for GetDayOfWeek and GetDayOfMonth, have no parameters. All date/time functions having parameters, except for 'SecondsFromTime' and 'SecondsTillTime', use a parameter format of YYYYMMDD. 'SecondsFromTime' and 'SecondsTillTime' use a HHMM format.
 
-- • GetYYYYMMDD() is the most frequently used. Returns the date of the current bar in the YYYYMMDD format.
+REMEMBER THAT DATE/TIME FUNCTIONS RELATE TO A BAR ON A CHART. NO BAR THEN THE DATE/TIME RETURNED VALUES ARE NOT RELIABLE.
 
-- This date corresponds to the day whose trading session contains the current bar. Note that on intraday charts,
+========= Define previous day =========
+`def previousDay = if CountTradingDays(CurrentDate, LastDate ) == 2 then yes else no;`
 
-- this date and the actual date might not be the same for Forex and Futures symbols.
+Comment 1: The '==2' may be changed to represent any previous days-ago
+Comment 2: CountTradingDays includes the CurrentDate and the LastDate in the count
 
-- • GetDayofWeek, GetDayofMonth, RegularTradingEnd and RegularTradingStart all utilize a yyyyMmDd input
+======== Between two input dates =========
 
-- parameter format:The same output format as GetYYYYMMDD().
+```
+#hint: Between the two input dates
+#hint startDateYyyyMmDd: Select starting date of line.
+#hint endDateYyyyMmDd: Select ending date of line.
 
-- • The 'fromDate', 'toDate'and 'tillDate' used in CountTradingDays, DaysFromDate and DaysTillDate are all in the
+input startDateYyyyMmDd = 20100720;
+input endDateYyyyMmDd = 20100916;
+def start = if getYyyyMmDd()==startDateYyyyMmDd then 1 else 0;
+def end = if getYyyyMmDd()==endDateYyyyMmDd then 1 else 0;
+```
+Usage: The above two line are conditions that you use to restrict your data
 
-- YYYYMMDD format.
+Example: plot trendLine = if start  then startPrice else if end  then endPrice else double.nan;
 
-- • In summary, all date/time functions beginning with 'Get........', except for GetDayOfWeek and GetDayOfMonth,
-
-- have no parameters. All date/time functions having parameters, except for 'SecondsFromTime' and
-
-- 'SecondsTillTime', use a parameter format of YYYYMMDD. 'SecondsFromTime' and 'SecondsTillTime' use a
-
-- HHMM format.
-
-- • REMEMBER THAT DATE/TIME FUNCTIONS RELATE TO A BAR ON A CHART. NO BAR THEN THE
-
-- DATE/TIME RETURNED VALUES ARE NOT RELIABLE.
-
-- ========= Define previous day =========
-
-- def previousDay = if CountTradingDays(CurrentDate, LastDate ) == 2 then
-
-- yes else no;
-
-- Comment 1: The '==2' may be changed to represent any previous days-ago
-
-- Comment 2: CountTradingDays includes the CurrentDate and the LastDate in the count
-
-- ======== Between two input dates =========
-
-- #hint: Between the two input dates
-
-- #hint startDateYyyyMmDd: Select starting date of line.
-
-- #hint endDateYyyyMmDd: Select ending date of line.
-
-- input startDateYyyyMmDd = 20100720;
-
-- input endDateYyyyMmDd = 20100916;
-
-- def start = if getYyyyMmDd()==startDateYyyyMmDd then 1 else 0;
-
-- def end = if getYyyyMmDd()==endDateYyyyMmDd then 1 else 0;
-
-- Usage: The above two line are conditions that you use to restrict your data
-
-- Example: plot trendLine = if start  then startPrice else if end  then endPrice else double.nan;
-
-- ========== Return 'the day-of-the-week' of the first bar of the chart =========
-
-- Def DayOfWeek = GetDayOfWeek(First(yyyymmdd)); #Mon =1, Tues =2, Wed = 3, Thurs = 4, Fri = 5, Sat = 6, Sun = 7
+========== Return 'the day-of-the-week' of the first bar of the chart =========
+`Def DayOfWeek = GetDayOfWeek(First(yyyymmdd)); #Mon =1, Tues =2, Wed = 3, Thurs = 4, Fri = 5, Sat = 6, Sun = 7`
 
 [Return to TOC](#toc)
 
 - ============ Define a time range (beginning and end) ==============
 
-- Comment 1: 'SecondsFromTime' and 'Seconds TillTime' work smoothly during market hours but beware after-hours.
+Comment 1: 'SecondsFromTime' and 'Seconds TillTime' work smoothly during market hours but beware after-hours.  A time is always associated with a bar. If there is no bar, TOS will have a problem
 
-- A time is always associated with a bar. If there is no bar, TOS will have a problem
+Comment 2: Thinly trader stocks may not have a bar at the time defined. Beware for the same reason as above.
 
-- Comment 2: Thinly trader stocks may not have a bar at the time defined. Beware for the same reason as above.
+Example 1: ========  SecondsFromTime ========
 
-- Example 1: ========  SecondsFromTime ========
+```
+#Hint: his defines a time range during which the close will be plotted.
+input OpenTime = 1130;
+input DurationHours = 5;
+def durationSec = DurationHours * 60 * 60;
+def secondsPassed = SecondsFromTime(OpenTime);
+plot Price = if secondsPassed >= 0 and secondsPassed <= durationSec then close else  double.NaN;
+```
 
-- #Hint: his defines a time range during which the close will be plotted.
+Comment 3: "if secondsPassed >= 0 and secondsPassed <= durationSec then....." may be applied to any activity you want to do.
 
-- input OpenTime = 1130;
+Example 2: ========  SecondsFromTime & SecondsTillTime ========
 
-- input DurationHours = 5;
+```
+# Defines the hours from last bar till end-of-day (midnight) on an intra-day chart
+input time = 0001;# Is midnight which is the start of counting seconds in the functions below.
+def TimeFrom = SecondsFromTime(time);# Returns the seconds from 'time'. If not an intra-day chart, returns 0.
 
-- def durationSec = DurationHours * 60 * 60;
+def TimeLeft = SecondsTillTime(time);# Returns the seconds till input 'time'. If not an intra-day chart, returns 0.
 
-- def secondsPassed = SecondsFromTime(OpenTime);
-
-- plot Price = if secondsPassed >= 0 and secondsPassed <= durationSec then close else  double.NaN;
-
-- Comment 3: "if secondsPassed >= 0 and secondsPassed <= durationSec then....." may be applied to any activity you want to
-
-- do.
-
-- Example 2: ========  SecondsFromTime & SecondsTillTime ========
-
-- # Defines the hours from last bar till end-of-day (midnight) on an intra-day chart
-
-- input time = 0001;# Is midnight which is the start of counting seconds in the functions below.
-
-- def TimeFrom = SecondsFromTime(time);# Returns the seconds from 'time'. If not an intra-day chart, returns 0.
-
-- def TimeLeft = SecondsTillTime(time);# Returns the seconds till input 'time'. If not an intra-day chart, returns 0.
-
-- AddLabel(1, "Time from last bar till end-of-day (midnight) = " +(Round( (24 + (TimeLeft / 3600)),1)) + "
-
-- Hours",color.white);
+AddLabel(1, "Time from last bar till end-of-day (midnight) = " +(Round( (24 + (TimeLeft / 3600)),1)) + " Hours",color.white);
+```
 
 [Return to TOC](#toc)
 
@@ -5331,59 +4249,41 @@ Comment  HideBubble() Makes the last value bubble of a plot invisible. This is t
 
 - it is.
 
-- When GetYYYYMMDD() is compared to an inputted date the commas are omitted  in the input date. An example is 'input
+- When GetYYYYMMDD() is compared to an inputted date the commas are omitted  in the input date. An example is 'input endDate = 20100101;'
 
-- endDate = 20100101;'
+Functions that use GetYYYYMMDD() as a parameter are:
 
-- Functions that use GetYYYYMMDD() as a parameter are:
+- GetDayOfWeek(int yyyyMmDd);#Returns the day of week from 1 (Monday) to 7 (Sunday).
 
-- • GetDayOfWeek(int yyyyMmDd);#Returns the day of week from 1 (Monday) to 7 (Sunday).
+- GetDayOfMonth(int yyyyMmDd);#Returns number of the day in the month.
 
-- • GetDayOfMonth(int yyyyMmDd);#Returns number of the day in the month.
+- RegularTradingEnd(int yyyyMmDd);#Returns the end of the regular trading hours for the current symbol on the trading day specified in the YYYYMMDD. This value is the number of milliseconds since the epoch (January 1, 1970, 00:00:00 GMT).
 
-- • RegularTradingEnd(int yyyyMmDd);#Returns the end of the regular trading hours for the current symbol on the
+- RegularTradingStart(int yyyyMmDd);Returns the start of the regular trading hours for the current symbol on the trading day specified in the YYYYDDMM format. This value is the number of milliseconds since the epoch (January 1, 1970, 00:00:00 GMT).
 
-- trading day specified in the YYYYMMDD. This value is the number of milliseconds since the epoch (January 1,
+Usage example 1:
 
-- 1970, 00:00:00 GMT).
+`def yyyymmdd = GetYYYYMMDD();#Returns the date of the chart's current bar. During trading hours this is also today's date. If run on a weekend, this is not today's date since there is no current bar for today.`
 
-- • RegularTradingStart(int yyyyMmDd);Returns the start of the regular trading hours for the current symbol on
+Assuming that 20,131,107 was returned it can be formatted into a normal view as follows:
 
-- the trading day specified in the YYYYDDMM format. This value is the number of milliseconds since the epoch
+`AddLabel(yes,"Converted getYyyyMmDd() = " + getMonth() + "/" + getDayOfMonth(getYyyyMmDd()) + "/" + AsPrice(getYear()) ,color.pink);`
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7272
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- (January 1, 1970, 00:00:00 GMT).
-
-- Usage example 1:
-
-- def yyyymmdd = GetYYYYMMDD();#Returns the date of the chart's current bar. During trading hours this is also
-
-- today's date. If run on a weekend, this is not today's date since there is no current bar for today.
-
-- Assuming that 20,131,107 was returned it can be formatted into a normal view as follows:
-
-- AddLabel(yes,"Converted getYyyyMmDd() = " + getMonth() +
-
-- "/" + getDayOfMonth(getYyyyMmDd()) + "/" + AsPrice(getYear()) ,color.pink);
-
-- This label produces
+This label produces
 
 [Return to TOC](#toc)
 
-- Usage example 2:
+Usage example 2:
 
-- def yyyymmdd = GetYYYYMMDD();# The date of the chart's current(last) bard
+```
+def yyyymmdd = GetYYYYMMDD();# The date of the chart's current(last) bard
 
-- DaysFromDate(First(yyyymmdd));# This defines the number of days from the first bar of the chart to the last bar
+DaysFromDate(First(yyyymmdd));# This defines the number of days from the first bar of the chart to the last bar (current bar).
 
-- (current bar).
+GetDayOfWeek(First(yyyymmdd));# Returns the day-of-week (mon to sun = 1 yo 7) of the charts first bar.
+```
 
-- GetDayOfWeek(First(yyyymmdd));# Returns the day-of-week (mon to sun = 1 yo 7) of the charts first bar.
-
-- Usage example 3:
+Usage example 3:
 
 - input anchor_date = 20111004;
 
@@ -5449,11 +4349,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Plot AllTrue  = if PriceTrue then 1 else 0;
 
-![Im4313](images/Im4313)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7373
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ###### Alternate ######
 
@@ -5463,313 +4358,236 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ======== SecondsFromTime() & SecondsTillTime() & others ========
 
-- Returns the number of seconds from/till the specified time (24-hour clock notation) in the EST timezone. For intra-day
+- Returns the number of seconds from/till the specified time (24-hour clock notation) in the EST timezone. For intra-day only.
 
-- only.
+Usage example 1:
 
-- Usage example 1:
+Scan for PreMarket that shows stocks  > 1% from Bid above Close last nite? After-hours must be activated in settings.
 
-- Scan for PreMarket that shows stocks  > 1% from Bid above Close last nite? After-hours must be activated in settings.
+```
+input Begin  = 0930;
+input End    = 1600;
 
-- input Begin  = 0930;
+def IsClosed = if SecondsFromTime(End) == 0 and
+  SecondsTillTime(End) == 0
+  then close
+  else IsClosed [1];
+def data = if IsClosed > 0 then IsClosed else Double.NaN;
 
-- input End    = 1600;
-
-- def IsClosed = if SecondsFromTime(End) == 0 and
-
-- SecondsTillTime(End) == 0
-
-- then close
-
-- else IsClosed [1];
-
-- def data = if IsClosed > 0 then IsClosed else Double.NaN;
-
-- plot cond = close(priceType = "Mark") * 1.01 > IsClosed ;#Must use Mark in Pre/PostMarket
+plot cond = close(priceType = "Mark") * 1.01 > IsClosed ;#Must use Mark in Pre/PostMarket
+```
 
 [Return to TOC](#toc)
 
-- Usage example 2:
+Usage example 2:
+
+```
+#hint: Used in opening range studies to define that market is open.
+input OpenTime          = 0930;
+input CloseTime         = 1600;
+def secondsFromOpen     = SecondsFromTime( OpenTime );
+def secondsTillClose    = SecondsTillTime( CloseTime );
+def marketOpen          = secondsFromOpen >= 0 and secondsTillClose >= 0;
+```
+
+Usage example 3:
+
+```
+# Defines properties for showing vertical lines
+input ShowLines = Yes;
+input ShowTodayOnly = Yes;
+
+def day = getDay();
+def last = getLastDay();
+def Today = if(day==last,1,0);
+def Show = if(ShowTodayOnly and Today, 1,if(!ShowTodayOnly,1,0));
+
+input LowerMiddayBound = 1130;
+input UpperMiddayBound = 1330;
+
+def Lines = if((between(secondsFromTime(LowerMiddayBound), 1, 300)), 1,
+if((between(secondsFromTime(UpperMiddayBound), 1, 300)), 1, 0));
+AddVerticalLine(Show and ShowLines and Lines,"", Color.RED);
+```
+
+Usage example 4:
+
+```
+#hint: Used to define if OR (Opening Range) is active.
+
+def ORBegin = 955;
+def OREnd = 1005;
+Def ORActive = if secondstilltime(OREnd) > 0 AND secondsfromtime(ORBegin) >= 0 then 1 else 0;
+```
+
+Usage example 5:
+
+```
+#hint: Used to define whether market is open
+
+input marketOpenTime = 0930;
+input marketCloseTime = 1615;
+def closeByPeriod = close(period = "DAY")[-1];
+def openbyperiod = open(period = "DAY")[-1];
+def secondsFromOpen = secondsFromTime(marketOpenTime);
+def secondsTillClose = secondsTillTime(marketCloseTime);
+def marketOpen = if secondsFromOpen >= 0 and secondsTillClose > 0 then yes else no;
+def newDay = if !IsNaN(closeByPeriod) then 0 else 1;
+```
+
+Usage example 6:
+
+```
+#hint:Add Vertical Line
+
+def NineThirty = secondsFromTime(930) > 0;
+def TwelveOclock = secondsFromTime(1200) > 0;
+def MarketOpen = NineThirty > 0 && NineThirty [1] <= 0;
+def LunchTime = TwelveOclock > 0 && TwelveOclock[1] <= 0;
+AddVerticalLine(MarketOpen or LunchTime,if MarketOpen then "TIME TO TRADE!" else "LUNCH TIME",if MarketOpen then color.GREEN else color.BLUE);
+```
+
+Usage example 7:
+
+```
+#Hint: Identifies a bar at a time and date
+plot Data1 = volume;
+declare hide_on_daily;
+def barnumber = BarNumber();
+input time = 1100;
+Input TodayDate = 20130104;
+def GetYMD = GetYYYYMMDD() == TodayDate;
+def timeTest = SecondsFromTime(time) == 0;
+def BarID = CompoundValue(1, if timeTest && GetYMD then barnumber else Double.nan, barnumber());
+#def BarIDNo = if(!isnan(BarID), Double.nan,barID);
+AddLabel(yes, "BarNumber at arrow = " + BarID, color.white);#?????why this doesn't show BarID
+Plot Data2 = BarID;#The barnumber value
+Data2.setPaintingStrategy(PaintingStrategy.VALUES_below); # Arrow_Down, Arrow_Points,
+Data2.SetDefaultColor(Color.Green); # for data plot
+Data2.SetLineWeight(5);
+Plot Data3 = BarID;#An arrow at the selected barnumber
+Data3.setPaintingStrategy(PaintingStrategy.Arrow_down); # Arrow_Down, Arrow_Points,
+Data3.SetDefaultColor(Color.Green); # for data plot
+Data3.SetLineWeight(5);
+AddChartBubble( timeTest && GetYMD, Volume , BarID + " is the base \nbar for comparison", Color.white, no);#Bubble at the selected barnumber stating the barnumber
+
+#AddLabel(yes, Concat("GetYYYYMMDD() = ", GetYYYYMMDD()));
+```
+#end    
+
+[Return to TOC](#toc)
+
+======= CountTradingDays & YearStart ========
+
+```
+#Counts the number of trading days from first of the year to current day.
+def YearStart = GetYear() * 10000 + 101;#This defines January 1 of the current year. Good to keep handy.
 
-- #hint: Used in opening range studies to define that market is open.
+AddLabel(yes, CountTradingDays(yearstart, GetYYYYMMDD()) + " trading days since year start")
+```
 
-- input OpenTime          = 0930;
+======= DaysTillDate & GetLastDay & GetYear & GetYYYYMMDD() ========
 
-- input CloseTime         = 1600;
+Usage example 1:
 
-- def secondsFromOpen     = SecondsFromTime( OpenTime );
+```
+declare lower;
+input DaysToInclude = 90;
+def Last90Days = daysTillDate(getYyyyMmDd()[-DaysToInclude]) < 0;
+plot Data = Last90Days;
+```
 
-- def secondsTillClose    = SecondsTillTime( CloseTime );
+Comment: Above plots a horizontal line at a value of 1 (true)for 90 days. The following code will plot the close for 90 days.
 
-- def marketOpen          = secondsFromOpen >= 0 and secondsTillClose >= 0;
+`Plot data2 = If Last90Days then close else double.nan;`
 
-- Usage example 3:
+Usage example 2:
 
-- # Defines properties for showing vertical lines
+```
+#Hint: Plots a horizontal line at yesterday's low across the entire chart.This works if you have at least two days data on the chart.
 
-- input ShowLines = Yes;
+declare upper;
+def lastDaysDate      = HighestAll( if getLastDay() == getDay() and getLastYear() == getYear() then getYyyyMmDd() else Double.NaN );
 
-- input ShowTodayOnly = Yes;
+def lastDaysLow     = if daysTillDate( lastDaysDate ) == 1 then Low( period = "DAY" ) else Double.NaN;
 
-- def day = getDay();
-
-- def last = getLastDay();
-
-- def Today = if(day==last,1,0);
-
-- def Show = if(ShowTodayOnly and Today, 1,if(!ShowTodayOnly,1,0));
-
-- input LowerMiddayBound = 1130;
-
-- input UpperMiddayBound = 1330;
-
-- def Lines = if((between(secondsFromTime(LowerMiddayBound), 1, 300)), 1,
-
-- if((between(secondsFromTime(UpperMiddayBound), 1, 300)), 1, 0));
-
-- AddVerticalLine(Show and ShowLines and Lines,"", Color.RED);
-
-- Usage example 4:
-
-- #hint: Used to define if OR (Opening Range) is active.
-
-- def ORBegin = 955;
-
-- def OREnd = 1005;
-
-- Def ORActive = if secondstilltime(OREnd) > 0 AND secondsfromtime(ORBegin) >= 0 then 1 else 0;
-
-- Usage example 5:
-
-- #hint: Used to define whether market is open
-
-- input marketOpenTime = 0930;
-
-- input marketCloseTime = 1615;
-
-- def closeByPeriod = close(period = "DAY")[-1];
-
-- def openbyperiod = open(period = "DAY")[-1];
-
-- def secondsFromOpen = secondsFromTime(marketOpenTime);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7474
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- def secondsTillClose = secondsTillTime(marketCloseTime);
-
-- def marketOpen = if secondsFromOpen >= 0 and secondsTillClose > 0 then yes else no;
-
-- def newDay = if !IsNaN(closeByPeriod) then 0 else 1;
-
-- Usage example 6:
-
-- #hint:Add Vertical Line
-
-- def NineThirty = secondsFromTime(930) > 0;
-
-- def TwelveOclock = secondsFromTime(1200) > 0;
-
-- def MarketOpen = NineThirty > 0 && NineThirty [1] <= 0;
-
-- def LunchTime = TwelveOclock > 0 && TwelveOclock[1] <= 0;
-
-- AddVerticalLine(MarketOpen or LunchTime,if MarketOpen then "TIME TO TRADE!" else "LUNCH TIME",if MarketOpen
-
-- then color.GREEN else color.BLUE);
-
-- Usage example 7:
-
-- #Hint: Identifies a bar at a time and date
-
-- plot Data1 = volume;
-
-- declare hide_on_daily;
-
-- def barnumber = BarNumber();
-
-- input time = 1100;
-
-- Input TodayDate = 20130104;
-
-- def GetYMD = GetYYYYMMDD() == TodayDate;
-
-- def timeTest = SecondsFromTime(time) == 0;
-
-- def BarID = CompoundValue(1, if timeTest && GetYMD then barnumber else Double.nan, barnumber());
-
-- #def BarIDNo = if(!isnan(BarID), Double.nan,barID);
-
-- AddLabel(yes, "BarNumber at arrow = " + BarID, color.white);#?????why this doesn't show BarID
-
-- Plot Data2 = BarID;#The barnumber value
-
-- Data2.setPaintingStrategy(PaintingStrategy.VALUES_below); # Arrow_Down, Arrow_Points,
-
-- Data2.SetDefaultColor(Color.Green); # for data plot
-
-- Data2.SetLineWeight(5);
-
-- Plot Data3 = BarID;#An arrow at the selected barnumber
-
-- Data3.setPaintingStrategy(PaintingStrategy.Arrow_down); # Arrow_Down, Arrow_Points,
-
-- Data3.SetDefaultColor(Color.Green); # for data plot
-
-- Data3.SetLineWeight(5);
-
-- AddChartBubble( timeTest && GetYMD, Volume , BarID + " is the base \nbar for comparison", Color.white, no);#Bubble
-
-- at the selected barnumber stating the barnumber
-
-- #AddLabel(yes, Concat("GetYYYYMMDD() = ", GetYYYYMMDD()));
-
-- #end     Return to TOC
-
-- ======= CountTradingDays & YearStart ========
-
-- #Counts the number of trading days from first of the year to current day.
-
-- def YearStart = GetYear() * 10000 + 101;#This defines January 1 of the current year. Good to keep handy.
-
-- AddLabel(yes, CountTradingDays(yearstart, GetYYYYMMDD()) + " trading days since year start")
-
-- ======= DaysTillDate & GetLastDay & GetYear & GetYYYYMMDD() ========
-
-- Usage example 1:
-
-- declare lower;
-
-- input DaysToInclude = 90;
-
-- def Last90Days = daysTillDate(getYyyyMmDd()[-DaysToInclude]) < 0;
-
-- plot Data = Last90Days;
-
-- Comment: Above plots a horizontal line at a value of 1 (true)for 90 days. The following code will plot the close for 90
-
-- days.
-
-- Plot data2 = If Last90Days then close else double.nan;
-
-- Usage example 2:
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7575
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #Hint: Plots a horizontal line at yesterday's low across the entire chart.This works if you have at least two days data
-
-- on the chart.
-
-- declare upper;
-
-- def lastDaysDate      = HighestAll( if getLastDay() == getDay() and getLastYear() == getYear() then getYyyyMmDd() else
-
-- Double.NaN );
-
-- def lastDaysLow     = if daysTillDate( lastDaysDate ) == 1 then Low( period = "DAY" ) else Double.NaN;
-
-- plot yesterdaysClose  = HighestAll( lastDaysLow );
+plot yesterdaysClose  = HighestAll( lastDaysLow );
+```
 
 [Return to TOC](#toc)
 
 - ======= DaysFromDate & GetYyyyMmDd() & getDayOfWeek ========
 
-- Usage example 1:
+Usage example 1:
 
-- #hint: Plots the close for bars in the 50 days interval starting from BeginDate
+```
+#hint: Plots the close for bars in the 50 days interval starting from BeginDate
 
-- input BeginDate = 20130101;
+input BeginDate = 20130101;
 
-- plot Price = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= 50 then close else double.NaN;
+plot Price = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= 50 then close else double.NaN;
+```
 
-- Usage example 2:
+Usage example 2:
 
-- #hint: Displays the Point of Control plot for weekly TPO profiles.
+```
+#hint: Displays the Point of Control plot for weekly TPO profiles.
 
-- def yyyymmdd = getYyyyMmDd();
+def yyyymmdd = getYyyyMmDd();
+def day_number = daysFromDate(first(yyyymmdd)) + getDayOfWeek(first(yyyymmdd));
+def period = floor(day_number / 7);
+def cond = 0 < period - period[1];
 
-- def day_number = daysFromDate(first(yyyymmdd)) + getDayOfWeek(first(yyyymmdd));
+profile tpo = timeProfile("startNewProfile" = cond, "onExpansion" = no);
+tpo.show();
+plot b = tpo.getPointOfControl();
+```
 
-- def period = floor(day_number / 7);
+======= DaysFromDate & GetMonth & GetDayOfMonth & GetYyyyMmDd() ========
 
-- def cond = 0 < period - period[1];
+```
+#hint:Draws a vertical line at 10 bars from the last bar
 
-- profile tpo = timeProfile("startNewProfile" = cond, "onExpansion" = no);
+input x = 10;
 
-- tpo.show();
-
-- plot b = tpo.getPointOfControl();
-
-- ======= DaysFromDate & GetMonth & GetDayOfMonth & GetYyyyMmDd() ========
-
-- #hint:Draws a vertical line at 10 bars from the last bar
-
-- input x = 10;
-
-- DefineGlobalColor( "VertLine", Color.Yellow );
-
-- def highestBar = HighestAll( if IsNaN(close) then Double.NaN else barNumber() );
-
-- def referenceBar = highestBar - x;
-
-- addVerticalLine( barNumber() == referenceBar,
-
-- getMonth() +  "/" +  getDayOfMonth(getYyyyMmDd()) +  "/" +  getYear(),
-
-- globalColor( "VertLine" )) ;
+DefineGlobalColor( "VertLine", Color.Yellow );
+def highestBar = HighestAll( if IsNaN(close) then Double.NaN else barNumber() );
+def referenceBar = highestBar - x;
+addVerticalLine( barNumber() == referenceBar,
+  getMonth() +  "/" +  getDayOfMonth(getYyyyMmDd()) +  "/" +  getYear(),
+  globalColor( "VertLine" )) ;
+```
 
 [Return to TOC](#toc)
 
-- ======= GetMonth & GetDayOfMonth & GetYyyyMmDd() ========
+======= GetMonth & GetDayOfMonth & GetYyyyMmDd() ========
 
-- #By Jesse on the Mr. Script show
+```
+#By Jesse on the Mr. Script show
 
-- #hint: <b>Plot a line with value of a specified date</b>\nPlots a horizontal line across the entire chart. The line value is
+#hint: <b>Plot a line with value of a specified date</b>\nPlots a horizontal line across the entire chart. The line value is the close of the specified date. \nA bubble identifies the line
 
-- the close of the specified date. \nA bubble identifies the line
+declare hide_on_intraday;
 
-- declare hide_on_intraday;
+input Date = 20130604;#hint Date: Set the date you want see.<b>\n(Enter in YYYYMMDD)</b>
+input price = CLOSE;
+input show_line = Yes;#hint show_line: Show a horizontal line at this price<b>(Default is Yes)</b>
 
-- input Date = 20130604;#hint Date: Set the date you want see.<b>\n(Enter in YYYYMMDD)</b>
+def timeTest = getYyyyMmDd() == date;
+def data = if timetest then price  else double.nan;
 
-- input price = CLOSE;
+plot Line = if show_line then highestall(data) else double.nan;
+line.assignValueColor((if price == close then color.cyan else if price == open then color.pink else if price == low then color.yellow else if price == high then color.green else color.red));
 
-- input show_line = Yes;#hint show_line: Show a horizontal line at this price<b>(Default is Yes)</b>
+def monthday = if timetest then getdayOfMonth(date) else double.nan;
 
-- def timeTest = getYyyyMmDd() == date;
+def month = if timetest then getmonth() else double.nan;
+AddChartBubble(timetest, price, "Date: " + month + "/" + monthday +  (if price == close then "   Close: $" else if price == open then "   Open: $" else if price == low then "   Low: $" else if price == high then "  High: $" else "   Value:  " )+ price, (if price == close then color.cyan else if price == open then color.pink else if price == low then color.yellow else if price == high then color.green else color.red), yes);
+```
 
-- def data = if timetest then price  else double.nan;
+Comment: The AddChartBubble has coding worth studying. Using the '+' formatting syntax is recommended and has replaced the original 'Concat' syntax used by the author.
 
-- plot Line = if show_line then highestall(data) else double.nan;
-
-- line.assignValueColor((if price == close then color.cyan else if price == open then color.pink else if price == low then
-
-- color.yellow else if price == high then color.green else color.red));
-
-- def monthday = if timetest then getdayOfMonth(date) else double.nan;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7676
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- def month = if timetest then getmonth() else double.nan;
-
-- AddChartBubble(timetest, price, "Date: " + month + "/" + monthday +  (if price == close then "   Close: $" else if price ==
-
-- open then "   Open: $" else if price == low then "   Low: $" else if price == high then "  High: $" else "   Value:  " )+ price,
-
-- (if price == close then color.cyan else if price == open then color.pink else if price == low then color.yellow else if price ==
-
-- high then color.green else color.red), yes);
-
-- Comment: The AddChartBubble has coding worth studying. Using the '+' formatting syntax is recommended and has
-
-- replaced the original 'Concat' syntax used by the author.
-
-- #end
+#end
 
 ## C-SCALPER'S HELPER W/ SQUEEZE
 
@@ -5777,711 +4595,410 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ## START STUDY
 
-- ## Scalper's Helper w/ Squeeze,  by Linus, Version = 2013-11-12.2
-
-- #hint: The Count plot adds the sum of price momentum comparisons with a counter of concurrent bars with no signaled
-
-- direction change.  The Sig plot is a signal line colored to show if in or out of the squeeze.  (Lighter color is out of
-
-- squeeze, by default.) \n\n Possible uses: \n\n If current Count is greater than previous Count of a different direction,
-
-- and if not in the squeeze, look for possible breakout/breakdown or extension. \n\n If current Count is below Sig and
-
-- previous Count was way above Sig, look for possible price direction change. \n\n Notes: \n\n Direction changes occur
-
-- when the PPS signal changes and all the filters for that direction are either off or valid.  The Count plot is colored to
-
-- show the current direction. (Green for up and Red for down, by default.)
-
-- declare lower;
-
-- input paintBars = No;    # hint paintBars: Yes to color price bars.
-
-- input diFilter = Yes;    #hint  diFilter: No to turn off DI filter.
-
-- input avgFilter = Yes;   #hint avgFilter: No to turn off mov. avg. filter.
-
-- input prFilter = Yes;    #hint prFilter: No to turn off price filter.
-
-- input price = close;     #hint price:  price fundamental.
-
-- input prMom = 1;         #hint prMom: offset for price (mom)entum.
-
-- input diLength = 13;     #hint diLength: For DI+, DI- calc, and mom sum.
-
-- input signal = 13;       #hint signal: Horiz. position of the Sig line.
-
-- #############################################
-
-- # Keltner Channel and Bollinger Band Squeeze:
-
-- input avgType = AverageType.SIMPLE; # Mov. avg type.
-
-- input avgLength = 20;    # length for band and channel mov. avg.
-
-- input numDev = 2.0;      # number of std devs of band.
-
-- input factor = 1.5;      # factor for offsetting channel.
-
-- def MA = MovingAverage(avgType, price, avgLength);
-
-- # inSqueeze is true if the upper band is inside the upper channel:
-
-- def inSqueeze = (MA + numDev * stdev(price, avgLength)) < (MA + (factor * AvgTrueRange(high, close, low, avgLength)));
-
-- #
-
-- #############################################
-
-- def hiDiff = high - high[1];
-
-- def loDiff = low[1] - low;
-
-- def ATR = WildersAverage(TrueRange(high, close, low), diLength);
-
-- # diDif is ("DI+" - "DI-")
-
-- def diDif = (100 * WildersAverage(if hiDiff > loDiff and hiDiff > 0 then hiDiff else 0, diLength) / ATR) - (100 *
-
-- WildersAverage(if loDiff > hiDiff and loDiff > 0 then loDiff else 0, diLength) / ATR);
-
-- def ppsDir = CompoundValue(1, if !IsNaN(PPS().BuySignal) then 1 else if !IsNaN(PPS().SellSignal) then -1 else ppsDir[1],
-
-- 0);
-
-- def diUp = !diFilter or (diFilter and diDif > 0 and diDif > diDif[1]);
-
-- def diDn = !diFilter or (diFilter and diDif < 0 and diDif < diDif[1]);
-
-- def avgUp = !avgFilter or (avgFilter and price > MA);
-
-- def avgDn = !avgFilter or (avgFilter and price < MA);
-
-- # Price momentum sums:
-
-- def sumUp = if prFilter then Sum(price > price[prMom], diLength) else 0;
-
-- def sumDn = if prFilter then Sum(price < price[prMom], diLength) else 0;
-
-- # prLbl=Off: Hide price momentum label.
-
-- # prLbl=All: Show prMom, sumUp and sumDn values.
-
-- # prLbl=UD:  Show only sumUp and sumDn values.
-
-- input prLbl = {default Off, All, UD};
-
-- AddLabel(prLbl!=prLbl.Off, (if prLbl==prLbl.All then "prMom=" + prMom + " :: " else "") + "U=" + sumUp + " :: D=" + sumDn,
-
-- if sumUp > sumDn then Color.GREEN else if sumUp < sumDn then Color.RED else Color.GRAY);
-
-- # dir is 1 if last PPS signal was up, and up filters are valid or turned off;  dir is -1 if last PPS signal was down, and down
-
-- filters are valid or turned off.
-
-- def dir = CompoundValue(1, if ppsDir > 0 and avgUp and diUp then 1 else if ppsDir < 0 and avgDn and diDn then -1 else
-
-- dir[1], 0);
-
-- # Count the number of times dir is in one direction.
-
-- def dirCnt = compoundValue(1, if dir crosses 0 then 1 else dirCnt[1] + 1, 0);
-
-- # If dir is up (> 0) then add to dirCnt the sum of price bars moving up, else add to dir the sum of price bars moving down.
-
-- plot Count = if !isNaN(close) then
-
-- if dir > 0 then dirCnt + sumUp else dirCnt + sumDn
-
-- else Double.NaN;
-
-- # Sig is colored differently when in or out of squeeze.
-
-- plot Sig = if !isNaN(close) then signal else Double.NaN;
-
-- Sig.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- Sig.AssignValueColor(if inSqueeze then Color.DARK_GRAY else Color.WHITE);
-
-- Sig.SetDefaultColor(Color.GRAY);
-
-- Count.SetPaintingStrategy(PaintingStrategy.LINE_VS_POINTS);
-
-- Count.AssignValueColor(if dir > 0 then if count > Sig then Color.GREEN else Color.DARK_GREEN else if count > Sig then
-
-- Color.RED else Color.DARK_RED);
-
-- AssignPriceColor(if !paintBars then Color.CURRENT
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  7878
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- else if dir > 0 then
-
-- if Count > Sig then Color.GREEN
-
-- else Color.DARK_GREEN
-
-- else if dir < 0 then
-
-- if Count > Sig then Color.RED
-
-- else Color.DARK_RED
-
-- else Color.GRAY);
-
-- # end
+```
+## Scalper's Helper w/ Squeeze,  by Linus, Version = 2013-11-12.2
+#hint: The Count plot adds the sum of price momentum comparisons with a counter of concurrent bars with no signaled direction change.  The Sig plot is a signal line colored to show if in or out of the squeeze.  (Lighter color is out of squeeze, by default.) \n\n Possible uses: \n\n If current Count is greater than previous Count of a different direction, and if not in the squeeze, look for possible breakout/breakdown or extension. \n\n If current Count is below Sig and previous Count was way above Sig, look for possible price direction change. \n\n Notes: \n\n Direction changes occur when the PPS signal changes and all the filters for that direction are either off or valid.  The Count plot is colored to show the current direction. (Green for up and Red for down, by default.)
+
+declare lower;
+input paintBars = No;    # hint paintBars: Yes to color price bars.
+input diFilter = Yes;    #hint  diFilter: No to turn off DI filter.
+input avgFilter = Yes;   #hint avgFilter: No to turn off mov. avg. filter.
+input prFilter = Yes;    #hint prFilter: No to turn off price filter.
+input price = close;     #hint price:  price fundamental.
+input prMom = 1;         #hint prMom: offset for price (mom)entum.
+input diLength = 13;     #hint diLength: For DI+, DI- calc, and mom sum.
+input signal = 13;       #hint signal: Horiz. position of the Sig line.
+
+#############################################
+# Keltner Channel and Bollinger Band Squeeze:
+input avgType = AverageType.SIMPLE; # Mov. avg type.
+input avgLength = 20;    # length for band and channel mov. avg.
+input numDev = 2.0;      # number of std devs of band.
+input factor = 1.5;      # factor for offsetting channel.
+def MA = MovingAverage(avgType, price, avgLength);
+
+# inSqueeze is true if the upper band is inside the upper channel:
+def inSqueeze = (MA + numDev * stdev(price, avgLength)) < (MA + (factor * AvgTrueRange(high, close, low, avgLength)));
+
+#
+#############################################
+def hiDiff = high - high[1];
+def loDiff = low[1] - low;
+def ATR = WildersAverage(TrueRange(high, close, low), diLength);
+# diDif is ("DI+" - "DI-")
+def diDif = (100 * WildersAverage(if hiDiff > loDiff and hiDiff > 0 then hiDiff else 0, diLength) / ATR) - (100 * WildersAverage(if loDiff > hiDiff and loDiff > 0 then loDiff else 0, diLength) / ATR);
+
+def ppsDir = CompoundValue(1, if !IsNaN(PPS().BuySignal) then 1 else if !IsNaN(PPS().SellSignal) then -1 else ppsDir[1], 0);
+
+def diUp = !diFilter or (diFilter and diDif > 0 and diDif > diDif[1]);
+def diDn = !diFilter or (diFilter and diDif < 0 and diDif < diDif[1]);
+def avgUp = !avgFilter or (avgFilter and price > MA);
+def avgDn = !avgFilter or (avgFilter and price < MA);
+
+# Price momentum sums:
+def sumUp = if prFilter then Sum(price > price[prMom], diLength) else 0;
+def sumDn = if prFilter then Sum(price < price[prMom], diLength) else 0;
+# prLbl=Off: Hide price momentum label.
+# prLbl=All: Show prMom, sumUp and sumDn values.
+# prLbl=UD:  Show only sumUp and sumDn values.
+
+input prLbl = {default Off, All, UD};
+
+AddLabel(prLbl!=prLbl.Off, (if prLbl==prLbl.All then "prMom=" + prMom + " :: " else "") + "U=" + sumUp + " :: D=" + sumDn, if sumUp > sumDn then Color.GREEN else if sumUp < sumDn then Color.RED else Color.GRAY);
+
+# dir is 1 if last PPS signal was up, and up filters are valid or turned off;  dir is -1 if last PPS signal was down, and down filters are valid or turned off.
+
+def dir = CompoundValue(1, if ppsDir > 0 and avgUp and diUp then 1 else if ppsDir < 0 and avgDn and diDn then -1 else dir[1], 0);
+
+# Count the number of times dir is in one direction.
+def dirCnt = compoundValue(1, if dir crosses 0 then 1 else dirCnt[1] + 1, 0);
+
+# If dir is up (> 0) then add to dirCnt the sum of price bars moving up, else add to dir the sum of price bars moving down.
+
+plot Count = if !isNaN(close) then
+if dir > 0 then dirCnt + sumUp else dirCnt + sumDn
+else Double.NaN;
+
+# Sig is colored differently when in or out of squeeze.
+plot Sig = if !isNaN(close) then signal else Double.NaN;
+Sig.SetPaintingStrategy(PaintingStrategy.POINTS);
+Sig.AssignValueColor(if inSqueeze then Color.DARK_GRAY else Color.WHITE);
+Sig.SetDefaultColor(Color.GRAY);
+Count.SetPaintingStrategy(PaintingStrategy.LINE_VS_POINTS);
+Count.AssignValueColor(if dir > 0 then if count > Sig then Color.GREEN else Color.DARK_GREEN else if count > Sig then Color.RED else Color.DARK_RED);
+
+AssignPriceColor(if !paintBars then Color.CURRENT else if dir > 0 then if Count > Sig then Color.GREEN  else Color.DARK_GREEN else if dir < 0 then if Count > Sig then Color.RED else Color.DARK_RED else Color.GRAY);
+```
+
+# end
 
 ## C-COLOR A PORTION OF A CHART
 
 [Return to TOC](#toc)
 
-- By Krill at http://groups.yahoo.com/neo/groups/TOS_thinkscript/info
-
-- #Colors a portion of a chart from top to bottom between the times entered
-
-- input start = 0930;  # time in ET
-
-- input end = 1200;
-
-- def toPaint = SecondsFromTime(start) >= 0 and SecondsTillTime(end) > 0;
-
-- def up = if toPaint then Double.POSITIVE_INFINITY else Double.NaN;
-
-- # Unfortunetly Double.NEGATIVE_INFINITY does not work in AddCluod()
-
-- def down = if toPaint then LowestAll(low) else Double.NaN;
-
-- AddCloud(up, down, Color.RED);
-
-- # end
+By Krill at http://groups.yahoo.com/neo/groups/TOS_thinkscript/info
+```
+#Colors a portion of a chart from top to bottom between the times entered
+input start = 0930;  # time in ET
+input end = 1200;
+def toPaint = SecondsFromTime(start) >= 0 and SecondsTillTime(end) > 0;
+def up = if toPaint then Double.POSITIVE_INFINITY else Double.NaN;
+# Unfortunetly Double.NEGATIVE_INFINITY does not work in AddCluod()
+def down = if toPaint then LowestAll(low) else Double.NaN;
+AddCloud(up, down, Color.RED);
+```
+# end
 
 ## C-   CLOUD USAGE VIA MOVING AVERAGES
 
 [Return to TOC](#toc)
 
-- Comment: Clouds create nice looking charts. This illustrates the use of clouds using a popular analysis technique of two
+Comment: Clouds create nice looking charts. This illustrates the use of clouds using a popular analysis technique of two moving averages crossing.
 
-- moving averages crossing.
+```
+# created Richard Houser - tos_thinkscript@yahoogroups.com
+#Labels added by SFL
+#TOS Title = CloudBetweenMovingAverages
+#hint:Cloud usage between two moving averages
 
-- # created Richard Houser - tos_thinkscript@yahoogroups.com
+declare upper;
+input price = close;
+input fastLength = 8;
+input fastAvgType = AverageType.SIMPLE;
+input slowLength = 20;
+input slowAvgType = AverageType.SIMPLE;
 
-- #Labels added by SFL
+plot FastMva = MovingAverage( fastAvgType, price, fastLength );
+plot SlowMva = MovingAverage( slowAvgType, price, slowLength );
 
-- #TOS Title = CloudBetweenMovingAverages
+AddCloud( FastMva, SlowMva, Color.YELLOW, Color.RED );
 
-- #hint:Cloud usage between two moving averages
+addlabel(1,"Slow MA(" +  slowLength  + ") is " +  (If fastAvgType == AverageType.EXPONENTIAL then "Exponential average" else if  fastAvgType == AverageType.Hull then "Hull average" else if fastAvgType == AverageType.simple then "Simple average" else if fastAvgType == AverageType.wilders then "Wilders average" else if fastAvgType == AverageType.weighted then "Weighted average" else "")   ,color.cyan);
 
-- declare upper;
+-addlabel(1,"Fast MA(" +  fastLength  + ") is " +  (If slowAvgType == AverageType.EXPONENTIAL then "Exponential average" else if  slowAvgType == AverageType.Hull then "Hull average" else if slowAvgType == AverageType.simple then "Simple average" else if slowAvgType == AverageType.wilders then "Wilders average" else if slowAvgType == AverageType.weighted then "Weighted average" else "")   ,color.pink);
+```
 
-- input price = close;
-
-- input fastLength = 8;
-
-- input fastAvgType = AverageType.SIMPLE;
-
-- input slowLength = 20;
-
-- input slowAvgType = AverageType.SIMPLE;
-
-- plot FastMva = MovingAverage( fastAvgType, price, fastLength );
-
-- plot SlowMva = MovingAverage( slowAvgType, price, slowLength );
-
-- AddCloud( FastMva, SlowMva, Color.YELLOW, Color.RED );
-
-- addlabel(1,"Slow MA(" +  slowLength  + ") is " +  (If fastAvgType == AverageType.EXPONENTIAL then "Exponential
-
-- average"
-
-- else if  fastAvgType == AverageType.Hull then "Hull average"
-
-- else if fastAvgType == AverageType.simple then "Simple average"
-
-- else if fastAvgType == AverageType.wilders then "Wilders average"
-
-- else if fastAvgType == AverageType.weighted then "Weighted average"
-
-- else "")   ,color.cyan);
-
-- addlabel(1,"Fast MA(" +  fastLength  + ") is " +  (If slowAvgType == AverageType.EXPONENTIAL then "Exponential
-
-- average"
-
-- else if  slowAvgType == AverageType.Hull then "Hull average"
-
-- else if slowAvgType == AverageType.simple then "Simple average"
-
-- else if slowAvgType == AverageType.wilders then "Wilders average"
-
-- else if slowAvgType == AverageType.weighted then "Weighted average"
-
-- else "")   ,color.pink);
-
-- # end
+# end
 
 ## C-PLOTS THE DAILY HIGH AND LOW
 
 [Return to TOC](#toc)
 
-- #hint:<b>Daily_Hi_Lo</b>\nWhite lines show the current day's H/L range. Cyan shows the previous day's. The red line
-
-- shows the previous day's close
-
-- input showOnlyLastPeriod = no;#hint showOnlyLastPeriod: NO shows today's and previous day's H/L. YES shows only the
-
-- previous day's H/L
-
-- def  aggregationPeriod = AggregationPeriod.DAY;
-
-- def  length = 1;
-
-- def  displace = 0;
-
-- plot DailyHigh;
-
-- plot DailyLow;
-
-- if showOnlyLastPeriod and !IsNaN(close(period = aggregationPeriod)[-1]) {
-
-- DailyHigh = Double.NaN;
-
-- DailyLow = Double.NaN;
-
-- } else {
-
-- DailyHigh = Highest(high(period = aggregationPeriod)[-displace], length);
-
-- DailyLow = Lowest(low(period = aggregationPeriod)[-displace], length);
-
-- }
-
-- DailyHigh.SetDefaultColor(GetColor(9));
-
-- DailyHigh.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
-
-- DailyLow.SetDefaultColor(GetColor(9));
-
-- DailyLow.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
-
-- #************************************************************
-
-- def  PreDailyHigh = Highest(high(period = aggregationPeriod)[1], length);
-
-- def PreDailyLow = Lowest(low(period = aggregationPeriod)[1], length);
-
-- plot YesterHi = PreDailyHigh;
-
-- plot YesterLo = PreDailyLow;
-
-- YesterHi.SetDefaultColor(color.cyan);
-
-- YesterHi.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
-
-- YesterLo.SetDefaultColor(color.cyan);
-
-- YesterLo.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
-
-- #input timeFrame = {default DAY, WEEK, MONTH};
-
-- def YstrdaysClose = close(period = aggregationPeriod)[1];
-
-- plot YesterClose = YstrdaysClose;
-
-- YesterClose.SetDefaultColor(GetColor(5));
-
-- YesterClose.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
-
-- ############## End of Day vert line ########################
-
-- input time = 0930;
-
-- def StartTime = SecondsFromTime(time) ==0;
-
-- plot x = if StartTime then close else double.nan;
-
-- AddVerticalLine(StartTime,"Opening @ 9:30",Color.pink,Curve.SHORT_DASH);
-
-- X.Hide();
-
-- addLabel(yes,"Current Day's Hi/Lo",color.white);
-
-- addLabel(yes,"Previous day's Hi/Lo",color.cyan);
-
-- addLabel(yes,"Yesterday's Close",color.red);
-
-- #end
-
-- C  -SELF-ADJUSTING RSI BANDS
-
-- # Adapted by R. Houser from The Self-Adjusting RSI script at
-
-- http://www.metastock.com/Customer/Resources/TASC/Article.aspx?Id=72
-
-- #hint:<b>Self-Adjusting RSI bands</b>\nThe RSI herein is exactly the same as TOS builtin RSI. The conventional
-
-- OB/OS levels are replaced by the upper and lower bands based on the std dev of the RSI itself. The RSI above the
-
-- upper band is bullish and below the lower band is bearish. Within the the bands is a choppy area. The widening of the
-
-- bands indicates increasing volatility similar to the Bollinger Bands. The upper band may be interpreted as an moving OB
-
-- level and the lower band  a moving OS level.
-
-- declare lower;
-
-- input Length  = 14;
-
-- input StdDevConst      = 1.8;
-
-- input SMA_const        = 2.0;
-
-- input Method        = { default SD, SMA };
-
-- input price     = close;
-
-- def _rsi        = RSIWilder( Length, price = price ).RSI;
-
-- def _stdev      = StDev( _rsi, Length );
-
-- def top         = if Method == Method.SD
-
-- then 50 + ( StdDevConst *_stdev )
-
-- else 50 + ( SMA_const * Average( AbsValue(_rsi - Average( _rsi, Length ) ), Length ) );
-
-- def bottom      = if Method == Method.SD
-
-- then 50 - ( StdDevConst * _stdev )
-
-- else 50 - ( SMA_const * Average( AbsValue( _rsi - Average( _rsi, Length ) ), Length ) );
-
-- plot RSI  = _rsi;
-
-- plot TopBand    = top;
-
-- plot LowerBand  = bottom;
-
-- Plot MidLine = 50;
-
-- MidLine.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- MidLine.SetLineWeight(2);
-
-- MidLine.SetDefaultColor(Color.YELLOW);
-
-- MidLine.SetStyle(Curve.SHORT_DASH);
-
-- # end
+```
+#hint:<b>Daily_Hi_Lo</b>\nWhite lines show the current day's H/L range. Cyan shows the previous day's. The red line shows the previous day's close
+
+input showOnlyLastPeriod = no;#hint showOnlyLastPeriod: NO shows today's and previous day's H/L. YES shows only the previous day's H/L
+
+def  aggregationPeriod = AggregationPeriod.DAY;
+def  length = 1;
+def  displace = 0;
+plot DailyHigh;
+plot DailyLow;
+
+if showOnlyLastPeriod and !IsNaN(close(period = aggregationPeriod)[-1]) {
+  DailyHigh = Double.NaN;
+  DailyLow = Double.NaN;
+} else {
+  DailyHigh = Highest(high(period = aggregationPeriod)[-displace], length);
+  DailyLow = Lowest(low(period = aggregationPeriod)[-displace], length);
+}
+
+DailyHigh.SetDefaultColor(GetColor(9));
+DailyHigh.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+DailyLow.SetDefaultColor(GetColor(9));
+DailyLow.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+
+#************************************************************
+def  PreDailyHigh = Highest(high(period = aggregationPeriod)[1], length);
+def PreDailyLow = Lowest(low(period = aggregationPeriod)[1], length);
+plot YesterHi = PreDailyHigh;
+plot YesterLo = PreDailyLow;
+YesterHi.SetDefaultColor(color.cyan);
+YesterHi.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+YesterLo.SetDefaultColor(color.cyan);
+YesterLo.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+#input timeFrame = {default DAY, WEEK, MONTH};
+def YstrdaysClose = close(period = aggregationPeriod)[1];
+plot YesterClose = YstrdaysClose;
+YesterClose.SetDefaultColor(GetColor(5));
+YesterClose.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+
+############## End of Day vert line ########################
+input time = 0930;
+def StartTime = SecondsFromTime(time) ==0;
+plot x = if StartTime then close else double.nan;
+AddVerticalLine(StartTime,"Opening @ 9:30",Color.pink,Curve.SHORT_DASH);
+X.Hide();
+addLabel(yes,"Current Day's Hi/Lo",color.white);
+addLabel(yes,"Previous day's Hi/Lo",color.cyan);
+addLabel(yes,"Yesterday's Close",color.red);
+```
+#end
+
+## C  -SELF-ADJUSTING RSI BANDS
+[Return to TOC](#toc)
+
+```
+# Adapted by R. Houser from The Self-Adjusting RSI script at http://www.metastock.com/Customer/Resources/TASC/Article.aspx?Id=72
+
+#hint:<b>Self-Adjusting RSI bands</b>\nThe RSI herein is exactly the same as TOS builtin RSI. The conventional OB/OS levels are replaced by the upper and lower bands based on the std dev of the RSI itself. The RSI above the upper band is bullish and below the lower band is bearish. Within the the bands is a choppy area. The widening of the bands indicates increasing volatility similar to the Bollinger Bands. The upper band may be interpreted as an moving OB level and the lower band  a moving OS level.
+
+declare lower;
+input Length  = 14;
+input StdDevConst      = 1.8;
+input SMA_const        = 2.0;
+input Method        = { default SD, SMA };
+input price     = close;
+
+def _rsi        = RSIWilder( Length, price = price ).RSI;
+def _stdev      = StDev( _rsi, Length );
+def top         = if Method == Method.SD
+  then 50 + ( StdDevConst *_stdev )
+  else 50 + ( SMA_const * Average( AbsValue(_rsi - Average( _rsi, Length ) ), Length ) );
+def bottom      = if Method == Method.SD
+  then 50 - ( StdDevConst * _stdev )
+  else 50 - ( SMA_const * Average( AbsValue( _rsi - Average( _rsi, Length ) ), Length ) );
+
+plot RSI  = _rsi;
+plot TopBand    = top;
+plot LowerBand  = bottom;
+Plot MidLine = 50;
+
+MidLine.SetPaintingStrategy(PaintingStrategy.LINE);
+MidLine.SetLineWeight(2);
+MidLine.SetDefaultColor(Color.YELLOW);
+MidLine.SetStyle(Curve.SHORT_DASH);
+```
+
+#end
 
 ## C-3 MOVING AVERAGES: CHANGING COLOR
 
 [Return to TOC](#toc)
 
-- #by R. Houser
+```
+#by R. Houser
+#hint:<b>Three MVSs ascending/descending color change</b> \nWhen the MovingAverage is increasing in value it will change color, and when it is decreasing in value change color again. User is able to select color of MovingAverage line when it is increasing or decreasing
 
-- #hint:<b>Three MVSs ascending/descending color change</b> \nWhen the MovingAverage is increasing in value it will
+declare upper;
+input fastLength    = 3;
+input mediumLength  = 8;
+input slowLength    = 21;
+input price         = close;
+input avgType       = AverageType.EXPONENTIAL;
+plot fastMVA        = MovingAverage( avgType, price, fastLength );
+plot mediumMVA      = MovingAverage( avgType, price, mediumLength );
+plot slowMVA        = MovingAverage( avgType, price, slowLength );
+fastMVA.DefineColor( "up",  GetColor( 0 ) );
+fastMVA.DefineColor( "dn",  GetColor( 1 ) );
+fastMVA.DefineColor( "def", GetColor( 2 ) );
+fastMVA.AssignValueColor( if fastMVA > fastMVA[1] then fastMVA.Color( "up" ) else if fastMVA < fastMVA[1] then
 
-- change color, and when it is decreasing in value change color again. User is able to select color of MovingAverage line
+fastMVA.Color( "dn" ) else fastMVA.Color( "def" ) );
+mediumMva.DefineColor( "up",  GetColor( 3 ) );
+mediumMva.DefineColor( "dn",  GetColor( 4 ) );
+mediumMva.DefineColor( "def", GetColor( 5 ) );
 
-- when it is increasing or decreasing
+mediumMva.AssignValueColor( if mediumMva > mediumMva[1] then mediumMva.Color( "up" ) else if
+   mediumMva < mediumMva[1] then mediumMva.Color( "dn" ) else mediumMva.Color( "def" ) );
 
-- declare upper;
+slowMVA.DefineColor( "up",  GetColor( 6 ) );
+slowMVA.DefineColor( "dn",  GetColor( 7 ) );
+slowMVA.DefineColor( "def", GetColor( 8 ) );
+slowMVA.AssignValueColor( if slowMva > slowMva[1] then slowMva.Color( "up" ) else 
+  if slowMva < slowMva[1] then slowMva.Color( "dn" ) else slowMva.Color( "def" ) );
 
-- input fastLength    = 3;
+slowMVA.Hide();
+```
 
-- input mediumLength  = 8;
-
-- input slowLength    = 21;
-
-- input price         = close;
-
-- input avgType       = AverageType.EXPONENTIAL;
-
-- plot fastMVA        = MovingAverage( avgType, price, fastLength );
-
-- plot mediumMVA      = MovingAverage( avgType, price, mediumLength );
-
-- plot slowMVA        = MovingAverage( avgType, price, slowLength );
-
-- fastMVA.DefineColor( "up",  GetColor( 0 ) );
-
-- fastMVA.DefineColor( "dn",  GetColor( 1 ) );
-
-- fastMVA.DefineColor( "def", GetColor( 2 ) );
-
-- fastMVA.AssignValueColor( if fastMVA > fastMVA[1] then fastMVA.Color( "up" ) else if fastMVA < fastMVA[1] then
-
-- fastMVA.Color( "dn" ) else fastMVA.Color( "def" ) );
-
-- mediumMva.DefineColor( "up",  GetColor( 3 ) );
-
-- mediumMva.DefineColor( "dn",  GetColor( 4 ) );
-
-- mediumMva.DefineColor( "def", GetColor( 5 ) );
-
-- mediumMva.AssignValueColor( if mediumMva > mediumMva[1] then mediumMva.Color( "up" ) else if mediumMva <
-
-- mediumMva[1] then mediumMva.Color( "dn" ) else mediumMva.Color( "def" ) );
-
-- slowMVA.DefineColor( "up",  GetColor( 6 ) );
-
-- slowMVA.DefineColor( "dn",  GetColor( 7 ) );
-
-- slowMVA.DefineColor( "def", GetColor( 8 ) );
-
-- slowMVA.AssignValueColor( if slowMva > slowMva[1] then slowMva.Color( "up" ) else if slowMva < slowMva[1] then
-
-- slowMva.Color( "dn" ) else slowMva.Color( "def" ) );
-
-- slowMVA.Hide();
-
-- #end
+#end
 
 ## C-T3, ADAPTIVE SMOOTHING INDICATOR
 
 [Return to TOC](#toc)
 
-- #Hint:<b>T3 - Adaptive Smoothing Indicator</b>
+```
+#Hint:<b>T3 - Adaptive Smoothing Indicator</b>
+# by Richard Houser tos_thinkscript@yahoo.groups
+# --------------------------------------------------------------------------------
+#  The Formula . . .  . . .more on Formulas
+# T3(n) = GD(GD(GD(n)))
+# GD(n,v) = EMA(n)*(1+v) - EMA(EMA(n))*v
+#     GD stands for Generalized DEMA (double-smoothed exponential MA)
+# where
+# n = Period
+# v = Volume Factor
+# http://www.linnsoft.com/tour/techind/t3.htm
 
-- # by Richard Houser tos_thinkscript@yahoo.groups
+declare upper;
+script GD {
+ input period        = 10;
+ input volumeFactor  = 0.7;
+ input price         = close;
 
-- # --------------------------------------------------------------------------------
+ plot GD  = ExpAverage( price, period ) * ( 1 + volumeFactor ) - ( ExpAverage( ExpAverage( price,  period ), period ) * volumeFactor );
+}
 
-- #  The Formula . . .  . . .more on Formulas
+input period          = 10;
+input volumeFactor    = 0.7;
+input price           = close;
+plot T3               = GD( period, volumeFactor, GD( period, volumeFactor, GD( period, volumeFactor, price ) ) );
+```
 
-- # T3(n) = GD(GD(GD(n)))
-
-- # GD(n,v) = EMA(n)*(1+v) - EMA(EMA(n))*v
-
-- #     GD stands for Generalized DEMA (double-smoothed exponential MA)
-
-- # where
-
-- # n = Period
-
-- # v = Volume Factor
-
-- # http://www.linnsoft.com/tour/techind/t3.htm
-
-- declare upper;
-
-- script GD {
-
-- input period        = 10;
-
-- input volumeFactor  = 0.7;
-
-- input price         = close;
-
-- plot GD  = ExpAverage( price, period ) * ( 1 + volumeFactor ) - ( ExpAverage( ExpAverage( price, period ), period ) *
-
-- volumeFactor );
-
-- }
-
-- input period          = 10;
-
-- input volumeFactor    = 0.7;
-
-- input price           = close;
-
-- plot T3               = GD( period, volumeFactor, GD( period, volumeFactor, GD( period, volumeFactor, price ) ) );
-
-- #end
+#end
 
 ## C-RSI ZEROLINE OSCILLATOR
 
 [Return to TOC](#toc)
 
-- #hint: Plots the RSI oscillating about the ZeroLine in lieu of a OB/OS format
+```
+#hint: Plots the RSI oscillating about the ZeroLine in lieu of a OB/OS format
+#TOS Title = RSI_Zero_Osc
+#Comment: See the two methods of coloring a histogram in "#=== COLORING =" below.
 
-- #TOS Title = RSI_Zero_Osc
+declare lower;
 
-- #Comment: See the two methods of coloring a histogram in "#=== COLORING =" below.
+input length = 14;
+input price = close;
 
-- declare lower;
+def NetChgAvg = WildersAverage(price - price[1], length);
+def TotChgAvg = WildersAverage(AbsValue(price - price[1]), length);
+def ChgRatio = if TotChgAvg != 0 then NetChgAvg / TotChgAvg else 0;
 
-- input length = 14;
+plot RSI = (50 * (ChgRatio + 1) - 50);
+RSI.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+RSI.SetLineWeight(3);
+RSI.HideTitle();
+RSI.HideBubble();
+#=== COLORING = If you want to omit the histogram bar coloring of light-to-dark, then un-comment the '====THE THREE===="  code lines below and comment-out the 5 lines shown below as '==== THE FIVE ====' below it.
 
-- input price = close;
+#               ==== THE THREE ====
+RSI.DefineColor("Positive", Color.UPTICK);
+RSI.DefineColor("Negative", Color.DOWNTICK);
+RSI.AssignValueColor(if RSI > 0 then RSI.Color("Positive") else RSI.Color("Negative"));
+#                ==== THE FIVE ====
+#RSI.DefineColor("Positive and Up", Color.GREEN);
+#RSI.DefineColor("Positive and Down", Color.DARK_GREEN);
+#RSI.DefineColor("Negative and Down", Color.RED);
+#RSI.DefineColor("Negative and Up", Color.DARK_RED);
+#RSI.AssignValueColor(if RSI >= 0 then if RSI > RSI[1] then RSI.Color("Positive and Up") else RSI.Color("Positive and Down") else if RSI < RSI[1] then RSI.Color("Negative and Down") else RSI.Color("Negative and Up"));
 
-- def NetChgAvg = WildersAverage(price - price[1], length);
+#################################
+plot  ZeroLine = 0;
+ZeroLine.SetDefaultColor(Color.YELLOW);
+ZeroLine.SetLineWeight(1);
+#The line below plots at the bar values and adds a lot of class to the looks of a histogram
+plot RSI_Line = (50 * (ChgRatio + 1) - 50);
+RSI_Line.SetDefaultColor(GetColor(1));
+```
 
-- def TotChgAvg = WildersAverage(AbsValue(price - price[1]), length);
-
-- def ChgRatio = if TotChgAvg != 0 then NetChgAvg / TotChgAvg else 0;
-
-- plot RSI = (50 * (ChgRatio + 1) - 50);
-
-- RSI.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-
-- RSI.SetLineWeight(3);
-
-- RSI.HideTitle();
-
-- RSI.HideBubble();
-
-- #=== COLORING = If you want to omit the histogram bar coloring of light-to-dark, then un-comment the '====THE
-
-- THREE===="  code lines below and comment-out the 5 lines shown below as '==== THE FIVE ====' below it.
-
-- #               ==== THE THREE ====
-
-- RSI.DefineColor("Positive", Color.UPTICK);
-
-- RSI.DefineColor("Negative", Color.DOWNTICK);
-
-- RSI.AssignValueColor(if RSI > 0 then RSI.Color("Positive") else RSI.Color("Negative"));
-
-- #                ==== THE FIVE ====
-
-- #RSI.DefineColor("Positive and Up", Color.GREEN);
-
-- #RSI.DefineColor("Positive and Down", Color.DARK_GREEN);
-
-- #RSI.DefineColor("Negative and Down", Color.RED);
-
-- #RSI.DefineColor("Negative and Up", Color.DARK_RED);
-
-- #RSI.AssignValueColor(if RSI >= 0 then if RSI > RSI[1] then RSI.Color("Positive and Up") else RSI.Color("Positive and
-
-- Down") else if RSI < RSI[1] then RSI.Color("Negative and Down") else RSI.Color("Negative and Up"));
-
-- #################################
-
-- plot  ZeroLine = 0;
-
-- ZeroLine.SetDefaultColor(Color.YELLOW);
-
-- ZeroLine.SetLineWeight(1);
-
-- #The line below plots at the bar values and adds a lot of class to the looks of a histogram
-
-- plot RSI_Line = (50 * (ChgRatio + 1) - 50);
-
-- RSI_Line.SetDefaultColor(GetColor(1));
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  8383
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #end
+#end
 
 ## C-INSYNC INDEX
 
 [Return to TOC](#toc)
 
-- #Hint:<b>InSync Index</b>\nThis is index is formed from signals on a variety of different technical indicators, and used
+```
+#Hint:<b>InSync Index</b>\nThis is index is formed from signals on a variety of different technical indicators, and used to determine extreme overbought/oversold values in the market.
 
-- to determine extreme overbought/oversold values in the market.
+# InSync Index
+# Coded by Eric Rasmussen
+#
+# The InSync Index is used detect extreme levels.
+# Values higher or equal to 50 are considered to be high extreme levels. (sell)
+# Values lower or equal than -50 are considered to be low extreme levels. (buy)
+declare lower;
 
-- # InSync Index
+# Data Smoothing Input
+input smooth = 1;
 
-- # Coded by Eric Rasmussen
+# Study Definitions
+def bbUpper  = BollingerBandsEMA().UpperBand;
+def bbLower  = BollingerBandsEMA().LowerBand;
+def bbCalc   = (close - bbLower)/(bbUpper - bbLower);
+def macd1    = MACD(8, 17);
+def macd2    = macd1 - (MACD(8, 10) - MACD(17, 20));
+def rsi      = rsIWilder();
+def change   = RateOfChange(10);
+def dpo      = detrendedPriceOsc();
+def eom      = easeOfMovement();
+def mf       = moneyFlowIndex();
+def stoch    = StochasticFull("k period" = 14);
+def bomp     = balanceOfMarketPower();
+def cc       = cci();
 
-- #
+# Indicator Scoring
+def bb       = if bbCalc > .95 then 5 else if bbCalc < .05 then -5 else 0;
+def cci      = if cc > 100 then 5 else if cc < -100 then -5 else 0;
+def macd     = if macd1 > 0 and macd2 > 0 then 5 else if macd1 < 0 and macd2 < 0 then -5 else 0;
+def roc      = if change > 1 and change > expAverage(change, 10) then 5 else if change < 1 and change < expAverage(change, 10) then -5 else 0;
 
-- # The InSync Index is used detect extreme levels.
+def sto      = if stoch > 80 then 10 else if stoch < 20 then -10 else 0;
+def rsiW     = if rsi > 70 then 5 else if rsi < 30 then -5 else 0;
+def bop      = if bomp > 0 and bomp > expAverage(bomp, 10) then 5 else if bomp < 0 and bomp < expAverage(bomp, 10) then -5 else 0;
 
-- # Values higher or equal to 50 are considered to be high extreme levels. (sell)
+def dp       = if dpo > 0 then 5 else if dpo < 0 then -5 else 0;
+def emv      = if eom > 0 then 5 else if eom < 0 then -5 else 0;
+def mfi      = if mf > 50 then 5 else if mf < 40 then -5 else 0;
 
-- # Values lower or equal than -50 are considered to be low extreme levels. (buy)
+# Point Sum
+def sum      = bb + cci + macd + roc + sto + rsiW + bop + dp + emv + mfi;
 
-- declare lower;
-
-- # Data Smoothing Input
-
-- input smooth = 1;
-
-- # Study Definitions
-
-- def bbUpper  = BollingerBandsEMA().UpperBand;
-
-- def bbLower  = BollingerBandsEMA().LowerBand;
-
-- def bbCalc   = (close - bbLower)/(bbUpper - bbLower);
-
-- def macd1    = MACD(8, 17);
-
-- def macd2    = macd1 - (MACD(8, 10) - MACD(17, 20));
-
-- def rsi      = rsIWilder();
-
-- def change   = RateOfChange(10);
-
-- def dpo      = detrendedPriceOsc();
-
-- def eom      = easeOfMovement();
-
-- def mf       = moneyFlowIndex();
-
-- def stoch    = StochasticFull("k period" = 14);
-
-- def bomp     = balanceOfMarketPower();
-
-- def cc       = cci();
-
-- # Indicator Scoring
-
-- def bb       = if bbCalc > .95 then 5 else if bbCalc < .05 then -5 else 0;
-
-- def cci      = if cc > 100 then 5 else if cc < -100 then -5 else 0;
-
-- def macd     = if macd1 > 0 and macd2 > 0 then 5 else if macd1 < 0 and macd2 < 0 then -5 else 0;
-
-- def roc      = if change > 1 and change > expAverage(change, 10) then 5 else if change < 1 and change < expAverage(change,
-
-- 10) then -5 else 0;
-
-- def sto      = if stoch > 80 then 10 else if stoch < 20 then -10 else 0;
-
-- def rsiW     = if rsi > 70 then 5 else if rsi < 30 then -5 else 0;
-
-- def bop      = if bomp > 0 and bomp > expAverage(bomp, 10) then 5 else if bomp < 0 and bomp < expAverage(bomp, 10) then
-
-- -5 else 0;
-
-- def dp       = if dpo > 0 then 5 else if dpo < 0 then -5 else 0;
-
-- def emv      = if eom > 0 then 5 else if eom < 0 then -5 else 0;
-
-- def mfi      = if mf > 50 then 5 else if mf < 40 then -5 else 0;
-
-- # Point Sum
-
-- def sum      = bb + cci + macd + roc + sto + rsiW + bop + dp + emv + mfi;
-
-- # Plots
-
-- plot inSync  = expAverage(sum, smooth);
-
-- plot zero    = if isNaN(close) then double.NaN else 0;
-
-- plot pos55   = if isNaN(close) then double.NaN else 50;
-
-- plot neg55   = if isNaN(close) then double.NaN else -50;
-
-- inSync.assignValueColor(if sum > 0 then color.GREEN else color.RED);
-
-- inSync.setLineWeight(2);
-
-- zero.assignValueColor(color.LIGHT_GRAY);
-
-- pos55.assignValueColor(color.RED);
-
-- neg55.assignValueColor(color.GREEN);
-
-- zero.hideTitle();
-
-- pos55.hideTitle();
-
-- neg55.hideTitle();
-
-- #COMMENT: You can alter the criteria and/or the indicators to suit your trading style
+# Plots
+plot inSync  = expAverage(sum, smooth);
+plot zero    = if isNaN(close) then double.NaN else 0;
+plot pos55   = if isNaN(close) then double.NaN else 50;
+plot neg55   = if isNaN(close) then double.NaN else -50;
+inSync.assignValueColor(if sum > 0 then color.GREEN else color.RED);
+inSync.setLineWeight(2);
+zero.assignValueColor(color.LIGHT_GRAY);
+pos55.assignValueColor(color.RED);
+neg55.assignValueColor(color.GREEN);
+zero.hideTitle();
+pos55.hideTitle();
+neg55.hideTitle();
+#COMMENT: You can alter the criteria and/or the indicators to suit your trading style
+```
 
 - #end
 
@@ -6489,1471 +5006,915 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- #hint:<b>Cloud a time interval without plots</b>
+```
+#hint:<b>Cloud a time interval without plots</b>
 
-- input start = 1000;  # hint start: Beginning time in 24-hour format ET
+input start = 1000;  # hint start: Beginning time in 24-hour format ET
+input end = 1300; #hint end:Ending time of the cloud
 
-- input end = 1300; #hint end:Ending time of the cloud
+def toPaint = SecondsFromTime(start) >= 0 and SecondsTillTime(end) > 0;
+def up = if toPaint then Double.POSITIVE_INFINITY else Double.NaN;
 
-- def toPaint = SecondsFromTime(start) >= 0 and SecondsTillTime(end) > 0;
+# Unfortunetly Double.NEGATIVE_INFINITY does not work in AddCluod()
+def down = if toPaint then LowestAll(low) else Double.NaN;
+AddCloud(up, down, Color.RED);
+```
 
-- def up = if toPaint then Double.POSITIVE_INFINITY else Double.NaN;
-
-- # Unfortunetly Double.NEGATIVE_INFINITY does not work in AddCluod()
-
-- def down = if toPaint then LowestAll(low) else Double.NaN;
-
-- AddCloud(up, down, Color.RED);
-
-- #end
+#end
 
 ## C- IMPROVED TIME SERIES FORECAST STUDY
 
 [Return to TOC](#toc)
 
-- #hint:<b>An improved TimeSeriesForecast study.</b> \nThe improvement is done here using a non-TOS correct
+```
+#hint:<b>An improved TimeSeriesForecast study.</b> \nThe improvement is done here using a non-TOS correct regression slope calculation comparable with the RH's code on this topic. This is a substitute for the builtin 'TimeSeriesForecast'.
 
-- regression slope calculation comparable with the RH's code on this topic. This is a substitute for the builtin
+input price = close;
+input avgType = AverageType.SIMPLE;
+input avgLength = 1;#hint avgLength:Retain 1 used to get smoothPrice used herein
+input regLength = 8;#hint regLength:The number of bars for which the statistical data is collected.
+input barPlus = 3;#hint barplus:The number of bars for which the price is predicted. Specify positive number to obtain the forecast data, negative number to backtest indicator accuracy.
+input numDevUp = 2.0;#hint numDevUp:Std Deviation for the upper band
+input numDevDn = -2.0;#hint numDevDn:Std Deviation for the lower band
 
-- 'TimeSeriesForecast'.
+def smoothPrice = MovingAverage(avgType, price, avgLength);
+def std = StDev(smoothPrice, regLength);
 
-- input price = close;
+plot RegressionBand = reference TimeSeriesForecast(smoothPrice, regLength, barPlus);
+plot UpperBand = RegressionBand + std * numDevUp;
+plot LowerBand = RegressionBand + std * numDevDn;
+#The buy/sell signals nelow are rudimentary and should not be used without other strong confirmatioms
 
-- input avgType = AverageType.SIMPLE;
+plot Buy = if RegressionBand < RegressionBand[1]  && RegressionBand[-1] > RegressionBand &&  RegressionBand[-2] > (RegressionBand[-1] ) then RegressionBand Else double.nan;
 
-- input avgLength = 1;#hint avgLength:Retain 1 used to get smoothPrice used herein
+Buy.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+Buy.SetLineWeight(5);
+Buy.SetDefaultColor(Color.GREEN);
 
-- input regLength = 8;#hint regLength:The number of bars for which the statistical data is collected.
+plot Sell = if RegressionBand > RegressionBand[1]  && RegressionBand[-1] < (RegressionBand ) &&  RegressionBand[-2] <(RegressionBand[-1] ) then RegressionBand Else double.nan;
+Sell.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+Sell.SetLineWeight(5);
+Sell.SetDefaultColor(Color.RED);
+#Comment: Higher aggregations of 15 and 30-mins produce less whipsaw.
+```
 
-- input barPlus = 3;#hint barplus:The number of bars for which the price is predicted. Specify positive number to obtain
-
-- the forecast data, negative number to backtest indicator accuracy.
-
-- input numDevUp = 2.0;#hint numDevUp:Std Deviation for the upper band
-
-- input numDevDn = -2.0;#hint numDevDn:Std Deviation for the lower band
-
-- def smoothPrice = MovingAverage(avgType, price, avgLength);
-
-- def std = StDev(smoothPrice, regLength);
-
-- plot RegressionBand = reference TimeSeriesForecast(smoothPrice, regLength, barPlus);
-
-- plot UpperBand = RegressionBand + std * numDevUp;
-
-- plot LowerBand = RegressionBand + std * numDevDn;
-
-- #The buy/sell signals nelow are rudimentary and should not be used without other strong confirmatioms
-
-- plot Buy = if RegressionBand < RegressionBand[1]  && RegressionBand[-1] > RegressionBand &&  RegressionBand[-2] >
-
-- (RegressionBand[-1] ) then RegressionBand Else double.nan;
-
-- Buy.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- Buy.SetLineWeight(5);
-
-- Buy.SetDefaultColor(Color.GREEN);
-
-- plot Sell = if RegressionBand > RegressionBand[1]  && RegressionBand[-1] < (RegressionBand ) &&  RegressionBand[-2] <
-
-- (RegressionBand[-1] ) then RegressionBand Else double.nan;
-
-- Sell.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- Sell.SetLineWeight(5);
-
-- Sell.SetDefaultColor(Color.RED);
-
-- #Comment: Higher aggregations of 15 and 30-mins produce less whipsaw.
-
-- #end
+#end
 
 ## C-VOLATILITY LABEL
 
 [Return to TOC](#toc)
 
-- #hint:Places a volatility label on the upper panel
+```
+#hint:Places a volatility label on the upper panel
+#begin
+declare upper;
+def IV = Round(ImpVolatility() * 100);
+def HV = Round(HistoricalVolatility() * 100);
+AddLabel(yes, "ImpVolatility = " + IV + " % and  HistoricalVolatility = " + HV + " %", color.green);
+```
 
-- #begin
+#end
 
-- declare upper;
+Comment:HV and IV do not plot on intraday. The default HV is annual and that is what will show in the label. On an intraday chart the IV will show N/A  and the HV will be annual HV. to get the daily value of Implied Volatility:
 
-- def IV = Round(ImpVolatility() * 100);
-
-- def HV = Round(HistoricalVolatility() * 100);
-
-- AddLabel(yes, "ImpVolatility = " + IV + " % and  HistoricalVolatility = " + HV + " %", color.green);
-
-- #end
-
-- Comment:HV and IV do not plot on intraday. The default HV is annual and that is what will show in the label. On an
-
-- intraday chart the IV will show N/A  and the HV will be annual HV. to get the daily value of Implied Volatility:
-
-- def DaysIV = IV / Sqrt(252);
+`def DaysIV = IV / Sqrt(252);`
 
 ## C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY
 
 [Return to TOC](#toc)
 
-- #hint:Battle of the Bands Indicates the range of price using Implied Volatility, Bollinger Bands or Keltner Channel. No
-
-- direction (up or down) is implied since price is assumed random by the calculations.
-
-- Mobius©: # Battle of the Bands
-
-- # Implied Volatility Bands
-
-- # ATR Bands
-
-- # Bollinger Bands
-
-- # Mobius
-
-- # Added ATR label. Added conditional color for labels. Altered bands on lower aggs. to 100% IV spread from mean.
-
-- Altered coding structure to be more efficient.
-
-- # V02.10.17.2013
-
-- declare hide_on_daily;
-
-- input n = 21;
-
-- input IvDailyBands = no;
-
-- input IvHourBands = no;
-
-- input IV15minBands = yes;
-
-- input AtrBands = no;
-
-- input BollingerBands = yes;
-
-- input DisplayLabels = yes;
-
-- def o = open;
-
-- def h = high;
-
-- def l = low;
-
-- def c = close;
-
-- def period = AggregationPeriod.DAY;
-
-- def hd = high(period = period);
-
-- def ld = low(period = period);
-
-- def cd = close(period = period);
-
-- def DaysMean = hl2(period = period);
-
-- def HoursMean = hl2(period = AggregationPeriod.HOUR);
-
-- def IVd = imp_Volatility(period = period);
-
-- def IV = if isNaN(IVd) then IV[1] else IVd;
-
-- def hIV = Highest(IV, 252);
-
-- def lIV = Lowest(IV, 252);
-
-- def IVpercentile = (IV - lIV) / (hIV - lIV);
-
-- AddLabel(DisplayLabels, "IV " + AsPercent(IV) +
-
-- "  IV Percentile: " + AsPercent(IVpercentile)
-
-- , if IsAscending(IV)
-
-- then Color.GREEN
-
-- else if IsDescending(IV)
-
-- then Color.RED
-
-- else Color.WHITE);
-
-- def ATR = Average(TrueRange(h, c, l), n);
-
-- def ATRd = Average(TrueRange(hd, cd, ld), n);
-
-- def SDatr = StDev(ATRd, 252);
-
-- def hATR = Highest(SDatr, 252);
-
-- def lATR = Lowest(SDatr, 252);
-
-- def ATRpercentile = (SDatr - lATR) / (hATR - lATR);
-
-- def DaysIV = IV / Sqrt(252);
-
-- def DaysIVSD = StDev(DaysIV, n);
-
-- def DaysIVValue = Round((DaysMean * DaysIV) / TickSize(), 0) * TickSize();
-
-- AddLabel(DisplayLabels, Concat("Days IV " + AsPercent(DaysIV), " Value $" + DaysIVValue),
-
-- if IsAscending(DaysIV)
-
-- then Color.GREEN
-
-- else if IsDescending(DaysIV)
-
-- then Color.RED
-
-- else Color.WHITE);
-
-- def HoursIV = IV / Sqrt(5796);
-
-- def HoursIVSD = StDev(HoursIV, n);
-
-- def HoursIVValue = Round((HoursMean * HoursIV) / TickSize(), 0) * TickSize();
-
-- AddLabel(DisplayLabels, Concat("Hours IV " + AsPercent(HoursIV), " Value $" + HoursIVValue),
-
-- if IsAscending(HoursIV)
-
-- then Color.GREEN
-
-- else if IsDescending(HoursIV)
-
-- then Color.RED
-
-- else Color.WHITE);
-
-- def IV15min = IV / Sqrt(23184);
-
-- def IV15minSD = StDev(IV15min, n);
-
-- def IV15mValue = Round((c * IV15min) / TickSize(), 0) * TickSize();
-
-- AddLabel(DisplayLabels, Concat("15min IV " + AsPercent(IV15min), " Value $" + IV15mValue),
-
-- if IsAscending(IV15min)
-
-- then Color.GREEN
-
-- else if IsDescending(IV15min)
-
-- then Color.RED
-
-- else Color.WHITE);
-
-- plot DaysIVhigh = DaysMean + ((DaysIVValue) / 2);
-
-- DaysIVhigh.SetDefaultColor(Color.WHITE);
-
-- DaysIVhigh.SetHiding(!IvDailyBands);
-
-- DaysIVhigh.SetPaintingStrategy(PaintingStrategy.DASHES);
-
-- plot DaysIVlow = DaysMean - ((DaysIVValue) / 2);
-
-- DaysIVlow.SetDefaultColor(Color.WHITE);
-
-- DaysIVlow.SetHiding(!IvDailyBands);
-
-- DaysIVlow.SetPaintingStrategy(PaintingStrategy.DASHES);
-
-- plot HoursIVhigh = Average(HoursMean + HoursIVValue, n);
-
-- HoursIVhigh.SetDefaultColor(Color.CYAN);
-
-- HoursIVhigh.SetHiding(!IvHourBands);
-
-- plot HoursIVlow = Average(HoursMean - HoursIVValue, n);
-
-- HoursIVlow.SetDefaultColor(Color.CYAN);
-
-- HoursIVlow.SetHiding(!IvHourBands);
-
-- plot IV15minhigh = Inertia(c + (c * IV15minSD), n);
-
-- IV15minhigh.SetDefaultColor(Color.YELLOW);
-
-- IV15minhigh.SetHiding(!IV15minBands);
-
-- plot IV15minlow = Inertia(c - (c * IV15minSD), n);
-
-- IV15minlow.SetDefaultColor(Color.YELLOW);
-
-- IV15minlow.SetHiding(!IV15minBands);
-
-- plot ATRup = Inertia(c + ATR, n);
-
-- ATRup.SetHiding(!AtrBands);
-
-- plot ATRdn = Inertia(c - ATR, n);
-
-- ATRdn.SetHiding(!AtrBands);
-
-- def SD = StDev(close, n);
-
-- def Avg = Average(close, n);
-
-- plot SDup = Avg + (2 * SD);
-
-- SDup.SetDefaultColor(Color.GREEN);
-
-- SDup.SetHiding(!BollingerBands);
-
-- plot SDdn = Avg + (-2 * SD);
-
-- SDdn.SetDefaultColor(Color.GREEN);
-
-- SDdn.SetHiding(!BollingerBands);
-
-- AssignPriceColor(if (SDup < IV15minhigh) or
-
-- (SDdn > IV15minlow)
-
-- then Color.PLUM
-
-- else Color.CURRENT);
-
-- AddLabel(DisplayLabels, "ATR Chart Agg. = $" + (Round(ATR / TickSize(), 0) * TickSize()) +
-
-- "  ATR Daily $" + (Round(ATRd / TickSize(), 0) * TickSize()) +
-
-- "  ATR Percentile: " + AsPercent(ATRpercentile),
-
-- if ATR > ATR[1]
-
-- then Color.GREEN
-
-- else if ATR < ATR[1]
-
-- then Color.RED
-
-- else Color.WHITE);
-
-- # End Code Battle of the Bands
+```
+#hint:Battle of the Bands Indicates the range of price using Implied Volatility, Bollinger Bands or Keltner Channel. No direction (up or down) is implied since price is assumed random by the calculations.  Mobius©: # Battle of the Bands
+
+# Implied Volatility Bands
+# ATR Bands
+# Bollinger Bands
+# Mobius
+# Added ATR label. Added conditional color for labels. Altered bands on lower aggs. to 100% IV spread from mean. Altered coding structure to be more efficient.
+
+# V02.10.17.2013
+
+declare hide_on_daily;
+input n = 21;
+input IvDailyBands = no;
+input IvHourBands = no;
+input IV15minBands = yes;
+input AtrBands = no;
+input BollingerBands = yes;
+input DisplayLabels = yes;
+
+def o = open;
+def h = high;
+def l = low;
+def c = close;
+def period = AggregationPeriod.DAY;
+def hd = high(period = period);
+def ld = low(period = period);
+def cd = close(period = period);
+def DaysMean = hl2(period = period);
+def HoursMean = hl2(period = AggregationPeriod.HOUR);
+def IVd = imp_Volatility(period = period);
+def IV = if isNaN(IVd) then IV[1] else IVd;
+def hIV = Highest(IV, 252);
+def lIV = Lowest(IV, 252);
+def IVpercentile = (IV - lIV) / (hIV - lIV);
+AddLabel(DisplayLabels, "IV " + AsPercent(IV) + "  IV Percentile: " + AsPercent(IVpercentile)
+, if IsAscending(IV)
+    then Color.GREEN
+    else if IsDescending(IV)
+    then Color.RED
+    else Color.WHITE);
+
+def ATR = Average(TrueRange(h, c, l), n);
+def ATRd = Average(TrueRange(hd, cd, ld), n);
+def SDatr = StDev(ATRd, 252);
+def hATR = Highest(SDatr, 252);
+def lATR = Lowest(SDatr, 252);
+def ATRpercentile = (SDatr - lATR) / (hATR - lATR);
+def DaysIV = IV / Sqrt(252);
+def DaysIVSD = StDev(DaysIV, n);
+def DaysIVValue = Round((DaysMean * DaysIV) / TickSize(), 0) * TickSize();
+AddLabel(DisplayLabels, Concat("Days IV " + AsPercent(DaysIV), " Value $" + DaysIVValue),
+if IsAscending(DaysIV)
+  then Color.GREEN
+  else if IsDescending(DaysIV)
+  then Color.RED
+  else Color.WHITE);
+
+def HoursIV = IV / Sqrt(5796);
+def HoursIVSD = StDev(HoursIV, n);
+def HoursIVValue = Round((HoursMean * HoursIV) / TickSize(), 0) * TickSize();
+AddLabel(DisplayLabels, Concat("Hours IV " + AsPercent(HoursIV), " Value $" + HoursIVValue),
+if IsAscending(HoursIV)
+then Color.GREEN
+else if IsDescending(HoursIV)
+then Color.RED
+else Color.WHITE);
+def IV15min = IV / Sqrt(23184);
+def IV15minSD = StDev(IV15min, n);
+def IV15mValue = Round((c * IV15min) / TickSize(), 0) * TickSize();
+
+AddLabel(DisplayLabels, Concat("15min IV " + AsPercent(IV15min), " Value $" + IV15mValue),
+if IsAscending(IV15min) then Color.GREEN
+else if IsDescending(IV15min)
+then Color.RED else Color.WHITE);
+
+plot DaysIVhigh = DaysMean + ((DaysIVValue) / 2);
+DaysIVhigh.SetDefaultColor(Color.WHITE);
+DaysIVhigh.SetHiding(!IvDailyBands);
+DaysIVhigh.SetPaintingStrategy(PaintingStrategy.DASHES);
+
+plot DaysIVlow = DaysMean - ((DaysIVValue) / 2);
+DaysIVlow.SetDefaultColor(Color.WHITE);
+DaysIVlow.SetHiding(!IvDailyBands);
+DaysIVlow.SetPaintingStrategy(PaintingStrategy.DASHES);
+
+plot HoursIVhigh = Average(HoursMean + HoursIVValue, n);
+HoursIVhigh.SetDefaultColor(Color.CYAN);
+HoursIVhigh.SetHiding(!IvHourBands);
+
+plot HoursIVlow = Average(HoursMean - HoursIVValue, n);
+HoursIVlow.SetDefaultColor(Color.CYAN);
+HoursIVlow.SetHiding(!IvHourBands);
+
+plot IV15minhigh = Inertia(c + (c * IV15minSD), n);
+IV15minhigh.SetDefaultColor(Color.YELLOW);
+IV15minhigh.SetHiding(!IV15minBands);
+
+plot IV15minlow = Inertia(c - (c * IV15minSD), n);
+IV15minlow.SetDefaultColor(Color.YELLOW);
+IV15minlow.SetHiding(!IV15minBands);
+
+plot ATRup = Inertia(c + ATR, n);
+ATRup.SetHiding(!AtrBands);
+
+plot ATRdn = Inertia(c - ATR, n);
+ATRdn.SetHiding(!AtrBands);
+
+def SD = StDev(close, n);
+def Avg = Average(close, n);
+
+plot SDup = Avg + (2 * SD);
+SDup.SetDefaultColor(Color.GREEN);
+SDup.SetHiding(!BollingerBands);
+
+plot SDdn = Avg + (-2 * SD);
+SDdn.SetDefaultColor(Color.GREEN);
+SDdn.SetHiding(!BollingerBands);
+
+AssignPriceColor(if (SDup < IV15minhigh) or (SDdn > IV15minlow)
+  then Color.PLUM
+  else Color.CURRENT);
+
+AddLabel(DisplayLabels, "ATR Chart Agg. = $" + (Round(ATR / TickSize(), 0) * TickSize()) +
+"  ATR Daily $" + (Round(ATRd / TickSize(), 0) * TickSize()) +
+"  ATR Percentile: " + AsPercent(ATRpercentile),
+  if ATR > ATR[1]
+  then Color.GREEN
+  else if ATR < ATR[1]
+  then Color.RED
+  else Color.WHITE);
+```
+
+#End Code Battle of the Bands
 
 ## C-THE BEAUTIFUL 'GAUSSIAN RAINBOW'
 
 [Return to TOC](#toc)
 
-- #hint:Possibly the most beautiful chart you will see in ThinkScript.
-
-- # Gaussian Rainbow
-
-- #    - Coded and Developed by Eric Rasmussen
-
-- #    - 11/24/2013
-
-- declare upper;
-
-- # Study Inputs
-
-- input gaussian       = { "ONE", "TWO", "THREE", default "FOUR" };
-
-- input data           = OHLC4;
-
-- input length         = 10;
-
-- input gaussianOrder  = 3;
-
-- input cloud          = yes;
-
-- # Definitions
-
-- def w; def beta; def alpha;
-
-- def rbi1; def rbi2; def rbi3; def rbi4;
-
-- def rbi5; def rbi6;def rbi7; def rbi8;
-
-- # Alpha Calculation
-
-- w                = ( 2 * double.Pi / length );
-
-- beta             = ( 1 - cos( w ) ) / ( power( 1.414, 2.0 / gaussianOrder ) - 1 );
-
-- alpha            = ( -beta + sqRt( beta * beta + 2 * beta) );
-
-- # Average Calculations
-
-- switch( gaussian ) {
-
-- case "ONE":
-
-- rbi1         =       alpha * data + ( 1 - alpha ) * rbi1[1];
-
-- rbi2         =       alpha * rbi1 + ( 1 - alpha ) * rbi2[1];
-
-- rbi3         =       alpha * rbi2 + ( 1 - alpha ) * rbi3[1];
-
-- rbi4         =       alpha * rbi3 + ( 1 - alpha ) * rbi4[1];
-
-- rbi5         =       alpha * rbi4 + ( 1 - alpha ) * rbi5[1];
-
-- rbi6         =       alpha * rbi5 + ( 1 - alpha ) * rbi6[1];
-
-- rbi7         =       alpha * rbi6 + ( 1 - alpha ) * rbi7[1];
-
-- rbi8         =       alpha * rbi7 + ( 1 - alpha ) * rbi8[1];
-
-- case "TWO":
-
-- rbi1         =       power( alpha, 2 )     * data    +
-
-- 2 *      ( 1 - alpha )    * rbi1[1] -
-
-- power( 1 - alpha, 2 ) * rbi1[2];
-
-- rbi2         =       power( alpha, 2 )     * rbi1    +
-
-- 2 *      ( 1 - alpha )    * rbi2[1] -
-
-- power( 1 - alpha, 2 ) * rbi2[2];
-
-- rbi3         =       power( alpha, 2 )     * rbi2    +
-
-- 2 *      ( 1 - alpha )    * rbi3[1] -
-
-- power( 1 - alpha, 2 ) * rbi3[2];
-
-- rbi4         =       power( alpha, 2 )     * rbi3    +
-
-- 2 *      ( 1 - alpha )    * rbi4[1] -
-
-- power( 1 - alpha, 2 ) * rbi4[2];
-
-- rbi5         =       power( alpha, 2 )     * rbi4    +
-
-- 2 *      ( 1 - alpha )    * rbi5[1] -
-
-- power( 1 - alpha, 2 ) * rbi5[2];
-
-- rbi6         =       power( alpha, 2 )     * rbi5    +
-
-- 2 *      ( 1 - alpha )    * rbi6[1] -
-
-- power( 1 - alpha, 2 ) * rbi6[2];
-
-- rbi7         =       power( alpha, 2 )     * rbi6    +
-
-- 2 *      ( 1 - alpha )    * rbi7[1] -
-
-- power( 1 - alpha, 2 ) * rbi7[2];
-
-- rbi8         =       power( alpha, 2 )     * rbi7    +
-
-- 2 *      ( 1 - alpha )    * rbi8[1] -
-
-- power( 1 - alpha, 2 ) * rbi8[2];
-
-- case "THREE":
-
-- rbi1        =       power( alpha, 3 )     * data    +
-
-- 3 *      ( 1 – alpha )    * rbi1[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi1[2] +
-
-- power( 1 - alpha, 3 ) * rbi1[3];
-
-- rbi2        =       power( alpha, 3 )     * rbi1    +
-
-- 3 *      ( 1 – alpha )    * rbi2[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi2[2] +
-
-- power( 1 - alpha, 3 ) * rbi2[3];
-
-- rbi3        =       power( alpha, 3 )     * rbi2    +
-
-- 3 *      ( 1 – alpha )    * rbi3[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi3[2] +
-
-- power( 1 - alpha, 3 ) * rbi3[3];
-
-- rbi4        =       power( alpha, 3 )     * rbi3    +
-
-- 3 *      ( 1 – alpha )    * rbi4[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi4[2] +
-
-- power( 1 - alpha, 3 ) * rbi4[3];
-
-- rbi5        =       power( alpha, 3 )     * rbi4    +
-
-- 3 *      ( 1 – alpha )    * rbi5[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi5[2] +
-
-- power( 1 - alpha, 3 ) * rbi5[3];
-
-- rbi6        =       power( alpha, 3 )     * rbi5    +
-
-- 3 *      ( 1 – alpha )    * rbi6[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi6[2] +
-
-- power( 1 - alpha, 3 ) * rbi6[3];
-
-- rbi7        =       power( alpha, 3 )     * rbi6    +
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9090
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- 3 *      ( 1 – alpha )    * rbi7[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi7[2] +
-
-- power( 1 - alpha, 3 ) * rbi7[3];
-
-- rbi8        =       power( alpha, 3 )     * rbi7    +
-
-- 3 *      ( 1 – alpha )    * rbi8[1] -
-
-- 3 * power( 1 - alpha, 2 ) * rbi8[2] +
-
-- power( 1 - alpha, 3 ) * rbi8[3];
-
-- case "FOUR":
-
-- rbi1        =       power( alpha, 4 )     * data    +
-
-- 4 *      ( 1 – alpha )    * rbi1[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi1[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi1[3] -
-
-- power( 1 - alpha, 4 ) * rbi1[4];
-
-- rbi2        =       power( alpha, 4 )     * rbi1    +
-
-- 4 *      ( 1 – alpha )    * rbi2[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi2[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi2[3] -
-
-- power( 1 - alpha, 4 ) * rbi2[4];
-
-- rbi3        =       power( alpha, 4 )     * rbi2    +
-
-- 4 *      ( 1 – alpha )    * rbi3[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi3[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi3[3] -
-
-- power( 1 - alpha, 4 ) * rbi3[4];
-
-- rbi4        =       power( alpha, 4 )     * rbi3    +
-
-- 4 *      ( 1 – alpha )    * rbi4[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi4[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi4[3] -
-
-- power( 1 - alpha, 4 ) * rbi4[4];
-
-- rbi5        =       power( alpha, 4 )     * rbi4    +
-
-- 4 *      ( 1 – alpha )    * rbi5[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi5[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi5[3] -
-
-- power( 1 - alpha, 4 ) * rbi5[4];
-
-- rbi6        =       power( alpha, 4 )     * rbi5    +
-
-- 4 *      ( 1 – alpha )    * rbi6[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi6[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi6[3] -
-
-- power( 1 - alpha, 4 ) * rbi6[4];
-
-- rbi7        =       power( alpha, 4 )     * rbi6    +
-
-- 4 *      ( 1 – alpha )    * rbi7[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi7[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi7[3] -
-
-- power( 1 - alpha, 4 ) * rbi7[4];
-
-- rbi8        =       power( alpha, 4 )     * rbi7    +
-
-- 4 *      ( 1 – alpha )    * rbi8[1] –
-
-- 6 * power( 1 - alpha, 2 ) * rbi8[2] +
-
-- 4 * power( 1 - alpha, 3 ) * rbi8[3] -
-
-- power( 1 - alpha, 4 ) * rbi8[4];
-
-- }
-
-- #plots
-
-- plot ga1 = rbi1; plot ga2 = rbi2; plot ga3 = rbi3; plot ga4 = rbi4;
-
-- plot ga5 = rbi5; plot ga6 = rbi6; plot ga7 = rbi7; plot ga8 = rbi8;
-
-- # Look and Feel
-
-- ga1.assignValueColor( color.MAGENTA );
-
-- ga2.assignValueColor( color.PLUM );
-
-- ga3.assignValueColor( color.BLUE );
-
-- ga4.assignValueColor( color.CYAN );
-
-- ga5.assignValueColor( color.GREEN );
-
-- ga6.assignValueColor( color.YELLOW );
-
-- ga7.assignValueColor( color.DARK_ORANGE );
-
-- ga8.assignValueColor( color.RED );
-
-- ga1.hideTitle(); ga2.hideTitle(); ga3.hideTitle(); ga4.hideTitle();
-
-- ga5.hideTitle(); ga6.hideTitle(); ga7.hideTitle(); ga8.hideTitle();
-
-- # Cloud Plots
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga8, color.RED, color.BLACK );
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga7, color.DARK_ORANGE, color.BLACK );
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga6, color.YELLOW, color.YELLOW );
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga5, color.GREEN, color.GREEN );
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga4, color.BLUE, color.BLUE );
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga3, color.PLUM, color.PLUM );
-
-- addCloud( if cloud == yes then ga1 else double.NaN, ga2, color.MAGENTA, color.MAGENTA );
-
-- #end
+```
+#hint:Possibly the most beautiful chart you will see in ThinkScript.
+# Gaussian Rainbow
+#    - Coded and Developed by Eric Rasmussen
+#    - 11/24/2013
+
+declare upper;
+
+# Study Inputs
+input gaussian       = { "ONE", "TWO", "THREE", default "FOUR" };
+input data           = OHLC4;
+input length         = 10;
+input gaussianOrder  = 3;
+input cloud          = yes;
+
+# Definitions
+def w; def beta; def alpha;
+def rbi1; def rbi2; def rbi3; def rbi4;
+def rbi5; def rbi6;def rbi7; def rbi8;
+
+# Alpha Calculation
+w                = ( 2 * double.Pi / length );
+beta             = ( 1 - cos( w ) ) / ( power( 1.414, 2.0 / gaussianOrder ) - 1 );
+alpha            = ( -beta + sqRt( beta * beta + 2 * beta) );
+
+# Average Calculations
+switch( gaussian ) {
+  case "ONE":
+    rbi1         =       alpha * data + ( 1 - alpha ) * rbi1[1];
+    rbi2         =       alpha * rbi1 + ( 1 - alpha ) * rbi2[1];
+    rbi3         =       alpha * rbi2 + ( 1 - alpha ) * rbi3[1];
+    rbi4         =       alpha * rbi3 + ( 1 - alpha ) * rbi4[1];
+    rbi5         =       alpha * rbi4 + ( 1 - alpha ) * rbi5[1];
+    rbi6         =       alpha * rbi5 + ( 1 - alpha ) * rbi6[1];
+    rbi7         =       alpha * rbi6 + ( 1 - alpha ) * rbi7[1];
+    rbi8         =       alpha * rbi7 + ( 1 - alpha ) * rbi8[1];
+
+  case "TWO":
+    rbi1         =       power( alpha, 2 )     * data    +
+    2 *      ( 1 - alpha )    * rbi1[1] -
+    power( 1 - alpha, 2 ) * rbi1[2];
+    rbi2         =       power( alpha, 2 )     * rbi1    +
+    2 *      ( 1 - alpha )    * rbi2[1] -
+    power( 1 - alpha, 2 ) * rbi2[2];
+    rbi3         =       power( alpha, 2 )     * rbi2    +
+    2 *      ( 1 - alpha )    * rbi3[1] -
+    power( 1 - alpha, 2 ) * rbi3[2];
+    rbi4         =       power( alpha, 2 )     * rbi3    +
+    2 *      ( 1 - alpha )    * rbi4[1] -
+    power( 1 - alpha, 2 ) * rbi4[2];
+    rbi5         =       power( alpha, 2 )     * rbi4    +
+    2 *      ( 1 - alpha )    * rbi5[1] -
+    power( 1 - alpha, 2 ) * rbi5[2];
+    rbi6         =       power( alpha, 2 )     * rbi5    +
+    2 *      ( 1 - alpha )    * rbi6[1] -
+    power( 1 - alpha, 2 ) * rbi6[2];
+    rbi7         =       power( alpha, 2 )     * rbi6    +
+    2 *      ( 1 - alpha )    * rbi7[1] -
+    power( 1 - alpha, 2 ) * rbi7[2];
+    rbi8         =       power( alpha, 2 )     * rbi7    +
+    2 *      ( 1 - alpha )    * rbi8[1] -
+    power( 1 - alpha, 2 ) * rbi8[2];
+  case "THREE":
+    rbi1        =       power( alpha, 3 )     * data    +
+    3 *      ( 1 – alpha )    * rbi1[1] -
+    3 * power( 1 - alpha, 2 ) * rbi1[2] +
+    power( 1 - alpha, 3 ) * rbi1[3];
+    rbi2        =       power( alpha, 3 )     * rbi1    +
+    3 *      ( 1 – alpha )    * rbi2[1] -
+    3 * power( 1 - alpha, 2 ) * rbi2[2] +
+    power( 1 - alpha, 3 ) * rbi2[3];
+    rbi3        =       power( alpha, 3 )     * rbi2    +
+    3 *      ( 1 – alpha )    * rbi3[1] -
+    3 * power( 1 - alpha, 2 ) * rbi3[2] +
+    power( 1 - alpha, 3 ) * rbi3[3];
+    rbi4        =       power( alpha, 3 )     * rbi3    +
+    3 *      ( 1 – alpha )    * rbi4[1] -
+    3 * power( 1 - alpha, 2 ) * rbi4[2] +
+    power( 1 - alpha, 3 ) * rbi4[3];
+    rbi5        =       power( alpha, 3 )     * rbi4    +
+    3 *      ( 1 – alpha )    * rbi5[1] -
+    3 * power( 1 - alpha, 2 ) * rbi5[2] +
+    power( 1 - alpha, 3 ) * rbi5[3];
+    rbi6        =       power( alpha, 3 )     * rbi5    +
+    3 *      ( 1 – alpha )    * rbi6[1] -
+    3 * power( 1 - alpha, 2 ) * rbi6[2] +
+    power( 1 - alpha, 3 ) * rbi6[3];
+    rbi7        =       power( alpha, 3 )     * rbi6    +
+    3 *      ( 1 – alpha )    * rbi7[1] -
+    3 * power( 1 - alpha, 2 ) * rbi7[2] +
+    power( 1 - alpha, 3 ) * rbi7[3];
+    rbi8        =       power( alpha, 3 )     * rbi7    +
+    3 *      ( 1 – alpha )    * rbi8[1] -
+    3 * power( 1 - alpha, 2 ) * rbi8[2] +
+    power( 1 - alpha, 3 ) * rbi8[3];
+  case "FOUR":
+    rbi1        =       power( alpha, 4 )     * data    +
+    4 *      ( 1 – alpha )    * rbi1[1] –
+    6 * power( 1 - alpha, 2 ) * rbi1[2] +
+    4 * power( 1 - alpha, 3 ) * rbi1[3] -
+    power( 1 - alpha, 4 ) * rbi1[4];
+    rbi2        =       power( alpha, 4 )     * rbi1    +
+    4 *      ( 1 – alpha )    * rbi2[1] –
+    6 * power( 1 - alpha, 2 ) * rbi2[2] +
+    4 * power( 1 - alpha, 3 ) * rbi2[3] -
+    power( 1 - alpha, 4 ) * rbi2[4];
+    rbi3        =       power( alpha, 4 )     * rbi2    +
+    4 *      ( 1 – alpha )    * rbi3[1] –
+    6 * power( 1 - alpha, 2 ) * rbi3[2] +
+    4 * power( 1 - alpha, 3 ) * rbi3[3] -
+    power( 1 - alpha, 4 ) * rbi3[4];
+    rbi4        =       power( alpha, 4 )     * rbi3    +
+    4 *      ( 1 – alpha )    * rbi4[1] –
+    6 * power( 1 - alpha, 2 ) * rbi4[2] +
+    4 * power( 1 - alpha, 3 ) * rbi4[3] -
+    power( 1 - alpha, 4 ) * rbi4[4];
+    rbi5        =       power( alpha, 4 )     * rbi4    +
+    4 *      ( 1 – alpha )    * rbi5[1] –
+    6 * power( 1 - alpha, 2 ) * rbi5[2] +
+    4 * power( 1 - alpha, 3 ) * rbi5[3] -
+    power( 1 - alpha, 4 ) * rbi5[4];
+    rbi6        =       power( alpha, 4 )     * rbi5    +
+    4 *      ( 1 – alpha )    * rbi6[1] –
+    6 * power( 1 - alpha, 2 ) * rbi6[2] +
+    4 * power( 1 - alpha, 3 ) * rbi6[3] -
+    power( 1 - alpha, 4 ) * rbi6[4];
+    rbi7        =       power( alpha, 4 )     * rbi6    +
+    4 *      ( 1 – alpha )    * rbi7[1] –
+    6 * power( 1 - alpha, 2 ) * rbi7[2] +
+    4 * power( 1 - alpha, 3 ) * rbi7[3] -
+    power( 1 - alpha, 4 ) * rbi7[4];
+    rbi8        =       power( alpha, 4 )     * rbi7    +
+    4 *      ( 1 – alpha )    * rbi8[1] –
+    6 * power( 1 - alpha, 2 ) * rbi8[2] +
+    4 * power( 1 - alpha, 3 ) * rbi8[3] -
+    power( 1 - alpha, 4 ) * rbi8[4];
+}
+
+#plots
+plot ga1 = rbi1; plot ga2 = rbi2; plot ga3 = rbi3; plot ga4 = rbi4;
+plot ga5 = rbi5; plot ga6 = rbi6; plot ga7 = rbi7; plot ga8 = rbi8;
+
+# Look and Feel
+ga1.assignValueColor( color.MAGENTA );
+ga2.assignValueColor( color.PLUM );
+ga3.assignValueColor( color.BLUE );
+ga4.assignValueColor( color.CYAN );
+ga5.assignValueColor( color.GREEN );
+ga6.assignValueColor( color.YELLOW );
+ga7.assignValueColor( color.DARK_ORANGE );
+ga8.assignValueColor( color.RED );
+ga1.hideTitle(); ga2.hideTitle(); ga3.hideTitle(); ga4.hideTitle();
+ga5.hideTitle(); ga6.hideTitle(); ga7.hideTitle(); ga8.hideTitle();
+
+# Cloud Plots
+addCloud( if cloud == yes then ga1 else double.NaN, ga8, color.RED, color.BLACK );
+addCloud( if cloud == yes then ga1 else double.NaN, ga7, color.DARK_ORANGE, color.BLACK );
+addCloud( if cloud == yes then ga1 else double.NaN, ga6, color.YELLOW, color.YELLOW );
+addCloud( if cloud == yes then ga1 else double.NaN, ga5, color.GREEN, color.GREEN );
+addCloud( if cloud == yes then ga1 else double.NaN, ga4, color.BLUE, color.BLUE );
+addCloud( if cloud == yes then ga1 else double.NaN, ga3, color.PLUM, color.PLUM );
+addCloud( if cloud == yes then ga1 else double.NaN, ga2, color.MAGENTA, color.MAGENTA );
+```
+
+#end
 
 ## C-OPENING RANGE (OR) STUDY WITH A TWIST:
 
 [Return to TOC](#toc)
 
-- #hint:<b>Opening Range(OR) Study w/ a twist:</b>\n The twist consists of: <li>1. A definotion of two opening ranges e.g. 5
+```
+#hint:<b>Opening Range(OR) Study w/ a twist:</b>\n The twist consists of: <li>1. A definotion of two opening ranges e.g. 5 & 60 minutes <li>2. The OR or the post-OR portion of the day may be clouded showing the OR's high, low and the smaller-OR-average. <li>3. Dots indicate 10% levels of the two ORs. <li>4. A choice to show either today's OR only or also previous days' ORs.
+
+input ORBegin = 0930;#hint ORBegin:The start of the smaller OR
+input OREnd = 0935;#hint OREnd:The end of the smaller OR
+input ShowTodayOnly = { default "No", "Yes"};#hint ShowTodayOnly:YES shows only today's OR plot
+input ORBegin2 = 0930;#hint ORBegin2:The start of the larger OR
+input OREnd2 = 1030;#hint OREnd2:The end of the larger OR
+input ShadeOR = YES;#hint ShadeOR:Shades the opening range in lieu of after the opening range
+
+def s = ShowTodayOnly;
+def na = Double.NaN;
+def ORActive = if SecondsTillTime(OREnd) > 0 and SecondsFromTime(ORBegin) >= 0 then 1 else 0;
+def today = if s == 0 or GetDay() == GetLastDay() and SecondsFromTime(ORBegin) >= 0 then 1 else 0;
+
+rec ORHigh = if ORHigh[1] == 0 or ORActive[1] == 0 and ORActive == 1 then high else if ORActive and high > ORHigh[1] then high else ORHigh[1];
+
+rec ORLow = if ORLow[1] == 0 or ORActive[1] == 0 and ORActive == 1 then low else if ORActive and low < ORLow[1] then low else ORLow[1];
+
+def ORWidth = ORHigh - ORLow;
+def ORHA = if ORActive or today < 1 then na else ORHigh;
+def ORLA = if ORActive or today < 1 then na else ORLow;
+def O = ORHA - (ORHA - ORLA) / 2;
+plot ORL = If (O == 0 , na, O);
+ORL.SetDefaultColor(Color.YELLOW);
+ORL.SetStyle(Curve.LONG_DASH);
+ORL.SetLineWeight(3);
+
+#====== The larger OR =========
+def ORActive2 = if SecondsTillTime(OREnd2) > 0 and SecondsFromTime(ORBegin2) >= 0 then 1 else 0;
+rec ORHigh2 = if ORHigh2[1] == 0 or ORActive2[1] == 0 and ORActive2 == 1 then high else if ORActive2 and high > ORHigh2[1] then high else ORHigh2[1];
+
+rec ORLow2 = if ORLow2[1] == 0 or ORActive2[1] == 0 and ORActive2 == 1 then low else if ORActive2 and low < ORLow2[1] then low else ORLow2[1];
+
+def ORWidth2 = ORHigh2 - ORLow2;
+
+# ======= Define all the plots ===========
+plot ORH2 = if ORActive2 or today < 1 then na else ORHigh2;
+plot ORL2 = if ORActive2 or today < 1 then na else ORLow2;
+ORH2.SetDefaultColor(Color.GREEN);
+ORH2.SetStyle(Curve.LONG_DASH);
+ORH2.SetLineWeight(3);
+ORL2.SetDefaultColor(Color.RED);
+ORL2.SetStyle(Curve.LONG_DASH);
+ORL2.SetLineWeight(3);
+
+def TimeLine = if SecondsTillTime(OREnd2) == 0 then 1 else 0;
+def pos = (ORH2 - ORL2) / 10;#The value for each 10% of the H-L range
+
+plot d1 = If (TimeLine , ORH2, na);
+plot d2 = If (TimeLine , ORH2 - ( pos * 2), na);
+plot d3 = If (TimeLine , ORH2 - ( pos * 3), na);
+plot d4 = If (TimeLine , ORH2 - ( pos * 4), na);
+plot d5 = If (TimeLine , ORH2 - ( pos * 5), na);
+plot d6 = If (TimeLine , ORH2 - ( pos * 6), na);
+plot d7 = If (TimeLine , ORH2 - ( pos * 7), na);
+plot d8 = If (TimeLine , ORH2 - ( pos * 8), na);
+plot d9 = If (TimeLine , ORH2 - ( pos * 9), na);
+plot d10 = If (TimeLine , (ORL2), na);
+d1.SetPaintingStrategy(PaintingStrategy.POINTS);
+d2.SetPaintingStrategy(PaintingStrategy.POINTS);
+d3.SetPaintingStrategy(PaintingStrategy.POINTS);
+d4.SetPaintingStrategy(PaintingStrategy.POINTS);
+d5.SetPaintingStrategy(PaintingStrategy.POINTS);
+d6.SetPaintingStrategy(PaintingStrategy.POINTS);
+d7.SetPaintingStrategy(PaintingStrategy.POINTS);
+d8.SetPaintingStrategy(PaintingStrategy.POINTS);
+d9.SetPaintingStrategy(PaintingStrategy.POINTS);
+d10.SetPaintingStrategy(PaintingStrategy.POINTS);
+def Span = (O - ORL2) / (ORH2 - ORL2);
+
+rec colorState = if Span > 0.66 then -1
+else if Span < 0.33 then 1 else 0;
+
+d1.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d2.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d3.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d4.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d5.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d6.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d7.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d8.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d9.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d10.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
+d1.SetLineWeight(5);d2.SetLineWeight(5);d3.SetLineWeight(5);d4.SetLineWeight(5);d5.SetLineWeight(5);
+d6.SetLineWeight(5);d7.SetLineWeight(5);d8.SetLineWeight(5);d9.SetLineWeight(5);d10.SetLineWeight(5);
+
+def TimeLineb = if SecondsTillTime(OREnd) == 0 then 1 else 0;
+def posbd = (ORHA - ORLA) / 10;
+
+plot bd1 = If (TimeLineb , ORHA, na); plot bd2 = If (TimeLineb , ORHA - ( posbd * 2), na);
+plot bd3 = If (TimeLineb , ORHA - ( posbd * 3), na); plot bd4 = If (TimeLineb , ORHA - ( posbd * 4), na);
+plot bd5 = If (TimeLineb , ORHA - ( posbd * 5), na); plot bd6 = If (TimeLineb , ORHA - ( posbd * 6), na);
+plot bd7 = If (TimeLineb , ORHA - ( posbd * 7), na); plot bd8 = If (TimeLineb , ORHA - ( posbd * 8), na);
+plot bd9 = If (TimeLineb , ORHA - ( posbd * 9), na); plot bd10 = If (TimeLineb , (ORL2), na);
+
+bd1.SetPaintingStrategy(PaintingStrategy.POINTS); bd2.SetPaintingStrategy(PaintingStrategy.POINTS);
+bd3.SetPaintingStrategy(PaintingStrategy.POINTS); bd4.SetPaintingStrategy(PaintingStrategy.POINTS);
+bd5.SetPaintingStrategy(PaintingStrategy.POINTS); bd6.SetPaintingStrategy(PaintingStrategy.POINTS);
+bd7.SetPaintingStrategy(PaintingStrategy.POINTS); bd8.SetPaintingStrategy(PaintingStrategy.POINTS);
+bd9.SetPaintingStrategy(PaintingStrategy.POINTS); bd10.SetPaintingStrategy(PaintingStrategy.POINTS);
+bd1.SetDefaultColor(Color.YELLOW); bd2.SetDefaultColor(Color.YELLOW); bd3.SetDefaultColor(Color.YELLOW);
+bd4.SetDefaultColor(Color.YELLOW); bd5.SetDefaultColor(Color.YELLOW); bd6.SetDefaultColor(Color.YELLOW);
+bd7.SetDefaultColor(Color.YELLOW); bd8.SetDefaultColor(Color.YELLOW); bd9.SetDefaultColor(Color.YELLOW);
+bd10.SetDefaultColor(Color.YELLOW);
 
-- & 60 minutes <li>2. The OR or the post-OR portion of the day may be clouded showing the OR's high, low and the
+#========== To shade the opening active range =====================
+def ORActive3= if GetLastDay() == GetDay() and SecondsFromTime(ORBegin2) >= 0 and SecondsFromTime(OREnd2)  <= 0 then 1 else 0;
 
-- smaller-OR-average. <li>3. Dots indicate 10% levels of the two ORs. <li>4. A choice to show either today's OR only or also
+def ORHigh3 = if ORActive3 then high else na;
+def ORLow3 = if ORActive3 then low else na;
 
-- previous days' ORs.
+plot ORAH3 = if (GetLastDay() != GetDay() or !ORActive3) or !ShadeOR then na else HighestAll(ORHigh3);
+plot ORAL3= if (GetLastDay() != GetDay() or !ORActive3) or !ShadeOR then na else LowestAll(ORLow3);
 
-- input ORBegin = 0930;#hint ORBegin:The start of the smaller OR
+#========= end of To shad the opening active range ==================
+#====== Shade option selection ==========
+#AddCloud(ORL2, ORH2, color.downtick, color.downtick);#If ORShade = NO
+#AddCloud(ORAL3, ORAH3,color.light_red,color.light_red);#If ORShade = YES
+def Shade1 = If ShadeOR then  ORAL3  else ORL2;
+def Shade2 = If ShadeOR then  ORAH3  else ORH2;
 
-- input OREnd = 0935;#hint OREnd:The end of the smaller OR
+AddCloud(Shade1, shade2,color.light_red,color.light_red);
+#======= end of Shade option selection ========
 
-- input ShowTodayOnly = { default "No", "Yes"};#hint ShowTodayOnly:YES shows only today's OR plot
+#========= labels ==============
+AddLabel(yes, "OR Time = " +  ORBegin2 + " to " + AsPrice( OREnd2) + " and Smaller OR is " + AsPrice(ORBegin) + " to " +AsPrice(OREnd) , Color.PINK);
 
-- input ORBegin2 = 0930;#hint ORBegin2:The start of the larger OR
+AddLabel(yes,"OR High = "+ ORH2 + " & OR Low = " + ORL2, color.pink);
+```
 
-- input OREnd2 = 1030;#hint OREnd2:The end of the larger OR
-
-- input ShadeOR = YES;#hint ShadeOR:Shades the opening range in lieu of after the opening range
-
-- def s = ShowTodayOnly;
-
-- def na = Double.NaN;
-
-- def ORActive = if SecondsTillTime(OREnd) > 0 and SecondsFromTime(ORBegin) >= 0 then 1 else 0;
-
-- def today = if s == 0 or GetDay() == GetLastDay() and SecondsFromTime(ORBegin) >= 0 then 1 else 0;
-
-- rec ORHigh = if ORHigh[1] == 0 or ORActive[1] == 0 and ORActive == 1 then high else if ORActive and high > ORHigh[1]
-
-- then high else ORHigh[1];
-
-- rec ORLow = if ORLow[1] == 0 or ORActive[1] == 0 and ORActive == 1 then low else if ORActive and low < ORLow[1] then
-
-- low else ORLow[1];
-
-- def ORWidth = ORHigh - ORLow;
-
-- def ORHA = if ORActive or today < 1 then na else ORHigh;
-
-- def ORLA = if ORActive or today < 1 then na else ORLow;
-
-- def O = ORHA - (ORHA - ORLA) / 2;
-
-- plot ORL = If (O == 0 , na, O);
-
-- ORL.SetDefaultColor(Color.YELLOW);
-
-- ORL.SetStyle(Curve.LONG_DASH);
-
-- ORL.SetLineWeight(3);
-
-- #====== The larger OR =========
-
-- def ORActive2 = if SecondsTillTime(OREnd2) > 0 and SecondsFromTime(ORBegin2) >= 0 then 1 else 0;
-
-- rec ORHigh2 = if ORHigh2[1] == 0 or ORActive2[1] == 0 and ORActive2 == 1 then high else if ORActive2 and high >
-
-- ORHigh2[1] then high else ORHigh2[1];
-
-- rec ORLow2 = if ORLow2[1] == 0 or ORActive2[1] == 0 and ORActive2 == 1 then low else if ORActive2 and low <
-
-- ORLow2[1] then low else ORLow2[1];
-
-- def ORWidth2 = ORHigh2 - ORLow2;
-
-- # ======= Define all the plots ===========
-
-- plot ORH2 = if ORActive2 or today < 1 then na else ORHigh2;
-
-- plot ORL2 = if ORActive2 or today < 1 then na else ORLow2;
-
-- ORH2.SetDefaultColor(Color.GREEN);
-
-- ORH2.SetStyle(Curve.LONG_DASH);
-
-- ORH2.SetLineWeight(3);
-
-- ORL2.SetDefaultColor(Color.RED);
-
-- ORL2.SetStyle(Curve.LONG_DASH);
-
-- ORL2.SetLineWeight(3);
-
-- def TimeLine = if SecondsTillTime(OREnd2) == 0 then 1 else 0;
-
-- def pos = (ORH2 - ORL2) / 10;#The value for each 10% of the H-L range
-
-- plot d1 = If (TimeLine , ORH2, na);
-
-- plot d2 = If (TimeLine , ORH2 - ( pos * 2), na);
-
-- plot d3 = If (TimeLine , ORH2 - ( pos * 3), na);
-
-- plot d4 = If (TimeLine , ORH2 - ( pos * 4), na);
-
-- plot d5 = If (TimeLine , ORH2 - ( pos * 5), na);
-
-- plot d6 = If (TimeLine , ORH2 - ( pos * 6), na);
-
-- plot d7 = If (TimeLine , ORH2 - ( pos * 7), na);
-
-- plot d8 = If (TimeLine , ORH2 - ( pos * 8), na);
-
-- plot d9 = If (TimeLine , ORH2 - ( pos * 9), na);
-
-- plot d10 = If (TimeLine , (ORL2), na);
-
-- d1.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d2.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d3.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d4.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d5.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d6.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d7.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d8.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d9.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- d10.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- def Span = (O - ORL2) / (ORH2 - ORL2);
-
-- rec colorState = if Span > 0.66 then -1
-
-- else if Span < 0.33 then 1 else 0;
-
-- d1.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d2.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d3.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d4.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d5.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d6.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d7.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d8.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d9.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d10.AssignValueColor(if colorState < 0 then Color.RED else if colorState > 0 then Color.GREEN else Color.YELLOW);
-
-- d1.SetLineWeight(5);d2.SetLineWeight(5);d3.SetLineWeight(5);d4.SetLineWeight(5);d5.SetLineWeight(5);
-
-- d6.SetLineWeight(5);d7.SetLineWeight(5);d8.SetLineWeight(5);d9.SetLineWeight(5);d10.SetLineWeight(5);
-
-- def TimeLineb = if SecondsTillTime(OREnd) == 0 then 1 else 0;
-
-- def posbd = (ORHA - ORLA) / 10;
-
-- plot bd1 = If (TimeLineb , ORHA, na); plot bd2 = If (TimeLineb , ORHA - ( posbd * 2), na);
-
-- plot bd3 = If (TimeLineb , ORHA - ( posbd * 3), na); plot bd4 = If (TimeLineb , ORHA - ( posbd * 4), na);
-
-- plot bd5 = If (TimeLineb , ORHA - ( posbd * 5), na); plot bd6 = If (TimeLineb , ORHA - ( posbd * 6), na);
-
-- plot bd7 = If (TimeLineb , ORHA - ( posbd * 7), na); plot bd8 = If (TimeLineb , ORHA - ( posbd * 8), na);
-
-- plot bd9 = If (TimeLineb , ORHA - ( posbd * 9), na); plot bd10 = If (TimeLineb , (ORL2), na);
-
-- bd1.SetPaintingStrategy(PaintingStrategy.POINTS); bd2.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- bd3.SetPaintingStrategy(PaintingStrategy.POINTS); bd4.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- bd5.SetPaintingStrategy(PaintingStrategy.POINTS); bd6.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- bd7.SetPaintingStrategy(PaintingStrategy.POINTS); bd8.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- bd9.SetPaintingStrategy(PaintingStrategy.POINTS); bd10.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- bd1.SetDefaultColor(Color.YELLOW); bd2.SetDefaultColor(Color.YELLOW); bd3.SetDefaultColor(Color.YELLOW);
-
-- bd4.SetDefaultColor(Color.YELLOW); bd5.SetDefaultColor(Color.YELLOW); bd6.SetDefaultColor(Color.YELLOW);
-
-- bd7.SetDefaultColor(Color.YELLOW); bd8.SetDefaultColor(Color.YELLOW); bd9.SetDefaultColor(Color.YELLOW);
-
-- bd10.SetDefaultColor(Color.YELLOW);
-
-- #========== To shade the opening active range =====================
-
-- def ORActive3= if GetLastDay() == GetDay() and SecondsFromTime(ORBegin2) >= 0 and SecondsFromTime(OREnd2)  <= 0
-
-- then 1 else 0;
-
-- def ORHigh3 = if ORActive3 then high else na;
-
-- def ORLow3 = if ORActive3 then low else na;
-
-- plot ORAH3 = if (GetLastDay() != GetDay() or !ORActive3) or !ShadeOR then na else HighestAll(ORHigh3);
-
-- plot ORAL3= if (GetLastDay() != GetDay() or !ORActive3) or !ShadeOR then na else LowestAll(ORLow3);
-
-- #========= end of To shad the opening active range ==================
-
-- #====== Shade option selection ==========
-
-- #AddCloud(ORL2, ORH2, color.downtick, color.downtick);#If ORShade = NO
-
-- #AddCloud(ORAL3, ORAH3,color.light_red,color.light_red);#If ORShade = YES
-
-- def Shade1 = If ShadeOR then  ORAL3  else ORL2;
-
-- def Shade2 = If ShadeOR then  ORAH3  else ORH2;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9494
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- AddCloud(Shade1, shade2,color.light_red,color.light_red);
-
-- #======= end of Shade option selection ========
-
-- #========= labels ==============
-
-- AddLabel(yes, "OR Time = " +  ORBegin2 + " to " + AsPrice( OREnd2) + " and Smaller OR is " + AsPrice(ORBegin) + " to " +
-
-- AsPrice(OREnd) , Color.PINK);
-
-- AddLabel(yes,"OR High = "+ ORH2 + " & OR Low = " + ORL2, color.pink);
-
-- #end
+#end
 
 ## C&S-THE MARKET FORECAST REPLICA
 
 [Return to TOC](#toc)
 
-- Comment:The reference for 'The Market Forecast' concept is www.themarketforecast.com/index.html
-
-- #hint:Plots a <b>replica of the builtin 'MarketForecast'</b> with labels added & colors altered\nThis replica provides
-
-- parameters that can be used in a subsequent plot/scan to identify the powerful cluster concept.
-
-- declare lower;
-
-- #plot WhiteLabel = Double.NaN;
-
-- #WhiteLabel.SetDefaultColor(Color.White);
-
-- def na = Double.NaN;
-
-- Plot MidLine = 50;
-
-- MidLine.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- MidLine.SetLineWeight(1);
-
-- MidLine.SetDefaultColor(Color.YELLOW);
-
-- plot Momentum = MarketForecast().Momentum;
-
-- Momentum.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- Momentum.SetLineWeight(2);
-
-- Momentum.SetDefaultColor(Color.RED
-
-- );
-
-- plot NearT =  MarketForecast().NearTerm;
-
-- NearT.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- NearT.SetLineWeight(2);
-
-- NearT.SetDefaultColor(Color.CYAN);
-
-- plot Intermed = MarketForecast().Intermediate;
-
-- Intermed.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- Intermed.SetLineWeight(2);
-
-- Intermed.SetDefaultColor(Color.upTICK);
-
-- Plot OB =80;
-
-- OB.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- OB.SetLineWeight(1);
-
-- OB.SetDefaultColor(Color.YELLOW);
-
-- Plot OS = 20;
-
-- OS.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- OS.SetLineWeight(1);
-
-- OS.SetDefaultColor(Color.YELLOW);
-
-- Plot upperLine = 110;
-
-- upperLine.SetDefaultColor(Color.BLUE);
-
-- AddLabel(yes, "Momentum = " + round(Momentum,1), Color.RED);
-
-- AddLabel(yes, "NearTerm = " +  round(NearT,1), Color.CYAN);
-
-- AddLabel(yes, "Intermediate = " +  round(Momentum,1), Color.UPTICK);
-
-- AddLabel(yes, "Sum Total = " +  round( Momentum + NearT + Intermed, 1), Color.PINK);
-
-- AddLabel(yes, "MOM+NEAR Total = " +  Round(Momentum + NearT,1), Color.PINK);
-
-- AddCloud (NearT, MidLine , color. green, color. red);
-
-- # end
-
-- Comment:The following code plots when a cluster exists in the above code. A cluster is when all three plots are either
-
-- above OB (80) or below OS (20). Clusters are powerful points for buy/sell decisions.
-
-- #Hint: <b>Plots when the market forecast high or low clusters are true.</b>\n When used as a scan, <b>EITHER</b> 'Plot
-
-- Cluster_Hi' or 'Plot Cluster_Lo' need to be commented-out with #. When used as a plot the day agg is most meaningful
-
-- #Title = Cluster_TMF
-
-- declare lower;
-
-- def c1I = close - lowest(low,31);
-
-- def c2I = highest(high,31) - lowest(low,31);
-
-- def FastK_I = c1I / c2I * 100;
-
-- def c1N = close - lowest(low,3);
-
-- def c2N = highest(high,3) - lowest(low,3);
-
-- def FastK_N = c1N / c2N * 100;
-
-- def Intermediate = Average(FastK_I, 5);
-
-- def NearTerm = Average(FastK_N, 2);
-
-- def Momentum = reference marketforecast.Momentum;
-
-- def ClusterHigh = Intermediate>=80 && NearTerm>=80 && Momentum>=80 ;
-
-- def ClusterLow =  Intermediate<=20 && NearTerm<=20 && Momentum<=20;
-
-- #===== When used as a study plot,  all four lines below are active ========#
-
-- #===== When used as a scan, two of the four lines below are commented out depending on the scan desired =======#
-
-- Plot Cluster_Hi = if clusterhigh then 1 else 0;
-
-- Cluster_Hi.SetDefaultColor(Color.CYAN);
-
-- plot Cluster_Lo = if clusterlow then 1 else 0;
-
-- Cluster_Lo.SetDefaultColor(Color.PINK);
-
-- AddLabel(yes, "High Cluster above 80", color.CYAN);
-
-- AddLabel(yes, "Low Cluster below 20", color.PINK);
-
-- # end
+Comment:The reference for 'The Market Forecast' concept is www.themarketforecast.com/index.html
+
+```
+#hint:Plots a <b>replica of the builtin 'MarketForecast'</b> with labels added & colors altered\nThis replica provides parameters that can be used in a subsequent plot/scan to identify the powerful cluster concept.
+
+declare lower;
+
+#plot WhiteLabel = Double.NaN;
+#WhiteLabel.SetDefaultColor(Color.White);
+
+def na = Double.NaN;
+
+Plot MidLine = 50;
+MidLine.SetPaintingStrategy(PaintingStrategy.LINE);
+MidLine.SetLineWeight(1);
+MidLine.SetDefaultColor(Color.YELLOW);
+
+plot Momentum = MarketForecast().Momentum;
+Momentum.SetPaintingStrategy(PaintingStrategy.LINE);
+Momentum.SetLineWeight(2);
+Momentum.SetDefaultColor(Color.RED);
+
+plot NearT =  MarketForecast().NearTerm;
+NearT.SetPaintingStrategy(PaintingStrategy.LINE);
+NearT.SetLineWeight(2);
+NearT.SetDefaultColor(Color.CYAN);
+
+plot Intermed = MarketForecast().Intermediate;
+Intermed.SetPaintingStrategy(PaintingStrategy.LINE);
+Intermed.SetLineWeight(2);
+Intermed.SetDefaultColor(Color.upTICK);
+
+Plot OB =80;
+OB.SetPaintingStrategy(PaintingStrategy.LINE);
+OB.SetLineWeight(1);
+OB.SetDefaultColor(Color.YELLOW);
+
+Plot OS = 20;
+OS.SetPaintingStrategy(PaintingStrategy.LINE);
+OS.SetLineWeight(1);
+OS.SetDefaultColor(Color.YELLOW);
+
+Plot upperLine = 110;
+upperLine.SetDefaultColor(Color.BLUE);
+
+AddLabel(yes, "Momentum = " + round(Momentum,1), Color.RED);
+AddLabel(yes, "NearTerm = " +  round(NearT,1), Color.CYAN);
+AddLabel(yes, "Intermediate = " +  round(Momentum,1), Color.UPTICK);
+AddLabel(yes, "Sum Total = " +  round( Momentum + NearT + Intermed, 1), Color.PINK);
+AddLabel(yes, "MOM+NEAR Total = " +  Round(Momentum + NearT,1), Color.PINK);
+AddCloud (NearT, MidLine , color. green, color. red);
+
+#end
+```
+
+Comment:The following code plots when a cluster exists in the above code. A cluster is when all three plots are either above OB (80) or below OS (20). Clusters are powerful points for buy/sell decisions.
+
+```
+#Hint: <b>Plots when the market forecast high or low clusters are true.</b>\n When used as a scan, <b>EITHER</b> 'Plot Cluster_Hi' or 'Plot Cluster_Lo' need to be commented-out with #. When used as a plot the day agg is most meaningful
+
+#Title = Cluster_TMF
+
+declare lower;
+
+def c1I = close - lowest(low,31);
+def c2I = highest(high,31) - lowest(low,31);
+def FastK_I = c1I / c2I * 100;
+def c1N = close - lowest(low,3);
+def c2N = highest(high,3) - lowest(low,3);
+def FastK_N = c1N / c2N * 100;
+def Intermediate = Average(FastK_I, 5);
+def NearTerm = Average(FastK_N, 2);
+def Momentum = reference marketforecast.Momentum;
+def ClusterHigh = Intermediate>=80 && NearTerm>=80 && Momentum>=80 ;
+def ClusterLow =  Intermediate<=20 && NearTerm<=20 && Momentum<=20;
+
+#===== When used as a study plot,  all four lines below are active ========#
+#===== When used as a scan, two of the four lines below are commented out depending on the scan desired =======#
+Plot Cluster_Hi = if clusterhigh then 1 else 0;
+Cluster_Hi.SetDefaultColor(Color.CYAN);
+
+plot Cluster_Lo = if clusterlow then 1 else 0;
+Cluster_Lo.SetDefaultColor(Color.PINK);
+
+AddLabel(yes, "High Cluster above 80", color.CYAN);
+AddLabel(yes, "Low Cluster below 20", color.PINK);
+
+#end
+```
 
 ## C-DRAW A LINE BETWEEN TWO PRICE POINTS
 
 [Return to TOC](#toc)
 
-- #Hint: Draws a line between to points defined by dates, times and price type
+```
+#Hint: Draws a line between to points defined by dates, times and price type
+Developed by RCG3 and StanL on the ThinkScript Lounge 1/2/14
+input time1 = 1000;#hint time1:Time of first point using the 24-hour clock
+input date1 = 20140102;#hint date1:Date of the first point in YYYYMMDD format
+input time2 = 1300;#hint time2: Time of second point using the 24-hour clock
+input date2 = 20140102;#hint date2: Date of the first point in YYYYMMDD format
+input price = high;#hint price: Select the price type desired
 
-- Developed by RCG3 and StanL on the ThinkScript Lounge 1/2/14
+#====== To see dots on the inputted dates/times change the def below for
 
-- input time1 = 1000;#hint time1:Time of first point using the 24-hour clock
+# ===== 'asdf' and 'asdf2' to plot and uncomment the setpaintingstrategy =====
 
-- input date1 = 20140102;#hint date1:Date of the first point in YYYYMMDD format
+def asdf= secondsfromtime(time1) == 0;
+#asdf.setpaintingstrategy(paintingstrategy.boolean_points);
+def asdf2= secondsfromtime(time2) == 0;
+#asdf2.setpaintingstrategy(paintingstrategy.boolean_points);
+def date= getyyyymmdd();
 
-- input time2 = 1300;#hint time2: Time of second point using the 24-hour clock
+rec x1= if secondsfromtime(time1) == 0 and date1==date then barnumber() else x1[1];
+rec x2= if secondsfromtime(time2) == 0 and date2==date then barnumber() else x2[1];
+rec y1= if secondsfromtime(time1) == 0 and date1==date then price else y1[1];
+rec y2= if secondsfromtime(time2) == 0 and date2==date then price else y2[1];
+def x22= highestall(x2);
+def y22= highestall(y2);
+def slope= (y22-y1)/(x22-x1);
 
-- input date2 = 20140102;#hint date2: Date of the first point in YYYYMMDD format
+#plot line= if x1!=0 then y1+((barnumber()-x1)*slope) else double.nan;
+plot line= if x1!=0 and x2[1]==0 then y1+((barnumber()-x1)*slope) else double.nan;
+def  Angle_deg = ATan(slope) * 180 / Double.Pi;
 
-- input price = high;#hint price: Select the price type desired
+#addLabel(yes, "Slope = " +  Angle_deg + "degrees", color.CYAN);#Angle printout has no consistency at various aggs
+#alert(price crosses line, "Price crossed trendline", alert.once,sound.chimes);# uncomment this line if used as a trendline
 
-- #====== To see dots on the inputted dates/times change the def below for
-
-- # ===== 'asdf' and 'asdf2' to plot and uncomment the setpaintingstrategy =====
-
-- def asdf= secondsfromtime(time1) == 0;
-
-- #asdf.setpaintingstrategy(paintingstrategy.boolean_points);
-
-- def asdf2= secondsfromtime(time2) == 0;
-
-- #asdf2.setpaintingstrategy(paintingstrategy.boolean_points);
-
-- def date= getyyyymmdd();
-
-- rec x1= if secondsfromtime(time1) == 0 and date1==date then barnumber() else x1[1];
-
-- rec x2= if secondsfromtime(time2) == 0 and date2==date then barnumber() else x2[1];
-
-- rec y1= if secondsfromtime(time1) == 0 and date1==date then price else y1[1];
-
-- rec y2= if secondsfromtime(time2) == 0 and date2==date then price else y2[1];
-
-- def x22= highestall(x2);
-
-- def y22= highestall(y2);
-
-- def slope= (y22-y1)/(x22-x1);
-
-- #plot line= if x1!=0 then y1+((barnumber()-x1)*slope) else double.nan;
-
-- plot line= if x1!=0 and x2[1]==0 then y1+((barnumber()-x1)*slope) else double.nan;
-
-- def  Angle_deg = ATan(slope) * 180 / Double.Pi;
-
-- #addLabel(yes, "Slope = " +  Angle_deg + "degrees", color.CYAN);#Angle printout has no consistency at various aggs
-
-- #alert(price crosses line, "Price crossed trendline", alert.once,sound.chimes);# uncomment this line if used as a trendline
-
-- #end
+#end
+```
 
 ## C-VOLUME LABEL AS A PERCENT OF AN INPUTTED  X-DAYS-AVG-VOLUME
 
 [Return to TOC](#toc)
 
-- #hint:Shows a label stating the current day's volume as a percent of an inputted  X-days-AvgVolume
+```
+#hint:Shows a label stating the current day's volume as a percent of an inputted  X-days-AvgVolume
 
-- declare upper;
+declare upper;
 
-- input Days = 30;#hint Days:The number-of-days average volume that is compared to today's volume
+input Days = 30;#hint Days:The number-of-days average volume that is compared to today's volume
 
-- def AvgVol = RoundUp( Average(volume (period = AggregationPeriod.DAY), Days));
+def AvgVol = RoundUp( Average(volume (period = AggregationPeriod.DAY), Days));
+def TodaysVol = volume(period = ”DAY”);
+def Percent = TodaysVol / AvgVol;#not a true % but is a ratio
+def dayOpen = open(period = AggregationPeriod.DAY);
+def curClose = close(period = AggregationPeriod.DAY);
 
-- def TodaysVol = volume(period = ”DAY”);
+#AddLabel(1, "Vol is " + aspercent(Percent) + " of " + Days + "-day-AvgVol", if Percent < .80 then Color.LIGHT_GRAY else Color.GREEN);#This is an optional label
+AddLabel(1, "Vol is " + aspercent(Percent) + " of " + Days + "-day-AvgVol", if Percent <= .70 AND ( dayOpen < curClose or dayOpen > curClose ) then Color.LIGHT_GRAY else if (.80 >= Percent > .70) AND ( dayOpen < curClose or dayOpen > curClose ) then Color.YELLOW else if Percent > .80 AND dayOpen < curClose then Color.Green  else if Percent > .80 AND dayOpen > curClose  then Color.red else Color.WHITE );
 
-- def Percent = TodaysVol / AvgVol;#not a true % but is a ratio
+#AddLabel(1,aspercent(Percent),if Percent <= .70 AND ( dayOpen < curClose or dayOpen > curClose ) then Color.LIGHT_GRAY else if (.80 >= Percent > .70) AND ( dayOpen < curClose or dayOpen > curClose ) then Color.YELLOW else if Percent > .80 AND dayOpen < curClose then Color.Green  else if Percent > .80 AND dayOpen > curClose  then Color.red else Color.WHITE );# This label may be used in a custom column
 
-- def dayOpen = open(period = AggregationPeriod.DAY);
-
-- def curClose = close(period = AggregationPeriod.DAY);
-
-- #AddLabel(1, "Vol is " + aspercent(Percent) + " of " + Days + "-day-AvgVol", if Percent < .80 then Color.LIGHT_GRAY else
-
-- Color.GREEN);#This is an optional label
-
-- AddLabel(1, "Vol is " + aspercent(Percent) + " of " + Days + "-day-AvgVol", if Percent <= .70 AND ( dayOpen < curClose or
-
-- dayOpen > curClose ) then Color.LIGHT_GRAY else if (.80 >= Percent > .70) AND ( dayOpen < curClose or dayOpen >
-
-- curClose ) then Color.YELLOW else if Percent > .80 AND dayOpen < curClose then Color.Green  else if Percent > .80 AND
-
-- dayOpen > curClose  then Color.red else Color.WHITE );
-
-- #AddLabel(1,aspercent(Percent),if Percent <= .70 AND ( dayOpen < curClose or dayOpen > curClose ) then
-
-- Color.LIGHT_GRAY else if (.80 >= Percent > .70) AND ( dayOpen < curClose or dayOpen > curClose ) then Color.YELLOW
-
-- else if Percent > .80 AND dayOpen < curClose then Color.Green  else if Percent > .80 AND dayOpen > curClose  then
-
-- Color.red else Color.WHITE );# This label may be used in a custom column
-
-- Comment1: This has all the ingredients for a custom column except the label text is too verbose for a column. The lower
-
-- label is suitable for a custom column
-
-- #end
+Comment1: This has all the ingredients for a custom column except the label text is too verbose for a column. The lower label is suitable for a custom column
+#end
+```
 
 ## T&C-EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION
 
 [Return to TOC](#toc)
 
-- The SUM function has some versatile usage as illustrated in the coding examples below.
+The SUM function has some versatile usage as illustrated in the coding examples below.
 
-- Def Example1 = sum(low > Average(close, 21), 5) == 5;# Is true when the 21-bar-average-of-the-close exists (is true) for
+Def Example1 = sum(low > Average(close, 21), 5) == 5;# Is true when the 21-bar-average-of-the-close exists (is true) for the last 5 consecutive bars.
 
-- the last 5 consecutive bars.
+def Example2 = Sum(MACDHistogramCrossover(), 8) ;#This plots the count of "Positive to Negative" crosses in the last 8 bars including the current bar.
 
-- def Example2 = Sum(MACDHistogramCrossover(), 8) ;#This plots the count of "Positive to Negative" crosses in the last
+The MACDHistogramCrossover() has a choice of "Positive to Negative" or "Negative to Positive". Using a reference without parameters specified, TS will use the default which is "Positive to Negative".
 
-- 8 bars including the current bar.
+def Example2A = Sum(MACDHistogramCrossover(crossingType = "Negative to Positive"), 8) ;#This plots the count of "Negative to Positive" crosses in the last 8 bars including the current bar.
 
-- The MACDHistogramCrossover() has a choice of "Positive to Negative" or "Negative to Positive". Using a reference
+To change the above to a condition use:
 
-- without parameters specified, TS will use the default which is "Positive to Negative".
+def Example3 = Sum(MACDHistogramCrossover(), 8) >= 2;#If the count of "Positive to Negative" crosses in the last 8 bars is greater than or equal to 2, then Example3 evaluates to 'true' (or 1). Otherwise  it is false (0).
 
-- def Example2A = Sum(MACDHistogramCrossover(crossingType = "Negative to Positive"), 8) ;#This plots the count of
+Def Example4 = sum(close > close[1],5) >= 5;#Is true when the close has been rising (trending up) for the last 5 bars
 
-- "Negative to Positive" crosses in the last 8 bars including the current bar.
+Example 5: Uses sum to look for a divergence. Can be useful in a custom watchlist column. Here the MACD average is going up while the MACD itself is going down for the number of 'Bars'.
+```
+Input Bars = 3;
+def macdAvg = MACD().Avg;
+def macdValue = MACD();
+def div = sum( macdAvg > macdAvg[1],Bars) == Bars ;#True if rising for the last 'Bars' bars
+def div2 = sum( macdValue < macdValue[1],Bars) == Bars;#True if falling for the last 'Bars' bars
+plot scan = div and div2;
+```
 
-- To change the above to a condition use:
+Def Example6 = sum(close < close[1],5) == 5;# The has declined for the last 5 bars
 
-- def Example3 = Sum(MACDHistogramCrossover(), 8) >= 2;#If the count of "Positive to Negative" crosses in the last 8
+Example 7 = A more flexible code having selectable price, length and direction (Choice).
 
-- bars is greater than or equal to 2, then Example3 evaluates to 'true' (or 1). Otherwise  it is false (0).
+```
+input price = close;
+input length = 3;
+input Choice = {default "increased", "decreased"};
 
-- Def Example4 = sum(close > close[1],5) >= 5;#Is true when the close has been rising (trending up) for the last 5 bars
+plot scan;
 
-- Example 5: Uses sum to look for a divergence. Can be useful in a custom watchlist column. Here the MACD average is
+switch (Choice){
+  case "increased":
+    scan = sum(price > price[1], length) == length;
+  case "decreased":
+    scan = sum(price < price[1], length) == length;
+}
+```
 
-- going up while the MACD itself is going down for the number of 'Bars'.
+Comment: If the above code was in a saved study named 'MyPriceTrend', you would run it by entering the following code in the custom scan location. This procedure is applicable for all saved custom studies.
 
-- Input Bars = 3;
+Plot scan = reference MypriceTrend(Price = hlc3, length = 7, choice = "increased");
 
-- def macdAvg = MACD().Avg;
+Note that 'hlc3' may be any parameter such as open, hugh, low, hl2, volume, etc. Be sure to set the time aggregation you desired i.e. 5 min, hour, day, etc.
 
-- def macdValue = MACD();
+Def Example 8: The following code is used to scan for stocks having future earnings.
 
-- def div = sum( macdAvg > macdAvg[1],Bars) == Bars ;#True if rising for the last 'Bars' bars
+```
+Input length = 10;#Hint length:The number of future/ahead agg-bars to look in
+def earnings = hasearnings();#When true this evaluates to one which then appears in the following 'sum'
 
-- def div2 = sum( macdValue < macdValue[1],Bars) == Bars;#True if falling for the last 'Bars' bars
+plot scan = sum(earnings,length)[-length +1] > 0;# Will return all stocks having earnings within the next 10 days.
+```
 
-- plot scan = div and div2;
+Def Example 9
 
-- Def Example6 = sum(close < close[1],5) == 5;# The has declined for the last 5 bars
+```
+#hint: <b>Market Sentiment</b>\nThe Market Sentiment study is a popular study on Prophet Charts.
 
-- Example 7 = A more flexible code having selectable price, length and direction (Choice).
+declare lower;
 
-- input price = close;
+input period1 = 51;
+input period2 = 47;
+input RoundingValue = 4;
 
-- input length = 3;
+def LowLow = Lowest(low, period1);
+def Close_LowLow_Diff = close - LowLow;
+def Hi_Hi = Highest(high, period2);
+def HH_LL_Diff = Hi_Hi - LowLow;
+def numerator = Sum(Close_LowLow_Diff, period2);
+def denominator = Sum(HH_LL_Diff, period1);
 
-- input Choice = {default "increased", "decreased"};
+plot MarketSentiment = round(100* (numerator/denominator), RoundingValue);
+marketsentiment.setDefaultColor(color.yellow);
+```
 
-- plot scan;
+Example 10 #hint:High correlation scan
 
-- switch (Choice){
+```
+input length = 10;#hint length: the agg-bar length being compared
+input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
+input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
 
-- case "increased":
+def x = Correlation(close, close(correlationWithSecurity), length) > =.9;#greater then 0.9 indicates a high correlation
+plot scan = sum(x, inarow) >= inarow;# Returns stocks whose 10-bar-close have a greater than or equal to .9 correlation with SPX  for the last 10 (inarow) bars.
+```
 
-- scan = sum(price > price[1], length) == length;
+Example 11 #hint: Uses the DMI to scan the up-trending ADX
 
-- case "decreased":
+```
+def length = 5;# The numbers of agg-bars DMI is climbing
+def x =DMI_Oscillator();
+def up = x > x[1];
 
-- scan = sum(price < price[1], length) == length;
-
-- }
-
-- Comment: If the above code was in a saved study named 'MyPriceTrend', you would run it by entering the following code
-
-- in the custom scan location. This procedure is applicable for all saved custom studies.
-
-- Plot scan = reference MypriceTrend(Price = hlc3, length = 7, choice = "increased");
-
-- Note that 'hlc3' may be any parameter such as open, hugh, low, hl2, volume, etc. Be sure to set the time aggregation you
-
-- desired i.e. 5 min, hour, day, etc.
-
-- Def Example8: The following code is used to scan for stocks having future earnings.
-
-- Input length = 10;#Hint length:The number of future/ahead agg-bars to look in
-
-- def earnings = hasearnings();#When true this evaluates to one which then appears in the following 'sum'
-
-- plot scan = sum(earnings,length)[-length +1] > 0;# Will return all stocks having earnings within the next 10 days.
-
-- Def Example 9
-
-- #hint: <b>Market Sentiment</b>\nThe Market Sentiment study is a popular study on Prophet Charts.
-
-- declare lower;
-
-- input period1 = 51;
-
-- input period2 = 47;
-
-- input RoundingValue = 4;
-
-- def LowLow = Lowest(low, period1);
-
-- def Close_LowLow_Diff = close - LowLow;
-
-- def Hi_Hi = Highest(high, period2);
-
-- def HH_LL_Diff = Hi_Hi - LowLow;
-
-- def numerator = Sum(Close_LowLow_Diff, period2);
-
-- def denominator = Sum(HH_LL_Diff, period1);
-
-- plot MarketSentiment = round(100* (numerator/denominator), RoundingValue);
-
-- marketsentiment.setDefaultColor(color.yellow);
-
-- Example 10 #hint:High correlation scan
-
-- input length = 10;#hint length: the agg-bar length being compared
-
-- input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
-
-- input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
-
-- def x = Correlation(close, close(correlationWithSecurity), length) > =.9;#greater then 0.9 indicates a high correlation
-
-- plot scan = sum(x, inarow) >= inarow;# Returns stocks whose 10-bar-close have a greater than or equal to .9 correlation
-
-- with SPX  for the last 10 (inarow) bars.
-
-- Example 11 #hint: Uses the DMI to scan the up-trending ADX
-
-- def length = 5;# The numbers of agg-bars DMI is climbing
-
-- def x =DMI_Oscillator();
-
-- def up = x > x[1];
-
-- Plot Scan = x > 10 && sum(up,length) >= length;# This returns stocks whose DMI_Oscillator value is greater than +10 and
-
-- has been up for the last 5 bars. The DMI is the driving force behind the ADX, so this is equivalent to the bullish ADX
-
-- trending up for the last 5 bars.
-
-- Example 12  # by Pacodeveux in Mr. Script show
-
-- #hint:Fast, med, slow true range osc
-
-- declare lower;
-
-- input fastLength = 7;
-
-- input medLength = 14;
-
-- input slowLength = 28;
-
-- input FactorFast = 4;
-
-- input FactorMed = 2;
-
-- input FactorSlow = 1;
-
-- def trRng = TrueRange(high, close, low);
-
-- def trRngFast = sum(trRng, fastLength);
-
-- def trRngMed = sum(trRng, medLength);
-
-- def trRngSlow = sum(trRng, slowLength);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  9999
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- def diff = close - Min(close[1], low);
-
-- def diffFast = sum(diff, fastLength);
-
-- def diffMed = sum(diff, medLength);
-
-- def diffSlow = sum(diff, slowLength);
-
-- def valFast = (diffFast / trRngFast) * factorFast;
-
-- def valMed = (diffMed / trRngMed) * factorMed;
-
-- def valSlow = (diffSlow / trRngSlow) * FactorSlow;
-
-- Plot midLine = 0.5;
-
-- midLine.SetLineWeight(2);
-
-- midLine.SetDefaultColor(Color.yellow);
-
-- plot UltOsc = if trRngFast == 0 or trRngMed == 0 or trRngSlow == 0 then 0
-
-- else (valFast + valMed + valSlow) / (factorFast + factorMed + 1);
-
-- UltOsc.SetDefaultColor(GetColor(1));
-
-- AddLabel(1,”Fast-Med-Slow True Range Oscillator”, color.white);
-
-- #End
-
-- Example 13 #hint:Projection bands are narrowing for 5 bars
-
-- def pro = projectionBands();
-
-- def prol = ProjectionBands().MinBound;
-
-- def cond = pro - prol < pro[1] - prol[1];
-
-- plot scan = sum(cond,5) >= 5;# Returns stocks whose projrction bands have been narrowing for the last 5 bars
-
-- Example 14 # Hint: Plots consecutive higher-highs AND lower-lows
-
-- input price = close;
-
-- input number = 3;#hint number: Arrows are plotted after this number of consecutives are observed
-
-- def hi = high;
-
-- def lo = low;
-
-- def higher = if hi > hi[1] then hi else higher[1];
-
-- def lower = if lo < lo[1] then lo else lower[1];
-
-- plot h = higher;
-
-- h.SetLineWeight(1);
-
-- h.SetDefaultColor(Color.cyan);
-
-- plot l =lower;
-
-- l.SetLineWeight(1);
-
-- l.SetDefaultColor(Color.pink);
-
-- def hig = higher > higher[1];
-
-- def lowe = lower < lower[1];
-
-- plot x = sum(hig,number) >= number;# Plots an arrow down when a higher high exists for 3 (number) bars.
-
-- x.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- x.SetLineWeight(1);
-
-- x.SetDefaultColor(Color.White);
-
-- plot y = sum(lowe,number) >= number;# Plots an arrow up when a lower low exists for 3 (number) bars.
-
-- y.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  100100
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- y.SetLineWeight(1);
-
-- y.SetDefaultColor(Color.yellow);
-
-- AddLabel(1,"Plot of highs", color.cyan);
-
-- AddLabel(1,"Plot of lows", color.pink);
-
-- AddLabel(1,"Plot arrows of higher-highs", color.white);
-
-- AddLabel(1,"Plot arrows of lower-lows", color.yellow);
-
-- Example 15 #Scan for stocks with the consecutive number of higher-highs(plot scan1) or lower-lows (plot scan2)
-
-- input price = close;
-
-- input number = 7;#hint number: The number of consecutive bars
-
-- def hi = high;
-
-- def lo = low;
-
-- def higher = if hi > hi[1] then hi else higher[1];
-
-- def lower = if lo < lo[1] then lo else lower[1];
-
-- def hig = higher > higher[1];
-
-- def lowe = lower < lower[1];
-
-- plot scan1 = sum(hig,number) >= number;#returns stocks that have a higher high for the last 7 (number) bars
-
-- #plot scan2 = sum(lowe,number) >= number;#returns stocks that have a lower low for the last 7 (number) bars
-
-- Example 16 #HINT: scan filter that searches for up-trending symbols
-
-- def trenup = IsAscending(close,20);#Close has been rising for 20 bars
-
-- def trenup2 = sum(close > close[1],5) >= 5;#Close has risen for the last 5 bars
-
-- plot scan = trenup AND trenup2;
-
-- #end
+Plot Scan = x > 10 && sum(up,length) >= length;# This returns stocks whose DMI_Oscillator value is greater than +10 and has been up for the last 5 bars. The DMI is the driving force behind the ADX, so this is equivalent to the bullish ADX trending up for the last 5 bars.
+```
+
+Example 12  # by Pacodeveux in Mr. Script show
+
+```
+#hint:Fast, med, slow true range osc
+declare lower;
+input fastLength = 7;
+input medLength = 14;
+input slowLength = 28;
+input FactorFast = 4;
+input FactorMed = 2;
+input FactorSlow = 1;
+
+def trRng = TrueRange(high, close, low);
+def trRngFast = sum(trRng, fastLength);
+def trRngMed = sum(trRng, medLength);
+def trRngSlow = sum(trRng, slowLength);
+def diff = close - Min(close[1], low);
+def diffFast = sum(diff, fastLength);
+def diffMed = sum(diff, medLength);
+def diffSlow = sum(diff, slowLength);
+def valFast = (diffFast / trRngFast) * factorFast;
+def valMed = (diffMed / trRngMed) * factorMed;
+def valSlow = (diffSlow / trRngSlow) * FactorSlow;
+
+Plot midLine = 0.5;
+midLine.SetLineWeight(2);
+midLine.SetDefaultColor(Color.yellow);
+
+plot UltOsc = if trRngFast == 0 or trRngMed == 0 or trRngSlow == 0 then 0
+else (valFast + valMed + valSlow) / (factorFast + factorMed + 1);
+UltOsc.SetDefaultColor(GetColor(1));
+
+AddLabel(1,”Fast-Med-Slow True Range Oscillator”, color.white);
+#End
+```
+
+Example 13 #hint:Projection bands are narrowing for 5 bars
+
+```
+def pro = projectionBands();
+def prol = ProjectionBands().MinBound;
+def cond = pro - prol < pro[1] - prol[1];
+
+plot scan = sum(cond,5) >= 5;# Returns stocks whose projrction bands have been narrowing for the last 5 bars
+```
+
+Example 14 # Hint: Plots consecutive higher-highs AND lower-lows
+
+```
+input price = close;
+input number = 3;#hint number: Arrows are plotted after this number of consecutives are observed
+
+def hi = high;
+def lo = low;
+def higher = if hi > hi[1] then hi else higher[1];
+def lower = if lo < lo[1] then lo else lower[1];
+
+plot h = higher;
+h.SetLineWeight(1);
+h.SetDefaultColor(Color.cyan);
+plot l =lower;
+l.SetLineWeight(1);
+l.SetDefaultColor(Color.pink);
+def hig = higher > higher[1];
+def lowe = lower < lower[1];
+
+plot x = sum(hig,number) >= number;# Plots an arrow down when a higher high exists for 3 (number) bars.
+x.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+x.SetLineWeight(1);
+x.SetDefaultColor(Color.White);
+
+plot y = sum(lowe,number) >= number;# Plots an arrow up when a lower low exists for 3 (number) bars.
+y.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
+y.SetLineWeight(1);
+y.SetDefaultColor(Color.yellow);
+
+AddLabel(1,"Plot of highs", color.cyan);
+AddLabel(1,"Plot of lows", color.pink);
+AddLabel(1,"Plot arrows of higher-highs", color.white);
+AddLabel(1,"Plot arrows of lower-lows", color.yellow);
+```
+
+Example 15 #Scan for stocks with the consecutive number of higher-highs(plot scan1) or lower-lows (plot scan2)
+
+```
+input price = close;
+input number = 7;#hint number: The number of consecutive bars
+
+def hi = high;
+def lo = low;
+def higher = if hi > hi[1] then hi else higher[1];
+def lower = if lo < lo[1] then lo else lower[1];
+def hig = higher > higher[1];
+def lowe = lower < lower[1];
+
+plot scan1 = sum(hig,number) >= number;#returns stocks that have a higher high for the last 7 (number) bars
+#plot scan2 = sum(lowe,number) >= number;#returns stocks that have a lower low for the last 7 (number) bars
+```
+
+Example 16 #HINT: scan filter that searches for up-trending symbols
+```
+def trenup = IsAscending(close,20);#Close has been rising for 20 bars
+def trenup2 = sum(close > close[1],5) >= 5;#Close has risen for the last 5 bars
+plot scan = trenup AND trenup2;
+#end
+```
 
 ## C-HOW TO SHOW WHEN A CANDLE PATTERN EXISTS ON A CHART
 
 [Return to TOC](#toc)
 
-- One basic principle is that when you state for, example Doji(), when a doji is present Doji() returns 'true'. So to display
+One basic principle is that when you state for, example Doji(), when a doji is present Doji() returns 'true'. So to display the presence of a Doji on your chart you code it as :
 
-- the presence of a Doji on your chart you code it as :
+```
+Plot data = Doji();
+Data.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+Data.SetLineWeight(1);
+Data.SetDefaultColor(Color.PINK);
+```
 
-- Plot data = Doji();
-
-- Data.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- Data.SetLineWeight(1);
-
-- Data.SetDefaultColor(Color.PINK);
-
-- Another point to remember is that some candles are both bearish and bullish. If you do nt distinguish which you want like
-
-- Harami() the default bearish Harami will be returned. To be thorough and clear, you ought to code Harami().Bearish or
-
-- Harami().Bullish instead depending on what you desire. A Doji() is neither bearish nor bullish so Doji() is used alone.
-
-- #end
+Another point to remember is that some candles are both bearish and bullish. If you do nt distinguish which you want like Harami() the default bearish Harami will be returned. To be thorough and clear, you ought to code Harami().Bearish or Harami().Bullish instead depending on what you desire. A Doji() is neither bearish nor bullish so Doji() is used alone.
+#end
 
 ## C-DUAL SPEED STOCHASTICS
 
@@ -8271,1049 +6232,606 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- # created by Richard Houser, tos_thinkscript@yahoogroups 11-16-12
+```
+# created by Richard Houser, tos_thinkscript@yahoogroups 11-16-12
+#hint:Show support/resistance lines based on an inputted-number-of-bars (markPeriod).\n You can adjust the agg to suit your style but 'day' is very meaningful. \nThe support and resistance lines are generated based on a swing-high/swing-low concept.
+# Keep in mind too few days and you'll get a bunch of false s/r lines. Too many days and
+# you'll miss some number of s/r days. Five days is a good floor to start. Also note that the right hand bubble value only show for the full S/R and not the intermedite S/R lines.
+#A new support line starts at the lowest-low of the input period when both:
+#1. the current bar is the lowest of the last markPeriod and
+# 2. the lowest-low of the markPeriod is less than that at the markPeriod-in-the-future
+# are true: In essence forms a V shape. The resistance lines are formed the same but inverted.
 
-- #hint:Show support/resistance lines based on an inputted-number-of-bars (markPeriod).\n You can adjust the agg to suit
+declare upper;
 
-- your style but 'day' is very meaningful. \nThe support and resistance lines are generated based on a swing-high/swing-low
+input markPeriod    = 5;#hint markPeriod:The number of bars used in the evaluation of when a new support/resistance line starts i.e. the PERIOD
 
-- concept.
+input upperPerCent  = 70.0;#hint upperPerCent:Applied to the spread to define the upper intermediate resistance
+input lowerPerCent  = 30.0;#hint lowerPerCent:Applied to the spread to define the lower intermediate support
 
-- # Keep in mind too few days and you'll get a bunch of false s/r lines. Too many days and
+def _highInPeriod   = Highest( high, markPeriod );#The highest high in the markperiod i.e. the PERIOD
+def _lowInPeriod    = Lowest( low, markPeriod );#The lowest value in the markperiod i.e. the PERIOD
 
-- # you'll miss some number of s/r days. Five days is a good floor to start. Also note that the right hand bubble value only
+#=============================[ Marked Low ]===================================
+def marketLow       = if _lowInPeriod < _lowInPeriod[-markPeriod] then _lowInPeriod else _lowInPeriod[-markPeriod];
+def _markedLow      = low == marketLow;
 
-- show for the full S/R and not the intermedite S/R lines.
+# === below saves the marked low for plotting the support line ======
+rec _lastMarkedLow  = compoundValue( 1, if IsNaN( _markedLow ) then _lastMarkedLow[1] else if _markedLow then low else _lastMarkedLow[1], low ) #============================[ Marked High ]===================================
+def marketHigh      = if _highInPeriod > _highInPeriod[-markPeriod] then _highInPeriod else _highInPeriod[-markPeriod];
+def _markedHigh     = high == marketHigh;
 
-- #A new support line starts at the lowest-low of the input period when both:
+# === below saves the marked high for plotting the resistance line ======
+rec _lastMarkedHigh = compoundValue( 1, if IsNaN( _markedHigh ) then _lastMarkedHigh[1] else if _markedHigh then high else _lastMarkedHigh[1], high );
 
-- #1. the current bar is the lowest of the last markPeriod and
+#==================================[ Plots ]===================================
+plot Resistance     = _lastMarkedHigh;
+plot Support        = _lastMarkedLow;
+def spread          = Resistance - Support;
+plot IntermediateResistance = Support + ( spread * upperPercent / 100 );
+plot IntermediateSupport    = Support + ( spread * lowerPercent / 100 );
 
-- # 2. the lowest-low of the markPeriod is less than that at the markPeriod-in-the-future
-
-- # are true: In essence forms a V shape. The resistance lines are formed the same but inverted.
-
-- declare upper;
-
-- input markPeriod    = 5;#hint markPeriod:The number of bars used in the evaluation of when a new support/resistance
-
-- line starts i.e. the PERIOD
-
-- input upperPerCent  = 70.0;#hint upperPerCent:Applied to the spread to define the upper intermediate resistance
-
-- input lowerPerCent  = 30.0;#hint lowerPerCent:Applied to the spread to define the lower intermediate support
-
-- def _highInPeriod   = Highest( high, markPeriod );#The highest high in the markperiod i.e. the PERIOD
-
-- def _lowInPeriod    = Lowest( low, markPeriod );#The lowest value in the markperiod i.e. the PERIOD
-
-- #=============================[ Marked Low ]===================================
-
-- def marketLow       = if _lowInPeriod < _lowInPeriod[-markPeriod] then _lowInPeriod else _lowInPeriod[-markPeriod];
-
-- def _markedLow      = low == marketLow;
-
-- # === below saves the marked low for plotting the support line ======
-
-- rec _lastMarkedLow  = compoundValue( 1, if IsNaN( _markedLow ) then _lastMarkedLow[1] else if _markedLow then low
-
-- else _lastMarkedLow[1], low );
-
-- #============================[ Marked High ]===================================
-
-- def marketHigh      = if _highInPeriod > _highInPeriod[-markPeriod] then _highInPeriod else _highInPeriod[-markPeriod];
-
-- def _markedHigh     = high == marketHigh;
-
-- # === below saves the marked high for plotting the resistance line ======
-
-- rec _lastMarkedHigh = compoundValue( 1, if IsNaN( _markedHigh ) then _lastMarkedHigh[1] else if _markedHigh then
-
-- high else _lastMarkedHigh[1], high );
-
-- #==================================[ Plots ]===================================
-
-- plot Resistance     = _lastMarkedHigh;
-
-- plot Support        = _lastMarkedLow;
-
-- def spread          = Resistance - Support;
-
-- plot IntermediateResistance = Support + ( spread * upperPercent / 100 );
-
-- plot IntermediateSupport    = Support + ( spread * lowerPercent / 100 );
-
-- #==============================[ Look and Feel ]===============================
-
-- Resistance.SetPaintingStrategy( PaintingStrategy.HORIZONTAL );
-
-- Resistance.SetDefaultColor( Color.cyan );
-
-- Resistance.SetLineWeight(3);
-
-- Support.SetPaintingStrategy( PaintingStrategy.HORIZONTAL );
-
-- Support.SetDefaultColor( Color.red );
-
-- Support.SetLineWeight(3);
-
-- IntermediateResistance.SetPaintingStrategy( PaintingStrategy.HORIZONTAL);
-
-- IntermediateResistance.SetDefaultColor( Color.Cyan );
-
-- IntermediateResistance.HideBubble();
-
-- IntermediateResistance.SetLineWeight(1);
-
-- IntermediateSupport.SetPaintingStrategy( PaintingStrategy.HORIZONTAL);
-
-- IntermediateSupport.SetDefaultColor( Color.RED );
-
-- IntermediateSupport.HideBubble();
-
-- IntermediateSupport.SetLineWeight(1);
-
-- #end
+#==============================[ Look and Feel ]===============================
+Resistance.SetPaintingStrategy( PaintingStrategy.HORIZONTAL );
+Resistance.SetDefaultColor( Color.cyan );
+Resistance.SetLineWeight(3);
+Support.SetPaintingStrategy( PaintingStrategy.HORIZONTAL );
+Support.SetDefaultColor( Color.red );
+Support.SetLineWeight(3);
+IntermediateResistance.SetPaintingStrategy( PaintingStrategy.HORIZONTAL);
+IntermediateResistance.SetDefaultColor( Color.Cyan );
+IntermediateResistance.HideBubble();
+IntermediateResistance.SetLineWeight(1);
+IntermediateSupport.SetPaintingStrategy( PaintingStrategy.HORIZONTAL);
+IntermediateSupport.SetDefaultColor( Color.RED );
+IntermediateSupport.HideBubble();
+IntermediateSupport.SetLineWeight(1);
+#end
+```
 
 ## C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
 
 [Return to TOC](#toc)
 
-- Comment: This code received a lot of attention and discussion on TastyTrade's 'Game Changers'.
+Comment: This code received a lot of attention and discussion on TastyTrade's 'Game Changers'.
 
-- #####Begin study: n2s_IVRank_SD
+```
+#####Begin study: n2s_IVRank_SD
+#hint: From TastyTrade. Plots IV Percentile with the following labels: long-term IV Rank, short-term IV Rank, Imp Vol, and expected SD moves for 1 day, 1 week, and 1 month.
+# from TastyTrade Game Changers 12/19/13
+# modified by John Latrobe 12/20/13
 
-- #hint: From TastyTrade. Plots IV Percentile with the following labels: long-term IV Rank, short-term IV Rank, Imp Vol,
+declare lower;
+declare hide_on_intraday;
 
-- and expected SD moves for 1 day, 1 week, and 1 month.
+#IVPercentile
+def vol = imp_volatility();
 
-- # from TastyTrade Game Changers 12/19/13
+input DisplayIVPercentile = yes;
+input TimePeriod = 252;
+input LowVolLimit = 20;
+input HighVolLimit = 70;
+input DisplayShorterTerm = yes;
+input ShortTimePeriod = 63;
+input DisplayImpVolatility= yes;
+input DisplayDaily1StandardDev = yes;
+input DisplayWeekly1StandardDev = yes;
+input DisplayMonthly1StandardDev = yes;
+input InvertRedGreen = yes;
 
-- # modified by John Latrobe 12/20/13
+def data = if !isNaN(vol) then vol else vol[-1];
+def hi = highest(data, TimePeriod);
+def lo = lowest(data, TimePeriod);
+def ShortHi = highest(data, ShortTimePeriod);
+def ShortLo = lowest(data, ShortTimePeriod);
 
-- declare lower;
+plot Percentile = (data - lo) / (hi - lo) * 100;
+def lowend = Percentile < LowVolLimit;
+def highend = Percentile > HighVolLimit;
+def sPercentile = (data - ShortLo) / (ShortHi - ShortLo) * 100;
+def ShortLowend = sPercentile < LowVolLimit;
+def ShortHighend = sPercentile > HighVolLimit;
 
-- declare hide_on_intraday;
+DefineGlobalColor("lowcolor", if InvertRedGreen then color.green else color.red);
+DefineGlobalColor("Shortlowcolor", if InvertRedGreen then color.green else color.red);
+DefineGlobalColor("highcolor", if InvertRedGreen then color.red else color.green);
+DefineGlobalColor("Shorthighcolor", if InvertRedGreen then color.red else color.green);
 
-- #IVPercentile
+#Labels
+addlabel(DisplayIVPercentile , concat("Long IV Rank: ",aspercent(round(Percentile /100, 2))), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- def vol = imp_volatility();
+addlabel(DisplayShorterTerm , concat("Short IV Rank: ",aspercent(round(sPercentile /100, 2))), if shortlowend then GlobalColor("Shortlowcolor") else if shorthighend then GlobalColor("Shorthighcolor") else color.yellow);
 
-- input DisplayIVPercentile = yes;
+addlabel(DisplayImpVolatility, concat("ImpVol: ",aspercent(vol)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- input TimePeriod = 252;
+def ImpPts = (vol / Sqrt(252)) * close;
 
-- input LowVolLimit = 20;
+AddLabel(DisplayDaily1StandardDev , Concat("1Dy SD +/- $", Astext( ImpPts, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- input HighVolLimit = 70;
+def ImpPts2 = (vol / Sqrt(52)) * close;
 
-- input DisplayShorterTerm = yes;
+AddLabel(DisplayWeekly1StandardDev, Concat("1Wk SD +/- $", Astext( ImpPts2, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- input ShortTimePeriod = 63;
+def ImpPts3 = (vol / Sqrt(12)) * close;
 
-- input DisplayImpVolatility= yes;
+AddLabel(DisplayMonthly1StandardDev, Concat("1Mo SD +/- $", Astext( ImpPts3, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- input DisplayDaily1StandardDev = yes;
-
-- input DisplayWeekly1StandardDev = yes;
-
-- input DisplayMonthly1StandardDev = yes;
-
-- input InvertRedGreen = yes;
-
-- def data = if !isNaN(vol) then vol else vol[-1];
-
-- def hi = highest(data, TimePeriod);
-
-- def lo = lowest(data, TimePeriod);
-
-- def ShortHi = highest(data, ShortTimePeriod);
-
-- def ShortLo = lowest(data, ShortTimePeriod);
-
-- plot Percentile = (data - lo) / (hi - lo) * 100;
-
-- def lowend = Percentile < LowVolLimit;
-
-- def highend = Percentile > HighVolLimit;
-
-- def sPercentile = (data - ShortLo) / (ShortHi - ShortLo) * 100;
-
-- def ShortLowend = sPercentile < LowVolLimit;
-
-- def ShortHighend = sPercentile > HighVolLimit;
-
-- DefineGlobalColor("lowcolor", if InvertRedGreen then color.green else color.red);
-
-- DefineGlobalColor("Shortlowcolor", if InvertRedGreen then color.green else color.red);
-
-- DefineGlobalColor("highcolor", if InvertRedGreen then color.red else color.green);
-
-- DefineGlobalColor("Shorthighcolor", if InvertRedGreen then color.red else color.green);
-
-- #Labels
-
-- addlabel(DisplayIVPercentile , concat("Long IV Rank: ",aspercent(round(Percentile /100, 2))), if lowend then
-
-- GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-
-- addlabel(DisplayShorterTerm , concat("Short IV Rank: ",aspercent(round(sPercentile /100, 2))), if shortlowend then
-
-- GlobalColor("Shortlowcolor") else if shorthighend then GlobalColor("Shorthighcolor") else color.yellow);
-
-- addlabel(DisplayImpVolatility, concat("ImpVol: ",aspercent(vol)), if lowend then GlobalColor("lowcolor") else if highend
-
-- then GlobalColor("highcolor") else color.yellow);
-
-- def ImpPts = (vol / Sqrt(252)) * close;
-
-- AddLabel(DisplayDaily1StandardDev , Concat("1Dy SD +/- $", Astext( ImpPts,
-
-- NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then
-
-- GlobalColor("highcolor") else color.yellow);
-
-- def ImpPts2 = (vol / Sqrt(52)) * close;
-
-- AddLabel(DisplayWeekly1StandardDev, Concat("1Wk SD +/- $", Astext( ImpPts2,
-
-- NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then
-
-- GlobalColor("highcolor") else color.yellow);
-
-- def ImpPts3 = (vol / Sqrt(12)) * close;
-
-- AddLabel(DisplayMonthly1StandardDev, Concat("1Mo SD +/- $", Astext( ImpPts3,
-
-- NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then
-
-- GlobalColor("highcolor") else color.yellow);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  107107
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- plot LowVol = LowVolLimit;
-
-- plot HighVol = HighVolLimit;
-
-- LowVol.SetDefaultColor(GetColor(6));
-
-- HighVol.SetDefaultColor(GetColor(5));
-
-- #end
+plot LowVol = LowVolLimit;
+plot HighVol = HighVolLimit;
+LowVol.SetDefaultColor(GetColor(6));
+HighVol.SetDefaultColor(GetColor(5));
+#end
+```
 
 ## C-DMI_OSCILLATOR WITH ARROWS AND LINES
 
 [Return to TOC](#toc)
 
-- #hint:The popular builtin <b>DMI_Oscillator with arrows and lines</b> in positive and negative levels based on inputs. Use
+```
+#hint:The popular builtin <b>DMI_Oscillator with arrows and lines</b> in positive and negative levels based on inputs. Use the lines and arrows to define your criteria/decision points.
 
-- the lines and arrows to define your criteria/decision points.
+declare lower;
 
-- declare lower;
+input length = 10;#hint length:The number of bars with which the DI+ and DI- components are calculated.
+#input paintBars = yes;#hint paintBars:Defines whether or not to color price plot according to respective oscillator values (red for negative, green for positive).
+input CrossAboveValue = 10;#hint CrossAboveValue:Defines the above-zero-value at which an arrow is plotted.
+input CrossBelowValue = 5;#hint CrossBelowValue:Defines the below-zero-value at which an arrow is plotted.
 
-- input length = 10;#hint length:The number of bars with which the DI+ and DI- components are calculated.
+def diPlus = DMI(length)."DI+";
+def diMinus = DMI(length)."DI-";
 
-- #input paintBars = yes;#hint paintBars:Defines whether or not to color price plot according to respective oscillator
+plot Osc = diPlus - diMinus;
+plot Hist = Osc;
+Osc.SetDefaultColor(GetColor(1));
+Hist.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Hist.SetLineWeight(3);
+Hist.DefineColor("Positive", Color.UPTICK);
+Hist.DefineColor("Negative", Color.DOWNTICK);
+Hist.AssignValueColor(if Hist > 0 then Hist.Color("Positive") else Hist.Color("Negative"));
+Hist.HideTitle();
 
-- values (red for negative, green for positive).
+plot ZeroLine = 0;
+ZeroLine.SetDefaultColor(Color.YELLOW);
 
-- input CrossAboveValue = 10;#hint CrossAboveValue:Defines the above-zero-value at which an arrow is plotted.
+#plot line_5above = 5;
+#line_5above.SetDefaultColor(Color.YELLOW);
+plot line_10above = CrossAboveValue;
+line_10above.SetDefaultColor(Color.YELLOW);
 
-- input CrossBelowValue = 5;#hint CrossBelowValue:Defines the below-zero-value at which an arrow is plotted.
+#plot line_5below = -5;
+#line_5below.SetDefaultColor(Color.YELLOW);
+plot line_10below = - CrossBelowValue;
+line_10below.SetDefaultColor(Color.YELLOW);
+ZeroLine.SetDefaultColor(Color.GRAY);
 
-- def diPlus = DMI(length)."DI+";
+DefineGlobalColor("Positive", Color.UPTICK);
+DefineGlobalColor("Negative", Color.DOWNTICK);
 
-- def diMinus = DMI(length)."DI-";
+AssignPriceColor(if yes then Color.CURRENT else if Osc > 0 then GlobalColor("Positive") else GlobalColor("Negative"));
 
-- plot Osc = diPlus - diMinus;
+#======== Arrow plots when crossing input values ==========
+def Up_Cross = if osc crosses above CrossAboveValue then 1 else 0;
 
-- plot Hist = Osc;
+Plot D_Up_Cross = if Up_Cross then osc else double.nan;
+D_Up_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+D_Up_Cross.SetLineWeight(1);
+D_Up_Cross.SetDefaultColor(Color.GREEN);
 
-- Osc.SetDefaultColor(GetColor(1));
+AddLabel(1,"Above-zero arrow value = " + CrossAboveValue, color.GREEN);
+def Down_Cross = if osc crosses below -CrossBelowValue then 1 else 0;
 
-- Hist.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Plot D_Down_Cross = if Down_Cross then -CrossBelowValue else double.nan;
+D_Down_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+D_Down_Cross.SetLineWeight(1);
+D_Down_Cross.SetDefaultColor(Color.RED);
 
-- Hist.SetLineWeight(3);
-
-- Hist.DefineColor("Positive", Color.UPTICK);
-
-- Hist.DefineColor("Negative", Color.DOWNTICK);
-
-- Hist.AssignValueColor(if Hist > 0 then Hist.Color("Positive") else Hist.Color("Negative"));
-
-- Hist.HideTitle();
-
-- plot ZeroLine = 0;
-
-- ZeroLine.SetDefaultColor(Color.YELLOW);
-
-- #plot line_5above = 5;
-
-- #line_5above.SetDefaultColor(Color.YELLOW);
-
-- plot line_10above = CrossAboveValue;
-
-- line_10above.SetDefaultColor(Color.YELLOW);
-
-- #plot line_5below = -5;
-
-- #line_5below.SetDefaultColor(Color.YELLOW);
-
-- plot line_10below = - CrossBelowValue;
-
-- line_10below.SetDefaultColor(Color.YELLOW);
-
-- ZeroLine.SetDefaultColor(Color.GRAY);
-
-- DefineGlobalColor("Positive", Color.UPTICK);
-
-- DefineGlobalColor("Negative", Color.DOWNTICK);
-
-- AssignPriceColor(if yes
-
-- then Color.CURRENT
-
-- else if Osc > 0
-
-- then GlobalColor("Positive")
-
-- else GlobalColor("Negative"));
-
-- #======== Arrow plots when crossing input values ==========
-
-- def Up_Cross = if osc crosses above CrossAboveValue then 1 else 0;
-
-- Plot D_Up_Cross = if Up_Cross then osc else double.nan;
-
-- D_Up_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- D_Up_Cross.SetLineWeight(1);
-
-- D_Up_Cross.SetDefaultColor(Color.GREEN);
-
-- AddLabel(1,"Above-zero arrow value = " + CrossAboveValue, color.GREEN);
-
-- def Down_Cross = if osc crosses below -CrossBelowValue then 1 else 0;
-
-- Plot D_Down_Cross = if Down_Cross then -CrossBelowValue else double.nan;
-
-- D_Down_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- D_Down_Cross.SetLineWeight(1);
-
-- D_Down_Cross.SetDefaultColor(Color.RED);
-
-- AddLabel(1,"Below-zero arrow value = minus " + (CrossBelowValue), color.RED);
-
-- #end
+AddLabel(1,"Below-zero arrow value = minus " + (CrossBelowValue), color.RED);
+#end
+```
 
 ## C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
 
 [Return to TOC](#toc)
 
-- Comment: This code received a lot of attention and discussion on TastyTrade's 'Game Changers'.
+Comment: This code received a lot of attention and discussion on TastyTrade's 'Game Changers'.
 
-- #####Begin study: n2s_IVRank_SD
+```
+#####Begin study: n2s_IVRank_SD
+#hint: From TastyTrade. Plots IV Percentile with the following labels: long-term IV Rank, short-term IV Rank, Imp Vol, and expected SD moves for 1 day, 1 week, and 1 month.
+# from TastyTrade Game Changers 12/19/13
+# modified by John Latrobe 12/20/13
 
-- #hint: From TastyTrade. Plots IV Percentile with the following labels: long-term IV Rank, short-term IV Rank, Imp Vol,
+declare lower;
+declare hide_on_intraday;
 
-- and expected SD moves for 1 day, 1 week, and 1 month.
+#IVPercentile
+def vol = imp_volatility();
 
-- # from TastyTrade Game Changers 12/19/13
+input DisplayIVPercentile = yes;
+input TimePeriod = 252;
+input LowVolLimit = 20;
+input HighVolLimit = 70;
+input DisplayShorterTerm = yes;
+input ShortTimePeriod = 63;
+input DisplayImpVolatility= yes;
+input DisplayDaily1StandardDev = yes;
+input DisplayWeekly1StandardDev = yes;
+input DisplayMonthly1StandardDev = yes;
+input InvertRedGreen = yes;
 
-- # modified by John Latrobe 12/20/13
+def data = if !isNaN(vol) then vol else vol[-1];
+def hi = highest(data, TimePeriod);
+def lo = lowest(data, TimePeriod);
+def ShortHi = highest(data, ShortTimePeriod);
+def ShortLo = lowest(data, ShortTimePeriod);
 
-- declare lower;
+plot Percentile = (data - lo) / (hi - lo) * 100;
+def lowend = Percentile < LowVolLimit;
+def highend = Percentile > HighVolLimit;
+def sPercentile = (data - ShortLo) / (ShortHi - ShortLo) * 100;
+def ShortLowend = sPercentile < LowVolLimit;
+def ShortHighend = sPercentile > HighVolLimit;
+DefineGlobalColor("lowcolor", if InvertRedGreen then color.green else color.red);
+DefineGlobalColor("Shortlowcolor", if InvertRedGreen then color.green else color.red);
+DefineGlobalColor("highcolor", if InvertRedGreen then color.red else color.green);
+DefineGlobalColor("Shorthighcolor", if InvertRedGreen then color.red else color.green);
 
-- declare hide_on_intraday;
+#Labels
+addlabel(DisplayIVPercentile , concat("Long IV Rank: ",aspercent(round(Percentile /100, 2))), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- #IVPercentile
+addlabel(DisplayShorterTerm , concat("Short IV Rank: ",aspercent(round(sPercentile /100, 2))), if shortlowend then GlobalColor("Shortlowcolor") else if shorthighend then GlobalColor("Shorthighcolor") else color.yellow);
 
-- def vol = imp_volatility();
+addlabel(DisplayImpVolatility, concat("ImpVol: ",aspercent(vol)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
+def ImpPts = (vol / Sqrt(252)) * close;
 
-- input DisplayIVPercentile = yes;
+AddLabel(DisplayDaily1StandardDev , Concat("1Dy SD +/- $", Astext( ImpPts, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
+def ImpPts2 = (vol / Sqrt(52)) * close;
 
-- input TimePeriod = 252;
+AddLabel(DisplayWeekly1StandardDev, Concat("1Wk SD +/- $", Astext( ImpPts2, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
+def ImpPts3 = (vol / Sqrt(12)) * close;
 
-- input LowVolLimit = 20;
+AddLabel(DisplayMonthly1StandardDev, Concat("1Mo SD +/- $", Astext( ImpPts3, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
 
-- input HighVolLimit = 70;
-
-- input DisplayShorterTerm = yes;
-
-- input ShortTimePeriod = 63;
-
-- input DisplayImpVolatility= yes;
-
-- input DisplayDaily1StandardDev = yes;
-
-- input DisplayWeekly1StandardDev = yes;
-
-- input DisplayMonthly1StandardDev = yes;
-
-- input InvertRedGreen = yes;
-
-- def data = if !isNaN(vol) then vol else vol[-1];
-
-- def hi = highest(data, TimePeriod);
-
-- def lo = lowest(data, TimePeriod);
-
-- def ShortHi = highest(data, ShortTimePeriod);
-
-- def ShortLo = lowest(data, ShortTimePeriod);
-
-- plot Percentile = (data - lo) / (hi - lo) * 100;
-
-- def lowend = Percentile < LowVolLimit;
-
-- def highend = Percentile > HighVolLimit;
-
-- def sPercentile = (data - ShortLo) / (ShortHi - ShortLo) * 100;
-
-- def ShortLowend = sPercentile < LowVolLimit;
-
-- def ShortHighend = sPercentile > HighVolLimit;
-
-- DefineGlobalColor("lowcolor", if InvertRedGreen then color.green else color.red);
-
-- DefineGlobalColor("Shortlowcolor", if InvertRedGreen then color.green else color.red);
-
-- DefineGlobalColor("highcolor", if InvertRedGreen then color.red else color.green);
-
-- DefineGlobalColor("Shorthighcolor", if InvertRedGreen then color.red else color.green);
-
-- #Labels
-
-- addlabel(DisplayIVPercentile , concat("Long IV Rank: ",aspercent(round(Percentile /100, 2))), if lowend then
-
-- GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-
-- addlabel(DisplayShorterTerm , concat("Short IV Rank: ",aspercent(round(sPercentile /100, 2))), if shortlowend then
-
-- GlobalColor("Shortlowcolor") else if shorthighend then GlobalColor("Shorthighcolor") else color.yellow);
-
-- addlabel(DisplayImpVolatility, concat("ImpVol: ",aspercent(vol)), if lowend then GlobalColor("lowcolor") else if highend
-
-- then GlobalColor("highcolor") else color.yellow);
-
-- def ImpPts = (vol / Sqrt(252)) * close;
-
-- AddLabel(DisplayDaily1StandardDev , Concat("1Dy SD +/- $", Astext( ImpPts,
-
-- NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then
-
-- GlobalColor("highcolor") else color.yellow);
-
-- def ImpPts2 = (vol / Sqrt(52)) * close;
-
-- AddLabel(DisplayWeekly1StandardDev, Concat("1Wk SD +/- $", Astext( ImpPts2,
-
-- NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then
-
-- GlobalColor("highcolor") else color.yellow);
-
-- def ImpPts3 = (vol / Sqrt(12)) * close;
-
-- AddLabel(DisplayMonthly1StandardDev, Concat("1Mo SD +/- $", Astext( ImpPts3,
-
-- NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then
-
-- GlobalColor("highcolor") else color.yellow);
-
-- plot LowVol = LowVolLimit;
-
-- plot HighVol = HighVolLimit;
-
-- LowVol.SetDefaultColor(GetColor(6));
-
-- HighVol.SetDefaultColor(GetColor(5));
-
-- #end
+plot LowVol = LowVolLimit;
+plot HighVol = HighVolLimit;
+LowVol.SetDefaultColor(GetColor(6));
+HighVol.SetDefaultColor(GetColor(5));
+#end
+```
 
 ## C-MINUTES-AGO SINCE A TURN-UP OF A MOVING AVERAGE
 
 [Return to TOC](#toc)
 
-- Comment 1: It frequently happens that a stock advances and then pauses before continuing to rise some more. This
+- Comment 1: It frequently happens that a stock advances and then pauses before continuing to rise some more. This pattern has often been referred to as a 'bull flag' or 'bull pennant'. That scenario gave rise to a request for a custom column that tells the minutes since a stock made a turn up. This code was developed to show the minutes-ago that the stock started to turn up. Realize that the 'minutes-ago' will be different for  each aggregation. This code can be used by having two custom columns with different aggregations like 5-mins and 15-mins. The user found those time differences between the two custom columns pertinent in his decision making. Note that every custom column has an aggregation that is set to your desires.
 
-- pattern has often been referred to as a 'bull flag' or 'bull pennant'. That scenario gave rise to a request for a custom
+Comment 2: As a coding note, since the desired result was in minutes in lieu of bars, a 'bars-X-factor = minutes' had to be established for each aggregation. The numerous 'getAggregationPeriod() ==' lines are to define such a factor.
 
-- column that tells the minutes since a stock made a turn up. This code was developed to show the minutes-ago that the
+```
+#hint:<b>A WLC that shows the minutes-ago since the last turn of the moving average either up or down.</b>\nFor comparison, you may create duplicate copies of this WLC with their own names and desired aggregations. The exclusion of extended hours is recommended.\nSet the Aggregation to the desired value with proper name to ID it. \nLabels show the number of bars that correlate with the column's minutes-ago.
 
-- stock started to turn up. Realize that the 'minutes-ago' will be different for  each aggregation. This code can be used by
+declare lower;
 
-- having two custom columns with different aggregations like 5-mins and 15-mins. The user found those time differences
+input price           = close;#hint price: The price component being mearured
+input fastLength      = 2;#Hint fastLength: A very short length used as a reference for the turn-up of the slower MA
+input fastMvaType     = AverageType.SIMPLE;#hint fastMvaType: The type of MovAvg of the fast reference average.
+input slowLength      = 30;#hint slowLength:The length of the main slow MovingAverage
+input slowMvaType     = AverageType.SIMPLE;#hint slowMvaType: The type of MovAvg of the main slow Moving Average
+def fastMva           = MovingAverage( fastMvaType, price, fastLength );
+def slowMva           = MovingAverage( slowMvaType, price, slowLength );
+def Histogram        = fastMva - slowMva;
 
-- between the two custom columns pertinent in his decision making. Note that every custom column has an aggregation that
+#===== Define conditions to count up & down bars ==========
+Def IsUp = If Histogram > 0 then 1 else 0;
+Def IsDown = If Histogram < 0 then 1 else 0;
+Rec count_downs = compoundvalue(1,if isdown then count_downs[1] + 1 else 0 ,0);
+Rec count_ups = compoundvalue(1,if isup then count_ups[1] + 1 else 0,0);
 
-- is set to your desires.
+#===== Define the bars-to-minutes factor ===========
+Def Factor =  if getAggregationPeriod() == AggregationPeriod.MIN then 1 else if
+  getAggregationPeriod() == AggregationPeriod.TWO_MIN then 2 else if
+  getAggregationPeriod() == AggregationPeriod.THREE_MIN then 3 else if
+  getAggregationPeriod() == AggregationPeriod.FOUR_MIN then 4 else if
+  getAggregationPeriod() == AggregationPeriod.FIVE_MIN then 5 else if
+  getAggregationPeriod() == AggregationPeriod.TEN_MIN then 10 else if
+  getAggregationPeriod() == AggregationPeriod.FIFTEEN_MIN then 15 else if
+  getAggregationPeriod() == AggregationPeriod.TWENTY_MIN then 20 else if
+  getAggregationPeriod() == AggregationPeriod.THIRTY_MIN then 30 else if
+  getAggregationPeriod() == AggregationPeriod.HOUR then 60 else if
+  getAggregationPeriod() == AggregationPeriod.TWO_HOURS then 120 else if
+  getAggregationPeriod() == AggregationPeriod.FOUR_HOURS then 240 else if
+  getAggregationPeriod() == AggregationPeriod.DAY then 1440 else if
+  getAggregationPeriod() == AggregationPeriod.TWO_DAYS then 2880 else if
+  getAggregationPeriod() == AggregationPeriod.THREE_DAYS then 4320 else if
+  getAggregationPeriod() == AggregationPeriod.FOUR_DAYS then 5750 else if
+  getAggregationPeriod() == AggregationPeriod.WEEK then 7200 else if
+  getAggregationPeriod() == AggregationPeriod.MONTH then 28800
+  else double.nan;
 
-- Comment 2: As a coding note, since the desired result was in minutes in lieu of bars, a 'bars-X-factor = minutes' had to
+#========
+Def MinsSinceTurn = if count_downs == 0 then count_Ups * factor else if count_Ups == 0 then count_Downs * factor else 0 ;
+Plot Data_MST = MinsSinceTurn;
+Data_MST.setdefaultcolor(color.YELLOW);
 
-- be established for each aggregation. The numerous 'getAggregationPeriod() ==' lines are to define such a factor.
-
-- #hint:<b>A WLC that shows the minutes-ago since the last turn of the moving average either up or down.</b>\nFor
-
-- comparison, you may create duplicate copies of this WLC with their own names and desired aggregations. The exclusion of
-
-- extended hours is recommended.\nSet the Aggregation to the desired value with proper name to ID it. \nLabels show
-
-- the number of bars that correlate with the column's minutes-ago.
-
-- declare lower;
-
-- input price           = close;#hint price: The price component being mearured
-
-- input fastLength      = 2;#Hint fastLength: A very short length used as a reference for the turn-up of the slower MA
-
-- input fastMvaType     = AverageType.SIMPLE;#hint fastMvaType: The type of MovAvg of the fast reference average.
-
-- input slowLength      = 30;#hint slowLength:The length of the main slow MovingAverage
-
-- input slowMvaType     = AverageType.SIMPLE;#hint slowMvaType: The type of MovAvg of the main slow Moving Average
-
-- def fastMva           = MovingAverage( fastMvaType, price, fastLength );
-
-- def slowMva           = MovingAverage( slowMvaType, price, slowLength );
-
-- def Histogram        = fastMva - slowMva;
-
-- #===== Define conditions to count up & down bars ==========
-
-- Def IsUp = If Histogram > 0 then 1 else 0;
-
-- Def IsDown = If Histogram < 0 then 1 else 0;
-
-- Rec count_downs = compoundvalue(1,if isdown then count_downs[1] + 1 else 0 ,0);
-
-- Rec count_ups = compoundvalue(1,if isup then count_ups[1] + 1 else 0,0);
-
-- #===== Define the bars-to-minutes factor ===========
-
-- Def Factor =  if getAggregationPeriod() == AggregationPeriod.MIN then 1 else if
-
-- getAggregationPeriod() == AggregationPeriod.TWO_MIN then 2 else if
-
-- getAggregationPeriod() == AggregationPeriod.THREE_MIN then 3 else if
-
-- getAggregationPeriod() == AggregationPeriod.FOUR_MIN then 4 else if
-
-- getAggregationPeriod() == AggregationPeriod.FIVE_MIN then 5 else if
-
-- getAggregationPeriod() == AggregationPeriod.TEN_MIN then 10 else if
-
-- getAggregationPeriod() == AggregationPeriod.FIFTEEN_MIN then 15 else if
-
-- getAggregationPeriod() == AggregationPeriod.TWENTY_MIN then 20 else if
-
-- getAggregationPeriod() == AggregationPeriod.THIRTY_MIN then 30 else if
-
-- getAggregationPeriod() == AggregationPeriod.HOUR then 60 else if
-
-- getAggregationPeriod() == AggregationPeriod.TWO_HOURS then 120 else if
-
-- getAggregationPeriod() == AggregationPeriod.FOUR_HOURS then 240 else if
-
-- getAggregationPeriod() == AggregationPeriod.DAY then 1440 else if
-
-- getAggregationPeriod() == AggregationPeriod.TWO_DAYS then 2880 else if
-
-- getAggregationPeriod() == AggregationPeriod.THREE_DAYS then 4320 else if
-
-- getAggregationPeriod() == AggregationPeriod.FOUR_DAYS then 5750 else if
-
-- getAggregationPeriod() == AggregationPeriod.WEEK then 7200 else if
-
-- getAggregationPeriod() == AggregationPeriod.MONTH then 28800
-
-- else double.nan;
-
-- #========
-
-- Def MinsSinceTurn = if count_downs == 0 then count_Ups * factor else if count_Ups == 0 then count_Downs * factor
-
-- else 0 ;
-
-- Plot Data_MST = MinsSinceTurn;
-
-- Data_MST.setdefaultcolor(color.YELLOW);
-
-- AssignBackgroundColor(if count_Ups > 0 then color.dark_green
-
-- else if count_downs > 0 then
-
-- color.dark_RED
-
-- else color.current);
-
-- #AddLabel(count_ups <> 0," The current number of " + factor + "-min-UP-bars = " + count_Ups,color.green);
-
-- #AddLabel(count_downs <> 0," The current number of " + factor + "-min-DOWN-bars = " + count_Downs,color.RED);
-
-- #end
+AssignBackgroundColor(if count_Ups > 0 then color.dark_green else if count_downs > 0 then color.dark_RED else color.current);
+#AddLabel(count_ups <> 0," The current number of " + factor + "-min-UP-bars = " + count_Ups,color.green);
+#AddLabel(count_downs <> 0," The current number of " + factor + "-min-DOWN-bars = " + count_Downs,color.RED);
+#end
+```
 
 ## C-CODE FOR DAY-OF-THE-WEEK
 
 [Return to TOC](#toc)
 
-- For coding related to the day of week (Monday, Tuesday, etc.) see an example under 'VERTICAL LINES (3 STUDIES)'.
+For coding related to the day of week (Monday, Tuesday, etc.) see an example under 'VERTICAL LINES (3 STUDIES)'.
 
 ## C-   NORMALIZED MACD AND STOCHASTIC PLOTTED WITH A SQUEEZE INDICATION
 
 [Return to TOC](#toc)
 
-- # Normalized MACD, Stochastic
-
-- # Conditions and Squeeze indicator on the Zero Line
-
-- # by Mobius at MyTrade. Labels & clarifications by StanL
-
-- declare lower;
-
-- script normalizePlot {
-
-- input data = close;
-
-- input newRngMin =  -1;
-
-- input newRngMax = 1;
-
-- def hhData = HighestAll( data );
-
-- def llData = LowestAll( data );
-
-- plot nr = ((( newRngMax - newRngMin ) * ( data - llData )) /
-
-- ( hhData - llData )) + newRngMin;
-
-- }
-
-- input fastEMA = 13;
-
-- input slowEMA = 21;
-
-- input Smooth  =  8;
-
-- input MacdWaveC = 50;
-
-- input nK = 10;
-
-- input nD = 3;
-
-- input nVP = 21;
-
-- input UpperLine = 30;
-
-- input LowerLine = -30;
-
-- def data   = close;
-
-- #======== Coloring the info header text ===========
-
-- plot WhiteLabel = Double.NaN;
-
-- WhiteLabel.SetDefaultColor(Color.White);
-
-- #==============================================
-
-- # VWAP Calculations
-
-- def v = volume;
-
-- def p = close;
-
-- def n = 5;
-
-- def vwap = Sum((p * v), n) / Sum(v, n);
-
-- # MACD Normalization script
-
-- script MACD{
-
-- input fastEMA = 13;
-
-- input slowEMA = 21;
-
-- input Smooth  =  8;
-
-- input value = close;
-
-- def FSignal = (value * .15) +  (.85  * ExpAverage(value, fastEMA)[1]);
-
-- def SSignal = (value * .075) + (.925 * ExpAverage(value, slowEMA)[1]);
-
-- def MACD    = FSignal - SSignal;
-
-- plot MACDSL  = ExpAverage(MACD, Smooth);
-
-- }
-
-- # Stochastic normalization script
-
-- script Stochastic{
-
-- input nK = 10;
-
-- input nD = 3;
-
-- input value = close;
-
-- def l = low;
-
-- def h = high;
-
-- def Data = 100 * ((value - Lowest(l, nK)) / (Highest(h, nK) - Lowest(l, nK)));
-
-- def K = Inertia(Data, nK);
-
-- plot D = ExpAverage(K, nD);
-
-- }
-
-- #========== the normalized MACD & Stochastic =============
-
-- def newMACD = normalizePlot( MACD("fastEMA" = fastEMA, "slowEMA" = slowEMA, "Smooth" = Smooth, "Value" =
-
-- vwap), -100, 100 );
-
-- def newStochastic = normalizePlot( Stochastic("value" = vwap, "nK" = nK, "nD" = nD ), -50, 50 );
-
-- plot MACD = newMACD;
-
-- plot Stoch = newStochastic;
-
-- plot os = if isNaN(close) then Double.NaN else LowerLine;
-
-- os.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- os.SetLineWeight(1);
-
-- os.SetDefaultColor(Color.WHITE);
-
-- plot ob = If IsNaN(close) then Double.NaN else UpperLine;
-
-- ob.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- ob.SetLineWeight(1);
-
-- ob.SetDefaultColor(Color.WHITE);
-
-- plot ml = If  isNaN(close) then Double.NaN else 0;
-
-- ml.SetPaintingStrategy(PaintingStrategy.DASHES);
-
-- ml.SetLineWeight(1);
-
-- ml.SetDefaultColor(Color.WHITE);
-
-- # BB KC Squeeze
-
-- def Avg = Average(close, 20);
-
-- def stDeviation = stDev(close, 20);
-
-- def ATR = Average(TrueRange(high, low, close), 20);
-
-- def upperBB = Avg + (2 * stDeviation);
-
-- def upperKC = Avg + (1.5 * ATR);
-
-- def Squeeze = If upperBB < upperKC then yes else Double.NaN;
-
-- # Chart Management
-
-- # Plots
-
-- MACD.SetPaintingStrategy(PaintingStrategy.Histogram);
-
-- MACD.AssignValueColor(if MACD >= 50 and MACD > MACD[1] then Color.GREEN
-
-- else if MACD >= 50 and MACD < MACD[1]
-
-- then Color.RED
-
-- else if MACD <= 50 and MACD < MACD[1]
-
-- then Color.RED
-
-- else Color.DARK_GREEN);
-
-- MACD.SetLineWeight(3);
-
-- #======== lining the histogram =========
-
-- plot MACD2 = newMACD;
-
-- MACD2.SetPaintingStrategy(PaintingStrategy.line);
-
-- MACD2.SetLineWeight(2);
-
-- MACD2.SetDefaultColor(Color.WHITE);
-
-- #=======================================
-
-- Stoch.SetPaintingStrategy(PaintingStrategy.Line);
-
-- Stoch.AssignValueColor(if Stoch >= 50 and Stoch > Stoch[1]
-
-- then Color.CYAN
-
-- else if Stoch >= 50 and Stoch < Stoch[1]
-
-- then Color.BLUE
-
-- else if Stoch <= 50 and Stoch < Stoch[1]
-
-- then Color.LIGHT_RED
-
-- else Color.YELLOW);
-
-- Stoch.SetLineWeight(2);
-
-- # End MACD Code
-
-- def cond1 =  if close > open and close > close[1] and
-
-- MACD > MACD[1]  and
-
-- Stoch > Stoch[1]
-
-- then yes
-
-- else Double.NaN;
-
-- plot zeroLineSqueeze = if Squeeze
-
-- then 0
-
-- else Double.NaN;
-
-- zeroLineSqueeze.SetPaintingStrategy(PaintingStrategy.Points);
-
-- zeroLineSqueeze.SetLineWeight(2);
-
-- zeroLineSqueeze.SetDefaultColor(Color.BLUE);
-
-- plot zeroLineCond2 = if Cond1
-
-- then 0
-
-- else Double.NaN;
-
-- zeroLineCond2.SetPaintingStrategy(PaintingStrategy.Points);
-
-- zeroLineCond2.SetLineWeight(2);
-
-- zeroLineCond2.SetDefaultColor(Color.DarK_Green);
-
-- plot zeroLine = if IsNaN(close)
-
-- then Double.NaN
-
-- else if isNaN(Squeeze) and isNaN(Cond1)
-
-- then 0
-
-- else Double.NaN;
-
-- zeroLine.SetPaintingStrategy(PaintingStrategy.Points);
-
-- zeroLine.SetLineWeight(2);
-
-- zeroLine.SetDefaultColor(Color.Yellow);
-
-- AddLabel(1,"MACD is Histogram",Color.PINK);
-
-- AddLabel(1, "Stochastic is the line plot", color.PINK);
-
-- AddLabel(1,if squeeze then "A Squeeze is ON now" else "A squeeze is OFF now",color.PINK);
-
-- #======= Draw a line at 100 when a squeeze exists ===========
-
-- Plot D_squeeze = If squeeze then 100 else Double.NaN;
-
-- D_squeeze.SetDefaultColor(Color.MAGENTA);
-
-- #======Push label upper so squeeze line is visable ========
-
-- Plot Label_pushUP = 120;
-
-- Label_pushUP.SetDefaultColor(Color.BLUE);#insert your background color so line is invisible
-
-- # end
+```
+# Normalized MACD, Stochastic
+# Conditions and Squeeze indicator on the Zero Line
+# by Mobius at MyTrade. Labels & clarifications by StanL
+
+declare lower;
+
+script normalizePlot {
+  input data = close;
+  input newRngMin =  -1;
+  input newRngMax = 1;
+
+  def hhData = HighestAll( data );
+  def llData = LowestAll( data );
+
+  plot nr = ((( newRngMax - newRngMin ) * ( data - llData )) / ( hhData - llData )) + newRngMin;
+}
+
+input fastEMA = 13;
+input slowEMA = 21;
+input Smooth  =  8;
+input MacdWaveC = 50;
+input nK = 10;
+input nD = 3;
+input nVP = 21;
+input UpperLine = 30;
+input LowerLine = -30;
+
+def data   = close;
+
+#======== Coloring the info header text ===========
+plot WhiteLabel = Double.NaN;
+WhiteLabel.SetDefaultColor(Color.White);
+
+#==============================================
+# VWAP Calculations
+def v = volume;
+def p = close;
+def n = 5;
+def vwap = Sum((p * v), n) / Sum(v, n);
+
+# MACD Normalization script
+script MACD{
+  input fastEMA = 13;
+  input slowEMA = 21;
+  input Smooth  =  8;
+  input value = close;
+
+  def FSignal = (value * .15) +  (.85  * ExpAverage(value, fastEMA)[1]);
+  def SSignal = (value * .075) + (.925 * ExpAverage(value, slowEMA)[1]);
+  def MACD    = FSignal - SSignal;
+
+  plot MACDSL  = ExpAverage(MACD, Smooth);
+}
+
+# Stochastic normalization script
+script Stochastic{
+  input nK = 10;
+  input nD = 3;
+  input value = close;
+
+  def l = low;
+  def h = high;
+  def Data = 100 * ((value - Lowest(l, nK)) / (Highest(h, nK) - Lowest(l, nK)));
+  def K = Inertia(Data, nK);
+
+  plot D = ExpAverage(K, nD);
+}
+
+#========== the normalized MACD & Stochastic =============
+def newMACD = normalizePlot( MACD("fastEMA" = fastEMA, "slowEMA" = slowEMA, "Smooth" = Smooth, "Value" = vwap), -100, 100 );
+def newStochastic = normalizePlot( Stochastic("value" = vwap, "nK" = nK, "nD" = nD ), -50, 50 );
+
+plot MACD = newMACD;
+plot Stoch = newStochastic;
+plot os = if isNaN(close) then Double.NaN else LowerLine;
+os.SetPaintingStrategy(PaintingStrategy.LINE);
+os.SetLineWeight(1);
+os.SetDefaultColor(Color.WHITE);
+
+plot ob = If IsNaN(close) then Double.NaN else UpperLine;
+ob.SetPaintingStrategy(PaintingStrategy.LINE);
+ob.SetLineWeight(1);
+ob.SetDefaultColor(Color.WHITE);
+
+plot ml = If  isNaN(close) then Double.NaN else 0;
+ml.SetPaintingStrategy(PaintingStrategy.DASHES);
+ml.SetLineWeight(1);
+ml.SetDefaultColor(Color.WHITE);
+
+# BB KC Squeeze
+def Avg = Average(close, 20);
+def stDeviation = stDev(close, 20);
+def ATR = Average(TrueRange(high, low, close), 20);
+def upperBB = Avg + (2 * stDeviation);
+def upperKC = Avg + (1.5 * ATR);
+def Squeeze = If upperBB < upperKC then yes else Double.NaN;
+
+# Chart Management
+# Plots
+
+MACD.SetPaintingStrategy(PaintingStrategy.Histogram);
+MACD.AssignValueColor(if MACD >= 50 and MACD > MACD[1] then Color.GREEN
+else if MACD >= 50 and MACD < MACD[1]
+then Color.RED
+else if MACD <= 50 and MACD < MACD[1]
+then Color.RED
+else Color.DARK_GREEN);
+MACD.SetLineWeight(3);
+
+#======== lining the histogram =========
+plot MACD2 = newMACD;
+MACD2.SetPaintingStrategy(PaintingStrategy.line);
+MACD2.SetLineWeight(2);
+MACD2.SetDefaultColor(Color.WHITE);
+
+#=======================================
+Stoch.SetPaintingStrategy(PaintingStrategy.Line);
+Stoch.AssignValueColor(if Stoch >= 50 and Stoch > Stoch[1] then Color.CYAN else if Stoch >= 50 and Stoch < Stoch[1] then Color.BLUE
+else if Stoch <= 50 and Stoch < Stoch[1]
+then Color.LIGHT_RED else Color.YELLOW);
+Stoch.SetLineWeight(2);
+
+# End MACD Code
+def cond1 =  if close > open and close > close[1] and MACD > MACD[1]  and Stoch > Stoch[1] then yes else Double.NaN;
+
+plot zeroLineSqueeze = if Squeeze then 0 else Double.NaN;
+zeroLineSqueeze.SetPaintingStrategy(PaintingStrategy.Points);
+zeroLineSqueeze.SetLineWeight(2);
+zeroLineSqueeze.SetDefaultColor(Color.BLUE);
+
+plot zeroLineCond2 = if Cond1 then 0 else Double.NaN;
+zeroLineCond2.SetPaintingStrategy(PaintingStrategy.Points);
+zeroLineCond2.SetLineWeight(2);
+zeroLineCond2.SetDefaultColor(Color.DarK_Green);
+
+plot zeroLine = if IsNaN(close)
+then Double.NaN
+else if isNaN(Squeeze) and isNaN(Cond1)
+then 0
+else Double.NaN;
+zeroLine.SetPaintingStrategy(PaintingStrategy.Points);
+zeroLine.SetLineWeight(2);
+zeroLine.SetDefaultColor(Color.Yellow);
+
+AddLabel(1,"MACD is Histogram",Color.PINK);
+AddLabel(1, "Stochastic is the line plot", color.PINK);
+AddLabel(1,if squeeze then "A Squeeze is ON now" else "A squeeze is OFF now",color.PINK);
+
+#======= Draw a line at 100 when a squeeze exists ===========
+Plot D_squeeze = If squeeze then 100 else Double.NaN;
+D_squeeze.SetDefaultColor(Color.MAGENTA);
+
+#======Push label upper so squeeze line is visable ========
+Plot Label_pushUP = 120;
+Label_pushUP.SetDefaultColor(Color.BLUE);#insert your background color so line is invisible
+# end
+```
 
 ## C-SIMPLE EXAMPLE TO ILLUSTRATE COUNTING
 
 [Return to TOC](#toc)
 
-- #hint:<b> Counts the number of bars where close  > open. </b>\n Yes/No options are for label, count numbers, bar
+```
+#hint:<b> Counts the number of bars where close  > open. </b>\n Yes/No options are for label, count numbers, bar numbers and a count-plot.
 
-- numbers and a count-plot.
+input ShowBarNumb = No;#hint ShowBarNumb: Yes shows the bar numbers below the low.
+input ShowCountNos = yes;#hint ShowCountNos:Yes shows the count of when close > open. It shows above the high.
+input ShowLabel = yes;#hint ShowLabel:Yes shows a summary label of the percent of bars that are up.
+input Show_Plot = No;#hint Show_Plot:Yes plots the count of up-bars. Chart-settings/general/'fit studies' must be checked to see this plot.
 
-- input ShowBarNumb = No;#hint ShowBarNumb: Yes shows the bar numbers below the low.
+Def counter_AnyDay = CompoundValue (1,if close > open then counter_AnyDay[1] + 1 else counter_AnyDay[1],if close > open then 1 else 0);#Note that the value of the first bar is determined by the last CompoundValue If-condition
 
-- input ShowCountNos = yes;#hint ShowCountNos:Yes shows the count of when close > open. It shows above the high.
+plot count = if close > open  &&  ShowCountNos  then counter_AnyDay else double.nan;
+Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
 
-- input ShowLabel = yes;#hint ShowLabel:Yes shows a summary label of the percent of bars that are up.
+Plot P_ShowPlot = If Show_Plot then counter_AnyDay else double.nan;
 
-- input Show_Plot = No;#hint Show_Plot:Yes plots the count of up-bars. Chart-settings/general/'fit studies' must be
+### below 2 lines convert to a line plot ###
+#Count.SetPaintingStrategy(PaintingStrategy.line);
+#Count.SetStyle(Curve.firm);
 
-- checked to see this plot.
+def BarNum = Barnumber();
+plot Bar_Nos = if ShowBarNumb then BarNum else Double.NaN;
+Bar_Nos.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
 
-- Def counter_AnyDay = CompoundValue (1,if close > open then counter_AnyDay[1] + 1 else counter_AnyDay[1],if close >
-
-- open then 1 else 0);#Note that the value of the first bar is determined by the last CompoundValue If-condition
-
-- plot count = if close > open  &&  ShowCountNos  then counter_AnyDay else double.nan;
-
-- Count.SetPaintingStrategy(PaintingStrategy.VALUES_ABOVE);
-
-- Plot P_ShowPlot = If Show_Plot then counter_AnyDay else double.nan;
-
-- ### below 2 lines convert to a line plot ###
-
-- #Count.SetPaintingStrategy(PaintingStrategy.line);
-
-- #Count.SetStyle(Curve.firm);
-
-- def BarNum = Barnumber();
-
-- plot Bar_Nos = if ShowBarNumb then BarNum else Double.NaN;
-
-- Bar_Nos.SetPaintingStrategy(PaintingStrategy.VALUES_BELOW);
-
-- Addlabel(ShowLabel, counter_AnyDay + " bars (" + (AsPercent(round(counter_AnyDay / barnumber(),2))) + ") out of a
-
-- total of " + Barnumber() + " bars have close > open",color.cyan);
-
-- #end
+Addlabel(ShowLabel, counter_AnyDay + " bars (" + (AsPercent(round(counter_AnyDay / barnumber(),2))) + ") out of a total of " + Barnumber() + " bars have close > open",color.cyan);
+#end
+```
 
 ## C-ILLUSTRATION OF SAME RESULT WITH DIFFERENT CODING
 
 [Return to TOC](#toc)
 
-- Comment: Some TOS studies deal with the same subject. The below code illustrates, using the DMI and DMI_Oscillator
+```
+Comment: Some TOS studies deal with the same subject. The below code illustrates, using the DMI and DMI_Oscillator studies as examples, how you may accomplish the same result in different ways.
 
-- studies as examples, how you may accomplish the same result in different ways.
+#====== DMI+ crossing above DMI- ============
+def DMIplus  = DMI(length = 25)."DI+";#Defines the DMI+ by reference-with-parameters
+def DMIminus = DMI(length = 25)."DI-";#Defines the DMI- by reference-with-parameters
 
-- #====== DMI+ crossing above DMI- ============
+#========== The below 3 code lines produce the same result ===========
+def DMItest = DMIplus > DMIminus and DMIplus[1] <= DMIminus[1]; # DMItest == 1 when true; 0 when false
+def crossing = Crossing(DMIplus, DMIminus, CrossingDirection.above); # crossing == 1 when true; 0 when false
+def crossing = Crossing(DMI_Oscillator("length" = 25 ).Hist, DMI_Oscillator().ZeroLine,crossingDirection.above); #crossing == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters
 
-- def DMIplus  = DMI(length = 25)."DI+";#Defines the DMI+ by reference-with-parameters
+#===== DMI+ is above DMI- ============
+def DMIplus  = DMI(length = 25)."DI+";#Defines the DMI+ by reference-with-parameters
+def DMIminus = DMI(length = 25)."DI-";#Defines the DMI- by reference-with-parameters
 
-- def DMIminus = DMI(length = 25)."DI-";#Defines the DMI- by reference-with-parameters
+#========== The below 2 code lines produce the same result ===========
+def DMItest = DMIplus > DMIminus;# DMItest == 1 when true; 0 when false
+def DMItest = DMI_Oscillator("length" = 25 ).Hist > 0;  # DMItest == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters.
 
-- #========== The below 3 code lines produce the same result ===========
+#====== DMI+ crossing below DMI- ============
+def DMIplus  = DMI(length = 25)."DI+";#Defines the DMI+ by reference-with-parameters
+def DMIminus = DMI(length = 25)."DI-";#Defines the DMI- by reference-with-parameters
 
-- def DMItest = DMIplus > DMIminus and DMIplus[1] <= DMIminus[1]; # DMItest == 1 when true; 0 when false
+#========== The below 3 code lines produce the same result ===========
+def DMItest = DMIplus < DMIminus and DMIplus[1] >= DMIminus[1]; # DMItest == 1 when true; 0 when false
+def crossing = Crossing(DMIplus, DMIminus, CrossingDirection.below); # crossing == 1 when true; 0 when false
+def crossing = Crossing(DMI_Oscillator("length" = 25 ).Hist,DMI_Oscillator().ZeroLine,crossingDirection.below); #crossing == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters.
 
-- def crossing = Crossing(DMIplus, DMIminus, CrossingDirection.above); # crossing == 1 when true; 0 when false
+#======= DMI+ is below the DMI- ===========
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
 
-- def crossing = Crossing(DMI_Oscillator("length" = 25 ).Hist, DMI_Oscillator().ZeroLine,crossingDirection.above); #
+#========== The below 2 code lines produce the same result ===========
+plot DMItest = DMIplus < DMIminus; # DMItest == 1 when true; 0 when false
+def DMItest = DMI_Oscillator("length" = 25).Hist > 0;  # DMItest == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters.
 
-- crossing == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters
-
-- #===== DMI+ is above DMI- ============
-
-- def DMIplus  = DMI(length = 25)."DI+";#Defines the DMI+ by reference-with-parameters
-
-- def DMIminus = DMI(length = 25)."DI-";#Defines the DMI- by reference-with-parameters
-
-- #========== The below 2 code lines produce the same result ===========
-
-- def DMItest = DMIplus > DMIminus;# DMItest == 1 when true; 0 when false
-
-- def DMItest = DMI_Oscillator("length" = 25 ).Hist > 0;  # DMItest == 1 when true; 0 when false. DMI_Oscillator is by
-
-- reference-with-parameters.
-
-- #====== DMI+ crossing below DMI- ============
-
-- def DMIplus  = DMI(length = 25)."DI+";#Defines the DMI+ by reference-with-parameters
-
-- def DMIminus = DMI(length = 25)."DI-";#Defines the DMI- by reference-with-parameters
-
-- #========== The below 3 code lines produce the same result ===========
-
-- def DMItest = DMIplus < DMIminus and DMIplus[1] >= DMIminus[1]; # DMItest == 1 when true; 0 when false
-
-- def crossing = Crossing(DMIplus, DMIminus, CrossingDirection.below); # crossing == 1 when true; 0 when false
-
-- def crossing = Crossing(DMI_Oscillator("length" = 25 ).Hist,DMI_Oscillator().ZeroLine,crossingDirection.below); #
-
-- crossing == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters.
-
-- #======= DMI+ is below the DMI- ===========
-
-- def DMIplus  = DMI(length = 25)."DI+";
-
-- def DMIminus = DMI(length = 25)."DI-";
-
-- #========== The below 2 code lines produce the same result ===========
-
-- plot DMItest = DMIplus < DMIminus; # DMItest == 1 when true; 0 when false
-
-- def DMItest = DMI_Oscillator("length" = 25).Hist > 0;  # DMItest == 1 when true; 0 when false. DMI_Oscillator is by
-
-- reference-with-parameters.
-
-- #======= Any Crossing direction =========
-
-- def crossing = Crossing(DMIplus, DMIminus, CrossingDirection.any); # for any crossing == 1 when true; 0 when false
-
-- def crossing = Crossing(DMI_Oscillator("length" = 25 ).Hist,DMI_Oscillator().ZeroLine,crossingDirection.any); # for any
-
-- crossing == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters.
-
-- #end
+#======= Any Crossing direction =========
+def crossing = Crossing(DMIplus, DMIminus, CrossingDirection.any); # for any crossing == 1 when true; 0 when false
+def crossing = Crossing(DMI_Oscillator("length" = 25 ).Hist,DMI_Oscillator().ZeroLine,crossingDirection.any); # for any crossing == 1 when true; 0 when false. DMI_Oscillator is by reference-with-parameters.
+#end
+```
 
 ## C&S-FLEXIBLE 200-DAY MOVING AVERAGE PLOT AND SCAN
 
 [Return to TOC](#toc)
 
-- Comment: The 200-day and 50-day are popular moving averages used to determine bullish or bearish movement. This
+Comment: The 200-day and 50-day are popular moving averages used to determine bullish or bearish movement. This study presents the 200 day moving average plot and a scan for within 10% of the MA(200).  Any moving average may be had by use of the flexible input selections
 
-- study presents the 200 day moving average plot and a scan for within 10% of the MA(200).  Any moving average may be
+```
+input price = FundamentalType.CLOSE;
+input aggregationPeriod = AggregationPeriod.DAY;
+input length = 200;
+input averageType = AverageType.SIMPLE;
 
-- had by use of the flexible input selections
+#======= use below if aggregation is used ==========
+#plot MovAvg = MovingAverage(averageType, Fundamental(price, period = aggregationPeriod), length);
+#================================================
+#======= use below if aggregation is NOT included (typical for TOS' scans) ==========
+plot MovAvg = MovingAverage(averageType, Fundamental(price), length); # This is the format for scans because TOS' scans determine aggregation via a drop-down selection in lieu of the agg being within the code.
 
-- input price = FundamentalType.CLOSE;
-
-- input aggregationPeriod = AggregationPeriod.DAY;
-
-- input length = 200;
-
-- input averageType = AverageType.SIMPLE;
-
-- #======= use below if aggregation is used ==========
-
-- #plot MovAvg = MovingAverage(averageType, Fundamental(price, period = aggregationPeriod), length);
-
-- #================================================
-
-- #======= use below if aggregation is NOT included (typical for TOS' scans) ==========
-
-- plot MovAvg = MovingAverage(averageType, Fundamental(price), length); # This is the format for scans because TOS'
-
-- scans determine aggregation via a drop-down selection in lieu of the agg being within the code.
-
-- #=================================================
-
-- #============= Scan code ===================
-
-- Plot scan_above =  MovingAverage(averageType, Fundamental(price), length)  * 1.1;
-
-- Plot scan_below =  MovingAverage(averageType, Fundamental(price), length)  * 0.9;
-
-- #============= below for combined scan ====================
-
-- Plot Scan_combined = MovingAverage(averageType, Fundamental(price), length)  * 1.1 OR MovingAverage(averageType,
-
-- Fundamental(price), length)  * 0.9;
-
-- #end
+#=================================================
+#============= Scan code ===================
+Plot scan_above =  MovingAverage(averageType, Fundamental(price), length)  * 1.1;
+Plot scan_below =  MovingAverage(averageType, Fundamental(price), length)  * 0.9;
+#============= below for combined scan ====================
+Plot Scan_combined = MovingAverage(averageType, Fundamental(price), length)  * 1.1 OR MovingAverage(averageType, Fundamental(price), length)  * 0.9;
+#end
+```
 
 - C-HOW TO USE
 
@@ -9321,99 +6839,61 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- Comment: There are times when one wants to use a study-within-a-study, The LinearRegressionCurve and
+Comment: There are times when one wants to use a study-within-a-study, The LinearRegressionCurve and ProjectionBands are builtins used here to plot the linear regression of the upper projection band. All four below produce the same result and also illustrate the ways to use references.
 
-- ProjectionBands are builtins used here to plot the linear regression of the upper projection band. All four below produce
+```
+#==== LR of Upper Projection Band =======
+def UPB = ProjectionBands(14).MaxBound;
+def LR_UPB = LinearRegCurve(Length = 10, Price = UPB);
+plot data1 = LR_UPB;
 
-- the same result and also illustrate the ways to use references.
+#==== Alternate that works ==========
+def UPB = ProjectionBands(14).MaxBound;
+def LR_UPB = LinearRegCurve(0, 10, UPB);
+plot data1 = LR_UPB;
 
-- #==== LR of Upper Projection Band =======
+#==== Alternate that works ==========
+Def UPB = ProjectionBands(14).MaxBound;
+def LR_UPB = Inertia(UPB, 10);
+Plot data1 = LR_UPB;
 
-- def UPB = ProjectionBands(14).MaxBound;
-
-- def LR_UPB = LinearRegCurve(Length = 10, Price = UPB);
-
-- plot data1 = LR_UPB;
-
-- #==== Alternate that works ==========
-
-- def UPB = ProjectionBands(14).MaxBound;
-
-- def LR_UPB = LinearRegCurve(0, 10, UPB);
-
-- plot data1 = LR_UPB;
-
-- #==== Alternate that works ==========
-
-- Def UPB = ProjectionBands(14).MaxBound;
-
-- def LR_UPB = Inertia(UPB, 10);
-
-- Plot data1 = LR_UPB;
-
-- #==== Alternate that works ==========
-
-- def LR_UPB = LinearRegCurve(Length = 10, Price =  ProjectionBands(14).MaxBound);
-
-- plot data1 = LR_UPB;
-
-- #end
+#==== Alternate that works ==========
+def LR_UPB = LinearRegCurve(Length = 10, Price =  ProjectionBands(14).MaxBound);
+plot data1 = LR_UPB;
+#end
+```
 
 ## C-AN ALTERED 'PERCENTCHG' TO MAKE IT MORE USEFUL
 
 [Return to TOC](#toc)
 
-- Comment: The builtin 'PercentChg' has been altered to allow inputs for loAlert and hiAlert to be less than one. This then
+Comment: The builtin 'PercentChg' has been altered to allow inputs for loAlert and hiAlert to be less than one. This then enables this study to be referenced/used in intra-day studies/strategies where less-than-one-percent changes are normal. Info hints were also added to be more informative,
 
-- enables this study to be referenced/used in intra-day studies/strategies where less-than-one-percent changes are
+```
+# PercentChg_SFL
+#hint:Plots the percent change from length-bars ago. Input loAlert and hiAlert values may be changed to convert the plot to an oscillator which may be used as a reference in a strategy. The plot coloring automatically changes to be RED above hiAlert and CYAN below loAlert.
 
-- normal. Info hints were also added to be more informative,
+declare lower;
 
-- # PercentChg_SFL
+input hiAlert = 0.25;#hint hiAlert:The value, above which the plot is colored RED.\n The neutral area (between hiAlert and loAlert) is colored "Normal" = LIGHT_GRAY = 3
+input length = 14;#hint length: The look-back bars being compared to.
+input loAlert = 0.25;#hint loAlert:The value, below which the plot is colored GREEN. \nThe neutral area (between hiAlert and loAlert) is colored "Normal" = LIGHT_GRAY = 3
+input price = close;#hint price:Select the data type to be evaluated
 
-- #hint:Plots the percent change from length-bars ago. Input loAlert and hiAlert values may be changed to convert the
+assert(length > 0, "'length' must be positive: " + length);
 
-- plot to an oscillator which may be used as a reference in a strategy. The plot coloring automatically changes to be RED
-
-- above hiAlert and CYAN below loAlert.
-
-- declare lower;
-
-- input hiAlert = 0.25;#hint hiAlert:The value, above which the plot is colored RED.\n The neutral area (between hiAlert
-
-- and loAlert) is colored "Normal" = LIGHT_GRAY = 3
-
-- input length = 14;#hint length: The look-back bars being compared to.
-
-- input loAlert = 0.25;#hint loAlert:The value, below which the plot is colored GREEN. \nThe neutral area (between hiAlert
-
-- and loAlert) is colored "Normal" = LIGHT_GRAY = 3
-
-- input price = close;#hint price:Select the data type to be evaluated
-
-- assert(length > 0, "'length' must be positive: " + length);
-
-- plot PercentChg = 100 * (price / price[length] - 1);
-
-- plot pHiAlert = hiAlert;
-
-- plot pLoAlert = loAlert;
-
-- PercentChg.DefineColor("HiAlert", GetColor(5));
-
-- PercentChg.DefineColor("Normal", GetColor(3));
-
-- PercentChg.DefineColor("LoAlert", GetColor(1));
-
-- PercentChg.AssignValueColor(if PercentChg > hiAlert then PercentChg.color("HiAlert") else if PercentChg < loAlert then
-
-- PercentChg.color("LoAlert") else PercentChg.color("Normal"));
-
-- pHiAlert.SetDefaultColor(GetColor(8));
-
-- pLoAlert.SetDefaultColor(GetColor(8));
-
-- #end
+plot PercentChg = 100 * (price / price[length] - 1);
+plot pHiAlert = hiAlert;
+plot pLoAlert = loAlert;
+PercentChg.DefineColor("HiAlert", GetColor(5));
+PercentChg.DefineColor("Normal", GetColor(3));
+PercentChg.DefineColor("LoAlert", GetColor(1));
+PercentChg.AssignValueColor(if PercentChg > hiAlert then PercentChg.color("HiAlert") else if PercentChg < loAlert then
+PercentChg.color("LoAlert") else PercentChg.color("Normal"));
+pHiAlert.SetDefaultColor(GetColor(8));
+pLoAlert.SetDefaultColor(GetColor(8));
+#end
+```
 
 ## C-LINEAR REGRESSION OF THE PROJECTIONBANDS STUDY
 
@@ -9497,1115 +6977,625 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 [Return to TOC](#toc)
 
-- # % increase of all S&P 500 sectors
-
-- #Hint:<b> Plots the %-change-of-the S&P 500's nine sectors.</b><li>To highlight a sector of interest, change its weight in
-
-- 'Edit Studies' and/or define a 'CloudSymbol' to show its SPX/Symbol cloud.</li><li>The SPX plot is highlighted.</li> <li>
-
-- The color of the plots match the color of the labels and bubbles.</li><li> Labels and Bubbles may be toggled on/off.
-
-- </li><li><b>'Chart Settings/Time Axis/Expansion Area' is set to '40 bars to the right'</b> to provide bubble space.
-
-- </li><li>This plots on many aggs down to minutes but 'Day' agg time chart is the most meaningful. <li> Changing of the input
-
-- symbols is <b>not recommended</b> but, if done, the symbol will be plotted but its ID characteristics will be wrong. For
-
-- example, if  QQQ was inputted where XLY was shown, QQQ will be plotted but it will incorrectly be labeled a 'cyclicals'
-
-- and QQQ will not appear in the cloud selection list. <li>You can enhance chart reading by expanding the vertical height or
-
-- plotting alone.</li>
-
-- #Revised 3/17/14
-
-- declare lower;
-
-- #======= List all of the S&P 500 sectors =========
-
-- input price = FundamentalType.CLOSE;
-
-- input symbol1 = "SPX";#hint symbol1:Normally this is the SPX.
-
-- input symbol2 = "XLY";#hint symbol2:Normally this is the SPX's XLY
-
-- input symbol3 = "XLK";#hint symbol3:Normally this is the SPX's XLK
-
-- input symbol4 = "XLI";#hint symbol4:Normally this is the SPX's XLI
-
-- input symbol5 = "XLB";#hint symbol5:Normally this is the SPX's XLB
-
-- input symbol6 = "XLE";#hint symbol6:Normally this is the SPX's XLE
-
-- input symbol7 = "XLP";#hint symbol7:Normally this is the SPX's XLP
-
-- input symbol8 = "XLV";#hint symbol8:Normally this is the SPX's XLV
-
-- input symbol9 = "XLU";#hint symbol9:Normally this is the SPX's XLU
-
-- input symbol10 = "XLF";#hint symbol10:Normally this is the SPX's XLF
-
-- Input CloudSymbol = {default SPX, XLY, XLK, XLI, XLB, XLE, XLP, XLV, XLU, XLF};#hint CloudSymbol:Select the sector
-
-- to show the SPX/Sector cloud. If no cloud is desired, select SPX.
-
-- #===== Define first bar values ============
-
-- def close1 = First(close(symbol1));
-
-- #AddLabel(1, "close1 = first(close(SPY)) = " + close1, Color.PINK);#For debugging
-
-- def close2 = First(close(symbol2 ));
-
-- def close3 = First(close(symbol3 ));
-
-- def close4 = First(close(symbol4 ));
-
-- def close5 = First(close(symbol5 ));
-
-- def close6 = First(close(symbol6 ));
-
-- def close7 = First(close(symbol7 ));
-
-- def close8 = First(close(symbol8 ));
-
-- def close9 = First(close(symbol9 ));
-
-- def close10 = First(close(symbol10 ));
-
-- #====== calc percents and plot related to the first bar for each sector ==========
-
-- def  d_close1 = close(symbol1);
-
-- plot D1_SPX = (d_close1 - close1) / close1 * 100;
-
-- D1_SPX.SetLineWeight(3);
-
-- def  d_close2 = close(symbol2);
-
-- plot D2_XLY = (d_close2 - close2) / close2 * 100;
-
-- def Line_wt2 = If CloudSymbol == CloudSymbol.XLY then 3 else 1;
-
-- D2_XLY.SetLineWeight(Line_wt2);
-
-- def  d_close3 = close(symbol3);
-
-- plot D3_XLK = (d_close3 - close3) / close3 * 100;
-
-- def Line_wt3 = If CloudSymbol == CloudSymbol.XLK then 3 else 1;
-
-- D3_XLK.SetLineWeight(Line_wt3);
-
-- def  d_close4 = close(symbol4);
-
-- plot D4_XLI = (d_close4 - close4) / close4 * 100;
-
-- def Line_wt4 = If CloudSymbol == CloudSymbol.XLI then 3 else 1;
-
-- D4_XLI.SetLineWeight(Line_wt4);
-
-- def  d_close5 = close(symbol5);
-
-- plot D5_XLB = (d_close5 - close5) / close5 * 100;
-
-- def Line_wt5 = If CloudSymbol == CloudSymbol.XLB then 3 else 1;
-
-- D5_XLB.SetLineWeight(Line_wt5);
-
-- def  d_close6 = close(symbol6);
-
-- plot D6_XLE = (d_close6 - close6) / close6 * 100;
-
-- def Line_wt6 = If CloudSymbol == CloudSymbol.XLE then 3 else 1;
-
-- D6_XLE.SetLineWeight(Line_wt6);
-
-- def  d_close7 = close(symbol7);
-
-- plot D7_XLP = (d_close7 - close7) / close7 * 100;
-
-- def Line_wt7 = If CloudSymbol == CloudSymbol.XLP then 3 else 1;
-
-- D7_XLP.SetLineWeight(Line_wt7);
-
-- def  d_close8 = close(symbol8);
-
-- plot D8_XLV = (d_close8 - close8) / close8 * 100;
-
-- def Line_wt8 = If CloudSymbol == CloudSymbol.XLV then 3 else 1;
-
-- D8_XLV.SetLineWeight(Line_wt8);
-
-- def  d_close9 = close(symbol9);
-
-- plot D9_XLU = (d_close9 - close9) / close9 * 100;
-
-- def Line_wt9 = If CloudSymbol == CloudSymbol.XLU then 3 else 1;
-
-- D9_XLU.SetLineWeight(Line_wt9);
-
-- def  d_close10 = close(symbol10);
-
-- plot D10_XLF = (d_close10 - close10) / close10 * 100;
-
-- def Line_wt10 = If CloudSymbol == CloudSymbol.XLF then 3 else 1;
-
-- D10_XLF.SetLineWeight(Line_wt10);
-
-- Plot Zero = 0;
-
-- Zero.SetPaintingStrategy(PaintingStrategy.LINE_VS_POINTS);
-
-- Zero.SetLineWeight(1);
-
-- Zero.SetDefaultColor(Color.YELLOW);
-
-- #====== labels defining sectors ======
-
-- input showLabel = Yes;
-
-- AddLabel(showLabel, symbol1  + " = S&P 500 SECTORS >>>>>", D1_SPX .TakeValueColor());
-
-- AddLabel(showLabel, symbol2 + ", cyclicals", D2_XLY.TakeValueColor());
-
-- AddLabel(showLabel, symbol3 + ", technology", D3_XLK.TakeValueColor());
-
-- AddLabel(showLabel, symbol4 + ", industrials", D4_XLI.TakeValueColor());
-
-- AddLabel(showLabel, symbol5 + ",materials" , D5_XLB .TakeValueColor());
-
-- AddLabel(showLabel, symbol6 + ", energy", D6_XLE.TakeValueColor());
-
-- AddLabel(showLabel, symbol7 + ",consumer staples" , D7_XLP.TakeValueColor());
-
-- AddLabel(showLabel, symbol8 + ", health care", D8_XLV.TakeValueColor());
-
-- AddLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
-
-- AddLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
-
-- AddLabel(showLabel, "....... = zero line. This plot is the ' % change since chart's beginning'", color.YELLOW);
-
-- #====== label to define cloud =======
-
-- def Want_Cloud = If CloudSymbol == CloudSymbol.SPX then 1 else 0;
-
-- AddLabel(!Want_Cloud, "The cloud is between SPX and " + CloudSymbol,  If (CloudSymbol == CloudSymbol.XLY) then
-
-- D2_XLY.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLK) then D3_XLK.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLI) then D4_XLI.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLB) then D5_XLB.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLE) then D6_XLE.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLP) then D7_XLP.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLV) then D8_XLV.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLU) then D9_XLU.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLF) then D10_XLF.TakeValueColor() else
-
-- color.pink);
-
-- #====== Cloud based on sector selected =======
-
-- addcloud(D1_SPX , If CloudSymbol == CloudSymbol.XLY then D2_XLY else if
-
-- CloudSymbol == CloudSymbol.XLK then D3_XLK else if
-
-- CloudSymbol == CloudSymbol.XLI then D4_XLI else if
-
-- CloudSymbol == CloudSymbol.XLB then D5_XLB else if
-
-- CloudSymbol == CloudSymbol.XLE then D6_XLE else if
-
-- CloudSymbol == CloudSymbol.XLP then D7_XLP else if
-
-- CloudSymbol == CloudSymbol.XLV then D8_XLV else if
-
-- CloudSymbol == CloudSymbol.XLU then D9_XLU else if
-
-- CloudSymbol == CloudSymbol.XLF then D10_XLF else
-
-- D1_SPX,
-
-- color.RED, color.GREEN);
-
-- #==== for debugging ==========
-
-- #Plot ZeroLine = 0;
-
-- #AddLabel(1, symbol1 + " first close = First(d_close) = " + First(d_close1), Color.PINK);
-
-- #AddLabel(1, symbol1 + " first close = close1 = " + close1, Color.PINK);
-
-- #AddLabel(1, "Plot Data_ Pct = " + Data_Pct1, Color.PINK);
-
-- #========== Add bubbles ============
-
-- input ShowBubbles = yes;
-
-- def BubbleLocation =  !IsNaN(close) and IsNaN(close [-1] ) && HighestAll(BarNumber())  ;
-
-- addchartbubble(BubbleLocation , D1_SPX, symbol1 , D1_SPX.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D2_XLY, symbol2 + " cyclicals", D2_XLY.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D3_XLK, symbol3 + " technology", D3_XLK.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D4_XLI, symbol4 + " industrials", D4_XLI.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D5_XLB , symbol5 + " materials           ", D5_XLB.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D6_XLE, symbol6 + " energy", D6_XLE.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D7_XLP, symbol7 + " consumer staples", D7_XLP.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D8_XLV, symbol8 + " health care", D8_XLV.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D9_XLU, symbol9 + " utilities", D9_XLU.TakeValueColor());
-
-- addchartbubble(BubbleLocation  && ShowBubbles, D10_XLF, symbol10 + " financials", D10_XLF.TakeValueColor());
-
-- #end
+```
+# % increase of all S&P 500 sectors
+#Hint:<b> Plots the %-change-of-the S&P 500's nine sectors.</b><li>To highlight a sector of interest, change its weight in 'Edit Studies' and/or define a 'CloudSymbol' to show its SPX/Symbol cloud.</li><li>The SPX plot is highlighted.</li> <li> The color of the plots match the color of the labels and bubbles.</li><li> Labels and Bubbles may be toggled on/off. </li><li><b>'Chart Settings/Time Axis/Expansion Area' is set to '40 bars to the right'</b> to provide bubble space. </li><li>This plots on many aggs down to minutes but 'Day' agg time chart is the most meaningful. <li> Changing of the input symbols is <b>not recommended</b> but, if done, the symbol will be plotted but its ID characteristics will be wrong. For example, if  QQQ was inputted where XLY was shown, QQQ will be plotted but it will incorrectly be labeled a 'cyclicals' and QQQ will not appear in the cloud selection list. <li>You can enhance chart reading by expanding the vertical height or plotting alone.</li>
+
+#Revised 3/17/14
+declare lower;
+
+#======= List all of the S&P 500 sectors =========
+input price = FundamentalType.CLOSE;
+input symbol1 = "SPX";#hint symbol1:Normally this is the SPX.
+input symbol2 = "XLY";#hint symbol2:Normally this is the SPX's XLY
+input symbol3 = "XLK";#hint symbol3:Normally this is the SPX's XLK
+input symbol4 = "XLI";#hint symbol4:Normally this is the SPX's XLI
+input symbol5 = "XLB";#hint symbol5:Normally this is the SPX's XLB
+input symbol6 = "XLE";#hint symbol6:Normally this is the SPX's XLE
+input symbol7 = "XLP";#hint symbol7:Normally this is the SPX's XLP
+input symbol8 = "XLV";#hint symbol8:Normally this is the SPX's XLV
+input symbol9 = "XLU";#hint symbol9:Normally this is the SPX's XLU
+input symbol10 = "XLF";#hint symbol10:Normally this is the SPX's XLF
+Input CloudSymbol = {default SPX, XLY, XLK, XLI, XLB, XLE, XLP, XLV, XLU, XLF};#hint CloudSymbol:Select the sector to show the SPX/Sector cloud. If no cloud is desired, select SPX.
+
+#===== Define first bar values ============
+def close1 = First(close(symbol1));
+#AddLabel(1, "close1 = first(close(SPY)) = " + close1, Color.PINK);#For debugging
+def close2 = First(close(symbol2 ));
+def close3 = First(close(symbol3 ));
+def close4 = First(close(symbol4 ));
+def close5 = First(close(symbol5 ));
+def close6 = First(close(symbol6 ));
+def close7 = First(close(symbol7 ));
+def close8 = First(close(symbol8 ));
+def close9 = First(close(symbol9 ));
+def close10 = First(close(symbol10 ));
+
+#====== calc percents and plot related to the first bar for each sector ==========
+def  d_close1 = close(symbol1);
+
+plot D1_SPX = (d_close1 - close1) / close1 * 100;
+D1_SPX.SetLineWeight(3);
+def  d_close2 = close(symbol2);
+
+plot D2_XLY = (d_close2 - close2) / close2 * 100;
+def Line_wt2 = If CloudSymbol == CloudSymbol.XLY then 3 else 1;
+D2_XLY.SetLineWeight(Line_wt2);
+def  d_close3 = close(symbol3);
+
+plot D3_XLK = (d_close3 - close3) / close3 * 100;
+def Line_wt3 = If CloudSymbol == CloudSymbol.XLK then 3 else 1;
+D3_XLK.SetLineWeight(Line_wt3);
+def  d_close4 = close(symbol4);
+
+plot D4_XLI = (d_close4 - close4) / close4 * 100;
+def Line_wt4 = If CloudSymbol == CloudSymbol.XLI then 3 else 1;
+D4_XLI.SetLineWeight(Line_wt4);
+def  d_close5 = close(symbol5);
+
+plot D5_XLB = (d_close5 - close5) / close5 * 100;
+def Line_wt5 = If CloudSymbol == CloudSymbol.XLB then 3 else 1;
+D5_XLB.SetLineWeight(Line_wt5);
+def  d_close6 = close(symbol6);
+
+plot D6_XLE = (d_close6 - close6) / close6 * 100;
+def Line_wt6 = If CloudSymbol == CloudSymbol.XLE then 3 else 1;
+D6_XLE.SetLineWeight(Line_wt6);
+def  d_close7 = close(symbol7);
+
+plot D7_XLP = (d_close7 - close7) / close7 * 100;
+def Line_wt7 = If CloudSymbol == CloudSymbol.XLP then 3 else 1;
+D7_XLP.SetLineWeight(Line_wt7);
+def  d_close8 = close(symbol8);
+
+plot D8_XLV = (d_close8 - close8) / close8 * 100;
+def Line_wt8 = If CloudSymbol == CloudSymbol.XLV then 3 else 1;
+D8_XLV.SetLineWeight(Line_wt8);
+def  d_close9 = close(symbol9);
+
+plot D9_XLU = (d_close9 - close9) / close9 * 100;
+def Line_wt9 = If CloudSymbol == CloudSymbol.XLU then 3 else 1;
+D9_XLU.SetLineWeight(Line_wt9);
+def  d_close10 = close(symbol10);
+
+plot D10_XLF = (d_close10 - close10) / close10 * 100;
+def Line_wt10 = If CloudSymbol == CloudSymbol.XLF then 3 else 1;
+D10_XLF.SetLineWeight(Line_wt10);
+
+Plot Zero = 0;
+Zero.SetPaintingStrategy(PaintingStrategy.LINE_VS_POINTS);
+Zero.SetLineWeight(1);
+Zero.SetDefaultColor(Color.YELLOW);
+
+===== labels defining sectors ======
+put showLabel = Yes;
+dLabel(showLabel, symbol1  + " = S&P 500 SECTORS >>>>>", D1_SPX .TakeValueColor());
+dLabel(showLabel, symbol2 + ", cyclicals", D2_XLY.TakeValueColor());
+dLabel(showLabel, symbol3 + ", technology", D3_XLK.TakeValueColor());
+dLabel(showLabel, symbol4 + ", industrials", D4_XLI.TakeValueColor());
+dLabel(showLabel, symbol5 + ",materials" , D5_XLB .TakeValueColor());
+dLabel(showLabel, symbol6 + ", energy", D6_XLE.TakeValueColor());
+dLabel(showLabel, symbol7 + ",consumer staples" , D7_XLP.TakeValueColor());
+dLabel(showLabel, symbol8 + ", health care", D8_XLV.TakeValueColor());
+dLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
+dLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
+dLabel(showLabel, "....... = zero line. This plot is the ' % change since chart's beginning'", color.YELLOW);
+
+#====== label to define cloud =======
+def Want_Cloud = If CloudSymbol == CloudSymbol.SPX then 1 else 0;
+AddLabel(!Want_Cloud, "The cloud is between SPX and " + CloudSymbol,  If (CloudSymbol == CloudSymbol.XLY) then
+D2_XLY.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLK) then D3_XLK.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLI) then D4_XLI.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLB) then D5_XLB.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLE) then D6_XLE.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLP) then D7_XLP.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLV) then D8_XLV.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLU) then D9_XLU.TakeValueColor() else if
+(CloudSymbol == CloudSymbol.XLF) then D10_XLF.TakeValueColor() else
+color.pink);
+
+#====== Cloud based on sector selected =======
+addcloud(D1_SPX , If CloudSymbol == CloudSymbol.XLY then D2_XLY else if
+CloudSymbol == CloudSymbol.XLK then D3_XLK else if
+CloudSymbol == CloudSymbol.XLI then D4_XLI else if
+CloudSymbol == CloudSymbol.XLB then D5_XLB else if
+CloudSymbol == CloudSymbol.XLE then D6_XLE else if
+CloudSymbol == CloudSymbol.XLP then D7_XLP else if
+CloudSymbol == CloudSymbol.XLV then D8_XLV else if
+CloudSymbol == CloudSymbol.XLU then D9_XLU else if
+CloudSymbol == CloudSymbol.XLF then D10_XLF else
+D1_SPX, color.RED, color.GREEN);
+
+#==== for debugging ==========
+#Plot ZeroLine = 0;
+#AddLabel(1, symbol1 + " first close = First(d_close) = " + First(d_close1), Color.PINK);
+#AddLabel(1, symbol1 + " first close = close1 = " + close1, Color.PINK);
+#AddLabel(1, "Plot Data_ Pct = " + Data_Pct1, Color.PINK);
+
+#========== Add bubbles ============
+input ShowBubbles = yes;
+def BubbleLocation =  !IsNaN(close) and IsNaN(close [-1] ) && HighestAll(BarNumber())  ;
+addchartbubble(BubbleLocation , D1_SPX, symbol1 , D1_SPX.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D2_XLY, symbol2 + " cyclicals", D2_XLY.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D3_XLK, symbol3 + " technology", D3_XLK.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D4_XLI, symbol4 + " industrials", D4_XLI.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D5_XLB , symbol5 + " materials           ", D5_XLB.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D6_XLE, symbol6 + " energy", D6_XLE.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D7_XLP, symbol7 + " consumer staples", D7_XLP.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D8_XLV, symbol8 + " health care", D8_XLV.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D9_XLU, symbol9 + " utilities", D9_XLU.TakeValueColor());
+addchartbubble(BubbleLocation  && ShowBubbles, D10_XLF, symbol10 + " financials", D10_XLF.TakeValueColor());
+#end
+```
 
 ## C-   S&P 500 SECTORS RELATIVE TO SPX = 0
 
 [Return to TOC](#toc)
 
-- #S&P 500 sectors Relative to SPX
-
-- #Hint:<b> Plots the %-change-of-the S&P 500's nine sectors.</b><li>To highlight a sector of interest, change its weight in
-
-- 'Edit Studies' and/or define a 'CloudSymbol' to show its cloud referenced to zero.</li><li> The color of the plots match
-
-- the color of the labels and bubbles.</li><li> Labels and Bubbles may be toggled on/off. </li><li><b>'Chart Settings/Time
-
-- Axis/Expansion Area' is set to '40 bars to the right'</b> to provide bubble space. </li><li>This plots many aggs down to
-
-- minutes but 'Day' agg time chart is most meaningful. <li> Changing of the input symbols is <b>not recommended</b> but, if
-
-- done, the symbol will be plotted but its ID characteristics will be wrong. For example, if  QQQ was inputted where XLY
-
-- was shown, QQQ will be plotted but it will incorrectly be labeled a 'cyclicals' and QQQ will not appear in the cloud
-
-- selection list.</li> <li>You can enhance chart reading by expanding the vertical height or plotting alone.</li>
-
-- #Revised 3/17/14
-
-- declare lower;
-
-- #======= List all of the S&P 500 sectors =========
-
-- input price = FundamentalType.CLOSE;
-
-- input symbol1 = "SPX";#hint symbol1:Normally this is the SPX.
-
-- input symbol2 = "XLY";#hint symbol2:Normally this is the SPX's XLY
-
-- input symbol3 = "XLK";#hint symbol3:Normally this is the SPX's XLK
-
-- input symbol4 = "XLI";#hint symbol4:Normally this is the SPX's XLI
-
-- input symbol5 = "XLB";#hint symbol5:Normally this is the SPX's XLB
-
-- input symbol6 = "XLE";#hint symbol6:Normally this is the SPX's XLE
-
-- input symbol7 = "XLP";#hint symbol7:Normally this is the SPX's XLP
-
-- input symbol8 = "XLV";#hint symbol8:Normally this is the SPX's XLV
-
-- input symbol9 = "XLU";#hint symbol9:Normally this is the SPX's XLU
-
-- input symbol10 = "XLF";#hint symbol10:Normally this is the SPX's XLF
-
-- input CloudSymbol = {default SPX, XLY, XLK, XLI, XLB, XLE, XLP, XLV, XLU, XLF};#hint CloudSymbol:Select the sector
-
-- to show the Sector cloud referenced to SPX = Zero. If no cloud is desired, select SPX.
-
-- #===== Define first bar values ============
-
-- def close1 = First(close(symbol1));
-
-- #AddLabel(1, "close1 = first(close(SPY)) = " + close1, Color.PINK);#For debugging
-
-- def close2 = First(close(symbol2 ));
-
-- def close3 = First(close(symbol3 ));
-
-- def close4 = First(close(symbol4 ));
-
-- def close5 = First(close(symbol5 ));
-
-- def close6 = First(close(symbol6 ));
-
-- def close7 = First(close(symbol7 ));
-
-- def close8 = First(close(symbol8 ));
-
-- def close9 = First(close(symbol9 ));
-
-- def close10 = First(close(symbol10 ));
-
-- #====== calc percents and plot related to the first bar for each sector ==========
-
-- def  d_close1 = close(symbol1);
-
-- plot D1_SPX = (d_close1 - close1) / close1 * 100;
-
-- D1_SPX.SetLineWeight(3);
-
-- def  d_close2 = close(symbol2);
-
-- plot D2_XLY = ((d_close2 - close2) / close2 * 100) - D1_SPX ;
-
-- def Line_wt2 = if (CloudSymbol == CloudSymbol.XLY , 3, 1);
-
-- D2_XLY.SetLineWeight( Line_wt2);
-
-- #addlabel(1, "Line_wt2 = " + Line_wt2, color.pink);# For debugging
-
-- def  d_close3 = close(symbol3);
-
-- plot D3_XLK = ((d_close3 - close3) / close3 * 100) - D1_SPX ;
-
-- def Line_wt3 = if CloudSymbol == CloudSymbol.XLK then 3 else 1;
-
-- D3_XLK.SetLineWeight(Line_wt3);
-
-- def  d_close4 = close(symbol4);
-
-- plot D4_XLI = ((d_close4 - close4) / close4 * 100) - D1_SPX ;
-
-- def Line_wt4 = if CloudSymbol == CloudSymbol.XLI then 3 else 1;
-
-- D4_XLI.SetLineWeight(Line_wt4);
-
-- def  d_close5 = close(symbol5);
-
-- plot D5_XLB = ((d_close5 - close5) / close5 * 100) - D1_SPX ;
-
-- def Line_wt5 = if CloudSymbol == CloudSymbol.XLB then 3 else 1;
-
-- D5_XLB.SetLineWeight(Line_wt5);
-
-- def  d_close6 = close(symbol6);
-
-- plot D6_XLE = ((d_close6 - close6) / close6 * 100) - D1_SPX ;
-
-- def Line_wt6 = if CloudSymbol == CloudSymbol.XLE then 3 else 1;
-
-- D6_XLE.SetLineWeight(Line_wt6);
-
-- def  d_close7 = close(symbol7);
-
-- plot D7_XLP = ((d_close7 - close7) / close7 * 100) - D1_SPX ;
-
-- def Line_wt7 = if CloudSymbol == CloudSymbol.XLP then 3 else 1;
-
-- D7_XLP.SetLineWeight(Line_wt7);
-
-- def  d_close8 = close(symbol8);
-
-- plot D8_XLV = ((d_close8 - close8) / close8 * 100) - D1_SPX ;
-
-- def Line_wt8 = if CloudSymbol == CloudSymbol.XLV then 3 else 1;
-
-- D8_XLV.SetLineWeight(Line_wt8);
-
-- def  d_close9 = close(symbol9);
-
-- plot D9_XLU = ((d_close9 - close9) / close9 * 100) - D1_SPX ;
-
-- def Line_wt9 = if CloudSymbol == CloudSymbol.XLU then 3 else 1;
-
-- D9_XLU.SetLineWeight(Line_wt9);
-
-- def  d_close10 = close(symbol10);
-
-- plot D10_XLF = ((d_close10 - close10) / close10 * 100) - D1_SPX ;
-
-- def Line_wt10 = if CloudSymbol == CloudSymbol.XLF then 3 else 1;;
-
-- D10_XLF.SetLineWeight(Line_wt10);
-
-- plot D1_SPX_Zero = 0;
-
-- D1_SPX_Zero .SetPaintingStrategy(PaintingStrategy.LINE);
-
-- D1_SPX_Zero .SetLineWeight(3);
-
-- D1_SPX_Zero .SetDefaultColor(Color.YELLOW);
-
-- D1_SPX_Zero.SetStyle(Curve.LONG_DASH);
-
-- #====== add ID labels ======
-
-- input ShowLabel = Yes;#hint ShowLabel: Turns labels ON/OFF
-
-- AddLabel(showLabel, symbol1  + " = S&P 500 SECTORS >>>>>", D1_SPX .TakeValueColor());
-
-- AddLabel(showLabel, symbol2 + ", cyclicals", D2_XLY.TakeValueColor());
-
-- AddLabel(showLabel, symbol3 + ", technology", D3_XLK.TakeValueColor());
-
-- AddLabel(showLabel, symbol4 + ", industrials", D4_XLI.TakeValueColor());
-
-- AddLabel(showLabel, symbol5 + ",materials" , D5_XLB .TakeValueColor());
-
-- AddLabel(showLabel, symbol6 + ", energy", D6_XLE.TakeValueColor());
-
-- AddLabel(showLabel, symbol7 + ",consumer staples" , D7_XLP.TakeValueColor());
-
-- AddLabel(showLabel, symbol8 + ", health care", D8_XLV.TakeValueColor());
-
-- AddLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
-
-- AddLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
-
-- AddLabel(showLabel, "-- -- -- = SPX zero line. Sector plots are referencec to this SPX value", Color.YELLOW);
-
-- #====== Cloud label =======
-
-- def Want_Cloud = if CloudSymbol == CloudSymbol.SPX then 1 else 0;
-
-- AddLabel(!Want_Cloud, "The cloud is between Zero and " + CloudSymbol,  if (CloudSymbol == CloudSymbol.XLY) then
-
-- D2_XLY.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLK) then D3_XLK.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLI) then D4_XLI.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLB) then D5_XLB.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLE) then D6_XLE.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLP) then D7_XLP.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLV) then D8_XLV.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLU) then D9_XLU.TakeValueColor() else if
-
-- (CloudSymbol == CloudSymbol.XLF) then D10_XLF.TakeValueColor() else
-
-- Color.PINK);
-
-- AddCloud(D1_SPX_Zero, if CloudSymbol == CloudSymbol.XLY then D2_XLY else if
-
-- CloudSymbol == CloudSymbol.XLK then D3_XLK else if
-
-- CloudSymbol == CloudSymbol.XLI then D4_XLI else if
-
-- CloudSymbol == CloudSymbol.XLB then D5_XLB else if
-
-- CloudSymbol == CloudSymbol.XLE then D6_XLE else if
-
-- CloudSymbol == CloudSymbol.XLP then D7_XLP else if
-
-- CloudSymbol == CloudSymbol.XLV then D8_XLV else if
-
-- CloudSymbol == CloudSymbol.XLU then D9_XLU else if
-
-- CloudSymbol == CloudSymbol.XLF then D10_XLF else if
-
-- CloudSymbol == CloudSymbol.SPX then D1_SPX_Zero else
-
-- D1_SPX_Zero,
-
-- Color.RED, Color.GREEN);
-
-- #==== for debugging ==========
-
-- #Plot ZeroLine = 0;
-
-- #AddLabel(1, symbol1 + " first close = First(d_close) = " + First(d_close1), Color.PINK);
-
-- #AddLabel(1, symbol1 + " first close = close1 = " + close1, Color.PINK);
-
-- #AddLabel(1, "Plot Data_ Pct = " + Data_Pct1, Color.PINK);
-
-- #========== Add bubbles ============
-
-- input ShowBubbles = yes;#hint ShowBubbles: Turns bubbles ON/OFF
-
-- def BubbleLocation =  !IsNaN(close) and IsNaN(close [-1] ) && HighestAll(BarNumber())  ;
-
-- AddChartBubble(BubbleLocation , D1_SPX, symbol1 + "  by itself", D1_SPX.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D2_XLY, symbol2 + " cyclicals", D2_XLY.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D3_XLK, symbol3 + " technology", D3_XLK.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D4_XLI, symbol4 + " industrials", D4_XLI.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D5_XLB , symbol5 + " materials           ", D5_XLB.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D6_XLE, symbol6 + " energy", D6_XLE.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D7_XLP, symbol7 + " consumer staples", D7_XLP.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D8_XLV, symbol8 + " health care", D8_XLV.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D9_XLU, symbol9 + " utilities", D9_XLU.TakeValueColor());
-
-- AddChartBubble(BubbleLocation  && ShowBubbles, D10_XLF, symbol10 + " financials", D10_XLF.TakeValueColor());
-
-- #end
+```
+#S&P 500 sectors Relative to SPX
+#Hint:<b> Plots the %-change-of-the S&P 500's nine sectors.</b><li>To highlight a sector of interest, change its weight in 'Edit Studies' and/or define a 'CloudSymbol' to show its cloud referenced to zero.</li><li> The color of the plots match the color of the labels and bubbles.</li><li> Labels and Bubbles may be toggled on/off. </li><li><b>'Chart Settings/Time Axis/Expansion Area' is set to '40 bars to the right'</b> to provide bubble space. </li><li>This plots many aggs down to minutes but 'Day' agg time chart is most meaningful. <li> Changing of the input symbols is <b>not recommended</b> but, if done, the symbol will be plotted but its ID characteristics will be wrong. For example, if  QQQ was inputted where XLY was shown, QQQ will be plotted but it will incorrectly be labeled a 'cyclicals' and QQQ will not appear in the cloud selection list.</li> <li>You can enhance chart reading by expanding the vertical height or plotting alone.</li>
+
+#Revised 3/17/14
+
+declare lower;
+
+#======= List all of the S&P 500 sectors =========
+input price = FundamentalType.CLOSE;
+input symbol1 = "SPX";#hint symbol1:Normally this is the SPX.
+input symbol2 = "XLY";#hint symbol2:Normally this is the SPX's XLY
+input symbol3 = "XLK";#hint symbol3:Normally this is the SPX's XLK
+input symbol4 = "XLI";#hint symbol4:Normally this is the SPX's XLI
+input symbol5 = "XLB";#hint symbol5:Normally this is the SPX's XLB
+input symbol6 = "XLE";#hint symbol6:Normally this is the SPX's XLE
+input symbol7 = "XLP";#hint symbol7:Normally this is the SPX's XLP
+input symbol8 = "XLV";#hint symbol8:Normally this is the SPX's XLV
+input symbol9 = "XLU";#hint symbol9:Normally this is the SPX's XLU
+input symbol10 = "XLF";#hint symbol10:Normally this is the SPX's XLF
+input CloudSymbol = {default SPX, XLY, XLK, XLI, XLB, XLE, XLP, XLV, XLU, XLF};#hint CloudSymbol:Select the sector to show the Sector cloud referenced to SPX = Zero. If no cloud is desired, select SPX.
+
+#===== Define first bar values ============
+def close1 = First(close(symbol1));
+#AddLabel(1, "close1 = first(close(SPY)) = " + close1, Color.PINK);#For debugging
+def close2 = First(close(symbol2 ));
+def close3 = First(close(symbol3 ));
+def close4 = First(close(symbol4 ));
+def close5 = First(close(symbol5 ));
+def close6 = First(close(symbol6 ));
+def close7 = First(close(symbol7 ));
+def close8 = First(close(symbol8 ));
+def close9 = First(close(symbol9 ));
+def close10 = First(close(symbol10 ));
+
+#====== calc percents and plot related to the first bar for each sector ==========
+def  d_close1 = close(symbol1);
+plot D1_SPX = (d_close1 - close1) / close1 * 100;
+D1_SPX.SetLineWeight(3);
+
+def  d_close2 = close(symbol2);
+plot D2_XLY = ((d_close2 - close2) / close2 * 100) - D1_SPX ;
+def Line_wt2 = if (CloudSymbol == CloudSymbol.XLY , 3, 1);
+D2_XLY.SetLineWeight( Line_wt2);
+
+#addlabel(1, "Line_wt2 = " + Line_wt2, color.pink);# For debugging
+def  d_close3 = close(symbol3);
+plot D3_XLK = ((d_close3 - close3) / close3 * 100) - D1_SPX ;
+def Line_wt3 = if CloudSymbol == CloudSymbol.XLK then 3 else 1;
+D3_XLK.SetLineWeight(Line_wt3);
+
+def  d_close4 = close(symbol4);
+plot D4_XLI = ((d_close4 - close4) / close4 * 100) - D1_SPX ;
+def Line_wt4 = if CloudSymbol == CloudSymbol.XLI then 3 else 1;
+D4_XLI.SetLineWeight(Line_wt4);
+
+def  d_close5 = close(symbol5);
+plot D5_XLB = ((d_close5 - close5) / close5 * 100) - D1_SPX ;
+def Line_wt5 = if CloudSymbol == CloudSymbol.XLB then 3 else 1;
+D5_XLB.SetLineWeight(Line_wt5);
+
+def  d_close6 = close(symbol6);
+plot D6_XLE = ((d_close6 - close6) / close6 * 100) - D1_SPX ;
+def Line_wt6 = if CloudSymbol == CloudSymbol.XLE then 3 else 1;
+D6_XLE.SetLineWeight(Line_wt6);
+
+def  d_close7 = close(symbol7);
+plot D7_XLP = ((d_close7 - close7) / close7 * 100) - D1_SPX ;
+def Line_wt7 = if CloudSymbol == CloudSymbol.XLP then 3 else 1;
+D7_XLP.SetLineWeight(Line_wt7);
+
+def  d_close8 = close(symbol8);
+plot D8_XLV = ((d_close8 - close8) / close8 * 100) - D1_SPX ;
+def Line_wt8 = if CloudSymbol == CloudSymbol.XLV then 3 else 1;
+D8_XLV.SetLineWeight(Line_wt8);
+
+def  d_close9 = close(symbol9);
+plot D9_XLU = ((d_close9 - close9) / close9 * 100) - D1_SPX ;
+def Line_wt9 = if CloudSymbol == CloudSymbol.XLU then 3 else 1;
+D9_XLU.SetLineWeight(Line_wt9);
+
+def  d_close10 = close(symbol10);
+plot D10_XLF = ((d_close10 - close10) / close10 * 100) - D1_SPX ;
+def Line_wt10 = if CloudSymbol == CloudSymbol.XLF then 3 else 1;;
+D10_XLF.SetLineWeight(Line_wt10);
+
+plot D1_SPX_Zero = 0;
+D1_SPX_Zero .SetPaintingStrategy(PaintingStrategy.LINE);
+D1_SPX_Zero .SetLineWeight(3);
+D1_SPX_Zero .SetDefaultColor(Color.YELLOW);
+D1_SPX_Zero.SetStyle(Curve.LONG_DASH);
+
+#====== add ID labels ======
+input ShowLabel = Yes;#hint ShowLabel: Turns labels ON/OFF
+AddLabel(showLabel, symbol1  + " = S&P 500 SECTORS >>>>>", D1_SPX .TakeValueColor());
+AddLabel(showLabel, symbol2 + ", cyclicals", D2_XLY.TakeValueColor());
+AddLabel(showLabel, symbol3 + ", technology", D3_XLK.TakeValueColor());
+AddLabel(showLabel, symbol4 + ", industrials", D4_XLI.TakeValueColor());
+AddLabel(showLabel, symbol5 + ",materials" , D5_XLB .TakeValueColor());
+AddLabel(showLabel, symbol6 + ", energy", D6_XLE.TakeValueColor());
+AddLabel(showLabel, symbol7 + ",consumer staples" , D7_XLP.TakeValueColor());
+AddLabel(showLabel, symbol8 + ", health care", D8_XLV.TakeValueColor());
+AddLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
+AddLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
+AddLabel(showLabel, "-- -- -- = SPX zero line. Sector plots are referencec to this SPX value", Color.YELLOW);
+
+#====== Cloud label =======
+def Want_Cloud = if CloudSymbol == CloudSymbol.SPX then 1 else 0;
+AddLabel(!Want_Cloud, "The cloud is between Zero and " + CloudSymbol,  if (CloudSymbol == CloudSymbol.XLY) then
+  D2_XLY.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLK) then D3_XLK.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLI) then D4_XLI.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLB) then D5_XLB.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLE) then D6_XLE.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLP) then D7_XLP.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLV) then D8_XLV.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLU) then D9_XLU.TakeValueColor() else if
+  (CloudSymbol == CloudSymbol.XLF) then D10_XLF.TakeValueColor() else
+  Color.PINK);
+
+AddCloud(D1_SPX_Zero, if CloudSymbol == CloudSymbol.XLY then D2_XLY else if
+  CloudSymbol == CloudSymbol.XLK then D3_XLK else if
+  CloudSymbol == CloudSymbol.XLI then D4_XLI else if
+  CloudSymbol == CloudSymbol.XLB then D5_XLB else if
+  CloudSymbol == CloudSymbol.XLE then D6_XLE else if
+  CloudSymbol == CloudSymbol.XLP then D7_XLP else if
+  CloudSymbol == CloudSymbol.XLV then D8_XLV else if
+  CloudSymbol == CloudSymbol.XLU then D9_XLU else if
+  CloudSymbol == CloudSymbol.XLF then D10_XLF else if
+  CloudSymbol == CloudSymbol.SPX then D1_SPX_Zero else
+  D1_SPX_Zero,
+  Color.RED, Color.GREEN);
+
+#==== for debugging ==========
+#Plot ZeroLine = 0;
+#AddLabel(1, symbol1 + " first close = First(d_close) = " + First(d_close1), Color.PINK);
+#AddLabel(1, symbol1 + " first close = close1 = " + close1, Color.PINK);
+#AddLabel(1, "Plot Data_ Pct = " + Data_Pct1, Color.PINK);
+
+#========== Add bubbles ============
+input ShowBubbles = yes;#hint ShowBubbles: Turns bubbles ON/OFF
+def BubbleLocation =  !IsNaN(close) and IsNaN(close [-1] ) && HighestAll(BarNumber())  ;
+
+AddChartBubble(BubbleLocation , D1_SPX, symbol1 + "  by itself", D1_SPX.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D2_XLY, symbol2 + " cyclicals", D2_XLY.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D3_XLK, symbol3 + " technology", D3_XLK.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D4_XLI, symbol4 + " industrials", D4_XLI.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D5_XLB , symbol5 + " materials           ", D5_XLB.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D6_XLE, symbol6 + " energy", D6_XLE.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D7_XLP, symbol7 + " consumer staples", D7_XLP.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D8_XLV, symbol8 + " health care", D8_XLV.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D9_XLU, symbol9 + " utilities", D9_XLU.TakeValueColor());
+AddChartBubble(BubbleLocation  && ShowBubbles, D10_XLF, symbol10 + " financials", D10_XLF.TakeValueColor());
+#end
+```
 
 ## C-MULTIPLE INSTRUMENTS COMPARISON
 
 [Return to TOC](#toc)
 
-- # by linus on the ThinkScript Lounge
-
-- #: Multiple instruments comparison
-
-- ## Method used = NormalizedSymbols
-
-- ## linus, 2014-03-16, v0.3
-
-- # Change History:
-
-- # 2014-03-16, v0.3, linus - Added inputs use1..use10.
-
-- # 2014-03-14, v0.2, linus - Added symbol key.
-
-- # 2014-03-14, v0.1, linus - Original version.
-
-- #hint: Normalize plots for various symbols and start ploting the symbols at 0 % value.
-
-- declare lower;
-
-- #hint showKey: OFF hides the symbol key, NUM numbers the symbol text, TXT shows just the symbol text.
-
-- input showKey = {OFF, NUM, default TXT};
-
-- #hint price: Changes the fundamental price type.
-
-- input price = FundamentalType.CLOSE;
-
-- #The following symbols may be changed to your preference but none should be blank. You may turn off any of these via
-
-- the 'input use? = ' function. Each symbol is implied-numbered from 1 to 10, top-to-bottom sequentially.
-
-- input symbol1 = "SPY";
-
-- input symbol2 = "QQQ";
-
-- input symbol3 = "IWM";
-
-- input symbol4 = "DIA";
-
-- input symbol5 = "AAPL";
-
-- input symbol6 = "FCX";
-
-- input symbol7 = "GOOG";
-
-- input symbol8 = "IBM";
-
-- input symbol9 = "JPM";
-
-- input symbol10 = "XOM";
-
-- #hint use1: use1 to use10 toggle display of their respective symbol.
-
-- input use1 = Yes;
-
-- input use2 = Yes;
-
-- input use3 = Yes;
-
-- input use4 = Yes;
-
-- input use5 = Yes;
-
-- input use6 = Yes;
-
-- input use7 = Yes;
-
-- input use8 = Yes;
-
-- input use9 = Yes;
-
-- input use10 = Yes;
-
-- # changing the Min and Max values will determine the minimum and maximum plotted values for all symbols.
-
-- script normalize {
-
-- input data = close;
-
-- input Min = -10000;
-
-- input Max = 10000;
-
-- def ha = HighestAll( data );
-
-- def la = LowestAll( data );
-
-- plot normalize = (((Max-Min) * (data-la)) / (ha-la)) + Min;
-
-- }
-
-- def s1 = if use1 then Fundamental(price, symbol1) else Double.NaN;
-
-- def s2 = if use2 then Fundamental(price, symbol2) else Double.NaN;
-
-- def s3 = if use3 then Fundamental(price, symbol3) else Double.NaN;
-
-- def s4 = if use4 then Fundamental(price, symbol4) else Double.NaN;
-
-- def s5 = if use5 then Fundamental(price, symbol5) else Double.NaN;
-
-- def s6 = if use6 then Fundamental(price, symbol6) else Double.NaN;
-
-- def s7 = if use7 then Fundamental(price, symbol7) else Double.NaN;
-
-- def s8 = if use8 then Fundamental(price, symbol8) else Double.NaN;
-
-- def s9 = if use9 then Fundamental(price, symbol9) else Double.NaN;
-
-- def s10 = if use10 then Fundamental(price, symbol10) else Double.NaN;
-
-- def r1 = compoundValue(1, if !isNaN(s1) then normalize(s1) else r1[1], Double.NaN);
-
-- def r2 = compoundValue(1, if !isNaN(s2) then normalize(s2) else r2[1], Double.NaN);
-
-- def r3 = compoundValue(1, if !isNaN(s3) then normalize(s3) else r3[1], Double.NaN);
-
-- def r4 = compoundValue(1, if !isNaN(s4) then normalize(s4) else r4[1], Double.NaN);
-
-- def r5 = compoundValue(1, if !isNaN(s5) then normalize(s5) else r5[1], Double.NaN);
-
-- def r6 = compoundValue(1, if !isNaN(s6) then normalize(s6) else r6[1], Double.NaN);
-
-- def r7 = compoundValue(1, if !isNaN(s7) then normalize(s7) else r7[1], Double.NaN);
-
-- def r8 = compoundValue(1, if !isNaN(s8) then normalize(s8) else r8[1], Double.NaN);
-
-- def r9 = compoundValue(1, if !isNaN(s9) then normalize(s9) else r9[1], Double.NaN);
-
-- def r10 = compoundValue(1, if !isNaN(s10) then normalize(s10) else r10[1], Double.NaN);
-
-- # States: 0 = Not initialized, 1 = Initialized.
-
-- def st = {default "0", "1"};
-
-- # Offsets:
-
-- def ofst1;
-
-- def ofst2;
-
-- def ofst3;
-
-- def ofst4;
-
-- def ofst5;
-
-- def ofst6;
-
-- def ofst7;
-
-- def ofst8;
-
-- def ofst9;
-
-- def ofst10;
-
-- if st[1] == st."0" {
-
-- if (!use1 or !isNaN(r1)) and (!use2 or !isNaN(r2))
-
-- and (!use3 or !isNaN(r3)) and (!use4 or !isNaN(r4))
-
-- and (!use5 or !isNaN(r5)) and (!use6 or !isNaN(r6))
-
-- and (!use7 or !isNaN(r7)) and (!use8 or !isNaN(r8))
-
-- and (!use9 or !isNaN(r9)) and (!use10 or !isNaN(r10))
-
-- {
-
-- ofst1 = r1;
-
-- ofst2 = r2;
-
-- ofst3 = r3;
-
-- ofst4 = r4;
-
-- ofst5 = r5;
-
-- ofst6 = r6;
-
-- ofst7 = r7;
-
-- ofst8 = r8;
-
-- ofst9 = r9;
-
-- ofst10 = r10;
-
-- st = st."1";
-
-- } else {
-
-- # Not initialized.
-
-- ofst1 = Double.NaN;
-
-- ofst2 = Double.NaN;
-
-- ofst3 = Double.NaN;
-
-- ofst4 = Double.NaN;
-
-- ofst5 = Double.NaN;
-
-- ofst6 = Double.NaN;
-
-- ofst7 = Double.NaN;
-
-- ofst8 = Double.NaN;
-
-- ofst9 = Double.NaN;
-
-- ofst10 = Double.NaN;
-
-- st = st[1];
-
-- }
-
-- } else {
-
-- ofst1 = ofst1[1];
-
-- ofst2 = ofst2[1];
-
-- ofst3 = ofst3[1];
-
-- ofst4 = ofst4[1];
-
-- ofst5 = ofst5[1];
-
-- ofst6 = ofst6[1];
-
-- ofst7 = ofst7[1];
-
-- ofst8 = ofst8[1];
-
-- ofst9 = ofst9[1];
-
-- ofst10 = ofst10[1];
-
-- st = st[1];
-
-- }
-
-- def ok = !isNaN(close) and st == st."1";
-
-- plot p1 = if ok then r1 - ofst1 else Double.NaN;
-
-- plot p2 = if ok then r2 - ofst2 else Double.NaN;
-
-- plot p3 = if ok then r3 - ofst3 else Double.NaN;
-
-- plot p4 = if ok then r4 - ofst4 else Double.NaN;
-
-- plot p5 = if ok then r5 - ofst5 else Double.NaN;
-
-- plot p6 = if ok then r6 - ofst6 else Double.NaN;
-
-- plot p7 = if ok then r7 - ofst7 else Double.NaN;
-
-- plot p8 = if ok then r8 - ofst8 else Double.NaN;
-
-- plot p9 = if ok then r9 - ofst9 else Double.NaN;
-
-- plot p10 = if ok then r10 - ofst10 else Double.NaN;
-
-- plot Zero = 0;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  128128
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- Zero.SetDefaultColor(Color.GRAY);
-
-- def n = showKey == showKey.NUM;
-
-- AddLabel(showKey and use1, (if n then "1. " else "") + symbol1, p1.TakeValueColor());
-
-- AddLabel(showKey and use2, (if n then "2. " else "") + symbol2, p2.TakeValueColor());
-
-- AddLabel(showKey and use3, (if n then "3. " else "") + symbol3, p3.TakeValueColor());
-
-- AddLabel(showKey and use4, (if n then "4. " else "") + symbol4, p4.TakeValueColor());
-
-- AddLabel(showKey and use5, (if n then "5. " else "") + symbol5, p5.TakeValueColor());
-
-- AddLabel(showKey and use6, (if n then "6. " else "") + symbol6, p6.TakeValueColor());
-
-- AddLabel(showKey and use7, (if n then "7. " else "") + symbol7, p7.TakeValueColor());
-
-- AddLabel(showKey and use8, (if n then "8. " else "") + symbol8, p8.TakeValueColor());
-
-- AddLabel(showKey and use9, (if n then "9. " else "") + symbol9, p9.TakeValueColor());
-
-- AddLabel(showKey and use10, (if n then "10. " else "") + symbol10, p10.TakeValueColor());
-
-- # end
+```
+# by linus on the ThinkScript Lounge
+#: Multiple instruments comparison
+## Method used = NormalizedSymbols
+## linus, 2014-03-16, v0.3
+# Change History:
+# 2014-03-16, v0.3, linus - Added inputs use1..use10.
+# 2014-03-14, v0.2, linus - Added symbol key.
+# 2014-03-14, v0.1, linus - Original version.
+#hint: Normalize plots for various symbols and start ploting the symbols at 0 % value.
+
+declare lower;
+
+#hint showKey: OFF hides the symbol key, NUM numbers the symbol text, TXT shows just the symbol text.
+input showKey = {OFF, NUM, default TXT};
+#hint price: Changes the fundamental price type.
+input price = FundamentalType.CLOSE;
+#The following symbols may be changed to your preference but none should be blank. You may turn off any of these via the 'input use? = ' function. Each symbol is implied-numbered from 1 to 10, top-to-bottom sequentially.
+input symbol1 = "SPY";
+input symbol2 = "QQQ";
+input symbol3 = "IWM";
+input symbol4 = "DIA";
+input symbol5 = "AAPL";
+input symbol6 = "FCX";
+input symbol7 = "GOOG";
+input symbol8 = "IBM";
+input symbol9 = "JPM";
+input symbol10 = "XOM";
+
+#hint use1: use1 to use10 toggle display of their respective symbol.
+input use1 = Yes;
+input use2 = Yes;
+input use3 = Yes;
+input use4 = Yes;
+input use5 = Yes;
+input use6 = Yes;
+input use7 = Yes;
+input use8 = Yes;
+input use9 = Yes;
+input use10 = Yes;
+# changing the Min and Max values will determine the minimum and maximum plotted values for all symbols.
+
+script normalize {
+  input data = close;
+  input Min = -10000;
+  input Max = 10000;
+  
+  def ha = HighestAll( data );
+  def la = LowestAll( data );
+  plot normalize = (((Max-Min) * (data-la)) / (ha-la)) + Min;
+}
+
+def s1 = if use1 then Fundamental(price, symbol1) else Double.NaN;
+def s2 = if use2 then Fundamental(price, symbol2) else Double.NaN;
+def s3 = if use3 then Fundamental(price, symbol3) else Double.NaN;
+def s4 = if use4 then Fundamental(price, symbol4) else Double.NaN;
+def s5 = if use5 then Fundamental(price, symbol5) else Double.NaN;
+def s6 = if use6 then Fundamental(price, symbol6) else Double.NaN;
+def s7 = if use7 then Fundamental(price, symbol7) else Double.NaN;
+def s8 = if use8 then Fundamental(price, symbol8) else Double.NaN;
+def s9 = if use9 then Fundamental(price, symbol9) else Double.NaN;
+def s10 = if use10 then Fundamental(price, symbol10) else Double.NaN;
+
+def r1 = compoundValue(1, if !isNaN(s1) then normalize(s1) else r1[1], Double.NaN);
+def r2 = compoundValue(1, if !isNaN(s2) then normalize(s2) else r2[1], Double.NaN);
+def r3 = compoundValue(1, if !isNaN(s3) then normalize(s3) else r3[1], Double.NaN);
+def r4 = compoundValue(1, if !isNaN(s4) then normalize(s4) else r4[1], Double.NaN);
+def r5 = compoundValue(1, if !isNaN(s5) then normalize(s5) else r5[1], Double.NaN);
+def r6 = compoundValue(1, if !isNaN(s6) then normalize(s6) else r6[1], Double.NaN);
+def r7 = compoundValue(1, if !isNaN(s7) then normalize(s7) else r7[1], Double.NaN);
+def r8 = compoundValue(1, if !isNaN(s8) then normalize(s8) else r8[1], Double.NaN);
+def r9 = compoundValue(1, if !isNaN(s9) then normalize(s9) else r9[1], Double.NaN);
+def r10 = compoundValue(1, if !isNaN(s10) then normalize(s10) else r10[1], Double.NaN);
+
+# States: 0 = Not initialized, 1 = Initialized.
+def st = {default "0", "1"};
+# Offsets:
+def ofst1;
+def ofst2;
+def ofst3;
+def ofst4;
+def ofst5;
+def ofst6;
+def ofst7;
+def ofst8;
+def ofst9;
+def ofst10;
+
+if st[1] == st."0" {
+  if (!use1 or !isNaN(r1)) and (!use2 or !isNaN(r2))
+  and (!use3 or !isNaN(r3)) and (!use4 or !isNaN(r4))
+  and (!use5 or !isNaN(r5)) and (!use6 or !isNaN(r6))
+  and (!use7 or !isNaN(r7)) and (!use8 or !isNaN(r8))
+  and (!use9 or !isNaN(r9)) and (!use10 or !isNaN(r10))
+  {
+    ofst1 = r1;
+    ofst2 = r2;
+    ofst3 = r3;
+    ofst4 = r4;
+    ofst5 = r5;
+    ofst6 = r6;
+    ofst7 = r7;
+    ofst8 = r8;
+    ofst9 = r9;
+    ofst10 = r10;
+    st = st."1";
+  } else {
+    # Not initialized.
+    ofst1 = Double.NaN;
+    ofst2 = Double.NaN;
+    ofst3 = Double.NaN;
+    ofst4 = Double.NaN;
+    ofst5 = Double.NaN;
+    ofst6 = Double.NaN;
+    ofst7 = Double.NaN;
+    ofst8 = Double.NaN;
+    ofst9 = Double.NaN;
+    ofst10 = Double.NaN;
+    st = st[1];
+  }
+} else {
+  ofst1 = ofst1[1];
+  ofst2 = ofst2[1];
+  ofst3 = ofst3[1];
+  ofst4 = ofst4[1];
+  ofst5 = ofst5[1];
+  ofst6 = ofst6[1];
+  ofst7 = ofst7[1];
+  ofst8 = ofst8[1];
+  ofst9 = ofst9[1];
+  ofst10 = ofst10[1];
+  st = st[1];
+}
+
+def ok = !isNaN(close) and st == st."1";
+plot p1 = if ok then r1 - ofst1 else Double.NaN;
+plot p2 = if ok then r2 - ofst2 else Double.NaN;
+plot p3 = if ok then r3 - ofst3 else Double.NaN;
+plot p4 = if ok then r4 - ofst4 else Double.NaN;
+plot p5 = if ok then r5 - ofst5 else Double.NaN;
+plot p6 = if ok then r6 - ofst6 else Double.NaN;
+plot p7 = if ok then r7 - ofst7 else Double.NaN;
+plot p8 = if ok then r8 - ofst8 else Double.NaN;
+plot p9 = if ok then r9 - ofst9 else Double.NaN;
+plot p10 = if ok then r10 - ofst10 else Double.NaN;
+
+plot Zero = 0;
+Zero.SetDefaultColor(Color.GRAY);
+
+def n = showKey == showKey.NUM;
+
+AddLabel(showKey and use1, (if n then "1. " else "") + symbol1, p1.TakeValueColor());
+AddLabel(showKey and use2, (if n then "2. " else "") + symbol2, p2.TakeValueColor());
+AddLabel(showKey and use3, (if n then "3. " else "") + symbol3, p3.TakeValueColor());
+AddLabel(showKey and use4, (if n then "4. " else "") + symbol4, p4.TakeValueColor());
+AddLabel(showKey and use5, (if n then "5. " else "") + symbol5, p5.TakeValueColor());
+AddLabel(showKey and use6, (if n then "6. " else "") + symbol6, p6.TakeValueColor());
+AddLabel(showKey and use7, (if n then "7. " else "") + symbol7, p7.TakeValueColor());
+AddLabel(showKey and use8, (if n then "8. " else "") + symbol8, p8.TakeValueColor());
+AddLabel(showKey and use9, (if n then "9. " else "") + symbol9, p9.TakeValueColor());
+AddLabel(showKey and use10, (if n then "10. " else "") + symbol10, p10.TakeValueColor());
+# end
+```
 
 ## C-PERCENTAGE PRICE OSCILLATOR (PPO) WITH COMPARISON SYMBOL
 
 [Return to TOC](#toc)
 
-- # Percentage Price Oscillator (PPO): with comparitor
+```
+# Percentage Price Oscillator (PPO): with comparitor
+# Mobius
+# Chat Room request 03.28.2014
 
-- # Mobius
+declare lower;
 
-- # Chat Room request 03.28.2014
+input Sym2 = "SPY";
 
-- declare lower;
+def c2 = close(symbol = Sym2);
+def PPO = (ExpAverage(close, 12) - ExpAverage(close, 26) / ExpAverage(close, 26)) * 100;
+def SignalLine = ExpAverage(PPO, 9);
+def PPO2 = (ExpAverage(c2, 12) - ExpAverage(c2, 26) / ExpAverage(c2, 26)) * 100;
+def SignalLine2 = ExpAverage(PPO2, 9);
 
-- input Sym2 = "SPY";
+plot PPOline = PPO - SignalLine;
+PPOLine.SetPaintingStrategy(PaintingStrategy.Histogram);
+PPOLine.SetLineWeight(4);
+PPOLine.AssignValueColor(if PPOLine > 0 and
+  PPOLine > PPOLine[1]
+  then Color.Green
+  else if PPOLine > 0 and
+  PPOLine < PPOLine[1]
+    then Color.Yellow
+    else if PPOLine < 0 and
+    PPOLine < PPOLine[1]
+      then Color.Red
+      else Color.Blue);
 
-- def c2 = close(symbol = Sym2);
+plot PPOline2 = PPO2 - SignalLine2;
+plot zero = if isNan(close) then Double.NaN else 0;
+zero.SetDefaultColor(Color.Gray);
 
-- def PPO = (ExpAverage(close, 12) - ExpAverage(close, 26) / ExpAverage(close, 26)) * 100;
-
-- def SignalLine = ExpAverage(PPO, 9);
-
-- def PPO2 = (ExpAverage(c2, 12) - ExpAverage(c2, 26) / ExpAverage(c2, 26)) * 100;
-
-- def SignalLine2 = ExpAverage(PPO2, 9);
-
-- plot PPOline = PPO - SignalLine;
-
-- PPOLine.SetPaintingStrategy(PaintingStrategy.Histogram);
-
-- PPOLine.SetLineWeight(4);
-
-- PPOLine.AssignValueColor(if PPOLine > 0 and
-
-- PPOLine > PPOLine[1]
-
-- then Color.Green
-
-- else if PPOLine > 0 and
-
-- PPOLine < PPOLine[1]
-
-- then Color.Yellow
-
-- else if PPOLine < 0 and
-
-- PPOLine < PPOLine[1]
-
-- then Color.Red
-
-- else Color.Blue);
-
-- plot PPOline2 = PPO2 - SignalLine2;
-
-- plot zero = if isNan(close) then Double.NaN else 0;
-
-- zero.SetDefaultColor(Color.Gray);
-
-- AddLabel(1,"Comparison Symbol = " + Sym2,PPOline2.TakeValueColor());
-
-- #end
+AddLabel(1,"Comparison Symbol = " + Sym2,PPOline2.TakeValueColor());
+#end
+```
 
 ## C-DMI OSCILLATOR FOR AN INPUTTED SYMBOL
 
 [Return to TOC](#toc)
 
-- Comment: The DMI is a price momentum indicator that is the driving force for the ADX trend indicator. At times you
+Comment: The DMI is a price momentum indicator that is the driving force for the ADX trend indicator. At times you want to compare the chart's DMI with another symbol. This allows you to do that. A plot of the ADX is optionable.
 
-- want to compare the chart's DMI with another symbol. This allows you to do that. A plot of the ADX is optionable.
+#hint:<b> Plots the DMI Oscillatror</b> for an inputted symbol
+#title + DMI_Oscillator_For_Symbol
 
-- #hint:<b> Plots the DMI Oscillatror</b> for an inputted symbol
+declare lower;
 
-- #title + DMI_Oscillator_For_Symbol
+input Sym = "";#hint Sym:The input symbol for this DMI Oscillator and/or ADX
+input length = 10;#hint length:The same length used for the ADX calculation and the DMI Osc calculation
+input PlotADX = yes;#hint PlotADX:YES plots the ADX line
 
-- declare lower;
+#======== DMI_For_Symbol ==========
+def  Sym_high = high(Symbol = Sym);
+def  Sym_low = low(Symbol = Sym);
+def  Sym_close = close(Symbol = Sym);
+def hiDiff = Sym_high - Sym_high[1];
+def loDiff = Sym_low[1] - Sym_low;
+def plusDM = if hiDiff > loDiff and hiDiff > 0 then hiDiff else 0;
+def minusDM =  if loDiff > hiDiff and loDiff > 0 then loDiff else 0;
+def ATR = WildersAverage(TrueRange(Sym_high, Sym_close, Sym_low), length);
+def "DI+" = 100 * WildersAverage(plusDM, length) / ATR;
+def "DI-" = 100 * WildersAverage(minusDM, length) / ATR;
+def DX = if ("DI+" + "DI-" > 0) then 100 * AbsValue("DI+" - "DI-") / ("DI+" + "DI-") else 0;
 
-- input Sym = "";#hint Sym:The input symbol for this DMI Oscillator and/or ADX
+plot ADX = If PlotADX then  WildersAverage(DX, length) else Double.nan;
+ADX.AssignValueColor(if ("DI+" > "DI-") then color.uptick else color.downtick);
+ADX.SetPaintingStrategy(PaintingStrategy.LINE);
+ADX.SetLineWeight(2);
 
-- input length = 10;#hint length:The same length used for the ADX calculation and the DMI Osc calculation
+#end of ======== DMI_For_Symbol ==========
+plot Osc = "DI+" - "DI-";
+plot Hist = Osc;
+plot ZeroLine = 0;
 
-- input PlotADX = yes;#hint PlotADX:YES plots the ADX line
+Osc.SetDefaultColor(Color.WHITE);
+Osc.SetLineWeight(2);
 
-- #======== DMI_For_Symbol ==========
+Hist.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Hist.SetLineWeight(3);
+Hist.AssignValueColor(if ("DI+" > "DI-") then color.uptick else color.downtick);
+Hist.HideTitle();
 
-- def  Sym_high = high(Symbol = Sym);
+ZeroLine.SetDefaultColor(Color.GRAY);
 
-- def  Sym_low = low(Symbol = Sym);
+DefineGlobalColor("Positive", Color.UPTICK);
+DefineGlobalColor("Negative", Color.DOWNTICK);
 
-- def  Sym_close = close(Symbol = Sym);
+Def Sym_cond = If (Sym == "", 0, 1);
 
-- def hiDiff = Sym_high - Sym_high[1];
-
-- def loDiff = Sym_low[1] - Sym_low;
-
-- def plusDM = if hiDiff > loDiff and hiDiff > 0 then hiDiff else 0;
-
-- def minusDM =  if loDiff > hiDiff and loDiff > 0 then loDiff else 0;
-
-- def ATR = WildersAverage(TrueRange(Sym_high, Sym_close, Sym_low), length);
-
-- def "DI+" = 100 * WildersAverage(plusDM, length) / ATR;
-
-- def "DI-" = 100 * WildersAverage(minusDM, length) / ATR;
-
-- def DX = if ("DI+" + "DI-" > 0) then 100 * AbsValue("DI+" - "DI-") / ("DI+" + "DI-") else 0;
-
-- plot ADX = If PlotADX then  WildersAverage(DX, length) else Double.nan;
-
-- ADX.AssignValueColor(if ("DI+" > "DI-") then color.uptick else color.downtick);
-
-- ADX.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- ADX.SetLineWeight(2);
-
-- #end of ======== DMI_For_Symbol ==========
-
-- plot Osc = "DI+" - "DI-";
-
-- plot Hist = Osc;
-
-- plot ZeroLine = 0;
-
-- Osc.SetDefaultColor(Color.WHITE);
-
-- Osc.SetLineWeight(2);
-
-- Hist.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-
-- Hist.SetLineWeight(3);
-
-- Hist.AssignValueColor(if ("DI+" > "DI-") then color.uptick else color.downtick);
-
-- Hist.HideTitle();
-
-- ZeroLine.SetDefaultColor(Color.GRAY);
-
-- DefineGlobalColor("Positive", Color.UPTICK);
-
-- DefineGlobalColor("Negative", Color.DOWNTICK);
-
-- Def Sym_cond = If (Sym == "", 0, 1);
-
-- AddLabel(!Sym_cond, "A Symbol must be inputted", Color.RED);
-
-- AddLabel(Sym_cond, "DMI Oscillator for " + Sym,color.WHITE);
-
-- AddLabel(Sym_cond, "Current ADX(" + length + ") value = " + Round(ADX, 1), ADX.TakeValueColor());
-
-- #end
+AddLabel(!Sym_cond, "A Symbol must be inputted", Color.RED);
+AddLabel(Sym_cond, "DMI Oscillator for " + Sym,color.WHITE);
+AddLabel(Sym_cond, "Current ADX(" + length + ") value = " + Round(ADX, 1), ADX.TakeValueColor());
+#end
 
 ## C-'ONEGLANCE', A 13-STUDY DASHBOARD
 
 [Return to TOC](#toc)
 
-![Im13](images/Im13)
+#OneGlance by StanL Version 1.0, 5/1/14
+#Hint:The 'OneGlance' study evaluates 13 criteria in a bullish(green)/bearish(red) dashboard presentation. All study parameters and the bullish-bearish-triggers may be set via inputs.
+# OVERVIEW: 'OneGlance' is by StanL 5/01/14. Emphasis has been put on clarity and flexibility: clarity via bubbles and labels; flexibility via input-setable parameters and triggers to match your trading style. The info bubbles in rdite studies often state the default values buil into TOS' studies.
+# USAGE: 'OneGlance' uses up a lot of a chart's real estate and is much more readable when not squeezed; perhaps as an only lower study. One viewing option, when comparing a 'OneGlance' item to a corresponding full TOS chart, is to turn off the price data in 'chart Settings'. Depending on your vision quality and space availability, you may find a magnifier usage useful (google Magnifixer freeware).
+# POINT-OF-VIEW: 'OneGlance' is oriented (parameters and triggers) towards defining the bullish aspects of the studies used. Realize that if a study is not bullish, then it is not necessarily bearish. If you are bearish oriented, i.e. looking for short-opportunities, the modifying of parameters and triggers can enhance you bearish orientation.
+# FUTURE: Although 'OneGlance' already uses a lot of real estate, there is no limit to additional studies being added except for space. Also, depending on your coding skills, certain user-preferred studies may be extracted to form a more- specific abridged 'OneGlance' utilizing less chart real estate and just the studies that you are most interested in.
+#INPUTS: Because of the multitude of studies, the input list in 'Edit Studies' is long but components have been titled to make them self explanatory and with info-bubbles to further identify TOS default values.
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  130130
+declare lower;
 
-TOS & THINKSCRIPT SNIPPET COLLECTION
+input showlabels = yes;#hint showlabels:Toggles labels on/off.
 
-- #OneGlance by StanL Version 1.0, 5/1/14
+def c = close;
+def h = high;
+def l = low;
+def o = open;
 
-- #Hint:The 'OneGlance' study evaluates 13 criteria in a bullish(green)/bearish(red) dashboard presentation. All study
+#Polarized Fractal Efficiency
+#===========================
+input PFE_length = 10;#hint PFE_length:The length used in calculating the Polarized Fractal Efficiency. TOS default is 10.
+input PFE_smoothingLength = 5;#hint PFE_smoothingLength:TOS default is 5.
+input PFE_trig = 50;#hint PFE_trig:The value that triggers the PFE from Bullish to bearish.
 
-- parameters and the bullish-bearish-triggers may be set via inputs.
+def diffpfe = c - c[PFE_length - 1];
+def val = 100 * Sqrt(Sqr(diffpfe) + Sqr(PFE_length)) / Sum(Sqrt(1 + Sqr(c - c[1])), PFE_length - 1);
+def PFE = ExpAverage(if diffpfe > 0 then val else -val, PFE_smoothingLength);
 
-- # OVERVIEW: 'OneGlance' is by StanL 5/01/14. Emphasis has been put on clarity and flexibility: clarity via bubbles and
+plot PFE_Line = 17.5;
+PFE_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+PFE_Line.SetLineWeight(5);
+PFE_Line.AssignValueColor(if PFE > PFE_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
 
-- labels; flexibility via input-setable parameters and triggers to match your trading style. The info bubbles in rdite studies
-
-- often state the default values buil into TOS' studies.
-
-- # USAGE: 'OneGlance' uses up a lot of a chart's real estate and is much more readable when not squeezed; perhaps as
-
-- an only lower study. One viewing option, when comparing a 'OneGlance' item to a corresponding full TOS chart, is to turn
-
-- off the price data in 'chart Settings'. Depending on your vision quality and space availability, you may find a magnifier
-
-- usage useful (google Magnifixer freeware).
-
-- # POINT-OF-VIEW: 'OneGlance' is oriented (parameters and triggers) towards defining the bullish aspects of the
-
-- studies used. Realize that if a study is not bullish, then it is not necessarily bearish. If you are bearish oriented, i.e.
-
-- looking for short-opportunities, the modifying of parameters and triggers can enhance you bearish orientation.
-
-- # FUTURE: Although 'OneGlance' already uses a lot of real estate, there is no limit to additional studies being added
-
-- except for space. Also, depending on your coding skills, certain user-preferred studies may be extracted to form a more-
-
-- specific abridged 'OneGlance' utilizing less chart real estate and just the studies that you are most interested in.
-
-- #INPUTS: Because of the multitude of studies, the input list in 'Edit Studies' is long but components have been titled to
-
-- make them self explanatory and with info-bubbles to further identify TOS default values.
-
-- declare lower;
-
-- input showlabels = yes;#hint showlabels:Toggles labels on/off.
-
-- def c = close;
-
-- def h = high;
-
-- def l = low;
-
-- def o = open;
-
-- #Polarized Fractal Efficiency
-
-- #===========================
-
-- input PFE_length = 10;#hint PFE_length:The length used in calculating the Polarized Fractal Efficiency. TOS default is
-
-- 10.
-
-- input PFE_smoothingLength = 5;#hint PFE_smoothingLength:TOS default is 5.
-
-- input PFE_trig = 50;#hint PFE_trig:The value that triggers the PFE from Bullish to bearish.
-
-- def diffpfe = c - c[PFE_length - 1];
-
-- def val = 100 * Sqrt(Sqr(diffpfe) + Sqr(PFE_length)) / Sum(Sqrt(1 + Sqr(c - c[1])), PFE_length - 1);
-
-- def PFE = ExpAverage(if diffpfe > 0 then val else -val, PFE_smoothingLength);
-
-- plot PFE_Line = 17.5;
-
-- PFE_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- PFE_Line.SetLineWeight(5);
-
-- PFE_Line.AssignValueColor(if PFE > PFE_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- #MomentumPercent
-
-- #=================
-
-- input MOM_Pct_trig = 0.00;#Hint MOM_Pct_trig:The percent value that toggles the chart between green and red.
-
-- Normal is 0.00 %.
+#MomentumPercent
+#=================
+input MOM_Pct_trig = 0.00;#Hint MOM_Pct_trig:The percent value that toggles the chart between green and red. Normal is 0.00 %.
 
 input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to calculate this Momentum Percent. TOS default is 10.
 
@@ -10615,79 +7605,46 @@ MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
 MomPct_Line.SetLineWeight(5);
 MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
 
-- #=== end ====
+#=== end ====
 
-- #Ichimoku Study
-
-- #==============
-
-- #NOTES: One major bullish indication in this study is when the Tenkan excaads the Kijun. Their default lengths of 26
-
-- and 9 may be shortened to increase response sensitivity. There are other bullish Ichimoku indicators.
-
-- input tenkan_period = 9;#hint tenkan_period:The agg-bars used to calculate the tenkan value. TOS' default is 9.
-
-- input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
+#Ichimoku Study
+#==============
+#NOTES: One major bullish indication in this study is when the Tenkan excaads the Kijun. Their default lengths of 26 and 9 may be shortened to increase response sensitivity. There are other bullish Ichimoku indicators.
+input tenkan_period = 9;#hint tenkan_period:The agg-bars used to calculate the tenkan value. TOS' default is 9.
+input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
 
 plot Ichi_Line = 24.5;
 Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
 Ichi_Line.SetLineWeight(5);
 Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
 Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
 
-- #=== end ===
+#===== RSI ======
+input RSI_length = 14;#hint RSI_length:The number of bars used in the calculation. TOS' default value is 14. Shorten for a faster response.
+input RSI_OB = 70;#hint RSI_OB:The RSI overbought value. TOS' default is 70.
+input RSI_OS = 30;#hint RSI_OS:The RSI oversold value. TOS' default = 30.
+#input price = close;
+input RSILowTrig = 50;#hint RSILowTrig:The trigger is between this 'RSILowTrig' value and 100 and is rising for the last 'rsi_UpBars' bars.
+input rsi_UpBars = 3;#hint rsi_UpBars: The number of consecutive rising bars used to evaluated the trigger. Note that using 0 can expose you to a RSI that is falling down from the OverBought line.
 
-- #===== RSI ======
+def rsi_here = RSIWilder(RSI_length, RSI_OB, RSI_OS, c)."RSI";
+def RSI_trig = if (Between(rsi_here, RSILowTrig, 100) && Sum(rsi_here < rsi_here[1], rsi_UpBars) == rsi_UpBars) then 1 else 0;
+#def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
 
-- input RSI_length = 14;#hint RSI_length:The number of bars used in the calculation. TOS' default value is 14. Shorten
+plot rsi_Line = 28;
+rsi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+rsi_Line.SetLineWeight(5);
+#def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
+rsi_Line.AssignValueColor(if RSI_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
 
-- for a faster response.
-
-- input RSI_OB = 70;#hint RSI_OB:The RSI overbought value. TOS' default is 70.
-
-- input RSI_OS = 30;#hint RSI_OS:The RSI oversold value. TOS' default = 30.
-
-- #input price = close;
-
-- input RSILowTrig = 50;#hint RSILowTrig:The trigger is between this 'RSILowTrig' value and 100 and is rising for the
-
-- last 'rsi_UpBars' bars.
-
-- input rsi_UpBars = 3;#hint rsi_UpBars: The number of consecutive rising bars used to evaluated the trigger. Note that
-
-- using 0 can expose you to a RSI that is falling down from the OverBought line.
-
-- def rsi_here = RSIWilder(RSI_length, RSI_OB, RSI_OS, c)."RSI";
-
-- def RSI_trig = if (Between(rsi_here, RSILowTrig, 100) && Sum(rsi_here < rsi_here[1], rsi_UpBars) == rsi_UpBars) then
-
-- 1 else 0;
-
-- #def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- plot rsi_Line = 28;
-
-- rsi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- rsi_Line.SetLineWeight(5);
-
-- #def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- rsi_Line.AssignValueColor(if RSI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- #Bollinger Bands MOBO(MOmentum BreakOut)
-
-- #============================================
-
-- #Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band when the plot turns to bearish and remains bearish until the close rises above the upper band.
-
-- input MOBO_length = 10;#hint MOBO_length:The agg-bars used in the standard deviation(SD) calculation to define the upper and lower bands.
-
-- input Num_Dev_Dn = -0.8;#hint Num_Dev_Dn:The SD of the lower band. Similar to the 2,0 SD used in the Bollinger Bands
-
-- input Num_Dev_up =  0.8;#hint Num_Dev_up:The SD of the upper band. Similar to the 2,0 SD used in the Bollinger Bands
+#Bollinger Bands MOBO(MOmentum BreakOut)
+#============================================
+#Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When the close rises above the upper band the signal is bullish and stays bullish until the ose moves below the lower band when the plot turns to bearish and remains bearish until the close rises above the upper band.
+input MOBO_length = 10;#hint MOBO_length:The agg-bars used in the standard deviation(SD) calculation to define the upper and lower bands.
+input Num_Dev_Dn = -0.8;#hint Num_Dev_Dn:The SD of the lower band. Similar to the 2,0 SD used in the Bollinger Bands
+input Num_Dev_up =  0.8;#hint Num_Dev_up:The SD of the upper band. Similar to the 2,0 SD used in the Bollinger Bands
 
 def sDev = StDev(data = c, length = MOBO_length);
 def Midmobo = Average(c, length = MOBO_length);
@@ -10697,17 +7654,13 @@ def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 
 def upmo = if upmobo  and c > Uppermobo then 1 else 0;
 def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
 
-- plot MOBO_Line = 31.5;
+plot MOBO_Line = 31.5;
+MOBO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MOBO_Line.SetLineWeight(5);
+MOBO_Line.AssignValueColor(if upmobo == 1 then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
 
-- MOBO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MOBO_Line.SetLineWeight(5);
-
-- MOBO_Line.AssignValueColor(if upmobo == 1 then Color.UPTICK else Color.DOWNTICK);
-
-- #=== end ===
-
-- #==== Squeeze by Mobius @ My Trade =====
+#==== Squeeze by Mobius @ My Trade =====
 
 def nK            = 1.5;
 def nBB           = 2.0;
@@ -10716,211 +7669,107 @@ def BBHalfWidth = StDev(c, lengthsqueeze);
 def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
 def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
 
-- plot BBS_Ind = if isSqueezed then 50 else 50;
-
-- BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
-
-- BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- BBS_Ind.SetLineWeight(3);
-
-- BBS_Ind.HideBubble();
-
-- #=== end ===
-
-- #== Line Spacer ===
-
-- plot line55 = 55;#Used to manage space to set labels above this value.
-
-- line55.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
-
-- #== end ==
-
-- #==== DMI_Oscillator ====
-
-- input DMIO_Length = 10;#hint DMIO_Length:The agg-bars used to calculate the DMI_Oscillator. TOS' default is 10.
-
-- input DMIO_trig = 0;#hint DMIO_trig:The trigger value that toggles bullish/bearish. Low values risk a turn down to
-
-- below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
-
-- def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
-
-- plot DMIO_Line = 14;
-
-- DMIO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- DMIO_Line.SetLineWeight(5);
-
-- DMIO_Line.AssignValueColor(if DMI_OSC_here > DMIO_trig then Color.UPTICK else Color.DOWNTICK);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  133133
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #=== end ===
-
-- #==== ADX Indicator ====
-
-- input ADX_Length = 10;#hint ADX_Length: Length used in the ADX calculation of the trigger ADX. TOS' default is 14.
-
-- You may want to use 10 to be consistent with the DMI_Oscillator.
-
-- input ADX_trig = 15;#hint ADX_trig:The bullish ADX value that toggles the bull/bear chart display. You may use any
-
-- value of a bullish ADX to suit your preference. A strong ADX is >= 25 especially if it persists.
-
-- def ADX_here = Round(reference ADX(length = ADX_Length), 1);
-
-- def DMI_Pos = if DMI(ADX_Length)."DI+" > DMI(ADX_Length)."DI-" then 1 else 0;# DMI+ > DMI-
-
-- plot ADX_Line = 10.5;
-
-- ADX_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- ADX_Line.SetLineWeight(5);
-
-- ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- # TrueStrengthIndex
-
-- #===================
-
-- input TSI_trig = 0 ;#hint TSI_trig:The value that toggles bull/bear. TSI has a 'TSI(value)' and a 'signal' line with a
-
-- zero line. This deals with the 'TSI(value)' being above the zero line. An earlier trigger could be had by analysis as was
-
-- done with the MACD herein.
-
-- def TSI_here = reference TrueStrengthIndex(25, 13, 8, "WMA").TSI;
-
-- plot TSI_Line = 7;
-
-- TSI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TSI_Line.SetLineWeight(5);
-
-- TSI_Line.AssignValueColor(if TSI_here > TSI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #=== end ===
-
-- #Dynamic Momentum Index
-
-- #=======================
-
-- #Note: This is similar to the RSI but is more sensitive/responsive
-
-- input DYMI_length = 14;#hint DYMI_length:The length usd for this calculation. TOS default is 14.
-
-- input DYMI_trig = 70;#hint DYMI_trig:The trigger value used to toggle the Bullish/bearish indication.
-
-- def DYMI_here = DynamicMomentumIndex(DYMILength = DYMI_length).DYMI;
-
-- plot DYMI_Line = 3.5;
-
-- DYMI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- DYMI_Line.SetLineWeight(5);
-
-- DYMI_Line.AssignValueColor(if DYMI_here >= DYMI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ====
-
-- #====== MACD =======
-
-- #========= Note about the two MACD  indicators below =======
-
-- # HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above
-
-- the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
-
-- #The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky
-
-- use of the MACD but may sacrifice early entry and related profits.
-
-- #==== end of notes ========
-
-- #====== MACD.value is above MACD.avg (signal line)======
-
-- input fastLength_1 = 12;#hint fastLength_1:For the MACD plot that evaluates the MACD.Value being above the
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  134134
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- MACD.Avg (signal line).
-
-- input slowLength_1 = 26;#hint slowLength_1:For the MACD plot that evaluates the MACD.Value being above the
-
-- MACD.Avg (signal line).
-
-- input MACDLength_1 = 9;#hint MACDLength_1:For the MACD plot that evaluates the MACD.Value being above the
-
-- MACD.Avg (signal line).
-
-- input AverageType_1 = {SMA, default EMA};#hint AverageType_1:For the MACD plot that evaluates the MACD.Value
-
-- being above the MACD.Avg (signal line).
-
-- def macd_Val_1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Value;
-
-- def macd_Avg1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Avg;
-
-- def MACD_trig = if MACD().value > MACD().avg then 1 else 0;
-
-- #def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
-
-- plot Macd_Line1 = 35;
-
-- Macd_Line1.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Macd_Line1.SetLineWeight(5);
-
-- Macd_Line1.AssignValueColor(if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ====
-
-- #==== MACD value is above zero ====
-
-- #NOTE that the fast and slow length may been shortened for faster response. These inputs have a '_2' after the
-
-- standard MACD parameters to distinguish them from the MACD.
-
-- input fastLength_2 = 12;#hint fastLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input slowLength_2 = 26;#hint slowLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input MACDLength_2 = 9;#hint MACDLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input AverageType_2 = {SMA, default EMA};#hint AverageType_2:For the MACD plot that evaluates the MACD.Value
-
-- being above the zero line. The value may be altered for faster/slower response. This selects tha average type to be used.
-
-- input macdVal_trig = 0;#hint macdVal_trig:For the MACD plot that evaluates the MACD value being above the zero line.
-
-- The normal default value is 0, i.e. the zero line, but may be altered here.
-
-- def MACDValue_2 = MACD(fastLength_2, slowLength_2, MACDLength_2, AverageType_2).Value;
-
-- plot MACD_Line2 = 38.5;
-
-- MACD_Line2.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MACD_Line2.SetLineWeight(5);
-
-- MACD_Line2.AssignValueColor(if MACDValue_2 >= macdVal_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- #======= HullMovingAvg ==========
+plot BBS_Ind = if isSqueezed then 50 else 50;
+BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
+BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
+BBS_Ind.SetLineWeight(3);
+BBS_Ind.HideBubble();
+#=== end ===
+
+#== Line Spacer ===
+plot line55 = 55;#Used to manage space to set labels above this value.
+line55.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
+#== end ==
+
+#==== DMI_Oscillator ====
+input DMIO_Length = 10;#hint DMIO_Length:The agg-bars used to calculate the DMI_Oscillator. TOS' default is 10.
+input DMIO_trig = 0;#hint DMIO_trig:The trigger value that toggles bullish/bearish. Low values risk a turn down to below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
+
+def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
+
+plot DMIO_Line = 14;
+DMIO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+DMIO_Line.SetLineWeight(5);
+DMIO_Line.AssignValueColor(if DMI_OSC_here > DMIO_trig then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
+
+#==== ADX Indicator ====
+input ADX_Length = 10;#hint ADX_Length: Length used in the ADX calculation of the trigger ADX. TOS' default is 14. You may want to use 10 to be consistent with the DMI_Oscillator.
+input ADX_trig = 15;#hint ADX_trig:The bullish ADX value that toggles the bull/bear chart display. You may use any value of a bullish ADX to suit your preference. A strong ADX is >= 25 especially if it persists.
+
+def ADX_here = Round(reference ADX(length = ADX_Length), 1);
+def DMI_Pos = if DMI(ADX_Length)."DI+" > DMI(ADX_Length)."DI-" then 1 else 0;# DMI+ > DMI-
+
+plot ADX_Line = 10.5;
+ADX_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+ADX_Line.SetLineWeight(5);
+ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
+
+# TrueStrengthIndex
+#===================
+input TSI_trig = 0 ;#hint TSI_trig:The value that toggles bull/bear. TSI has a 'TSI(value)' and a 'signal' line with a zero line. This deals with the 'TSI(value)' being above the zero line. An earlier trigger could be had by analysis as was done with the MACD herein.
+
+def TSI_here = reference TrueStrengthIndex(25, 13, 8, "WMA").TSI;
+plot TSI_Line = 7;
+TSI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TSI_Line.SetLineWeight(5);
+TSI_Line.AssignValueColor(if TSI_here > TSI_trig then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
+
+#Dynamic Momentum Index
+#=======================
+#Note: This is similar to the RSI but is more sensitive/responsive
+input DYMI_length = 14;#hint DYMI_length:The length usd for this calculation. TOS default is 14.
+input DYMI_trig = 70;#hint DYMI_trig:The trigger value used to toggle the Bullish/bearish indication.
+
+def DYMI_here = DynamicMomentumIndex(DYMILength = DYMI_length).DYMI;
+
+plot DYMI_Line = 3.5;
+DYMI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+DYMI_Line.SetLineWeight(5);
+DYMI_Line.AssignValueColor(if DYMI_here >= DYMI_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ====
+
+#====== MACD =======
+#========= Note about the two MACD  indicators below =======
+# HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
+#The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky use of the MACD but may sacrifice early entry and related profits.
+#==== end of notes ========
+
+#====== MACD.value is above MACD.avg (signal line)======
+input fastLength_1 = 12;#hint fastLength_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input slowLength_1 = 26;#hint slowLength_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input MACDLength_1 = 9;#hint MACDLength_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input AverageType_1 = {SMA, default EMA};#hint AverageType_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+
+def macd_Val_1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Value;
+def macd_Avg1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Avg;
+def MACD_trig = if MACD().value > MACD().avg then 1 else 0;
+#def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
+
+plot Macd_Line1 = 35;
+Macd_Line1.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Macd_Line1.SetLineWeight(5);
+Macd_Line1.AssignValueColor(if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
+#== end ====
+
+#==== MACD value is above zero ====
+#NOTE that the fast and slow length may been shortened for faster response. These inputs have a '_2' after the standard MACD parameters to distinguish them from the MACD.
+input fastLength_2 = 12;#hint fastLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input slowLength_2 = 26;#hint slowLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input MACDLength_2 = 9;#hint MACDLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input AverageType_2 = {SMA, default EMA};#hint AverageType_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster/slower response. This selects tha average type to be used. input macdVal_trig = 0;#hint macdVal_trig:For the MACD plot that evaluates the MACD value being above the zero line. The normal default value is 0, i.e. the zero line, but may be altered here.
+
+def MACDValue_2 = MACD(fastLength_2, slowLength_2, MACDLength_2, AverageType_2).Value;
+
+plot MACD_Line2 = 38.5;
+MACD_Line2.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MACD_Line2.SetLineWeight(5);
+MACD_Line2.AssignValueColor(if MACDValue_2 >= macdVal_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
+
+#======= HullMovingAvg ==========
 
 input Hull_price = close;#hint Hull_price:The price basis of the HMA.
 input Hull_length = 20;#hint Hull_length:The agg-bars used in the HMA calculation.
@@ -10931,12 +7780,10 @@ def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = 
  Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
  Hull_Line.SetLineWeight(5);
  Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DOWNTICK);
+#== end ==
 
-- #== end ==
-
-- #Define variables used to place a bubble
-
-- #========================================
+#Define variables used to place a bubble
+#========================================
 
 #Input Offset = BarNumber() / 2;
 def barNum = BarNumber();
@@ -11005,10 +7852,6 @@ def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
 - AddChartBubble(FirstBar, 7, " TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.  Bearish TSI =
 
 - red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  136136
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddChartBubble(FirstBar, 50, " RED dot denotes presence of a SQUEEZE", Color.WHITE);
 
@@ -11311,21 +8154,10 @@ BBS_Ind.HideBubble();
 
 - #====== MACD =======
 
-- #========= Note about the two MACD  indicators below =======
-
-- # HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above
-
-- the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
-
-- #The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky
-
-- use of the MACD but may sacrifice early entry and related profits.
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  140140
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #==== end of notes ========
+#========= Note about the two MACD  indicators below =======
+# HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
+#The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky use of the MACD but may sacrifice early entry and related profits.
+#==== end of notes ========
 
 - #====== MACD.value is above MACD.avg (signal line)======
 
@@ -11417,10 +8249,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Hull_Line.SetLineWeight(5);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  141141
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DOWNTICK);
 
 - #== end ==
@@ -11501,10 +8329,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  142142
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - AddChartBubble(FirstBar, 7, " TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.  Bearish TSI =
 
 - red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
@@ -11574,10 +8398,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
 
 - AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  143143
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Color.GREEN else Color.RED);
 
@@ -11851,10 +8671,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ArrowDn.SetDefaultColor(Color.YELLOW);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  146146
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - def lineCond = if ArrowUp < ArrowDn
 
 - then 1
@@ -12033,10 +8849,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - close is above the cloud.", Color.WHITE);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  148148
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #=== scan code for 'Close above the cloud' (primary Bullish scan)===
 
 - #(close is greater than Ichimoku()."Span A" within 2 bars and close is greater than Ichimoku()."Span B" within 2 bars)
@@ -12114,10 +8926,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - #======== Neutral(no trend) in-cloud signal ========
 
 - Plot No_Trend = 14;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  149149
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - No_Trend.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
 
@@ -12373,10 +9181,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Color.WHITE, yes);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  152152
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - ###      === NEUTRAL T/K cross(NTKC)happens while IN the cloud ===
 
 - def cond_NTKC = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsInCloud;
@@ -12464,10 +9268,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - #####################################
 
 - #==== KIJUN CROSS SIGNALS ====     ##
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  153153
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #The kijun cross is one of the most powerful and reliable trading strategies within the Ichimoku system. It can be used
 
@@ -12557,10 +9357,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot KC_neutral_Bear = If (is_KC_bear_neutral && is_KC && want_Neutral && want_Bear, Kijun, Double.NaN);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  154154
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - KC_strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
 
 - KC_strong_Bear.SetLineWeight(5);
@@ -12646,10 +9442,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - want_Bull,close,"strong\nbullish", Color.WHITE, yes);
 
 - ## === BEARISH SIGNALS ===
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  155155
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - ###########################
 
@@ -12737,10 +9529,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - def isSpanAB_NeutralCross = is_SpanAB_Cross && IsInCloud_26;
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  156156
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - Plot SpanAB_NeutralBull = if is_SpanAB_Cross && IsInCloud_26 && is_SpanAB && want_neutral && want_Bull then
 
 - "Span A" else Double.Nan;
@@ -12818,10 +9606,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - #########################################
 
 - #def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  157157
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - above the cloud
 
@@ -12909,10 +9693,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot CC_Neutral_Bull = If (is_ChikouCross && ChikouCross_Bull && IsInCloud &&  want_Neutral && want_Bull, Chikou,
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  158158
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - Double.NaN);
 
 - CC_Neutral_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
@@ -12999,23 +9779,13 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - want_BEAR, Chikou, "Weak\nbearish",  Color.WHITE, no);
 
-- #====== LABELS ========
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  159159
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- #AddLabel(ShowColorLabels, "Strong Bullish", CreateColor(82, 242, 234));#aqua
-
-- #AddLabel(ShowColorLabels, "Neutral Bullish", CreateColor(155, 215, 213));#medium aqua
-
-- #AddLabel(ShowColorLabels, "Weak Bullish", CreateColor(36, 179, 172));#dark aqua
-
-- #AddLabel(ShowColorLabels, "Strong Bearish", CreateColor(255, 0, 255));#light = magenta
-
-- #AddLabel(ShowColorLabels, "Neutral Bearish", CreateColor(221, 160, 221));#medium plum
-
-- #AddLabel(ShowColorLabels, "Weak Bearish", CreateColor(186, 85, 211));#med orchid orchid
+#====== LABELS ========
+#AddLabel(ShowColorLabels, "Strong Bullish", CreateColor(82, 242, 234));#aqua
+#AddLabel(ShowColorLabels, "Neutral Bullish", CreateColor(155, 215, 213));#medium aqua
+#AddLabel(ShowColorLabels, "Weak Bullish", CreateColor(36, 179, 172));#dark aqua
+#AddLabel(ShowColorLabels, "Strong Bearish", CreateColor(255, 0, 255));#light = magenta
+#AddLabel(ShowColorLabels, "Neutral Bearish", CreateColor(221, 160, 221));#medium plum
+#AddLabel(ShowColorLabels, "Weak Bearish", CreateColor(186, 85, 211));#med orchid orchid
 
 - #==== Coding of labels for input-type of signals selected =======
 
@@ -13827,10 +10597,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #example
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  169169
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
 
 - #==========================================
@@ -14007,10 +10773,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - MOBO_Line.HideBubble();
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  171171
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #=== end ===
 
 - #==== Squeeze by Mobius @ My Trade =====
@@ -14094,10 +10856,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
 
 - ADX_Line.HideBubble();
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  172172
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #== end ==
 
@@ -14188,10 +10946,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - def MACD_trig = if macd_Val_1 > macd_Avg1 then 1 else 0;
 
 - #def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  173173
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - plot Macd_Line1 = if IsNaN(close) then Double.NaN else 35;
 
@@ -14285,10 +11039,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddChartBubble(FirstBar && LH_Bubbles, 35, "MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," +
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  174174
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg",
 
 - Color.PINK);
@@ -14369,10 +11119,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - Bearish TSI = red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  175175
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - AddChartBubble(BubbleLocation, 7, "TrueStrengthIndex", Color.CYAN);
 
 - #=======
@@ -14446,10 +11192,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - Color.GREEN else Color.RED);
 
 - AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  176176
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then
 
@@ -14633,10 +11375,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - #Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
 
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  178178
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 - #=== end of scan code ===
 
 - #=== end of Tertiary trend ===
@@ -14722,10 +11460,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 - the last ? bars of a bullish secondary trend
 
 - Bull_Strength.AssignValueColor(if decline then color.Yellow else color.GRAY);
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  179179
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - AddChartBubble(FirstBar && LH_Bubbles, 12, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Trigger = Declining
 
@@ -14888,11 +11622,6 @@ X
 
 - # end
 
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  181181
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
 ----
 ----
 <a name"SCANS"> </>
@@ -14974,52 +11703,27 @@ This is a scan that works well in a dynamic watch list with your favorite compan
 
 [Return to TOC](#toc)
 
-- input price = close;
-
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  182182
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
-
-- input length = 3;#hint length:Number of consecutive bars being evaluated
-
-- input Choice = {default "increased", "decreased"};#hint choice:Choose direction up or down
-
-- plot scan;
-
-- switch (Choice){
-
-- case "increased":
-
-- scan = sum(price > price[1], length) == length;
-
-- case "decreased":
-
-- scan = sum(price < price[1], length) == length;
-
-- }
-
-- Comment: When entering the scan, the set aggregation defines the length of a bar. It likely is 'day' but doesn't have to
-
-- be. Also, this is a simple clear example of how the 'switch; function operates.
-
-- Scan for a price increase
-
-- input price1 = low;
-
-- input percentage = 2.0;#hint percentage: Percent increase in price
-
-- input price2 = high;
-
-- def x = 1+percentage/100;
-
-- def term = x*price2[1];
-
-- plot scan = price1 >= term;# The current low is 2% above the previous high
-
-- scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- #end
+input price = close;
+input length = 3;#hint length:Number of consecutive bars being evaluated
+input Choice = {default "increased", "decreased"};#hint choice:Choose direction up or down
+plot scan;
+switch (Choice){
+  case "increased":
+    scan = sum(price > price[1], length) == length;
+  case "decreased":
+    scan = sum(price < price[1], length) == length;
+}
+Comment: When entering the scan, the set aggregation defines the length of a bar. It likely is 'day' but doesn't have to
+be. Also, this is a simple clear example of how the 'switch; function operates.
+Scan for a price increase
+input price1 = low;
+input percentage = 2.0;#hint percentage: Percent increase in price
+input price2 = high;
+def x = 1+percentage/100;
+def term = x*price2[1];
+plot scan = price1 >= term;# The current low is 2% above the previous high
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+#end
 
 ## S-SCAN FOR HAS-EARNINGS IN FUTURE
 
@@ -15070,16 +11774,6 @@ TOS & THINKSCRIPT SNIPPET COLLECTION
 [Return to TOC](#toc)
 
 - Comment: A good scan for stocks trending up. The aggregation for this is “day”. Change length or the value of 'X > 10' for
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-![Im13](images/Im13)
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  183183
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 - a more powerful trend.
 
@@ -15330,19 +12024,15 @@ plot Scan = DMIplus < DMIminus;
 
 : Scan for the MACD Histogram value crossing from positive to negative or vice versa. Uses[Return to TOC](#toc)
 
-- MACDHistogram
+-MACDHistogram Crossover default parameters of fastLength = 12, slowLength = 26, MACDLength = 9, AverageType = EMA
 
-Crossover
+```
+input crossingType = {default "Positive to Negative", "Negative to Positive"};
+def MACD_cross_above = MACDHistogramCrossover(crossingType == "Negative to Positive").signal;
+plot scan =  MACD_cross_above;
+```
 
-- default parameters of fastLength = 12, slowLength = 26, MACDLength = 9, AverageType = EMA
-
-- input crossingType = {default "Positive to Negative", "Negative to Positive"};
-
-- def MACD_cross_above = MACDHistogramCrossover(crossingType == "Negative to Positive").signal;
-
-- plot scan =  MACD_cross_above;
-
-- OR
+OR
 
 - def MACD_cross_below = MACDHistogramCrossover(crossingType == "Positive to Negative").signal;
 
@@ -15384,131 +12074,103 @@ Crossover
 
 - Plot MFI_below = MoneyFlowIndexCrossover(crossingType ==  crossingType.below).signal;
 
-- MovingAvgCrossover: Scans for crossovers of moving averages of different types and lengths. The defaults parameters
+- MovingAvgCrossover: Scans for crossovers of moving averages of different types and lengths. The defaults parameters are price = close, length1 = 15, length2 = 30. This example will specify all parameters to avoid confusion.
 
-- are price = close, length1 = 15, length2 = 30. This example will specify all parameters to avoid confusion.
+```
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input crossingType = {default above, below};
+Plot MA_above = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 = "Exponential", crossingType = "above").signal;
+```
 
-- input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+- The above reads as a'based on the close, simple average1 of length = 15 crosses above  exponential average2 of length = 30.'
 
-- input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+OR
 
-- input crossingType = {default above, below};
+`Plot MA_below = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 = "Exponential", crossingType = "below").signal;`
 
-- Plot MA_above = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 =
+The above reads as a'based on the close, simple average1 of length = 15 crosses below exponential average2 of length =  30.'
 
-- "Exponential", crossingType = "above").signal;
+ParabolicSARCrossover: Scans for the Parabolic SAR crossing the price plot close. The defaults are accelerationFactor = 0.02, accelerationLimit = 0.2
 
-- The above reads as a'based on the close, simple average1 of length = 15 crosses above  exponential average2 of length =
+```
+input crossingType = {default Bearish, Bullish};
+Plot SAR_Bear = ParabolicSARCrossover(crossingType = "Bearish").signal;
+```
 
-- 30.'
+OR
 
-- OR
+`Plot SAR_Bull = ParabolicSARCrossover(crossingType = "Bullish").signal;`
 
-- Plot MA_below = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 =
+PriceAverageCrossover: The Price Average Crossover scans for crossovers of price with its moving average. The default parameters are price = close, length = 15
 
-- "Exponential", crossingType = "below").signal;
+```
+input averageType = {default Simple, Exponential, Weighted, Wilders, Hull};
+input crossingType = {default above, below};
+Plot PAC_above =  PriceAverageCrossover( averageType = "Exponential",  crossingType = "above").signal;
+```
 
-- The above reads as a'based on the close, simple average1 of length = 15 crosses below exponential average2 of length =
+The above reads 'scan for when the 15 bar exponential moving average crosses above the close'.
 
-- 30.'
+OR
 
-- ParabolicSARCrossover: Scans for the Parabolic SAR crossing the price plot close. The defaults are accelerationFactor =
+`Plot PAC_below =  PriceAverageCrossover( averageType = "Exponential",  crossingType = "below").signal;`
 
-- 0.02, accelerationLimit = 0.2
+The above reads 'scan for when the 15 bar exponential moving average crosses below the close'.
 
-- input crossingType = {default Bearish, Bullish};
+RSIWilderCrossover: The RSI Wilder Crossover scans for an overbought-oversold indicator of specified levels.  The defaults are length = 14, threshold = 30. Specify the threshold for the overbought-oversold value desired
 
-- Plot SAR_Bear = ParabolicSARCrossover(crossingType = "Bearish").signal;
+```
+input crossingType = {default above, below};
+Plot RSI_Cross_Above = RSIWilderCrossover(threshold = 30, crossingType = "above").signal;
+```
 
-- OR
+The above reads 'scan for when the RSI Wilder crosses above 30'.
 
-- Plot SAR_Bull = ParabolicSARCrossover(crossingType = "Bullish").signal;
+OR
 
-- PriceAverageCrossover: The Price Average Crossover scans for crossovers of price with its moving average. The default
+`Plot RSI_Cross_Below = RSIWilderCrossover(threshold = 30, crossingType = "Below").signal;`
 
-- parameters are price = close, length = 15
+The above reads 'scan for when the RSI Wilder crosses below 30'.
 
-- input averageType = {default Simple, Exponential, Weighted, Wilders, Hull};
+RateOfChangeCrossover: The Rate Of Change Crossover for where Rate Of Change crosses zero level. The default is length = 14.
 
-- input crossingType = {default above, below};
+```
+input crossingType = {default "Positive to Negative", "Negative to Positive"};
+plot ROC_Neg =  RateOfChangeCrossover( crossingType = "Positive to Negative").signal;
+```
 
-- Plot PAC_above =  PriceAverageCrossover( averageType = "Exponential",  crossingType = "above").signal;
+The above reads as 'scan for when the rate of change crosses below zero (or goes negative).'
 
-- The above reads 'scan for when the 15 bar exponential moving average crosses above the close'.
+OR
 
-- OR
+`plot ROC_Pos =  RateOfChangeCrossover( crossingType = "Negative to Positive").signal;`
 
-- Plot PAC_below =  PriceAverageCrossover( averageType = "Exponential",  crossingType = "below").signal;
+The above reads as 'scan for when the rate of change crosses above zero (or goes positive).'
 
-- The above reads 'scan for when the 15 bar exponential moving average crosses below the close'.
+StochasticCrossover: The Stochastic Crossover for when the Stochastic Slow or Stochastic Fast crosses overbought (80%) or oversold (20%) level. The default parameters are KPeriod = 14. Note the overbought and oversold levels are predefine as 80/20 respectively and can't be changed when using this crossover study.
 
-- RSIWilderCrossover: The RSI Wilder Crossover scans for an overbought-oversold indicator of specified levels.
+```
+input stochasticMode = {default StochasticFast, StochasticSlow};
+input crossingType = {default Overbought, Oversold};
+Plot Stoch_Fast_OB =  StochasticCrossover(stochasticMode = "StochasticFast",  crossingType = "Overbought").signal;
+```
 
-- The defaults are length = 14, threshold = 30. Specify the threshold for the overbought-oversold value desired
+The above reads as 'scan for when the 14 period fast stochastic crosses above 80'.
 
-- input crossingType = {default above, below};
+OR
 
-- Plot RSI_Cross_Above = RSIWilderCrossover(threshold = 30, crossingType = "above").signal;
+`Plot Stoch_Slow_OS =  StochasticCrossover(stochasticMode = "StochasticSlow",  crossingType = "Oversold").signal;`
 
-- The above reads 'scan for when the RSI Wilder crosses above 30'.
+The above reads as 'scan for when the 14 period slow stochastic crosses below 20'.
 
-- OR
+Comment1: Re all crossover scans, refer to "Referencing other studies" for a complete explanation of the applicable rules for specifying parameters
 
-- Plot RSI_Cross_Below = RSIWilderCrossover(threshold = 30, crossingType = "Below").signal;
+Comment2: The examples shown above do not represent all possible combinations of the parameters available. Using the examples guides you re what parameters are applicable and how you may change them to suit your desires.
 
-- The above reads 'scan for when the RSI Wilder crosses below 30'.
+Comment3: Each of the 11 crossover scans are selectable in the Scan/StockHacker tab. This is a very easy way toimplement these scans since all the parameters are presented for easy assgnment.
 
-- RateOfChangeCrossover: The Rate Of Change Crossover for where Rate Of Change crosses zero level. The default is
-
-- length = 14.
-
-- input crossingType = {default "Positive to Negative", "Negative to Positive"};
-
-- plot ROC_Neg =  RateOfChangeCrossover( crossingType = "Positive to Negative").signal;
-
-- The above reads as 'scan for when the rate of change crosses below zero (or goes negative).'
-
-- OR
-
-- plot ROC_Pos =  RateOfChangeCrossover( crossingType = "Negative to Positive").signal;
-
-- The above reads as 'scan for when the rate of change crosses above zero (or goes positive).'
-
-- StochasticCrossover:
-
-- The Stochastic Crossover for when the Stochastic Slow or Stochastic Fast crosses overbought (80%) or oversold (20%)
-
-- level. The default parameters are KPeriod = 14. Note the overbought and oversold levels are predefine as 80/20
-
-- respectively and can't be changed when using this crossover study.
-
-- input stochasticMode = {default StochasticFast, StochasticSlow};
-
-- input crossingType = {default Overbought, Oversold};
-
-- Plot Stoch_Fast_OB =  StochasticCrossover(stochasticMode = "StochasticFast",  crossingType = "Overbought").signal;
-
-- The above reads as 'scan for when the 14 period fast stochastic crosses above 80'.
-
-- OR
-
-- Plot Stoch_Slow_OS =  StochasticCrossover(stochasticMode = "StochasticSlow",  crossingType = "Oversold").signal;
-
-- The above reads as 'scan for when the 14 period slow stochastic crosses below 20'.
-
-- Comment1: Re all crossover scans, refer to "Referencing other studies" for a complete explanation of the applicable
-
-- rules for specifying parameters
-
-- Comment2: The examples shown above do not represent all possible combinations of the parameters available. Using the
-
-- examples guides you re what parameters are applicable and how you may change them to suit your desires.
-
-- Comment3: Each of the 11 crossover scans are selectable in the Scan/StockHacker tab. This is a very easy way to
-
-- implement these scans since all the parameters are presented for easy assgnment.
-
-- #end
+#end
 
 ## S-MACD SCAN
 
@@ -15779,10 +12441,6 @@ The 'Next Pic' for 'step 4'is:
 [Return to TOC](#toc)
 
  x
-
-TOS & THINKSCRIPT SNIPPET COLLECTION P Pageage  193193
-
-TOS & THINKSCRIPT SNIPPET COLLECTION
 
 ## ALERT SOUNDS
 
