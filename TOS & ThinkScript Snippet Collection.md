@@ -7409,6 +7409,7 @@ AddLabel(Sym_cond, "Current ADX(" + length + ") value = " + Round(ADX, 1), ADX.T
 
 [Return to TOC](#toc)
 
+```
 #OneGlance by StanL Version 1.0, 5/1/14
 #Hint:The 'OneGlance' study evaluates 13 criteria in a bullish(green)/bearish(red) dashboard presentation. All study parameters and the bullish-bearish-triggers may be set via inputs.
 # OVERVIEW: 'OneGlance' is by StanL 5/01/14. Emphasis has been put on clarity and flexibility: clarity via bubbles and labels; flexibility via input-setable parameters and triggers to match your trading style. The info bubbles in rdite studies often state the default values buil into TOS' studies.
@@ -7889,157 +7890,62 @@ Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DO
 #== end ==
 
 #Define variables used to place a bubble
-- #========================================
-
-- #Input Offset = BarNumber() / 2;
-
-- def barNum = BarNumber();
-
-- def offset = 50;
-
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
-
-- def BubbleLocation = LastBar[offset];
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- def FirstBarValue = if barNum == 1 then 1 else 0;
-
-- def LastBarValue = if LastBar then barNum else 0;
-
-- def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
-
-- #example
-
-- #addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
-
-- #==========================================
-
-- #======== Bubbles ==============
-
-- AddChartBubble(FirstBar, 42, " HullMovingAvg(" + Hull_length + "). " + "Trigger = bullish when HullMovingAvg > previous
-
-- HullMovingAvg.", Color.WHITE);
-
-- AddChartBubble(FirstBar, 35, " MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," +
-
-- AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg",
-
-- Color.PINK);
-
-- AddChartBubble(FirstBar, 38.5, " MACD.Value(" + fastLength_2 + "," + slowLength_2 + "," + MACDLength_2 + "," +
-
-- AverageType_2 + ")" + "Bullish when MACD.Value is above the zero line. Trigger = " + macdVal_trig + "(Normally the zero
-
-- line)", Color.PINK);
-
-- AddChartBubble(FirstBar, 17.5 , " Polarized Fractal Efficiency (" + PFE_length + "). " + "Trend UP = 0 to 100. Trigger = " +
-
-- PFE_trig, Color.WHITE);
-
-- AddChartBubble(FirstBar, 21, " MomentumPercent(" + MomPctLength + "). Bullish when > 0 % & for long periods. Trigger =
-
-- " + MOM_Pct_trig + " percent", Color.CYAN);
-
-- AddChartBubble(FirstBar, 24.5, " Ichimoku(" + tenkan_period + ", " + kijun_period + "). Bullish trigger = when tenkan >
-
-- kijun. The more the diff, the stronger the trend.", Color.WHITE);
-
-- AddChartBubble(FirstBar, 28, " RSI(" + RSI_length + ")." + " Trigger = RSI is between " + RSILowTrig + " and 100 and is
-
-- rising for last " + rsi_UpBars + "  bars", Color.CYAN);
-
-- AddChartBubble(FirstBar, 31.5, " Bollinger Bands(+/- " + Num_Dev_up + " SD)" + " MOmentum Break Out (MOBO(" +
-
-- lengthmobo + "))." + " Trigger when close goes above upper band and stays bullish until the close goes below the lower
-
-- band.", Color.WHITE);
-
-- AddChartBubble(FirstBar, 14, " DMI_Oscillator(" + DMIO_Length + "). Bullish DMI = green = >0: Bearish DMI = red.
-
-- Trigger = " + DMIO_trig, Color.PINK);
-
-- AddChartBubble(FirstBar, 10.5, " ADX(" + ADX_Length + "). Bullish ADX = green: Bearish ADX = red. Strong bullish ADX
-
-- trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
-
-- AddChartBubble(FirstBar, 7, " TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.  Bearish TSI =
-
-- red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
-
-- AddChartBubble(FirstBar, 50, " RED dot denotes presence of a SQUEEZE", Color.WHITE);
-
-- AddChartBubble(FirstBar, 3.5, " DynamicMomentumIndex-DYMI(" + DYMI_length + "). Overbought = 70: Oversold  = 30.
-
-- Trigger = " + DYMI_trig, Color.CYAN);
-
-- #== end ==
-
-- #== Labels ==
-
-- #Count of Periods in consecutive squeeze
-
-- rec count = if isSqueezed then count[1] + 1 else 0;
-
-- AddLabel(showlabels, if isSqueezed then "Squeeze is on for " +  count + " bars" else "No Squeeze is on", if isSqueezed
-
-- then Color.RED else Color.WHITE);
-
-- AddLabel(showlabels, "HullMovingAvg(" + Hull_length + ") = " + Round(HullMA, 2), if HullMA > HullMA[1] then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "MACD.Value(" + round(macd_Val_1,1) + ") cross above MACD.Avg(" + Round(macd_Avg1,1) + ")
-
-- (signal) = " + if round(macd_Val_1,1) > Round(macd_Avg1,1) then "true" else "not true", if round(macd_Val_1,1) >
-
-- Round(macd_Avg1,1) then Color.GREEN else color.LIGHT_RED);
-
-- AddLabel(showlabels, "MACD.Value(" + round(MACDValue_2,1) + ") cross above 0 line = " + if round(MACDValue_2,1) >= 0
-
-- then "true" else "not true", if round(MACDValue_2,1) >= 0 then color.GREEN else color.LIGHT_RED);
-
-- AddLabel(showlabels, if upmobo and  c < Uppermobo then "MOBO close is between(" + Num_Dev_up + " SD) bands"
-
-- else if upmo then "MOBO is above upper(" + Num_Dev_up + " SD) band"
-
-- else if dnmo then "MOBO is below lower(" + Num_Dev_up + " SD) band"
-
-- else "", Color.GREEN);
-
-- AddLabel(showlabels, "RSI(" + RSI_length + ") = " + Round(rsi_here, 1), if RSI_trig then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "Ichimoku(" + tenkan_period + ", " + kijun_period + "):" + "Tenkan / Kijan = " + Ichimoku().Tenkan +
-
-- " / " + Ichimoku().kijun, if Ichimoku()."Tenkan" > Ichimoku()."Kijun" then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "MomentumPercent(" + MomPctLength + ") = " + Round(mom_pct, 2) + " %", if mom_pct >=
-
-- MOM_Pct_trig then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "Polarized Fractal Eff(" + PFE_length + ") = " + Round(PFE, 0), if PFE >= PFE_trig then Color.GREEN
-
-- else Color.RED);
-
-- AddLabel(showlabels, "DMI Osc(" + DMIO_Length + ") = " + Round(DMI_OSC_here, 1), if DMI_OSC_here >= DMIO_trig
-
-- then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "ADX(" + ADX_Length + ") = " + ADX_here, if ADX_here >= ADX_trig && DMI_Pos then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
-
-- AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then
-
-- Color.GREEN else Color.RED);
-
-- #== end ==
-
-- # End of Code
-
-- C-'Ichi_TK_Exit_Warning' --- AN EARLY ICHIMOKU T-K EXIT STUDY
+#========================================
+#Input Offset = BarNumber() / 2;
+def barNum = BarNumber();
+def offset = 50;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+def BubbleLocation = LastBar[offset];
+def FirstBar = if barNum == 1 then 1 else 0;
+def FirstBarValue = if barNum == 1 then 1 else 0;
+def LastBarValue = if LastBar then barNum else 0;
+def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
+#example
+#addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
+
+#==========================================
+#======== Bubbles ==============
+AddChartBubble(FirstBar, 42, " HullMovingAvg(" + Hull_length + "). " + "Trigger = bullish when HullMovingAvg > previous HullMovingAvg.", Color.WHITE);
+AddChartBubble(FirstBar, 35, " MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," + AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg", Color.PINK);
+AddChartBubble(FirstBar, 38.5, " MACD.Value(" + fastLength_2 + "," + slowLength_2 + "," + MACDLength_2 + "," + AverageType_2 + ")" + "Bullish when MACD.Value is above the zero line. Trigger = " + macdVal_trig + "(Normally the zero line)", Color.PINK);
+AddChartBubble(FirstBar, 17.5 , " Polarized Fractal Efficiency (" + PFE_length + "). " + "Trend UP = 0 to 100. Trigger = " + PFE_trig, Color.WHITE);
+AddChartBubble(FirstBar, 21, " MomentumPercent(" + MomPctLength + "). Bullish when > 0 % & for long periods. Trigger = " + MOM_Pct_trig + " percent", Color.CYAN);
+AddChartBubble(FirstBar, 24.5, " Ichimoku(" + tenkan_period + ", " + kijun_period + "). Bullish trigger = when tenkan > kijun. The more the diff, the stronger the trend.", Color.WHITE);
+AddChartBubble(FirstBar, 28, " RSI(" + RSI_length + ")." + " Trigger = RSI is between " + RSILowTrig + " and 100 and is rising for last " + rsi_UpBars + "  bars", Color.CYAN);
+AddChartBubble(FirstBar, 31.5, " Bollinger Bands(+/- " + Num_Dev_up + " SD)" + " MOmentum Break Out (MOBO(" + lengthmobo + "))." + " Trigger when close goes above upper band and stays bullish until the close goes below the lower band.", Color.WHITE);
+AddChartBubble(FirstBar, 14, " DMI_Oscillator(" + DMIO_Length + "). Bullish DMI = green = >0: Bearish DMI = red. Trigger = " + DMIO_trig, Color.PINK);
+AddChartBubble(FirstBar, 10.5, " ADX(" + ADX_Length + "). Bullish ADX = green: Bearish ADX = red. Strong bullish ADX trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
+AddChartBubble(FirstBar, 7, " TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.  Bearish TSI = red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
+AddChartBubble(FirstBar, 50, " RED dot denotes presence of a SQUEEZE", Color.WHITE);
+AddChartBubble(FirstBar, 3.5, " DynamicMomentumIndex-DYMI(" + DYMI_length + "). Overbought = 70: Oversold  = 30.
+Trigger = " + DYMI_trig, Color.CYAN);
+#== end ==
+
+#== Labels ==
+#Count of Periods in consecutive squeeze
+rec count = if isSqueezed then count[1] + 1 else 0;
+
+AddLabel(showlabels, if isSqueezed then "Squeeze is on for " +  count + " bars" else "No Squeeze is on", if isSqueezed then Color.RED else Color.WHITE);
+AddLabel(showlabels, "HullMovingAvg(" + Hull_length + ") = " + Round(HullMA, 2), if HullMA > HullMA[1] then Color.GREEN else Color.RED);
+AddLabel(showlabels, "MACD.Value(" + round(macd_Val_1,1) + ") cross above MACD.Avg(" + Round(macd_Avg1,1) + ") (signal) = " + if round(macd_Val_1,1) > Round(macd_Avg1,1) then "true" else "not true", if round(macd_Val_1,1) > Round(macd_Avg1,1) then Color.GREEN else color.LIGHT_RED);
+AddLabel(showlabels, "MACD.Value(" + round(MACDValue_2,1) + ") cross above 0 line = " + if round(MACDValue_2,1) >= 0 then "true" else "not true", if round(MACDValue_2,1) >= 0 then color.GREEN else color.LIGHT_RED);
+AddLabel(showlabels, if upmobo and  c < Uppermobo then "MOBO close is between(" + Num_Dev_up + " SD) bands"
+  else if upmo then "MOBO is above upper(" + Num_Dev_up + " SD) band"
+  else if dnmo then "MOBO is below lower(" + Num_Dev_up + " SD) band"
+  else "", Color.GREEN);
+AddLabel(showlabels, "RSI(" + RSI_length + ") = " + Round(rsi_here, 1), if RSI_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "Ichimoku(" + tenkan_period + ", " + kijun_period + "):" + "Tenkan / Kijan = " + Ichimoku().Tenkan + " / " + Ichimoku().kijun, if Ichimoku()."Tenkan" > Ichimoku()."Kijun" then Color.GREEN else Color.RED);
+AddLabel(showlabels, "MomentumPercent(" + MomPctLength + ") = " + Round(mom_pct, 2) + " %", if mom_pct >= MOM_Pct_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "Polarized Fractal Eff(" + PFE_length + ") = " + Round(PFE, 0), if PFE >= PFE_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "DMI Osc(" + DMIO_Length + ") = " + Round(DMI_OSC_here, 1), if DMI_OSC_here >= DMIO_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "ADX(" + ADX_Length + ") = " + ADX_here, if ADX_here >= ADX_trig && DMI_Pos then Color.GREEN else Color.RED);
+AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
+AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then Color.GREEN else Color.RED);
+#== end ==
+# End of Code
+```
+
+## C-'Ichi_TK_Exit_Warning' --- AN EARLY ICHIMOKU T-K EXIT STUDY
 
 [Return to TOC](#toc)
 
@@ -9863,265 +9769,144 @@ In the ThinkScript Lounge there was a request to post the setup used when evalua
 
 [Return to TOC](#toc)
 
-- #hint:<b>Three X Stochastic Oscillator</b>
-
-- # Title = Three_X_Oscillator
-
-- # Richard Houser created this 3X Oscillator code on the Yahoo ThinkScript forum
-
-- # Stochastic calculated using Lane's formulas in favor over TOS' (has issues)
-
-- declare lower;
-
-- input Use_OB_OS = yes;#hint Use_OB_OS:<b>Show OverBought/OverSold lines.</b>\n Is alternate to using HH/LL
-
-- lines.
-
-- input Use_HH_LL = no;#hint Use_HH_LL:<b>Show Highest/Lowest actual value lines.</b>\n Is alternate to using OB/OS
-
-- lines.
-
-- input show40_60 = no;#hint show40_60:Yes shows the 40 & 60 lines
-
-- input K_period = 21;
-
-- input D_period = 9;
-
-- input SlowTrendLength = 3;
-
-- input smoothing_type = { default EMA, SMA };
-
-- input stochastic_type = { FAST, default SLOW };
-
-- input over_bought = 80;#hint over_bought:This can be replaced by the  line of the highest actual value
-
-- input over_sold = 20;#hint over_sold:This can replaced by the line of the lowest actual value
-
-- Plot OB = If Use_OB_OS then over_bought else double.nan;
-
-- OB.SetLineWeight(1);
-
-- OB.SetDefaultColor(Color.yellow);
-
-- Plot OS = If Use_OB_OS then over_sold else double.nan;
-
-- OS.SetLineWeight(1);
-
-- OS.SetDefaultColor(Color.yellow);
-
-- plot Mid = 50;
-
-- mid.SetStyle(Curve.LONG_DASH);
-
-- mid.SetLineWeight(2);
-
-- mid.SetDefaultColor(Color.pink);
-
-- plot Mid_h = If  show40_60 then 60 else Double.nan ;
-
-- Mid_h.SetStyle(Curve.SHORT_DASH);
-
-- Mid_h.SetLineWeight(1);
-
-- Mid_h .SetDefaultColor(Color.pink);
-
-- Mid_H.Hidebubble();
-
-- plot Mid_L = If  show40_60 then 40 else Double.nan ;
-
-- Mid_L.SetStyle(Curve.SHORT_DASH);
-
-- Mid_L.SetLineWeight(1);
-
-- Mid_L.SetDefaultColor(Color.pink);
-
-- Mid_L.Hidebubble();
-
-- def aggPer = GetAggregationPeriod();
-
-- def adjAggPer = if aggPer == AggregationPeriod.MIN then
-
-- AggregationPeriod.THREE_MIN
-
-- else if aggPer == AggregationPeriod.TWO_MIN then
-
-- AggregationPeriod.FIVE_MIN
-
-- else if aggPer == AggregationPeriod.THREE_MIN then
-
-- AggregationPeriod.TEN_MIN
-
-- else if aggPer == AggregationPeriod.FOUR_MIN then
-
-- AggregationPeriod.TEN_MIN
-
-- else if aggPer == AggregationPeriod.FIVE_MIN then
-
-- AggregationPeriod.FIFTEEN_MIN
-
-- else if aggPer == AggregationPeriod.TEN_MIN then
-
-- AggregationPeriod.THIRTY_MIN
-
-- else if aggPer == AggregationPeriod.FIFTEEN_MIN then
-
-- AggregationPeriod.HOUR
-
-- else if aggPer == AggregationPeriod.TWENTY_MIN then
-
-- AggregationPeriod.HOUR
-
-- else if aggPer == AggregationPeriod.THIRTY_MIN then
-
-- AggregationPeriod.TWO_HOURS
-
-- else if aggPer == AggregationPeriod.HOUR then
-
-- AggregationPeriod.FOUR_HOURS
-
-- else if aggPer == AggregationPeriod.TWO_HOURS then
-
-- AggregationPeriod.DAY
-
-- else if aggPer == AggregationPeriod.FOUR_HOURS then
-
-- AggregationPeriod.DAY
-
-- else if aggPer == AggregationPeriod.DAY then
-
-- AggregationPeriod.THREE_DAYS
-
-- else if aggPer == AggregationPeriod.TWO_DAYS then
-
-- AggregationPeriod.WEEK
-
-- else if aggPer == AggregationPeriod.THREE_DAYS then
-
-- AggregationPeriod.WEEK
-
-- else if aggPer == AggregationPeriod.FOUR_DAYS then
-
-- AggregationPeriod.MONTH
-
-- else if aggPer == AggregationPeriod.WEEK then
-
-- AggregationPeriod.MONTH
-
-- else if aggPer == AggregationPeriod.MONTH then
-
-- AggregationPeriod.MONTH
-
-- else
-
-- Double.NaN;
-
-- def _kPeriod;
-
-- def _dPeriod;
-
-- def _slowTrendLength;
-
-- if aggPer == AggregationPeriod.MONTH
-
-- then {
-
-- _kPeriod = K_period * 3;
-
-- _dPeriod = D_period * 3;
-
-- _slowTrendLength = SlowTrendLength * 3;
-
-- } else {
-
-- _kPeriod = K_period;
-
-- _dPeriod = D_period;
-
-- _slowTrendLength = SlowTrendLength;
-
-- }
-
-- def priceH = high( period = adjAggPer );
-
-- def priceL = low( period = adjAggPer );
-
-- def priceC = close( period = adjAggPer );
-
-- def lowest_low = Lowest( low, _kPeriod );
-
-- def highest_high = Highest( high, _kPeriod );
-
-- def fastK = if ( highest_high - lowest_low ) <= 0 then 0
-
-- else 100 * ( close - lowest_low ) / ( highest_high - lowest_low );
-
-- def fastD = if smoothing_type == smoothing_type.EMA then
-
-- ExpAverage( fastK, _dPeriod ) else Average( fastK, _dPeriod );
-
-- def slowK = fastD;
-
-- def slowD = if smoothing_type == smoothing_type.EMA then
-
-- ExpAverage( slowK, _dPeriod ) else Average( slowK, _dPeriod );
-
-- #---Stochastic
-
-- plot stochD = if stochastic_type == stochastic_type.FAST then
-
-- fastD else slowD;
-
-- stochD.SetPaintingStrategy( PaintingStrategy.POINTS );
-
-- stochD.HideBubble();
-
-- stochD.AssignValueColor( if stochD >= stochD[1] then Color.GREEN else if
-
-- stochD < stochD[1] then Color.RED else Color.GRAY );
-
-- ##################################################
-
-- # Script below will plot a horizontal line at the lowest 3x Osc levelfor all of the data loaded to the chart
-
-- plot stochlowest = If Use_HH_LL then LowestAll(stochD) else double.nan;
-
-- stochlowest.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- stochlowest.SetStyle(Curve.SHORT_DASH);
-
-- stochlowest.SetDefaultColor(Color.red);
-
-- stochlowest.SetLineWeight(2);
-
-- stochlowest.HideBubble();
-
-- stochlowest.HideTitle();
-
-- # Script below will plot a horizontal line at the highest 3x Osc level for all of the data loaded to the chart
-
-- plot stochhighest = If Use_HH_LL then HighestAll(stochD) else double.nan;
-
-- stochhighest.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- stochhighest.SetStyle(Curve.SHORT_DASH);
-
-- stochhighest.SetLineWeight(2);
-
-- stochhighest.SetDefaultColor(Color.green);
-
-- stochhighest.HideBubble();
-
-- stochhighest.HideTitle();
-
-- AddLabel(Use_HH_LL,"Highest value " + HighestAll(round(stochD,2)) + " Bars Ago = " + AsText(stochhighest,
-
-- NumberFormat.TWO_DECIMAL_PLACES), Color.GREEN);
-
-- AddLabel(Use_HH_LL, "Lowest value " + LowestAll(round(stochD,2)) + " Bars Ago = " + AsText(stochlowest,
-
-- NumberFormat.TWO_DECIMAL_PLACES), Color.RED);
-
-- ### EOC ###
+```
+#hint:<b>Three X Stochastic Oscillator</b>
+# Title = Three_X_Oscillator
+# Richard Houser created this 3X Oscillator code on the Yahoo ThinkScript forum
+# Stochastic calculated using Lane's formulas in favor over TOS' (has issues)
+
+declare lower;
+input Use_OB_OS = yes;#hint Use_OB_OS:<b>Show OverBought/OverSold lines.</b>\n Is alternate to using HH/LL lines.
+input Use_HH_LL = no;#hint Use_HH_LL:<b>Show Highest/Lowest actual value lines.</b>\n Is alternate to using OB/OS lines.
+input show40_60 = no;#hint show40_60:Yes shows the 40 & 60 lines
+input K_period = 21;
+input D_period = 9;
+input SlowTrendLength = 3;
+input smoothing_type = { default EMA, SMA };
+input stochastic_type = { FAST, default SLOW };
+input over_bought = 80;#hint over_bought:This can be replaced by the  line of the highest actual value
+input over_sold = 20;#hint over_sold:This can replaced by the line of the lowest actual value
+
+Plot OB = If Use_OB_OS then over_bought else double.nan;
+OB.SetLineWeight(1);
+OB.SetDefaultColor(Color.yellow);
+
+Plot OS = If Use_OB_OS then over_sold else double.nan;
+OS.SetLineWeight(1);
+OS.SetDefaultColor(Color.yellow);
+
+plot Mid = 50;
+mid.SetStyle(Curve.LONG_DASH);
+mid.SetLineWeight(2);
+mid.SetDefaultColor(Color.pink);
+
+plot Mid_h = If  show40_60 then 60 else Double.nan ;
+Mid_h.SetStyle(Curve.SHORT_DASH);
+Mid_h.SetLineWeight(1);
+Mid_h .SetDefaultColor(Color.pink);
+Mid_H.Hidebubble();
+
+plot Mid_L = If  show40_60 then 40 else Double.nan ;
+Mid_L.SetStyle(Curve.SHORT_DASH);
+Mid_L.SetLineWeight(1);
+Mid_L.SetDefaultColor(Color.pink);
+Mid_L.Hidebubble();
+
+def aggPer = GetAggregationPeriod();
+
+def adjAggPer = if aggPer == AggregationPeriod.MIN then  
+  AggregationPeriod.THREE_MIN  
+  else if aggPer == AggregationPeriod.TWO_MIN then  
+  AggregationPeriod.FIVE_MIN  
+  else if aggPer == AggregationPeriod.THREE_MIN then  
+  AggregationPeriod.TEN_MIN  
+  else if aggPer == AggregationPeriod.FOUR_MIN then  
+  AggregationPeriod.TEN_MIN  
+  else if aggPer == AggregationPeriod.FIVE_MIN then  
+  AggregationPeriod.FIFTEEN_MIN  
+  else if aggPer == AggregationPeriod.TEN_MIN then  
+  AggregationPeriod.THIRTY_MIN  
+  else if aggPer == AggregationPeriod.FIFTEEN_MIN then  
+  AggregationPeriod.HOUR  
+  else if aggPer == AggregationPeriod.TWENTY_MIN then  
+  AggregationPeriod.HOUR  
+  else if aggPer == AggregationPeriod.THIRTY_MIN then  
+  AggregationPeriod.TWO_HOURS  
+  else if aggPer == AggregationPeriod.HOUR then  
+  AggregationPeriod.FOUR_HOURS  
+  else if aggPer == AggregationPeriod.TWO_HOURS then  
+  AggregationPeriod.DAY  
+  else if aggPer == AggregationPeriod.FOUR_HOURS then  
+  AggregationPeriod.DAY  
+  else if aggPer == AggregationPeriod.DAY then  
+  AggregationPeriod.THREE_DAYS  
+  else if aggPer == AggregationPeriod.TWO_DAYS then  
+  AggregationPeriod.WEEK  
+  else if aggPer == AggregationPeriod.THREE_DAYS then  
+  AggregationPeriod.WEEK  
+  else if aggPer == AggregationPeriod.FOUR_DAYS then  
+  AggregationPeriod.MONTH  
+  else if aggPer == AggregationPeriod.WEEK then  
+  AggregationPeriod.MONTH  
+  else if aggPer == AggregationPeriod.MONTH then  
+  AggregationPeriod.MONTH  
+  else  
+  Double.NaN;
+
+def _kPeriod;
+def _dPeriod;
+def _slowTrendLength;
+
+if aggPer == AggregationPeriod.MONTH
+then {
+  _kPeriod = K_period * 3;
+  _dPeriod = D_period * 3;
+  _slowTrendLength = SlowTrendLength * 3;
+} else {
+  _kPeriod = K_period;
+  _dPeriod = D_period;
+  _slowTrendLength = SlowTrendLength;
+}
+
+def priceH = high( period = adjAggPer );
+def priceL = low( period = adjAggPer );
+def priceC = close( period = adjAggPer );
+def lowest_low = Lowest( low, _kPeriod );
+def highest_high = Highest( high, _kPeriod );
+def fastK = if ( highest_high - lowest_low ) <= 0 then 0 else 100 * ( close - lowest_low ) / ( highest_high - lowest_low );
+def fastD = if smoothing_type == smoothing_type.EMA then ExpAverage( fastK, _dPeriod ) else Average( fastK, _dPeriod );
+def slowK = fastD;
+def slowD = if smoothing_type == smoothing_type.EMA then ExpAverage( slowK, _dPeriod ) else Average( slowK, _dPeriod );
+
+#---Stochastic
+plot stochD = if stochastic_type == stochastic_type.FAST then fastD else slowD;
+stochD.SetPaintingStrategy( PaintingStrategy.POINTS );
+stochD.HideBubble();
+stochD.AssignValueColor( if stochD >= stochD[1] then Color.GREEN else if stochD < stochD[1] then Color.RED else Color.GRAY );
+
+##################################################
+# Script below will plot a horizontal line at the lowest 3x Osc levelfor all of the data loaded to the chart
+plot stochlowest = If Use_HH_LL then LowestAll(stochD) else double.nan;
+stochlowest.SetPaintingStrategy(PaintingStrategy.LINE);
+stochlowest.SetStyle(Curve.SHORT_DASH);
+stochlowest.SetDefaultColor(Color.red);
+stochlowest.SetLineWeight(2);
+stochlowest.HideBubble();
+stochlowest.HideTitle();
+
+# Script below will plot a horizontal line at the highest 3x Osc level for all of the data loaded to the chart
+plot stochhighest = If Use_HH_LL then HighestAll(stochD) else double.nan;
+stochhighest.SetPaintingStrategy(PaintingStrategy.LINE);
+stochhighest.SetStyle(Curve.SHORT_DASH);
+stochhighest.SetLineWeight(2);
+stochhighest.SetDefaultColor(Color.green);
+stochhighest.HideBubble();
+stochhighest.HideTitle();
+
+AddLabel(Use_HH_LL,"Highest value " + HighestAll(round(stochD,2)) + " Bars Ago = " + AsText(stochhighest, NumberFormat.TWO_DECIMAL_PLACES), Color.GREEN);
+AddLabel(Use_HH_LL, "Lowest value " + LowestAll(round(stochD,2)) + " Bars Ago = " + AsText(stochlowest, NumberFormat.TWO_DECIMAL_PLACES), Color.RED);
+### EOC ###
+```
 
 ## C-ONEGLANCE STUDY
 
@@ -11127,13 +10912,12 @@ OR
 
 - OR
 
-- Plot ADX_Bear = ADXCrossover(crossingType = "above") .signal && DMI."DI-" > DMI."DI+";
+Plot ADX_Bear = ADXCrossover(crossingType = "above") .signal && DMI."DI-" > DMI."DI+";
 
-- MomentumCrossover: Scans for the Momentum crosses the zero line. The default length = 12;
+#MomentumCrossover: Scans for the Momentum crosses the zero line. The default length = 12;
 
-- input crossingType = {default "Positive to Negative", "Negative to Positive"};
-
-- plot RisingMomentum = MomentumCrossover(crossingType == CrossingType."Negative to Positive").signal;
+input crossingType = {default "Positive to Negative", "Negative to Positive"};
+plot RisingMomentum = MomentumCrossover(crossingType == CrossingType."Negative to Positive").signal;
 
 - OR
 
@@ -11316,87 +11100,49 @@ plot scan = sum(x, inarow) >= inarow;
 
 [Return to TOC](#toc)
 
-- Comment 1: By Nick Name @ ThinkScript Lounge: Someone asked me about an increasing earnings scan for 2 quarters.
+Comment 1: By Nick Name @ ThinkScript Lounge: Someone asked me about an increasing earnings scan for 2 quarters. This will do it.  I've written extensive notes for the curious to explain how it works, how and why the statements are built the way they are.  If you want to see it just make it a lower study.
+Comment 2: The annotation is excellent for learning ThinkScript. You don't see this often because doing it is very time consuming and coders are more forcused on results in lieu of explanations.
 
-- This will do it.  I've written extensive notes for the curious to explain how it works, how and why the statements are
+```
+#Increasing Earnings Scan
+#v2.28.14.1
+#Scan for earnings > previous quarter earnings
+#times_up input determines the number of times earnings increased
+#Example: times_up = 4, scan checks for earnings increasing at least 4 quarters in a row
+#default = 2 since 2 was the requested number
+#extensive notes are provided for the curious
 
-- built the way they are.  If you want to see it just make it a lower study.
+input times_up = 2;
+#define a variable for GetActualEarnings() for efficiency
+def gae = GetActualEarnings();
+#Description of recs are written in plain English, followed by the corresponding script use
+# We need to get the earnings value and carry it forward so we can compare the next earnings to it
+#if earnings are reported: if(!isNaN(gae),
+#then get the earnings number: gae,
+#else keep the last earnings number: earn[1]);
 
-- Comment 2: The annotation is excellent for learning ThinkScript. You don't see this often because doing it is very time
+rec ern = if(!isNaN(gae), gae, ern[1]);
+#if there are never any earnings this will always = Double.NaN
+#Now to determine if earnings are increasing enough times in a row we need to count every time they increase.  If
+earnings are < prior quarter, we'll reset the count to 0.
+#CompoundValue is used to make sure the count initializes with a number: 0 in this case.  If it starts with Double.NaN, it
+may not work.
+#start this on the first bar: (CompoundValue(1,
+#if earnings are reported: if(!isNaN(gae),
+#then if earnings are greater than the prior earnings value: if(ern > ern[1],
+#count it by adding 1 to the previous count: ern_up[1] + 1,
+#else set the count to 0: 0),
+#else (if earnings aren't reported) keep the previous count value: ern_up[1]),
+#intialize the value of the variable to 0: 0);
 
-- consuming and coders are more forcused on results in lieu of explanations.
+rec ern_up = CompoundValue(1, if(!isNaN(gae), if(ern > ern[1], ern_up[1] + 1, 0), ern_up[1]), 0);
+#plot the result of ern_up >= times_up
+#if you plot this in a study it will plot 1 (true, earnings have increased at least a number of quarters = to times_up input) or 0 (false, they haven't increased that many times)
+plot scan = ern_up >= times_up;
 
-- #Increasing Earnings Scan
-
-- #v2.28.14.1
-
-- #Scan for earnings > previous quarter earnings
-
-- #times_up input determines the number of times earnings increased
-
-- #Example: times_up = 4, scan checks for earnings increasing at least 4 quarters in a row
-
-- #default = 2 since 2 was the requested number
-
-- #extensive notes are provided for the curious
-
-- input times_up = 2;
-
-- #define a variable for GetActualEarnings() for efficiency
-
-- def gae = GetActualEarnings();
-
-- #Description of recs are written in plain English, followed by the corresponding script use
-
-- # We need to get the earnings value and carry it forward so we can compare the next earnings to it
-
-- #if earnings are reported: if(!isNaN(gae),
-
-- #then get the earnings number: gae,
-
-- #else keep the last earnings number: earn[1]);
-
-- rec ern = if(!isNaN(gae), gae, ern[1]);
-
-- #if there are never any earnings this will always = Double.NaN
-
-- #Now to determine if earnings are increasing enough times in a row we need to count every time they increase.  If
-
-- earnings are < prior quarter, we'll reset the count to 0.
-
-- #CompoundValue is used to make sure the count initializes with a number: 0 in this case.  If it starts with Double.NaN, it
-
-- may not work.
-
-- #start this on the first bar: (CompoundValue(1,
-
-- #if earnings are reported: if(!isNaN(gae),
-
-- #then if earnings are greater than the prior earnings value: if(ern > ern[1],
-
-- #count it by adding 1 to the previous count: ern_up[1] + 1,
-
-- #else set the count to 0: 0),
-
-- #else (if earnings aren't reported) keep the previous count value: ern_up[1]),
-
-- #intialize the value of the variable to 0: 0);
-
-- rec ern_up = CompoundValue(1, if(!isNaN(gae), if(ern > ern[1], ern_up[1] + 1, 0), ern_up[1]), 0);
-
-- #plot the result of ern_up >= times_up
-
-- #if you plot this in a study it will plot 1 (true, earnings have increased at least a number of quarters = to times_up input)
-
-- or 0 (false, they haven't increased that many times)
-
-- plot scan = ern_up >= times_up;
-
-- #If you wanted to scan for earnings increasing only x number of times and not more, change >= to == .  e.g. with times_up
-
-- == 2, using >= means earnings increasing 4 times in a row meet the criteria.
-
-- #end
+#If you wanted to scan for earnings increasing only x number of times and not more, change >= to == .  e.g. with times_up == 2, using >= means earnings increasing 4 times in a row meet the criteria.
+#end
+```
 
 ## S-SCAN FOR TOS' STRENGTH METER
 
