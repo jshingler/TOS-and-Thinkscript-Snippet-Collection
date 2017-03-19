@@ -5920,313 +5920,191 @@ Another point to remember is that some candles are both bearish and bullish. If 
 
 [Return to TOC](#toc)
 
-- Comments from donor BDPonydoc on Yahoo Groups #(18563)
-
-- Title =  My Favorite Indicator
-
-- "Here is the code for my favorite indicator. It is an overbought oversold indicator that I use on just about everything. I
-
-- think the settings I use are the best ones, I have tried different values over the last several years, but these seem to
-
-- work the best across all time frames. The best major signal come when the two oscillators line up. Plot it on a stock daily
-
-- chart and a 5 min futures chart and I think you will get the picture. On my 3 minute or 5 minutes futures charts, I use
-
-- the same settings except for one, the second to the last choice for slowing period1 I use 9 instead of 24. It provides a
-
-- more responsive Stochastic for day trading.
-
-- Comment: Although there are many stochastis studies out there, this one looked very useful. It is similar to the Market
-
-- Forecast. A powerful signal is present when both speeds are simultaneously below OS or above OB.
-
-- TOS Title = "DualStochasticForecast"
-
-- #hint:<b>Dual speed stochastics</b>\nLook for both speeds being coincident at below the over-sold or above the over-
-
-- bought and for multi-aggs.\nArrows are plotted at the OS and OB crossings
-
-- declare lower;
-
-- def price = (high + low) / 2;
-
-- input over_bought = 90;
-
-- input over_sold = 10;
-
-- input length = 26;#hint length:For the faster stoch.Recommended default is 26
-
-- input KPeriod = 13;#hint KPeriod:For the faster stoch. Recommended default is 13
-
-- input DPeriod = 9;#hint DPeriod:For the faster stoch. Recommended default is 9
-
-- input slowing_period = 9;#hint slowing_period:For the faster stoch. Recommended default is 9
-
-- input smoothingType = 1;#hint smoothingType:For the faster stoch. Recommended default is 1
-
-- input DTSell = 95;
-
-- input DTBuy = 5;
-
-- plot WhiteLabel = Double.NaN;
-
-- WhiteLabel.SetDefaultColor(Color.White);
-
-- def NetChgAvg = WildersAverage(price - price[1], length);
-
-- def TotChgAvg = WildersAverage(AbsValue(price - price[1]), length);
-
-- def ChgRatio = if TotChgAvg != 0 then NetChgAvg / TotChgAvg else 0;
-
-- def RSI = 50 * (ChgRatio + 1);
-
-- def c1 = RSI - Lowest(RSI, KPeriod);
-
-- def c2 = Highest(RSI, KPeriod) - Lowest(RSI, KPeriod);
-
-- def FastK = c1 / c2 * 100;
-
-- plot FullK;
-
-- plot FullD;
-
-- if smoothingType == 1
-
-- then {
-
-- FullK = Average(FastK, slowing_period);
-
-- FullD = Average(FullK, DPeriod);
-
-- } else {
-
-- FullK = ExpAverage(FastK, slowing_period);
-
-- FullD = ExpAverage(FullK, DPeriod);
-
-- }
-
-- FullK.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- FullK.SetLineWeight(2);
-
-- FullK.SetDefaultColor(Color.RED);
-
-- FullD.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- FullD.SetLineWeight(1);
-
-- FullD.SetDefaultColor(Color.YELLOW);
-
-- #=== plot min arrows for FullK (fast)====
-
-- def cond1 = if crosses(FullK,Over_Sold,CrossingDirection.any) then 1 else 0;
-
-- Plot Min_Fast = if cond1 then FullK else double.nan;
-
-- Min_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- Min_Fast.SetLineWeight(4);
-
-- Min_Fast.SetDefaultColor(Color.RED);
-
-- #=== plot max arrows for FullK (fast)====
-
-- def cond3 = if crosses(FullK,over_Bought,CrossingDirection.any) then 1 else 0;
-
-- Plot Max_Fast = if cond3 then FullK else double.nan;
-
-- Max_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- Max_Fast.SetLineWeight(4);
-
-- Max_Fast.SetDefaultColor(Color.RED);
-
-- #========================================
-
-- plot OverBought = over_bought;
-
-- OverBought.SetDefaultColor(Color.CYAN);
-
-- plot OverSold = over_sold;
-
-- OverSold.SetDefaultColor(Color.CYAN);
-
-- #FullK.SetDefaultColor(GetColor(5));
-
-- #FullD.SetDefaultColor(GetColor(0));
-
-- OverBought.SetDefaultColor(GetColor(1));
-
-- OverSold.SetDefaultColor(GetColor(1));
-
-- #
-
-- # thinkorswim, inc. (c) 2008
-
-- #    Stochastics
-
-- input KPeriod1 = 48;#hint KPeriod1:For slower stoch. Recommended default is 48
-
-- input DPeriod1 = 12;#hint DPeriod1:For slower stoch. Recommended default is 12
-
-- input priceH = high;
-
-- input priceL = low;
-
-- input priceC = close;
-
-- input slowing_period1 = 24;#hint slowing_period1:For slower stoch. Recommended default is 24 but use 9 for 3-mi and 5-
-
-- min charts
-
-- input smoothingType1 = 3;#hint smoothingType1:For slower stoch. Recommended default is 3
-
-- def c11 = priceC - Lowest(priceL, KPeriod1);def c21 = Highest(priceH, KPeriod1) - Lowest(priceL, KPeriod1);
-
-- def FastK1 = c11 / c21 * 100;
-
-- plot FullK1;
-
-- plot FullD1;
-
-- if smoothingType1 == 1
-
-- then {
-
-- FullK1 = Average(FastK1, slowing_period1);
-
-- FullD1 = Average(FullK1, DPeriod1);
-
-- } else {
-
-- FullK1 = ExpAverage(FastK1, slowing_period1);
-
-- FullD1 = ExpAverage(FullK1, DPeriod1);
-
-- }
-
-- FullK1.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- FullK1.SetLineWeight(2);
-
-- FullK1.SetDefaultColor(Color.GREEN);
-
-- FullD1.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- FullD1.SetLineWeight(1);
-
-- FullD1.SetDefaultColor(Color.YELLOW);
-
-- ############################################
-
-- #=== plot min arrows for FullK1 (Slow)====
-
-- def cond2 = if crosses(FullK1,Over_Sold,CrossingDirection.any) then 1 else 0;
-
-- Plot Min_Slow = if cond2 then FullK1 else double.nan;
-
-- Min_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- Min_Fast.SetLineWeight(4);
-
-- Min_Fast.SetDefaultColor(Color.GREEN);
-
-- #=== plot max arrows for FullK1 (slow)====
-
-- def cond4 = if crosses(FullK1,over_Bought,CrossingDirection.any) then 1 else 0;
-
-- Plot Max_Slow = if cond4 then FullK1 else double.nan;
-
-- Max_Slow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- Max_Slow.SetLineWeight(4);
-
-- Max_Slow.SetDefaultColor(Color.GREEN);
-
-- #========================================
-
-- Alert(Crosses(FullK, 5, CrossingDirection.ABOVE), "DT OSC Buy", Alert.ONCE, Sound.Ding);
-
-- Alert(Crosses(FullK, 95, CrossingDirection.BELOW), "DT OSC Sell", Alert.ONCE, Sound.Ding);
-
-- Plot Mid_line = 50;
-
-- Mid_line.SetPaintingStrategy(PaintingStrategy.DASHES);
-
-- Mid_line.SetLineWeight(1);
-
-- Mid_line.SetDefaultColor(Color.YELLOW);
-
-- #end
-
-- plot StochBuy = If(Crosses(FullK1 or FullD1, 10, CrossingDirection.ABOVE), low, Double.NaN);
-
-- StochBuy.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
-
-- plot StochSell = If(Crosses(FullK1 or FullD1, 90, CrossingDirection.BELOW) , high, Double.NaN);
-
-- StochSell.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
-
-- plot DTBuylevel = DTBuy;
-
-- DTBuylevel.SetDefaultColor(Color.YELLOW);
-
-- plot DTSelllevel = DTSell;
-
-- DTBuylevel.SetDefaultColor(Color.YELLOW);
-
-- addlabel(1,"Dual speed stoch", color.pink);
-
-- addlabel(1,"FASTER Stoch",color.RED);
-
-- addlabel(1,"SLOWER Stoch",color.GREEN);
-
-- Plot Label_Line = 105;
-
-- Label_Line.setDefaultColor(color.CURRENT);
-
-- # end
+Comments from donor BDPonydoc on Yahoo Groups #(18563)
+
+Title =  My Favorite Indicator
+
+"Here is the code for my favorite indicator. It is an overbought oversold indicator that I use on just about everything. I think the settings I use are the best ones, I have tried different values over the last several years, but these seem to work the best across all time frames. The best major signal come when the two oscillators line up. Plot it on a stock daily chart and a 5 min futures chart and I think you will get the picture. On my 3 minute or 5 minutes futures charts, I use the same settings except for one, the second to the last choice for slowing period1 I use 9 instead of 24. It provides a more responsive Stochastic for day trading.
+
+Comment: Although there are many stochastis studies out there, this one looked very useful. It is similar to the Market Forecast. A powerful signal is present when both speeds are simultaneously below OS or above OB.
+
+```
+#TOS Title = "DualStochasticForecast"
+#hint:<b>Dual speed stochastics</b>\nLook for both speeds being coincident at below the over-sold or above the over- bought and for multi-aggs.\nArrows are plotted at the OS and OB crossings
+
+declare lower;
+
+def price = (high + low) / 2;
+
+input over_bought = 90;
+input over_sold = 10;
+input length = 26;#hint length:For the faster stoch.Recommended default is 26
+input KPeriod = 13;#hint KPeriod:For the faster stoch. Recommended default is 13
+input DPeriod = 9;#hint DPeriod:For the faster stoch. Recommended default is 9
+input slowing_period = 9;#hint slowing_period:For the faster stoch. Recommended default is 9
+input smoothingType = 1;#hint smoothingType:For the faster stoch. Recommended default is 1
+input DTSell = 95;
+input DTBuy = 5;
+
+plot WhiteLabel = Double.NaN;
+
+WhiteLabel.SetDefaultColor(Color.White);
+
+def NetChgAvg = WildersAverage(price - price[1], length);
+def TotChgAvg = WildersAverage(AbsValue(price - price[1]), length);
+def ChgRatio = if TotChgAvg != 0 then NetChgAvg / TotChgAvg else 0;
+def RSI = 50 * (ChgRatio + 1);
+def c1 = RSI - Lowest(RSI, KPeriod);
+def c2 = Highest(RSI, KPeriod) - Lowest(RSI, KPeriod);
+def FastK = c1 / c2 * 100;
+
+plot FullK;
+plot FullD;
+
+if smoothingType == 1
+then {
+  FullK = Average(FastK, slowing_period);
+  FullD = Average(FullK, DPeriod);
+} else {
+  FullK = ExpAverage(FastK, slowing_period);
+  FullD = ExpAverage(FullK, DPeriod);
+}
+
+FullK.SetPaintingStrategy(PaintingStrategy.LINE);
+FullK.SetLineWeight(2);
+FullK.SetDefaultColor(Color.RED);
+FullD.SetPaintingStrategy(PaintingStrategy.LINE);
+FullD.SetLineWeight(1);
+FullD.SetDefaultColor(Color.YELLOW);
+
+#=== plot min arrows for FullK (fast)====
+def cond1 = if crosses(FullK,Over_Sold,CrossingDirection.any) then 1 else 0;
+Plot Min_Fast = if cond1 then FullK else double.nan;
+Min_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+Min_Fast.SetLineWeight(4);
+Min_Fast.SetDefaultColor(Color.RED);
+
+#=== plot max arrows for FullK (fast)====
+def cond3 = if crosses(FullK,over_Bought,CrossingDirection.any) then 1 else 0;
+Plot Max_Fast = if cond3 then FullK else double.nan;
+Max_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+Max_Fast.SetLineWeight(4);
+Max_Fast.SetDefaultColor(Color.RED);
+
+#========================================
+plot OverBought = over_bought;
+OverBought.SetDefaultColor(Color.CYAN);
+
+plot OverSold = over_sold;
+OverSold.SetDefaultColor(Color.CYAN);
+#FullK.SetDefaultColor(GetColor(5));
+#FullD.SetDefaultColor(GetColor(0));
+OverBought.SetDefaultColor(GetColor(1));
+OverSold.SetDefaultColor(GetColor(1));
+
+#
+# thinkorswim, inc. (c) 2008
+#    Stochastics
+
+input KPeriod1 = 48;#hint KPeriod1:For slower stoch. Recommended default is 48
+input DPeriod1 = 12;#hint DPeriod1:For slower stoch. Recommended default is 12
+input priceH = high;
+input priceL = low;
+input priceC = close;
+input slowing_period1 = 24;#hint slowing_period1:For slower stoch. Recommended default is 24 but use 9 for 3-mi and 5-min charts
+input smoothingType1 = 3;#hint smoothingType1:For slower stoch. Recommended default is 3
+
+def c11 = priceC - Lowest(priceL, KPeriod1);def c21 = Highest(priceH, KPeriod1) - Lowest(priceL, KPeriod1);
+def FastK1 = c11 / c21 * 100;
+
+plot FullK1;
+plot FullD1;
+if smoothingType1 == 1
+then {
+  FullK1 = Average(FastK1, slowing_period1);
+  FullD1 = Average(FullK1, DPeriod1);
+} else {
+  FullK1 = ExpAverage(FastK1, slowing_period1);
+  FullD1 = ExpAverage(FullK1, DPeriod1);
+}
+
+FullK1.SetPaintingStrategy(PaintingStrategy.LINE);
+FullK1.SetLineWeight(2);
+FullK1.SetDefaultColor(Color.GREEN);
+FullD1.SetPaintingStrategy(PaintingStrategy.LINE);
+FullD1.SetLineWeight(1);
+FullD1.SetDefaultColor(Color.YELLOW);
+
+############################################
+#=== plot min arrows for FullK1 (Slow)====
+def cond2 = if crosses(FullK1,Over_Sold,CrossingDirection.any) then 1 else 0;
+Plot Min_Slow = if cond2 then FullK1 else double.nan;
+Min_Fast.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+Min_Fast.SetLineWeight(4);
+Min_Fast.SetDefaultColor(Color.GREEN);
+
+#=== plot max arrows for FullK1 (slow)====
+def cond4 = if crosses(FullK1,over_Bought,CrossingDirection.any) then 1 else 0;
+Plot Max_Slow = if cond4 then FullK1 else double.nan;
+Max_Slow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+Max_Slow.SetLineWeight(4);
+Max_Slow.SetDefaultColor(Color.GREEN);
+
+#========================================
+Alert(Crosses(FullK, 5, CrossingDirection.ABOVE), "DT OSC Buy", Alert.ONCE, Sound.Ding);
+Alert(Crosses(FullK, 95, CrossingDirection.BELOW), "DT OSC Sell", Alert.ONCE, Sound.Ding);
+Plot Mid_line = 50;
+Mid_line.SetPaintingStrategy(PaintingStrategy.DASHES);
+Mid_line.SetLineWeight(1);
+Mid_line.SetDefaultColor(Color.YELLOW);
+#end
+
+plot StochBuy = If(Crosses(FullK1 or FullD1, 10, CrossingDirection.ABOVE), low, Double.NaN);
+StochBuy.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+
+plot StochSell = If(Crosses(FullK1 or FullD1, 90, CrossingDirection.BELOW) , high, Double.NaN);
+StochSell.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
+
+plot DTBuylevel = DTBuy;
+DTBuylevel.SetDefaultColor(Color.YELLOW);
+
+plot DTSelllevel = DTSell;
+DTBuylevel.SetDefaultColor(Color.YELLOW);
+
+addlabel(1,"Dual speed stoch", color.pink);
+addlabel(1,"FASTER Stoch",color.RED);
+addlabel(1,"SLOWER Stoch",color.GREEN);
+
+Plot Label_Line = 105;
+
+Label_Line.setDefaultColor(color.CURRENT);
+# end
+```
 
 ## C-TODAY'S DJI OR ANY STOCK STATUS LABEL
 
 [Return to TOC](#toc)
 
-- #hint:Today's Dow Jones Industrial status. Any symbol may be substituted for the DJI. If you enter a futures symbol
+```
+#hint:Today's Dow Jones Industrial status. Any symbol may be substituted for the DJI. If you enter a futures symbol for the label while showing a stock chart, the label functions normally during stock trading hours but should be used along with a futures chart during stock-trading-off-hours. Use multiple instances to monitor additional stocks.
 
-- for the label while showing a stock chart, the label functions normally during stock trading hours but should be used along
+input symbol = "$DJI";#Hint symbol:Enter in cap letters to improve looks of the label
 
-- with a futures chart during stock-trading-off-hours. Use multiple instances to monitor additional stocks.
+def C_now = close(Symbol);
+def c = close(symbol, period = AggregationPeriod.day)[1];
+def Change = (C_now/c - 1);
+Def value_change = C_now - c;
+Def PctChange = Change * 100;
+Def Up_Dwn_cond = if (c_now < C, 1 , 0);
 
-- input symbol = "$DJI";#Hint symbol:Enter in cap letters to improve looks of the label
-
-- def C_now = close(Symbol);
-
-- def c = close(symbol, period = AggregationPeriod.day)[1];
-
-- def Change = (C_now/c - 1);
-
-- Def value_change = C_now - c;
-
-- Def PctChange = Change * 100;
-
-- Def Up_Dwn_cond = if (c_now < C, 1 , 0);
-
-- AddLabel(1, Symbol + " now = " + round(c_now,2) ,Color.PINK);
-
-- AddLabel(Up_Dwn_cond,"DOWN", color.RED);
-
-- AddLabel(!Up_Dwn_cond,"UP", color.GREEN);
-
-- Addlabel(1,"Change = " + round(value_change,2) + " (" + round(PctChange,2) + "%)", if Up_Dwn_cond then Color.RED else
-
-- Color.GREEN);
-
-- #AddLabel(1, "C_now = " + C_now, color.PINK);
-
-- #AddLabel(1, "Close of previous day = " + c,color.PINK);
-
-- #end
+AddLabel(1, Symbol + " now = " + round(c_now,2) ,Color.PINK);
+AddLabel(Up_Dwn_cond,"DOWN", color.RED);
+AddLabel(!Up_Dwn_cond,"UP", color.GREEN);
+Addlabel(1,"Change = " + round(value_change,2) + " (" + round(PctChange,2) + "%)", if Up_Dwn_cond then Color.RED else Color.GREEN);
+#AddLabel(1, "C_now = " + C_now, color.PINK);
+#AddLabel(1, "Close of previous day = " + c,color.PINK);
+#end
+```
 
 ## C-PLOT SUPPORT AND RESISTANCE LINES
 
@@ -6899,79 +6777,50 @@ pLoAlert.SetDefaultColor(GetColor(8));
 
 [Return to TOC](#toc)
 
-- Comment: If you are learning TS, this is a good example of a study-of-a-study i.e. linear regression of the ProjectionBands
+Comment: If you are learning TS, this is a good example of a study-of-a-study i.e. linear regression of the ProjectionBands study.
 
-- study.
+```
+# LinRegr_of_ProjectionBands
+#hint:<b>LinRegr_of_ProjectionBands</b>\nThis study plots the linear regression of the ProjectionBands study. Arrows are plotted at the min and max values to indicate possible long and short opportunities\nTick (133) charts present better views.\n The bands are based on LR so this study is a LR of a LR.
 
-- # LinRegr_of_ProjectionBands
+Input PB_length = 14;#hint PB_length:Length of the ProjectionBands. Larger values spread the bands further apart.
+input LR_length = 10;#hint LR_length:The Linear Regression length. The shorter the length, the more volatile the chart. A good default is 10.
 
-- #hint:<b>LinRegr_of_ProjectionBands</b>\nThis study plots the linear regression of the ProjectionBands study. Arrows
+def UPB = ProjectionBands(PB_length).MaxBound;
+#def LR_UPB = Inertia(UPB, 10);
+def LR_UPB = LinearRegCurve(0, LR_length, UPB);
 
-- are plotted at the min and max values to indicate possible long and short opportunities\nTick (133) charts present better
+plot data1 = LR_UPB;
+def Min_LR_UPB = if data1 < data1[1] && data1 < data1 [-1] then 1 else 0;
 
-- views.\n The bands are based on LR so this study is a LR of a LR.
+plot D_Min_LR = if Min_LR_UPB == 1 then LR_UPB else double.nan;
+D_Min_LR.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+D_Min_LR.SetLineWeight(3);
+D_Min_LR.SetDefaultColor(Color.UPTICK);
 
-- Input PB_length = 14;#hint PB_length:Length of the ProjectionBands. Larger values spread the bands further apart.
+def Max_LR_UPB = if data1 > data1[1] && data1 > data1 [-1] then 1 else 0;plot D_Max_LR = if Max_LR_UPB == 1 then
+LR_UPB else double.nan;
 
-- input LR_length = 10;#hint LR_length:The Linear Regression length. The shorter the length, the more volatile the chart.
-
-- A good default is 10.
-
-- def UPB = ProjectionBands(PB_length).MaxBound;
-
-- #def LR_UPB = Inertia(UPB, 10);
-
-- def LR_UPB = LinearRegCurve(0, LR_length, UPB);
-
-- plot data1 = LR_UPB;
-
-- def Min_LR_UPB = if data1 < data1[1] && data1 < data1 [-1] then 1 else 0;
-
-- plot D_Min_LR = if Min_LR_UPB == 1 then LR_UPB else double.nan;
-
-- D_Min_LR.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- D_Min_LR.SetLineWeight(3);
-
-- D_Min_LR.SetDefaultColor(Color.UPTICK);
-
-- def Max_LR_UPB = if data1 > data1[1] && data1 > data1 [-1] then 1 else 0;plot D_Max_LR = if Max_LR_UPB == 1 then
-
-- LR_UPB else double.nan;
-
-- D_Max_LR.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- D_Max_LR.SetLineWeight(3);
-
-- D_Max_LR.SetDefaultColor(Color.DOWNTICK);
-
-- #end
+D_Max_LR.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+D_Max_LR.SetLineWeight(3);
+D_Max_LR.SetDefaultColor(Color.DOWNTICK);
+#end
+```
 
 ## C-CLARIFICATION OF THE FOLLOWING THREE COMPARISON STUDIES
 
 [Return to TOC](#toc)
 
-- Comment:The three following comparison studies herein that are different as clarified below:
+Comment:The three following comparison studies herein that are different as clarified below:
 
-- 1. "COMPARISON OF ALL SECTORS OF THE S&P 500 (SPX)" plots all sectors of the S&P 500 (SPX) as absolute percent
+1. "COMPARISON OF ALL SECTORS OF THE S&P 500 (SPX)" plots all sectors of the S&P 500 (SPX) as absolute percent change all starting at 0 percent.
+2. "S&P 500 SECTORS RELATIVE TO SPX = 0" plots all sectors of the S&P 500 (SPX) as relative percent referenced to the SPX being the 'Zero Line'. So the percentages shown are a sector's percent above or below the SPX value.
+3. "MULTIPLE INSTRUMENTS COMPARISON" is a flexible study of ANY 10 INPUT SYMBOLS any of which can be turned of (i.e. not plotted).
 
-- change all starting at 0 percent.
-
-- 2. "S&P 500 SECTORS RELATIVE TO SPX = 0" plots all sectors of the S&P 500 (SPX) as relative percent referenced to
-
-- the SPX being the 'Zero Line'. So the percentages shown are a sector's percent above or below the SPX value.
-
-- 3. "MULTIPLE INSTRUMENTS COMPARISON" is a flexible study of ANY 10 INPUT SYMBOLS any of which can be
-
-- turned of (i.e. not plotted).
-
-- Each of the three above have the format of starting the comparison at 'Zero Percent'.
-
-- A useful external-to-TOS tool for comparison of symbols may be had at Symbol Comparison Tool
-
-- Also a S&P 500 sector comparison tool may be had at S&P 500 Sector Comparison
-
-- #end
+Each of the three above have the format of starting the comparison at 'Zero Percent'.
+A useful external-to-TOS tool for comparison of symbols may be had at Symbol Comparison Tool
+Also a S&P 500 sector comparison tool may be had at S&P 500 Sector Comparison
+#end
 
 ## C-COMPARISON OF ALL SECTORS OF THE S&P 500 (SPX)
 
@@ -7795,228 +7644,103 @@ def FirstBarValue = if barNum == 1 then 1 else 0;
 def LastBarValue = if LastBar then barNum else 0;
 def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
 
-- #example
-
-- #addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
-
-- #==========================================
-
-- #======== Bubbles ==============
-
-- AddChartBubble(FirstBar, 42, " HullMovingAvg(" + Hull_length + "). " + "Trigger = bullish when HullMovingAvg > previous
-
-- HullMovingAvg.", Color.WHITE);
-
-- AddChartBubble(FirstBar, 35, " MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," +
-
-- AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg",
-
-- Color.PINK);
-
-- AddChartBubble(FirstBar, 38.5, " MACD.Value(" + fastLength_2 + "," + slowLength_2 + "," + MACDLength_2 + "," +
-
-- AverageType_2 + ")" + "Bullish when MACD.Value is above the zero line. Trigger = " + macdVal_trig + "(Normally the zero
-
-- line)", Color.PINK);
-
-- AddChartBubble(FirstBar, 17.5 , " Polarized Fractal Efficiency (" + PFE_length + "). " + "Trend UP = 0 to 100. Trigger = " +
-
-- PFE_trig, Color.WHITE);
-
-- AddChartBubble(FirstBar, 21, " MomentumPercent(" + MomPctLength + "). Bullish when > 0 % & for long periods. Trigger =
-
-- " + MOM_Pct_trig + " percent", Color.CYAN);
-
-- AddChartBubble(FirstBar, 24.5, " Ichimoku(" + tenkan_period + ", " + kijun_period + "). Bullish trigger = when tenkan >
-
-- kijun. The more the diff, the stronger the trend.", Color.WHITE);
-
-- AddChartBubble(FirstBar, 28, " RSI(" + RSI_length + ")." + " Trigger = RSI is between " + RSILowTrig + " and 100 and is
-
-- rising for last " + rsi_UpBars + "  bars", Color.CYAN);
-
-- AddChartBubble(FirstBar, 31.5, " Bollinger Bands(+/- " + Num_Dev_up + " SD)" + " MOmentum Break Out (MOBO(" +
-
-- MOBO_length + "))." + " Trigger when close goes above upper band and stays bullish until the close goes below the lower
-
-- band.", Color.WHITE);
-
-- AddChartBubble(FirstBar, 14, " DMI_Oscillator(" + DMIO_Length + "). Bullish DMI = green = >0: Bearish DMI = red.
-
-- Trigger = " + DMIO_trig, Color.PINK);
-
-- AddChartBubble(FirstBar, 10.5, " ADX(" + ADX_Length + "). Bullish ADX = green: Bearish ADX = red. Strong bullish ADX
-
-- trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
-
-- AddChartBubble(FirstBar, 7, " TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.  Bearish TSI =
-
-- red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
-
-- AddChartBubble(FirstBar, 50, " RED dot denotes presence of a SQUEEZE", Color.WHITE);
-
-- AddChartBubble(FirstBar, 3.5, " DynamicMomentumIndex-DYMI(" + DYMI_length + "). Overbought = 70: Oversold  = 30.
-
-- Trigger = " + DYMI_trig, Color.CYAN);
-
-- #== end ==
-
-- #== Labels ==
-
-- #Count of Periods in consecutive squeeze
-
-- rec count = if isSqueezed then count[1] + 1 else 0;
-
-- AddLabel(showlabels, if isSqueezed then "Squeeze is on for " +  count + " bars" else "No Squeeze is on", if isSqueezed
-
-- then Color.RED else Color.WHITE);
-
-- AddLabel(showlabels, "HullMovingAvg(" + Hull_length + ") = " + Round(HullMA, 2), if HullMA > HullMA[1] then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "MACD.Value(" + round(macd_Val_1,1) + ") cross above MACD.Avg(" + Round(macd_Avg1,1) + ")
-
-- (signal) = " + if round(macd_Val_1,1) > Round(macd_Avg1,1) then "true" else "not true", if round(macd_Val_1,1) >
-
-- Round(macd_Avg1,1) then Color.GREEN else color.LIGHT_RED);
-
-- AddLabel(showlabels, "MACD.Value(" + round(MACDValue_2,1) + ") cross above 0 line = " + if round(MACDValue_2,1) >= 0
-
-- then "true" else "not true", if round(MACDValue_2,1) >= 0 then color.GREEN else color.LIGHT_RED);
-
-- AddLabel(showlabels, if upmobo and  c < Uppermobo then "MOBO close is between(" + Num_Dev_up + " SD) bands"
-
-- else if upmo then "MOBO is above upper(" + Num_Dev_up + " SD) band"
-
-- else if dnmo then "MOBO is below lower(" + Num_Dev_up + " SD) band"
-
-- else "", Color.GREEN);
-
-- AddLabel(showlabels, "RSI(" + RSI_length + ") = " + Round(rsi_here, 1), if RSI_trig then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "Ichimoku(" + tenkan_period + ", " + kijun_period + "):" + "Tenkan / Kijan = " + Ichimoku().Tenkan +
-
-- " / " + Ichimoku().kijun, if Ichimoku()."Tenkan" > Ichimoku()."Kijun" then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "MomentumPercent(" + MomPctLength + ") = " + Round(mom_pct, 2) + " %", if mom_pct >=
-
-- MOM_Pct_trig then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "Polarized Fractal Eff(" + PFE_length + ") = " + Round(PFE, 0), if PFE >= PFE_trig then Color.GREEN
-
-- else Color.RED);
-
-- AddLabel(showlabels, "DMI Osc(" + DMIO_Length + ") = " + Round(DMI_OSC_here, 1), if DMI_OSC_here >= DMIO_trig
-
-- then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "ADX(" + ADX_Length + ") = " + ADX_here, if ADX_here >= ADX_trig && DMI_Pos then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
-
-- AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then
-
-- Color.GREEN else Color.RED);
-
-- #== end ==
-
-- # End of Code
-
-
-- #MomentumPercent
-
-- #=================
-
-- input MOM_Pct_trig = 0.00;#Hint MOM_Pct_trig:The percent value that toggles the chart between green and red.
-
-- Normal is 0.00 %.
-
-- input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to
-
-- calculate this Momentum Percent. TOS default is 10.
-
-- def mom_pct = MomentumPercent(length = MomPctLength)."Momentum, %" - 100;
-
-- plot MomPct_Line = 21;
-
-- MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MomPct_Line.SetLineWeight(5);
-
-- MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #=== end ====
-
-- #Ichimoku Study
-
-- #==============
-
-- #NOTES: One major bullish indication in this study is when the Tenkan excaads the Kijun. Their default lengths of 26
-
-- and 9 may be shortened to increase response sensitivity. There are other bullish Ichimoku indicators.
-
-- input tenkan_period = 9;#hint tenkan_period:The agg-bars used to calculate the tenkan value. TOS' default is 9.
-
-- input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
-
-- plot Ichi_Line = 24.5;
-
-- Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Ichi_Line.SetLineWeight(5);
-
-- Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
-
-- Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
-
-- #=== end ===
-
-- #===== RSI ======
-
-- input RSI_length = 14;#hint RSI_length:The number of bars used in the calculation. TOS' default value is 14. Shorten
-
-- for a faster response.
-
-- input RSI_OB = 70;#hint RSI_OB:The RSI overbought value. TOS' default is 70.
-
-- input RSI_OS = 30;#hint RSI_OS:The RSI oversold value. TOS' default = 30.
-
-- #input price = close;
-
-- input RSILowTrig = 50;#hint RSILowTrig:The trigger is between this 'RSILowTrig' value and 100 and is rising for the
-
-- last 'rsi_UpBars' bars.
-
-- input rsi_UpBars = 3;#hint rsi_UpBars: The number of consecutive rising bars used to evaluated the trigger. Note that
-
-- using 0 can expose you to a RSI that is falling down from the OverBought line.
-
-- def rsi_here = RSIWilder(RSI_length, RSI_OB, RSI_OS, c)."RSI";
-
-- def RSI_trig = if (Between(rsi_here, RSILowTrig, 100) && Sum(rsi_here < rsi_here[1], rsi_UpBars) == rsi_UpBars) then
-
-- 1 else 0;
-
-- #def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- plot rsi_Line = 28;
-
-- rsi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- rsi_Line.SetLineWeight(5);
-
-- #def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- rsi_Line.AssignValueColor(if RSI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- #Bollinger Bands MOBO(MOmentum BreakOut)
-
-- #============================================
+#example
+#addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
+
+#==========================================
+#======== Bubbles ==============
+AddChartBubble(FirstBar, 42, " HullMovingAvg(" + Hull_length + "). " + "Trigger = bullish when HullMovingAvg > previous HullMovingAvg.", Color.WHITE);
+AddChartBubble(FirstBar, 35, " MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," + AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg", Color.PINK);
+AddChartBubble(FirstBar, 38.5, " MACD.Value(" + fastLength_2 + "," + slowLength_2 + "," + MACDLength_2 + "," + AverageType_2 + ")" + "Bullish when MACD.Value is above the zero line. Trigger = " + macdVal_trig + "(Normally the zero line)", Color.PINK);
+AddChartBubble(FirstBar, 17.5 , " Polarized Fractal Efficiency (" + PFE_length + "). " + "Trend UP = 0 to 100. Trigger = " + PFE_trig, Color.WHITE);
+AddChartBubble(FirstBar, 21, " MomentumPercent(" + MomPctLength + "). Bullish when > 0 % & for long periods. Trigger = " + MOM_Pct_trig + " percent", Color.CYAN);
+AddChartBubble(FirstBar, 24.5, " Ichimoku(" + tenkan_period + ", " + kijun_period + "). Bullish trigger = when tenkan > kijun. The more the diff, the stronger the trend.", Color.WHITE);
+AddChartBubble(FirstBar, 28, " RSI(" + RSI_length + ")." + " Trigger = RSI is between " + RSILowTrig + " and 100 and is rising for last " + rsi_UpBars + "  bars", Color.CYAN);
+AddChartBubble(FirstBar, 31.5, " Bollinger Bands(+/- " + Num_Dev_up + " SD)" + " MOmentum Break Out (MOBO(" + MOBO_length + "))." + " Trigger when close goes above upper band and stays bullish until the close goes below the lower band.", Color.WHITE);
+AddChartBubble(FirstBar, 14, " DMI_Oscillator(" + DMIO_Length + "). Bullish DMI = green = >0: Bearish DMI = red. Trigger = " + DMIO_trig, Color.PINK);
+AddChartBubble(FirstBar, 10.5, " ADX(" + ADX_Length + "). Bullish ADX = green: Bearish ADX = red. Strong bullish ADX trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
+AddChartBubble(FirstBar, 7, " TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.  Bearish TSI = red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
+AddChartBubble(FirstBar, 50, " RED dot denotes presence of a SQUEEZE", Color.WHITE);
+AddChartBubble(FirstBar, 3.5, " DynamicMomentumIndex-DYMI(" + DYMI_length + "). Overbought = 70: Oversold  = 30. Trigger = " + DYMI_trig, Color.CYAN);
+#== end ==
+
+#== Labels ==
+#Count of Periods in consecutive squeeze
+rec count = if isSqueezed then count[1] + 1 else 0;
+
+AddLabel(showlabels, if isSqueezed then "Squeeze is on for " +  count + " bars" else "No Squeeze is on", if isSqueezed then Color.RED else Color.WHITE);
+AddLabel(showlabels, "HullMovingAvg(" + Hull_length + ") = " + Round(HullMA, 2), if HullMA > HullMA[1] then Color.GREEN else Color.RED);
+AddLabel(showlabels, "MACD.Value(" + round(macd_Val_1,1) + ") cross above MACD.Avg(" + Round(macd_Avg1,1) + ") (signal) = " + if round(macd_Val_1,1) > Round(macd_Avg1,1) then "true" else "not true", if round(macd_Val_1,1) > Round(macd_Avg1,1) then Color.GREEN else color.LIGHT_RED);
+AddLabel(showlabels, "MACD.Value(" + round(MACDValue_2,1) + ") cross above 0 line = " + if round(MACDValue_2,1) >= 0 then "true" else "not true", if round(MACDValue_2,1) >= 0 then color.GREEN else color.LIGHT_RED);
+
+AddLabel(showlabels, if upmobo and  c < Uppermobo then "MOBO close is between(" + Num_Dev_up + " SD) bands"
+  else if upmo then "MOBO is above upper(" + Num_Dev_up + " SD) band"
+  else if dnmo then "MOBO is below lower(" + Num_Dev_up + " SD) band"
+  else "", Color.GREEN);
+
+AddLabel(showlabels, "RSI(" + RSI_length + ") = " + Round(rsi_here, 1), if RSI_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "Ichimoku(" + tenkan_period + ", " + kijun_period + "):" + "Tenkan / Kijan = " + Ichimoku().Tenkan +
+" / " + Ichimoku().kijun, if Ichimoku()."Tenkan" > Ichimoku()."Kijun" then Color.GREEN else Color.RED);
+AddLabel(showlabels, "MomentumPercent(" + MomPctLength + ") = " + Round(mom_pct, 2) + " %", if mom_pct >=
+MOM_Pct_trig then Color.GREEN else Color.RED);
+
+AddLabel(showlabels, "Polarized Fractal Eff(" + PFE_length + ") = " + Round(PFE, 0), if PFE >= PFE_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "DMI Osc(" + DMIO_Length + ") = " + Round(DMI_OSC_here, 1), if DMI_OSC_here >= DMIO_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "ADX(" + ADX_Length + ") = " + ADX_here, if ADX_here >= ADX_trig && DMI_Pos then Color.GREEN else Color.RED);
+AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
+AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then Color.GREEN else Color.RED);
+#== end ==
+# End of Code
+
+
+#MomentumPercent
+
+#=================
+input MOM_Pct_trig = 0.00;#Hint MOM_Pct_trig:The percent value that toggles the chart between green and red. Normal is 0.00 %.
+input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to calculate this Momentum Percent. TOS default is 10.
+
+def mom_pct = MomentumPercent(length = MomPctLength)."Momentum, %" - 100;
+
+plot MomPct_Line = 21;
+MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MomPct_Line.SetLineWeight(5);
+MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
+#=== end ====
+
+#Ichimoku Study
+#==============
+#NOTES: One major bullish indication in this study is when the Tenkan excaads the Kijun. Their default lengths of 26 and 9 may be shortened to increase response sensitivity. There are other bullish Ichimoku indicators. input tenkan_period = 9;#hint tenkan_period:The agg-bars used to calculate the tenkan value. TOS' default is 9.
+
+input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
+
+plot Ichi_Line = 24.5;
+Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Ichi_Line.SetLineWeight(5);
+Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
+Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
+
+#===== RSI ======
+input RSI_length = 14;#hint RSI_length:The number of bars used in the calculation. TOS' default value is 14. Shorten for a faster response.
+input RSI_OB = 70;#hint RSI_OB:The RSI overbought value. TOS' default is 70.
+input RSI_OS = 30;#hint RSI_OS:The RSI oversold value. TOS' default = 30.
+#input price = close;
+input RSILowTrig = 50;#hint RSILowTrig:The trigger is between this 'RSILowTrig' value and 100 and is rising for the last 'rsi_UpBars' bars.
+input rsi_UpBars = 3;#hint rsi_UpBars: The number of consecutive rising bars used to evaluated the trigger. Note that using 0 can expose you to a RSI that is falling down from the OverBought line.
+def rsi_here = RSIWilder(RSI_length, RSI_OB, RSI_OS, c)."RSI";
+def RSI_trig = if (Between(rsi_here, RSILowTrig, 100) && Sum(rsi_here < rsi_here[1], rsi_UpBars) == rsi_UpBars) then 1 else 0;
+#def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
+
+plot rsi_Line = 28;
+rsi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+rsi_Line.SetLineWeight(5);
+#def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
+rsi_Line.AssignValueColor(if RSI_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
+
+
+#Bollinger Bands MOBO(MOmentum BreakOut)
+#============================================
 
 #Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band when the plot turns to bearish and remains bearish until the close rises above the upper band.
 
@@ -8053,208 +7777,118 @@ BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
 BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
 BBS_Ind.SetLineWeight(3);
 BBS_Ind.HideBubble();
+#=== end ===
 
-- #=== end ===
+#== Line Spacer ===
+plot line55 = 55;#Used to manage space to set labels above this value.
+line55.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
+#== end ==
 
-- #== Line Spacer ===
+#==== DMI_Oscillator ====
+input DMIO_Length = 10;#hint DMIO_Length:The agg-bars used to calculate the DMI_Oscillator. TOS' default is 10.
+input DMIO_trig = 0;# hint DMI_trig:The trigger value that toggles bullish/bearish. Low values risk a turn down to below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
 
-- plot line55 = 55;#Used to manage space to set labels above this value.
+def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
 
-- line55.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
+plot DMIO_Line = 14;
+DMIO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+DMIO_Line.SetLineWeight(5);
+DMIO_Line.AssignValueColor(if DMI_OSC_here > DMIO_trig then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
 
-- #== end ==
+#==== ADX Indicator ====
+input ADX_Length = 10;#hint ADXLength: Length used in the ADX calculation of the trigger ADX. TOS' default is 14. You may want to use 10 to be consistent with the DMI_Oscillator.
+input ADX_trig = 15;#hint ADX_trig:The bullish ADX value that toggles the bull/bear chart display. You may use any value of a bullish ADX to suit your preference. A strong ADX is >= 25 especially if it persists.
 
-- #==== DMI_Oscillator ====
+def ADX_here = Round(reference ADX(length = ADX_Length), 1);
+def DMI_Pos = if DMI(ADX_Length)."DI+" > DMI(ADX_Length)."DI-" then 1 else 0;# DMI+ > DMI-
 
-- input DMIO_Length = 10;#hint DMIO_Length:The agg-bars used to calculate the DMI_Oscillator. TOS' default is 10.
+plot ADX_Line = 10.5;
+ADX_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+ADX_Line.SetLineWeight(5);
+ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
 
-- input DMIO_trig = 0;# hint DMI_trig:The trigger value that toggles bullish/bearish. Low values risk a turn down to
+# TrueStrengthIndex
+#===================
+input TSI_trig = 0 ;#hint TSI_trig:The value that toggles bull/bear. TSI has a 'TSI(value)' and a 'signal' line with a zero line. This deals with the 'TSI(value)' being above the zero line. An earlier trigger could be had by analysis as was done with the MACD herein.
 
-- below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
+def TSI_here = reference TrueStrengthIndex(25, 13, 8, "WMA").TSI;
 
-- def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
+plot TSI_Line = 7;
+TSI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TSI_Line.SetLineWeight(5);
+TSI_Line.AssignValueColor(if TSI_here > TSI_trig then Color.UPTICK else Color.DOWNTICK);
+#=== end ===
 
-- plot DMIO_Line = 14;
+#Dynamic Momentum Index
+#=======================
+#Note: This is similar to the RSI but is more sensitive/responsive
+input DYMI_length = 14;#hint DYMI_length:The length usd for this calculation. TOS default is 14.
+input DYMI_trig = 70;
 
-- DMIO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+def DYMI_here = DynamicMomentumIndex(DYMILength = DYMI_length).DYMI;
 
-- DMIO_Line.SetLineWeight(5);
+plot DYMI_Line = 3.5;
+DYMI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+DYMI_Line.SetLineWeight(5);
+DYMI_Line.AssignValueColor(if DYMI_here >= DYMI_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ====
 
-- DMIO_Line.AssignValueColor(if DMI_OSC_here > DMIO_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #=== end ===
-
-- #==== ADX Indicator ====
-
-- input ADX_Length = 10;#hint ADXLength: Length used in the ADX calculation of the trigger ADX. TOS' default is 14.
-
-- You may want to use 10 to be consistent with the DMI_Oscillator.
-
-- input ADX_trig = 15;#hint ADX_trig:The bullish ADX value that toggles the bull/bear chart display. You may use any
-
-- value of a bullish ADX to suit your preference. A strong ADX is >= 25 especially if it persists.
-
-- def ADX_here = Round(reference ADX(length = ADX_Length), 1);
-
-- def DMI_Pos = if DMI(ADX_Length)."DI+" > DMI(ADX_Length)."DI-" then 1 else 0;# DMI+ > DMI-
-
-- plot ADX_Line = 10.5;
-
-- ADX_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- ADX_Line.SetLineWeight(5);
-
-- ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- # TrueStrengthIndex
-
-- #===================
-
-- input TSI_trig = 0 ;#hint TSI_trig:The value that toggles bull/bear. TSI has a 'TSI(value)' and a 'signal' line with a
-
-- zero line. This deals with the 'TSI(value)' being above the zero line. An earlier trigger could be had by analysis as was
-
-- done with the MACD herein.
-
-- def TSI_here = reference TrueStrengthIndex(25, 13, 8, "WMA").TSI;
-
-- plot TSI_Line = 7;
-
-- TSI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TSI_Line.SetLineWeight(5);
-
-- TSI_Line.AssignValueColor(if TSI_here > TSI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #=== end ===
-
-- #Dynamic Momentum Index
-
-- #=======================
-
-- #Note: This is similar to the RSI but is more sensitive/responsive
-
-- input DYMI_length = 14;#hint DYMI_length:The length usd for this calculation. TOS default is 14.
-
-- input DYMI_trig = 70;
-
-- def DYMI_here = DynamicMomentumIndex(DYMILength = DYMI_length).DYMI;
-
-- plot DYMI_Line = 3.5;
-
-- DYMI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- DYMI_Line.SetLineWeight(5);
-
-- DYMI_Line.AssignValueColor(if DYMI_here >= DYMI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ====
-
-- #====== MACD =======
+#====== MACD =======
 
 #========= Note about the two MACD  indicators below =======
 # HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
 #The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky use of the MACD but may sacrifice early entry and related profits.
 #==== end of notes ========
 
-- #====== MACD.value is above MACD.avg (signal line)======
+#====== MACD.value is above MACD.avg (signal line)======
+input fastLength_1 = 12;#hint fastLength:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input slowLength_1 = 26;#hint slowLength:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input MACDLength_1 = 9;#hint MACDLength:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input AverageType_1 = {SMA, default EMA};#hint AverageType:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
 
-- input fastLength_1 = 12;#hint fastLength:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg
+def macd_Val_1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Value;
+def macd_Avg1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Avg;
+def MACD_trig = if MACD().value > MACD().avg then 1 else 0;
+#def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
 
-- (signal line).
+plot Macd_Line1 = 35;
+Macd_Line1.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Macd_Line1.SetLineWeight(5);
+Macd_Line1.AssignValueColor(if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
+#== end ====
 
-- input slowLength_1 = 26;#hint slowLength:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg
+#==== MACD value is above zero ====
+#NOTE that the fast and slow length may been shortened for faster response. These inputs have a '_2' after the standard MACD parameters to distinguish them from the MACD.
+input fastLength_2 = 12;#hint fastLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input slowLength_2 = 26;#hint slowLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input MACDLength_2 = 9;#hint MACDLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input AverageType_2 = {SMA, default EMA};#hint AverageType_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster/slower response. This selects tha average type to be used.
+input macdVal_trig = 0;#hint macdVal_trig:For the MACD plot that evaluates the MACD value being above the zero line. The normal default value is 0, i.e. the zero line, but may be altered here.
 
-- (signal line).
+def MACDValue_2 = MACD(fastLength_2, slowLength_2, MACDLength_2, AverageType_2).Value;
 
-- input MACDLength_1 = 9;#hint MACDLength:For the MACD plot that evaluates the MACD.Value being above the
+plot MACD_Line2 = 38.5;
+MACD_Line2.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MACD_Line2.SetLineWeight(5);
+MACD_Line2.AssignValueColor(if MACDValue_2 >= macdVal_trig then Color.UPTICK else Color.DOWNTICK);
+#== end ==
 
-- MACD.Avg (signal line).
+#======= HullMovingAvg ==========
+input Hull_price = close;
+input Hull_length = 20;
+input Hull_displace = 0;
 
-- input AverageType_1 = {SMA, default EMA};#hint AverageType:For the MACD plot that evaluates the MACD.Value being
+def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
 
-- above the MACD.Avg (signal line).
+plot Hull_Line = 42;
+Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Hull_Line.SetLineWeight(5);
+Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DOWNTICK);
+#== end ==
 
-- def macd_Val_1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Value;
-
-- def macd_Avg1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Avg;
-
-- def MACD_trig = if MACD().value > MACD().avg then 1 else 0;
-
-- #def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
-
-- plot Macd_Line1 = 35;
-
-- Macd_Line1.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Macd_Line1.SetLineWeight(5);
-
-- Macd_Line1.AssignValueColor(if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ====
-
-- #==== MACD value is above zero ====
-
-- #NOTE that the fast and slow length may been shortened for faster response. These inputs have a '_2' after the
-
-- standard MACD parameters to distinguish them from the MACD.
-
-- input fastLength_2 = 12;#hint fastLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input slowLength_2 = 26;#hint slowLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input MACDLength_2 = 9;#hint MACDLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input AverageType_2 = {SMA, default EMA};#hint AverageType_2:For the MACD plot that evaluates the MACD.Value
-
-- being above the zero line. The value may be altered for faster/slower response. This selects tha average type to be used.
-
-- input macdVal_trig = 0;#hint macdVal_trig:For the MACD plot that evaluates the MACD value being above the zero line.
-
-- The normal default value is 0, i.e. the zero line, but may be altered here.
-
-- def MACDValue_2 = MACD(fastLength_2, slowLength_2, MACDLength_2, AverageType_2).Value;
-
-- plot MACD_Line2 = 38.5;
-
-- MACD_Line2.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MACD_Line2.SetLineWeight(5);
-
-- MACD_Line2.AssignValueColor(if MACDValue_2 >= macdVal_trig then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- #======= HullMovingAvg ==========
-
-- input Hull_price = close;
-
-- input Hull_length = 20;
-
-- input Hull_displace = 0;
-
-- def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- plot Hull_Line = 42;
-
-- Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Hull_Line.SetLineWeight(5);
-
-- Hull_Line.AssignValueColor(if HullMA > HullMA[1] then Color.UPTICK else Color.DOWNTICK);
-
-- #== end ==
-
-- #Define variables used to place a bubble
-
+#Define variables used to place a bubble
 - #========================================
 
 - #Input Offset = BarNumber() / 2;
@@ -9827,27 +9461,17 @@ BBS_Ind.HideBubble();
 
 [Return to TOC](#toc)
 
-- In the ThinkScript Lounge there was a request to post the setup used when evaluating an Ichomoku chart. Below is a
+In the ThinkScript Lounge there was a request to post the setup used when evaluating an Ichomoku chart. Below is a picture of the setup. Each non-builtin indicator will be listed in this Snippet Collection.
 
-- picture of the setup. Each non-builtin indicator will be listed in this Snippet Collection.
-
-- 1. Ichi_Signals...... Page 147
-
-- 2. LinearRegCh100 .......... is a built-in
-
-- 3. MACD_via_Hull_MA_fav.......... See below
-
-- 4. Ichi_TK_Exit_Warning ......... Page 139
-
-- 5. IchiOneGlance .......... Page 143
-
-- 6. DMI_Oscillator_SFL_Fav .......... Page 158
-
-- 7 PolarizedFractalEfficiency_SFL .......... Page 160
-
-- 8.Three_X_Oscillator .......... Page 161
-
-- # end
+1. Ichi_Signals...... Page 147
+2. LinearRegCh100 .......... is a built-in
+3. MACD_via_Hull_MA_fav.......... See below
+4. Ichi_TK_Exit_Warning ......... Page 139
+5. IchiOneGlance .......... Page 143
+6. DMI_Oscillator_SFL_Fav .......... Page 158
+7 PolarizedFractalEfficiency_SFL .......... Page 160
+8.Three_X_Oscillator .......... Page 161
+# end
 
 ## C-MACD BASED ON HULL MOVING AVERAGE
 
@@ -10503,1013 +10127,512 @@ BBS_Ind.HideBubble();
 
 [Return to TOC](#toc)
 
-- #OneGlance by StanL Version 2.1 dated 7/19/14
-
-- #Hint:The 'OneGlance' study evaluates 13 criteria in a bullish(green)/bearish(red) dashboard presentation. All study
-
-- parameters and the bullish-bearish-triggers may be set via inputs.
-
-- # OVERVIEW: 'OneGlance' is by StanL 4/30/14. Emphasis has been put on clarity and flexibility: clarity via bubbles and
-
-- labels; flexibility via input-setable parameters and triggers to match your trading style. The info bubbles in rdite studies
-
-- often state the default values buil into TOS' studies.
-
-- # USAGE: 'OneGlance' uses up a lot of a chart's real estate and is much more readable when not squeezed; perhaps as
-
-- an only lower study. One viewing option, when comparing a 'OneGlance' item to a corresponding full TOS chart, is to turn
-
-- off the price data in 'chart Settings'. Depending on your vision quality and space availability, you may find a magnifier
-
-- usage useful (google Magnifixer freeware).
-
-- #Usage re Righthand(RH) bubbles. These bubble can be made to expand into empty unused space to look good. To get the
-
-- RH space select the PAN(upper-finger-pointer) in drawing tools and drag the chart to the left. Also see 'T-CHANGING
-
-- RIGHT EXPANSION AREA SETTING'.
-
-- # POINT-OF-VIEW: 'OneGlance' is oriented (parameters and triggers) towards defining the bullish aspects of the
-
-- studies used. Realize that if a study is not bullish, then it is not necessarily bearish. If you are bearish oriented, i.e.
-
-- looking for short-opportunities, the modifying of parameters and triggers can enhance you bearish orientation.
-
-- # FUTURE: Although 'OneGlance' already uses a lot of real estate, there is no limit to additional studies being added
-
-- except for space. Also, depending on your coding skills, certain user-preferred studies may be extracted to form a more-
-
-- specific abridged 'OneGlance' utilizing less chart real estate and just the studies that you are most interested in.
-
-- #INPUTS: Because of the multitude of studies, the input list in 'Edit Studies' is long but components have been titled to
-
-- make them self explanatory and with info-bubbles to further identify TOS default values.
-
-- #Ver 2.1 Added right-hand bubbles. Corrected label error. Added toggle for left-hand bubbles Added usage note on how
-
-- to pan the chart to get RH space and bubble clarity.
-
-- declare lower;
-
-- plot WhiteLabel = Double.NaN;
-
-- WhiteLabel.SetDefaultColor(Color.White);
-
-- input showlabels = yes;#hint showlabels:Toggles labels on/off.
-
-- input LH_Bubbles = yes;#hint LH_Bubbles:Toggles left hand bubbles ON/OFF.\nThese bubbles show the study's
-
-- conditions including the triggers for chart indications (Bull/Bear).
-
-- def c = close;
-
-- def h = high;
-
-- def l = low;
-
-- def o = open;
-
-- #Define variables used to place a bubble
-
-- #========================================
-
-- #Input Offset = BarNumber() / 2;
-
-- def barNum = BarNumber();
-
-- def offset = 0;
-
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
-
-- def BubbleLocation = LastBar[offset];#Use this to locate the ending bar location
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- def FirstBarValue = if barNum == 1 then 1 else 0;
-
-- def LastBarValue = if LastBar && barNum == barnumber() then barNum else 0;
-
-- def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
-
-- Def TotalBars = HighestAll(barNumber());
-
-- #AddLabel( yes, concat( TotalBars, " = Total bars" + " and bar count = " + barnumber()), Color.white);
-
-- #example
-
-- #addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
-
-- #==========================================
-
-- #Polarized Fractal Efficiency
-
-- #===========================
-
-- input PFE_length = 10;#hint PFE_length:The length used in calculating the Polarized Fractal Efficiency. TOS default is
-
-- 10.
-
-- input PFE_smoothingLength = 5;#hint PFE_smoothingLength:TOS default is 5.
-
-- input PFE_trig = 50;#hint PFE_trig:The value that triggers the PFE from Bullish to bearish.
-
-- def diffpfe = c - c[PFE_length - 1];
-
-- def val = 100 * Sqrt(Sqr(diffpfe) + Sqr(PFE_length)) / Sum(Sqrt(1 + Sqr(c - c[1])), PFE_length - 1);
-
-- def PFE = ExpAverage(if diffpfe > 0 then val else -val, PFE_smoothingLength);
-
-- plot PFE_Line = if IsNaN(close) then Double.NaN else 17.5;
-
-- PFE_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- PFE_Line.SetLineWeight(5);
-
-- PFE_Line.AssignValueColor(if PFE > PFE_trig then Color.UPTICK else Color.DOWNTICK);
-
-- PFE_Line.HideBubble();
-
-- #== end of PFE ==
-
-- #MomentumPercent
-
-- #=================
-
-- input MOM_Pct_trig = 0.00;#Hint MOM_Pct_trig:The percent value that toggles the chart between green and red.
-
-- Normal is 0.00 %.
-
-- input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to
-
-- calculate this Momentum Percent. TOS default is 10.
-
-- def mom_pct = MomentumPercent(length = MomPctLength)."Momentum, %" - 100;
-
-- plot MomPct_Line = if IsNaN(close) then Double.NaN else 21;
-
-- MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MomPct_Line.SetLineWeight(5);
-
-- MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
-
-- MomPct_Line.HideBubble();
-
-- #=== end ====
-
-- #Ichimoku Study
-
-- #==============
-
-- #NOTES: One major bullish indication in this study is when the Tenkan excaads the Kijun. Their default lengths of 26
-
-- and 9 may be shortened to increase response sensitivity. There are other bullish Ichimoku indicators.
-
-- input tenkan_period = 9;#hint tenkan_period:The agg-bars used to calculate the tenkan value. TOS' default is 9.
-
-- input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
-
-- def Ichi_Tenkan = Ichimoku(tenkan_period,kijun_period)."Tenkan" ;
-
-- plot Ichi_Line = if IsNaN(close) then Double.NaN else 24.5;
-
-- Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Ichi_Line.SetLineWeight(5);
-
-- Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
-
-- Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
-
-- Ichi_Line.HideBubble();
-
-- #=== end ===
-
-- #===== RSI ======
-
-- input RSI_length = 14;#hint RSI_length:The number of bars used in the calculation. TOS' default value is 14. Shorten
-
-- for a faster response.
-
-- input RSI_OB = 70;#hint RSI_OB:The RSI overbought value. TOS' default is 70.
-
-- input RSI_OS = 30;#hint RSI_OS:The RSI oversold value. TOS' default = 30.
-
-- #input price = close;
-
-- input RSILowTrig = 50;#hint RSILowTrig:The trigger is between this 'RSILowTrig' value and 100 and is rising for the
-
-- last 'rsi_UpBars' bars.
-
-- input rsi_UpBars = 3;#hint rsi_UpBars: The number of consecutive rising bars used to evaluated the trigger. Note that
-
-- using 0 can expose you to a RSI that is falling down from the OverBought line.
-
-- def rsi_here = RSIWilder(RSI_length, RSI_OB, RSI_OS, c)."RSI";
-
-- def RSI_trig = if (Between(rsi_here, RSILowTrig, 100) && Sum(rsi_here < rsi_here[1], rsi_UpBars) == rsi_UpBars) then
-
-- 1 else 0;
-
-- #def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- plot rsi_Line = if IsNaN(close) then Double.NaN else 28;
-
-- rsi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- rsi_Line.SetLineWeight(5);
-
-- #def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- rsi_Line.AssignValueColor(if RSI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- rsi_Line.HideBubble();
-
-- #== end ==
-
-- #Bollinger Bands MOBO(MOmentum BreakOut)
-
-- #============================================
-
-- #Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When
-
-- the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band
-
-- when the plot turns to bearish and remains bearish until the close rises above the upper band.
-
-- input MOBO_length = 10;#hint MOBO_length:The agg-bars used in the standard deviation(SD) calculation to define the
-
-- upper and lower bands.
-
-- input Num_Dev_Dn = -0.8;#hint Num_Dev_Dn:The SD of the lower band. Similar to the 2,0 SD used in the Bollinger
-
-- Bands
-
-- input Num_Dev_up =  0.8;#hint Num_Dev_up:The SD of the upper band. Similar to the 2,0 SD used in the Bollinger
-
-- Bands
-
-- def sDev = StDev(data = c, length = MOBO_length);
-
-- def Midmobo = Average(c, length = MOBO_length);
-
-- def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
-
-- def Uppermobo = Midmobo + Num_Dev_up * sDev;
-
-- def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > Lowermobo then 1 else 0;
-
-- def upmo = if upmobo  and c > Uppermobo then 1 else 0;
-
-- def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
-
-- plot MOBO_Line = if IsNaN(close) then Double.NaN else 31.5;
-
-- MOBO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MOBO_Line.SetLineWeight(5);
-
-- MOBO_Line.AssignValueColor(if upmobo == 1 then Color.UPTICK else Color.DOWNTICK);
-
-- MOBO_Line.HideBubble();
-
-- #=== end ===
-
-- #==== Squeeze by Mobius @ My Trade =====
-
-- def nK            = 1.5;
-
-- def nBB           = 2.0;
-
-- def lengthsqueeze = 20;
-
-- def BBHalfWidth = StDev(c, lengthsqueeze);
-
-- def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
-
-- def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
-
-- plot BBS_Ind = if IsNaN(close) then Double.NaN else 50;
-
-- BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
-
-- BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- BBS_Ind.SetLineWeight(3);
-
-- BBS_Ind.HideBubble();
-
-- #=== end ===
-
-- #== Line Spacer ===
-
-- plot line55 = if IsNaN(close) then Double.NaN else 55;#Used to manage space to set labels above this value.
-
-- line55.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
-
-- line55.HideBubble();
-
-- #== end ==
-
-- #==== DMI_Oscillator ====
-
-- input DMIO_Length = 10;#hint DMIO_Length:The agg-bars used to calculate the DMI_Oscillator. TOS' default is 10.
-
-- input DMIO_trig = 0;#hint DMIO_trig:The trigger value that toggles bullish/bearish. Low values risk a turn down to
-
-- below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
-
-- def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
-
-- plot DMIO_Line = if IsNaN(close) then Double.NaN else 14;
-
-- DMIO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- DMIO_Line.SetLineWeight(5);
-
-- DMIO_Line.AssignValueColor(if DMI_OSC_here > DMIO_trig then Color.UPTICK else Color.DOWNTICK);
-
-- DMIO_Line.HideBubble();
-
-- #=== end ===
-
-- #==== ADX Indicator ====
-
-- input ADX_Length = 10;#hint ADX_Length: Length used in the ADX calculation of the trigger ADX. TOS' default is 14.
-
-- You may want to use 10 to be consistent with the DMI_Oscillator.
-
-- input ADX_trig = 15;#hint ADX_trig:The bullish ADX value that toggles the bull/bear chart display. You may use any
-
-- value of a bullish ADX to suit your preference. A strong ADX is >= 25 especially if it persists.
-
-- def ADX_here = Round(reference ADX(length = ADX_Length), 1);
-
-- def DMI_Pos = if DMI(ADX_Length)."DI+" > DMI(ADX_Length)."DI-" then 1 else 0;# DMI+ > DMI-
-
-- plot ADX_Line = if IsNaN(close) then Double.NaN else 10.5;
-
-- ADX_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- ADX_Line.SetLineWeight(5);
-
-- ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
-
-- ADX_Line.HideBubble();
-
-- #== end ==
-
-- # TrueStrengthIndex
-
-- #===================
-
-- input TSI_trig = 0 ;#hint TSI_trig:The value that toggles bull/bear. TSI has a 'TSI(value)' and a 'signal' line with a
-
-- zero line. This deals with the 'TSI(value)' being above the zero line. An earlier trigger could be had by analysis as was
-
-- done with the MACD herein.
-
-- def TSI_here = reference TrueStrengthIndex(25, 13, 8, "WMA").TSI;
-
-- plot TSI_Line = if IsNaN(close) then Double.NaN else 7;
-
-- TSI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TSI_Line.SetLineWeight(5);
-
-- TSI_Line.AssignValueColor(if TSI_here > TSI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- TSI_Line.HideBubble();
-
-- #=== end ===
-
-- #Dynamic Momentum Index
-
-- #=======================
-
-- #Note: This is similar to the RSI but is more sensitive/responsive
-
-- input DYMI_length = 14;#hint DYMI_length:The length usd for this calculation. TOS default is 14.
-
-- input DYMI_trig = 70;#hint DYMI_trig:The trigger value used to toggle the Bullish/bearish indication.
-
-- def DYMI_here = DynamicMomentumIndex(DYMILength = DYMI_length).DYMI;
-
-- plot DYMI_Line = if IsNaN(close) then Double.NaN else 3.5;
-
-- DYMI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- DYMI_Line.SetLineWeight(5);
-
-- DYMI_Line.AssignValueColor(if DYMI_here >= DYMI_trig then Color.UPTICK else Color.DOWNTICK);
-
-- DYMI_Line.HideBubble();
-
-- #== end ====
-
-- #====== MACD =======
-
-- #========= Note about the two MACD  indicators below =======
-
-- # HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above
-
-- the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
-
-- #The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky
-
-- use of the MACD but may sacrifice early entry and related profits.
-
-- #==== end of notes ========
-
-- #====== MACD.value is above MACD.avg (signal line)======
-
-- input fastLength_1 = 12;#hint fastLength_1:For the MACD plot that evaluates the MACD.Value being above the
-
-- MACD.Avg (signal line).
-
-- input slowLength_1 = 26;#hint slowLength_1:For the MACD plot that evaluates the MACD.Value being above the
-
-- MACD.Avg (signal line).
-
-- input MACDLength_1 = 9;#hint MACDLength_1:For the MACD plot that evaluates the MACD.Value being above the
-
-- MACD.Avg (signal line).
-
-- input AverageType_1 = {SMA, default EMA};#hint AverageType_1:For the MACD plot that evaluates the MACD.Value
-
-- being above the MACD.Avg (signal line).
-
-- def macd_Val_1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Value;
-
-- def macd_Avg1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Avg;
-
-- def MACD_trig = if macd_Val_1 > macd_Avg1 then 1 else 0;
-
-- #def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
-
-- plot Macd_Line1 = if IsNaN(close) then Double.NaN else 35;
-
-- Macd_Line1.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Macd_Line1.SetLineWeight(5);
-
-- Macd_Line1.AssignValueColor(if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
-
-- Macd_Line1.HideBubble();
-
-- #== end ====
-
-- #==== MACD value is above zero ====
-
-- #NOTE that the fast and slow length may been shortened for faster response. These inputs have a '_2' after the
-
-- standard MACD parameters to distinguish them from the MACD.
-
-- input fastLength_2 = 12;#hint fastLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input slowLength_2 = 26;#hint slowLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input MACDLength_2 = 9;#hint MACDLength_2:For the MACD plot that evaluates the MACD.Value being above the zero
-
-- line. The value may be altered for faster response.
-
-- input AverageType_2 = {SMA, default EMA};#hint AverageType_2:For the MACD plot that evaluates the MACD.Value
-
-- being above the zero line. The value may be altered for faster/slower response. This selects tha average type to be used.
-
-- input macdVal_trig = 0;#hint macdVal_trig:For the MACD plot that evaluates the MACD value being above the zero line.
-
-- The normal default value is 0, i.e. the zero line, but may be altered here.
-
-- def MACDValue_2 = MACD(fastLength_2, slowLength_2, MACDLength_2, AverageType_2).Value;
-
-- plot MACD_Line2 = if IsNaN(close) then Double.NaN else 38.5;
-
-- MACD_Line2.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- MACD_Line2.SetLineWeight(5);
-
-- MACD_Line2.AssignValueColor(if MACDValue_2 >= macdVal_trig then Color.UPTICK else Color.DOWNTICK);
-
-- MACD_Line2.HideBubble();
-
-- #== end ==
-
-- #======= HullMovingAvg ==========
-
-- input Hull_price = close;#hint Hull_price:The price basis of the HMA.
-
-- input Hull_length = 20;#hint Hull_length:The agg-bars used in the HMA calculation.
-
-- input Hull_displace = 0;#hint Hull_displace:Displacement of the HMA in agg-bars
-
-- def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
-
-- plot Hull_Line = if IsNaN(close) then Double.NaN else 42;
-
-- Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Hull_Line.SetLineWeight(5);
-
-- Hull_Line.AssignValueColor(If HullMA > HullMA[1] then Color.UPTICK
-
-- else Color.DOWNTICK);
-
-- Hull_Line.HideBubble();
-
-- #
-
-- #Hull_Line.AssignValueColor(If HullMA > HullMA[-1] then color.BLUE else color.WHITE);
-
-- #== end ==
-
-- #======== Bubbles ==============
-
-- AddChartBubble(FirstBar && LH_Bubbles, 42, "HullMovingAvg(" + Hull_length + "). " + "Trigger = bullish when
-
-- HullMovingAvg > previous HullMovingAvg.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 42, "HullMovingAvg" ,Color.WHITE);
-
-- #=====
-
-- AddChartBubble(FirstBar && LH_Bubbles, 35, "MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," +
-
-- AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg",
-
-- Color.PINK);
-
-- AddChartBubble(BubbleLocation, 35, " MACD > signal line" , Color.PINK);
-
-- #======
-
-- AddChartBubble(FirstBar && LH_Bubbles, 38.5, "MACD.Value(" + fastLength_2 + "," + slowLength_2 + "," +
-
-- MACDLength_2 + "," + AverageType_2 + ")" + "Bullish when MACD.Value is above the zero line. Trigger = " + macdVal_trig
-
-- + "(Normally the zero line)", Color.PINK);
-
-- AddChartBubble(BubbleLocation, 38.5, "MACD > 0" , Color.PINK);
-
-- #=======
-
-- AddChartBubble(FirstBar && LH_Bubbles, 17.5 , "Polarized Fractal Efficiency (" + PFE_length + "). " + "Trend UP = 0 to
-
-- 100. Trigger = " + PFE_trig, Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 17.5 , "Polarized Fractal Efficiency" , Color.WHITE);
-
-- #==========
-
-- AddChartBubble(FirstBar && LH_Bubbles, 21, "MomentumPercent(" + MomPctLength + "). Bullish when > 0 % & for long
-
-- periods. Trigger = " + MOM_Pct_trig + " percent", Color.CYAN);
-
-- AddChartBubble(BubbleLocation, 21, "Momentum Pct", Color.CYAN);
-
-- #========
-
-- AddChartBubble(FirstBar && LH_Bubbles, 24.5, "Ichimoku(" + tenkan_period + ", " + kijun_period + "). Bullish trigger =
-
-- when tenkan > kijun. The more the diff, the stronger the trend.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 24.5, "Ichimoku" , Color.WHITE);
-
-- #======
-
-- AddChartBubble(FirstBar && LH_Bubbles, 28, "RSI" + RSI_length + ")." + " Trigger = RSI is between " + RSILowTrig + "
-
-- and 100 and is rising for last " + rsi_UpBars + "  bars", Color.CYAN);
-
-- AddChartBubble(BubbleLocation, 28, "RSI" , Color.CYAN);
-
-- #====
-
-- AddChartBubble(FirstBar && LH_Bubbles, 31.5, "Bollinger Bands(+/- " + Num_Dev_up + " SD)" + " MOmentum Break Out
-
-- (MOBO(" + MOBO_length + "))." + " Trigger when close goes above upper band and stays bullish until the close goes below
-
-- the lower band.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 31.5, "BB MOBO", Color.WHITE);
-
-- #========
-
-- AddChartBubble(FirstBar && LH_Bubbles, 14, "DMI_Oscillator(" + DMIO_Length + "). Bullish DMI = green = >0: Bearish
-
-- DMI = red. Trigger = " + DMIO_trig, Color.PINK);
-
-- AddChartBubble(BubbleLocation, 14, "DMI_Oscillator" , Color.PINK);
-
-- #=======
-
-- AddChartBubble(FirstBar && LH_Bubbles, 10.5, "ADX(" + ADX_Length + "). Bullish ADX = green: Bearish ADX = red.
-
-- Strong bullish ADX trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
-
-- AddChartBubble(BubbleLocation, 10.5, "ADX" , Color.PINK);
-
-- #======
-
-- AddChartBubble(FirstBar && LH_Bubbles, 7, "TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50.
-
-- Bearish TSI = red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
-
-- AddChartBubble(BubbleLocation, 7, "TrueStrengthIndex", Color.CYAN);
-
-- #=======
-
-- AddChartBubble(FirstBar && LH_Bubbles, 50, "RED dot denotes presence of a SQUEEZE", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 50, "Red when Squeeze is 'on'", Color.WHITE);
-
-- #=====
-
-- AddChartBubble(FirstBar && LH_Bubbles, 3.5, "DynamicMomentumIndex-DYMI(" + DYMI_length + "). Overbought = 70:
-
-- Oversold  = 30.  Trigger = " + DYMI_trig, Color.CYAN);
-
-- AddChartBubble(BubbleLocation, 3.5, " DynMomIndex-DYMI", Color.CYAN);
-
-- #=========
-
-- #== Labels ==
-
-- #Count of Periods in consecutive squeeze
-
-- rec count = if isSqueezed then count[1] + 1 else 0;
-
-- AddLabel(showlabels, if isSqueezed then "Squeeze is on for " +  count + " bars" else "No Squeeze is on", if isSqueezed
-
-- then Color.RED else Color.WHITE);
-
-- AddLabel(showlabels, "HullMovingAvg(" + Hull_length + ") = " + Round(HullMA, 2), if HullMA > HullMA[1] then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "MACD.Value(" + MACDValue_2 + ") is above 0 line = " + if MACDValue_2 >= 0 then "true" else "not
-
-- true", if round(MACDValue_2,1) >= 0 then color.GREEN else color.LIGHT_RED);
-
-- AddLabel(showlabels, "MACD.Value(" + macd_Val_1 + ") is above above MACD.Avg(" + macd_Avg1 + ")(signal) = " + if
-
-- macd_Val_1 > macd_Avg1 then "true" else "not true", if macd_Val_1 > macd_Avg1 then Color.UPTICK else
-
-- Color.DOWNTICK);
-
-- AddLabel(showlabels, if upmobo and  c < Uppermobo then "MOBO close is between(" + Num_Dev_up + " SD) bands"
-
-- else if upmo then "MOBO is above upper(" + Num_Dev_up + " SD) band"
-
-- else if dnmo then "MOBO is below lower(" + Num_Dev_up + " SD) band"
-
-- else "", Color.GREEN);
-
-- AddLabel(showlabels, "RSI(" + RSI_length + ") = " + Round(rsi_here, 1), if RSI_trig then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "Ichimoku(" + tenkan_period + ", " + kijun_period + "):" + "Tenkan / Kijan = " + Ichimoku().Tenkan +
-
-- " / " + Ichimoku().kijun, if Ichimoku()."Tenkan" > Ichimoku()."Kijun" then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "MomentumPercent(" + MomPctLength + ") = " + Round(mom_pct, 2) + " %", if mom_pct >=
-
-- MOM_Pct_trig then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "Polarized Fractal Eff(" + PFE_length + ") = " + Round(PFE, 0), if PFE >= PFE_trig then Color.GREEN
-
-- else Color.RED);
-
-- AddLabel(showlabels, "DMI Osc(" + DMIO_Length + ") = " + Round(DMI_OSC_here, 1), if DMI_OSC_here >= DMIO_trig
-
-- then Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "ADX(" + ADX_Length + ") = " + ADX_here, if ADX_here >= ADX_trig && DMI_Pos then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
-
-- AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then
-
-- Color.GREEN else Color.RED);
-
-- AddLabel(1,"Use 'Drawings/Pan' to move chart to the left for bubble clarity",color.WHITE);
-
-- #== end ==
-
-- # End of All Code
+```
+#OneGlance by StanL Version 2.1 dated 7/19/14
+#Hint:The 'OneGlance' study evaluates 13 criteria in a bullish(green)/bearish(red) dashboard presentation. All study parameters and the bullish-bearish-triggers may be set via inputs.
+# OVERVIEW: 'OneGlance' is by StanL 4/30/14. Emphasis has been put on clarity and flexibility: clarity via bubbles and labels; flexibility via input-setable parameters and triggers to match your trading style. The info bubbles in rdite studies often state the default values buil into TOS' studies.
+# USAGE: 'OneGlance' uses up a lot of a chart's real estate and is much more readable when not squeezed; perhaps as an only lower study. One viewing option, when comparing a 'OneGlance' item to a corresponding full TOS chart, is to turn off the price data in 'chart Settings'. Depending on your vision quality and space availability, you may find a magnifier usage useful (google Magnifixer freeware).
+#Usage re Righthand(RH) bubbles. These bubble can be made to expand into empty unused space to look good. To get the RH space select the PAN(upper-finger-pointer) in drawing tools and drag the chart to the left. Also see 'T-CHANGING RIGHT EXPANSION AREA SETTING'.
+# POINT-OF-VIEW: 'OneGlance' is oriented (parameters and triggers) towards defining the bullish aspects of the studies used. Realize that if a study is not bullish, then it is not necessarily bearish. If you are bearish oriented, i.e. looking for short-opportunities, the modifying of parameters and triggers can enhance you bearish orientation.
+# FUTURE: Although 'OneGlance' already uses a lot of real estate, there is no limit to additional studies being added except for space. Also, depending on your coding skills, certain user-preferred studies may be extracted to form a more-specific abridged 'OneGlance' utilizing less chart real estate and just the studies that you are most interested in.
+#INPUTS: Because of the multitude of studies, the input list in 'Edit Studies' is long but components have been titled to make them self explanatory and with info-bubbles to further identify TOS default values.
+#Ver 2.1 Added right-hand bubbles. Corrected label error. Added toggle for left-hand bubbles Added usage note on how to pan the chart to get RH space and bubble clarity.
+
+declare lower;
+
+plot WhiteLabel = Double.NaN;
+WhiteLabel.SetDefaultColor(Color.White);
+
+input showlabels = yes;#hint showlabels:Toggles labels on/off.
+input LH_Bubbles = yes;#hint LH_Bubbles:Toggles left hand bubbles ON/OFF.\nThese bubbles show the study's conditions including the triggers for chart indications (Bull/Bear).
+
+def c = close;
+def h = high;
+def l = low;
+def o = open;
+
+#Define variables used to place a bubble
+#========================================
+#Input Offset = BarNumber() / 2;
+def barNum = BarNumber();
+def offset = 0;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+def BubbleLocation = LastBar[offset];#Use this to locate the ending bar location
+def FirstBar = if barNum == 1 then 1 else 0;
+def FirstBarValue = if barNum == 1 then 1 else 0;
+def LastBarValue = if LastBar && barNum == barnumber() then barNum else 0;
+def MidBar = if LastBar then barNum == (BarNumber() / 2)  else 0;
+Def TotalBars = HighestAll(barNumber());
+#AddLabel( yes, concat( TotalBars, " = Total bars" + " and bar count = " + barnumber()), Color.white);
+#example
+#addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
+
+#==========================================
+#Polarized Fractal Efficiency
+#===========================
+input PFE_length = 10;#hint PFE_length:The length used in calculating the Polarized Fractal Efficiency. TOS default is 10.
+input PFE_smoothingLength = 5;#hint PFE_smoothingLength:TOS default is 5.
+input PFE_trig = 50;#hint PFE_trig:The value that triggers the PFE from Bullish to bearish.
+
+def diffpfe = c - c[PFE_length - 1];
+def val = 100 * Sqrt(Sqr(diffpfe) + Sqr(PFE_length)) / Sum(Sqrt(1 + Sqr(c - c[1])), PFE_length - 1);
+def PFE = ExpAverage(if diffpfe > 0 then val else -val, PFE_smoothingLength);
+
+plot PFE_Line = if IsNaN(close) then Double.NaN else 17.5;
+PFE_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+PFE_Line.SetLineWeight(5);
+PFE_Line.AssignValueColor(if PFE > PFE_trig then Color.UPTICK else Color.DOWNTICK);
+PFE_Line.HideBubble();
+#== end of PFE ==
+
+#MomentumPercent
+#=================
+input MOM_Pct_trig = 0.00;#Hint MOM_Pct_trig:The percent value that toggles the chart between green and red. Normal is 0.00 %.
+input MomPctLength = 5;#Hint MomPctLength:The offset length (bars back) that the current bar is compared to calculate this Momentum Percent. TOS default is 10.
+
+def mom_pct = MomentumPercent(length = MomPctLength)."Momentum, %" - 100;
+
+plot MomPct_Line = if IsNaN(close) then Double.NaN else 21;
+MomPct_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MomPct_Line.SetLineWeight(5);
+MomPct_Line.AssignValueColor(if mom_pct >= MOM_Pct_trig then Color.UPTICK else Color.DOWNTICK);
+MomPct_Line.HideBubble();
+#=== end ====
+
+#Ichimoku Study
+#==============
+#NOTES: One major bullish indication in this study is when the Tenkan excaads the Kijun. Their default lengths of 26 and 9 may be shortened to increase response sensitivity. There are other bullish Ichimoku indicators.
+
+input tenkan_period = 9;#hint tenkan_period:The agg-bars used to calculate the tenkan value. TOS' default is 9.
+input kijun_period = 26;#hint kijun_period:The agg-bars used to calculate the kijun value. TOs' default is 26.
+
+def Ichi_Tenkan = Ichimoku(tenkan_period,kijun_period)."Tenkan" ;
+
+plot Ichi_Line = if IsNaN(close) then Double.NaN else 24.5;
+Ichi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Ichi_Line.SetLineWeight(5);
+Ichi_Line.AssignValueColor(if Ichimoku(tenkan_period,kijun_period)."Tenkan" >
+Ichimoku(tenkan_period,kijun_period)."Kijun" then Color.UPTICK else Color.DOWNTICK);
+Ichi_Line.HideBubble();
+#=== end ===
+
+#===== RSI ======
+input RSI_length = 14;#hint RSI_length:The number of bars used in the calculation. TOS' default value is 14. Shorten for a faster response.
+input RSI_OB = 70;#hint RSI_OB:The RSI overbought value. TOS' default is 70.
+input RSI_OS = 30;#hint RSI_OS:The RSI oversold value. TOS' default = 30.
+#input price = close;
+input RSILowTrig = 50;#hint RSILowTrig:The trigger is between this 'RSILowTrig' value and 100 and is rising for the last 'rsi_UpBars' bars.
+input rsi_UpBars = 3;#hint rsi_UpBars: The number of consecutive rising bars used to evaluated the trigger. Note that using 0 can expose you to a RSI that is falling down from the OverBought line.
+
+def rsi_here = RSIWilder(RSI_length, RSI_OB, RSI_OS, c)."RSI";
+def RSI_trig = if (Between(rsi_here, RSILowTrig, 100) && Sum(rsi_here < rsi_here[1], rsi_UpBars) == rsi_UpBars) then 1 else 0;
+#def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
+
+plot rsi_Line = if IsNaN(close) then Double.NaN else 28;
+rsi_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+rsi_Line.SetLineWeight(5);
+#def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
+rsi_Line.AssignValueColor(if RSI_trig then Color.UPTICK else Color.DOWNTICK);
+rsi_Line.HideBubble();
+#== end ==
+
+#Bollinger Bands MOBO(MOmentum BreakOut)
+#============================================
+#Explanation of how this works.  +/- 0.8 std deviation Bollinger Bands are the criteris for bullish/bearish plots. When the close rises above the upper band the signal is bullish and stays bullish until the close moves below the lower band when the plot turns to bearish and remains bearish until the close rises above the upper band.
+input MOBO_length = 10;#hint MOBO_length:The agg-bars used in the standard deviation(SD) calculation to define the upper and lower bands.
+input Num_Dev_Dn = -0.8;#hint Num_Dev_Dn:The SD of the lower band. Similar to the 2,0 SD used in the Bollinger Bands
+input Num_Dev_up =  0.8;#hint Num_Dev_up:The SD of the upper band. Similar to the 2,0 SD used in the Bollinger Bands
+
+def sDev = StDev(data = c, length = MOBO_length);
+def Midmobo = Average(c, length = MOBO_length);
+def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
+def Uppermobo = Midmobo + Num_Dev_up * sDev;
+def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > Lowermobo then 1 else 0;
+def upmo = if upmobo  and c > Uppermobo then 1 else 0;
+def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
+
+plot MOBO_Line = if IsNaN(close) then Double.NaN else 31.5;
+MOBO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+MOBO_Line.SetLineWeight(5);
+MOBO_Line.AssignValueColor(if upmobo == 1 then Color.UPTICK else Color.DOWNTICK);
+MOBO_Line.HideBubble();
+#=== end ===
+
+#==== Squeeze by Mobius @ My Trade =====
+def nK            = 1.5;
+def nBB           = 2.0;
+def lengthsqueeze = 20;
+def BBHalfWidth = StDev(c, lengthsqueeze);
+def KCHalfWidth = nK * AvgTrueRange(h, c, l, lengthsqueeze);
+def isSqueezed  =  nBB * BBHalfWidth / KCHalfWidth < 1;
+
+plot BBS_Ind = if IsNaN(close) then Double.NaN else 50;
+BBS_Ind.AssignValueColor(if isSqueezed then Color.RED else Color.WHITE);
+BBS_Ind.SetPaintingStrategy(PaintingStrategy.POINTS);
+BBS_Ind.SetLineWeight(3);
+BBS_Ind.HideBubble();
+#=== end ===
+
+#== Line Spacer ===
+
+plot line55 = if IsNaN(close) then Double.NaN else 55;#Used to manage space to set labels above this value.
+line55.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
+line55.HideBubble();
+#== end ==
+
+#==== DMI_Oscillator ====
+input DMIO_Length = 10;#hint DMIO_Length:The agg-bars used to calculate the DMI_Oscillator. TOS' default is 10.
+input DMIO_trig = 0;#hint DMIO_trig:The trigger value that toggles bullish/bearish. Low values risk a turn down to below 0. Persistent values above 10-15 would be considered a moderate/strong bullish indication.
+
+def DMI_OSC_here = reference DMI_Oscillator(length = DMIO_Length).Osc;
+
+plot DMIO_Line = if IsNaN(close) then Double.NaN else 14;
+DMIO_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+DMIO_Line.SetLineWeight(5);
+DMIO_Line.AssignValueColor(if DMI_OSC_here > DMIO_trig then Color.UPTICK else Color.DOWNTICK);
+DMIO_Line.HideBubble();
+#=== end ===
+
+#==== ADX Indicator ====
+input ADX_Length = 10;#hint ADX_Length: Length used in the ADX calculation of the trigger ADX. TOS' default is 14. You may want to use 10 to be consistent with the DMI_Oscillator.
+input ADX_trig = 15;#hint ADX_trig:The bullish ADX value that toggles the bull/bear chart display. You may use any value of a bullish ADX to suit your preference. A strong ADX is >= 25 especially if it persists.
+
+def ADX_here = Round(reference ADX(length = ADX_Length), 1);
+def DMI_Pos = if DMI(ADX_Length)."DI+" > DMI(ADX_Length)."DI-" then 1 else 0;# DMI+ > DMI-
+
+plot ADX_Line = if IsNaN(close) then Double.NaN else 10.5;
+ADX_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+ADX_Line.SetLineWeight(5);
+ADX_Line.AssignValueColor(if DMI_Pos && ADX_here >= ADX_trig then Color.UPTICK else Color.DOWNTICK);
+ADX_Line.HideBubble();
+#== end ==
+
+# TrueStrengthIndex
+#===================
+input TSI_trig = 0 ;#hint TSI_trig:The value that toggles bull/bear. TSI has a 'TSI(value)' and a 'signal' line with a zero line. This deals with the 'TSI(value)' being above the zero line. An earlier trigger could be had by analysis as was done with the MACD herein.
+def TSI_here = reference TrueStrengthIndex(25, 13, 8, "WMA").TSI;
+
+plot TSI_Line = if IsNaN(close) then Double.NaN else 7;
+TSI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TSI_Line.SetLineWeight(5);
+TSI_Line.AssignValueColor(if TSI_here > TSI_trig then Color.UPTICK else Color.DOWNTICK);
+TSI_Line.HideBubble();
+#=== end ===
+
+#Dynamic Momentum Index
+#=======================
+#Note: This is similar to the RSI but is more sensitive/responsive
+input DYMI_length = 14;#hint DYMI_length:The length usd for this calculation. TOS default is 14.
+input DYMI_trig = 70;#hint DYMI_trig:The trigger value used to toggle the Bullish/bearish indication.
+
+def DYMI_here = DynamicMomentumIndex(DYMILength = DYMI_length).DYMI;
+
+plot DYMI_Line = if IsNaN(close) then Double.NaN else 3.5;
+DYMI_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+DYMI_Line.SetLineWeight(5);
+DYMI_Line.AssignValueColor(if DYMI_here >= DYMI_trig then Color.UPTICK else Color.DOWNTICK);
+DYMI_Line.HideBubble();
+#== end ====
+
+#====== MACD =======
+#========= Note about the two MACD  indicators below =======
+# HOTES: People use the MACD for decision making in two ways. The first below is when the MACD line crosses above the signal line. This is also when the MACD histogram goes above zero. This method gives early indications.
+#The second frequent use of the MACD is when the MACD itself (value) crosses aboce the zero line. This is a less risky use of the MACD but may sacrifice early entry and related profits.
+#==== end of notes ========
+
+#====== MACD.value is above MACD.avg (signal line)======
+input fastLength_1 = 12;#hint fastLength_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input slowLength_1 = 26;#hint slowLength_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input MACDLength_1 = 9;#hint MACDLength_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+input AverageType_1 = {SMA, default EMA};#hint AverageType_1:For the MACD plot that evaluates the MACD.Value being above the MACD.Avg (signal line).
+
+def macd_Val_1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Value;
+def macd_Avg1 = MACD(fastLength_1, slowLength_1, MACDLength_1, AverageType_1).Avg;
+def MACD_trig = if macd_Val_1 > macd_Avg1 then 1 else 0;
+#def MACD_Value = MACD(MACDLength = MACDLength, AverageType = "EMA").Diff;
+
+plot Macd_Line1 = if IsNaN(close) then Double.NaN else 35;
+Macd_Line1.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Macd_Line1.SetLineWeight(5);
+Macd_Line1.AssignValueColor(if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
+Macd_Line1.HideBubble();
+#== end ====
+
+#==== MACD value is above zero ====
+#NOTE that the fast and slow length may been shortened for faster response. These inputs have a '_2' after the standard MACD parameters to distinguish them from the MACD.
+input fastLength_2 = 12;#hint fastLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input slowLength_2 = 26;#hint slowLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input MACDLength_2 = 9;#hint MACDLength_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster response.
+input AverageType_2 = {SMA, default EMA};#hint AverageType_2:For the MACD plot that evaluates the MACD.Value being above the zero line. The value may be altered for faster/slower response. This selects tha average type to be used.
+input macdVal_trig = 0;#hint macdVal_trig:For the MACD plot that evaluates the MACD value being above the zero line. The normal default value is 0, i.e. the zero line, but may be altered here.
+
+def MACDValue_2 = MACD(fastLength_2, slowLength_2, MACDLength_2, AverageType_2).Value;
+
+ot MACD_Line2 = if IsNaN(close) then Double.NaN else 38.5;
+CD_Line2.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+CD_Line2.SetLineWeight(5);
+CD_Line2.AssignValueColor(if MACDValue_2 >= macdVal_trig then Color.UPTICK else Color.DOWNTICK);
+CD_Line2.HideBubble();
+= end ==
+
+#======= HullMovingAvg ==========
+input Hull_price = close;#hint Hull_price:The price basis of the HMA.
+input Hull_length = 20;#hint Hull_length:The agg-bars used in the HMA calculation.
+input Hull_displace = 0;#hint Hull_displace:Displacement of the HMA in agg-bars
+
+def HullMA = HullMovingAvg(Price = Hull_price, length = Hull_length, displace = Hull_displace).HMA;
+
+plot Hull_Line = if IsNaN(close) then Double.NaN else 42;
+Hull_Line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Hull_Line.SetLineWeight(5);
+Hull_Line.AssignValueColor(If HullMA > HullMA[1] then Color.UPTICK
+else Color.DOWNTICK);
+Hull_Line.HideBubble();
+#
+#Hull_Line.AssignValueColor(If HullMA > HullMA[-1] then color.BLUE else color.WHITE);
+#== end ==
+
+#======== Bubbles ==============
+AddChartBubble(FirstBar && LH_Bubbles, 42, "HullMovingAvg(" + Hull_length + "). " + "Trigger = bullish when HullMovingAvg > previous HullMovingAvg.", Color.WHITE);
+AddChartBubble(BubbleLocation, 42, "HullMovingAvg" ,Color.WHITE);
+
+#=====
+AddChartBubble(FirstBar && LH_Bubbles, 35, "MACD(" + fastLength_1 + "," +  slowLength_1 + "," + MACDLength_1 + "," +
+AverageType_1 + "). Bullish when MACD.Value is above MACD.Avg (signal line). Trigger = MACD().value > MACD().avg",
+Color.PINK);
+AddChartBubble(BubbleLocation, 35, " MACD > signal line" , Color.PINK);
+
+#======
+AddChartBubble(FirstBar && LH_Bubbles, 38.5, "MACD.Value(" + fastLength_2 + "," + slowLength_2 + "," + MACDLength_2 + "," + AverageType_2 + ")" + "Bullish when MACD.Value is above the zero line. Trigger = " + macdVal_trig + "(Normally the zero line)", Color.PINK);
+AddChartBubble(BubbleLocation, 38.5, "MACD > 0" , Color.PINK);
+
+#=======
+AddChartBubble(FirstBar && LH_Bubbles, 17.5 , "Polarized Fractal Efficiency (" + PFE_length + "). " + "Trend UP = 0 to 100. Trigger = " + PFE_trig, Color.WHITE);
+AddChartBubble(BubbleLocation, 17.5 , "Polarized Fractal Efficiency" , Color.WHITE);
+
+#==========
+AddChartBubble(FirstBar && LH_Bubbles, 21, "MomentumPercent(" + MomPctLength + "). Bullish when > 0 % & for long periods. Trigger = " + MOM_Pct_trig + " percent", Color.CYAN);
+AddChartBubble(BubbleLocation, 21, "Momentum Pct", Color.CYAN);
+
+#========
+AddChartBubble(FirstBar && LH_Bubbles, 24.5, "Ichimoku(" + tenkan_period + ", " + kijun_period + "). Bullish trigger = when tenkan > kijun. The more the diff, the stronger the trend.", Color.WHITE);
+AddChartBubble(BubbleLocation, 24.5, "Ichimoku" , Color.WHITE);
+
+#======
+AddChartBubble(FirstBar && LH_Bubbles, 28, "RSI" + RSI_length + ")." + " Trigger = RSI is between " + RSILowTrig + " and 100 and is rising for last " + rsi_UpBars + "  bars", Color.CYAN);
+AddChartBubble(BubbleLocation, 28, "RSI" , Color.CYAN);
+
+#====
+AddChartBubble(FirstBar && LH_Bubbles, 31.5, "Bollinger Bands(+/- " + Num_Dev_up + " SD)" + " MOmentum Break Out (MOBO(" + MOBO_length + "))." + " Trigger when close goes above upper band and stays bullish until the close goes below the lower band.", Color.WHITE);
+AddChartBubble(BubbleLocation, 31.5, "BB MOBO", Color.WHITE);
+
+#========
+AddChartBubble(FirstBar && LH_Bubbles, 14, "DMI_Oscillator(" + DMIO_Length + "). Bullish DMI = green = >0: Bearish DMI = red. Trigger = " + DMIO_trig, Color.PINK);
+AddChartBubble(BubbleLocation, 14, "DMI_Oscillator" , Color.PINK);
+
+#=======
+AddChartBubble(FirstBar && LH_Bubbles, 10.5, "ADX(" + ADX_Length + "). Bullish ADX = green: Bearish ADX = red. Strong bullish ADX trend  is > 25. Trigger = " + ADX_trig, Color.PINK);
+AddChartBubble(BubbleLocation, 10.5, "ADX" , Color.PINK);
+
+#======
+AddChartBubble(FirstBar && LH_Bubbles, 7, "TrueStrengthIndex(25,13,8,'WMA')." + " Bullish TSI = green & 0 to +50. Bearish TSI = red & 0 to -50.  Trigger = " + TSI_trig, Color.CYAN);
+AddChartBubble(BubbleLocation, 7, "TrueStrengthIndex", Color.CYAN);
+
+#=======
+AddChartBubble(FirstBar && LH_Bubbles, 50, "RED dot denotes presence of a SQUEEZE", Color.WHITE);
+AddChartBubble(BubbleLocation, 50, "Red when Squeeze is 'on'", Color.WHITE);
+
+#=====
+AddChartBubble(FirstBar && LH_Bubbles, 3.5, "DynamicMomentumIndex-DYMI(" + DYMI_length + "). Overbought = 70: Oversold  = 30.  Trigger = " + DYMI_trig, Color.CYAN);
+AddChartBubble(BubbleLocation, 3.5, " DynMomIndex-DYMI", Color.CYAN);
+
+#=========
+#== Labels ==
+#Count of Periods in consecutive squeeze
+rec count = if isSqueezed then count[1] + 1 else 0;
+
+AddLabel(showlabels, if isSqueezed then "Squeeze is on for " +  count + " bars" else "No Squeeze is on", if isSqueezed then Color.RED else Color.WHITE);
+AddLabel(showlabels, "HullMovingAvg(" + Hull_length + ") = " + Round(HullMA, 2), if HullMA > HullMA[1] then Color.GREEN else Color.RED);
+AddLabel(showlabels, "MACD.Value(" + MACDValue_2 + ") is above 0 line = " + if MACDValue_2 >= 0 then "true" else "not true", if round(MACDValue_2,1) >= 0 then color.GREEN else color.LIGHT_RED);
+AddLabel(showlabels, "MACD.Value(" + macd_Val_1 + ") is above above MACD.Avg(" + macd_Avg1 + ")(signal) = " + if macd_Val_1 > macd_Avg1 then "true" else "not true", if macd_Val_1 > macd_Avg1 then Color.UPTICK else Color.DOWNTICK);
+AddLabel(showlabels, if upmobo and  c < Uppermobo then "MOBO close is between(" + Num_Dev_up + " SD) bands"
+  else if upmo then "MOBO is above upper(" + Num_Dev_up + " SD) band"
+  else if dnmo then "MOBO is below lower(" + Num_Dev_up + " SD) band"
+  else "", Color.GREEN);
+
+AddLabel(showlabels, "RSI(" + RSI_length + ") = " + Round(rsi_here, 1), if RSI_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "Ichimoku(" + tenkan_period + ", " + kijun_period + "):" + "Tenkan / Kijan = " + Ichimoku().Tenkan + " / " + Ichimoku().kijun, if Ichimoku()."Tenkan" > Ichimoku()."Kijun" then Color.GREEN else Color.RED);
+AddLabel(showlabels, "MomentumPercent(" + MomPctLength + ") = " + Round(mom_pct, 2) + " %", if mom_pct >= MOM_Pct_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "Polarized Fractal Eff(" + PFE_length + ") = " + Round(PFE, 0), if PFE >= PFE_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "DMI Osc(" + DMIO_Length + ") = " + Round(DMI_OSC_here, 1), if DMI_OSC_here >= DMIO_trig then Color.GREEN else Color.RED);
+AddLabel(showlabels, "ADX(" + ADX_Length + ") = " + ADX_here, if ADX_here >= ADX_trig && DMI_Pos then Color.GREEN else Color.RED);
+AddLabel(showlabels, "TSI = " + Round(TSI_here,1), if TSI_here >= TSI_Trig then color.GREEN else color.RED);
+AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DYMI_here >= DYMI_trig then Color.GREEN else Color.RED);
+AddLabel(1,"Use 'Drawings/Pan' to move chart to the left for bubble clarity",color.WHITE);
+#== end ==
+# End of All Code
+```
 
 ## C-ICHIONEGLANCE STUDY
 
 [Return to TOC](#toc)
 
-- # IchiOneGlance Version 2.0 by StanL dated 7/19/14
-
-- #Hint:This shows, in dashboard format, the main criteria used in the Ichimoku study. It identifies the bullish, neutral
-
-- and bearish conditions.
-
-- #NOTES: The Ichimoku is a very busy study that can be intimidating. However, once understood, it becomes addictive
-
-- and very useful since it addresses so many different and pertinent aspects. The Ichimoku is also useful for indicating
-
-- support and resistance levels but this feature is not addressed herein. The Tenkan and Kijun periods, 9 and 26, are NOT
-
-- recommended to be changed. Scan coding is shown below the respective items.
-
-- # USAGE: 'IchiOneGlance' uses up a lot of a chart's real estate and is much more readable when not squeezed; perhaps
-
-- as an only lower study. One viewing option, when comparing a 'IchiOneGlance' item to a corresponding full TOS chart, is
-
-- to turn off the price data in 'chart Settings'.
-
-- #Usage re Righthand(RH) bubbles. These bubble can be made to expand into empty unused space to look good. To get the
-
-- RH space select the PAN(upper-finger-pointer) in drawing tools and drag the chart to the left.
-
-- declare lower;
-
-- plot WhiteLabel = Double.NaN;
-
-- WhiteLabel.SetDefaultColor(Color.White);
-
-- input tenkan_period = 9;#Hint tenkan_period: The number of bars used to calculate the Tenkan (cyan) plot. Default is 9
-
-- and should be retained.
-
-- input kijun_period = 26;#Hint kijun_period: The number of bars used to calculate the Kijun (pink) plot. Default is 26 and
-
-- should be retained.
-
-- input ShowLabels = YES;#hint ShowLabels:Toggles labels on/off.
-
-- input LH_Bubbles = yes;#hint LH_Bubbles:Toggles left-hand bubbles ON/OFF
-
-- def Tenkan_here = Ichimoku(tenkan_period, kijun_period).Tenkan;
-
-- def Kijun_here = Ichimoku(tenkan_period, kijun_period).Kijun;
-
-- #Define variables used to place a bubble
-
-- #========================================
-
-- def barNum = BarNumber();
-
-- def offset = 0;
-
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
-
-- def BubbleLocation = LastBar[offset];
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- def FirstBarValue = if barNum == 1 then 1 else 0;
-
-- def LastBarValue = if LastBar then barNum else 0;
-
-- #example
-
-- #addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
-
-- #==========================================
-
-- #===== Secondary Trend(ST) --- When T > K =======
-
-- def Tenkan = Ichimoku(tenkan_period, kijun_period).Tenkan;
-
-- def ST_Bull = if Ichimoku(tenkan_period, kijun_period).Tenkan > Ichimoku(tenkan_period, kijun_period).Kijun then 1 else
-
-- 0;
-
-- plot TK_line  = if IsNaN(close) then Double.NaN else 20;
-
-- TK_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TK_line.SetLineWeight(5);
-
-- TK_line.SetDefaultColor(Color.White);
-
-- TK_line.AssignValueColor(if ST_Bull then Color.UPTICK else if !ST_Bull then Color.DOWNTICK else color.WHITE);
-
-- TK_line.HideBubble();
-
-- AddChartBubble(FirstBar && LH_Bubbles, 20, " Ichimoku(" + tenkan_period + "," +  kijun_period + "). Secondary trend
-
-- when Tenkan > Kijun.", Color.WHITE,yes);
-
-- AddChartBubble(BubbleLocation, 20, " Secondary trend" , Color.PINK);
-
-- #====== Close is above the cloud (Primary trend = PT)======
-
-- def PT_bull = if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period,
-
-- kijun_period)."Span B" then 1 else 0;
-
-- plot PT_line = if IsNaN(close) then Double.NaN else 22;
-
-- PT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- PT_line.SetLineWeight(5);
-
-- PT_line.SetDefaultColor(Color.White);
-
-- PT_line.AssignValueColor(if PT_Bull then Color.UPTICK else if IsNaN(open[-1]) then color.WHITE else
-
-- color.DOWNTICK);
-
-- PT_line.HideBubble();
-
-- AddChartBubble(FirstBar && LH_Bubbles, 22, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Primary trend =
-
-- bullish when the close is above the cloud.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 22, "Primary trend" , Color.PINK);
-
-- #=== scan code for 'Close above the cloud' (primary Bullish scan)===
-
-- #(close is greater than Ichimoku()."Span A" within 2 bars and close is greater than Ichimoku()."Span B" within 2 bars)
-
-- #== end of scan code ==
-
-- #== end of primary trend ==
-
-- #====== Chikou is above the cloud (Tertiary trend = TT)======
-
-- #Def Chikou_here =  Ichimoku(tenkan_period, kijun_period).Chikou;
-
-- def Chikou_here = close[26];
-
-- def SpanB = Ichimoku(tenkan_period, kijun_period)."Span B";
-
-- def SpanA = Ichimoku(tenkan_period, kijun_period)."Span A";
-
-- def Chikou_Bull = if Chikou_here > SpanA && Chikou_here > SpanB then 1 else 0;
-
-- def TT_Bull = Chikou_Bull;
-
-- plot TT_line  = if IsNaN(close) then Double.NaN else 18;
-
-- TT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TT_line.SetLineWeight(5);
-
-- TT_line.SetDefaultColor(Color.White);
-
-- TT_line.AssignValueColor(if TT_Bull  then Color.UPTICK else if !TT_Bull then Color.DOWNTICK else color.blue);
-
-- TT_line.AssignValueColor(if Chikou_Bull then color.UPTICK else color.DOWNTICK);
-
-- TT_line.HideBubble();
-
-- AddChartBubble(FirstBar && LH_Bubbles, 18, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Tertiary trend =
-
-- bullish when the Chikou is above the cloud.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 18, "Tertiary trend", Color.PINK);
-
-- #=== scan code for 'Chikou is above the cloud' ===
-
-- #Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
-
-- #=== end of scan code ===
-
-- #=== end of Tertiary trend ===
-
-- #=========== Presence of powerful 'triple bull' signal ==========
-
-- plot Bull_3X  = if IsNaN(close) then Double.NaN else 16;
-
-- Bull_3X.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Bull_3X.SetLineWeight(5);
-
-- Bull_3X.SetDefaultColor(Color.White);
-
-- Bull_3X.HideBubble();
-
-- def all3 = if ST_Bull && Chikou_Bull && PT_Bull then 1 else 0;
-
-- Bull_3X.AssignValueColor(if All3 then color.UPTICK else color.DOWNTICK);
-
-- AddChartBubble(FirstBar && LH_Bubbles, 16, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Triple bullish trend =
-
-- bullish Primary, Secondary & Tertiary trends. Best trading opportunity(GREEN).", Color.WHITE,yes);
-
-- AddChartBubble(BubbleLocation, 16, "Triple Bull trend" , color.pink);
-
-- #==== Scan code for Triple Bullish ====(to use remove '#')
-
-- #(close is greater than Ichimoku()."Span A" within 2 bars or close is greater than Ichimoku()."Span B" within 2 bars) and
-
-- # Ichimoku()."Tenkan" is greater than Ichimoku().Kijun within 2 bars and
-
-- # Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
-
-- #== end of scan code ==
-
-- #=== 'triple bull' signal ===
-
-- #======== Neutral(no trend) in-cloud signal ========
-
-- plot No_Trend  = if IsNaN(close) then Double.NaN else 14;
-
-- No_Trend.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- No_Trend.SetLineWeight(5);
-
-- No_Trend.SetDefaultColor(Color.White);
-
-- No_Trend.HideBubble();
-
-- def InCloud = if Between(close, Min(SpanA,SpanB), Max(SpanA,SpanB)) then 1 else 0;
-
-- #Def InCloud = if Between(close, SpanA,SpanB) or Between(close, SpanB,SpanA) then 1 else 0;#works but is less clear
-
-- No_Trend.AssignValueColor(if InCloud then color.Yellow else color.GRAY);
-
-- AddChartBubble(FirstBar && LH_Bubbles, 14, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Neutral(no trend)
-
-- signal = close is within the cloud. Trading not recommended.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 14, "Neutral trend(in cloud)" ,color.pink);
-
-- #====== strength of bullish secondary(T/K) trend ======
-
-- input DeclBarsToUse = 3;#hint DeclBarsToUse:The number of past bars to use to test for declining strength of bullish
-
-- T/K signal.This triggers the yellow indication when present. Refrain from large values. 1 to 3 is good.
-
-- plot Bull_Strength  = if IsNaN(close) then Double.NaN else 12;
-
-- Bull_Strength.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Bull_Strength.SetLineWeight(5);
-
-- Bull_Strength.SetDefaultColor(Color.White);
-
-- Bull_Strength.HideBubble();
-
-- Def diff = Ichimoku(tenkan_period, kijun_period).Tenkan - Ichimoku(tenkan_period, kijun_period).Kijun;
-
-- def Decline = If ST_Bull && Sum(diff < diff[1],DeclBarsToUse) == DeclBarsToUse then 1 else 0;#Declining difference in
-
-- the last ? bars of a bullish secondary trend
-
-- Bull_Strength.AssignValueColor(if decline then color.Yellow else color.GRAY);
-
-- AddChartBubble(FirstBar && LH_Bubbles, 12, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Trigger = Declining
-
-- Bullish secondary(T>K) trend for last " + DeclBarsToUse + " bars = yellow else gray for no decline.", Color.WHITE);
-
-- AddChartBubble(BubbleLocation, 12, "T/K trend strength", color.pink);
-
-- #==== Labels ====
-
-- #== Line Spacer ===
-
-- plot line25 = if IsNaN(close) then Double.NaN else 25;#Used to manage space to set labels above this value.
-
-- line25.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
-
-- line25.HideBubble();
-
-- #== end ==
-
-- AddLabel(Showlabels && !InCloud ,if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close >
-
-- Ichimoku(tenkan_period, kijun_period)."Span B" then "Bullish 'close is above the cloud'" else "Bearish Primary signal, T is
-
-- not > K",if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period,
-
-- kijun_period)."Span B" then color.UPTICK else color.Downtick);
-
-- AddLabel(Showlabels && !InCloud ,if ST_Bull then "Bullish 'Tenkan > Kijun'" else "Bearish 'Tenkan is less than the
-
-- Kijun'", if ST_Bull then color.UPTICK else color.DOWNTICK);
-
-- AddLabel(Showlabels && !InCloud ,if close > SpanA[26] && close > SpanB[26] then "Bullish 'Chikou is above the cloud' is
-
-- true" else "Bearish 'Chikou is not above the cloud'", if close > SpanA[26] && close > SpanB[26] then color.UPTICK else
-
-- color.DOWNTICK);
-
-- AddLabel(Showlabels && !InCloud , if ST_Bull && TT_Bull[26] && PT_Bull then "A powerful 3XBullish signal exists" else
-
-- "A powerful 3XBullish signal does not exists",if ST_Bull && TT_Bull[26] && PT_Bull then color.UPTICK else
-
-- color.DOWNTICK);
-
-- AddLabel(Showlabels && InCloud, "The close is inside the cloud. No trading recommended here. All other labels are
-
-- suspended. Look for a signal on exiting the cloud.",Color.MAGENTA);
-
-- AddLabel(1,"Use 'Drawings/Pan' to move chart to the left for bubble clarity",color.WHITE);
-
-- #=== end of IchiOneGlance ===
+```
+# IchiOneGlance Version 2.0 by StanL dated 7/19/14
+#Hint:This shows, in dashboard format, the main criteria used in the Ichimoku study. It identifies the bullish, neutral and bearish conditions.
+#NOTES: The Ichimoku is a very busy study that can be intimidating. However, once understood, it becomes addictive and very useful since it addresses so many different and pertinent aspects. The Ichimoku is also useful for indicating support and resistance levels but this feature is not addressed herein. The Tenkan and Kijun periods, 9 and 26, are NOT recommended to be changed. Scan coding is shown below the respective items.
+# USAGE: 'IchiOneGlance' uses up a lot of a chart's real estate and is much more readable when not squeezed; perhaps as an only lower study. One viewing option, when comparing a 'IchiOneGlance' item to a corresponding full TOS chart, is to turn off the price data in 'chart Settings'.
+#Usage re Righthand(RH) bubbles. These bubble can be made to expand into empty unused space to look good. To get the RH space select the PAN(upper-finger-pointer) in drawing tools and drag the chart to the left.
+
+declare lower;
+
+plot WhiteLabel = Double.NaN;
+WhiteLabel.SetDefaultColor(Color.White);
+
+input tenkan_period = 9;#Hint tenkan_period: The number of bars used to calculate the Tenkan (cyan) plot. Default is 9 and should be retained.
+input kijun_period = 26;#Hint kijun_period: The number of bars used to calculate the Kijun (pink) plot. Default is 26 and should be retained.
+input ShowLabels = YES;#hint ShowLabels:Toggles labels on/off.
+input LH_Bubbles = yes;#hint LH_Bubbles:Toggles left-hand bubbles ON/OFF
+
+def Tenkan_here = Ichimoku(tenkan_period, kijun_period).Tenkan;
+def Kijun_here = Ichimoku(tenkan_period, kijun_period).Kijun;
+
+#Define variables used to place a bubble
+#========================================
+def barNum = BarNumber();
+def offset = 0;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+def BubbleLocation = LastBar[offset];
+def FirstBar = if barNum == 1 then 1 else 0;
+def FirstBarValue = if barNum == 1 then 1 else 0;
+def LastBarValue = if LastBar then barNum else 0;
+
+#example
+#addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
+
+#==========================================
+#===== Secondary Trend(ST) --- When T > K =======
+def Tenkan = Ichimoku(tenkan_period, kijun_period).Tenkan;
+def ST_Bull = if Ichimoku(tenkan_period, kijun_period).Tenkan > Ichimoku(tenkan_period, kijun_period).Kijun then 1 else 0;
+
+plot TK_line  = if IsNaN(close) then Double.NaN else 20;
+TK_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TK_line.SetLineWeight(5);
+TK_line.SetDefaultColor(Color.White);
+TK_line.AssignValueColor(if ST_Bull then Color.UPTICK else if !ST_Bull then Color.DOWNTICK else color.WHITE);
+TK_line.HideBubble();
+
+AddChartBubble(FirstBar && LH_Bubbles, 20, " Ichimoku(" + tenkan_period + "," +  kijun_period + "). Secondary trend when Tenkan > Kijun.", Color.WHITE,yes);
+AddChartBubble(BubbleLocation, 20, " Secondary trend" , Color.PINK);
+
+#====== Close is above the cloud (Primary trend = PT)======
+def PT_bull = if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period,
+kijun_period)."Span B" then 1 else 0;
+plot PT_line = if IsNaN(close) then Double.NaN else 22;
+PT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+PT_line.SetLineWeight(5);
+PT_line.SetDefaultColor(Color.White);
+PT_line.AssignValueColor(if PT_Bull then Color.UPTICK else if IsNaN(open[-1]) then color.WHITE else
+color.DOWNTICK);
+PT_line.HideBubble();
+AddChartBubble(FirstBar && LH_Bubbles, 22, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Primary trend =
+bullish when the close is above the cloud.", Color.WHITE);
+AddChartBubble(BubbleLocation, 22, "Primary trend" , Color.PINK);
+
+#=== scan code for 'Close above the cloud' (primary Bullish scan)===
+#(close is greater than Ichimoku()."Span A" within 2 bars and close is greater than Ichimoku()."Span B" within 2 bars)
+#== end of scan code ==
+#== end of primary trend ==
+
+#====== Chikou is above the cloud (Tertiary trend = TT)======
+#Def Chikou_here =  Ichimoku(tenkan_period, kijun_period).Chikou;
+def Chikou_here = close[26];
+def SpanB = Ichimoku(tenkan_period, kijun_period)."Span B";
+def SpanA = Ichimoku(tenkan_period, kijun_period)."Span A";
+def Chikou_Bull = if Chikou_here > SpanA && Chikou_here > SpanB then 1 else 0;
+def TT_Bull = Chikou_Bull;
+
+plot TT_line  = if IsNaN(close) then Double.NaN else 18;
+TT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TT_line.SetLineWeight(5);
+TT_line.SetDefaultColor(Color.White);
+TT_line.AssignValueColor(if TT_Bull  then Color.UPTICK else if !TT_Bull then Color.DOWNTICK else color.blue);
+TT_line.AssignValueColor(if Chikou_Bull then color.UPTICK else color.DOWNTICK);
+TT_line.HideBubble();
+
+AddChartBubble(FirstBar && LH_Bubbles, 18, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Tertiary trend = bullish when the Chikou is above the cloud.", Color.WHITE);
+AddChartBubble(BubbleLocation, 18, "Tertiary trend", Color.PINK);
+
+#=== scan code for 'Chikou is above the cloud' ===
+#Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
+#=== end of scan code ===
+#=== end of Tertiary trend ===
+
+#=========== Presence of powerful 'triple bull' signal ==========
+plot Bull_3X  = if IsNaN(close) then Double.NaN else 16;
+Bull_3X.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Bull_3X.SetLineWeight(5);
+Bull_3X.SetDefaultColor(Color.White);
+Bull_3X.HideBubble();
+
+def all3 = if ST_Bull && Chikou_Bull && PT_Bull then 1 else 0;
+
+Bull_3X.AssignValueColor(if All3 then color.UPTICK else color.DOWNTICK);
+
+AddChartBubble(FirstBar && LH_Bubbles, 16, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Triple bullish trend = bullish Primary, Secondary & Tertiary trends. Best trading opportunity(GREEN).", Color.WHITE,yes);
+
+AddChartBubble(BubbleLocation, 16, "Triple Bull trend" , color.pink);
+#==== Scan code for Triple Bullish ====(to use remove '#')
+#(close is greater than Ichimoku()."Span A" within 2 bars or close is greater than Ichimoku()."Span B" within 2 bars) and
+# Ichimoku()."Tenkan" is greater than Ichimoku().Kijun within 2 bars and
+# Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
+#== end of scan code ==
+
+#=== 'triple bull' signal ===
+#======== Neutral(no trend) in-cloud signal ========
+plot No_Trend  = if IsNaN(close) then Double.NaN else 14;
+
+No_Trend.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+No_Trend.SetLineWeight(5);
+No_Trend.SetDefaultColor(Color.White);
+No_Trend.HideBubble();
+
+def InCloud = if Between(close, Min(SpanA,SpanB), Max(SpanA,SpanB)) then 1 else 0;
+#Def InCloud = if Between(close, SpanA,SpanB) or Between(close, SpanB,SpanA) then 1 else 0;#works but is less clear No_Trend.AssignValueColor(if InCloud then color.Yellow else color.GRAY);
+AddChartBubble(FirstBar && LH_Bubbles, 14, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Neutral(no trend) signal = close is within the cloud. Trading not recommended.", Color.WHITE);
+AddChartBubble(BubbleLocation, 14, "Neutral trend(in cloud)" ,color.pink);
+
+#====== strength of bullish secondary(T/K) trend ======
+input DeclBarsToUse = 3;#hint DeclBarsToUse:The number of past bars to use to test for declining strength of bullish T/K signal.This triggers the yellow indication when present. Refrain from large values. 1 to 3 is good.
+
+plot Bull_Strength  = if IsNaN(close) then Double.NaN else 12;
+Bull_Strength.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Bull_Strength.SetLineWeight(5);
+Bull_Strength.SetDefaultColor(Color.White);
+Bull_Strength.HideBubble();
+
+Def diff = Ichimoku(tenkan_period, kijun_period).Tenkan - Ichimoku(tenkan_period, kijun_period).Kijun;
+def Decline = If ST_Bull && Sum(diff < diff[1],DeclBarsToUse) == DeclBarsToUse then 1 else 0;#Declining difference in the last ? bars of a bullish secondary trend Bull_Strength.AssignValueColor(if decline then color.Yellow else color.GRAY);
+
+AddChartBubble(FirstBar && LH_Bubbles, 12, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Trigger = Declining Bullish secondary(T>K) trend for last " + DeclBarsToUse + " bars = yellow else gray for no decline.", Color.WHITE);
+AddChartBubble(BubbleLocation, 12, "T/K trend strength", color.pink);
+
+#==== Labels ====
+
+#== Line Spacer ===
+plot line25 = if IsNaN(close) then Double.NaN else 25;#Used to manage space to set labels above this value.
+line25.SetDefaultColor(Color.BLUE);#Insert color to match your background to make line invisible
+line25.HideBubble();
+#== end ==
+
+AddLabel(Showlabels && !InCloud ,if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period, kijun_period)."Span B" then "Bullish 'close is above the cloud'" else "Bearish Primary signal, T is not > K",if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period, kijun_period)."Span B" then color.UPTICK else color.Downtick);
+AddLabel(Showlabels && !InCloud ,if ST_Bull then "Bullish 'Tenkan > Kijun'" else "Bearish 'Tenkan is less than the Kijun'", if ST_Bull then color.UPTICK else color.DOWNTICK);
+AddLabel(Showlabels && !InCloud ,if close > SpanA[26] && close > SpanB[26] then "Bullish 'Chikou is above the cloud' is true" else "Bearish 'Chikou is not above the cloud'", if close > SpanA[26] && close > SpanB[26] then color.UPTICK else color.DOWNTICK);
+AddLabel(Showlabels && !InCloud , if ST_Bull && TT_Bull[26] && PT_Bull then "A powerful 3XBullish signal exists" else "A powerful 3XBullish signal does not exists",if ST_Bull && TT_Bull[26] && PT_Bull then color.UPTICK else color.DOWNTICK);
+AddLabel(Showlabels && InCloud, "The close is inside the cloud. No trading recommended here. All other labels are suspended. Look for a signal on exiting the cloud.",Color.MAGENTA);
+AddLabel(1,"Use 'Drawings/Pan' to move chart to the left for bubble clarity",color.WHITE);
+#=== end of IchiOneGlance ===
+```
 
 ## NEXT ITEM TO BE ADDED
 
@@ -11538,89 +10661,65 @@ X
 
 [Return to TOC](#toc)
 
-- #hint:For a WatchList Column (WLC), shows the price-to-earnings (P/E) ratio. In trader's jargon this tells how expensive
+```
+#hint:For a WatchList Column (WLC), shows the price-to-earnings (P/E) ratio. In trader's jargon this tells how expensive a stock's earnings are. Discussions and the literature often relate this to the over-all-market P/E average.
 
-- a stock's earnings are.
+rec AE = if IsNaN(GetActualEarnings()) then 0 else GetActualEarnings();
+def EPS_TTM = Sum(AE, 252);#The sum of the trailing twelve months EPS
+def PE = close/EPS_TTM ;#The P/E ratio
 
-- Discussions and the literature often relate this to the over-all-market P/E average.
-
-- rec AE = if IsNaN(GetActualEarnings()) then 0 else GetActualEarnings();
-
-- def EPS_TTM = Sum(AE, 252);#The sum of the trailing twelve months EPS
-
-- def PE = close/EPS_TTM ;#The P/E ratio
-
-- AddLabel(yes,  round(PE,1));
-
-- #end
+AddLabel(yes,  round(PE,1));
+#end
+```
 
 ## WLC-WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD
 
 [Return to TOC](#toc)
 
-- #hint:Looks for and indicates positive (price rising) and negative (price declining) divergences of price and the MACD
+```
+#hint:Looks for and indicates positive (price rising) and negative (price declining) divergences of price and the MACD
+Input Bars = 3;#Hint Bars:The number of bars in the pattern to evaluate
 
-- Input Bars = 3;#Hint Bars:The number of bars in the pattern to evaluate
+def mcdv = MACD();
+def MACD_rising = sum(mcdv > mcdv[1],bars) == bars;#True if MACD is rising for the last number-of-bars (Bars)
+def price_rising = sum(close > close[1],bars) == bars;#True if close is rising for the last number-of-bars (Bars)
+def MACD_falling = sum(mcdv < mcdv[1],bars) == bars;#True if MACD is falling for the last number-of-bars (Bars)
+def price_falling = sum(close < close[1],bars) == bars;#True if close is falling for the last number-of-bars (Bars)
+def pos_div = price_rising && MACD_falling;
+def neg_div =  price_falling && MACD_rising;
 
-- def mcdv = MACD();
+AddLabel(1, if pos_div  then "pos" else if neg_div then "neg" else "none",  if pos_div == 1 then color.green else if neg_div == 1 then color.red else color.pink );
 
-- def MACD_rising = sum(mcdv > mcdv[1],bars) == bars;#True if MACD is rising for the last number-of-bars (Bars)
+AssignBackgroundColor(if pos_div then color.dark_green
+  else if neg_div then
+  color.dark_RED
+  else color.current);#Divergence with MACD rising & price falling is RED. The opposite is GREEN. Neither is the normal
+  color.
 
-- def price_rising = sum(close > close[1],bars) == bars;#True if close is rising for the last number-of-bars (Bars)
-
-- def MACD_falling = sum(mcdv < mcdv[1],bars) == bars;#True if MACD is falling for the last number-of-bars (Bars)
-
-- def price_falling = sum(close < close[1],bars) == bars;#True if close is falling for the last number-of-bars (Bars)
-
-- def pos_div = price_rising && MACD_falling;
-
-- def neg_div =  price_falling && MACD_rising;
-
-- AddLabel(1, if pos_div  then "pos" else if neg_div then "neg" else "none",  if pos_div == 1 then color.green else if neg_div
-
-- == 1 then color.red else color.pink );
-
-- AssignBackgroundColor(if pos_div then color.dark_green
-
-- else if neg_div then
-
-- color.dark_RED
-
-- else color.current);#Divergence with MACD rising & price falling is RED. The opposite is GREEN. Neither is the normal
-
-- color.
-
-- # =====to prove out the code or to use this as a study, plot the below
-
-- #   and evaluate that the conditions and results are correct ========
-
-- plot Positive = pos_div;# A CYAN value of 'one' plots where true exists
-
-- Plot Negative = neg_div;# A PINK value of 'one' plots where true exists
-
-- #==================================================================
-
-- #end
+# =====to prove out the code or to use this as a study, plot the below
+#   and evaluate that the conditions and results are correct ========
+plot Positive = pos_div;# A CYAN value of 'one' plots where true exists
+Plot Negative = neg_div;# A PINK value of 'one' plots where true exists
+#==================================================================
+#end
+```
 
 ## WLC OF BARS-INTO-A-SQUEEZE
 
 [Return to TOC](#toc)
 
-- #hint;A WatchList Column (WLC) that shows whether an equity is in a squeeze and if so how many bars it has been in a
+```
+#hint;A WatchList Column (WLC) that shows whether an equity is in a squeeze and if so how many bars it has been in a squeeze. Be sure to set the agg to the chart agg you want to view this on. This is very efficient code.
 
-- squeeze. Be sure to set the agg to the chart agg you want to view this on. This is very efficient code.
+def Squeeze = if (BollingerBandsSMA()."UpperBand" - KeltnerChannels()."Upper_Band") < 0 then 1 else 0;
+def count = compoundvalue(1, If squeeze then count[1] + 1 else if !squeeze then 0 else 0,1);
 
-- def Squeeze = if (BollingerBandsSMA()."UpperBand" - KeltnerChannels()."Upper_Band") < 0 then 1 else 0;
+#addlabel(1, "Bars into a squeeze = " + count, If squeeze then Color.LIGHT_RED else color.Current);
+#if column width is a concern the label below shortens the word length and shows the count value
 
-- def count = compoundvalue(1, If squeeze then count[1] + 1 else if !squeeze then 0 else 0,1);
-
-- #addlabel(1, "Bars into a squeeze = " + count, If squeeze then Color.LIGHT_RED else color.Current);
-
-- #if column width is a concern the label below shortens the word length and shows the count value
-
-- addlabel(1, "SQZ= " + count, If squeeze then Color.LIGHT_RED else color.Current);
-
-- # end
+addlabel(1, "SQZ= " + count, If squeeze then Color.LIGHT_RED else color.Current);
+# end
+```
 
 ----
 ----
@@ -11639,65 +10738,57 @@ This is a scan that works well in a dynamic watch list with your favorite compan
 
 [Return to TOC](#toc)
 
-- input length = 20;#hint length:Number of agg-bars to test for ascending conditions
+```
+input length = 20;#hint length:Number of agg-bars to test for ascending conditions
+input bars_up = 5;#hint bars_up:Number of agg-bars being evaluated in <b>sum</b>
 
-- input bars_up = 5;#hint bars_up:Number of agg-bars being evaluated in <b>sum</b>
+def trend_up = IsAscending(close,length);
+def trend_up2 = sum(close > close[1],Bars_up) >= Bars_up;
 
-- def trend_up = IsAscending(close,length);
+plot scan = trend_up && trend_up2;
+```
 
-- def trend_up2 = sum(close > close[1],Bars_up) >= Bars_up;
+Another example
 
-- plot scan = trend_up && trend_up2;
-
-- Another example
-
-- input length = 20;#hint length:Number of agg-bars to test for ascending conditions
-
-- input bars = 5;#hint bars:Number of agg-bars being evaluated in <b>sum</b>
-
-- def trendup = IsAscending(close,length);
-
-- def trendup2 = sum(close > close[1],bars) >= bars;
-
-- def mcd = MACD();
-
-- def mcdtrend = sum(mcd > mcd[1],bars) == bars;
-
-- plot scan = trendup && trendup2 && mcdtrend;
-
-- #end
+```
+input length = 20;#hint length:Number of agg-bars to test for ascending conditions
+input bars = 5;#hint bars:Number of agg-bars being evaluated in <b>sum</b>
+def trendup = IsAscending(close,length);
+def trendup2 = sum(close > close[1],bars) >= bars;
+def mcd = MACD();
+def mcdtrend = sum(mcd > mcd[1],bars) == bars;
+plot scan = trendup && trendup2 && mcdtrend;
+#end
+```
 
 ## S-SCAN FOR MACD AVG AND MACD DIVERGENCE
 
 [Return to TOC](#toc)
 
-- Input Bars = 3;#hint bars:The consecutive number of agg-bars being evaluated.
+```
+Input Bars = 3;#hint bars:The consecutive number of agg-bars being evaluated.
+def mcda = MACD().Avg;
+def mcdv = MACD();
+def div = sum(mcda > mcda[1],Bars) == Bars ;
+def div2 = sum(mcdv < mcdv[1],Bars) == Bars;
+plot scan = div and div2;
+```
 
-- def mcda = MACD().Avg;
+========================================
 
-- def mcdv = MACD();
+This scan does a good job finding stocks that are tanking!
 
-- def div = sum(mcda > mcda[1],Bars) == Bars ;
-
-- def div2 = sum(mcdv < mcdv[1],Bars) == Bars;
-
-- plot scan = div and div2;
-
-- ========================================
-
-- This scan does a good job finding stocks that are tanking!
-
-- Plot scan = Crosses( MACD( 12, 26, 9, "SMA" ).Avg, 0, CrossingDirection.Below )
+`Plot scan = Crosses( MACD( 12, 26, 9, "SMA" ).Avg, 0, CrossingDirection.Below )`
 
 ## S-SCAN DECLINE FOR ? BARS
 
 [Return to TOC](#toc)
 
-- input Bars = 5;#hint bars:The consecutive number of agg-bars being evaluated.
-
-- plot decline = sum(close < close[1],Bars) ==  Bars;
-
-- #end
+```
+input Bars = 5;#hint bars:The consecutive number of agg-bars being evaluated.
+plot decline = sum(close < close[1],Bars) ==  Bars;
+#end
+```
 
 ## S-PRICE DIRECTION SCAN
 
@@ -11729,87 +10820,73 @@ scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
 
 [Return to TOC](#toc)
 
-- Input length = 10;#Hint length:The number of future/ahead agg-bars to evaluate
-
-- def earnings = hasearnings();#When true this evaluates to one which then appears in the following 'sum'
-
-- plot scan = sum(earnings,length)[-length +1] > 0;
-
-- Comment: This could be very useful as a watchlist custom column.
-
-- #end
+```
+Input length = 10;#Hint length:The number of future/ahead agg-bars to evaluate
+def earnings = hasearnings();#When true this evaluates to one which then appears in the following 'sum'
+plot scan = sum(earnings,length)[-length +1] > 0;
+Comment: This could be very useful as a watchlist custom column.
+#end
+```
 
 ## S-SCAN FOR CORRELATED STOCKS
 
 [Return to TOC](#toc)
 
-- High correlation
+High correlation
 
-- input length = 10;#hint length: the agg-bar length being compared
+```
+input length = 10;#hint length: the agg-bar length being compared
+input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
+input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
 
-- input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
+def x = Correlation(close, close(correlationWithSecurity), length) > .9;#greater then 0.9 indicates a high correlation
 
-- input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
+plot scan = sum(x, inarow) >= inarow;
+```
 
-- def x = Correlation(close, close(correlationWithSecurity), length) > .9;#greater then 0.9 indicates a high correlation
+Low correlation
+```
+input length = 10;
+input correlationWithSecurity = "SPX";
+input inarow = 10;
 
-- plot scan = sum(x, inarow) >= inarow;
-
-- Low correlation
-
-- input length = 10;
-
-- input correlationWithSecurity = "SPX";
-
-- input inarow = 10;
-
-- def x = Correlation(close, close(correlationWithSecurity), length) < =.5;
-
-- plot scan = sum(x, inarow) >= inarow;
-
-- #end
+def x = Correlation(close, close(correlationWithSecurity), length) < =.5;
+plot scan = sum(x, inarow) >= inarow;
+#end
+```
 
 ## S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS
 
 [Return to TOC](#toc)
 
-- Comment: A good scan for stocks trending up. The aggregation for this is “day”. Change length or the value of 'X > 10' for
+Comment: A good scan for stocks trending up. The aggregation for this is “day”. Change length or the value of 'X > 10' for a more powerful trend. This reads as 'scan for stocks with a DMI_Oscillator value greater than 10 and rising for the last 5 agg-bars.'
 
-- a more powerful trend.
+```
+def length = 5;# The numbers of agg-bars DMI is climbing
+def x =DMI_Oscillator();
+def up = x > x[1];
 
-- This reads as 'scan for stocks with a DMI_Oscillator value greater than 10 and rising for the last 5 agg-bars.'
-
-- def length = 5;# The numbers of agg-bars DMI is climbing
-
-- def x =DMI_Oscillator();
-
-- def up = x > x[1];
-
-- Plot Scan = x > 10 && sum(up,length) >= length;
-
-- #end
+Plot Scan = x > 10 && sum(up,length) >= length;
+#end
+```
 
 ## S-EXAMPLE OF TIME BRACKETED SCAN
 
 [Return to TOC](#toc)
 
-- Example of Time Bracketed Scan by Mobius
+Example of Time Bracketed Scan by Mobius
 
-- # Time Bracket
+```
+# Time Bracket
+input Begin  = 0930;
+input End    = 1030;
 
-- input Begin  = 0930;
+def Active = if SecondsFromTime(Begin) > 0 and SecondsTillTime(End) >= 0 then 1 else 0;
+def Cond1 = if MACD()."Value" crosses above 0 then 1 else 0;
 
-- input End    = 1030;
-
-- def Active = if SecondsFromTime(Begin) > 0 and
-
-- SecondsTillTime(End) >= 0 then 1 else 0;
-
-- def Cond1 = if MACD()."Value" crosses above 0 then 1 else 0;
-
-- plot Signal = Active == 1 and Cond1 == 1;
-
-- #end
+plot Signal = Active == 1 and Cond1 == 1;
+#end
+```
 
 ## S-SCAN FOR HIGHS OR LOWS
 
