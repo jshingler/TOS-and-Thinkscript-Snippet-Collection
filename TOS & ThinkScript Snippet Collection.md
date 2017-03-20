@@ -773,6 +773,9 @@ If your definition of the label text involves long and multiple 'if...then...els
 
 [Return to TOC](#toc)
 
+![Length and Aggregation](images/9-1.png?raw=true "Length and Aggregation")
+![Dropdown](images/9-2.png?raw=true "Dropdown")
+
 Each bar on a plot represents a period of time known as the primary aggregation: one minute, five minutes, day, etc.
 
 A chart may also have one or more secondary aggregations. Variables are assumed to be of primary aggregation and those of a secondary aggregation must have their aggregation specified every time they are used.
@@ -784,81 +787,58 @@ plot Data = close(period = agg) / close(period = agg)[3];# The phrase 'period ='
 
 You may need to learn other ways of specifying aggregation to read other people's code such as in the built-in DailySMA.
 
-- RULES
+### RULES
 
-- 1. The secondary aggregation period cannot be less than the primary aggregation period defined by chart
+1. The secondary aggregation period cannot be less than the primary aggregation period defined by chart settings. This is a hard-fast rule that often comes into play.
 
-- settings. This is a hard-fast rule that often comes into play.
+2. Two different secondary aggregation periods cannot be used within a single variable. You can define each separately and then use the two definitions in a single statement.
 
-- 2. Two different secondary aggregation periods cannot be used within a single variable. You can define each
+It has been observed that using more than one secondary aggregation may affect the proper plotting. Using 'Expansion Area: ? Bars to the right' in chart settings may have an improvement.
 
-- separately and then use the two definitions in a single statement.
-
-- It has been observed that using more than one secondary aggregation may affect the proper plotting. Using 'Expansion
-
-- Area: ? Bars to the right' in chart settings may have an improvement.
-
-- There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL
+There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL
 
 <a name="EXPLANATION_OF_EQUAL_EQUALS_AND_NOT"> </a>
 ## EXPLANATION OF '=' , '==' AND '!'
 
 [Return to TOC](#toc)
 
-- The difference between = and ==
+__The difference between = and ==__
 
-- A single "=" is the assignment operator. The statement "input Show_ChartPeriod = yes;" reads: assign (or set) the
+A single "=" is the assignment operator. The statement "input Show_ChartPeriod = yes;" reads: assign (or set) the memory location labeled 'Show_ChartPeriod' to yes (boolean TRUE);
 
-- memory location labeled 'Show_ChartPeriod' to yes (boolean TRUE);
+The double "==" is the logical equality operator. The statement "if AggPeriod == AggregationPeriod.DAY then ... else...;" reads: if the variable AggPeriod equals (is the same as) AggregationPeriod.DAY then do something else (otherwise) if it's not, then do some other thing. When evaluating equality in an 'if' statement, two equal signs must be used ('==').
 
-- The double "==" is the logical equality operator. The statement "if AggPeriod == AggregationPeriod.DAY then ... else...;"
+__The ! bang exclamation mark__
 
-- reads: if the variable AggPeriod equals (is the same as) AggregationPeriod.DAY then do something else (otherwise) if it's
-
-- not, then do some other thing. When evaluating equality in an 'if' statement, two equal signs must be used ('==').
-
-- The ! bang exclamation mark
-
-- Not related to the above = and == is the "bang" (exclamation mark). As an example, use isnan() which returns true if the
-
-- specified parameter is not a number, returns false otherwise. The ! ( exclamation mark called "bang" ) is a logical NOT
-
-- operator. So if 'isnan(close)' is true i.e. since/when close is not a number then 'isnan(close)' reads as true. Using the
-
-- "bang" and close remains not being a number, then '!isnan(close)' reads as " NOT close is not a number" or  NOT true =
-
-- false when close is not a number (<=0).
+Not related to the above = and == is the "bang" (exclamation mark). As an example, use isnan() which returns `true` if the specified parameter is __not a number__, returns `false` otherwise. The ! ( exclamation mark called "bang" ) is a logical NOT perator. So if `'isnan(close)'` is true i.e. since/when close is not a number then `'isnan(close)'` reads as true. Using the "bang" and close remains not being a number, then `'!isnan(close)'` reads as " NOT close is not a number" or  NOT true = false when close is not a number (<=0).
 
 <a name="REFERENCING_OTHER_STUDIES"> </a>
 ## REFERENCING OTHER STUDIES
 
 [Return to TOC](#toc)
 
-This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: reference <StudyName>(parameter1=value1,.., parameterN=valueN).<PlotName>
+This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: `reference <StudyName>(parameter1=value1,.., parameterN=valueN).<PlotName>`
 
 A simple example is: `plot MyMACD = reference MACDHistogram;`
 
 Occasionally a study and a function may have the same name e.g. vwap and moneyflow. In that case:
-
-- Call the vwap function like ....plot MyVWAP1 = vwap;
-
--  Reference the vwap study like ....plot MyVWAP1 = reference VWAP;
-
--  The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's name. Example: `plot MyVWAP1 = VWAP();`
+- Call the vwap function like ....`plot MyVWAP1 = vwap;`
+- Reference the vwap study like ....`plot MyVWAP1 = reference VWAP;`
+- The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's name. Example: `plot MyVWAP1 = VWAP();`
 
 In studies, you may reference built-in studies but not user-defined studies in  (currently). However, user-defined studies may be referenced in scans.
 
 In the following, the 'StochasticSlow' study will be used as an example for explanation.
 
-Specifying plots
+### Specifying plots
 
-Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and OverSold. Referencing the SlowD plot would be via  StochasticSlow().SlowD Just using StochasticSlow() would plot the SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the default parameters specified in the actual code are automatically used. Using parameters is explained below.
+Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and OverSold. Referencing the SlowD plot would be via  `StochasticSlow().SlowD` Just using `StochasticSlow()` would plot the SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the default parameters specified in the actual code are automatically used. Using parameters is explained below.
 
-Specifying parameters
+### Specifying parameters
 
-If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the default parameters and cannot be changed because they are in a pre-defined study which is not editable. There are three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each parameter/input has a fixed location in the list.
+If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the default parameters and cannot be changed because they are in a pre-defined study which is __not editable__. There are three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each parameter/input has a fixed location in the list.
 
-Full form
+### Full form
 
 The full form specifies the input variable name with its intended value. An example is:
 
@@ -866,7 +846,7 @@ The full form specifies the input variable name with its intended value. An exam
 
 Any parameter not listed herein takes on its default value. Note that the names like 'KPeriod', 'DPeriod', 'priceH', 'smoothingType' and others  are as defined in the actual code's input list.
 
-Compact Form
+### Compact Form
 
 The compact form is simplest in that you simply put your values in the place/position of the default parameter you wish to change. You start with the first input value as the left most value in the reference. An example is:
 
@@ -874,18 +854,20 @@ The compact form is simplest in that you simply put your values in the place/pos
 
 Note that you cannot omit any intermediate values or modify their positions. Only the right-most parameters may be dropped off and those will then take on their default values.
 
-Combo Form
+### Combo Form
 
 This allows you to choose only the variables you want to change. An example is:
 
 `def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;`
 
-Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule. There are two ways of referencing constant inputs : smoothingType = "SMA" and smoothingType == smoothingType.SMA are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax .
+Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule. 
 
-A different but related subject is referencing pre-defined studies using 'Script'. See
+There are two ways of referencing constant inputs : `smoothingType = "SMA"` and `smoothingType == smoothingType.SMA` are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax .
 
--http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
+A different but related subject is referencing pre-defined studies using 'Script'. See http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
 
+![Click the scroll](images/12-1.png?raw=true "Click the scroll")
+![Click to Change Aggregation](images/12-2.png?raw=true "Click to Change Aggregation")
 
 <a name="NORMALIZATION"> </a>
 ## B&C-NORMALIZATION
@@ -894,7 +876,7 @@ A different but related subject is referencing pre-defined studies using 'Script
 
 If you want to compare two (or more) indicators that have values much different that are non-receptive to comparison, you can normalize each of the two (or more) indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1, -100 to +100, or whatever you want. Below is the code to do  normalization and an example. Note that not all studies can be normalized e.g. 'AccDist' has no parameters and cannot be normalized.
 
-Code that does normalization
+__Code that does normalization__
 
 ```
 #Usage: 'input data = close' is substituted by an indicator and its parameters.
@@ -944,11 +926,13 @@ plot Over_Sold = 20;
 
 Counting is often used. This shows the construct for a 'def count' variable and also takes this opportunity to define the  usage of CompoundValue to initialize this recursive variable. Previous versions of TS would require this to be written as 'Rec count = ' statement but TS corrently recognizes both 'def' and 'rec' to define a recursive variable. The below annotated picture explains how counting is accomplished. Naturally any valid condition may be substituted for the one shown.
 
+![Count](images/14-1.png?raw=true "Count")
+
 By the way, you can identify a recursive variable definition when the variable itself, in this case 'count', also appears on right side of the equal sign/equation like, in this case, 'count[1]'.
 
 If you have a reason to re-start the counting from 0 or 1 based on a defined condition, you place the condition after the 'else' like 'else if <condition to restart counting> then 0 ' and close with 'else count[1]'.
 
-Refer to PastOffset discussed at Click to read about it. In short, it says that if you have multiple past references in your code, for example 'Average(close, 11) or close[6],'the longest past reference value will be used for all past reference' regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference being used by initializing the affected calculation with the 'CompoundValue' function.
+Refer to PastOffset discussed at [Click to read about it.](https://tlc.thinkorswim.com/center/charting/thinkscript/tutorials/Chapter-13---Past-Offset-and-Prefetch.html) In short, it says that if you have multiple past references in your code, for example `'Average(close, 11) or close[6]` ,' the longest past reference value will be used for all past reference' regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference being used by initializing the affected calculation with the 'CompoundValue' function.
 
 <a name="LINEAR_REGRESSION"> </a>
 ## LINEAR REGRESSION
@@ -1010,7 +994,9 @@ Studies #1, #2 and #3 are very popular in searching for stocks that are at buy-l
 
 There are two ways to calculate a % change. You may see both ways used in coding.
 
-As an example let 10 be the original value (B4) and 15 the final value (NOW). NOW/B4 is the "RATIO" First way:
+As an example let 10 be the original value (B4) and 15 the final value (NOW). NOW/B4 is the "RATIO" 
+
+__First way:__
 
 In words, final value divided by the original value; minus one; times 100.
 or 15/10 = 1.5; 1.5 - 1 = 0.5;  0.5  X 100 = 50 % increase
@@ -1020,12 +1006,10 @@ Example:
 ```
 def length = 10;# [10] means 10 agg-bars ago This is the "B4" value
 def price = close;# The current close. This is the "NOW" value
-plot PercentChg = (price / price[length] - 1) * 100;# or (NOW / B4) - 1 is RATIO  - 1 and "RATIO - 1" multiplied by 100
+plot PercentChg = (price / price[length] - 1) * 100;# or (NOW / B4) - 1 is RATIO  - 1 and "RATIO - 1" multiplied by 100 equals the PERCENT CHANGE. If the "RATIO' is below or above the value of ONE, then the % change is above or below 100% respectively
 ```
 
-equals the PERCENT CHANGE. If the "RATIO' is below or above the value of ONE, then the % change is above or below 100% respectively
-
-Second way:
+__Second way:__
 
 In words, the change difference (NOW minus the B4) divided by the original (B4) value times 100.
 or 15 -10 = 5 = change difference;  5/10 = 0.5;  0.5 X 100 = 50% increase.
@@ -1034,24 +1018,26 @@ If the difference (B4 - NOW) is negative the percent is also negative i.e. 'decr
 
 Example:
 
+```
 def length = 10;# [10] means 10 agg-bars ago
 def price = close; # The current close
 
 plot PercentChg = ((price  - price[length])/ price[length]) * 100;# ((NOW-B4) / B4) * 100 which is the same as (NOW/B4 B4/B4) * 100 which is the same as (NOW/B4 - 1) * 100.  The % change is up or down if the difference is plus or minus respectively.
+```
 
 
-Additional Comments:
+__Additional Comments:__
 
-The two ways above example,  "value1 is what percent larger/smaller than value2."  For value1 = 85 and value2 = 38 then: 85 /38 = 2.24;
+The two ways above example,  "value1 is what percent larger/smaller than value2."  For value1 = 85 and value2 = 38 then: 85 /38 = 2.24;  2.24 X 100 = 224%. In words value1 is 224% of value2. Or, in a different way, it can be said that 2.24 -1 = 1.24 X 100 = 124% which reads  that value1 is 124% larger than (or above) value2.
 
-2.24 X 100 = 224%. In words value1 is 224% of value2. Or, in a different way, it can be said that 2.24 -1 = 1.24 X 100 = 124% which reads  that value1 is 124% larger than (or above) value2.
-
-An aside: A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan.
+__An aside:__ A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan.
 
 ```
 input length = 9;
 AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
 ```
+
+![label](images/17-1.png?raw=true "label")
 
 <a name="FORMATTING_WITH_AsText_AsDollars_AND_OTHERS"> </a>
 ## FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
@@ -1060,36 +1046,46 @@ AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
 
 The following formatting functions are especially useful in custom columns and labels.
 
-An 'AsDollars' example
+### An 'AsDollars' example
 
 ```
 def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
 AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
 ```
 
-An 'AsText' plus 'decimal-places' example
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-1.png?raw=true "label")
+
+### An 'AsText' plus 'decimal-places' example
 
 ```
 def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
 AddLabel(yes, "'Earnings = " + AsText(x,NumberFormat.TWO_DECIMAL_PLACES) + "'", color.cyan);
 ```
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-2.png?raw=true "label")
 
--Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR' produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown above in the 'AsDollars' example.
+Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR' produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown above in the 'AsDollars' example.
 
-An AsDollars example
+### An AsDollars example
 
 `AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);`
 
-An AsPercent example
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-3.png?raw=true "label")
+
+### An AsPercent example
 
 ```
 def Range = 1 - ((high - close)/ (high - low));
 AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
 ```
 
-An AsPrice example
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-4.png?raw=true "label")
+
+
+### An AsPrice example
 
 `AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close, 10)),color.cyan);`
+
+![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-5.png?raw=true "label")
 
 <a name="LITERAL_TEXT_IN_LABEL_FOR_THE_11_CHOICES_OF_INPUT_PRICE"> </a>
 ## LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
