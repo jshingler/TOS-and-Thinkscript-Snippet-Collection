@@ -1530,8 +1530,8 @@ If your answer was not 20, rethink it.
 
 Example7:
 
-```
-input period = 20;#hint period:Number of bars to look in
+``` shell
+input period = 20; #hint period:Number of bars to look in
 def Hi = fold i = 0 to period with n = high do Max(n, GetValue(high, i, period - 1));
 def Lo = fold k = 0 to period with m = low do Min(m, GetValue(low, k, period - 1));
 AddLabel(1, "High in last " + period + " bars = " + Round(Hi,2), Color.GREEN);
@@ -7353,6 +7353,7 @@ AddLabel(1,"Comparison Symbol = " + Sym2,PPOline2.TakeValueColor());
 
 Comment: The DMI is a price momentum indicator that is the driving force for the ADX trend indicator. At times you want to compare the chart's DMI with another symbol. This allows you to do that. A plot of the ADX is optionable.
 
+```
 #hint:<b> Plots the DMI Oscillatror</b> for an inputted symbol
 #title + DMI_Oscillator_For_Symbol
 
@@ -7404,6 +7405,7 @@ AddLabel(!Sym_cond, "A Symbol must be inputted", Color.RED);
 AddLabel(Sym_cond, "DMI Oscillator for " + Sym,color.WHITE);
 AddLabel(Sym_cond, "Current ADX(" + length + ") value = " + Round(ADX, 1), ADX.TakeValueColor());
 #end
+```
 
 ## C-'ONEGLANCE', A 13-STUDY DASHBOARD
 
@@ -9753,6 +9755,7 @@ plot decline = sum(close < close[1],Bars) ==  Bars;
 
 [Return to TOC](#toc)
 
+``` 
 input price = close;
 input length = 3;#hint length:Number of consecutive bars being evaluated
 input Choice = {default "increased", "decreased"};#hint choice:Choose direction up or down
@@ -9763,9 +9766,11 @@ switch (Choice){
   case "decreased":
     scan = sum(price < price[1], length) == length;
 }
-Comment: When entering the scan, the set aggregation defines the length of a bar. It likely is 'day' but doesn't have to
-be. Also, this is a simple clear example of how the 'switch; function operates.
-Scan for a price increase
+```
+
+Comment: When entering the scan, the set aggregation defines the length of a bar. It likely is 'day' but doesn't have to be. Also, this is a simple clear example of how the 'switch; function operates. Scan for a price increase
+
+```
 input price1 = low;
 input percentage = 2.0;#hint percentage: Percent increase in price
 input price2 = high;
@@ -9774,6 +9779,7 @@ def term = x*price2[1];
 plot scan = price1 >= term;# The current low is 2% above the previous high
 scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
 #end
+```
 
 ## S-SCAN FOR HAS-EARNINGS IN FUTURE
 
