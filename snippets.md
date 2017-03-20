@@ -369,7 +369,7 @@ http://www.colorschemer.com/online.html
 
 TOS has also assigned names to 23 colors per the following:
 
-![Color Chart](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/6-2.png?raw=true "Color Chart")
+![Color Chart](images/6-2.png?raw=true "Color Chart")
 
 Reference: [See all color constants](https://www.thinkorswim.com/tos/thinkScriptHelp.jsp?laf=dark#constants)
 

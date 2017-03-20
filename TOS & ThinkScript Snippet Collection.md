@@ -551,7 +551,9 @@ http://www.colorschemer.com/online.html
 
 TOS has also assigned names to 23 colors per the following:
 
-Reference: See all color constants
+![Color Chart](images/6-2.png?raw=true "Color Chart")
+
+Reference: [See all color constants](https://www.thinkorswim.com/tos/thinkScriptHelp.jsp?laf=dark#constants)
 
 Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e. color.CYAN or color.LIGHT_RED.
 
@@ -570,7 +572,7 @@ You may also assign a text-name, for later use, to any color you create via
 
 [Return to TOC](#toc)
 
-Comment: When writing code you may not have the coloring coding at your finger tips. This provides a ready place to go to to get the code words to paste.
+__Comment__: When writing code you may not have the coloring coding at your finger tips. This provides a ready place to go to to get the code words to paste.
 
 ```
 ####### Typical chart plot settings ########
@@ -627,17 +629,19 @@ plot NinetyPercent = 0.9*close;
 NinetyPercent.SetDefaultColor(GlobalColor("normal"));
 ```
 
-######### Color based on a condition ############
+
 
 ```
+######### Color based on a condition ############
 plot Diff = close - close[1];
 Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK);
 ```
 
 Note that UPTICK and DOWNTICK are TOS predefined color constants
 
-####### Create your own color ###########
+
 ```
+####### Create your own color ###########
 plot Price = close;
 Price.SetDefaultColor(CreateColor(255, 220, 210));
 ```
@@ -679,21 +683,21 @@ or
 
 Labels are boxes of info placed at the top-left of a study. They are very useful and well worth the time to master them.
 
-The label function is AddLabel(boolean visible, Any text, CustomColor color); and has three components.
+The label function is `AddLabel(boolean visible, Any text, CustomColor color);` and has three components.
 
-1. ' boolean visible' is a true or false statement that defines when the label shows or doesn't show. If you use a '1' or 'yes' here it will always show the label, Otherwise you define a condition or an input selection-value that evaluates to 'true' or 'false' and reference that condition statement here.
+1. `' boolean visible'` is a true or false statement that defines when the label shows or doesn't show. If you use a '1' or 'yes' here it will always show the label, Otherwise you define a condition or an input selection-value that evaluates to 'true' or 'false' and reference that condition statement here.
 
-2. 'Any text' is what appears inside the label box. There are two way to compose this text using 'concat' or '+' syntax(known as the string concatenation symbol). Concat is a term that means to connect two text phrases together. This includes converting ThinkScript variable-values into text.
+2. `'Any text'` is what appears inside the label box. There are two way to compose this text using 'concat' or '+' syntax(known as the string concatenation symbol). Concat is a term that means to connect two text phrases together. This includes converting ThinkScript variable-values into text.
 
-3. ' CustomColor color' defines the background color of the label box. The text font color is always black. boolean visible
+3. `' CustomColor color'` defines the background color of the label box. The text font color is always black. 
 
-This can be a 'yes' or 'no', or any condition statement or a reference to: (1) a previously defined condition statement;
+### boolean visible
 
-- or (2) an input true/false value. When this evaluates to 'true' then the label will show or, when false, will not show. This is very handy when referring to an input whose value choices are 'yes' or 'no'. Programmers use the yes/no input in condition statements to display or not-display certain features such as the labels or plots.
+This can be a `'yes'` or `'no'`, or any condition statement or a reference to: (1) a previously defined condition statement;  or (2) an input true/false value. When this evaluates to 'true' then the label will show or, when false, will not show. This is very handy when referring to an input whose value choices are `'yes'` or `'no'`. Programmers use the yes/no input in condition statements to display or not-display certain features such as the labels or plots.
 
-- Any text
+### Any text
 
-The label's text can be defined using  using 'concat' or '+' which is known as the string concatenation symbol. Using the '+' symbol is much easier to master and is recommended. Examples will help explain:
+The label's text can be defined using  using `'concat'` or `'+'` which is known as the string concatenation symbol. Using the `'+'` symbol is much easier to master and is recommended. Examples will help explain:
 
 ```
 input weeks = 4;
@@ -702,11 +706,9 @@ AddLabel(yes, concat(weeks, " Weeks till expiration"),  color.YELLOW);
 
 produces the following label:
 
-Using the '+' symbol …. 
+![Weeks till expiration label](images/8-1.png?raw=true "Weeks till expiration label")
 
-`AddLabel(yes, weeks + " Weeks till expiration",  color.YELLOW);`
-
-produces the same label as above. You will find that complex texts with numerous segments are much easier to compose using the '+' symbol. There is, however, one pitfall to be avoided using the '+' symbol as discussed below:
+Using the '+' symbol …. `AddLabel(yes, weeks + " Weeks till expiration",  color.YELLOW);` produces the same label as above. You will find that complex texts with numerous segments are much easier to compose using the '+' symbol. There is, however, one pitfall to be avoided using the '+' symbol as discussed below:
 
 The key is when using the + syntax, one must put all calculations-within-a-label inside of parentheses. Also multiple conditions such as HiTrue && LoTrue should be within parenthesis like (HiTrue && LoTrue).To illustrate this, a  right and wrong is shown below:
 
@@ -714,9 +716,10 @@ This works:
 
 ```
 input ManADR = 25;
-
 Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + (0.10 * ManADR) ,color.PINK);
 ```
+
+![Exit = Stop Loss label](images/8-2.png?raw=true "Exit = Stop Loss label")
 
 This is wrong and produces an error:
 
@@ -724,58 +727,46 @@ This is wrong and produces an error:
 
 See also LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE  and C-% CHANGE OF THE FIRST BAR VALUE and C-ADD AN INDEX OR FUTURE LOWER CHART for examples of putting drop-down literals into label text.
 
-CustomColor Color
+### CustomColor Color
 
-- Defines the color of the label box. Conditional coloring can also be had with the addition of if....then.....else statements.
+- Defines the color of the label box. Conditional coloring can also be had with the addition of if....then.....else statements. There are no limits to the number of conditional statements but they follow the format if.....then....else if.....then.....else if.....then.....else. Note the closing else that relates to the very first 'if.....then'.
 
-- There are no limits to the number of conditional statements but they follow the format if.....then....else if.....then.....else
+You may have a label take on the same color as a plot. The syntax is: `ChartPlotName.TakeValueColor()`
 
-- if.....then.....else. Note the closing else that relates to the very first 'if.....then'.
+__Tip for moving labels up__
 
-- You may have a label take on the same color as a plot. The syntax is: ChartPlotName.TakeValueColor()
+There are times when a label interferes with the top of a plotted chart's data. To avoid that, you can plot a line at the top of the chart at a value above the plots data. The labels will then have their centerline equal to the value of the line.
 
-- Tip for moving labels up
+To make the line invisible, paint it the same color as your background.
 
-- There are times when a label interferes with the top of a plotted chart's data. To avoid that, you can plot a line at the
+__Tip for debugging__
 
-- top of the chart at a value above the plots data. The labels will then have their centerline equal to the value of the line.
+AddLabel is an excellent tool to observe a value for debugging purposes. In addition to that, a neat trick is, while in the code editor, drag the editor window down so that you can see the chart's label and header values. That way, when you change the code and press apply, you can see the value change while staying in the code editor.
 
+If you are inclined towards the use of concat, here is a guide on its use as well as an example of conditional coloring.
 
-- To make the line invisible, paint it the same color as your background.
+![Concat](images/8-3.png?raw=true "Concat")
+![Concat label](images/8-4.png?raw=true "Concat label")
 
-- Tip for debugging
+__The equivalent using the '+' syntax is:__
 
-- AddLabel is an excellent tool to observe a value for debugging purposes. In addition to that, a neat trick is, while in the
+```
+AddLabel(Display_Labels, "ADX(" + length + ") = " + Round(ADX,1) + " = Strong bullish (rating 3.5)", if "DI+" >"DI-" then
+Color.GREEN else if "DI-" > "DI+" then Color.RED else Color.WHITE);
+```
 
-- code editor, drag the editor window down so that you can see the chart's label and header values. That way, when you
+The built-in ZigZagPercent study demonstrates the excellent use of conditional showing of the label itself, the use of the + syntax and conditional coloring. The code is duplicated below:
 
-- change the code and press apply, you can see the value change while staying in the code editor.
+```
+AddLabel(showLabel and barNumber != 1, (if isConf then "Confirmed " else "Unconfirmed ") + "ZigZag: " + round(chg) +
+"%", if !isConf then globalColor("Unconfirmed") else if isUp then globalColor("Up") else globalColor("Down"));
+```
 
-- If you are inclined towards the use of concat, here is a guide on its use as well as an example of conditional coloring.
+SLOPE OF AN AVERAGE herein shows how to reteieve the literal of 'AverageType' choices in a label.
 
-- The equivalent using the '+' syntax is:
+### A trap to avoid:
 
-- AddLabel(Display_Labels, "ADX(" + length + ") = " + Round(ADX,1) + " = Strong bullish (rating 3.5)", if "DI+" >"DI-" then
-
-- Color.GREEN else if "DI-" > "DI+" then Color.RED else Color.WHITE);
-
-- The built-in ZigZagPercent study demonstrates the excellent use of conditional showing of the label itself, the use of
-
-- the + syntax and conditional coloring. The code is duplicated below:
-
-- AddLabel(showLabel and barNumber != 1, (if isConf then "Confirmed " else "Unconfirmed ") + "ZigZag: " + round(chg) +
-
-- "%", if !isConf then globalColor("Unconfirmed") else if isUp then globalColor("Up") else globalColor("Down"));
-
-- SLOPE OF AN AVERAGE herein shows how to reteieve the literal of 'AverageType' choices in a label.
-
-- A trap to avoid:
-
-- If your definition of the label text involves long and multiple 'if...then...else' statements, to insure that they all print,
-
-- enclose each 'if...then   else' statement in parentheses e.g. '(if...then...else)'. Otherwise, you may not get an error but an
-
-- 'if...then...else' statement may not print.  C- THE 'AdvanceDecline' STUDY  herein is an excellent example of this.
+If your definition of the label text involves long and multiple 'if...then...else' statements, to insure that they all print, enclose each 'if...then   else' statement in parentheses e.g. '(if...then...else)'. Otherwise, you may not get an error but an 'if...then...else' statement may not print.  C- THE 'AdvanceDecline' STUDY  herein is an excellent example of this.
 
 <a name="AGGREGATION"> </a>
 ## AGGREGATION
