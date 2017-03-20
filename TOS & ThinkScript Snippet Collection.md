@@ -1620,7 +1620,7 @@ SD values
 
 [Return to TOC](#toc)
 
-```
+``` shell
 #hint:Draws upper & lower bands at defined percent
 input length = 10;#hint length:Length of base ExpAverage
 input percentShift = 5.0;#hint PercentShift: Percent of upper & lower bands from ExpAverage
