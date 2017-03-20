@@ -9688,7 +9688,7 @@ addlabel(1, "SQZ= " + count, If squeeze then Color.LIGHT_RED else color.Current)
 
 ----
 ----
-<a name"SCANS"> <a/>
+<a name="SCANS"> <a/>
 # SCANS
 
 ## S-LINEAR REGRESSION-VAR SCAN
