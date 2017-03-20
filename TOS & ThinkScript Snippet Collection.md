@@ -9688,7 +9688,7 @@ addlabel(1, "SQZ= " + count, If squeeze then Color.LIGHT_RED else color.Current)
 
 ----
 ----
-<a name"SCANS"> </>
+<a name"SCANS"> <a/>
 # SCANS
 
 ## S-LINEAR REGRESSION-VAR SCAN
@@ -9949,8 +9949,9 @@ If you want to see a dot anytime the condition is true, then remove the '&& !cro
 ```
 plot Crossing = if cross && !cross[1] then low else double.nan;
 Crossing.SetPaintingStrategy(PaintingStrategy.points);
-```
 #end
+```
+
 
 ## S-SCAN CROSS OF STANDARD DEVIATION CHANNEL
 
@@ -9968,10 +9969,9 @@ Following the same logic the sdcL would be :
 ```
 def _sdcL = StandardDevChannel().LowerLine;
 plot scanSDC = close <= _sdcL and close[1] > _sdcL[1];
+#end
 ```
 
-
-#end
 
 ## S-ABOVE 20-DAY MA FOR 65 DAYS
 
@@ -10449,6 +10449,7 @@ The 'Next Pic' for 'step 4'is:
 
  x
 
+<a name="ALERT_SOUNDS"> </a>
 ## ALERT SOUNDS
 
 ##NEXT ITEM TO BE ADDED
