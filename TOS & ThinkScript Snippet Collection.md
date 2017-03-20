@@ -334,8 +334,6 @@ As this Snippet Collection grows, finding what you want becomes more difficult. 
 
 If you want to find something, enter what you want into the 'find' tool of the PDF reader and it will navigate you to the possible matches.  Try different 'find' entries if you are not successful. Subjects are often named differently. The most expeditious search is looking over the TOC or using 'find' in the TOC as opposed to using 'find' throughout the body of the document.
 
-Continued on Next Page
-
 ----
 ----
 <a name="BASIC_CODING_AND_PLATFORM_PRINCIPLES"> </a>
@@ -345,6 +343,9 @@ Continued on Next Page
 ## ADD INFO BUBBLES TO A STUDY OR A STUDY'S INPUTS
 
 [Return to TOC](#toc)
+
+![Info Bubble](images/2-1.png?raw=true "Info Bubble")
+![Info Bubble](images/2-2.png?raw=true "Info Bubble")
 
 As shown above the study list and the inputs have info bubbles. You may add these info bubbles to your studies.
 
