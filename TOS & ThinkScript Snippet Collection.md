@@ -7949,1375 +7949,711 @@ AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DY
 
 [Return to TOC](#toc)
 
-- #hint:This is a Ichimoku Tenkan/Kijun an early exit warning study that plots the difference between the tenkan and
-
-- kijun in histogram format. A YELLOW down warning arrow plots when a Heikin Ashi downtrend starts.
-
-- #Background:The difference of the Tenkan and the Kijun indicate the strength of this bullish signal as shown by the
-
-- histogram above zero values. When this strength difference weakens a downward trend may(often?) start. Heikin Ashi
-
-- candles are adept at showing trend development. The plotted YELLOW arrows are points to consider exiting even though
-
-- the entity may be in buillsh territory(i.e. above the cloud). In summary, this is an early warning signal that is productive
-
-- and calls your attention to it to consider exiting.
-
-- #USAGE:When YELLOW down arrows are present, watch the Heikin Ashi style candles to see the extent of the
-
-- downtrend.(Configure your Heikin Ashi for 'Red Fill' when down. The DMI_Oscillator, MACD and ADX are good
-
-- complementary studies
-
-- #SUMMARY: The histograqm shows  the change in strength of the bullish T/K signal while the YELLOW arrows call your
-
-- attention to a possible start of a downtrend.
-
-- #TOS Title = Ichi_TK_Exit_Warning
-
-- # Version date = 3/17/14 by StanL, version 2
-
-- # Revision 2.1, added dots at the zero line 5/18/14
-
-- declare lower;
-
-- input Show_HA_Down = YES;#hint HA_Down:Toggles (ON/OFF) HA-Down-candle arrows showing the start of a HA-
-
-- Down series. View the HA chart style to see the length of the down series.
-
-- #input Show_HA_Up = YES;#hint HA_Up:Toggles (ON/OFF) HA-Up-candle arrows showing the start of a HA-Up series.
-
-- View the HA chart style to see the length of the up series.
-
-- plot Diff = Ichimoku().tenkan - Ichimoku().kijun;
-
-- plot ZeroLine = 0;
-
-- Diff.SetDefaultColor(GetColor(5));
-
-- Diff.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-
-- Diff.SetLineWeight(3);
-
-- Diff.DefineColor("Positive and Up", Color.GREEN);
-
-- Diff.DefineColor("Positive and Down", Color.DARK_GREEN);
-
-- Diff.DefineColor("Negative and Down", Color.RED);
-
-- Diff.DefineColor("Negative and Up", Color.DARK_RED);
-
-- Diff.AssignValueColor(if Diff >= 0 then if Diff > Diff[1] then Diff.Color("Positive and Up") else Diff.Color("Positive and
-
-- Down") else if Diff < Diff[1] then Diff.Color("Negative and Down") else Diff.Color("Negative and Up"));
-
-- ZeroLine.SetDefaultColor(GetColor(0));
-
-- plot HistoLiner = Diff;
-
-- HistoLiner.SetDefaultColor(Color.WHITE);
-
-- HistoLiner.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- HistoLiner.SetLineWeight(1);
-
-- #################################################
-
-- #def HAopen = (open[1] + close[1]) / 2;
-
-- #def HAhigh = Max(high, close[1]);
-
-- #def HAlow = Min(low, close[1]);
-
-- #def HAclose = (open + high + low + close) / 4;
-
-- AddLabel(1, "Plot of Tenkan - Kijun early warning of T/K strength weakening", Color.WHITE);
-
-- AddLabel(1, "A YELLOW down arrow plots at the start of a HA downtrend.Watch the HA style chart candles to see the
-
-- length of the downtrend", Color.YELLOW);
-
-- #######################################
-
-- ### Extracted Mobius Heikin Ashi code #
-
-- #######################################
-
-- input Begin = 0000;
-
-- # Higher Aggregation
-
-- def barSeq = if SecondsTillTime(Begin) == 0 and
-
-- SecondsFromTime(Begin) == 0
-
-- then 0
-
-- else barSeq[1] + 1;
-
-- def agg = GetAggregationPeriod();
-
-- def BarsPerHour = 60 / (agg / 1000 / 60);
-
-- def bar = barSeq;
-
-- def barCount = if bar % BarsPerHour == 0
-
-- then bar
-
-- else Double.NaN;
-
-- def barCountOpen  = if !IsNaN(barCount)
-
-- then open
-
-- else barCountOpen[1];
-
-- def barCountHigh  = if IsNaN(barCount) and
-
-- high > barCountHigh[1]
-
-- then high
-
-- else if !IsNaN(barCount)
-
-- then high
-
-- else barCountHigh[1];
-
-- def barCountLow   = if IsNaN(barCount) and
-
-- low < barCountLow[1]
-
-- then low
-
-- else if !IsNaN(barCount)
-
-- then low
-
-- else barCountLow[1];
-
-- def barCountClose = if !IsNaN(barCount)
-
-- then close[1]
-
-- else barCountClose[1];
-
-- def HAopen_EV = Round(if HAopen_EV[1] == 0
-
-- then barCountOpen
-
-- else (HAopen_EV[1] + barCountClose[1]) / 2 /
-
-- TickSize(), 0) * TickSize();
-
-- def HAclose_EV = Round(if HAopen_EV[1] == 0
-
-- then OHLC4
-
-- else (barCountOpen + barCountHigh + barCountLow + HAopen_EV[1])
-
-- / 4 / TickSize(), 0) * TickSize();
-
-- def HAhigh_EV = Round(Max(barCountHigh, barCountClose[1]) /
-
-- TickSize(), 0) * TickSize();
-
-- def HAlow_EV = Round(Min(barCountLow, barCountClose[1]) /
-
-- TickSize(), 0) * TickSize();
-
-- # Color Block For Higher Aggregation
-
-- def Size = AbsValue(HAopen_EV - HAopen_EV);
-
-- def Block = CompoundValue(1, if HAopen_EV > Block[1] + Size[1]
-
-- then Block[1] + Size
-
-- else if HAopen_EV < Block[1] - Size[1]
-
-- then Block[1] - Size
-
-- else Block[1] , barCountClose);
-
-- plot cond1_EV = Block;
-
-- cond1_EV.Hide();
-
-- def cond2_EV = if Block != Block[1]
-
-- then Block[1]
-
-- else cond2_EV[1];
-
-- plot Block2 = cond2_EV;
-
-- Block2.Hide();
-
-- #  AssignPriceColor(if HAclose < HAopen
-
-- #                   then Color.Red
-
-- #                   else Color.Green);
-
-- # Trade Management Conditions
-
-- def Bcond = CompoundValue(1, if HAclose_EV crosses above HAopen_EV
-
-- then Bcond[1] + 1
-
-- else if HAclose_EV crosses below HAopen_EV
-
-- then 0
-
-- else Bcond[1], 0);
-
-- #UP arrow is the start of an HA-up series.  Need to view HA Chart style to see the extent & end
-
-- #plot ArrowUp = if Bcond crosses above 0 && Show_HA_Up && Diff < 0 then HistoLiner[0] else Double.NaN;# this line
-
-- used when up HA arrows are implemented
-
-- plot ArrowUp = if Bcond crosses above 0 && Diff < 0 then HistoLiner[0] else Double.NaN;
-
-- ArrowUp.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- ArrowUp.SetLineWeight(5);
-
-- ArrowUp.SetDefaultColor(Color.YELLOW);
-
-- def Scond = CompoundValue(1, if HAclose_EV crosses below HAopen_EV
-
-- then Scond[1] + 1
-
-- else if barCountClose crosses above HAopen_EV
-
-- then 0
-
-- else Scond[1], 0);
-
-- #DOWN arrow is the start of an HA-down series. Need to view HA Chart style to see the extent & end
-
-- plot ArrowDn = if Scond crosses above 0 && Show_HA_Down && Diff > 0
-
-- then HistoLiner[0]
-
-- else Double.NaN;
-
-- ArrowDn.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- ArrowDn.SetLineWeight(5);
-
-- ArrowDn.SetDefaultColor(Color.YELLOW);
-
-- def lineCond = if ArrowUp < ArrowDn
-
-- then 1
-
-- else if ArrowDn > ArrowUp
-
-- then 1
-
-- else -1;
-
-- plot line = if IsNaN(ArrowUp)
-
-- then ArrowDn - (TickSize() * 2)
-
-- else ArrowUp + (TickSize() * 2);
-
-- line.EnableApproximation();
-
-- line.SetLineWeight(2);
-
-- line.SetStyle(Curve.SHORT_DASH);
-
-- line.AssignValueColor(if lineCond == 1
-
-- then Color.GREEN
-
-- else if lineCond == -1
-
-- then Color.RED
-
-- else Color.WHITE);
-
-- ######## define dot on zero line when above the cloud ######
-
-- def IsAboveCloud = if close > Ichimoku()."Span A" && close > Ichimoku()."Span B" then 1 else 0; # close is above the cloud
-
-- def IsBelowCloud = if close < Ichimoku()."Span A" && close < Ichimoku()."Span B" then 1 else 0; # close is below the cloud
-
-- Plot AboveCloudDot = if IsAboveCloud then 0 else double.nan;
-
-- AboveCloudDot.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- AboveCloudDot.SetLineWeight(5);
-
-- AboveCloudDot.SetDefaultColor(Color.GREEN);
-
-- Plot BelowCloudDot = if IsBelowCloud then 0 else double.nan;
-
-- BelowCloudDot.SetPaintingStrategy(PaintingStrategy.POINTS);
-
-- BelowCloudDot.SetLineWeight(5);
-
-- BelowCloudDot.SetDefaultColor(Color.RED);
-
-- #Define variables used to place a bubble
-
-- #========================================
-
-- def barNum = BarNumber();
-
-- def FirstBar = if barNum == 1 then 1 else 0;
-
-- #==========================================
-
-- AddChartBubble(FirstBar, 0, "GREEN dot = close IS ABOVE CLOUD\nRED dot = close IS BELOW CLOUD",
-
-- Color.PINK,no);
-
-- #---- End Of Code ---
+```
+#hint:This is a Ichimoku Tenkan/Kijun an early exit warning study that plots the difference between the tenkan and kijun in histogram format. A YELLOW down warning arrow plots when a Heikin Ashi downtrend starts.
+#Background:The difference of the Tenkan and the Kijun indicate the strength of this bullish signal as shown by the histogram above zero values. When this strength difference weakens a downward trend may(often?) start. Heikin Ashi candles are adept at showing trend development. The plotted YELLOW arrows are points to consider exiting even though the entity may be in buillsh territory(i.e. above the cloud). In summary, this is an early warning signal that is productive and calls your attention to it to consider exiting.
+#USAGE:When YELLOW down arrows are present, watch the Heikin Ashi style candles to see the extent of the downtrend.(Configure your Heikin Ashi for 'Red Fill' when down. The DMI_Oscillator, MACD and ADX are good complementary studies
+#SUMMARY: The histograqm shows  the change in strength of the bullish T/K signal while the YELLOW arrows call your attention to a possible start of a downtrend.
+#TOS Title = Ichi_TK_Exit_Warning
+# Version date = 3/17/14 by StanL, version 2
+# Revision 2.1, added dots at the zero line 5/18/14
+
+declare lower;
+
+input Show_HA_Down = YES;#hint HA_Down:Toggles (ON/OFF) HA-Down-candle arrows showing the start of a HA-Down series. View the HA chart style to see the length of the down series.
+#input Show_HA_Up = YES;#hint HA_Up:Toggles (ON/OFF) HA-Up-candle arrows showing the start of a HA-Up series. View the HA chart style to see the length of the up series.
+
+plot Diff = Ichimoku().tenkan - Ichimoku().kijun;
+plot ZeroLine = 0;
+Diff.SetDefaultColor(GetColor(5));
+Diff.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Diff.SetLineWeight(3);
+Diff.DefineColor("Positive and Up", Color.GREEN);
+Diff.DefineColor("Positive and Down", Color.DARK_GREEN);
+Diff.DefineColor("Negative and Down", Color.RED);
+Diff.DefineColor("Negative and Up", Color.DARK_RED);
+Diff.AssignValueColor(if Diff >= 0 then if Diff > Diff[1] then Diff.Color("Positive and Up") else Diff.Color("Positive and Down") else if Diff < Diff[1] then Diff.Color("Negative and Down") else Diff.Color("Negative and Up"));
+
+ZeroLine.SetDefaultColor(GetColor(0));
+
+plot HistoLiner = Diff;
+HistoLiner.SetDefaultColor(Color.WHITE);
+HistoLiner.SetPaintingStrategy(PaintingStrategy.LINE);
+HistoLiner.SetLineWeight(1);
+
+#################################################
+#def HAopen = (open[1] + close[1]) / 2;
+#def HAhigh = Max(high, close[1]);
+#def HAlow = Min(low, close[1]);
+#def HAclose = (open + high + low + close) / 4;
+AddLabel(1, "Plot of Tenkan - Kijun early warning of T/K strength weakening", Color.WHITE);
+AddLabel(1, "A YELLOW down arrow plots at the start of a HA downtrend.Watch the HA style chart candles to see the length of the downtrend", Color.YELLOW);
+
+#######################################
+### Extracted Mobius Heikin Ashi code #
+#######################################
+
+input Begin = 0000;
+# Higher Aggregation
+def barSeq = if SecondsTillTime(Begin) == 0 and
+  SecondsFromTime(Begin) == 0
+  then 0
+  else barSeq[1] + 1;
+
+def agg = GetAggregationPeriod();
+def BarsPerHour = 60 / (agg / 1000 / 60);
+def bar = barSeq;
+def barCount = if bar % BarsPerHour == 0 then bar else Double.NaN;
+def barCountOpen  = if !IsNaN(barCount) then open else barCountOpen[1];
+def barCountHigh  = if IsNaN(barCount) and high > barCountHigh[1] then high else if !IsNaN(barCount) then high else barCountHigh[1];
+def barCountLow   = if IsNaN(barCount) and low < barCountLow[1] then low else if !IsNaN(barCount) then low else barCountLow[1];
+def barCountClose = if !IsNaN(barCount)
+  then close[1]
+  else barCountClose[1];
+
+def HAopen_EV = Round(if HAopen_EV[1] == 0
+then barCountOpen
+else (HAopen_EV[1] + barCountClose[1]) / 2 /
+TickSize(), 0) * TickSize();
+
+def HAclose_EV = Round(if HAopen_EV[1] == 0
+  then OHLC4
+  else (barCountOpen + barCountHigh + barCountLow + HAopen_EV[1])
+  / 4 / TickSize(), 0) * TickSize();
+
+def HAhigh_EV = Round(Max(barCountHigh, barCountClose[1]) /
+  TickSize(), 0) * TickSize();
+  def HAlow_EV = Round(Min(barCountLow, barCountClose[1]) /
+  TickSize(), 0) * TickSize();
+
+# Color Block For Higher Aggregation
+def Size = AbsValue(HAopen_EV - HAopen_EV);
+def Block = CompoundValue(1, if HAopen_EV > Block[1] + Size[1]
+  then Block[1] + Size
+  else if HAopen_EV < Block[1] - Size[1]
+  then Block[1] - Size
+  else Block[1] , barCountClose);
+
+plot cond1_EV = Block;
+cond1_EV.Hide();
+
+def cond2_EV = if Block != Block[1]
+  then Block[1]
+  else cond2_EV[1];
+
+plot Block2 = cond2_EV;
+Block2.Hide();
+
+#  AssignPriceColor(if HAclose < HAopen
+#                   then Color.Red
+#                   else Color.Green);
+# Trade Management Conditions
+def Bcond = CompoundValue(1, if HAclose_EV crosses above HAopen_EV
+  then Bcond[1] + 1
+  else if HAclose_EV crosses below HAopen_EV
+  then 0
+  else Bcond[1], 0);
+
+#UP arrow is the start of an HA-up series.  Need to view HA Chart style to see the extent & end
+#plot ArrowUp = if Bcond crosses above 0 && Show_HA_Up && Diff < 0 then HistoLiner[0] else Double.NaN;# this line used when up HA arrows are implemented
+plot ArrowUp = if Bcond crosses above 0 && Diff < 0 then HistoLiner[0] else Double.NaN;
+ArrowUp.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+ArrowUp.SetLineWeight(5);
+ArrowUp.SetDefaultColor(Color.YELLOW);
+
+def Scond = CompoundValue(1, if HAclose_EV crosses below HAopen_EV
+  then Scond[1] + 1
+  else if barCountClose crosses above HAopen_EV
+  then 0
+  else Scond[1], 0);
+
+#DOWN arrow is the start of an HA-down series. Need to view HA Chart style to see the extent & end
+plot ArrowDn = if Scond crosses above 0 && Show_HA_Down && Diff > 0
+  then HistoLiner[0]
+  else Double.NaN;
+
+ArrowDn.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+ArrowDn.SetLineWeight(5);
+ArrowDn.SetDefaultColor(Color.YELLOW);
+
+def lineCond = if ArrowUp < ArrowDn
+  then 1
+  else if ArrowDn > ArrowUp
+  then 1
+  else -1;
+plot line = if IsNaN(ArrowUp)
+  then ArrowDn - (TickSize() * 2)
+  else ArrowUp + (TickSize() * 2);
+
+line.EnableApproximation();
+line.SetLineWeight(2);
+line.SetStyle(Curve.SHORT_DASH);
+
+line.AssignValueColor(if lineCond == 1
+  then Color.GREEN
+  else if lineCond == -1
+  then Color.RED
+  else Color.WHITE);
+
+######## define dot on zero line when above the cloud ######
+def IsAboveCloud = if close > Ichimoku()."Span A" && close > Ichimoku()."Span B" then 1 else 0; # close is above the cloud
+def IsBelowCloud = if close < Ichimoku()."Span A" && close < Ichimoku()."Span B" then 1 else 0; # close is below the cloud
+
+Plot AboveCloudDot = if IsAboveCloud then 0 else double.nan;
+AboveCloudDot.SetPaintingStrategy(PaintingStrategy.POINTS);
+AboveCloudDot.SetLineWeight(5);
+AboveCloudDot.SetDefaultColor(Color.GREEN);
+
+Plot BelowCloudDot = if IsBelowCloud then 0 else double.nan;
+BelowCloudDot.SetPaintingStrategy(PaintingStrategy.POINTS);
+BelowCloudDot.SetLineWeight(5);
+BelowCloudDot.SetDefaultColor(Color.RED);
+
+#Define variables used to place a bubble
+#========================================
+def barNum = BarNumber();
+def FirstBar = if barNum == 1 then 1 else 0;
+
+#==========================================
+AddChartBubble(FirstBar, 0, "GREEN dot = close IS ABOVE CLOUD\nRED dot = close IS BELOW CLOUD",
+Color.PINK,no);
+#---- End Of Code ---
+```
 
 ## C-'IchiOneGlance'--ALL MAIN ICHIMOKU CRITERIA IN DASHBOARD FORMAT
 
 [Return to TOC](#toc)
 
-- # IchiOneGlance Version 1.00 by StanL 5/4/14
+```
+# IchiOneGlance Version 1.00 by StanL 5/4/14
+#Hint:This shows, in dashboard format, the main criteria used in the Ichimoku. It identifies the bullish, neutral and bearish aspects.
+#NOTES: The Ichimoku is a very busy study that can be intimidating. However, once understood, it becomes addictive and very useful since it addresses so many different and pertinent aspects. The Ichimoku is also useful for indicating support and resistance levels but this feature is not addressed herein. The Tenkan and Kijun periods, 9 and 26, are NOT recommended to be changed. Scan coding is shown below the respective items.
+#You need to show an expansion area of 30 bars (vis chart settings/time axis/expansion area) to see the projection imto the future that Ichimoku plots.
+
+declare lower;
+
+plot WhiteLabel = Double.NaN;
+WhiteLabel.SetDefaultColor(Color.WHITE);
+
+input tenkan_period = 9;#Hint tenkan_period: The number of bars used to calculate the Tenkan (cyan) plot. Default is 9 and should be retained.
+input kijun_period = 26;#Hint kijun_period: The number of bars used to calculate the Kijun (pink) plot. Default is 26 and should be retained.
+input ShowLabels = YES;#hint ShowLabels:Toggles labels on/off.
+
+def Tenkan_here = Ichimoku(tenkan_period, kijun_period).Tenkan;
+def Kijun_here = Ichimoku(tenkan_period, kijun_period).Kijun;
+#Define variables used to place a bubble
+
+#========================================
+def barNum = BarNumber();
+def offset = 50;
+def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+def BubbleLocation = LastBar[offset];
+def FirstBar = if barNum == 1 then 1 else 0;
+def FirstBarValue = if barNum == 1 then 1 else 0;
+def LastBarValue = if LastBar then barNum else 0;
 
-- #Hint:This shows, in dashboard format, the main criteria used in the Ichimoku. It identifies the bullish, neutral and
+#example
+#addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
 
-- bearish aspects.
+#==========================================
 
-- #NOTES: The Ichimoku is a very busy study that can be intimidating. However, once understood, it becomes addictive
+#===== Secondary Trend(ST) --- When T > K =======
+def ST_Bull = if Ichimoku(tenkan_period, kijun_period).Tenkan > Ichimoku(tenkan_period, kijun_period).Kijun then 1 else 0;
 
-- and very useful since it addresses so many different and pertinent aspects. The Ichimoku is also useful for indicating
+plot TK_line = 20;
+TK_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TK_line.SetLineWeight(5);
+TK_line.SetDefaultColor(Color.White);
+TK_line.AssignValueColor(if ST_Bull then Color.UPTICK else if !ST_Bull then Color.DOWNTICK else color.WHITE);
 
-- support and resistance levels but this feature is not addressed herein. The Tenkan and Kijun periods, 9 and 26, are NOT
+AddChartBubble(FirstBar, 20, " Ichimoku(" + tenkan_period + "," +  kijun_period + "). Secondary trend = bullish when Tenkan > Kijun.", Color.WHITE);
 
-- recommended to be changed. Scan coding is shown below the respective items.
+#====== Close is above the cloud (Primary trend = PT)======
+def PT_bull = if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period, kijun_period)."Span B" then 1 else 0;
 
-- #You need to show an expansion area of 30 bars (vis chart settings/time axis/expansion area) to see the projection imto
+plot PT_line = 22;
+PT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+PT_line.SetLineWeight(5);
+PT_line.SetDefaultColor(Color.White);
+PT_line.AssignValueColor(if PT_Bull then Color.UPTICK else if IsNaN(open[-1]) then color.WHITE else color.DOWNTICK);
 
-- the future that Ichimoku plots.
+AddChartBubble(FirstBar, 22, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Primary trend = bullish when the close is above the cloud.", Color.WHITE);
 
-- declare lower;
+#=== scan code for 'Close above the cloud' (primary Bullish scan)===
+#(close is greater than Ichimoku()."Span A" within 2 bars and close is greater than Ichimoku()."Span B" within 2 bars)
+#== end of scan code ==
 
-- plot WhiteLabel = Double.NaN;
+#== end of primary trend ==
+#====== Chikou is above the cloud (Tertiary trend = TT)======
+Def Chikou_here =  Ichimoku(tenkan_period, kijun_period).Chikou;
+def SpanB = Ichimoku(tenkan_period, kijun_period)."Span B";
+def SpanA = Ichimoku(tenkan_period, kijun_period)."Span A";
+def Chikou_Bull = if Chikou_here > SpanA && Chikou_here > SpanB then 1 else 0;
+def TT_Bull = Chikou_Bull;
 
-- WhiteLabel.SetDefaultColor(Color.WHITE);
+plot TT_line = 18;
+TT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+TT_line.SetLineWeight(5);
+TT_line.SetDefaultColor(Color.White);
+TT_line.AssignValueColor(if TT_Bull  then Color.UPTICK else if !TT_Bull then Color.DOWNTICK else color.blue);
+TT_line.AssignValueColor(if Chikou_Bull then color.UPTICK else color.DOWNTICK);
 
-- input tenkan_period = 9;#Hint tenkan_period: The number of bars used to calculate the Tenkan (cyan) plot. Default is 9
+AddChartBubble(FirstBar, 18, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Tertiary trend = bullish when the Chikou is above the cloud.", Color.WHITE);
 
-- and should be retained.
+#=== scan code for 'Chikou is above the cloud' ===
+#Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
+#=== end of scan code ===
 
-- input kijun_period = 26;#Hint kijun_period: The number of bars used to calculate the Kijun (pink) plot. Default is 26 and
+#=== end of Tertiary trend ===
 
-- should be retained.
+#=========== Presence of powerful 'triple bull' signal ==========
+Plot Bull_3X = 16;
+Bull_3X.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Bull_3X.SetLineWeight(5);
+Bull_3X.SetDefaultColor(Color.White);
 
-- input ShowLabels = YES;#hint ShowLabels:Toggles labels on/off.
+def all3 = if ST_Bull && Chikou_Bull && PT_Bull then 1 else 0;
 
-- def Tenkan_here = Ichimoku(tenkan_period, kijun_period).Tenkan;
+Bull_3X.AssignValueColor(if All3 then color.UPTICK else color.DOWNTICK);
 
-- def Kijun_here = Ichimoku(tenkan_period, kijun_period).Kijun;
+AddChartBubble(FirstBar, 16, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Triple bullish trend = bullish Primary, Secondary & Tertiary trends. Best trading opportunity(GREEN).", Color.WHITE);
 
-- #Define variables used to place a bubble
+#==== Scan code for Triple Bullish ====(to use remove '#')
+#(close is greater than Ichimoku()."Span A" within 2 bars or close is greater than Ichimoku()."Span B" within 2 bars) and
+# Ichimoku()."Tenkan" is greater than Ichimoku().Kijun within 2 bars and
+# Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
+#== end of scan code ==
 
-- #========================================
+#=== 'triple bull' signal ===
 
-- def barNum = BarNumber();
+#======== Neutral(no trend) in-cloud signal ========
+Plot No_Trend = 14;
+No_Trend.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+No_Trend.SetLineWeight(5);
+No_Trend.SetDefaultColor(Color.White);
 
-- def offset = 50;
+Def InCloud = if Between(close, SpanA,SpanB) or Between(close, SpanB,SpanA) then 1 else 0;
+No_Trend.AssignValueColor(if InCloud then color.Yellow else color.GRAY);
+AddChartBubble(FirstBar, 14, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Neutral(no trend) signal = close is within the cloud. Trading not recommended.", Color.WHITE);
 
-- def LastBar = !IsNaN(open) and IsNaN(open [-1] ) ;
+#====== strength of bullish secondary(T/K) trend ======
+input DeclBarsToUse = 3;#hint Bars_Decl:The number of past bars to use to test for declining strength of bullish T/K signal.This triggers the yellow indication. Refrain from large values. 1 to 3 is good.
 
-- def BubbleLocation = LastBar[offset];
+plot Bull_Strength = 12;
+Bull_Strength.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
+Bull_Strength.SetLineWeight(5);
+Bull_Strength.SetDefaultColor(Color.White);
 
-- def FirstBar = if barNum == 1 then 1 else 0;
+Def diff = Ichimoku(tenkan_period, kijun_period).Tenkan - Ichimoku(tenkan_period, kijun_period).Kijun;
+def Decline = If ST_Bull && Sum(diff < diff[1],DeclBarsToUse) == DeclBarsToUse then 1 else 0; #Declining difference in the last ? bars of a bullish secondary trend
+Bull_Strength.AssignValueColor(if decline then color.Yellow else color.GRAY);
 
-- def FirstBarValue = if barNum == 1 then 1 else 0;
+AddChartBubble(FirstBar, 12, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Trigger = Declining Bullish secondary(T>K) trend for last " + DeclBarsToUse + " bars = yellow else gray for no decline.", Color.WHITE);
 
-- def LastBarValue = if LastBar then barNum else 0;
+#==== Labels ====
+AddLabel(Showlabels && !InCloud ,if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period, kijun_period)."Span B" then "Bullish 'close is above the cloud' is true" else "Bullish Primary signal is false",if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period, kijun_period)."Span B" then color.UPTICK else color.Downtick);
 
-- #example
+AddLabel(Showlabels && !InCloud ,if ST_Bull then "Bullish 'Tenkan > Kijun' is true" else "Bullish 'Tenkan is > Kijun' is false", if ST_Bull then color.UPTICK else color.DOWNTICK);
 
-- #addchartbubble(LastBar,45, "This is a last bar bubble", color.White);
+AddLabel(Showlabels && !InCloud ,if close > SpanA[26] && close > SpanB[26] then "Bullish 'Chikou is above the cloud' is true" else "Bullish 'Chikou is above the cloud' is false", if close > SpanA[26] && close > SpanB[26] then color.UPTICK else color.DOWNTICK);
 
-- #==========================================
+AddLabel(Showlabels && !InCloud , if ST_Bull && TT_Bull[26] && PT_Bull then "A powerful 3XBullish signal exists" else "A powerful 3XBullish signal does not exists",if ST_Bull && TT_Bull[26] && PT_Bull then color.UPTICK else color.DOWNTICK);
 
-- #===== Secondary Trend(ST) --- When T > K =======
-
-- def ST_Bull = if Ichimoku(tenkan_period, kijun_period).Tenkan > Ichimoku(tenkan_period, kijun_period).Kijun then 1 else
-
-- 0;
-
-- plot TK_line = 20;
-
-- TK_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TK_line.SetLineWeight(5);
-
-- TK_line.SetDefaultColor(Color.White);
-
-- TK_line.AssignValueColor(if ST_Bull then Color.UPTICK else if !ST_Bull then Color.DOWNTICK else color.WHITE);
-
-- AddChartBubble(FirstBar, 20, " Ichimoku(" + tenkan_period + "," +  kijun_period + "). Secondary trend = bullish when
-
-- Tenkan > Kijun.", Color.WHITE);
-
-- #====== Close is above the cloud (Primary trend = PT)======
-
-- def PT_bull = if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period,
-
-- kijun_period)."Span B" then 1 else 0;
-
-- plot PT_line = 22;
-
-- PT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- PT_line.SetLineWeight(5);
-
-- PT_line.SetDefaultColor(Color.White);
-
-- PT_line.AssignValueColor(if PT_Bull then Color.UPTICK else if IsNaN(open[-1]) then color.WHITE else
-
-- color.DOWNTICK);
-
-- AddChartBubble(FirstBar, 22, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Primary trend = bullish when the
-
-- close is above the cloud.", Color.WHITE);
-
-- #=== scan code for 'Close above the cloud' (primary Bullish scan)===
-
-- #(close is greater than Ichimoku()."Span A" within 2 bars and close is greater than Ichimoku()."Span B" within 2 bars)
-
-- #== end of scan code ==
-
-- #== end of primary trend ==
-
-- #====== Chikou is above the cloud (Tertiary trend = TT)======
-
-- Def Chikou_here =  Ichimoku(tenkan_period, kijun_period).Chikou;
-
-- def SpanB = Ichimoku(tenkan_period, kijun_period)."Span B";
-
-- def SpanA = Ichimoku(tenkan_period, kijun_period)."Span A";
-
-- def Chikou_Bull = if Chikou_here > SpanA && Chikou_here > SpanB then 1 else 0;
-
-- def TT_Bull = Chikou_Bull;
-
-- plot TT_line = 18;
-
-- TT_line.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- TT_line.SetLineWeight(5);
-
-- TT_line.SetDefaultColor(Color.White);
-
-- TT_line.AssignValueColor(if TT_Bull  then Color.UPTICK else if !TT_Bull then Color.DOWNTICK else color.blue);
-
-- TT_line.AssignValueColor(if Chikou_Bull then color.UPTICK else color.DOWNTICK);
-
-- AddChartBubble(FirstBar, 18, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Tertiary trend = bullish when the
-
-- Chikou is above the cloud.", Color.WHITE);
-
-- #=== scan code for 'Chikou is above the cloud' ===
-
-- #Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
-
-- #=== end of scan code ===
-
-- #=== end of Tertiary trend ===
-
-- #=========== Presence of powerful 'triple bull' signal ==========
-
-- Plot Bull_3X = 16;
-
-- Bull_3X.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Bull_3X.SetLineWeight(5);
-
-- Bull_3X.SetDefaultColor(Color.White);
-
-- def all3 = if ST_Bull && Chikou_Bull && PT_Bull then 1 else 0;
-
-- Bull_3X.AssignValueColor(if All3 then color.UPTICK else color.DOWNTICK);
-
-- AddChartBubble(FirstBar, 16, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Triple bullish trend = bullish Primary,
-
-- Secondary & Tertiary trends. Best trading opportunity(GREEN).", Color.WHITE);
-
-- #==== Scan code for Triple Bullish ====(to use remove '#')
-
-- #(close is greater than Ichimoku()."Span A" within 2 bars or close is greater than Ichimoku()."Span B" within 2 bars) and
-
-- # Ichimoku()."Tenkan" is greater than Ichimoku().Kijun within 2 bars and
-
-- # Ichimoku()."Chikou" from 26 bars ago is greater than Ichimoku()."Span A" within 2 bars
-
-- #== end of scan code ==
-
-- #=== 'triple bull' signal ===
-
-- #======== Neutral(no trend) in-cloud signal ========
-
-- Plot No_Trend = 14;
-
-- No_Trend.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- No_Trend.SetLineWeight(5);
-
-- No_Trend.SetDefaultColor(Color.White);
-
-- Def InCloud = if Between(close, SpanA,SpanB) or Between(close, SpanB,SpanA) then 1 else 0;
-
-- No_Trend.AssignValueColor(if InCloud then color.Yellow else color.GRAY);
-
-- AddChartBubble(FirstBar, 14, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Neutral(no trend) signal = close is
-
-- within the cloud. Trading not recommended.", Color.WHITE);
-
-- #====== strength of bullish secondary(T/K) trend ======
-
-- input DeclBarsToUse = 3;#hint Bars_Decl:The number of past bars to use to test for declining strength of bullish T/K
-
-- signal.This triggers the yellow indication. Refrain from large values. 1 to 3 is good.
-
-- plot Bull_Strength = 12;
-
-- Bull_Strength.SetPaintingStrategy(PaintingStrategy.LINE_VS_SQUARES);
-
-- Bull_Strength.SetLineWeight(5);
-
-- Bull_Strength.SetDefaultColor(Color.White);
-
-- Def diff = Ichimoku(tenkan_period, kijun_period).Tenkan - Ichimoku(tenkan_period, kijun_period).Kijun;
-
-- def Decline = If ST_Bull && Sum(diff < diff[1],DeclBarsToUse) == DeclBarsToUse then 1 else 0;#Declining difference in
-
-- the last ? bars of a bullish secondary trend
-
-- Bull_Strength.AssignValueColor(if decline then color.Yellow else color.GRAY);
-
-- AddChartBubble(FirstBar, 12, " Ichimoku(" + tenkan_period + "," +  kijun_period + ") Trigger = Declining Bullish
-
-- secondary(T>K) trend for last " + DeclBarsToUse + " bars = yellow else gray for no decline.", Color.WHITE);
-
-- #==== Labels ====
-
-- AddLabel(Showlabels && !InCloud ,if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close >
-
-- Ichimoku(tenkan_period, kijun_period)."Span B" then "Bullish 'close is above the cloud' is true" else "Bullish Primary
-
-- signal is false",if close > Ichimoku(tenkan_period, kijun_period)."Span A" && close > Ichimoku(tenkan_period,
-
-- kijun_period)."Span B" then color.UPTICK else color.Downtick);
-
-- AddLabel(Showlabels && !InCloud ,if ST_Bull then "Bullish 'Tenkan > Kijun' is true" else "Bullish 'Tenkan is > Kijun' is
-
-- false", if ST_Bull then color.UPTICK else color.DOWNTICK);
-
-- AddLabel(Showlabels && !InCloud ,if close > SpanA[26] && close > SpanB[26] then "Bullish 'Chikou is above the cloud' is
-
-- true" else "Bullish 'Chikou is above the cloud' is false", if close > SpanA[26] && close > SpanB[26] then color.UPTICK else
-
-- color.DOWNTICK);
-
-- AddLabel(Showlabels && !InCloud , if ST_Bull && TT_Bull[26] && PT_Bull then "A powerful 3XBullish signal exists" else
-
-- "A powerful 3XBullish signal does not exists",if ST_Bull && TT_Bull[26] && PT_Bull then color.UPTICK else
-
-- color.DOWNTICK);
-
-- AddLabel(Showlabels && InCloud, "The close is inside the cloud. No trading recommended here. All other labels are
-
-- suspended. Look for a signal on exiting the cloud.",Color.MAGENTA);
-
-- #=== end of IchiOneGlance ===
+AddLabel(Showlabels && InCloud, "The close is inside the cloud. No trading recommended here. All other labels are suspended. Look for a signal on exiting the cloud.",Color.MAGENTA);
+#=== end of IchiOneGlance ===
+```
 
 ## C-'Ichi_Signals' -- IDENTIFIES ALL MAJOR ICHIMOKU SIGNALS FOR LEARNING OR USE
 
 [Return to TOC](#toc)
 
-- ##Hint:This Ichmoku study has many signals. Some are more important/controlling than others. This study allows you to
+```
+##Hint:This Ichmoku study has many signals. Some are more important/controlling than others. This study allows you to select the type of signal you are interested in, the strength level of those signals and the bullish or bearish sentiment.The appropriate arrows will be plotted with optional bubbles to identify the signal strength and bull/bear.
+# TOS title = 'Ichi_Signals' by StanL version 1.0
+#USAGE NOTES: !.All Bullish signals are UP arrows of cyan coloring. All Bearish signals are DOWN arrows of magenta coloring.
+#2.Bubbles may be toggled OFF to avoid chart clutter. All bubbles are colored white for readability.
+#3.Selectable inputs for arrow plotting are:1. Each of the 5 Ichimoku parameters(lines); 2.Signal strengths of strong, neutral, weak or All;3.Bullish, Bearish or All.
+# The main Ichimoku signals to monitor, in order of importance, are:
+#   1. Price vs Cloud (the 'big picture')
+#   2. Price vs Tenkan/Kijun
+#   3. Momentum
+#   4. Future Cloud
+#These signals are not 'stand alone' for decision making and must be evaluated using other related ichimoku data as well as other external studies and indicators.
+#A free detailed reference, 'Ichmoku E-Book', is available at https://www.ichimokutrade.com/c/videos/categories/ichimoku-videos/ as well as a tutorial at http://www.kumotrader.com/ichimoku_wiki/index.php?title=Ichimoku_components
+#The E-Book has details for developing buy/sell strategies using the Ichimoku signals.
+
+input ShowBubbles = yes;#Hint ShowBubbles:Toggles bubbles ON/OFF
+input ShowColorLabels = Yes;#hint ShowColorLabels:Toggles the color coding labels ON/OFF
+input tenkan_period = 9;#Hint tenkan_period: The number of bars used to calculate the Tenkan cyan plot. Default is 9. Change of this value is not recommended.
+input kijun_period = 26;#Hint kijun_period: The number of bars used to calculate the Kijun pink plot. Default is 26. Change of this value is not recommended.
+input Type_Signal = {default "T/K Cross", "Kijun Cross", "Cloud BreakOut", "SpanA/B Cross", "Chikou Cross"};#Hint Type_Signal:Select the type of signal to show. All is not a choice because there would be too many signals to show. Each choice could have up to 6 signals i.e. Bullish/Bearish, Strong, Neutral & Weak signals.
+input Signal_strength = {default Strong, Neutral, Weak, All};#hint Signal_strength:Show only signals having the strength selected
+input Bullish_Bearish = {default Bullish, Bearish, Both};#hint Bullish_Bearish:Select the orientation desired
+
+plot Tenkan = (Highest(high, tenkan_period) + Lowest(low, tenkan_period)) / 2;
+plot Kijun = (Highest(high, kijun_period) + Lowest(low, kijun_period)) / 2;
+plot "Span A" = (Tenkan[kijun_period] + Kijun[kijun_period]) / 2;
+plot "Span B" = (Highest(high[kijun_period], 2 * kijun_period) + Lowest(low[kijun_period], 2 * kijun_period)) / 2;
+plot Chikou = close[-kijun_period];
+Tenkan.SetDefaultColor(GetColor(1));
+#Kijun.SetDefaultColor(GetColor(2));
+"Span A".SetDefaultColor(GetColor(3));
+"Span B".SetDefaultColor(GetColor(4));
+Chikou.SetDefaultColor(GetColor(5));
+DefineGlobalColor("Bullish", Color.GREEN);
+DefineGlobalColor("Bearish", Color.RED);
+AddCloud("Span A", "Span B", GlobalColor("Bullish"), GlobalColor("Bearish"));
+
+#=== Define global colors ===
+# aqua is bullish & ARROW_UP
+DefineGlobalColor("BullStrong", CreateColor(82, 242, 234));#light aqua
+DefineGlobalColor("BullNeutral", CreateColor(155, 215, 213));#medium aqua
+DefineGlobalColor("BullWeak", CreateColor(36, 179, 172));#dark aqua
+#magenta tint is bearish & ARROW_DOWN
+DefineGlobalColor("BearStrong", CreateColor(255, 0, 255));#light = magenta
+DefineGlobalColor("BearNeutral", CreateColor(221, 160, 221));#medium plum
+DefineGlobalColor("BearWeak", CreateColor(186, 85, 211));#med orchid
+#DefineGlobalColor("Global1", CreateColor(128, 0, 128));
+#?.SetDefaultColor(GlobalColor("?"));
+
+#=== BASIC CONDITIONS ====
+def IsAboveCloud = if close > Ichimoku()."Span A" && close > Ichimoku()."Span B" then 1 else 0; # close is above the cloud
+def IsBelowCloud = if close < Ichimoku()."Span A" && close < Ichimoku()."Span B" then 1 else 0; # close is below the cloud
+def IsInCloud = if (("Span A" > "Span B" && close[0] < "Span A" && close[0] > "Span B") or ("Span B" > "Span A" &&
+close[0] > "Span A" && close[0] < "Span B"),1,0);#This code has been analyzed & proven accurate
+#def IsInCloud = If close > Min(Ichimoku()."Span A",Ichimoku()."Span B") && close < Max(Ichimoku()."SpanA",Ichimoku()."Span B") then 1 else 0;# Close is in the cloud
+#def IsInCloud = if close > Min("Span A", "Span B") && close < Max("Span A", "Span B") then 1 else 0;# Close is in the cloud
+def want_Strong = if Signal_strength == Signal_strength."Strong" or Signal_strength == Signal_strength."All" then 1 else 0;
+def  want_Neutral = if Signal_strength == Signal_strength."Neutral" or Signal_strength == Signal_strength."All" then 1 else 0;
+def  want_Weak = if Signal_strength == Signal_strength."Weak" or Signal_strength == Signal_strength."All" then 1 else 0;
+def want_Bull = if Bullish_Bearish == Bullish_Bearish."Bullish" or  Bullish_Bearish == Bullish_Bearish."Both" then 1 else 0;
+def want_Bear = if Bullish_Bearish == Bullish_Bearish."Bearish" or  Bullish_Bearish == Bullish_Bearish."Both" then 1 else 0
+;
+###############################################
+#==== TENKAN/KIJUN (T/K) CROSS SIGNALS ====   #
+#The tenkan/kijun cross is one of the most traditional trading strategies within the Ichimoku system.
+
+###############################################
+def Is_TKC = if  Type_Signal == Type_Signal."T/K Cross" then 1 else 0;
+## === BULLISH SIGNALS == T crosses above the K ====
+#===================================================
+###      === STRONG T/K Bullish cross happens while ABOVE the cloud ===
+def cond_STK = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsAboveCloud;
+
+plot STK_Cross = If (cond_STK && Is_TKC &&  want_Strong && want_Bull , Tenkan, Double.NaN);
+STK_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+STK_Cross.SetLineWeight(5);
+STK_Cross.SetDefaultColor(GlobalColor("BullStrong"));
+
+AddChartBubble(ShowBubbles && cond_STK && Is_TKC &&  want_Strong && want_Bull , Tenkan, "strong\nbullish", Color.WHITE, yes);
+
+###      === NEUTRAL T/K cross(NTKC)happens while IN the cloud ===
+def cond_NTKC = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsInCloud;
+
+plot NTK_Cross = If(cond_NTKC && Is_TKC &&  want_Neutral && want_Bull , Tenkan, Double.NaN);
+NTK_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+NTK_Cross.SetLineWeight(5);
+NTK_Cross.SetDefaultColor(GlobalColor("BullNeutral"));
+
+AddChartBubble(ShowBubbles && cond_NTKC && Is_TKC && want_Neutral && want_Bull , Tenkan, "neutral\nbullish", Color.WHITE, yes);
+
+###      === WEAK cross T/K(WTKC) happens while BELOW the cloud ===
+def cond_WTKC = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsBelowCloud;
+
+plot WTK_Cross = If(cond_NTKC && Is_TKC && want_Bull && want_Weak, Tenkan, Double.NaN);
+WTK_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+WTK_Cross.SetLineWeight(5);
+WTK_Cross.SetDefaultColor(GlobalColor("BullWeak"));
+
+AddChartBubble(ShowBubbles && cond_NTKC && Is_TKC && want_Bull && want_Weak, Tenkan, "weak\nbullish", Color.WHITE, yes);
+
+## === BEARISH SIGNALS == T crosses below the K (K/T)====
+##############################################
+###      === STRONG K/T bearish cross happens while BELOW the cloud===
+def cond_SKT_Cross = Crosses(Tenkan, Kijun, CrossingDirection.BELOW) && IsBelowCloud;
 
-- select the type of signal you are interested in, the strength level of those signals and the bullish or bearish
+plot SKT_Cross = If(cond_SKT_Cross && Is_TKC &&  want_Strong && want_Bear, Tenkan, Double.NaN);
+SKT_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+SKT_Cross.SetLineWeight(5);
+SKT_Cross.SetDefaultColor(CreateColor(255, 0, 255));
 
-- sentiment.The appropriate arrows will be plotted with optional bubbles to identify the signal strength and bull/bear.
+AddChartBubble(ShowBubbles &&  cond_SKT_Cross && Is_TKC &&  want_Strong && want_Bear , Tenkan, "strong\nbearish",  Color.WHITE, yes);
 
-- # TOS title = 'Ichi_Signals' by StanL version 1.0
+###      === NEUTRAL cross K/T happens while IN the cloud ===
+def cond_NKT_Cross =  Crosses(Tenkan, Kijun, CrossingDirection.BELOW) && IsInCloud;
 
-- #USAGE NOTES: !.All Bullish signals are UP arrows of cyan coloring. All Bearish signals are DOWN arrows of magenta
+plot NKT_Cross =  If(cond_NKT_Cross && Is_TKC && want_Neutral && want_Bear, Tenkan, Double.NaN);
+NKT_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+NKT_Cross.SetLineWeight(5);
+NKT_Cross.SetDefaultColor(CreateColor(221, 160, 221));
 
-- coloring.
-
-- #2.Bubbles may be toggled OFF to avoid chart clutter. All bubbles are colored white for readability.
-
-- #3.Selectable inputs for arrow plotting are:1. Each of the 5 Ichimoku parameters(lines); 2.Signal strengths of strong,
-
-- neutral, weak or All;3.Bullish, Bearish or All.
-
-- # The main Ichimoku signals to monitor, in order of importance, are:
-
-- #   1. Price vs Cloud (the 'big picture')
-
-- #   2. Price vs Tenkan/Kijun
-
-- #   3. Momentum
-
-- #   4. Future Cloud
-
-- #These signals are not 'stand alone' for decision making and must be evaluated using other related ichimoku data as well
-
-- as other external studies and indicators.
-
-- #A free detailed reference, 'Ichmoku E-Book', is available at
-
-- https://www.ichimokutrade.com/c/videos/categories/ichimoku-videos/ as well as a tutorial at
-
-- http://www.kumotrader.com/ichimoku_wiki/index.php?title=Ichimoku_components
-
-- #The E-Book has details for developing buy/sell strategies using the Ichimoku signals.
-
-- input ShowBubbles = yes;#Hint ShowBubbles:Toggles bubbles ON/OFF
-
-- input ShowColorLabels = Yes;#hint ShowColorLabels:Toggles the color coding labels ON/OFF
-
-- input tenkan_period = 9;#Hint tenkan_period: The number of bars used to calculate the Tenkan cyan plot. Default is 9.
-
-- Change of this value is not recommended.
-
-- input kijun_period = 26;#Hint kijun_period: The number of bars used to calculate the Kijun pink plot. Default is 26.
-
-- Change of this value is not recommended.
-
-- input Type_Signal = {default "T/K Cross", "Kijun Cross", "Cloud BreakOut", "SpanA/B Cross", "Chikou Cross"};#Hint
-
-- Type_Signal:Select the type of signal to show. All is not a choice because there would be too many signals to show. Each
-
-- choice could have up to 6 signals i.e. Bullish/Bearish, Strong, Neutral & Weak signals.
-
-- input Signal_strength = {default Strong, Neutral, Weak, All};#hint Signal_strength:Show only signals having the strength
-
-- selected
-
-- input Bullish_Bearish = {default Bullish, Bearish, Both};#hint Bullish_Bearish:Select the orientation desired
-
-- plot Tenkan = (Highest(high, tenkan_period) + Lowest(low, tenkan_period)) / 2;
-
-- plot Kijun = (Highest(high, kijun_period) + Lowest(low, kijun_period)) / 2;
-
-- plot "Span A" = (Tenkan[kijun_period] + Kijun[kijun_period]) / 2;
-
-- plot "Span B" = (Highest(high[kijun_period], 2 * kijun_period) + Lowest(low[kijun_period], 2 * kijun_period)) / 2;
-
-- plot Chikou = close[-kijun_period];
-
-- Tenkan.SetDefaultColor(GetColor(1));
-
-- #Kijun.SetDefaultColor(GetColor(2));
-
-- "Span A".SetDefaultColor(GetColor(3));
-
-- "Span B".SetDefaultColor(GetColor(4));
-
-- Chikou.SetDefaultColor(GetColor(5));
-
-- DefineGlobalColor("Bullish", Color.GREEN);
-
-- DefineGlobalColor("Bearish", Color.RED);
-
-- AddCloud("Span A", "Span B", GlobalColor("Bullish"), GlobalColor("Bearish"));
-
-- #=== Define global colors ===
-
-- # aqua is bullish & ARROW_UP
-
-- DefineGlobalColor("BullStrong", CreateColor(82, 242, 234));#light aqua
-
-- DefineGlobalColor("BullNeutral", CreateColor(155, 215, 213));#medium aqua
-
-- DefineGlobalColor("BullWeak", CreateColor(36, 179, 172));#dark aqua
-
-- #magenta tint is bearish & ARROW_DOWN
-
-- DefineGlobalColor("BearStrong", CreateColor(255, 0, 255));#light = magenta
-
-- DefineGlobalColor("BearNeutral", CreateColor(221, 160, 221));#medium plum
-
-- DefineGlobalColor("BearWeak", CreateColor(186, 85, 211));#med orchid
-
-- #DefineGlobalColor("Global1", CreateColor(128, 0, 128));
-
-- #?.SetDefaultColor(GlobalColor("?"));
-
-- #=== BASIC CONDITIONS ====
-
-- def IsAboveCloud = if close > Ichimoku()."Span A" && close > Ichimoku()."Span B" then 1 else 0; # close is above the cloud
-
-- def IsBelowCloud = if close < Ichimoku()."Span A" && close < Ichimoku()."Span B" then 1 else 0; # close is below the cloud
-
-- def IsInCloud = if (("Span A" > "Span B" && close[0] < "Span A" && close[0] > "Span B") or ("Span B" > "Span A" &&
-
-- close[0] > "Span A" && close[0] < "Span B"),1,0);#This code has been analyzed & proven accurate
-
-- #def IsInCloud = If close > Min(Ichimoku()."Span A",Ichimoku()."Span B") && close < Max(Ichimoku()."Span
-
-- A",Ichimoku()."Span B") then 1 else 0;# Close is in the cloud
-
-- #def IsInCloud = if close > Min("Span A", "Span B") && close < Max("Span A", "Span B") then 1 else 0;# Close is in the
-
-- cloud
-
-- def want_Strong = if Signal_strength == Signal_strength."Strong" or Signal_strength == Signal_strength."All" then 1
-
-- else 0;
-
-- def  want_Neutral = if Signal_strength == Signal_strength."Neutral" or Signal_strength == Signal_strength."All" then 1
-
-- else 0;
-
-- def  want_Weak = if Signal_strength == Signal_strength."Weak" or Signal_strength == Signal_strength."All" then 1 else
-
-- 0;
-
-- def want_Bull = if Bullish_Bearish == Bullish_Bearish."Bullish" or  Bullish_Bearish == Bullish_Bearish."Both" then 1 else 0;
-
-- def want_Bear = if Bullish_Bearish == Bullish_Bearish."Bearish" or  Bullish_Bearish == Bullish_Bearish."Both" then 1 else
-
-- 0;
-
-- ###############################################
-
-- #==== TENKAN/KIJUN (T/K) CROSS SIGNALS ====   #
-
-- #The tenkan/kijun cross is one of the most traditional trading strategies within the Ichimoku system.
-
-- ###############################################
-
-- def Is_TKC = if  Type_Signal == Type_Signal."T/K Cross" then 1 else 0;
-
-- ## === BULLISH SIGNALS == T crosses above the K ====
-
-- #===================================================
-
-- ###      === STRONG T/K Bullish cross happens while ABOVE the cloud ===
-
-- def cond_STK = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsAboveCloud;
-
-- plot STK_Cross = If (cond_STK && Is_TKC &&  want_Strong && want_Bull , Tenkan, Double.NaN);
-
-- STK_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- STK_Cross.SetLineWeight(5);
-
-- STK_Cross.SetDefaultColor(GlobalColor("BullStrong"));
-
-- AddChartBubble(ShowBubbles && cond_STK && Is_TKC &&  want_Strong && want_Bull , Tenkan, "strong\nbullish",
-
-- Color.WHITE, yes);
-
-- ###      === NEUTRAL T/K cross(NTKC)happens while IN the cloud ===
-
-- def cond_NTKC = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsInCloud;
-
-- plot NTK_Cross = If(cond_NTKC && Is_TKC &&  want_Neutral && want_Bull , Tenkan, Double.NaN);
-
-- NTK_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- NTK_Cross.SetLineWeight(5);
-
-- NTK_Cross.SetDefaultColor(GlobalColor("BullNeutral"));
-
-- AddChartBubble(ShowBubbles && cond_NTKC && Is_TKC && want_Neutral && want_Bull , Tenkan, "neutral\nbullish",
-
-- Color.WHITE, yes);
-
-- ###      === WEAK cross T/K(WTKC) happens while BELOW the cloud ===
-
-- def cond_WTKC = Crosses(Tenkan, Kijun, CrossingDirection.ABOVE) && IsBelowCloud;
-
-- plot WTK_Cross = If(cond_NTKC && Is_TKC && want_Bull && want_Weak, Tenkan, Double.NaN);
-
-- WTK_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- WTK_Cross.SetLineWeight(5);
-
-- WTK_Cross.SetDefaultColor(GlobalColor("BullWeak"));
-
-- AddChartBubble(ShowBubbles && cond_NTKC && Is_TKC && want_Bull && want_Weak, Tenkan, "weak\nbullish",
-
-- Color.WHITE, yes);
-
-- ## === BEARISH SIGNALS == T crosses below the K (K/T)====
-
-- ##############################################
-
-- ###      === STRONG K/T bearish cross happens while BELOW the cloud===
-
-- def cond_SKT_Cross = Crosses(Tenkan, Kijun, CrossingDirection.BELOW) && IsBelowCloud;
-
-- plot SKT_Cross = If(cond_SKT_Cross && Is_TKC &&  want_Strong && want_Bear, Tenkan, Double.NaN);
-
-- SKT_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- SKT_Cross.SetLineWeight(5);
-
-- SKT_Cross.SetDefaultColor(CreateColor(255, 0, 255));
-
-- AddChartBubble(ShowBubbles &&  cond_SKT_Cross && Is_TKC &&  want_Strong && want_Bear , Tenkan,
-
-- "strong\nbearish",  Color.WHITE, yes);
-
-- ###      === NEUTRAL cross K/T happens while IN the cloud ===
-
-- def cond_NKT_Cross =  Crosses(Tenkan, Kijun, CrossingDirection.BELOW) && IsInCloud;
-
-- plot NKT_Cross =  If(cond_NKT_Cross && Is_TKC && want_Neutral && want_Bear, Tenkan, Double.NaN);
-
-- NKT_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- NKT_Cross.SetLineWeight(5);
-
-- NKT_Cross.SetDefaultColor(CreateColor(221, 160, 221));
-
-- AddChartBubble(ShowBubbles && cond_NKT_Cross && Is_TKC && want_Neutral && want_Bear , Tenkan,
-
-- "neutral\nbearish",  Color.WHITE, yes);
-
-- ###      === WEAK cross K/T happens while ABOVE the cloud  ===
-
-- def Cond_WKT_Cross = Crosses(Tenkan, Kijun, CrossingDirection.BELOW) && IsAboveCloud;
-
-- plot WKT_Cross = If (Cond_WKT_Cross && Is_TKC && want_Weak && want_Bear, Tenkan, Double.NaN);
-
-- WKT_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- WKT_Cross.SetLineWeight(5);
-
-- WKT_Cross.SetDefaultColor(CreateColor(186, 85, 211));
-
-- AddChartBubble(ShowBubbles && Cond_WKT_Cross && Is_TKC && want_Weak && want_Bear , Tenkan,
-
-- "Weak\nbearish",  Color.WHITE, no);
-
-- #####################################
-
-- #==== KIJUN CROSS SIGNALS ====     ##
-
-- #The kijun cross is one of the most powerful and reliable trading strategies within the Ichimoku system. It can be used
-
-- on nearly all time frames with excellent results, though it will be somewhat less reliable on the lower, daytrading time
-
-- frames due to the increased volatility on those time frames.
-
-- #####################################
-
-- def is_KC = if Type_Signal == Type_Signal."Kijun Cross" then 1 else 0;
-
-- ## === BULLISH SIGNALS when close crosses above the Kijun
-
-- #######################################
-
-- ###      === BULL & STRONG ===
-
-- def is_KC_bull_strong = Crosses(close, Kijun, CrossingDirection.ABOVE) && IsAboveCloud;
-
-- plot KC_Strong_Bull = If (is_KC_bull_strong && is_KC &&  want_Strong && want_Bull, Kijun, Double.NaN);
-
-- KC_Strong_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- KC_Strong_Bull.SetLineWeight(5);
-
-- KC_Strong_Bull.SetDefaultColor(GlobalColor("BullStrong"));
-
-- AddChartBubble(ShowBubbles && is_KC_bull_strong && is_KC &&  want_Strong && want_Bull , Kijun, "strong\nbullish",
-
-- Color.WHITE, yes);
-
-- ###      === BULL & NEUTRAL ===
-
-- def is_KC_bull_neutral = Crosses(close, Kijun, CrossingDirection.ABOVE) && IsInCloud;
-
-- plot KC_neutral_Bull = If (is_KC_bull_neutral && is_KC && want_Neutral && want_Bull, Kijun, Double.NaN);
-
-- KC_neutral_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- KC_neutral_Bull.SetLineWeight(5);
-
-- KC_neutral_Bull.SetDefaultColor(GlobalColor("BullNeutral"));
-
-- AddChartBubble(ShowBubbles && is_KC_bull_neutral && is_KC && want_Neutral && want_Bull , Kijun, "neutral\nbullish",
-
-- Color.WHITE, yes);
-
-- ###      === BULL & WEAK ===
-
-- def is_KC_bull_weak = Crosses(close, Kijun, CrossingDirection.ABOVE) && IsBelowCloud;
-
-- plot KC_weak_Bull = If (is_KC_bull_weak && is_KC && want_Weak && want_Bull, Kijun, Double.NaN);
-
-- KC_weak_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- KC_weak_Bull.SetLineWeight(5);
-
-- KC_weak_Bull.SetDefaultColor(GlobalColor("BullWeak"));
-
-- AddChartBubble(ShowBubbles && is_KC_bull_weak && is_KC && want_Weak && want_Bull , Kijun, "weak\nbullish",
-
-- Color.WHITE, yes);
-
-- ## === BEARISH SIGNALS when close crosses below the Kijun
-
-- ####################################
-
-- ###      === BEAR & STRONG ===
-
-- def is_KC_bear_strong = Crosses(close, Kijun, CrossingDirection.BELOW) && IsBelowCloud;
-
-- plot KC_strong_Bear = If (is_KC_bear_strong && is_KC &&  want_Strong && want_Bear, Kijun, Double.NaN);
-
-- KC_strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- KC_strong_Bear.SetLineWeight(5);
-
-- KC_strong_Bear.SetDefaultColor(GlobalColor("BearStrong"));
-
-- AddChartBubble(ShowBubbles && is_KC_bear_strong && is_KC &&  want_Strong && want_Bear , Kijun,
-
-- "strong\nbearish",  Color.WHITE, yes);
-
-- ###      === BEAR & NEUTRAL ===
-
-- def is_KC_bear_neutral = Crosses(close, Kijun, CrossingDirection.BELOW) && IsInCloud;
-
-- plot KC_neutral_Bear = If (is_KC_bear_neutral && is_KC && want_Neutral && want_Bear, Kijun, Double.NaN);
-
-- KC_strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- KC_strong_Bear.SetLineWeight(5);
-
-- KC_strong_Bear.SetDefaultColor(GlobalColor("BearNeutral"));
-
-- AddChartBubble(ShowBubbles && is_KC_bear_neutral && is_KC && want_Neutral && want_Bear, Kijun,
-
-- "neutral\nbearish",  Color.WHITE, yes);
-
-- ###      === BEAR & WEAK ===
-
-- def is_KC_bear_weak = Crosses(close, Kijun, CrossingDirection.BELOW) && IsAboveCloud;
-
-- plot KC_weak_Bear = If (is_KC_bear_weak && is_KC && want_Weak && want_Bear, Kijun, Double.NaN);
-
-- KC_weak_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- KC_weak_Bear.SetLineWeight(5);
-
-- KC_weak_Bear.SetDefaultColor(GlobalColor("Bearweak"));
-
-- AddChartBubble(ShowBubbles && is_KC_bear_weak && is_KC && want_Weak && want_Bear, Kijun, "weak\nbearish",
-
-- Color.WHITE, yes);
-
-- #################################
-
-- #==== CLOUD BREAKOUT SIGNALS ====  ##
-
-- #CLOUD BREAKOUT trading is a trading strategy that can be used on multiple time frames, though it is most widely
-
-- used on the higher time frames (e.g.: Daily, Weekly, Monthly). CLOUD breakout trading is the purest form of trend
-
-- trading offered by the Ichimoku charting system, as it looks solely to the CLOUD and price's(close) relationship to it for
-
-- its signals. It is "big picture" trading that focuses only on whether price is trading above or below the prevailing CLOUD. .
-
-- In a nutshell, the signal to go long in CLOUD BREAKOUT trading is when price closes above the prevailing CLOUD and,
-
-- likewise, the signal to go short is when price closes below the prevailing CLOUD.
-
-- #############################
-
-- def is_CBO = if Type_Signal == Type_Signal."Cloud BreakOut" then 1 else 0;
-
-- ## === BULLISH SIGNALS ===
-
-- ###########################
-
-- #A bullish signal is present when the close moves above the cloud. Caution is needed if close is rising above a flat-top-
-
-- cloud (a persistent resistance). The position of the close related to the cloud is the most controlling aspect of signal
-
-- evaluation.....it is the 'Big Picture'.
-
-- def SpanA_OnTop = if ("Span A" > "Span B",1,0);
-
-- def isCBO_bull_aboveA = if "Span A" > "Span B" && crosses(close,"Span A",CrossingDirection.ABOVE) then 1 else 0;
-
-- def isCBO_bull_aboveB = if "Span B" > "Span A" && crosses(close,"Span B",CrossingDirection.ABOVE) then 1 else 0;
-
-- plot CBO_Bull_Strong = if (isCBO_bull_aboveA or isCBO_bull_aboveB) && is_CBO &&  want_Strong && want_Bull then
-
-- close else Double.Nan;
-
-- CBO_Bull_Strong.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- CBO_Bull_Strong.SetLineWeight(5);
-
-- CBO_Bull_Strong.SetDefaultColor(GlobalColor("BullStrong"));
-
-- #def is_FlatTop = If (isCBO_bull_cross && SpanA_OnTop && Sum("Span A" > .90 * "Span A"[1], 8) >= 5, 1, 0) or
-
-- if(isCBO_bull_cross && !SpanA_OnTop && sum("Span B" > .95 * "Span B"[1],8) >= 5 ,1,0);
-
-- #def SpanA_FlatTop = If (isCBO_bull_cross && SpanA_OnTop && Sum("Span A" ==  "Span A"[1], 8) >= 5, 1, 0);
-
-- #def SpanB_FlatTop = If (isCBO_bull_cross && !SpanA_OnTop && Sum("Span B" ==  "Span B"[1], 8) >= 5, 1, 0);
-
-- AddChartBubble(ShowBubbles && (isCBO_bull_aboveA or isCBO_bull_aboveB) && is_CBO &&  want_Strong &&
-
-- want_Bull,close,"strong\nbullish", Color.WHITE, yes);
-
-- ## === BEARISH SIGNALS ===
-
-- ###########################
-
-- ###      === BEAR & STRONG ===
-
-- def isCBO_strong_bearA = if "Span A" < "Span B" && crosses(close,"Span A",CrossingDirection.BELOW) then 1 else 0;
-
-- def isCBO_strong_bearB = if "Span B" < "Span A" && crosses(close,"Span B",CrossingDirection.BELOW) then 1 else 0;
-
-- plot CBO_Bear_Strong = if (isCBO_strong_bearA or isCBO_strong_bearB) && is_CBO &&  want_Strong && want_Bear
-
-- then close else Double.Nan;
-
-- CBO_Bear_Strong.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- CBO_Bear_Strong.SetLineWeight(5);
-
-- CBO_Bear_Strong.SetDefaultColor(GlobalColor("BearStrong"));
-
-- AddChartBubble(ShowBubbles && (isCBO_strong_bearA or isCBO_strong_bearB) && is_CBO &&  want_Strong &&
-
-- want_Bear,close,"strong\nbearish", Color.WHITE, yes);
-
-- ##################################################
-
-- #==== 'SPAN A' & 'SPAN B' CROSS SIGNALS (SpanAD)====     ###
-
-- #The 'Span A' and 'Span B' cross is one of the lesser known trading strategies within the Ichimoku system. This is
-
-- mostly due to the fact that the 'Span A' cross tends to be more commonly used as an additional confirmation with other
-
-- trading strategies rather than being used as a standalone trading strategy in its own right. it is best employed on the
-
-- longer time frames of the Daily chart and above. Keep in mind with the Span crossings is that the "cross" signal will take
-
-- place 26 periods ahead of the price action as the CLOUD is time-shifted 26 periods into the future.
-
-- ##################################################
-
-- def is_SpanAB = if Type_Signal == Type_Signal."SpanA/B Cross" then 1 else 0;
-
-- ## === BULLISH SIGNALS ===
-
-- ###########################
-
-- ###   === SpanAB BULL & STRONG === Close[26] is above the cloud when cross happens
-
-- Def is_SpanAB_Cross = if crosses("Span A","Span B", CrossingDirection.ABOVE) then 1 else 0;
-
-- def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is above
-
-- the cloud
-
-- Plot SpanAB_StrongBull = if is_SpanAB_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Strong &&
-
-- want_Bull  then "Span A" else Double.Nan;
-
-- SpanAB_StrongBull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- SpanAB_StrongBull.SetLineWeight(5);
-
-- SpanAB_StrongBull.SetDefaultColor(GlobalColor("BullStrong"));
-
-- AddChartBubble(ShowBubbles && is_SpanAB_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Strong &&
-
-- want_Bull,"Span A","strong\nbullish", Color.WHITE, yes);
-
-- #def Cond_VertLine = if is_SpanAB_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Strong && want_Bull
-
-- then barnumber() - 26 else Double.Nan;
-
-- #AddVerticalLine(boolean visible, Any text, CustomColor color, int stroke);
-
-- AddVerticalLine(SpanAB_StrongBull[-26],"price  RE  the following SpanA Cross",color.cyan,Curve.SHORT_DASH);
-
-- ###      === BULL & NEUTRAL ===
-
-- # This signal happens infrequently
-
-- def IsInCloud_26 = if (("Span A"[26] > "Span B"[26] && close[26] < "Span A"[26] && close[26] > "Span B"[26]) or ("Span
-
-- B"[26] > "Span A"[26] && close[26] > "Span A"[26] && close[26] < "Span B"[26]),1,0);#Proven InCloud code shifte 26 bars
-
-- back for the SpanAB signals only
-
-- def isSpanAB_NeutralCross = is_SpanAB_Cross && IsInCloud_26;
-
-- Plot SpanAB_NeutralBull = if is_SpanAB_Cross && IsInCloud_26 && is_SpanAB && want_neutral && want_Bull then
-
-- "Span A" else Double.Nan;
-
-- SpanAB_NeutralBull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- SpanAB_NeutralBull.SetLineWeight(5);
-
-- SpanAB_NeutralBull.SetDefaultColor(GlobalColor("BullNeutral"));
-
-- AddChartBubble(ShowBubbles && is_SpanAB_Cross && IsInCloud_26 && is_SpanAB && want_neutral &&
-
-- want_Bull ,"Span A","neutral\nbullish", Color.WHITE, yes);
-
-- AddVerticalLine(SpanAB_NeutralBull[-26],"price  RE  the following SpanA Cross",color.cyan,Curve.SHORT_DASH);
-
-- ###      === SpanAS BULL & WEAK ===
-
-- def isSpanAB_BelowCloud_26 = close[26] < "Span A"[26] && close[26] < "Span B"[26];
-
-- Plot SpanAB_WeakBull = if is_SpanAB_Cross && is_SpanAB && isSpanAB_BelowCloud_26 && want_weak && want_Bull
-
-- then "Span A" else Double.Nan;
-
-- SpanAB_WeakBull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- SpanAB_WeakBull.SetLineWeight(5);
-
-- SpanAB_WeakBull.SetDefaultColor(GlobalColor("Bullweak"));
-
-- AddChartBubble(ShowBubbles &&  is_SpanAB_Cross && is_SpanAB && isSpanAB_BelowCloud_26 && want_weak &&
-
-- want_Bull,"Span A","weak\nbullish", Color.WHITE, yes);
-
-- #AddVerticalLine(boolean visible, Any text, CustomColor color, int stroke);
-
-- AddVerticalLine(SpanAB_WeakBull[-26],"price  RE  the following SpanA Cross",color.cyan,Curve.SHORT_DASH);
-
-- ## ===  SpanAS BEARISH SIGNALS ===
-
-- ###########################
-
-- #def is_SpanAB = if Type_Signal == Type_Signal."SpanA/B Cross" then 1 else 0;
-
-- #A bearish signal is when Span A crosses below Span B (or Span B crosses above Span A)
-
-- def SpanAS_Bearish_Cross = if crosses("Span A","Span B", CrossingDirection.BELOW) then 1 else 0;
-
-- ###      === SpanAS BEAR & STRONG ===
-
-- ######################################
-
-- #def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is
-
-- above the cloud
-
-- Plot SpanAB_StrongBear = if SpanAS_Bearish_Cross && isSpanAB_BelowCloud_26 && is_SpanAB &&  want_Strong &&
-
-- want_Bear  then "Span B" else Double.Nan;
-
-- SpanAB_StrongBear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- SpanAB_StrongBear.SetLineWeight(5);
-
-- SpanAB_StrongBear.SetDefaultColor(GlobalColor("BearStrong"));
-
-- AddChartBubble(ShowBubbles && SpanAS_Bearish_Cross && isSpanAB_BelowCloud_26 && is_SpanAB &&  want_Strong
-
-- && want_Bear,"Span B","strong\nbearish", Color.WHITE, no);
-
-- AddVerticalLine(SpanAB_StrongBear[-26],"price  RE  the previous Span B/A Cross",color.cyan,Curve.SHORT_DASH);
-
-- ###      === SpanAS BEAR & NEUTRAL ===
-
-- #########################################
-
-- #def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is
-
-- above the cloud
-
-- Plot SpanAB_NeutralBear = if SpanAS_Bearish_Cross && IsInCloud_26 && is_SpanAB &&  want_Neutral && want_Bear
-
-- then "Span B" else Double.Nan;
-
-- SpanAB_NeutralBear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- SpanAB_NeutralBear.SetLineWeight(5);
-
-- SpanAB_NeutralBear.SetDefaultColor(GlobalColor("BearNeutral"));
-
-- AddChartBubble(ShowBubbles && SpanAS_Bearish_Cross && IsInCloud_26 && is_SpanAB &&  want_Neutral &&
-
-- want_Bear ,"Span B","Neutral\nbearish", Color.WHITE, no);
-
-- AddVerticalLine(SpanAB_NeutralBear[-26],"price  RE  the previous Span B/A Cross",color.cyan,Curve.SHORT_DASH);
-
-- ###      === SpanAS BEAR & WEAK ===
-
-- #########################################
-
-- #def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is
-
-- above the cloud
-
-- Plot SpanAB_WeakBear = if SpanAS_Bearish_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Weak &&
-
-- want_Bear  then "Span B" else Double.Nan;
-
-- SpanAB_WeakBear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- SpanAB_WeakBear.SetLineWeight(5);
-
-- SpanAB_WeakBear.SetDefaultColor(GlobalColor("BearWeak"));
-
-- AddChartBubble(ShowBubbles && SpanAS_Bearish_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Weak
-
-- && want_Bear,"Span B","Weak\nbearish", Color.WHITE, no);
-
-- AddVerticalLine(SpanAB_WeakBear[-26],"price  RE  the previous Span B/A Cross",color.cyan,Curve.SHORT_DASH);
-
-- ###########################################
-
-- #==== CHIKOU CROSS(CC) SIGNALS  ====  ##
-
-- #chikou cross is essentially the "chikou confirmation" that savvy Ichimoku traders utilize to confirm chart sentiment
-
-- before entering any trade. This confirmation comes in the form of the chikou crossing through the price curve in the
-
-- direction of the proposed trade. If it crosses through the price curve from the bottom up, then it is a bullish signal. If it
-
-- crosses from the top down, then it is considered a bearish signal.
-
-- ############################################
-
-- def is_ChikouCross = if Type_Signal == Type_Signal."Chikou Cross" then 1 else 0;
-
-- ## ===CHIKOU CROSS BULLISH SIGNALS ===
-
-- ###########################
-
-- #Bullish = Chikou crsses above close.Strong when close is above the cloud.
-
-- def ChikouCross_Bull = if Crosses(Chikou,close, CrossingDirection.ABOVE) then 1 else 0;
-
-- ####      === CHIKOU CROSS BULL & STRONG ===
-
-- plot CC_Strong_Bull = If (is_ChikouCross && ChikouCross_Bull && IsAboveCloud &&  want_Strong && want_Bull, Chikou,
-
-- Double.NaN);
-
-- CC_Strong_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- CC_Strong_Bull.SetLineWeight(5);
-
-- CC_Strong_Bull.SetDefaultColor(GlobalColor("BullStrong"));
-
-- AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bull && IsAboveCloud &&  want_Strong && want_Bull,
-
-- Chikou, "strong\nbullish",  Color.WHITE, yes);
-
-- ###      === CHIKOU CROSS BULL & NEUTRAL ===
-
-- plot CC_Neutral_Bull = If (is_ChikouCross && ChikouCross_Bull && IsInCloud &&  want_Neutral && want_Bull, Chikou,
-
-- Double.NaN);
-
-- CC_Neutral_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- CC_Neutral_Bull.SetLineWeight(5);
-
-- CC_Neutral_Bull.SetDefaultColor(GlobalColor("BullNeutral"));
-
-- AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bull && IsInCloud &&  want_Neutral && want_Bull,
-
-- Chikou, "neutral\nbullish",  Color.WHITE, yes);
-
-- ###      === CHIKOU CROSS BULL & WEAK ===
-
-- plot CC_Weak_Bull = If (is_ChikouCross && ChikouCross_Bull && IsBelowCloud &&  want_Weak && want_Bull, Chikou,
-
-- Double.NaN);
-
-- CC_Weak_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- CC_Weak_Bull.SetLineWeight(5);
-
-- CC_Weak_Bull.SetDefaultColor(GlobalColor("BullWeak"));
-
-- AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bull && IsBelowCloud &&  want_Weak && want_Bull,
-
-- Chikou, "weak\nbullish",  Color.WHITE, yes);
-
-- ## ===  CHIKOU CROSS BEARISH SIGNALS ===
-
-- ###########################
-
-- #         === Chikou Cross Bear & strong ====
-
-- #Bearish = Chokou crosses below the close
-
-- ###      === CHIKOU CROSS BEAR & STRONG ===
-
-- def ChikouCross_Bear = if Crosses(Chikou,close, CrossingDirection.BELOW) then 1 else 0;
-
-- plot CC_Strong_Bear = If (is_ChikouCross && ChikouCross_Bear && IsBelowCloud &&  want_Strong && want_BEAR,
-
-- Chikou, Double.NaN);
-
-- CC_Strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- CC_Strong_Bear.SetLineWeight(5);
-
-- CC_Strong_Bear.SetDefaultColor(GlobalColor("BearStrong"));
-
-- AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bear && IsBelowCloud &&  want_Strong &&
-
-- want_BEAR, Chikou, "strong\nbearish",  Color.WHITE, no);
-
-- ###      === CHIKOU CROSS BEAR & NEUTRAL ===
-
-- plot CC_Neutral_Bear = If (is_ChikouCross && ChikouCross_Bear && IsInCloud &&  want_Neutral && want_BEAR,
-
-- Chikou, Double.NaN);
-
-- CC_Neutral_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- CC_Neutral_Bear.SetLineWeight(5);
-
-- CC_Neutral_Bear.SetDefaultColor(GlobalColor("BearNeutral"));
-
-- AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bear && IsInCloud &&  want_Neutral && want_BEAR,
-
-- Chikou, "Neutral\nbearish",  Color.WHITE, no);
-
-- ###      === CHIKOU CROSS BEAR & WEAK ===
-
-- plot CC_Weak_Bear = If (is_ChikouCross && ChikouCross_Bear && IsAboveCloud &&  want_Weak && want_BEAR, Chikou,
-
-- Double.NaN);
-
-- CC_Weak_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- CC_Weak_Bear.SetLineWeight(5);
-
-- CC_Weak_Bear.SetDefaultColor(GlobalColor("BearWeak"));
-
-- AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bear && IsAboveCloud &&  want_Weak &&
-
-- want_BEAR, Chikou, "Weak\nbearish",  Color.WHITE, no);
+AddChartBubble(ShowBubbles && cond_NKT_Cross && Is_TKC && want_Neutral && want_Bear , Tenkan, "neutral\nbearish",  Color.WHITE, yes);
+
+###      === WEAK cross K/T happens while ABOVE the cloud  ===
+def Cond_WKT_Cross = Crosses(Tenkan, Kijun, CrossingDirection.BELOW) && IsAboveCloud;
+
+plot WKT_Cross = If (Cond_WKT_Cross && Is_TKC && want_Weak && want_Bear, Tenkan, Double.NaN);
+WKT_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+WKT_Cross.SetLineWeight(5);
+WKT_Cross.SetDefaultColor(CreateColor(186, 85, 211));
+
+AddChartBubble(ShowBubbles && Cond_WKT_Cross && Is_TKC && want_Weak && want_Bear , Tenkan,"Weak\nbearish",  Color.WHITE, no);
+
+#####################################
+#==== KIJUN CROSS SIGNALS ====     ##
+#The kijun cross is one of the most powerful and reliable trading strategies within the Ichimoku system. It can be used on nearly all time frames with excellent results, though it will be somewhat less reliable on the lower, daytrading time frames due to the increased volatility on those time frames.
+#####################################
+def is_KC = if Type_Signal == Type_Signal."Kijun Cross" then 1 else 0;
+## === BULLISH SIGNALS when close crosses above the Kijun
+#######################################
+###      === BULL & STRONG ===
+def is_KC_bull_strong = Crosses(close, Kijun, CrossingDirection.ABOVE) && IsAboveCloud;
+
+plot KC_Strong_Bull = If (is_KC_bull_strong && is_KC &&  want_Strong && want_Bull, Kijun, Double.NaN);
+KC_Strong_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+KC_Strong_Bull.SetLineWeight(5);
+KC_Strong_Bull.SetDefaultColor(GlobalColor("BullStrong"));
+
+AddChartBubble(ShowBubbles && is_KC_bull_strong && is_KC &&  want_Strong && want_Bull , Kijun, "strong\nbullish",Color.WHITE, yes);
+
+###      === BULL & NEUTRAL ===
+def is_KC_bull_neutral = Crosses(close, Kijun, CrossingDirection.ABOVE) && IsInCloud;
+
+plot KC_neutral_Bull = If (is_KC_bull_neutral && is_KC && want_Neutral && want_Bull, Kijun, Double.NaN);
+KC_neutral_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+KC_neutral_Bull.SetLineWeight(5);
+KC_neutral_Bull.SetDefaultColor(GlobalColor("BullNeutral"));
+
+AddChartBubble(ShowBubbles && is_KC_bull_neutral && is_KC && want_Neutral && want_Bull , Kijun, "neutral\nbullish", Color.WHITE, yes);
+
+###      === BULL & WEAK ===
+def is_KC_bull_weak = Crosses(close, Kijun, CrossingDirection.ABOVE) && IsBelowCloud;
+
+plot KC_weak_Bull = If (is_KC_bull_weak && is_KC && want_Weak && want_Bull, Kijun, Double.NaN);
+KC_weak_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+KC_weak_Bull.SetLineWeight(5);
+KC_weak_Bull.SetDefaultColor(GlobalColor("BullWeak"));
+
+AddChartBubble(ShowBubbles && is_KC_bull_weak && is_KC && want_Weak && want_Bull , Kijun, "weak\nbullish",Color.WHITE, yes);
+
+## === BEARISH SIGNALS when close crosses below the Kijun
+####################################
+###      === BEAR & STRONG ===
+def is_KC_bear_strong = Crosses(close, Kijun, CrossingDirection.BELOW) && IsBelowCloud;
+
+plot KC_strong_Bear = If (is_KC_bear_strong && is_KC &&  want_Strong && want_Bear, Kijun, Double.NaN);
+KC_strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+KC_strong_Bear.SetLineWeight(5);
+KC_strong_Bear.SetDefaultColor(GlobalColor("BearStrong"));
+
+AddChartBubble(ShowBubbles && is_KC_bear_strong && is_KC &&  want_Strong && want_Bear , Kijun,"strong\nbearish",  Color.WHITE, yes);
+
+###      === BEAR & NEUTRAL ===
+def is_KC_bear_neutral = Crosses(close, Kijun, CrossingDirection.BELOW) && IsInCloud;
+
+plot KC_neutral_Bear = If (is_KC_bear_neutral && is_KC && want_Neutral && want_Bear, Kijun, Double.NaN);
+KC_strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+KC_strong_Bear.SetLineWeight(5);
+KC_strong_Bear.SetDefaultColor(GlobalColor("BearNeutral"));
+
+AddChartBubble(ShowBubbles && is_KC_bear_neutral && is_KC && want_Neutral && want_Bear, Kijun, "neutral\nbearish",  Color.WHITE, yes);
+
+###      === BEAR & WEAK ===
+def is_KC_bear_weak = Crosses(close, Kijun, CrossingDirection.BELOW) && IsAboveCloud;
+
+plot KC_weak_Bear = If (is_KC_bear_weak && is_KC && want_Weak && want_Bear, Kijun, Double.NaN);
+KC_weak_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+KC_weak_Bear.SetLineWeight(5);
+KC_weak_Bear.SetDefaultColor(GlobalColor("Bearweak"));
+
+AddChartBubble(ShowBubbles && is_KC_bear_weak && is_KC && want_Weak && want_Bear, Kijun, "weak\nbearish", Color.WHITE, yes);
+
+#################################
+#==== CLOUD BREAKOUT SIGNALS ====  ##
+#CLOUD BREAKOUT trading is a trading strategy that can be used on multiple time frames, though it is most widely used on the higher time frames (e.g.: Daily, Weekly, Monthly). CLOUD breakout trading is the purest form of trend trading offered by the Ichimoku charting system, as it looks solely to the CLOUD and price's(close) relationship to it for its signals. It is "big picture" trading that focuses only on whether price is trading above or below the prevailing CLOUD. . In a nutshell, the signal to go long in CLOUD BREAKOUT trading is when price closes above the prevailing CLOUD and, likewise, the signal to go short is when price closes below the prevailing CLOUD.
+
+#############################
+def is_CBO = if Type_Signal == Type_Signal."Cloud BreakOut" then 1 else 0;
+## === BULLISH SIGNALS ===
+###########################
+#A bullish signal is present when the close moves above the cloud. Caution is needed if close is rising above a flat-top- cloud (a persistent resistance). The position of the close related to the cloud is the most controlling aspect of signal evaluation.....it is the 'Big Picture'.
+def SpanA_OnTop = if ("Span A" > "Span B",1,0);
+def isCBO_bull_aboveA = if "Span A" > "Span B" && crosses(close,"Span A",CrossingDirection.ABOVE) then 1 else 0;
+def isCBO_bull_aboveB = if "Span B" > "Span A" && crosses(close,"Span B",CrossingDirection.ABOVE) then 1 else 0;
+
+plot CBO_Bull_Strong = if (isCBO_bull_aboveA or isCBO_bull_aboveB) && is_CBO &&  want_Strong && want_Bull then close else Double.Nan;
+CBO_Bull_Strong.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+CBO_Bull_Strong.SetLineWeight(5);
+CBO_Bull_Strong.SetDefaultColor(GlobalColor("BullStrong"));
+
+#def is_FlatTop = If (isCBO_bull_cross && SpanA_OnTop && Sum("Span A" > .90 * "Span A"[1], 8) >= 5, 1, 0) or
+if(isCBO_bull_cross && !SpanA_OnTop && sum("Span B" > .95 * "Span B"[1],8) >= 5 ,1,0);
+#def SpanA_FlatTop = If (isCBO_bull_cross && SpanA_OnTop && Sum("Span A" ==  "Span A"[1], 8) >= 5, 1, 0);
+#def SpanB_FlatTop = If (isCBO_bull_cross && !SpanA_OnTop && Sum("Span B" ==  "Span B"[1], 8) >= 5, 1, 0);
+AddChartBubble(ShowBubbles && (isCBO_bull_aboveA or isCBO_bull_aboveB) && is_CBO &&  want_Strong && want_Bull,close,"strong\nbullish", Color.WHITE, yes);
+
+## === BEARISH SIGNALS ===
+###########################
+###      === BEAR & STRONG ===
+def isCBO_strong_bearA = if "Span A" < "Span B" && crosses(close,"Span A",CrossingDirection.BELOW) then 1 else 0;
+def isCBO_strong_bearB = if "Span B" < "Span A" && crosses(close,"Span B",CrossingDirection.BELOW) then 1 else 0;
+plot CBO_Bear_Strong = if (isCBO_strong_bearA or isCBO_strong_bearB) && is_CBO &&  want_Strong && want_Bear then close else Double.Nan;
+CBO_Bear_Strong.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+CBO_Bear_Strong.SetLineWeight(5);
+CBO_Bear_Strong.SetDefaultColor(GlobalColor("BearStrong"));
+
+AddChartBubble(ShowBubbles && (isCBO_strong_bearA or isCBO_strong_bearB) && is_CBO &&  want_Strong && want_Bear,close,"strong\nbearish", Color.WHITE, yes);
+##################################################
+#==== 'SPAN A' & 'SPAN B' CROSS SIGNALS (SpanAD)====     ###
+#The 'Span A' and 'Span B' cross is one of the lesser known trading strategies within the Ichimoku system. This is mostly due to the fact that the 'Span A' cross tends to be more commonly used as an additional confirmation with other trading strategies rather than being used as a standalone trading strategy in its own right. it is best employed on the longer time frames of the Daily chart and above. Keep in mind with the Span crossings is that the "cross" signal will take place 26 periods ahead of the price action as the CLOUD is time-shifted 26 periods into the future.
+
+##################################################
+def is_SpanAB = if Type_Signal == Type_Signal."SpanA/B Cross" then 1 else 0;
+
+## === BULLISH SIGNALS ===
+###########################
+###   === SpanAB BULL & STRONG === Close[26] is above the cloud when cross happens
+Def is_SpanAB_Cross = if crosses("Span A","Span B", CrossingDirection.ABOVE) then 1 else 0;
+def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is above the cloud
+
+Plot SpanAB_StrongBull = if is_SpanAB_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Strong && want_Bull  then "Span A" else Double.Nan;
+SpanAB_StrongBull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+SpanAB_StrongBull.SetLineWeight(5);
+SpanAB_StrongBull.SetDefaultColor(GlobalColor("BullStrong"));
+
+AddChartBubble(ShowBubbles && is_SpanAB_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Strong && want_Bull,"Span A","strong\nbullish", Color.WHITE, yes);
+#def Cond_VertLine = if is_SpanAB_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Strong && want_Bull then barnumber() - 26 else Double.Nan;
+#AddVerticalLine(boolean visible, Any text, CustomColor color, int stroke);
+AddVerticalLine(SpanAB_StrongBull[-26],"price  RE  the following SpanA Cross",color.cyan,Curve.SHORT_DASH);
+
+###      === BULL & NEUTRAL ===
+# This signal happens infrequently
+def IsInCloud_26 = if (("Span A"[26] > "Span B"[26] && close[26] < "Span A"[26] && close[26] > "Span B"[26]) or ("SpanB"[26] > "Span A"[26] && close[26] > "Span A"[26] && close[26] < "Span B"[26]),1,0);#Proven InCloud code shifte 26 bars back for the SpanAB signals only
+
+def isSpanAB_NeutralCross = is_SpanAB_Cross && IsInCloud_26;
+Plot SpanAB_NeutralBull = if is_SpanAB_Cross && IsInCloud_26 && is_SpanAB && want_neutral && want_Bull then "Span A" else Double.Nan;
+SpanAB_NeutralBull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+SpanAB_NeutralBull.SetLineWeight(5);
+SpanAB_NeutralBull.SetDefaultColor(GlobalColor("BullNeutral"));
+
+AddChartBubble(ShowBubbles && is_SpanAB_Cross && IsInCloud_26 && is_SpanAB && want_neutral && want_Bull ,"Span A","neutral\nbullish", Color.WHITE, yes);
+AddVerticalLine(SpanAB_NeutralBull[-26],"price  RE  the following SpanA Cross",color.cyan,Curve.SHORT_DASH);
+
+###      === SpanAS BULL & WEAK ===
+def isSpanAB_BelowCloud_26 = close[26] < "Span A"[26] && close[26] < "Span B"[26];
+Plot SpanAB_WeakBull = if is_SpanAB_Cross && is_SpanAB && isSpanAB_BelowCloud_26 && want_weak && want_Bull then "Span A" else Double.Nan;
+SpanAB_WeakBull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+SpanAB_WeakBull.SetLineWeight(5);
+SpanAB_WeakBull.SetDefaultColor(GlobalColor("Bullweak"));
+
+AddChartBubble(ShowBubbles &&  is_SpanAB_Cross && is_SpanAB && isSpanAB_BelowCloud_26 && want_weak && want_Bull,"Span A","weak\nbullish", Color.WHITE, yes);
+#AddVerticalLine(boolean visible, Any text, CustomColor color, int stroke);
+AddVerticalLine(SpanAB_WeakBull[-26],"price  RE  the following SpanA Cross",color.cyan,Curve.SHORT_DASH);
+
+## ===  SpanAS BEARISH SIGNALS ===
+###########################
+#def is_SpanAB = if Type_Signal == Type_Signal."SpanA/B Cross" then 1 else 0;
+#A bearish signal is when Span A crosses below Span B (or Span B crosses above Span A)
+def SpanAS_Bearish_Cross = if crosses("Span A","Span B", CrossingDirection.BELOW) then 1 else 0;
+
+###      === SpanAS BEAR & STRONG ===
+######################################
+#def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is above the cloud
+Plot SpanAB_StrongBear = if SpanAS_Bearish_Cross && isSpanAB_BelowCloud_26 && is_SpanAB &&  want_Strong && want_Bear  then "Span B" else Double.Nan;
+SpanAB_StrongBear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+SpanAB_StrongBear.SetLineWeight(5);
+SpanAB_StrongBear.SetDefaultColor(GlobalColor("BearStrong"));
+
+AddChartBubble(ShowBubbles && SpanAS_Bearish_Cross && isSpanAB_BelowCloud_26 && is_SpanAB &&  want_Strong && want_Bear,"Span B","strong\nbearish", Color.WHITE, no);
+AddVerticalLine(SpanAB_StrongBear[-26],"price  RE  the previous Span B/A Cross",color.cyan,Curve.SHORT_DASH);
+
+###      === SpanAS BEAR & NEUTRAL ===
+#########################################
+#def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is above the cloud
+Plot SpanAB_NeutralBear = if SpanAS_Bearish_Cross && IsInCloud_26 && is_SpanAB &&  want_Neutral && want_Bear then "Span B" else Double.Nan;
+SpanAB_NeutralBear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+SpanAB_NeutralBear.SetLineWeight(5);
+SpanAB_NeutralBear.SetDefaultColor(GlobalColor("BearNeutral"));
+
+AddChartBubble(ShowBubbles && SpanAS_Bearish_Cross && IsInCloud_26 && is_SpanAB &&  want_Neutral && want_Bear ,"Span B","Neutral\nbearish", Color.WHITE, no);
+
+AddVerticalLine(SpanAB_NeutralBear[-26],"price  RE  the previous Span B/A Cross",color.cyan,Curve.SHORT_DASH);
+
+###      === SpanAS BEAR & WEAK ===
+#########################################
+#def isSpanAB_AboveCloud_26 = if close[26] > "Span A"[26] && close[26] > "Span B"[26]then 1 else 0;#close[26] is above the cloud
+Plot SpanAB_WeakBear = if SpanAS_Bearish_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Weak && want_Bear  then "Span B" else Double.Nan;
+SpanAB_WeakBear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+SpanAB_WeakBear.SetLineWeight(5);
+SpanAB_WeakBear.SetDefaultColor(GlobalColor("BearWeak"));
+
+AddChartBubble(ShowBubbles && SpanAS_Bearish_Cross && isSpanAB_AboveCloud_26 && is_SpanAB &&  want_Weak && want_Bear,"Span B","Weak\nbearish", Color.WHITE, no);
+AddVerticalLine(SpanAB_WeakBear[-26],"price  RE  the previous Span B/A Cross",color.cyan,Curve.SHORT_DASH);
+
+###########################################
+#==== CHIKOU CROSS(CC) SIGNALS  ====  ##
+#chikou cross is essentially the "chikou confirmation" that savvy Ichimoku traders utilize to confirm chart sentiment before entering any trade. This confirmation comes in the form of the chikou crossing through the price curve in the direction of the proposed trade. If it crosses through the price curve from the bottom up, then it is a bullish signal. If it crosses from the top down, then it is considered a bearish signal.
+############################################
+def is_ChikouCross = if Type_Signal == Type_Signal."Chikou Cross" then 1 else 0;
+## ===CHIKOU CROSS BULLISH SIGNALS ===
+
+###########################
+#Bullish = Chikou crsses above close.Strong when close is above the cloud.
+def ChikouCross_Bull = if Crosses(Chikou,close, CrossingDirection.ABOVE) then 1 else 0;
+
+####      === CHIKOU CROSS BULL & STRONG ===
+plot CC_Strong_Bull = If (is_ChikouCross && ChikouCross_Bull && IsAboveCloud &&  want_Strong && want_Bull, Chikou, Double.NaN);
+CC_Strong_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+CC_Strong_Bull.SetLineWeight(5);
+CC_Strong_Bull.SetDefaultColor(GlobalColor("BullStrong"));
+
+AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bull && IsAboveCloud &&  want_Strong && want_Bull, Chikou, "strong\nbullish",  Color.WHITE, yes);
+
+###      === CHIKOU CROSS BULL & NEUTRAL ===
+plot CC_Neutral_Bull = If (is_ChikouCross && ChikouCross_Bull && IsInCloud &&  want_Neutral && want_Bull, Chikou,
+Double.NaN);
+CC_Neutral_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+CC_Neutral_Bull.SetLineWeight(5);
+CC_Neutral_Bull.SetDefaultColor(GlobalColor("BullNeutral"));
+
+AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bull && IsInCloud &&  want_Neutral && want_Bull, Chikou, "neutral\nbullish",  Color.WHITE, yes);
+
+###      === CHIKOU CROSS BULL & WEAK ===
+plot CC_Weak_Bull = If (is_ChikouCross && ChikouCross_Bull && IsBelowCloud &&  want_Weak && want_Bull, Chikou, Double.NaN);
+CC_Weak_Bull.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+CC_Weak_Bull.SetLineWeight(5);
+CC_Weak_Bull.SetDefaultColor(GlobalColor("BullWeak"));
+
+AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bull && IsBelowCloud &&  want_Weak && want_Bull, Chikou, "weak\nbullish",  Color.WHITE, yes);
+
+## ===  CHIKOU CROSS BEARISH SIGNALS ===
+###########################
+#         === Chikou Cross Bear & strong ====
+#Bearish = Chokou crosses below the close
+###      === CHIKOU CROSS BEAR & STRONG ===
+def ChikouCross_Bear = if Crosses(Chikou,close, CrossingDirection.BELOW) then 1 else 0;
+plot CC_Strong_Bear = If (is_ChikouCross && ChikouCross_Bear && IsBelowCloud &&  want_Strong && want_BEAR, Chikou, Double.NaN);
+CC_Strong_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+CC_Strong_Bear.SetLineWeight(5);
+CC_Strong_Bear.SetDefaultColor(GlobalColor("BearStrong"));
+
+AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bear && IsBelowCloud &&  want_Strong && want_BEAR, Chikou, "strong\nbearish",  Color.WHITE, no);
+
+###      === CHIKOU CROSS BEAR & NEUTRAL ===
+plot CC_Neutral_Bear = If (is_ChikouCross && ChikouCross_Bear && IsInCloud &&  want_Neutral && want_BEAR, Chikou, Double.NaN);
+CC_Neutral_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+CC_Neutral_Bear.SetLineWeight(5);
+CC_Neutral_Bear.SetDefaultColor(GlobalColor("BearNeutral"));
+
+AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bear && IsInCloud &&  want_Neutral && want_BEAR, Chikou, "Neutral\nbearish",  Color.WHITE, no);
+
+###      === CHIKOU CROSS BEAR & WEAK ===
+plot CC_Weak_Bear = If (is_ChikouCross && ChikouCross_Bear && IsAboveCloud &&  want_Weak && want_BEAR, Chikou, Double.NaN);
+CC_Weak_Bear.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+CC_Weak_Bear.SetLineWeight(5);
+CC_Weak_Bear.SetDefaultColor(GlobalColor("BearWeak"));
+
+AddChartBubble(ShowBubbles && is_ChikouCross && ChikouCross_Bear && IsAboveCloud &&  want_Weak && want_BEAR, Chikou, "Weak\nbearish",  Color.WHITE, no);
 
 #====== LABELS ========
 #AddLabel(ShowColorLabels, "Strong Bullish", CreateColor(82, 242, 234));#aqua
@@ -9327,41 +8663,24 @@ AddLabel(showlabels, "DYMI(" + DYMI_length + ") = " + Round(DYMI_here, 1), if DY
 #AddLabel(ShowColorLabels, "Neutral Bearish", CreateColor(221, 160, 221));#medium plum
 #AddLabel(ShowColorLabels, "Weak Bearish", CreateColor(186, 85, 211));#med orchid orchid
 
-- #==== Coding of labels for input-type of signals selected =======
-
-- AddLabel(yes, "The type of signal selected is " + (if Type_Signal == Type_Signal."T/K Cross" then "'Tenkan/Kijun Cross'"
-
-- else if Type_Signal == Type_Signal."Kijun Cross" then "'Kijun Cross'"
-
-- else if Type_Signal == Type_Signal."Cloud BreakOut" then "'Cloud BreakOut'"
-
-- else if Type_Signal == Type_Signal."SpanA/B Cross" then "'SpanA/B Cross'"
-
-- else if Type_Signal == Type_Signal."Chikou Cross" then "'Chikou Cross'"
-
-- else ""), Color.WHITE);
-
-- AddLabel(yes, "The signal strength selected is " + (if Signal_strength == Signal_strength."Strong" then "'Strong'"
-
-- else if Signal_strength == Signal_strength."Neutral" then "'Neutral'"
-
-- else if Signal_strength == Signal_strength."Weak" then "'Weak'"
-
-- else if Signal_strength == Signal_strength."All" then "'All'"
-
-- else ""), Color.WHITE);
-
-- AddLabel(yes, "The bullish/bearish sentiment selected is " + (if Bullish_Bearish == Bullish_Bearish."Bullish" then
-
-- "'Bullish'"
-
-- else if Bullish_Bearish == Bullish_Bearish."Bearish" then "'Bearish'"
-
-- else if Bullish_Bearish == Bullish_Bearish."Both" then "'Both'"
-
-- else ""), Color.WHITE);
-
-- ### end of code ###
+#==== Coding of labels for input-type of signals selected =======
+AddLabel(yes, "The type of signal selected is " + (if Type_Signal == Type_Signal."T/K Cross" then "'Tenkan/Kijun Cross'"
+  else if Type_Signal == Type_Signal."Kijun Cross" then "'Kijun Cross'"
+  else if Type_Signal == Type_Signal."Cloud BreakOut" then "'Cloud BreakOut'"
+  else if Type_Signal == Type_Signal."SpanA/B Cross" then "'SpanA/B Cross'"
+  else if Type_Signal == Type_Signal."Chikou Cross" then "'Chikou Cross'"
+  else ""), Color.WHITE);
+AddLabel(yes, "The signal strength selected is " + (if Signal_strength == Signal_strength."Strong" then "'Strong'"
+  else if Signal_strength == Signal_strength."Neutral" then "'Neutral'"
+  else if Signal_strength == Signal_strength."Weak" then "'Weak'"
+  else if Signal_strength == Signal_strength."All" then "'All'"
+  else ""), Color.WHITE);
+AddLabel(yes, "The bullish/bearish sentiment selected is " + (if Bullish_Bearish == Bullish_Bearish."Bullish" then "'Bullish'"
+  else if Bullish_Bearish == Bullish_Bearish."Bearish" then "'Bearish'"
+  else if Bullish_Bearish == Bullish_Bearish."Both" then "'Both'"
+  else ""), Color.WHITE);
+### end of code ###
+```
 
 ## C-AN ICHIMOKU CHART EVALUATION SETUP
 
@@ -9383,387 +8702,242 @@ In the ThinkScript Lounge there was a request to post the setup used when evalua
 
 [Return to TOC](#toc)
 
-- Comment: Using the Hull moving average in the MACD in lieu of the SMA or EMA produces a more sensitive/responsive
-
-- MACD and is included here for that reason.
-
-- #MACD based on Hull Moving Average W/peak/ebb arrows
-
-- #TOS title = MACD_via_Hull_MA_fav
-
-- declare lower;
-
-- input fastLength = 12;
-
-- input slowLength = 26;
-
-- input MACDLength = 9;
-
-- input AverageType = {SMA, EMA, default HULL};
-
-- plot Value;
-
-- plot Avg;
-
-- switch (AverageType) {
-
-- case SMA:
-
-- Value = Average(close, fastLength) - Average(close, slowLength);
-
-- Avg = Average(Value, MACDLength);
-
-- case EMA:
-
-- Value = ExpAverage(close, fastLength) - ExpAverage(close, slowLength);
-
-- Avg = ExpAverage(Value, MACDLength);
-
-- case HULL:
-
-- Value =  MovingAverage(AverageType.HULL, close, fastLength) -  MovingAverage(AverageType.HULL, close,
-
-- slowLength);
-
-- Avg = Average(Value, MACDLength);
-
-- }
-
-- plot Diff = Value - Avg;
-
-- plot ZeroLine = 0;
-
-- Value.SetDefaultColor(GetColor(1));
-
-- Avg.SetDefaultColor(GetColor(8));
-
-- Diff.SetDefaultColor(GetColor(5));
-
-- Diff.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-
-- Diff.SetLineWeight(3);
-
-- Diff.DefineColor("Positive and Up", Color.GREEN);
-
-- Diff.DefineColor("Positive and Down", Color.DARK_GREEN);
-
-- Diff.DefineColor("Negative and Down", Color.RED);
-
-- Diff.DefineColor("Negative and Up", Color.DARK_RED);
-
-- Diff.AssignValueColor(if Diff >= 0 then if Diff > Diff[1] then Diff.color("Positive and Up") else Diff.color("Positive and
-
-- Down") else if Diff < Diff[1] then Diff.color("Negative and Down") else Diff.color("Negative and Up"));
-
-- ZeroLine.SetDefaultColor(GetColor(0));
-
-- #*********plot Min arrows**********
-
-- def MinArrow = if (Value < Value[1] and value[1] < Value[2] and value[2] < Value[3] and value[-1] > Value and value < 0)
-
-- then 0
-
-- else if (Value > Value[1])
-
-- then double.nan
-
-- else double.nan;
-
-- plot UpArrow = if(MinArrow == 0, value, double.nan);
-
-- UpArrow.AssignValueColor(Color.Green);
-
-- UpArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- UpArrow.SetLineWeight(1);
-
-- UpArrow.HideBubble();
-
-- #*********plot Max arrows**********
-
-- def MaxArrow = if (Value > Value[1] and value[1] > Value[2] and value[2] > Value[3] and value[-1] < Value and value > 0)
-
-- then 0
-
-- else if (Value > Value[1])
-
-- then double.nan
-
-- else double.nan;
-
-- plot DwnArrow = if(MaxArrow == 0, value, double.nan);
-
-- DwnArrow.AssignValueColor(Color.cyan);
-
-- DwnArrow.SetPaintingStrategy(PaintingStrategy.ARROW_Down);
-
-- DwnArrow.SetLineWeight(1);
-
-- DwnArrow.HideBubble();
-
-- #*********plot Max signal(Avg) arrows**********
-
-- def SignalArrow = if (Avg > Avg[1] and Avg[1] > Avg[2] and Avg[2] > Avg[3] and Avg[-1] < Avg and Avg > 0)
-
-- then 0
-
-- else if (Avg > Avg[1])
-
-- then double.nan
-
-- else double.nan;
-
-- plot downSignalArrow = if(SignalArrow == 0, avg, double.nan);
-
-- downSignalArrow.AssignValueColor(Color.yellow);
-
-- downSignalArrow.SetPaintingStrategy(PaintingStrategy.ARROW_Down);
-
-- downSignalArrow.SetLineWeight(1);
-
-- downSignalArrow.HideBubble();
-
-- AddCloud(ZeroLine, Value, color.RED, color.GREEN);
-
-- # end
+Comment: Using the Hull moving average in the MACD in lieu of the SMA or EMA produces a more sensitive/responsive
+MACD and is included here for that reason.
+
+```
+#MACD based on Hull Moving Average W/peak/ebb arrows
+#TOS title = MACD_via_Hull_MA_fav
+
+declare lower;
+
+input fastLength = 12;
+input slowLength = 26;
+input MACDLength = 9;
+input AverageType = {SMA, EMA, default HULL};
+
+plot Value;
+plot Avg;
+switch (AverageType) {
+  case SMA:
+    Value = Average(close, fastLength) - Average(close, slowLength);
+    Avg = Average(Value, MACDLength);
+  case EMA:
+    Value = ExpAverage(close, fastLength) - ExpAverage(close, slowLength);
+    Avg = ExpAverage(Value, MACDLength);
+  case HULL:
+    Value =  MovingAverage(AverageType.HULL, close, fastLength) -  MovingAverage(AverageType.HULL, close, slowLength);
+    Avg = Average(Value, MACDLength);
+}
+
+plot Diff = Value - Avg;
+plot ZeroLine = 0;
+Value.SetDefaultColor(GetColor(1));
+Avg.SetDefaultColor(GetColor(8));
+Diff.SetDefaultColor(GetColor(5));
+Diff.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Diff.SetLineWeight(3);
+Diff.DefineColor("Positive and Up", Color.GREEN);
+Diff.DefineColor("Positive and Down", Color.DARK_GREEN);
+Diff.DefineColor("Negative and Down", Color.RED);
+Diff.DefineColor("Negative and Up", Color.DARK_RED);
+Diff.AssignValueColor(if Diff >= 0 then if Diff > Diff[1] then Diff.color("Positive and Up") else Diff.color("Positive and Down") else if Diff < Diff[1] then Diff.color("Negative and Down") else Diff.color("Negative and Up"));
+ZeroLine.SetDefaultColor(GetColor(0));
+
+#*********plot Min arrows**********
+def MinArrow = if (Value < Value[1] and value[1] < Value[2] and value[2] < Value[3] and value[-1] > Value and value < 0)
+  then 0
+  else if (Value > Value[1])
+  then double.nan
+  else double.nan;
+
+plot UpArrow = if(MinArrow == 0, value, double.nan);
+UpArrow.AssignValueColor(Color.Green);
+UpArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+UpArrow.SetLineWeight(1);
+UpArrow.HideBubble();
+
+#*********plot Max arrows**********
+def MaxArrow = if (Value > Value[1] and value[1] > Value[2] and value[2] > Value[3] and value[-1] < Value and value > 0)
+  then 0
+  else if (Value > Value[1])
+  then double.nan
+  else double.nan;
+
+plot DwnArrow = if(MaxArrow == 0, value, double.nan);
+DwnArrow.AssignValueColor(Color.cyan);
+DwnArrow.SetPaintingStrategy(PaintingStrategy.ARROW_Down);
+DwnArrow.SetLineWeight(1);
+DwnArrow.HideBubble();
+
+#*********plot Max signal(Avg) arrows**********
+def SignalArrow = if (Avg > Avg[1] and Avg[1] > Avg[2] and Avg[2] > Avg[3] and Avg[-1] < Avg and Avg > 0)
+  then 0
+  else if (Avg > Avg[1])
+  then double.nan
+  else double.nan;
+
+plot downSignalArrow = if(SignalArrow == 0, avg, double.nan);
+downSignalArrow.AssignValueColor(Color.yellow);
+downSignalArrow.SetPaintingStrategy(PaintingStrategy.ARROW_Down);
+downSignalArrow.SetLineWeight(1);
+downSignalArrow.HideBubble();
+
+AddCloud(ZeroLine, Value, color.RED, color.GREEN);
+# end
+```
 
 ## C-   DMI_OSCILLATOR_SFL_FAV
 
 [Return to TOC](#toc)
 
-- #hint:The popular builtin <b>DMI_Oscillator with arrows and lines</b> in positive and negative levels based on inputs. Use
-
-- the lines and arrows to define your criteria/decision points.
-
-- declare lower;
-
-- input length = 10;#hint length:The number of bars with which the DI+ and DI- components are calculated.
-
-- #input paintBars = yes;#hint paintBars:Defines whether or not to color price plot according to respective oscillator
-
-- values (red for negative, green for positive).
-
-- input PlotADX = yes;#hint PlotADX:Toggles plot the ADX line
-
-- input ShowArrowsLines = YES;#hint ShowArrowsLines:Toggles all arrows and above/below zero lines
-
-- input CrossAboveValue = 10;#hint CrossAboveValue:Defines the above-zero-value at which an arrow is plotted.
-
-- input CrossBelowValue = 5;#hint CrossBelowValue:Defines the below-zero-value at which an arrow is plotted.
-
-- plot WhiteLabel = Double.NaN;
-
-- WhiteLabel.SetDefaultColor(Color.White);
-
-- def na = Double.NaN;
-
-- def diPlus = DMI(length)."DI+";
-
-- def diMinus = DMI(length)."DI-";
-
-- def DX = if (diPlus + diMinus > 0) then 100 * AbsValue(diPlus - diMinus) / (diPlus + diMinus) else 0;
-
-- plot ADX = if PlotADX then  WildersAverage(DX, length) else Double.NaN;
-
-- ADX.AssignValueColor(if (diPlus > diMinus) then Color.UPTICK else Color.DOWNTICK);
-
-- ADX.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- ADX.SetLineWeight(2);
-
-- AddLabel(PlotADX, "Current ADX(" + length + ") value = " + Round(ADX, 1), ADX.TakeValueColor());
-
-- plot Osc = diPlus - diMinus;
-
-- plot Hist = Osc;
-
-- Osc.SetDefaultColor(Color.WHITE);
-
-- Osc.SetLineWeight(2);
-
-- Hist.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-
-- Hist.SetLineWeight(3);
-
-- Hist.DefineColor("Positive", Color.UPTICK);
-
-- Hist.DefineColor("Negative", Color.DOWNTICK);
-
-- Hist.AssignValueColor(if Hist > 0 then Hist.Color("Positive") else Hist.Color("Negative"));
-
-- Hist.HideTitle();
-
-- plot ZeroLine = 0;
-
-- ZeroLine.SetDefaultColor(Color.YELLOW);
-
-- #plot line_5above = 5;
-
-- #line_5above.SetDefaultColor(Color.YELLOW);
-
-- plot line_10above = if ShowArrowsLines then  CrossAboveValue else double.nan;
-
-- line_10above.SetDefaultColor(Color.YELLOW);
-
-- #plot line_5below = -5;
-
-- #line_5below.SetDefaultColor(Color.YELLOW);
-
-- plot line_10below = if ShowArrowsLines then  - CrossBelowValue else Double.nan;
-
-- line_10below.SetDefaultColor(Color.YELLOW);
-
-- ZeroLine.SetDefaultColor(Color.GRAY);
-
-- DefineGlobalColor("Positive", Color.UPTICK);
-
-- DefineGlobalColor("Negative", Color.DOWNTICK);
-
-- #AssignPriceColor(if yes
-
-- #    then Color.CURRENT
-
-- #    else if Osc > 0
-
-- #        then GlobalColor("Positive")
-
-- #        else GlobalColor("Negative"));
-
-- #======== Above-zero arrow plots when crossing input values ==========
-
-- def Upper_Up_Cross = if ShowArrowsLines && Osc crosses above CrossAboveValue then 1 else 0;
-
-- plot D_Up_Cross = if ShowArrowsLines&&  Upper_Up_Cross then Osc else Double.NaN;
-
-- D_Up_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- D_Up_Cross.SetLineWeight(1);
-
-- D_Up_Cross.SetDefaultColor(Color.GREEN);
-
-- AddLabel(ShowArrowsLines, "Above-zero arrow value = " + CrossAboveValue, Color.GREEN);
-
-- def Upper_Dwn_Cross = if ShowArrowsLines && Osc crosses below CrossAboveValue then 1 else 0;
-
-- plot D_Upper_Dwn_Cross = if Upper_Dwn_Cross then Osc else Double.NaN;
-
-- D_Upper_Dwn_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
-
-- D_Upper_Dwn_Cross.SetLineWeight(1);
-
-- D_Upper_Dwn_Cross.SetDefaultColor(Color.DARK_GREEN);
-
-- #AddLabel(ShowArrowsLines,"Above-zero arrow value = " + CrossAboveValue, color.DARK_GREEN);
-
-- #======== Below-zero arrow plots when crossing input values ==========
-
-- def Down_Cross = if ShowArrowsLines && Osc crosses below -CrossBelowValue then 1 else 0;
-
-- plot D_Down_Cross = if Down_Cross then -CrossBelowValue else Double.NaN;
-
-- D_Down_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- D_Down_Cross.SetLineWeight(1);
-
-- D_Down_Cross.SetDefaultColor(Color.RED);
-
-- AddLabel(ShowArrowsLines, "Below-zero arrow value = minus " + (CrossBelowValue), Color.RED);
-
-- def Lower_MinOSC = if Osc < (-CrossBelowValue) && Osc < Osc[1] && Osc < Osc[-1] then 1 else 0;
-
-- plot D_Lower_MinOSC = if ShowArrowsLines && Lower_MinOSC then Osc else Double.NaN;
-
-- D_Lower_MinOSC.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
-
-- D_Lower_MinOSC.SetLineWeight(1);
-
-- D_Lower_MinOSC.SetDefaultColor(Color.DARK_RED);
-
-- #AddLabel(1,"Below-zero arrow value = minus " + (CrossBelowValue), color.RED);
-
-- # end
+```
+#hint:The popular builtin <b>DMI_Oscillator with arrows and lines</b> in positive and negative levels based on inputs. Use the lines and arrows to define your criteria/decision points.
+
+declare lower;
+input length = 10;#hint length:The number of bars with which the DI+ and DI- components are calculated.
+#input paintBars = yes;#hint paintBars:Defines whether or not to color price plot according to respective oscillator values (red for negative, green for positive).
+input PlotADX = yes;#hint PlotADX:Toggles plot the ADX line
+input ShowArrowsLines = YES;#hint ShowArrowsLines:Toggles all arrows and above/below zero lines
+input CrossAboveValue = 10;#hint CrossAboveValue:Defines the above-zero-value at which an arrow is plotted.
+input CrossBelowValue = 5;#hint CrossBelowValue:Defines the below-zero-value at which an arrow is plotted.
+
+plot WhiteLabel = Double.NaN;
+WhiteLabel.SetDefaultColor(Color.White);
+
+def na = Double.NaN;
+def diPlus = DMI(length)."DI+";
+def diMinus = DMI(length)."DI-";
+def DX = if (diPlus + diMinus > 0) then 100 * AbsValue(diPlus - diMinus) / (diPlus + diMinus) else 0;
+
+plot ADX = if PlotADX then  WildersAverage(DX, length) else Double.NaN;
+ADX.AssignValueColor(if (diPlus > diMinus) then Color.UPTICK else Color.DOWNTICK);
+ADX.SetPaintingStrategy(PaintingStrategy.LINE);
+ADX.SetLineWeight(2);
+
+AddLabel(PlotADX, "Current ADX(" + length + ") value = " + Round(ADX, 1), ADX.TakeValueColor());
+
+plot Osc = diPlus - diMinus;
+plot Hist = Osc;
+Osc.SetDefaultColor(Color.WHITE);
+Osc.SetLineWeight(2);
+Hist.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Hist.SetLineWeight(3);
+Hist.DefineColor("Positive", Color.UPTICK);
+Hist.DefineColor("Negative", Color.DOWNTICK);
+Hist.AssignValueColor(if Hist > 0 then Hist.Color("Positive") else Hist.Color("Negative"));
+Hist.HideTitle();
+
+plot ZeroLine = 0;
+ZeroLine.SetDefaultColor(Color.YELLOW);
+#plot line_5above = 5;
+#line_5above.SetDefaultColor(Color.YELLOW);
+plot line_10above = if ShowArrowsLines then  CrossAboveValue else double.nan;
+line_10above.SetDefaultColor(Color.YELLOW);
+#plot line_5below = -5;
+#line_5below.SetDefaultColor(Color.YELLOW);
+plot line_10below = if ShowArrowsLines then  - CrossBelowValue else Double.nan;
+line_10below.SetDefaultColor(Color.YELLOW);
+ZeroLine.SetDefaultColor(Color.GRAY);
+DefineGlobalColor("Positive", Color.UPTICK);
+DefineGlobalColor("Negative", Color.DOWNTICK);
+
+#AssignPriceColor(if yes
+#    then Color.CURRENT
+#    else if Osc > 0
+#        then GlobalColor("Positive")
+#        else GlobalColor("Negative"));
+#======== Above-zero arrow plots when crossing input values ==========
+def Upper_Up_Cross = if ShowArrowsLines && Osc crosses above CrossAboveValue then 1 else 0;
+
+plot D_Up_Cross = if ShowArrowsLines&&  Upper_Up_Cross then Osc else Double.NaN;
+D_Up_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+D_Up_Cross.SetLineWeight(1);
+D_Up_Cross.SetDefaultColor(Color.GREEN);
+
+AddLabel(ShowArrowsLines, "Above-zero arrow value = " + CrossAboveValue, Color.GREEN);
+
+def Upper_Dwn_Cross = if ShowArrowsLines && Osc crosses below CrossAboveValue then 1 else 0;
+plot D_Upper_Dwn_Cross = if Upper_Dwn_Cross then Osc else Double.NaN;
+D_Upper_Dwn_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+D_Upper_Dwn_Cross.SetLineWeight(1);
+D_Upper_Dwn_Cross.SetDefaultColor(Color.DARK_GREEN);
+#AddLabel(ShowArrowsLines,"Above-zero arrow value = " + CrossAboveValue, color.DARK_GREEN);
+
+#======== Below-zero arrow plots when crossing input values ==========
+def Down_Cross = if ShowArrowsLines && Osc crosses below -CrossBelowValue then 1 else 0;
+
+plot D_Down_Cross = if Down_Cross then -CrossBelowValue else Double.NaN;
+D_Down_Cross.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+D_Down_Cross.SetLineWeight(1);
+D_Down_Cross.SetDefaultColor(Color.RED);
+
+AddLabel(ShowArrowsLines, "Below-zero arrow value = minus " + (CrossBelowValue), Color.RED);
+
+def Lower_MinOSC = if Osc < (-CrossBelowValue) && Osc < Osc[1] && Osc < Osc[-1] then 1 else 0;
+
+plot D_Lower_MinOSC = if ShowArrowsLines && Lower_MinOSC then Osc else Double.NaN;
+D_Lower_MinOSC.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+D_Lower_MinOSC.SetLineWeight(1);
+D_Lower_MinOSC.SetDefaultColor(Color.DARK_RED);
+#AddLabel(1,"Below-zero arrow value = minus " + (CrossBelowValue), color.RED);
+# end
+```
 
 ## C-   PolarizedFractalEfficiency_SFL
 
 [Return to TOC](#toc)
 
-- # TOS Title = PolarizedFractalEfficiency_SFL
+```
+# TOS Title = PolarizedFractalEfficiency_SFL
+declare lower;
 
-- declare lower;
+input length = 10;
+input smoothingLength = 5;
 
-- input length = 10;
+def diff = close - close[length - 1];
+def val = 100 * Sqrt(Sqr(diff) + Sqr(length)) / sum(Sqrt(1 + Sqr(close - close[1])), length - 1);
 
-- input smoothingLength = 5;
+plot PFE = ExpAverage(if diff > 0 then val else -val, smoothingLength);
+PFE.SetDefaultColor(GetColor(8));
 
-- def diff = close - close[length - 1];
+plot UpperLevel = 50;
+UpperLevel.SetPaintingStrategy(PaintingStrategy.LINE);
+UpperLevel.SetStyle(Curve.SHORT_DASH);
+UpperLevel.SetLineWeight(1);
+UpperLevel.SetDefaultColor(Color.YELLOW);
 
-- def val = 100 * Sqrt(Sqr(diff) + Sqr(length)) / sum(Sqrt(1 + Sqr(close - close[1])), length - 1);
+plot Upper100Level = 100;
+Upper100Level.SetPaintingStrategy(PaintingStrategy.LINE);
+Upper100Level.SetStyle(Curve.SHORT_DASH);
+Upper100Level.SetLineWeight(1);
+Upper100Level.SetDefaultColor(Color.YELLOW);
 
-- plot PFE = ExpAverage(if diff > 0 then val else -val, smoothingLength);
+plot Lower100Level = -100;
+Lower100Level.SetPaintingStrategy(PaintingStrategy.LINE);
+Lower100Level.SetStyle(Curve.SHORT_DASH);
+Lower100Level.SetLineWeight(1);
+Lower100Level.SetDefaultColor(Color.YELLOW);
 
-- PFE.SetDefaultColor(GetColor(8));
+plot ZeroLine = 0;
+ZeroLine.SetDefaultColor(GetColor(5));
+ZeroLine.SetPaintingStrategy(PaintingStrategy.LINE);
+ZeroLine.SetStyle(Curve.LONG_DASH);
+ZeroLine.SetLineWeight(2);
+ZeroLine.SetDefaultColor(Color.YELLOW);
 
-- plot UpperLevel = 50;
+plot LowerLevel = -50;
+AddCloud(PFE,ZeroLine,color.GREEN,color.RED);
+LowerLevel.SetDefaultColor(GetColor(5));
+LowerLevel.SetPaintingStrategy(PaintingStrategy.LINE);
+LowerLevel.SetStyle(Curve.SHORT_DASH);
+LowerLevel.SetLineWeight(1);
+LowerLevel.SetDefaultColor(Color.YELLOW);
 
-- UpperLevel.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- UpperLevel.SetStyle(Curve.SHORT_DASH);
-
-- UpperLevel.SetLineWeight(1);
-
-- UpperLevel.SetDefaultColor(Color.YELLOW);
-
-- plot Upper100Level = 100;
-
-- Upper100Level.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- Upper100Level.SetStyle(Curve.SHORT_DASH);
-
-- Upper100Level.SetLineWeight(1);
-
-- Upper100Level.SetDefaultColor(Color.YELLOW);
-
-- plot Lower100Level = -100;
-
-- Lower100Level.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- Lower100Level.SetStyle(Curve.SHORT_DASH);
-
-- Lower100Level.SetLineWeight(1);
-
-- Lower100Level.SetDefaultColor(Color.YELLOW);
-
-- plot ZeroLine = 0;
-
-- ZeroLine.SetDefaultColor(GetColor(5));
-
-- ZeroLine.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- ZeroLine.SetStyle(Curve.LONG_DASH);
-
-- ZeroLine.SetLineWeight(2);
-
-- ZeroLine.SetDefaultColor(Color.YELLOW);
-
-- plot LowerLevel = -50;
-
-- AddCloud(PFE,ZeroLine,color.GREEN,color.RED);
-
-- LowerLevel.SetDefaultColor(GetColor(5));
-
-- LowerLevel.SetPaintingStrategy(PaintingStrategy.LINE);
-
-- LowerLevel.SetStyle(Curve.SHORT_DASH);
-
-- LowerLevel.SetLineWeight(1);
-
-- LowerLevel.SetDefaultColor(Color.YELLOW);
-
-- AddLabel(1,"Green Cloud = Bullish",Color.GREEN);
-
-- AddLabel(1,"Red Cloud = Bearish",Color.RED);
-
-- #end
+AddLabel(1,"Green Cloud = Bullish",Color.GREEN);
+AddLabel(1,"Red Cloud = Bearish",Color.RED);
+#end
+```
 
 ## C-   Three_X_Oscillator
 
