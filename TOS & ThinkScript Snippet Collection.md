@@ -1620,16 +1620,20 @@ SD values
 
 [Return to TOC](#toc)
 
-``` shell
+``` java
 #hint:Draws upper & lower bands at defined percent
 input length = 10;#hint length:Length of base ExpAverage
 input percentShift = 5.0;#hint PercentShift: Percent of upper & lower bands from ExpAverage
 input price = close;#hint price: Basis for base ExpAverage
+
 def base = ExpAverage(price, length);
+
 plot UpperBand = base * (1 + percentShift / 100);
 UpperBand.setDefaultColor(GetColor(1));
+
 plot LowerBand = base * (1 - percentShift / 100);
 LowerBand.setDefaultColor(GetColor(1));
+
 assignBackgroundColor(if close > upperBand then color.Green else color.current);
 ```
 
