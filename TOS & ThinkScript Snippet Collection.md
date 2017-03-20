@@ -351,19 +351,19 @@ As shown above the study list and the inputs have info bubbles. You may add thes
 
 To make an 'Info Bubble' for a study and strategy:
 
-1. Above the code lines, place   #hint: ????????      where ???????? is the description you want displayed when the bubble is clicked.
+1. Above the code lines, place   `#hint: ???????? `     where ???????? is the description you want displayed when the bubble is clicked.
 
 2. The tags listed under 'TAGS  and their PURPOSE:' may be used to format the ????????.
 
-3. An example is --->  #hint: Plots a <b>trend line</b> between the two input dates.
+3. An example is --->  `#hint: Plots a <b>trend line</b> between the two input dates.`
 
 To make an 'Info Bubble' for 'Edit Studies' input
 
-1. Immediately after the semi-colon on the input's line (preferred location), place   #hint <the input variable name>: (the desired text you want displayed when the bubble is clicked).
+1. Immediately after the semi-colon on the input's line (preferred location), place   `#hint <the input variable name>: (the desired text you want displayed when the bubble is clicked)` .
 
 2. The tags listed under 'TAGS  and their PURPOSE:' may be used to format the desired text.
 
-3. An example is --->  input Length = 10 #hint Length: The number of bars used to calculate the average.
+3. An example is --->  `input Length = 10 #hint Length: The number of bars used to calculate the average.`
 
 4.  Notice that the colon is placed after the input variable name (in this case Length).
 
@@ -384,34 +384,30 @@ __TAGS  and their PURPOSE:__
 
 Example of the following script and its result:
 
-- #hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.
+`#hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.`
 
 <a name="IF_EXPRESSIONS_AND_STATEMENTS_EXPLAINED"> </a>
 ## IF EXPRESSIONS AND STATEMENTS EXPLAINED
 
 [Return to TOC](#toc)
 
-There are three forms of if statements. The 'immediate-if' is the shortest and is documented at
+There are three forms of if statements. The __'immediate-if'__ is the shortest and is documented at
 
 - http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Functions/Others/If.html . The other two are
 
-- the 'if-expression' and the 'if-statement', both of which are documented  at
+- the __'if-expression'__ and the __'if-statement'__, both of which are documented  at
 
-- http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Reserved%20Words/if.html . The thinkscript
-
-- documentation infers that there are more forms of the if-then-else, but the additional examples are merely the base
-
-- form shown with nested if-then-else statements/expressions.
+- http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Reserved%20Words/if.html . The thinkscript documentation infers that there are more forms of the if-then-else, but the additional examples are merely the base form shown with nested if-then-else statements/expressions.
 
 ### The 'immediate-if' explained
 
-The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An  example is: `Plot Maximum1 = If(close > open, close, open);` This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.”  This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with else to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
+The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An  example is: `Plot Maximum1 = If(close > open, close, open);` This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.”  This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with `else` to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
 
 The word 'double' is often vague in its meaning in ThinkScript but it means a floating-decimal-point-number of double precision in programming terminology. Any further meaning-clarification is unnecessary here. The impact of 'double' is that constants such as the names of the 23 ThinkScript colors, like LIGHT_RED, BLUE, UPTICK, etc., are not floating point numbers and hence cannot be used in this immediate-if. In this case, the if-expression would be used.
 
 ### The 'if-expression' explained
 
-The syntax is: if close > open then close else open; An example is: `plot Maximum2 = if close > open then close else open;` An IF....THEN....ELSE are all required. A nesting (putting if's within if's) example, in the recommended layout for easy reading, is:
+The syntax is: `if close > open then close else open;` An example is: `plot Maximum2 = if close > open then close else open;` An __IF....THEN....ELSE__ are all required. A nesting (putting if's within if's) example, in the recommended layout for easy reading, is:
 
 ```
 plot Maximum2 = if close > open
@@ -421,7 +417,7 @@ plot Maximum2 = if close > open
   else open;
 ```
 
-Note that the last 'else open' relates to the 'if close > open' and applies when the intermediate 'else-if close = open' is not true. This nested-if reads as: If close is greater than the open then plot the close. If the close equals the open then plot the (low + high)/2 . If the close is not greater than the open and the close does not equal the open, then plot the open.
+Note that the last `'else open'` relates to the `'if close > open'` and applies when the intermediate 'else-if close = open' is not true. This nested-if reads as: If close is greater than the open then plot the close. If the close equals the open then plot the (low + high)/2 . If the close is not greater than the open and the close does not equal the open, then plot the open.
 
 The if-expression will have only one semi-colon that will terminate the entire expression, regardless of the complexity.
 
@@ -439,7 +435,7 @@ if close > open [then]{
 }
 ```
 
-The `'[then]'` above means that it is optional but it is recommended that it always be used for clarity. Notice that each statement is enclosed within a block (the parts enclosed in the { } ) and must end with a semi-colon.
+The `'[then]'` above means that it is optional but it is recommended that it always be used for clarity. Notice that each statement is enclosed within a block __(the parts enclosed in the { } )__ and must end with a semi-colon.
 
 Comparison of all three 'if' syntaxs
 
@@ -478,7 +474,7 @@ HMA.DefineColor("Down", GetColor(0));
 HMA.AssignValueColor(if HMA > HMA[1] then HMA.color("Up") else HMA.color("Down"));
 ```
 
-In the above HMA>HMA[1] is the condition that says IF the current HMA is greater than the previous value of the HMA, i.e. HMA > HMA[1] , THEN paint the plot with the “Up” color which is defined as color(1) OTHERWISE/ELSE paint the plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index-numbers are explained in the separate topic.
+In the above HMA>HMA[1] is the condition that says __IF__ the current HMA is greater than the previous value of the HMA, i.e. HMA > HMA[1] , __THEN__ paint the plot with the “Up” color which is defined as color(1) __OTHERWISE/ELSE__ paint the plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index-numbers are explained in the separate topic.
 
 The condition is always in a 'if.... then.... else' format. If-statements may be nested without limits. The format thenbecomes 'if.....then..... else if.....then.....else if.....then......else'. The closing 'else' is always present and relates to the initialif.... then when none of the nested if ...then's produce a result.
 
@@ -486,7 +482,7 @@ Example:
 
 `if SlowK > SlowD then color.green else if SlowK < SlowD then color.red else color.gray`
 
--he multiple conditions may be used to define a conditional statements. They are joined by 'and' or its equivalent '&&'.
+The multiple conditions may be used to define a conditional statements. They are joined by `'and'` or its equivalent `'&&'`.
 
 Example:  
 
@@ -502,7 +498,7 @@ Diamonds.AssignValueColor(
        color.black);
 ```
 
-Note in the above, since color.green, color.white, color.red and color.black are constants and not double variables, the if-expression must be used and that requires the presence of all IF.....THEN.....ELSE parts.
+Note in the above, since color.green, color.white, color.red and color.black are constants and not double variables, the if-expression must be used and that requires the presence of all __IF.....THEN.....ELSE__ parts.
 
 Here is another example of multiple coloring in a label:
 
@@ -520,7 +516,7 @@ AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
 
 In scans, conditional orders, and custom quotes there is only one bar, the latest or current bar. All scripts are run in  real-time and the script processor only runs one iteration of the script. So within that context, certain functions make no sense, like barNumber(), HighestAll() to name a few, also rec variables. Functions that take a look back value or length, such as average( data, length ), highest( data, length ), etc. work because the internal logic of the function performs the action of looking back. No matter what the timeframe, in those contexts (scans, etc.), your script only runs once and only  against the current (latest) bar.
 
-In studies or strategies, ThinkScript runs your script once for each and every bar on your chart, regardless of the aggregation period.
+In studies or strategies, ThinkScript runs your script once __for each and every bar__ on your chart, regardless of the aggregation period.
 
 You will often hear knowledgeable programmers say with disappointment that 'ThinkScript' does not have arrays. Arrays are a common powerful programming feature for storing/recalling various data and data types. This is a limitation of ThinkScript that we must live with as best we can.
 
@@ -531,7 +527,9 @@ You will often hear knowledgeable programmers say with disappointment that 'Thin
 
 TOS has defined ten colors corresponding to index numbers on two different background colors as below:
 
-The colors are used via the function 'GetColor(index number);' Example: GetColor(1) as used in the HullMovingAvg previous topic. Reference: See Index Colors
+The colors are used via the function `'GetColor(index number);'` Example: GetColor(1) as used in the HullMovingAvg previous topic. Reference: [See Index Colors]((https://tlc.thinkorswim.com/center/charting/thinkscript/reference/Functions/Look---Feel/GetColor.html))
+
+![Colors](images/6-1.png?raw=true  "Colors")
 
 | Index | RGB Values  | Name of Color |
 |:-----:|-------------|---------------|
