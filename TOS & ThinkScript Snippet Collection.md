@@ -11,17 +11,11 @@
 # 1 [INTRODUCTION](#INTRODUCTION)
 
 - Legend.....Page 7
-
 - Revised: 07/25/14.....Page 7
-
 - Organization: .....Page 7
-
 - Acknowledgements.....Page 7
-
 - Usage.....Page 7
-
 - Acronyms used herein.....Page 7
-
 - Suggestion for Ease-of-Use.....Page 7
 
 # 2 [BASIC CODING AND PLATFORM PRINCIPLES](#BASIC_CODING_AND_PLATFORM_PRINCIPLES)
