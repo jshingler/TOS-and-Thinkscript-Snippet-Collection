@@ -1158,7 +1158,7 @@ Comparison to another stock, index or any instrument having a symbol.
 
 If you have forgotten or are unsure of the symbol, you can find it easily as follows:
 
-![find the symbol](images/COMPARISON_TO_ANOTHER_INSTRUMENT_1.png?raw=true "find the symbol")
+![find the symbol](images/COMPARISON_TO_ANOTHER_INSTRUMENT_2.png?raw=true "find the symbol")
 
 The comparison will be overlaid on the upper panel using the left-hand price scale. You can edit the study to change the symbol or the type of plot, i.e. Line, Bar, Candle, or the color. Choose any aggregation but 'day' is most meaningful.
 
