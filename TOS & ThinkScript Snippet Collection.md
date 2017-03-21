@@ -941,7 +941,7 @@ Refer to PastOffset discussed at [Click to read about it.](https://tlc.thinkorsw
 
 There are several built-in Linear Regression studies in ThinkScript. This section is intended to clarify their differences and usage.
 
-Definition = 'Linear regression' is a mathematical procedure know as the 'least-squares method', used for drawing the best straight line thruogh a group of data points. ThinkScript's linear regression function is titled 'Inertia'. You may view it at 
+Definition = 'Linear regression' is a mathematical procedure know as the 'least-squares method', used for drawing the best straight line thruogh a group of data points. ThinkScript's linear regression function is titled __'Inertia'__. You may view it at 
 
 http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Functions/Statistical/Inertia.html
 
@@ -1053,7 +1053,7 @@ def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualE
 AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
 ```
 
-![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-1.png?raw=true "label")
+![label](images/18-1.png?raw=true "label")
 
 ### An 'AsText' plus 'decimal-places' example
 
@@ -1061,7 +1061,7 @@ AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
 def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
 AddLabel(yes, "'Earnings = " + AsText(x,NumberFormat.TWO_DECIMAL_PLACES) + "'", color.cyan);
 ```
-![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-2.png?raw=true "label")
+![label](images/18-2.png?raw=true "label")
 
 Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR' produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown above in the 'AsDollars' example.
 
@@ -1069,7 +1069,7 @@ Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES'
 
 `AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);`
 
-![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-3.png?raw=true "label")
+![label](images/18-3.png?raw=true "label")
 
 ### An AsPercent example
 
@@ -1078,14 +1078,14 @@ def Range = 1 - ((high - close)/ (high - low));
 AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
 ```
 
-![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-4.png?raw=true "label")
+![label](images/18-4.png?raw=true "label")
 
 
 ### An AsPrice example
 
 `AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close, 10)),color.cyan);`
 
-![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/18-5.png?raw=true "label")
+![label](images/18-5.png?raw=true "label")
 
 <a name="LITERAL_TEXT_IN_LABEL_FOR_THE_11_CHOICES_OF_INPUT_PRICE"> </a>
 ## LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
@@ -1151,12 +1151,14 @@ This is the simplified basics of swingHi/SwingLo. Many coders add all kinds of c
 Comparison to another stock, index or any instrument having a symbol.
 
 - Click 'studies' then 'Add Study' then 'Compare With'
-
 - If none of the ready-made comparisons have what you want, then click 'Custom Symbol....'
-
 - You will then be presented with the following dialog:
 
+![Insert the symbol](images/COMPARISON_TO_ANOTHER_INSTRUMENT_1.png?raw=true "Insert the symbol")
+
 If you have forgotten or are unsure of the symbol, you can find it easily as follows:
+
+![find the symbol](images/COMPARISON_TO_ANOTHER_INSTRUMENT_1.png?raw=true "find the symbol")
 
 The comparison will be overlaid on the upper panel using the left-hand price scale. You can edit the study to change the symbol or the type of plot, i.e. Line, Bar, Candle, or the color. Choose any aggregation but 'day' is most meaningful.
 
