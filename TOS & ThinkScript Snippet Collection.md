@@ -324,89 +324,46 @@
 - [C-IDENTIFYING AGGREGATION IN A LABEL.....Page 62](#IDENTIFYING_AGGREGATION_IN_A_LABEL)
 - [C-FIRST AND LAST BAR FOR PLACING A BUBBLE.....Page 63](#FIRST_AND_LAST_BAR_FOR_PLACING_A_BUBBLE)
 - [C-DEFINE PREVIOUS DAY'S CLOSE.....Page 63](#DEFINE_PREVIOUS_DAYS_CLOSE)
-<a name="DEFINE_PREVIOUS_DAYS_CLOSE"> </a>
 - [C-CLOUDS WITHOUT A PLOT.....Page 63](#CLOUDS_WITHOUT_A_PLOT)
-<a name="CLOUDS_WITHOUT_A_PLOT"> </a>
 - [C-COUNTS OF CONSECUTIVE RISES OR DROPS OF THE CLOSE.....Page 64](#COUNTS_OF_CONSECUTIVE_RISES_OR_DROPS_OF_THE_CLOSE)
-<a name="COUNTS_OF_CONSECUTIVE_RISES_OR_DROPS_OF_THE_CLOSE"> </a>
 - [C-DEFINE BAR AT A TIME AND DATE.....Page 64](#DEFINE_BAR_AT_A_TIME_AND_DATE)
-<a name="DEFINE_BAR_AT_A_TIME_AND_DATE"> </a>
-- [C-PRE/POST-MARKET SCAN & CHART.....Page 65](#PRE/POST)
-<a name="PRE/POST"> </a>
+- [C-PRE/POST-MARKET SCAN & CHART.....Page 65](#PRE_POST_MARKET_SCAN_AND_CHART)
 - [C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES.....Page 66](#ORDER_BASED_ON_VALUE_DIFFERENCE_OF_THREE_AVERAGES)
-<a name="ORDER_BASED_ON_VALUE_DIFFERENCE_OF_THREE_AVERAGES"> </a>
 - [C-DEFINES AGGREGATION IN A LABEL.....Page 66](#DEFINES_AGGREGATION_IN_A_LABEL)
-<a name="DEFINES_AGGREGATION_IN_A_LABEL"> </a>
 - [C-FIRST AND LAST BAR BUBBLES.....Page 67](#FIRST_AND_LAST_BAR_BUBBLES)
-<a name="FIRST_AND_LAST_BAR_BUBBLES"> </a>
 - [CWEIGHTED MOVING AVERAGE AND FOLD USAGE.....Page 67](#_WEIGHTED_MOVING_AVERAGE_AND_FOLD_USAGE)
-<a name="_WEIGHTED_MOVING_AVERAGE_AND_FOLD_USAGE"> </a>
 - [C-COUNTER FOR NUMBER OF UP BARS.....Page 68](#COUNTER_FOR_NUMBER_OF_UP_BARS)
-<a name="COUNTER_FOR_NUMBER_OF_UP_BARS"> </a>
 - [C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT.....Page 68](#COUNT_OF_CLOSE_RISEN_BY_AN_INPUTTED_PERCENT)
-<a name="COUNT_OF_CLOSE_RISEN_BY_AN_INPUTTED_PERCENT"> </a>
 - [C-PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO.....Page 69](#PLOTS_THE_HIGH_LOW_AND_CLOSE_OF_?_DAYS_AGO)
-<a name="PLOTS_THE_HIGH_LOW_AND_CLOSE_OF_?_DAYS_AGO"> </a>
 - [C-DATE AND TIME USAGE EXAMPLES.....Page 70](#DATE_AND_TIME_USAGE_EXAMPLES)
-<a name="DATE_AND_TIME_USAGE_EXAMPLES"> </a>
-- [C-SCALPER'S HELPER W/ SQUEEZE.....Page 76](#SCALPERS_HELPER_W/_SQUEEZE)
-<a name="SCALPERS_HELPER_W/_SQUEEZE"> </a>
+- [C-SCALPER'S HELPER W/ SQUEEZE.....Page 76](#SCALPERS_HELPER_W_SQUEEZE)
 - [C-COLOR A PORTION OF A CHART.....Page 78](#COLOR_A_PORTION_OF_A_CHART)
-<a name="COLOR_A_PORTION_OF_A_CHART"> </a>
 - [C-CLOUD USAGE VIA MOVING AVERAGES.....Page 78](#CLOUD_USAGE_VIA_MOVING_AVERAGES)
-<a name="CLOUD_USAGE_VIA_MOVING_AVERAGES"> </a>
 - [C-PLOTS THE DAILY HIGH AND LOW.....Page 79](#PLOTS_THE_DAILY_HIGH_AND_LOW)
-<a name="PLOTS_THE_DAILY_HIGH_AND_LOW"> </a>
 - [C-SELF-ADJUSTING RSI BANDS.....Page 80](#SELF)
-<a name="SELF"> </a>
 - [C-3 MOVING AVERAGES: CHANGING COLOR....Page 80](#3_MOVING_AVERAGES:_CHANGING_COLOR)
-<a name="3_MOVING_AVERAGES:_CHANGING_COLOR"> </a>
 - [C-T3, ADAPTIVE SMOOTHING INDICATOR.....Page 81](#T3_ADAPTIVE_SMOOTHING_INDICATOR)
-<a name="T3_ADAPTIVE_SMOOTHING_INDICATOR"> </a>
 - [C-RSI ZEROLINE OSCILLATOR.....Page 82](#RSI_ZEROLINE_OSCILLATOR)
-<a name="RSI_ZEROLINE_OSCILLATOR"> </a>
 - [C-INSYNC INDEX .....Page 83](#INSYNC_INDEX)
-<a name="INSYNC_INDEX"> </a>
-- [CCLOUD A TIME INTERVAL WITHOUT PLOTS.....Page 84](#_CLOUD_A_TIME_INTERVAL_WITHOUT_PLOTS)
-<a name="_CLOUD_A_TIME_INTERVAL_WITHOUT_PLOTS"> </a>
+- [CCLOUD A TIME INTERVAL WITHOUT PLOTS.....Page 84](#CLOUD_A_TIME_INTERVAL_WITHOUT_PLOTS)
 - [CIMPROVED TIME SERIES FORECAST STUDY.....Page 84](#_IMPROVED_TIME_SERIES_FORECAST_STUDY)
-<a name="_IMPROVED_TIME_SERIES_FORECAST_STUDY"> </a>
 - [C-VOLATILITY LABEL.....Page 85](#VOLATILITY_LABEL)
-<a name="VOLATILITY_LABEL"> </a>
 - [C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY.....Page 85](#BATTLE_OF_THE_BANDS_RE_IMPLIED_VOLATILITY)
-<a name="BATTLE_OF_THE_BANDS_RE_IMPLIED_VOLATILITY"> </a>
 - [C-THE BEAUTIFUL 'GAUSSIAN RAINBOW' .....Page 88](#THE_BEAUTIFUL_GAUSSIAN_RAINBOW)
-<a name="THE_BEAUTIFUL_GAUSSIAN_RAINBOW"> </a>
 - [C-OPENING RANGE (OR) STUDY WITH A TWIST:.....Page 91](#OPENING_RANGE_OR_STUDY_WITH_A_TWIST:)
-<a name="OPENING_RANGE_OR_STUDY_WITH_A_TWIST:"> </a>
 - [C&S-THE MARKET FORECAST REPLICA.....Page 94](#THE_MARKET_FORECAST_REPLICA)
-<a name="THE_MARKET_FORECAST_REPLICA"> </a>
 - [C-DRAW A LINE BETWEEN TWO PRICE POINTS.....Page 95](#DRAW_A_LINE_BETWEEN_TWO_PRICE_POINTS)
-<a name="DRAW_A_LINE_BETWEEN_TWO_PRICE_POINTS"> </a>
 - [C-VOLUME LABEL AS A PERCENT OF AN INPUTTED  X-DAYS-AVG-VOLUME.....Page 96](#VOLUME_LABEL_AS_A_PERCENT_OF_AN_INPUTTED__X)
-<a name="VOLUME_LABEL_AS_A_PERCENT_OF_AN_INPUTTED__X"> </a>
 - [T&C-EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION.....Page 97](#EXAMPLES_OF_THE_USAGE_OF_THE_SUM_FUNCTION)
-<a name="EXAMPLES_OF_THE_USAGE_OF_THE_SUM_FUNCTION"> </a>
 - [C-HOW TO SHOW WHEN A CANDLE PATTERN EXISTS ON A CHART .....Page 100](#HOW_TO_SHOW_WHEN_A_CANDLE_PATTERN_EXISTS_ON_A_CHART)
-<a name="HOW_TO_SHOW_WHEN_A_CANDLE_PATTERN_EXISTS_ON_A_CHART"> </a>
 - [C-DUAL SPEED STOCHASTICS.....Page 100](#DUAL_SPEED_STOCHASTICS)
-<a name="DUAL_SPEED_STOCHASTICS"> </a>
 - [C-TODAY'S DJI OR ANY STOCK STATUS LABEL.....Page 103](#TODAYS_DJI_OR_ANY_STOCK_STATUS_LABEL)
-<a name="TODAYS_DJI_OR_ANY_STOCK_STATUS_LABEL"> </a>
 - [C-PLOT SUPPORT AND RESISTANCE LINES.....Page 104](#PLOT_SUPPORT_AND_RESISTANCE_LINES)
-<a name="PLOT_SUPPORT_AND_RESISTANCE_LINES"> </a>
 - [CIMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS.....Page 105](#_IMP_VOLATILITY__PERCENTILE_PLOT_WITH_LABELS)
-<a name="_IMP_VOLATILITY__PERCENTILE_PLOT_WITH_LABELS"> </a>
 - [C-DMI_OSCILLATOR WITH ARROWS AND LINES.....Page 107](#DMI_OSCILLATOR_WITH_ARROWS_AND_LINES)
-<a name="DMI_OSCILLATOR_WITH_ARROWS_AND_LINES"> </a>
-- [CIMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS.....Page 108](#_IMP_VOLATILITY__PERCENTILE_PLOT_WITH_LABELS)
-<a name="_IMP_VOLATILITY__PERCENTILE_PLOT_WITH_LABELS"> </a>
-- [C-MINUTES-AGO SINCE A TURN-UP OF A MOVING AVERAGE .....Page 109](#MINUTES)
-<a name="MINUTES"> </a>
-- [C-CODE FOR DAY-OF-THE-WEEK.....Page 111](#CODE_FOR_DAY)
-<a name="CODE_FOR_DAY"> </a>
+- [C-MINUTES-AGO SINCE A TURN-UP OF A MOVING AVERAGE .....Page 109](#MINUTES_AGO_SINCE_A_TURN_UP_OF_A_MOVING_AVERAGe)
+- [C-CODE FOR DAY-OF-THE-WEEK.....Page 111](#CODE_FOR_DAY_OF_THE_WEEK)
 - [C-NORMALIZED MACD AND STOCHASTIC PLOTTED WITH A SQUEEZE INDICATION.....Page 111](#NORMALIZED_MACD_AND_STOCHASTIC_PLOTTED_WITH_A_SQUEEZE_INDICATION)
-<a name="NORMALIZED_MACD_AND_STOCHASTIC_PLOTTED_WITH_A_SQUEEZE_INDICATION"> </a>
 - [C-SIMPLE EXAMPLE TO ILLUSTRATE COUNTING.....Page 114](#SIMPLE_EXAMPLE_TO_ILLUSTRATE_COUNTING)
 <a name="SIMPLE_EXAMPLE_TO_ILLUSTRATE_COUNTING"> </a>
 - [C-ILLUSTRATION OF SAME RESULT WITH DIFFERENT CODING.....Page 114](#ILLUSTRATION_OF_SAME_RESULT_WITH_DIFFERENT_CODING)
@@ -3793,6 +3750,7 @@ addchartbubble(FirstBar, close, "FirstBar", color.white);
 Comment: HideBubble() Makes the last value bubble of a plot invisible. This is the bubble in e right margin and not on the chart itself.
 #end
 
+<a name="DEFINE_PREVIOUS_DAYS_CLOSE"> </a>
 ## C-DEFINE PREVIOUS DAY'S CLOSE
 
 [Return to TOC](#toc)
@@ -3810,6 +3768,7 @@ PreviousPriceLine.SetDefaultColor( CreateColor( 102, 102, 102 );
 #end
 ```
 
+<a name="CLOUDS_WITHOUT_A_PLOT"> </a>
 ## C-CLOUDS WITHOUT A PLOT
 
 [Return to TOC](#toc)
@@ -3825,6 +3784,7 @@ AddCloud(highh, highl, Color.RED, Color.GREEN);
 #end
 ```
 
+<a name="COUNTS_OF_CONSECUTIVE_RISES_OR_DROPS_OF_THE_CLOSE"> </a>
 ## C-COUNTS OF CONSECUTIVE RISES OR DROPS OF THE CLOSE
 
 [Return to TOC](#toc)
@@ -3867,6 +3827,7 @@ line12.SetDefaultColor(Color.gray);
 #end
 ```
 
+<a name="DEFINE_BAR_AT_A_TIME_AND_DATE"> </a>
 ## C-DEFINE BAR AT A TIME AND DATE
 
 [Return to TOC](#toc)
@@ -3896,6 +3857,7 @@ at the selected barnumber stating the barnumber
 #end
 ```
 
+<a name="PRE_POST_MARKET_SCAN_AND_CHART"> </a>
 ## C-PRE/POST-MARKET SCAN & CHART
 
 [Return to TOC](#toc)
@@ -3937,6 +3899,7 @@ Comment2: To display pre and post- market chart displays, click the wrench to op
 
 - #end
 
+<a name="ORDER_BASED_ON_VALUE_DIFFERENCE_OF_THREE_AVERAGES"> </a>
 ## C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES
 
 [Return to TOC](#toc)
@@ -3965,6 +3928,7 @@ addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
 ```
 #end
 
+<a name="DEFINES_AGGREGATION_IN_A_LABEL"> </a>
 ## C-DEFINES AGGREGATION IN A LABEL
 
 [Return to TOC](#toc)
@@ -4015,6 +3979,7 @@ AddLabel(yes,"Not for TICK or RANGE bar usage",color.red);
 # end
 ```
 
+<a name="FIRST_AND_LAST_BAR_BUBBLES"> </a>
 ## C-FIRST AND LAST BAR BUBBLES
 
 [Return to TOC](#toc)
@@ -4036,6 +4001,7 @@ Comment  HideBubble() Makes the last value bubble of a plot invisible. This is t
 #end
 
 
+<a name="_WEIGHTED_MOVING_AVERAGE_AND_FOLD_USAGE"> </a>
 ## C- WEIGHTED MOVING AVERAGE AND FOLD USAGE
 
 [Return to TOC](#toc)
@@ -4057,6 +4023,7 @@ Comment: A good example of a nested fold. Note that the variable designations (n
 
 ##end
 
+<a name="COUNTER_FOR_NUMBER_OF_UP_BARS"> </a>
 ## C-COUNTER FOR NUMBER OF UP BARS
 
 [Return to TOC](#toc)
@@ -4089,6 +4056,7 @@ Comment: This counter can be easily converted to counting whatever you want. For
 
 #end
 
+<a name="COUNT_OF_CLOSE_RISEN_BY_AN_INPUTTED_PERCENT"> </a>
 ## C-COUNT OF CLOSE RISEN BY AN INPUTTED PERCENT
 
 [Return to TOC](#toc)
@@ -4128,6 +4096,7 @@ Comment: The label is complex and a good example of the use of '+' in lieu of th
 
 #end
 
+<a name="PLOTS_THE_HIGH_LOW_AND_CLOSE_OF_?_DAYS_AGO"> </a>
 ## C-   PLOTS THE HIGH, LOW AND CLOSE OF ? DAYS AGO
 
 [Return to TOC](#toc)
@@ -4186,6 +4155,7 @@ Comment: The presence of 'HighestAll' in the plot statements causes to plots to 
 
 #end
 
+<a name="DATE_AND_TIME_USAGE_EXAMPLES"> </a>
 ## C-DATE AND TIME USAGE EXAMPLES
 
 [Return to TOC](#toc)
@@ -4618,6 +4588,7 @@ Comment: The AddChartBubble has coding worth studying. Using the '+' formatting 
 
 #end
 
+<a name="SCALPERS_HELPER_W_SQUEEZE"> </a>
 ## C-SCALPER'S HELPER W/ SQUEEZE
 
 [Return to TOC](#toc)
@@ -4701,6 +4672,7 @@ AssignPriceColor(if !paintBars then Color.CURRENT else if dir > 0 then if Count 
 
 # end
 
+<a name="COLOR_A_PORTION_OF_A_CHART"> </a>
 ## C-COLOR A PORTION OF A CHART
 
 [Return to TOC](#toc)
@@ -4718,6 +4690,7 @@ AddCloud(up, down, Color.RED);
 ```
 # end
 
+<a name="CLOUD_USAGE_VIA_MOVING_AVERAGES"> </a>
 ## C-   CLOUD USAGE VIA MOVING AVERAGES
 
 [Return to TOC](#toc)
@@ -4749,6 +4722,7 @@ addlabel(1,"Slow MA(" +  slowLength  + ") is " +  (If fastAvgType == AverageType
 
 # end
 
+<a name="PLOTS_THE_DAILY_HIGH_AND_LOW"> </a>
 ## C-PLOTS THE DAILY HIGH AND LOW
 
 [Return to TOC](#toc)
@@ -4804,6 +4778,7 @@ addLabel(yes,"Yesterday's Close",color.red);
 ```
 #end
 
+<a name="SELF_ADJUSTING_RSI_BANDS"> </a>
 ## C  -SELF-ADJUSTING RSI BANDS
 [Return to TOC](#toc)
 
@@ -4841,6 +4816,7 @@ MidLine.SetStyle(Curve.SHORT_DASH);
 
 #end
 
+<a name="3_MOVING_AVERAGES:_CHANGING_COLOR"> </a>
 ## C-3 MOVING AVERAGES: CHANGING COLOR
 
 [Return to TOC](#toc)
@@ -4882,6 +4858,7 @@ slowMVA.Hide();
 
 #end
 
+<a name="T3_ADAPTIVE_SMOOTHING_INDICATOR"> </a>
 ## C-T3, ADAPTIVE SMOOTHING INDICATOR
 
 [Return to TOC](#toc)
@@ -4916,6 +4893,7 @@ plot T3               = GD( period, volumeFactor, GD( period, volumeFactor, GD( 
 
 #end
 
+<a name="RSI_ZEROLINE_OSCILLATOR"> </a>
 ## C-RSI ZEROLINE OSCILLATOR
 
 [Return to TOC](#toc)
@@ -4963,6 +4941,7 @@ RSI_Line.SetDefaultColor(GetColor(1));
 
 #end
 
+<a name="INSYNC_INDEX"> </a>
 ## C-INSYNC INDEX
 
 [Return to TOC](#toc)
@@ -5031,6 +5010,7 @@ neg55.hideTitle();
 
 - #end
 
+<a name="CLOUD_A_TIME_INTERVAL_WITHOUT_PLOTS"> </a>
 ## C- CLOUD A TIME INTERVAL WITHOUT PLOTS
 
 [Return to TOC](#toc)
@@ -5051,6 +5031,7 @@ AddCloud(up, down, Color.RED);
 
 #end
 
+<a name="_IMPROVED_TIME_SERIES_FORECAST_STUDY"> </a>
 ## C- IMPROVED TIME SERIES FORECAST STUDY
 
 [Return to TOC](#toc)
@@ -5089,6 +5070,7 @@ Sell.SetDefaultColor(Color.RED);
 
 #end
 
+<a name="VOLATILITY_LABEL"> </a>
 ## C-VOLATILITY LABEL
 
 [Return to TOC](#toc)
@@ -5108,6 +5090,7 @@ Comment:HV and IV do not plot on intraday. The default HV is annual and that is 
 
 `def DaysIV = IV / Sqrt(252);`
 
+<a name="BATTLE_OF_THE_BANDS_RE_IMPLIED_VOLATILITY"> </a>
 ## C-'BATTLE OF THE BANDS' RE IMPLIED VOLATILITY
 
 [Return to TOC](#toc)
@@ -5247,6 +5230,7 @@ AddLabel(DisplayLabels, "ATR Chart Agg. = $" + (Round(ATR / TickSize(), 0) * Tic
 
 #End Code Battle of the Bands
 
+<a name="THE_BEAUTIFUL_GAUSSIAN_RAINBOW"> </a>
 ## C-THE BEAUTIFUL 'GAUSSIAN RAINBOW'
 
 [Return to TOC](#toc)
@@ -5417,6 +5401,7 @@ addCloud( if cloud == yes then ga1 else double.NaN, ga2, color.MAGENTA, color.MA
 
 #end
 
+<a name="OPENING_RANGE_OR_STUDY_WITH_A_TWIST:"> </a>
 ## C-OPENING RANGE (OR) STUDY WITH A TWIST:
 
 [Return to TOC](#toc)
@@ -5554,6 +5539,7 @@ AddLabel(yes,"OR High = "+ ORH2 + " & OR Low = " + ORL2, color.pink);
 
 #end
 
+<a name="THE_MARKET_FORECAST_REPLICA"> </a>
 ## C&S-THE MARKET FORECAST REPLICA
 
 [Return to TOC](#toc)
@@ -5648,6 +5634,7 @@ AddLabel(yes, "Low Cluster below 20", color.PINK);
 #end
 ```
 
+<a name="DRAW_A_LINE_BETWEEN_TWO_PRICE_POINTS"> </a>
 ## C-DRAW A LINE BETWEEN TWO PRICE POINTS
 
 [Return to TOC](#toc)
@@ -5689,6 +5676,7 @@ def  Angle_deg = ATan(slope) * 180 / Double.Pi;
 #end
 ```
 
+<a name="VOLUME_LABEL_AS_A_PERCENT_OF_AN_INPUTTED__X"> </a>
 ## C-VOLUME LABEL AS A PERCENT OF AN INPUTTED  X-DAYS-AVG-VOLUME
 
 [Return to TOC](#toc)
@@ -5715,6 +5703,7 @@ Comment1: This has all the ingredients for a custom column except the label text
 #end
 ```
 
+<a name="EXAMPLES_OF_THE_USAGE_OF_THE_SUM_FUNCTION"> </a>
 ## T&C-EXAMPLES OF THE USAGE OF THE 'SUM' FUNCTION
 
 [Return to TOC](#toc)
@@ -5929,6 +5918,7 @@ plot scan = trenup AND trenup2;
 #end
 ```
 
+<a name="HOW_TO_SHOW_WHEN_A_CANDLE_PATTERN_EXISTS_ON_A_CHART"> </a>
 ## C-HOW TO SHOW WHEN A CANDLE PATTERN EXISTS ON A CHART
 
 [Return to TOC](#toc)
@@ -5945,6 +5935,8 @@ Data.SetDefaultColor(Color.PINK);
 Another point to remember is that some candles are both bearish and bullish. If you do nt distinguish which you want like Harami() the default bearish Harami will be returned. To be thorough and clear, you ought to code Harami().Bearish or Harami().Bullish instead depending on what you desire. A Doji() is neither bearish nor bullish so Doji() is used alone.
 #end
 
+
+<a name="DUAL_SPEED_STOCHASTICS"> </a>
 ## C-DUAL SPEED STOCHASTICS
 
 [Return to TOC](#toc)
@@ -6110,6 +6102,7 @@ Label_Line.setDefaultColor(color.CURRENT);
 # end
 ```
 
+<a name="TODAYS_DJI_OR_ANY_STOCK_STATUS_LABEL"> </a>
 ## C-TODAY'S DJI OR ANY STOCK STATUS LABEL
 
 [Return to TOC](#toc)
@@ -6135,6 +6128,7 @@ Addlabel(1,"Change = " + round(value_change,2) + " (" + round(PctChange,2) + "%)
 #end
 ```
 
+<a name="PLOT_SUPPORT_AND_RESISTANCE_LINES"> </a>
 ## C-PLOT SUPPORT AND RESISTANCE LINES
 
 [Return to TOC](#toc)
@@ -6196,6 +6190,7 @@ IntermediateSupport.SetLineWeight(1);
 #end
 ```
 
+<a name="_IMP_VOLATILITY__PERCENTILE_PLOT_WITH_LABELS"> </a>
 ## C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
 
 [Return to TOC](#toc)
@@ -6270,6 +6265,7 @@ HighVol.SetDefaultColor(GetColor(5));
 #end
 ```
 
+<a name="DMI_OSCILLATOR_WITH_ARROWS_AND_LINES"> </a>
 ## C-DMI_OSCILLATOR WITH ARROWS AND LINES
 
 [Return to TOC](#toc)
@@ -6336,76 +6332,7 @@ AddLabel(1,"Below-zero arrow value = minus " + (CrossBelowValue), color.RED);
 #end
 ```
 
-## C-    IMP_VOLATILITY()  PERCENTILE PLOT WITH LABELS
-
-[Return to TOC](#toc)
-
-Comment: This code received a lot of attention and discussion on TastyTrade's 'Game Changers'.
-
-```
-#####Begin study: n2s_IVRank_SD
-#hint: From TastyTrade. Plots IV Percentile with the following labels: long-term IV Rank, short-term IV Rank, Imp Vol, and expected SD moves for 1 day, 1 week, and 1 month.
-# from TastyTrade Game Changers 12/19/13
-# modified by John Latrobe 12/20/13
-
-declare lower;
-declare hide_on_intraday;
-
-#IVPercentile
-def vol = imp_volatility();
-
-input DisplayIVPercentile = yes;
-input TimePeriod = 252;
-input LowVolLimit = 20;
-input HighVolLimit = 70;
-input DisplayShorterTerm = yes;
-input ShortTimePeriod = 63;
-input DisplayImpVolatility= yes;
-input DisplayDaily1StandardDev = yes;
-input DisplayWeekly1StandardDev = yes;
-input DisplayMonthly1StandardDev = yes;
-input InvertRedGreen = yes;
-
-def data = if !isNaN(vol) then vol else vol[-1];
-def hi = highest(data, TimePeriod);
-def lo = lowest(data, TimePeriod);
-def ShortHi = highest(data, ShortTimePeriod);
-def ShortLo = lowest(data, ShortTimePeriod);
-
-plot Percentile = (data - lo) / (hi - lo) * 100;
-def lowend = Percentile < LowVolLimit;
-def highend = Percentile > HighVolLimit;
-def sPercentile = (data - ShortLo) / (ShortHi - ShortLo) * 100;
-def ShortLowend = sPercentile < LowVolLimit;
-def ShortHighend = sPercentile > HighVolLimit;
-DefineGlobalColor("lowcolor", if InvertRedGreen then color.green else color.red);
-DefineGlobalColor("Shortlowcolor", if InvertRedGreen then color.green else color.red);
-DefineGlobalColor("highcolor", if InvertRedGreen then color.red else color.green);
-DefineGlobalColor("Shorthighcolor", if InvertRedGreen then color.red else color.green);
-
-#Labels
-addlabel(DisplayIVPercentile , concat("Long IV Rank: ",aspercent(round(Percentile /100, 2))), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-
-addlabel(DisplayShorterTerm , concat("Short IV Rank: ",aspercent(round(sPercentile /100, 2))), if shortlowend then GlobalColor("Shortlowcolor") else if shorthighend then GlobalColor("Shorthighcolor") else color.yellow);
-
-addlabel(DisplayImpVolatility, concat("ImpVol: ",aspercent(vol)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-def ImpPts = (vol / Sqrt(252)) * close;
-
-AddLabel(DisplayDaily1StandardDev , Concat("1Dy SD +/- $", Astext( ImpPts, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-def ImpPts2 = (vol / Sqrt(52)) * close;
-
-AddLabel(DisplayWeekly1StandardDev, Concat("1Wk SD +/- $", Astext( ImpPts2, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-def ImpPts3 = (vol / Sqrt(12)) * close;
-
-AddLabel(DisplayMonthly1StandardDev, Concat("1Mo SD +/- $", Astext( ImpPts3, NumberFormat.TWO_DECIMAL_PLACES)), if lowend then GlobalColor("lowcolor") else if highend then GlobalColor("highcolor") else color.yellow);
-
-plot LowVol = LowVolLimit;
-plot HighVol = HighVolLimit;
-LowVol.SetDefaultColor(GetColor(6));
-HighVol.SetDefaultColor(GetColor(5));
-#end
-```
-
+<a name="MINUTES_AGO_SINCE_A_TURN_UP_OF_A_MOVING_AVERAGe"> </a>
 ## C-MINUTES-AGO SINCE A TURN-UP OF A MOVING AVERAGE
 
 [Return to TOC](#toc)
@@ -6466,12 +6393,14 @@ AssignBackgroundColor(if count_Ups > 0 then color.dark_green else if count_downs
 #end
 ```
 
+<a name="CODE_FOR_DAY_OF_THE_WEEK"> </a>
 ## C-CODE FOR DAY-OF-THE-WEEK
 
 [Return to TOC](#toc)
 
 For coding related to the day of week (Monday, Tuesday, etc.) see an example under 'VERTICAL LINES (3 STUDIES)'.
 
+<a name="NORMALIZED_MACD_AND_STOCHASTIC_PLOTTED_WITH_A_SQUEEZE_INDICATION"> </a>
 ## C-   NORMALIZED MACD AND STOCHASTIC PLOTTED WITH A SQUEEZE INDICATION
 
 [Return to TOC](#toc)
