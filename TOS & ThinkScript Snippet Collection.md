@@ -176,37 +176,23 @@
 
 # 4 [WATCHLIST COLUMNS](#WATCHLIST_COLUMNS)
 
-- [WLCPRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN.....Page 179](#_PRICE)
-<a name="_PRICE"> </a>
+- [WLCPRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN.....Page 179](#PRICE_TO_EARNINGS_P_E_RATIO_FOR_A_WATCHLIST_COLUMN)
 - [WLC-WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD.....Page 180](#WHEN_A_DIVERGENCE_EXISTS_BETWEEN_PRICE_AND_THE_MACD)
-<a name="WHEN_A_DIVERGENCE_EXISTS_BETWEEN_PRICE_AND_THE_MACD"> </a>
-- [WLC OF BARS-INTO-A-SQUEEZE.....Page 180](#INTO)
-<a name="INTO"> </a>
+- [WLC OF BARS-INTO-A-SQUEEZE.....Page 180](#OF_BARS_INTO_A_SQUEEZE)
 
 # 5 [SCANS](#SCANS)
 
-- [S-LINEAR REGRESSION-VAR SCAN.....Page 181](#LINEAR_REGRESSION)
-<a name="LINEAR_REGRESSION"> </a>
+- [S-LINEAR REGRESSION-VAR SCAN.....Page 181](#LINEAR_REGRESSION_VAR_SCAN)
 - [S-SCAN FOR TRENDING CONDITIONS.....Page 181](#SCAN_FOR_TRENDING_CONDITIONS)
-<a name="SCAN_FOR_TRENDING_CONDITIONS"> </a>
 - [S-SCAN FOR MACD AVG AND MACD DIVERGENCE.....Page 181](#SCAN_FOR_MACD_AVG_AND_MACD_DIVERGENCE)
-<a name="SCAN_FOR_MACD_AVG_AND_MACD_DIVERGENCE"> </a>
 - [S-SCAN DECLINE FOR ? BARS.....Page 181](#SCAN_DECLINE_FOR_?_BARS)
-<a name="SCAN_DECLINE_FOR_?_BARS"> </a>
 - [S-PRICE DIRECTION SCAN.....Page 181](#PRICE_DIRECTION_SCAN)
-<a name="PRICE_DIRECTION_SCAN"> </a>
-- [S-SCAN FOR HAS-EARNINGS IN FUTURE.....Page 182](#SCAN_FOR_HAS)
-<a name="SCAN_FOR_HAS"> </a>
+- [S-SCAN FOR HAS-EARNINGS IN FUTURE.....Page 182](#SCAN_FOR_HAS_EARNINGS_IN_FUTURE)
 - [S-SCAN FOR CORRELATED STOCKS.....Page 182](#SCAN_FOR_CORRELATED_STOCKS)
-<a name="SCAN_FOR_CORRELATED_STOCKS"> </a>
 - [S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS.....Page 182](#DMI_OSCILLATOR_SCAN_FOR_TRENDING)
-<a name="DMI_OSCILLATOR_SCAN_FOR_TRENDING"> </a>
 - [S-EXAMPLE OF TIME BRACKETED SCAN.....Page 183](#EXAMPLE_OF_TIME_BRACKETED_SCAN)
-<a name="EXAMPLE_OF_TIME_BRACKETED_SCAN"> </a>
 - [S-SCAN FOR HIGHS OR LOWS.....Page 183](#SCAN_FOR_HIGHS_OR_LOWS)
-<a name="SCAN_FOR_HIGHS_OR_LOWS"> </a>
 - [S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA.....Page 184](#SCAN_RSI_UNDER_20_AND_CLOSE_>_200)
-<a name="SCAN_RSI_UNDER_20_AND_CLOSE_>_200"> </a>
 - [S-SCAN FOR CROSS OF MOVING AVERAGES.....Page 184](#SCAN_FOR_CROSS_OF_MOVING_AVERAGES)
 <a name="SCAN_FOR_CROSS_OF_MOVING_AVERAGES"> </a>
 - [S-SCAN CROSS OF STANDARD DEVIATION CHANNEL.....Page 184](#SCAN_CROSS_OF_STANDARD_DEVIATION_CHANNEL)
@@ -9358,6 +9344,7 @@ X
 <a name="WATCHLIST_COLUMNS"> </a>
 # WATCHLIST COLUMNS
 
+<a name="PRICE_TO_EARNINGS_P_E_RATIO_FOR_A_WATCHLIST_COLUMN"> </a>
 ## WLC-PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN
 
 [Return to TOC](#toc)
@@ -9373,6 +9360,7 @@ AddLabel(yes,  round(PE,1));
 #end
 ```
 
+<a name="WHEN_A_DIVERGENCE_EXISTS_BETWEEN_PRICE_AND_THE_MACD"> </a>
 ## WLC-WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD
 
 [Return to TOC](#toc)
@@ -9405,6 +9393,7 @@ Plot Negative = neg_div;# A PINK value of 'one' plots where true exists
 #end
 ```
 
+<a name="OF_BARS_INTO_A_SQUEEZE"> </a>
 ## WLC OF BARS-INTO-A-SQUEEZE
 
 [Return to TOC](#toc)
@@ -9427,6 +9416,7 @@ addlabel(1, "SQZ= " + count, If squeeze then Color.LIGHT_RED else color.Current)
 <a name="SCANS"> <a/>
 # SCANS
 
+<a name="LINEAR_REGRESSION_VAR_SCAN"> </a>
 ## S-LINEAR REGRESSION-VAR SCAN
 
 [Return to TOC](#toc)
@@ -9435,6 +9425,7 @@ This is a scan that works well in a dynamic watch list with your favorite compan
 
 `Plot scan = low crosses LinearRegChVar ("width of channel" = 69, "full range" = no, "length" = 252)."LowerLR"`
 
+<a name="SCAN_FOR_TRENDING_CONDITIONS"> </a>
 ## S-SCAN FOR TRENDING CONDITIONS
 
 [Return to TOC](#toc)
@@ -9462,6 +9453,7 @@ plot scan = trendup && trendup2 && mcdtrend;
 #end
 ```
 
+<a name="SCAN_FOR_MACD_AVG_AND_MACD_DIVERGENCE"> </a>
 ## S-SCAN FOR MACD AVG AND MACD DIVERGENCE
 
 [Return to TOC](#toc)
@@ -9481,6 +9473,7 @@ This scan does a good job finding stocks that are tanking!
 
 `Plot scan = Crosses( MACD( 12, 26, 9, "SMA" ).Avg, 0, CrossingDirection.Below )`
 
+<a name="SCAN_DECLINE_FOR_?_BARS"> </a>
 ## S-SCAN DECLINE FOR ? BARS
 
 [Return to TOC](#toc)
@@ -9491,6 +9484,7 @@ plot decline = sum(close < close[1],Bars) ==  Bars;
 #end
 ```
 
+<a name="PRICE_DIRECTION_SCAN"> </a>
 ## S-PRICE DIRECTION SCAN
 
 [Return to TOC](#toc)
@@ -9521,6 +9515,7 @@ scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
 #end
 ```
 
+<a name="SCAN_FOR_HAS_EARNINGS_IN_FUTURE"> </a>
 ## S-SCAN FOR HAS-EARNINGS IN FUTURE
 
 [Return to TOC](#toc)
@@ -9533,6 +9528,7 @@ Comment: This could be very useful as a watchlist custom column.
 #end
 ```
 
+<a name="SCAN_FOR_CORRELATED_STOCKS"> </a>
 ## S-SCAN FOR CORRELATED STOCKS
 
 [Return to TOC](#toc)
@@ -9560,6 +9556,7 @@ plot scan = sum(x, inarow) >= inarow;
 #end
 ```
 
+<a name="DMI_OSCILLATOR_SCAN_FOR_TRENDING"> </a>
 ## S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS
 
 [Return to TOC](#toc)
@@ -9575,6 +9572,7 @@ Plot Scan = x > 10 && sum(up,length) >= length;
 #end
 ```
 
+<a name="EXAMPLE_OF_TIME_BRACKETED_SCAN"> </a>
 ## S-EXAMPLE OF TIME BRACKETED SCAN
 
 [Return to TOC](#toc)
@@ -9593,6 +9591,7 @@ plot Signal = Active == 1 and Cond1 == 1;
 #end
 ```
 
+<a name="SCAN_FOR_HIGHS_OR_LOWS"> </a>
 ## S-SCAN FOR HIGHS OR LOWS
 
 [Return to TOC](#toc)
@@ -9641,6 +9640,7 @@ plot scan = High <= Highest(High, range);
 #end
 ```
 
+<a name="SCAN_RSI_UNDER_20_AND_CLOSE_>_200"> </a>
 ## S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA
 
 [Return to TOC](#toc)
