@@ -263,130 +263,66 @@
 - NEXT ITEM TO BE ADDED .....Page 28
 - [C-UPPER & LOWER BANDS AT DEFINED PERCENT .....Page 28](#UPPER_AND_LOWER_BANDS_AT_DEFINED_PERCENT)
 - [C-STANDARD DEVIATION CHANNELS.....Page 29](#STANDARD_DEVIATION_CHANNELS)
-<a name="STANDARD_DEVIATION_CHANNELS"> </a>
 - [C-THE SIMPLEST REC IN THINKSCRIPT.....Page 29](#THE_SIMPLEST_REC_IN_THINKSCRIPT)
-<a name="THE_SIMPLEST_REC_IN_THINKSCRIPT"> </a>
 - [C-EXAMPLE OF 4 NORMALIZATIONS.....Page 30](#EXAMPLE_OF_4_NORMALIZATIONS)
-<a name="EXAMPLE_OF_4_NORMALIZATIONS"> </a>
 
 # 3 [STUDIES AND CODING](#STUDIES_AND_CODING)
 
 - [C-DATE LABEL IN MM/DD/YYYY FORMAT.....Page 30](#DATE_LABEL_IN_MM/DD/YYYY_FORMAT)
-<a name="DATE_LABEL_IN_MM/DD/YYYY_FORMAT"> </a>
 - [C-USAGE OF THE SWITCH FUNCTION.....Page 31](#USAGE_OF_THE_SWITCH_FUNCTION)
-<a name="USAGE_OF_THE_SWITCH_FUNCTION"> </a>
 - [C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS.....Page 31](#HORIZONTAL_LINES_OF_HIGHEST)
-<a name="HORIZONTAL_LINES_OF_HIGHEST"> </a>
 - [C-VARIOUS MARKET TIME VARIABLES .....Page 33](#VARIOUS_MARKET_TIME_VARIABLES)
-<a name="VARIOUS_MARKET_TIME_VARIABLES"> </a>
 - [C-VERTICAL LINES (3 STUDIES).....Page 34](#VERTICAL_LINES_3_STUDIES)
-<a name="VERTICAL_LINES_3_STUDIES"> </a>
 - [C-VERTICAL LINES AT INPUTTED BAR LOCATIONS.....Page 34](#VERTICAL_LINES_AT_INPUTTED_BAR_LOCATIONS)
-<a name="VERTICAL_LINES_AT_INPUTTED_BAR_LOCATIONS"> </a>
 - [C-PLOT BARNUMBERS AT SPECIFIED INTERVALS.....Page 35](#PLOT_BARNUMBERS_AT_SPECIFIED_INTERVALS)
-<a name="PLOT_BARNUMBERS_AT_SPECIFIED_INTERVALS"> </a>
 - [C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS.....Page 36](#BAR_COUNT_BETWEEN_HIGHS_AND_SHOW_BAR_NUMBERS)
-<a name="BAR_COUNT_BETWEEN_HIGHS_AND_SHOW_BAR_NUMBERS"> </a>
 - [C-MARKET OPEN AND LUNCH TIMES.....Page 36](#MARKET_OPEN_AND_LUNCH_TIMES)
-<a name="MARKET_OPEN_AND_LUNCH_TIMES"> </a>
 - [C-SQUEEZE SCAN WITH MACD EXIT .....Page 36](#SQUEEZE_SCAN_WITH_MACD_EXIT)
-<a name="SQUEEZE_SCAN_WITH_MACD_EXIT"> </a>
 - [C-SHOWING WHERE A CANDLE PATTERN  EXISTS.....Page 37](#SHOWING_WHERE_A_CANDLE_PATTERN__EXISTS)
-<a name="SHOWING_WHERE_A_CANDLE_PATTERN__EXISTS"> </a>
 - [C-VOLUME AS A % OF THE ??-DAY-AVERAGE.....Page 37](#VOLUME_AS_A_%_OF_THE_??)
-<a name="VOLUME_AS_A_%_OF_THE_??"> </a>
 - [C&S-IDENTIFY CURRENT LOW THAT HAS GAPED UP.....Page 39](#IDENTIFY_CURRENT_LOW_THAT_HAS_GAPED_UP)
-<a name="IDENTIFY_CURRENT_LOW_THAT_HAS_GAPED_UP"> </a>
 - [C&S-PERCENTAGE CHANGE OF AN AVERAGE (SCAN OR  PLOT).....Page 39](#PERCENTAGE_CHANGE_OF_AN_AVERAGE_SCAN_OR__PLOT)
-<a name="PERCENTAGE_CHANGE_OF_AN_AVERAGE_SCAN_OR__PLOT"> </a>
 - [C-ARROW AT THE DEFINED TIME EACH DAY .....Page 39](#ARROW_AT_THE_DEFINED_TIME_EACH_DAY)
-<a name="ARROW_AT_THE_DEFINED_TIME_EACH_DAY"> </a>
 - [C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE.....Page 40](#SHOWS_ARROWS_WHEN_THE_PRICE_CROSSES_THE_MOVING_AVERAGE)
-<a name="SHOWS_ARROWS_WHEN_THE_PRICE_CROSSES_THE_MOVING_AVERAGE"> </a>
 - [C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE.....Page 40](#LINE_FROM_OPEN_OF_FIRST_BAR_OF_DAY_OR_YESTERDAYS_CLOSE)
-<a name="LINE_FROM_OPEN_OF_FIRST_BAR_OF_DAY_OR_YESTERDAYS_CLOSE"> </a>
 - [C-% CHANGE OF THE FIRST BAR VALUE.....Page 41](#%_CHANGE_OF_THE_FIRST_BAR_VALUE)
-<a name="%_CHANGE_OF_THE_FIRST_BAR_VALUE"> </a>
 - [C-% CHANGE COMPARED TO ? DAYS-AGO.....Page 41](#%_CHANGE_COMPARED_TO_?_DAYS)
-<a name="%_CHANGE_COMPARED_TO_?_DAYS"> </a>
 - [C-LOW IS ?% ABOVE YESTERDAY'S HIGH.....Page 42](#LOW_IS_?%_ABOVE_YESTERDAYS_HIGH)
-<a name="LOW_IS_?%_ABOVE_YESTERDAYS_HIGH"> </a>
-- [C-IMP-VOLATILITY PERCENTILE.....Page 42](#IMP)
-<a name="IMP"> </a>
+- [C-IMP-VOLATILITY PERCENTILE.....Page 42](#IMP_VOLATILITY_PERCENTILE)
 - [C-YTD PERCENT CHANGE.....Page 42](#YTD_PERCENT_CHANGE)
-<a name="YTD_PERCENT_CHANGE"> </a>
 - [C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE.....Page 43](#PLOT_A_HORIZONTAL_LINE_THRU_A_DEFINED_DATE)
-<a name="PLOT_A_HORIZONTAL_LINE_THRU_A_DEFINED_DATE"> </a>
 - [C-ADD AN INDEX OR FUTURE LOWER CHART.....Page 43](#ADD_AN_INDEX_OR_FUTURE_LOWER_CHART)
-<a name="ADD_AN_INDEX_OR_FUTURE_LOWER_CHART"> </a>
 - [C-LINE RSI WITH MACD HISTOGRAM.....Page 44](#LINE_RSI_WITH_MACD_HISTOGRAM)
-<a name="LINE_RSI_WITH_MACD_HISTOGRAM"> </a>
 - [C-MARKET SENTIMENT.....Page 45](#MARKET_SENTIMENT)
-<a name="MARKET_SENTIMENT"> </a>
 - [C-MARKET FORECAST PLOTTED BY REFERENCE.....Page 46](#MARKET_FORECAST_PLOTTED_BY_REFERENCE)
-<a name="MARKET_FORECAST_PLOTTED_BY_REFERENCE"> </a>
 - [C-TRIPLE EMA &  STD DEV MONITORING.....Page 46](#TRIPLE_EMA_AND__STD_DEV_MONITORING)
-<a name="TRIPLE_EMA_AND__STD_DEV_MONITORING"> </a>
-- [C-FAST-MED-SLOW TRUE RANGE OSC.....Page 47](#FAST)
-<a name="FAST"> </a>
+- [C-FAST-MED-SLOW TRUE RANGE OSC.....Page 47](#FAST_MED_SLOW_TRUE_RANGE_OSC)
 - [C-CHANGE STUDIES BASED ON SYMBOL VIEWED.....Page 47](#CHANGE_STUDIES_BASED_ON_SYMBOL_VIEWED)
-<a name="CHANGE_STUDIES_BASED_ON_SYMBOL_VIEWED"> </a>
-- [C-PLOTS HIGHER-HIGHS AND LOWER-LOWS.....Page 48](#PLOTS_HIGHER)
-<a name="PLOTS_HIGHER"> </a>
+- [C-PLOTS HIGHER-HIGHS AND LOWER-LOWS.....Page 48](#PLOTS_HIGHER_AND_LOWER_LOWS)
 - [C-CANDLESTICK PLOTS.....Page 49](#CANDLESTICK_PLOTS)
-<a name="CANDLESTICK_PLOTS"> </a>
 - [C-ATR TRAILING STOP.....Page 49](#ATR_TRAILING_STOP)
-<a name="ATR_TRAILING_STOP"> </a>
 - [C&S-EARNINGS.....Page 51](#EARNINGS)
-<a name="EARNINGS"> </a>
 - [C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL.....Page 51](#SLOPE_OF_AN_AVERAGE_+_AVERAGE_TYPE_USAGE_IN_A_LABEL)
-<a name="SLOPE_OF_AN_AVERAGE_+_AVERAGE_TYPE_USAGE_IN_A_LABEL"> </a>
 - [C-TODAY'S MARKET OPENING PRICE.....Page 52](#TODAYS_MARKET_OPENING_PRICE)
-<a name="TODAYS_MARKET_OPENING_PRICE"> </a>
 - [C-PLACING OF PLOTTED ARROWS.....Page 52](#PLACING_OF_PLOTTED_ARROWS)
-<a name="PLACING_OF_PLOTTED_ARROWS"> </a>
 - [C-SPECIFYING 'AVERAGETYPE' INPUT.....Page 52](#SPECIFYING_AVERAGETYPE_INPUT)
-<a name="SPECIFYING_AVERAGETYPE_INPUT"> </a>
 - [C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES.....Page 53](#ORDER_BASED_ON_DIFFERENCE_OF_3_MOVING_AVERAGES)
-<a name="ORDER_BASED_ON_DIFFERENCE_OF_3_MOVING_AVERAGES"> </a>
 - [C-DEFINING CONDITIONS IN BUY/SELL STRATEGY.....Page 53](#DEFINING_CONDITIONS_IN_BUY/SELL_STRATEGY)
-<a name="DEFINING_CONDITIONS_IN_BUY/SELL_STRATEGY"> </a>
 - [C-THE 'AdvanceDecline' STUDY OF THE NYSE, NASDAQ, AMEX.....Page 53](#THE_ADVANCEDECLINE_STUDY_OF_THE_NYSE_NASDAQ_AMEX)
-<a name="THE_ADVANCEDECLINE_STUDY_OF_THE_NYSE_NASDAQ_AMEX"> </a>
 - [C-PLOT FOR ? DAYS FROM A DATE.....Page 55](#PLOT_FOR_?_DAYS_FROM_A_DATE)
-<a name="PLOT_FOR_?_DAYS_FROM_A_DATE"> </a>
 - [C-PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART.....Page 55](#PLOT_THE_CURRENT_PRICE_ACROSS_AN_ENTIRE_CHART)
-<a name="PLOT_THE_CURRENT_PRICE_ACROSS_AN_ENTIRE_CHART"> </a>
-- [C-PLACING OF PLOTTED ARROWS.....Page 55](#PLACING_OF_PLOTTED_ARROWS)
-<a name="PLACING_OF_PLOTTED_ARROWS"> </a>
-- [C-SPECIFYING 'AVERAGETYPE' INPUT.....Page 55](#SPECIFYING_AVERAGETYPE_INPUT)
-<a name="SPECIFYING_AVERAGETYPE_INPUT"> </a>
-- [C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES.....Page 56](#ORDER_BASED_ON_DIFFERENCE_OF_3_MOVING_AVERAGES)
-<a name="ORDER_BASED_ON_DIFFERENCE_OF_3_MOVING_AVERAGES"> </a>
 - [C-% VOLUME CHANGE FROM THE PREVIOUS BAR.....Page 56](#%_VOLUME_CHANGE_FROM_THE_PREVIOUS_BAR)
-<a name="%_VOLUME_CHANGE_FROM_THE_PREVIOUS_BAR"> </a>
 - [C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD.....Page 57](#INTRADAY_CURRENT_PRICE_CLOUD_ATOP_DAYS_HIGHEST_CLOUD)
-<a name="INTRADAY_CURRENT_PRICE_CLOUD_ATOP_DAYS_HIGHEST_CLOUD"> </a>
 - [C-PLOT DUAL MOVING AVERAGES.....Page 58](#PLOT_DUAL_MOVING_AVERAGES)
-<a name="PLOT_DUAL_MOVING_AVERAGES"> </a>
 - [C-SIMPLE MOVING AVERAGE CROSS TRADING.....Page 58](#SIMPLE_MOVING_AVERAGE_CROSS_TRADING)
-<a name="SIMPLE_MOVING_AVERAGE_CROSS_TRADING"> </a>
 - [C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY.....Page 59](#A_VERSATILE_ROBUST_MOVING_AVERAGE_CROSS_STUDY)
-<a name="A_VERSATILE_ROBUST_MOVING_AVERAGE_CROSS_STUDY"> </a>
 - [C-AVOIDING FALSE SIGNALS.....Page 60](#AVOIDING_FALSE_SIGNALS)
-<a name="AVOIDING_FALSE_SIGNALS"> </a>
 - [C-USING THE SETHIDING FUNCTION.....Page 61](#USING_THE_SETHIDING_FUNCTION)
-<a name="USING_THE_SETHIDING_FUNCTION"> </a>
 - [C-MOVING AVERAGE SPECTRUM.....Page 61](#MOVING_AVERAGE_SPECTRUM)
-<a name="MOVING_AVERAGE_SPECTRUM"> </a>
 - [C-IMPLIED VOLATILITY LABEL AND PLOT.....Page 61](#IMPLIED_VOLATILITY_LABEL_AND_PLOT)
-<a name="IMPLIED_VOLATILITY_LABEL_AND_PLOT"> </a>
-- [C-INSIDE-BAR CODING.....Page 62](#INSIDE)
-<a name="INSIDE"> </a>
+- [C-INSIDE-BAR CODING.....Page 62](#INSIDE_BAR_CODING)
 - [C-IDENTIFYING AGGREGATION IN A LABEL.....Page 62](#IDENTIFYING_AGGREGATION_IN_A_LABEL)
-<a name="IDENTIFYING_AGGREGATION_IN_A_LABEL"> </a>
 - [C-FIRST AND LAST BAR FOR PLACING A BUBBLE.....Page 63](#FIRST_AND_LAST_BAR_FOR_PLACING_A_BUBBLE)
-<a name="FIRST_AND_LAST_BAR_FOR_PLACING_A_BUBBLE"> </a>
 - [C-DEFINE PREVIOUS DAY'S CLOSE.....Page 63](#DEFINE_PREVIOUS_DAYS_CLOSE)
 <a name="DEFINE_PREVIOUS_DAYS_CLOSE"> </a>
 - [C-CLOUDS WITHOUT A PLOT.....Page 63](#CLOUDS_WITHOUT_A_PLOT)
@@ -1800,6 +1736,7 @@ assignBackgroundColor(if close > upperBand then color.Green else color.current);
 
 ### EOC ###
 
+<a name="STANDARD_DEVIATION_CHANNELS"> </a>
 ## C-STANDARD DEVIATION CHANNELS
 
 [Return to TOC](#toc)
@@ -1830,6 +1767,7 @@ plot StDev3Dn = avg + (SD3dn * StdDev);
 
 #EOC
 
+<a name="THE_SIMPLEST_REC_IN_THINKSCRIPT"> </a>
 ## C-THE SIMPLEST REC IN THINKSCRIPT
 
 [Return to TOC](#toc)
@@ -1845,6 +1783,7 @@ plot y =  if x <= 200 then x else double.NaN ;
 #EOC
 ```
 
+<a name="EXAMPLE_OF_4_NORMALIZATIONS"> </a>
 ## C-EXAMPLE OF 4 NORMALIZATIONS
 
 [Return to TOC](#toc)
@@ -1890,6 +1829,7 @@ plot Over_Sold = 20;
 ### EOC ###
 ```
 
+<a name="DATE_LABEL_IN_MM/DD/YYYY_FORMAT"> </a>
 ## C-DATE LABEL IN MM/DD/YYYY FORMAT
 
 [Return to TOC](#toc)
@@ -1904,6 +1844,7 @@ AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
 #end
 ```
 
+<a name="USAGE_OF_THE_SWITCH_FUNCTION"> </a>
 ## C-USAGE OF THE SWITCH FUNCTION
 
 [Return to TOC](#toc)
@@ -1936,6 +1877,7 @@ AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
 
 - C-ATR TRAILING STOP and C- THE 'AdvanceDecline' STUDY
 
+<a name="HORIZONTAL_LINES_OF_HIGHEST"> </a>
 ## C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS
 
 [Return to TOC](#toc)
@@ -2049,6 +1991,7 @@ color.RED );
 #EOC
 ```
 
+<a name="VARIOUS_MARKET_TIME_VARIABLES"> </a>
 ## C-VARIOUS MARKET TIME VARIABLES
 
 [Return to TOC](#toc)
@@ -2072,6 +2015,7 @@ def EOD = secondsFromTime(1600) > 0; #After 4 pm, EOD is true
 #EOC
 ```
 
+<a name="VERTICAL_LINES_3_STUDIES"> </a>
 ## C-VERTICAL LINES (3 STUDIES)
 
 [Return to TOC](#toc)
@@ -2122,6 +2066,7 @@ AddVerticalLine(StartOrEnd == StartOrEnd.both && EndTime && (GetDayofWeek(GetYYY
 #end
 ```
 
+<a name="VERTICAL_LINES_AT_INPUTTED_BAR_LOCATIONS"> </a>
 ## C-VERTICAL LINES AT INPUTTED BAR LOCATIONS
 
 [Return to TOC](#toc)
@@ -2167,6 +2112,7 @@ Comment: This is a good example illustrating the use of the Assert function.
 
 #end
 
+<a name="PLOT_BARNUMBERS_AT_SPECIFIED_INTERVALS"> </a>
 ## C-PLOT BARNUMBERS AT SPECIFIED INTERVALS
 
 [Return to TOC](#toc)
@@ -2202,6 +2148,7 @@ The above is a study named Bar_Number_Plot_Interval.txt available at http://mytr
 
 #end
 
+<a name="BAR_COUNT_BETWEEN_HIGHS_AND_SHOW_BAR_NUMBERS"> </a>
 ## C-BAR COUNT BETWEEN HIGHS & SHOW BAR NUMBERS
 
 [Return to TOC](#toc)
@@ -2227,6 +2174,7 @@ plot count = if signal1 > 0 and signal1 != barnumber() then signal1 else if sign
  #end
  ```
 
+<a name="MARKET_OPEN_AND_LUNCH_TIMES"> </a>
 ## C-MARKET OPEN AND LUNCH TIMES
 
 [Return to TOC](#toc)
@@ -2242,6 +2190,7 @@ AddVerticalLine(MarketOpen or LunchTime,if MarketOpen then "TIME TO TRADE!" else
 #end
 ```
 
+<a name="SQUEEZE_SCAN_WITH_MACD_EXIT"> </a>
 ## C-SQUEEZE SCAN WITH MACD EXIT
 
 [Return to TOC](#toc)
@@ -2253,6 +2202,7 @@ BollingerBandsSMA()."UpperBand"[1] is less than KeltnerChannels()."Upper_Band"[1
 #end
 ```
 
+<a name="SHOWING_WHERE_A_CANDLE_PATTERN__EXISTS"> </a>
 ## C-SHOWING WHERE A CANDLE PATTERN  EXISTS
 
 [Return to TOC](#toc)
@@ -2283,6 +2233,7 @@ Note that the parameter names (length, trendSetup and  bodyFactor) are exactly t
 
 - #end
 
+<a name="VOLUME_AS_A_%_OF_THE_??"> </a>
 ## C-VOLUME AS A % OF THE ??-DAY-AVERAGE
 
 [Return to TOC](#toc)
@@ -2363,6 +2314,7 @@ Addlabel(yes, "Arrow shows when volume is >= "+ pct + "above the " + length +"-b
 #end
 ```
 
+<a name="IDENTIFY_CURRENT_LOW_THAT_HAS_GAPED_UP"> </a>
 ## C&S-IDENTIFY CURRENT LOW THAT HAS GAPED UP
 
 [Return to TOC](#toc)
@@ -2388,6 +2340,7 @@ scan.SetDefaultColor(Color.White);
 #end
 ```
 
+<a name="PERCENTAGE_CHANGE_OF_AN_AVERAGE_SCAN_OR__PLOT"> </a>
 ## C&S-PERCENTAGE CHANGE OF AN AVERAGE (SCAN OR  PLOT)
 
 [Return to TOC](#toc)
@@ -2420,6 +2373,7 @@ AddLabel(yes,Percent + " % " + Choice + " of the " + length + "-bar-average of a
 #end
 ```
 
+<a name="ARROW_AT_THE_DEFINED_TIME_EACH_DAY"> </a>
 ## C-ARROW AT THE DEFINED TIME EACH DAY
 
 [Return to TOC](#toc)
@@ -2444,6 +2398,7 @@ AddLabel(yes, "Arrow is at time = " + AsPrice(time) +" of each day" ,color.white
 #end
 ```
 
+<a name="SHOWS_ARROWS_WHEN_THE_PRICE_CROSSES_THE_MOVING_AVERAGE"> </a>
 ## C-SHOWS ARROWS WHEN THE PRICE CROSSES THE MOVING AVERAGE
 
 [Return to TOC](#toc)
@@ -2490,6 +2445,7 @@ crossdown.hidetitle();
 #end
 ```
 
+<a name="LINE_FROM_OPEN_OF_FIRST_BAR_OF_DAY_OR_YESTERDAYS_CLOSE"> </a>
 ## C-LINE FROM OPEN OF FIRST BAR OF DAY OR YESTERDAY'S CLOSE
 
 [Return to TOC](#toc)
@@ -2515,6 +2471,7 @@ CloseLine.SetDefaultColor( Color.gray);
 #end
 ```
 
+<a name="%_CHANGE_OF_THE_FIRST_BAR_VALUE"> </a>
 ## C-% CHANGE OF THE FIRST BAR VALUE
 
 [Return to TOC](#toc)
@@ -2547,6 +2504,7 @@ else "N/A",color.white);
 #end
 ```
 
+<a name="%_CHANGE_COMPARED_TO_?_DAYS"> </a>
 ## C-% CHANGE COMPARED TO ? DAYS-AGO
 
 [Return to TOC](#toc)
@@ -2564,6 +2522,7 @@ AddLabel(yes,"% Change compared to " + length + " days ago = " + Round(PctChange
  #end
  ```
 
+<a name="LOW_IS_?%_ABOVE_YESTERDAYS_HIGH"> </a>
 ## C-LOW IS ?% ABOVE YESTERDAY'S HIGH
 
 [Return to TOC](#toc)
@@ -2586,6 +2545,7 @@ scan.SetDefaultColor(Color.White);
 #end
 ```
 
+<a name="IMP_VOLATILITY_PERCENTILE"> </a>
 ## C-IMP-VOLATILITY PERCENTILE
 
 [Return to TOC](#toc)
@@ -2606,6 +2566,7 @@ else color.Light_Red);
 #end
 ```
 
+<a name="YTD_PERCENT_CHANGE"> </a>
 ## C-YTD PERCENT CHANGE
 
 [Return to TOC](#toc)
@@ -2654,44 +2615,37 @@ Alternate = current close as percent of the last-52-week-range
  #end
  ```
 
+<a name="PLOT_A_HORIZONTAL_LINE_THRU_A_DEFINED_DATE"> </a>
 ## C-PLOT A HORIZONTAL LINE THRU A DEFINED DATE
 
 [Return to TOC](#toc)
 
-- #hint: <b>Plot a H-line on a date</b>\nPlots a horizontal line at the close on a specified date. Use on a daily chart.
+```
+#hint: <b>Plot a H-line on a date</b>\nPlots a horizontal line at the close on a specified date. Use on a daily chart.
 
-- declare hide_on_intraday;
+declare hide_on_intraday;
+input Date = 20130801;#hint Date: Set the date you want see.<b>\n(Enter in YYYYMMDD)</b>
+input price = CLOSE;
+input show_line = Yes;#hint show_line: Show a horizontal line at this price<b>(Default is Yes)</b>
 
-- input Date = 20130801;#hint Date: Set the date you want see.<b>\n(Enter in YYYYMMDD)</b>
+def timeTest = getYyyyMmDd() == date;
+def data = if timetest then price  else double.nan;
 
-- input price = CLOSE;
+plot Line = if show_line then highestall(data) else double.nan;
+line.assignValueColor((if price == close then color.cyan else if price == open then color.pink else if price == low then color.yellow else if price == high then color.green else color.red));
 
-- input show_line = Yes;#hint show_line: Show a horizontal line at this price<b>(Default is Yes)</b>
+def monthday = if timetest then getdayOfMonth(date) else double.nan;
+def month = if timetest then getmonth() else double.nan;
+A
+ddChartBubble(timetest, price, 
+concat(concat(concat("Date: ",Concat(month, "/")), monthday),  concat((if price == close
+then "   Close: $" else if price == open then "   Open: $" else if price == low then "   Low: $" else if price == high then "High: $" else "   Value:  "), price)),
+(if price == close then color.cyan else if price == open then color.pink else if price == low then color.yellow else if price == high then color.green else color.red)
+, yes);
+#end
+```
 
-- def timeTest = getYyyyMmDd() == date;
-
-- def data = if timetest then price  else double.nan;
-
-- plot Line = if show_line then highestall(data) else double.nan;
-
-- line.assignValueColor((if price == close then color.cyan else if price == open then color.pink else if price == low then
-
-- color.yellow else if price == high then color.green else color.red));
-
-- def monthday = if timetest then getdayOfMonth(date) else double.nan;
-
-- def month = if timetest then getmonth() else double.nan;
-
-- AddChartBubble(timetest, price, concat(concat(concat("Date: ",Concat(month, "/")), monthday),  concat((if price == close
-
-- then "   Close: $" else if price == open then "   Open: $" else if price == low then "   Low: $" else if price == high then "
-
-- High: $" else "   Value:  "), price)),  (if price == close then color.cyan else if price == open then color.pink else if price ==
-
-- low then color.yellow else if price == high then color.green else color.red), yes);
-
-- #end
-
+<a name="ADD_AN_INDEX_OR_FUTURE_LOWER_CHART"> </a>
 ## C-ADD AN INDEX OR FUTURE LOWER CHART
 
 [Return to TOC](#toc)
@@ -2736,6 +2690,7 @@ else  "ERROR – none were found", Color.WHITE);
 #end
 ```
 
+<a name="LINE_RSI_WITH_MACD_HISTOGRAM"> </a>
 ## C-LINE RSI WITH MACD HISTOGRAM
 
 [Return to TOC](#toc)
@@ -2782,6 +2737,7 @@ Color.YELLOW);
 #end
 ```
 
+<a name="MARKET_SENTIMENT"> </a>
 ## C-MARKET SENTIMENT
 
 [Return to TOC](#toc)
@@ -2803,7 +2759,7 @@ marketsentiment.setDefaultColor(color.yellow);
 #end
 ```
 
-
+<a name="MARKET_FORECAST_PLOTTED_BY_REFERENCE"> </a>
 ## C-MARKET FORECAST PLOTTED BY REFERENCE
 
 [Return to TOC](#toc)
@@ -2824,6 +2780,7 @@ addlabel(1,"Market Forecast Intermediate",color.white);
 #end
 ```
 
+<a name="TRIPLE_EMA_AND__STD_DEV_MONITORING"> </a>
 ## C-TRIPLE EMA &  STD DEV MONITORING
 
 [Return to TOC](#toc)
@@ -2866,6 +2823,7 @@ Addlabel(1,"Above mid-line is bullish. Below is bearish.", color.cyan);
 #end
 ```
 
+<a name="FAST_MED_SLOW_TRUE_RANGE_OSC"> </a>
 ## C-FAST-MED-SLOW TRUE RANGE OSC
 
 [Return to TOC](#toc)
@@ -2904,7 +2862,7 @@ UltOsc.SetDefaultColor(GetColor(1));
 AddLabel(1,”Fast-Med-Slow True Range Oscillator”, color.white);
 #End
 ```
-
+<a name="CHANGE_STUDIES_BASED_ON_SYMBOL_VIEWED"> </a>
 ## C-CHANGE STUDIES BASED ON SYMBOL VIEWED
 
 [Return to TOC](#toc)
@@ -2954,6 +2912,7 @@ else
 #end
 ```
 
+<a name="PLOTS_HIGHER_AND_LOWER_LOWS"> </a>
 ## C-PLOTS HIGHER-HIGHS AND LOWER-LOWS
 
 [Return to TOC](#toc)
@@ -2996,6 +2955,7 @@ AddLabel(1,"Plot arrows of lower-lows", color.yellow);
 #end
 ```
 
+<a name="CANDLESTICK_PLOTS"> </a>
 ## C-CANDLESTICK PLOTS
 
 [Return to TOC](#toc)
@@ -3004,6 +2964,7 @@ If you are interested in seeing examples of various candlesticks, there are two 
 
 #end
 
+<a name="ATR_TRAILING_STOP"> </a>
 ## C-ATR TRAILING STOP
 
 [Return to TOC](#toc)
@@ -3087,6 +3048,7 @@ cross.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
 #end
 ```
 
+<a name="EARNINGS"> </a>
 ## C&S-EARNINGS
 
 [Return to TOC](#toc)
@@ -3123,6 +3085,7 @@ plot f = e > 0;
 #end
 ```
 
+<a name="SLOPE_OF_AN_AVERAGE_+_AVERAGE_TYPE_USAGE_IN_A_LABEL"> </a>
 ## C-SLOPE OF AN AVERAGE + 'AVERAGE TYPE' USAGE IN A LABEL
 
 [Return to TOC](#toc)
@@ -3157,6 +3120,7 @@ Comment2: This plot follows a trend very well
 
 #end
 
+<a name="TODAYS_MARKET_OPENING_PRICE"> </a>
 ## C-TODAY'S MARKET OPENING PRICE
 
 [Return to TOC](#toc)
@@ -3179,6 +3143,7 @@ DaysOpen.SetDefaultColor(Color.WHITE);
 #end
 ```
 
+<a name="PLACING_OF_PLOTTED_ARROWS"> </a>
 ## C-PLACING OF PLOTTED ARROWS
 
 [Return to TOC](#toc)
@@ -3198,6 +3163,7 @@ ArrowDn.SetDefaultColor(Color.Red);
 #end
 ```
 
+<a name="SPECIFYING_AVERAGETYPE_INPUT"> </a>
 ## C-SPECIFYING 'AVERAGETYPE' INPUT
 
 [Return to TOC](#toc)
@@ -3215,6 +3181,7 @@ plot MovAvg1 = MovingAverage(averageType1, price, length1);
 #end
 ```
 
+<a name="ORDER_BASED_ON_DIFFERENCE_OF_3_MOVING_AVERAGES"> </a>
 ## C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
 
 [Return to TOC](#toc)
@@ -3241,6 +3208,7 @@ addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
 #end
 ```
 
+<a name="DEFINING_CONDITIONS_IN_BUY/SELL_STRATEGY"> </a>
 ## C-   DEFINING CONDITIONS IN BUY/SELL STRATEGY
 
 [Return to TOC](#toc)
@@ -3259,136 +3227,87 @@ addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
  #end
  ```
 
+<a name="THE_ADVANCEDECLINE_STUDY_OF_THE_NYSE_NASDAQ_AMEX"> </a>
 ## C-THE 'AdvanceDecline' STUDY OF THE NYSE, NASDAQ, AMEX
 
 [Return to TOC](#toc)
 
-- Comment: This is the built-in 'AdvanceDecline' study. It is duplicated here because it demonstrates so well the selection
+```
+Comment: This is the built-in 'AdvanceDecline' study. It is duplicated here because it demonstrates so well the selection
+of various choices and because it is so popular for viewing the market conditions.  There is a lot to learn by studying this
+script. Even the label coding is neat. The bottom label was added to the built-in for clarity.
+declare lower;
+input type = {default "Advance/Decline Line", "Advance/Decline Line (Breadth)", "Advance/Decline Line (Daily)",
+"Advance/Decline Ratio", "Advance/Decline Spread (Issues)", "Absolute Breadth Index"};
 
-- of various choices and because it is so popular for viewing the market conditions.  There is a lot to learn by studying this
+input exchange = {default NYSE, NASDAQ, AMEX};
 
-- script. Even the label coding is neat. The bottom label was added to the built-in for clarity.
+def advances;
+def declines;
 
-- declare lower;
+switch (exchange) {
+  case NYSE:
+    advances = close("$ADVN");
+    declines = close("$DECN");
+  case NASDAQ:
+    advances = close("$ADVN/Q");
+    declines = close("$DECN/Q");
+  case AMEX:
+    advances = close("$ADVA");
+    declines = close("$DECA");
+}
 
-- input type = {default "Advance/Decline Line", "Advance/Decline Line (Breadth)", "Advance/Decline Line (Daily)",
+def advnDecl;
+def level;
 
-- "Advance/Decline Ratio", "Advance/Decline Spread (Issues)", "Absolute Breadth Index"};
+switch (type){
+  case "Advance/Decline Line":
+    advnDecl = advnDecl[1] + if !IsNaN(advances - declines) then advances - declines else 0;
+    level = 0;
+  case "Advance/Decline Line (Breadth)":
+    advnDecl = advances / (advances + declines);
+    level = 0.5;
+  case "Advance/Decline Line (Daily)":
+    advnDecl = (advances - declines) / (advances + declines);
+    level = 0;
+  case "Advance/Decline Ratio":
+    advnDecl = advances / declines;
+    level = 1;
+  case "Advance/Decline Spread (Issues)":
+    advnDecl = advances - declines;
+    level = 0;
+  case "Absolute Breadth Index":
+    advnDecl = AbsValue(advances - declines);
+    level = 0;
+}
 
-- input exchange = {default NYSE, NASDAQ, AMEX};
+plot AD = if !IsNaN(close) then advnDecl else Double.NaN;
+plot LevelLine = level;
+AD.DefineColor("Up", Color.UPTICK);
+AD.DefineColor("Down", Color.DOWNTICK);
+AD.AssignValueColor(if advnDecl > advnDecl[1] then AD.color("Up") else AD.color("Down"));
+LevelLine.SetDefaultColor(GetColor(7));
+AddLabel(type == type."Advance/Decline Ratio", (if advances > declines then round(advances / declines, 2) else round(-
+declines / advances, 2)) + ":1 Ratio");
 
-- def advances;
+AddLabel(yes, "Showing is the " + (if type == type."Advance/Decline Line"  then  "Advance/Decline Line"
+    else if type == type."Advance/Decline Line (Breadth)" then "Advance/Decline Line (Breadth)"
+    else if type == type."Advance/Decline Line (Daily)"  then "Advance/Decline Line (Daily)"
+    else if type == type."Advance/Decline Ratio" then   "Advance/Decline Ratio"
+    else if type == type."Advance/Decline Spread (Issues)" then "Advance/Decline Spread (Issues)"
+    else if type == type."Absolute Breadth Index" then "Absolute Breadth Index"
+    else "") + " for the " +
+    (if exchange == exchange.NYSE then "NYSE"
+    else if exchange == exchange.NASDAQ then "NASDAQ"
+    else if exchange == exchange.AMEX then "AMEX"
+    else ""), color.white);
 
-- def declines;
+#Comment: Each 'if...then...else' statement should be within parentheses to insure printing.
 
-- switch (exchange) {
+#end
+```
 
-- case NYSE:
-
-- advances = close("$ADVN");
-
-- declines = close("$DECN");
-
-- case NASDAQ:
-
-- advances = close("$ADVN/Q");
-
-- declines = close("$DECN/Q");
-
-- case AMEX:
-
-- advances = close("$ADVA");
-
-- declines = close("$DECA");
-
-- }
-
-- def advnDecl;
-
-- def level;
-
-- switch (type){
-
-- case "Advance/Decline Line":
-
-- advnDecl = advnDecl[1] + if !IsNaN(advances - declines) then advances - declines else 0;
-
-- level = 0;
-
-- case "Advance/Decline Line (Breadth)":
-
-- advnDecl = advances / (advances + declines);
-
-- level = 0.5;
-
-- case "Advance/Decline Line (Daily)":
-
-- advnDecl = (advances - declines) / (advances + declines);
-
-- level = 0;
-
-- case "Advance/Decline Ratio":
-
-- advnDecl = advances / declines;
-
-- level = 1;
-
-- case "Advance/Decline Spread (Issues)":
-
-- advnDecl = advances - declines;
-
-- level = 0;
-
-- case "Absolute Breadth Index":
-
-- advnDecl = AbsValue(advances - declines);
-
-- level = 0;
-
-- }
-
-- plot AD = if !IsNaN(close) then advnDecl else Double.NaN;
-
-- plot LevelLine = level;
-
-- AD.DefineColor("Up", Color.UPTICK);
-
-- AD.DefineColor("Down", Color.DOWNTICK);
-
-- AD.AssignValueColor(if advnDecl > advnDecl[1] then AD.color("Up") else AD.color("Down"));
-
-- LevelLine.SetDefaultColor(GetColor(7));
-
-- AddLabel(type == type."Advance/Decline Ratio", (if advances > declines then round(advances / declines, 2) else round(-
-
-- declines / advances, 2)) + ":1 Ratio");
-
-- AddLabel(yes, "Showing is the " + (if type == type."Advance/Decline Line"  then  "Advance/Decline Line"
-
-- else if type == type."Advance/Decline Line (Breadth)" then "Advance/Decline Line (Breadth)"
-
-- else if type == type."Advance/Decline Line (Daily)"  then "Advance/Decline Line (Daily)"
-
-- else if type == type."Advance/Decline Ratio" then   "Advance/Decline Ratio"
-
-- else if type == type."Advance/Decline Spread (Issues)" then "Advance/Decline Spread (Issues)"
-
-- else if type == type."Absolute Breadth Index" then "Absolute Breadth Index"
-
-- else "") + " for the " +
-
-- (if exchange == exchange.NYSE then "NYSE"
-
-- else if exchange == exchange.NASDAQ then "NASDAQ"
-
-- else if exchange == exchange.AMEX then "AMEX"
-
-- else ""), color.white);
-
-- Comment: Each 'if...then...else' statement should be within parentheses to insure printing.
-
-- #end
-
+<a name="PLOT_FOR_?_DAYS_FROM_A_DATE"> </a>
 ## C-PLOT FOR ? DAYS FROM A DATE
 
 [Return to TOC](#toc)
@@ -3407,6 +3326,7 @@ AddLabel(1, "If you do not see a plot, check if the chart timeframe cover the in
 #end
 ```
 
+<a name="PLOT_THE_CURRENT_PRICE_ACROSS_AN_ENTIRE_CHART"> </a>
 ## C-   PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART
 
 [Return to TOC](#toc)
@@ -3421,74 +3341,7 @@ plot price_across_chart = HighestAll(if !IsNaN(price) and IsNaN(price[-1]) then 
 #end
 ```
 
-## C-PLACING OF PLOTTED ARROWS
-
-[Return to TOC](#toc)
-
-When you want to move a plotted arrow you can place it with the 'values_above' or 'values_below' painting strategy constants. See:
-
-http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Constants/PaintingStrategy/PaintingStrategy.VALUES_ABOVE.html
-
-Another method has been used that plots a value and assigns an arrow to it  with 'SetPaintingStrategy'. An example follows:
-
-```
-input spacer= 3;
-plot arrowdn= if BarNumber() == SundayBar and SundayOpen < FridayClose then high+ticksize()*spacer else double.nan;
-
-ArrowDn.SetPaintingStrategy(PaintingStrategy.Arrow_Down);
-ArrowDn.SetLineWeight(3);
-ArrowDn.SetDefaultColor(Color.Red);
-```
-
-#end
-
-## C-SPECIFYING 'AVERAGETYPE' INPUT
-
-[Return to TOC](#toc)
-
-`input AverageType = {default Simple, Exponential, Weighted, Wilders, Hull};`
-
-To specify an individual selection  use, as an example,  AverageType ==  AverageType.Weighted
-
-Example:
-
-```
-input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
-input length1 = 10;
-def price = close;
-plot MovAvg1 = MovingAverage(averageType1, price, length1);
-```
-#end
-
-## C-ORDER BASED ON DIFFERENCE OF 3 MOVING AVERAGES
-
-[Return to TOC](#toc)
-
-```
-#hint:Order based on value difference of three averages
-
-input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
-input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
-input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull};
-input length1 = 10;
-input length2 = 46;
-input length3 = 230;
-input val_diff = .05;
-
-def price = close;
-
-plot MovAvg1 = MovingAverage(averageType1,price, length1);
-plot MovAvg2 = MovingAverage(averageType2,price, length1);
-plot MovAvg3 = MovingAverage(averageType3,price, length1);
-plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND absValue(MovAvg2 - MovAvg3) <= val_diff;
-
-condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
-addOrder(OrderType.BUY_AUTO, condition);
-addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
-```
-
-#end
-
+<a name="%_VOLUME_CHANGE_FROM_THE_PREVIOUS_BAR"> </a>
 ## C-% VOLUME CHANGE FROM THE PREVIOUS BAR
 
 [Return to TOC](#toc)
@@ -3523,6 +3376,7 @@ addLabel(ShowBubble,"Bubble percent shown when above the " + Ref_val + "% refere
 
 #end
 
+<a name="INTRADAY_CURRENT_PRICE_CLOUD_ATOP_DAYS_HIGHEST_CLOUD"> </a>
 ## C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD
 
 [Return to TOC](#toc)
@@ -3579,6 +3433,7 @@ AddLabel(1, "Input price choice = " + (if price == close then "close"
 ```
 ###END
 
+<a name="PLOT_DUAL_MOVING_AVERAGES"> </a>
 ## C-PLOT DUAL MOVING AVERAGES
 
 [Return to TOC](#toc)
@@ -3621,6 +3476,7 @@ Comment: A more complex study that allows all five moving average types for all 
 
 #end
 
+<a name="SIMPLE_MOVING_AVERAGE_CROSS_TRADING"> </a>
 ## C-SIMPLE MOVING AVERAGE CROSS TRADING
 
 [Return to TOC](#toc)
@@ -3649,6 +3505,7 @@ AddCloud(upper,lower);
 ```
 #end
 
+<a name="A_VERSATILE_ROBUST_MOVING_AVERAGE_CROSS_STUDY"> </a>
 ## C-A VERSATILE ROBUST MOVING AVERAGE CROSS STUDY
 
 [Return to TOC](#toc)
@@ -3725,6 +3582,7 @@ AddLabel(1, "Slow MA(" + slowLength + ")",color.cyan);
 #end
 ```
 
+<a name="AVOIDING_FALSE_SIGNALS"> </a>
 ## C-AVOIDING FALSE SIGNALS
 
 [Return to TOC](#toc)
@@ -3752,6 +3610,7 @@ timer.AssignValueColor(if difference < 0 then Color.UPTICK
 ```
 #end
 
+<a name="USING_THE_SETHIDING_FUNCTION"> </a>
 ## C-USING THE SETHIDING FUNCTION
 
 [Return to TOC](#toc)
@@ -3773,6 +3632,7 @@ Comment: The above plots a light_green point (dot) whenever there are two consec
 
 #end
 
+<a name="MOVING_AVERAGE_SPECTRUM"> </a>
 ## C-MOVING AVERAGE SPECTRUM
 
 [Return to TOC](#toc)
@@ -3810,6 +3670,7 @@ A25.SetDefaultColor(Color.PINK);A26.SetDefaultColor(Color.PINK);A27.SetDefaultCo
 ```
 #end
 
+<a name="IMPLIED_VOLATILITY_LABEL_AND_PLOT"> </a>
 ## C-IMPLIED VOLATILITY LABEL AND PLOT
 
 [Return to TOC](#toc)
@@ -3826,6 +3687,7 @@ plot x = value ;
 ```
 #end
 
+<a name="INSIDE_BAR_CODING"> </a>
 ## C-INSIDE-BAR CODING
 
 [Return to TOC](#toc)
@@ -3885,6 +3747,7 @@ disp.assignValueColor(if diff > 0 then Color.White else Color.BLACK);
 ```
 #end
 
+<a name="IDENTIFYING_AGGREGATION_IN_A_LABEL"> </a>
 ## C-IDENTIFYING AGGREGATION IN A LABEL
 
 [Return to TOC](#toc)
@@ -3907,6 +3770,7 @@ Color.RED );
 #end
 ```
 
+<a name="FIRST_AND_LAST_BAR_FOR_PLACING_A_BUBBLE"> </a>
 ## C-FIRST AND LAST BAR FOR PLACING A BUBBLE
 
 [Return to TOC](#toc)
