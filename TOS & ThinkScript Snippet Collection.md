@@ -3955,7 +3955,7 @@ AddLabel(1, "Time from last bar till end-of-day (midnight) = " +(Round( (24 + (T
 
 [Return to TOC](#toc)
 
-======== GetYYYYMMDD() & its formatting ===========
+### GetYYYYMMDD() & its formatting 
 
 Returns the date of the current bar. If there is no bar on a chart, like in pre and after-market hours or weekends and holidays, then results, including label values, from the date/time functions are not reliable.
 
@@ -3975,7 +3975,7 @@ Functions that use GetYYYYMMDD() as a parameter are:
 
 Usage example 1:
 
-`def yyyymmdd = GetYYYYMMDD();#Returns the date of the chart's current bar. During trading hours this is also today's date. If run on a weekend, this is not today's date since there is no current bar for today.`
+`def yyyymmdd = GetYYYYMMDD(); `#Returns the date of the chart's current bar. During trading hours this is also today's date. If run on a weekend, this is not today's date since there is no current bar for today.
 
 Assuming that 20,131,107 was returned it can be formatted into a normal view as follows:
 
@@ -3997,80 +3997,71 @@ GetDayOfWeek(First(yyyymmdd));# Returns the day-of-week (mon to sun = 1 yo 7) of
 
 Usage example 3:
 
-- input anchor_date = 20111004;
+```
+input anchor_date = 20111004;
+def start = if getYyyyMmDd() == anchor_date then 1 else 0; # If at the anchor date, start is true.
+def startprice = if start then close else startprice[1]; # Gets the close at the 'start' date
+def gain = close - startprice; # defines the gain from the start price at the start date
+```
 
-- def start = if getYyyyMmDd() == anchor_date then 1 else 0;# If at the anchor date, start is true.
+### DaysFromDate( ) & GetYYYYMMDD() 
 
-- def startprice = if start then close else startprice[1];# Gets the close at the 'start' date
+Returns the number of days from the specified date in YYYYMMDD format.
 
-- def gain = close - startprice;# defines the gain from the start price at the start date
+Usage example 1:
 
-- ======= DaysFromDate( ) & GetYYYYMMDD() =======
+```
+input anchor_date = 20111004;
+def num_days = DaysFromDate(anchor_date);
+def gain = close - close[num_days];
+```
 
-- Returns the number of days from the specified date in YYYYMMDD format.
+Usage example 2:
 
-- Usage example 1:
+```
+#hint Plots the close for 50 days from the 'BeginDate'
+input BeginDate = 20090101;
+plot Price = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= 50 then close else double.NaN;
+```
 
-- input anchor_date = 20111004;
+Usage example 3:
 
-- def num_days = DaysFromDate(anchor_date);
+```
+# Hint: In the script below, "count" counts calendar days, while "count2" counts trading days, between the startDate and today.
+declare lower;
+input startDate = 20130201;
+plot count  = if startDate <= GetYYYYMMDD() then DaysFromDate( startDate ) else Double.NaN;
+plot count2 = if startDate <= GetYYYYMMDD() then CountTradingDays( startDate, if( GetYYYYMMDD() < startDate,
+  startDate, GetYYYYMMDD() ) ) else Double.NaN;
+```
+Usage example 4:
 
-- def gain = close - close[num_days];
+```
+#Stock scan for all stocks down 25% (from example) from the Highest over the last ?? months
+#Enter numMonths and PctDown
 
-- Usage example 2:
+input numMonths = 6;   #Months to be scanned
+input daysInMonth = 21;   # average std.
+input price = close;
+input PctDown = 25;  #percent below highestHigh
 
-- #hint Plots the close for 50 days from the 'BeginDate'
+Def TotalDays = numMonths * daysInMonth;
 
-- input BeginDate = 20090101;
-
-- plot Price = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= 50 then close else double.NaN;
-
-- Usage example 3:
-
-- # Hint: In the script below, "count" counts calendar days, while "count2" counts trading days, between the startDate and
-
-- today.
-
-- declare lower;
-
-- input startDate = 20130201;
-
-- plot count  = if startDate <= GetYYYYMMDD() then DaysFromDate( startDate ) else Double.NaN;
-
-- plot count2 = if startDate <= GetYYYYMMDD() then CountTradingDays( startDate, if( GetYYYYMMDD() < startDate,
-
-- startDate, GetYYYYMMDD() ) ) else Double.NaN;
-
-- Usage example 4:
-
-- #Stock scan for all stocks down 25% (from example) from the Highest over the last ?? months
-
-- #Enter numMonths and PctDown
-
-- input numMonths = 6;   #Months to be scanned
-
-- input daysInMonth = 21;   # average std.
-
-- input price = close;
-
-- input PctDown = 25;  #percent below highestHigh
-
-- Def TotalDays = numMonths * daysInMonth;
-
-- Def PriceTrue = if close <=  ((1 - PctDown/100) * Highest(Price,TotalDays)) then 1 else 0;
-
-- Plot AllTrue  = if PriceTrue then 1 else 0;
+Def PriceTrue = if close <=  ((1 - PctDown/100) * Highest(Price,TotalDays)) then 1 else 0;
+Plot AllTrue  = if PriceTrue then 1 else 0;
+```
 
 
-- ###### Alternate ######
+### Alternate 
 
-- #Def TimeTrue  = if 0 < daysFromDate(20120101) and daysFromDate(20120101) < 160 then 1 else 0;
+```
+#Def TimeTrue  = if 0 < daysFromDate(20120101) and daysFromDate(20120101) < 160 then 1 else 0;
+#Plot AllTrue  = if PriceTrue and TimeTrue then 1 else 0;
+```
 
-- #Plot AllTrue  = if PriceTrue and TimeTrue then 1 else 0;
+### SecondsFromTime() & SecondsTillTime() & others 
 
-- ======== SecondsFromTime() & SecondsTillTime() & others ========
-
-- Returns the number of seconds from/till the specified time (24-hour clock notation) in the EST timezone. For intra-day only.
+Returns the number of seconds from/till the specified time (24-hour clock notation) in the EST timezone. For intra-day only.
 
 Usage example 1:
 
@@ -4139,6 +4130,7 @@ Usage example 5:
 
 input marketOpenTime = 0930;
 input marketCloseTime = 1615;
+
 def closeByPeriod = close(period = "DAY")[-1];
 def openbyperiod = open(period = "DAY")[-1];
 def secondsFromOpen = secondsFromTime(marketOpenTime);
