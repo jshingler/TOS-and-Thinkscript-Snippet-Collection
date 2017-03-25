@@ -9771,11 +9771,11 @@ plot Scan = DMIplus < DMIminus;
 #end
 
 <a name="SCAN_USING_PRE_DEFINED_CROSSOVERS"> </a>
-## S-SCAN USING PRE-DEFINED  CROSSOVERS
+## S-SCAN USING PRE-DEFINED CROSSOVERS
+[Return to TOC](#toc)
 
-: Scan for the MACD Histogram value crossing from positive to negative or vice versa. Uses[Return to TOC](#toc)
-
--MACDHistogram Crossover default parameters of fastLength = 12, slowLength = 26, MACDLength = 9, AverageType = EMA
+Scan for the MACD Histogram value crossing from positive to negative or vice versa. Uses
+MACDHistogram Crossover default parameters of fastLength = 12, slowLength = 26, MACDLength = 9, AverageType = EMA
 
 ```
 input crossingType = {default "Positive to Negative", "Negative to Positive"};
@@ -9785,46 +9785,48 @@ plot scan =  MACD_cross_above;
 
 OR
 
-- def MACD_cross_below = MACDHistogramCrossover(crossingType == "Positive to Negative").signal;
+```
+def MACD_cross_below = MACDHistogramCrossover(crossingType == "Positive to Negative").signal;
+plot scan =  MACD_cross_below;
+111
 
-- plot scan =  MACD_cross_below;
+ADXCrossover: Scan for the ADX (bullish or bearish) crossing a specified level (threshold). The default parameters are
+length = 14, threshold = 20. When the DMIplus is greater than the DMIminus the ADX is 'Bullish' or vice versa is
+'Bearish'.
 
-- ADXCrossover: Scan for the ADX (bullish or bearish) crossing a specified level (threshold). The default parameters are
+```
+input crossingType = {default above, below};
+Plot ADX_Bull = ADXCrossover(crossingType = "above") .signal && DMI."DI+" > DMI."DI-";
+```
 
-- length = 14, threshold = 20. When the DMIplus is greater than the DMIminus the ADX is 'Bullish' or vice versa is
+OR
 
-- 'Bearish'.
-
-- input crossingType = {default above, below};
-
-- Plot ADX_Bull = ADXCrossover(crossingType = "above") .signal && DMI."DI+" > DMI."DI-";
-
-- OR
-
-Plot ADX_Bear = ADXCrossover(crossingType = "above") .signal && DMI."DI-" > DMI."DI+";
+`Plot ADX_Bear = ADXCrossover(crossingType = "above") .signal && DMI."DI-" > DMI."DI+";`
 
 #MomentumCrossover: Scans for the Momentum crosses the zero line. The default length = 12;
 
+```
 input crossingType = {default "Positive to Negative", "Negative to Positive"};
 plot RisingMomentum = MomentumCrossover(crossingType == CrossingType."Negative to Positive").signal;
+```
+
+OR
+
+`plot FallingMomentum = MomentumCrossover(crossingType == CrossingType."Positive to Negative").signal;`
+
+MoneyFlowIndexCrossover: Scans for the Money Flow Index crossing the specified level. The default parameters are
+
+```
+length = 14, threshold = 20.
+input crossingType = {default above, below};
+Plot MFI_above = MoneyFlowIndexCrossover(crossingType ==  crossingType.above).signal;
+```
 
 - OR
 
-- plot FallingMomentum = MomentumCrossover(crossingType == CrossingType."Positive to Negative").signal;
+`Plot MFI_below = MoneyFlowIndexCrossover(crossingType ==  crossingType.below).signal;`
 
-- MoneyFlowIndexCrossover: Scans for the Money Flow Index crossing the specified level. The default parameters are
-
-- length = 14, threshold = 20.
-
-- input crossingType = {default above, below};
-
-- Plot MFI_above = MoneyFlowIndexCrossover(crossingType ==  crossingType.above).signal;
-
-- OR
-
-- Plot MFI_below = MoneyFlowIndexCrossover(crossingType ==  crossingType.below).signal;
-
-- MovingAvgCrossover: Scans for crossovers of moving averages of different types and lengths. The defaults parameters are price = close, length1 = 15, length2 = 30. This example will specify all parameters to avoid confusion.
+MovingAvgCrossover: Scans for crossovers of moving averages of different types and lengths. The defaults parameters are price = close, length1 = 15, length2 = 30. This example will specify all parameters to avoid confusion.
 
 ```
 input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
@@ -9833,7 +9835,7 @@ input crossingType = {default above, below};
 Plot MA_above = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 = "Exponential", crossingType = "above").signal;
 ```
 
-- The above reads as a'based on the close, simple average1 of length = 15 crosses above  exponential average2 of length = 30.'
+The above reads as a'based on the close, simple average1 of length = 15 crosses above  exponential average2 of length = 30.'
 
 OR
 
@@ -10201,6 +10203,7 @@ The example used here, %HL, is a custom column study available at  http://mytrad
 to keep track of what agg you are currently using. Perhaps you can do that with the title of the custom column.
 After installing the %HL you access editing it by right-clicking the watchlist column headings to customize and follow the
 snapshots below:
+
 
 <a name="HOW_TO_DECIPHER_COMPLEX_STUDY_PLOTS"> </a>
 ## T-HOW TO DECIPHER COMPLEX STUDY PLOTS
