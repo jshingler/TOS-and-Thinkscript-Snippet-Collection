@@ -3869,31 +3869,32 @@ Comment: The presence of 'HighestAll' in the plot statements causes to plots to 
 
 [Return to TOC](#toc)
 
-======= Introduction and overview =======
+### Introduction and overview
 
-- The date and time functions take a lot of time to learn and much usage to feel comfortable with them. Hence, this section will be as thorough as possible with many examples to illustrate their usage. Additional examples will be added as they may surface online and in the chatroom.
+The date and time functions take a lot of time to learn and much usage to feel comfortable with them. Hence, this section will be as thorough as possible with many examples to illustrate their usage. Additional examples will be added as they may surface online and in the chatroom.
 
-- GetDay, GetWeek, GetMonth and GetYear all relate to the CURRENT BAR and return values that relate to the ENTIRE YEAR: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
+- `GetDay`, `GetWeek`, `GetMonth` and `GetYear` all relate to the __CURRENT BAR__ and return values that relate to the __ENTIRE YEAR__: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
 
-- GetLastDay, GetLastWeek, GetLastMonth and GetLastYear all relate to the LAST BAR and return values that relate to the ENTIRE YEAR: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
+- `GetLastDay`, `GetLastWeek`, `GetLastMonth` and `GetLastYear` all relate to the __LAST BAR__ and return values that relate to the __ENTIRE YEAR__: i.e. 1 to 366, 1 to 53, 1 to 12, and the year respectively.
 
-- GetYYYYMMDD() is the most frequently used. Returns the date of the current bar in the YYYYMMDD format. This date corresponds to the day whose trading session contains the current bar. Note that on intraday charts, this date and the actual date might not be the same for Forex and Futures symbols.
+- `GetYYYYMMDD()` is the most frequently used. Returns the date of the current bar in the YYYYMMDD format. This date corresponds to the day whose trading session contains the current bar. Note that on intraday charts, this date and the actual date might not be the same for Forex and Futures symbols.
 
-- GetDayofWeek, GetDayofMonth, RegularTradingEnd and RegularTradingStart all utilize a yyyyMmDd input parameter format:The same output format as GetYYYYMMDD().
+- `GetDayofWeek`, `GetDayofMonth`, `RegularTradingEnd` and `RegularTradingStart` all utilize a __yyyyMmDd__ input parameter format:The same output format as `GetYYYYMMDD()`.
 
-- The 'fromDate', 'toDate'and 'tillDate' used in CountTradingDays, DaysFromDate and DaysTillDate are all in the YYYYMMDD format.
+- The 'fromDate', 'toDate'and 'tillDate' used in `CountTradingDays`, `DaysFromDate` and `DaysTillDate` are all in the __YYYYMMDD__ format.
 
-In summary, all date/time functions beginning with 'Get........', except for GetDayOfWeek and GetDayOfMonth, have no parameters. All date/time functions having parameters, except for 'SecondsFromTime' and 'SecondsTillTime', use a parameter format of YYYYMMDD. 'SecondsFromTime' and 'SecondsTillTime' use a HHMM format.
+In summary, all date/time functions beginning with 'Get........', except for GetDayOfWeek and GetDayOfMonth, have no parameters. All date/time functions having parameters, except for `SecondsFromTime` and `SecondsTillTime`, use a parameter format of __YYYYMMDD__. `SecondsFromTime` and `SecondsTillTime` use a __HHMM__ format.
 
-REMEMBER THAT DATE/TIME FUNCTIONS RELATE TO A BAR ON A CHART. NO BAR THEN THE DATE/TIME RETURNED VALUES ARE NOT RELIABLE.
+__REMEMBER THAT DATE/TIME FUNCTIONS RELATE TO A BAR ON A CHART. NO BAR THEN THE DATE/TIME RETURNED VALUES ARE NOT RELIABLE.__
 
-========= Define previous day =========
+### Define previous day 
+
 `def previousDay = if CountTradingDays(CurrentDate, LastDate ) == 2 then yes else no;`
 
-Comment 1: The '==2' may be changed to represent any previous days-ago
-Comment 2: CountTradingDays includes the CurrentDate and the LastDate in the count
+__Comment 1:__ The '==2' may be changed to represent any previous days-ago
+__Comment 2:__ CountTradingDays includes the CurrentDate and the LastDate in the count
 
-======== Between two input dates =========
+### Between two input dates 
 
 ```
 #hint: Between the two input dates
@@ -3909,12 +3910,13 @@ Usage: The above two line are conditions that you use to restrict your data
 
 Example: plot trendLine = if start  then startPrice else if end  then endPrice else double.nan;
 
-========== Return 'the day-of-the-week' of the first bar of the chart =========
+### Return 'the day-of-the-week' of the first bar of the chart 
+
 `Def DayOfWeek = GetDayOfWeek(First(yyyymmdd)); #Mon =1, Tues =2, Wed = 3, Thurs = 4, Fri = 5, Sat = 6, Sun = 7`
 
 [Return to TOC](#toc)
 
-- ============ Define a time range (beginning and end) ==============
+### Define a time range (beginning and end)
 
 Comment 1: 'SecondsFromTime' and 'Seconds TillTime' work smoothly during market hours but beware after-hours.  A time is always associated with a bar. If there is no bar, TOS will have a problem
 
@@ -3949,15 +3951,11 @@ AddLabel(1, "Time from last bar till end-of-day (midnight) = " +(Round( (24 + (T
 
 - ======== GetYYYYMMDD() & its formatting ===========
 
-- Returns the date of the current bar. If there is no bar on a chart, like in pre and after-market hours or weekends and
+Returns the date of the current bar. If there is no bar on a chart, like in pre and after-market hours or weekends and holidays, then results, including label values, from the date/time functions are not reliable.
 
-- holidays, then results, including label values, from the date/time functions are not reliable.
+A typical GetYYYYMMDD()  result date  is 20,131,107. This result doesn't look like a date especially with the commas but it is.
 
-- A typical GetYYYYMMDD()  result date  is 20,131,107. This result doesn't look like a date especially with the commas but
-
-- it is.
-
-- When GetYYYYMMDD() is compared to an inputted date the commas are omitted  in the input date. An example is 'input endDate = 20100101;'
+When GetYYYYMMDD() is compared to an inputted date the commas are omitted  in the input date. An example is 'input endDate = 20100101;'
 
 Functions that use GetYYYYMMDD() as a parameter are:
 
