@@ -3892,6 +3892,7 @@ __REMEMBER THAT DATE/TIME FUNCTIONS RELATE TO A BAR ON A CHART. NO BAR THEN THE 
 `def previousDay = if CountTradingDays(CurrentDate, LastDate ) == 2 then yes else no;`
 
 __Comment 1:__ The '==2' may be changed to represent any previous days-ago
+
 __Comment 2:__ CountTradingDays includes the CurrentDate and the LastDate in the count
 
 ### Between two input dates 
@@ -3908,7 +3909,8 @@ def end = if getYyyyMmDd()==endDateYyyyMmDd then 1 else 0;
 ```
 Usage: The above two line are conditions that you use to restrict your data
 
-Example: plot trendLine = if start  then startPrice else if end  then endPrice else double.nan;
+Example: 
+`plot trendLine = if start  then startPrice else if end  then endPrice else double.nan;`
 
 ### Return 'the day-of-the-week' of the first bar of the chart 
 
@@ -3918,13 +3920,16 @@ Example: plot trendLine = if start  then startPrice else if end  then endPrice e
 
 ### Define a time range (beginning and end)
 
-Comment 1: 'SecondsFromTime' and 'Seconds TillTime' work smoothly during market hours but beware after-hours.  A time is always associated with a bar. If there is no bar, TOS will have a problem
+__Comment 1:__ 'SecondsFromTime' and 'Seconds TillTime' work smoothly during market hours but beware after-hours.  A time is always associated with a bar. If there is no bar, TOS will have a problem
 
-Comment 2: Thinly trader stocks may not have a bar at the time defined. Beware for the same reason as above.
+__Comment 2:__ Thinly trader stocks may not have a bar at the time defined. Beware for the same reason as above.
 
-Example 1: ========  SecondsFromTime ========
+Example 1: 
+
 
 ```
+========  SecondsFromTime ========
+
 #Hint: his defines a time range during which the close will be plotted.
 input OpenTime = 1130;
 input DurationHours = 5;
@@ -3933,11 +3938,12 @@ def secondsPassed = SecondsFromTime(OpenTime);
 plot Price = if secondsPassed >= 0 and secondsPassed <= durationSec then close else  double.NaN;
 ```
 
-Comment 3: "if secondsPassed >= 0 and secondsPassed <= durationSec then....." may be applied to any activity you want to do.
+__Comment 3:__ "if secondsPassed >= 0 and secondsPassed <= durationSec then....." may be applied to any activity you want to do.
 
-Example 2: ========  SecondsFromTime & SecondsTillTime ========
+Example 2: 
 
 ```
+========  SecondsFromTime & SecondsTillTime ========
 # Defines the hours from last bar till end-of-day (midnight) on an intra-day chart
 input time = 0001;# Is midnight which is the start of counting seconds in the functions below.
 def TimeFrom = SecondsFromTime(time);# Returns the seconds from 'time'. If not an intra-day chart, returns 0.
@@ -3949,7 +3955,7 @@ AddLabel(1, "Time from last bar till end-of-day (midnight) = " +(Round( (24 + (T
 
 [Return to TOC](#toc)
 
-- ======== GetYYYYMMDD() & its formatting ===========
+======== GetYYYYMMDD() & its formatting ===========
 
 Returns the date of the current bar. If there is no bar on a chart, like in pre and after-market hours or weekends and holidays, then results, including label values, from the date/time functions are not reliable.
 
@@ -3959,13 +3965,13 @@ When GetYYYYMMDD() is compared to an inputted date the commas are omitted  in th
 
 Functions that use GetYYYYMMDD() as a parameter are:
 
-- GetDayOfWeek(int yyyyMmDd);#Returns the day of week from 1 (Monday) to 7 (Sunday).
+- `GetDayOfWeek(int yyyyMmDd);`#Returns the day of week from 1 (Monday) to 7 (Sunday).
 
-- GetDayOfMonth(int yyyyMmDd);#Returns number of the day in the month.
+- `GetDayOfMonth(int yyyyMmDd);`#Returns number of the day in the month.
 
-- RegularTradingEnd(int yyyyMmDd);#Returns the end of the regular trading hours for the current symbol on the trading day specified in the YYYYMMDD. This value is the number of milliseconds since the epoch (January 1, 1970, 00:00:00 GMT).
+- `RegularTradingEnd(int yyyyMmDd);` #Returns the end of the regular trading hours for the current symbol on the trading day specified in the YYYYMMDD. This value is the number of milliseconds since the epoch (January 1, 1970, 00:00:00 GMT).
 
-- RegularTradingStart(int yyyyMmDd);Returns the start of the regular trading hours for the current symbol on the trading day specified in the YYYYDDMM format. This value is the number of milliseconds since the epoch (January 1, 1970, 00:00:00 GMT).
+- `RegularTradingStart(int yyyyMmDd);` Returns the start of the regular trading hours for the current symbol on the trading day specified in the YYYYDDMM format. This value is the number of milliseconds since the epoch (January 1, 1970, 00:00:00 GMT).
 
 Usage example 1:
 
