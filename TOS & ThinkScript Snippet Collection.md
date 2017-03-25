@@ -10186,31 +10186,21 @@ The 'Next Pic' for 'step 4'is:
 <a name="USING_CUSTOM_COLUMN_AGGREGATION"> </a>
 ## T-USING CUSTOM COLUMN AGGREGATION
 
-)  tells where, in today's prices, a stock is now i.e. 35% means it is now at 35% of today's[Return to TOC](#toc)
+[Return to TOC](#toc)
 
-- Here's an interesting concept/tip that you may find very useful and it's not obvious. The '%HL Custom Column' (available
+Here's an interesting concept/tip that you may find very useful and it's not obvious. The '%HL Custom Column' (available
+at http://mytrade.com/StanL )  tells where, in today's prices, a stock is now i.e. 35% means it is now at 35% of today's
+range (low to high). 100% means it is at its high of today's range. These numbers are based on the columns "day"
+aggregation. That agg can be changed to say '4 days'. The column will then tell where in the range of the last 4 days, the
+stock currently is. Use a month agg and it will tell where in the last month's range the stock currently is. The same
+concept applies to all aggs. Isn't that neat? And it is so easy to change the agg. Also custom columns have some aggs that
+are different from the normal chart aggs. For example 4-days is a column agg choice but is not a choice of the chart
+settings (the agg dropdown).
 
-- at  http://mytrade.com/StanL
-
-- range (low to high). 100% means it is at its high of today's range. These numbers are based on the columns "day"
-
-- aggregation. That agg can be changed to say '4 days'. The column will then tell where in the range of the last 4 days, the
-
-- stock currently is. Use a month agg and it will tell where in the last month's range the stock currently is. The same
-
-- concept applies to all aggs. Isn't that neat? And it is so easy to change the agg. Also custom columns have some aggs that
-
-- are different from the normal chart aggs. For example 4-days is a column agg choice but is not a choice of the chart
-
-- settings (the agg dropdown).
-
-- The example used here, %HL, is a custom column study available at  http://mytrade.com/StanL Of course, you will need
-
-- to keep track of what agg you are currently using. Perhaps you can do that with the title of the custom column.
-
-- After installing the %HL you access editing it by right-clicking the watchlist column headings to customize and follow the
-
-- snapshots below:
+The example used here, %HL, is a custom column study available at  http://mytrade.com/StanL Of course, you will need
+to keep track of what agg you are currently using. Perhaps you can do that with the title of the custom column.
+After installing the %HL you access editing it by right-clicking the watchlist column headings to customize and follow the
+snapshots below:
 
 <a name="HOW_TO_DECIPHER_COMPLEX_STUDY_PLOTS"> </a>
 ## T-HOW TO DECIPHER COMPLEX STUDY PLOTS
@@ -10374,7 +10364,7 @@ To activate privacy that shows ***** instead of the dollar values, click the blu
 
 [Return to TOC](#toc)
 
-- When doing a lot of coding, using the mouse provides fast traveling to various locations in the code. However, there are keyboard hotkeys that facilitate editing activities. Below is a useful list of those available in Win 7, the TS editor and most editing programs. Some are especially useful at selecting text by letter, word, line, paragraph, window, etc. Try them out and you may adopt them as your standard way of editing in combination with using the mouse.
+When doing a lot of coding, using the mouse provides fast traveling to various locations in the code. However, there are keyboard hotkeys that facilitate editing activities. Below is a useful list of those available in Win 7, the TS editor and most editing programs. Some are especially useful at selecting text by letter, word, line, paragraph, window, etc. Try them out and you may adopt them as your standard way of editing in combination with using the mouse.
 
 Ctrl+C (or Ctrl+Insert)
 
@@ -10613,9 +10603,7 @@ x
 
 4. The site http://www.thinkscripter.com/ has subscriber and non-subscriber code by very capable coders.
 
-5. The ThinkOrSwim Resource Center is invaluable to all TS coders....
-
-http://tda.thinkorswim.com/manual/metal/thinkscript/
+5. The ThinkOrSwim Resource Center is invaluable to all TS coders.... http://tda.thinkorswim.com/manual/metal/thinkscript/
 
 6. The Thinkscript Lounge presents an after-market show on Tuesday. The show, called Mr. Script, provides invaluable code examples and discussions. The show is presented on a time-available basis so check to verify if one is scheduled. This show is very useful, informative and educational for anyone involved in ThinkScript coding.
 
