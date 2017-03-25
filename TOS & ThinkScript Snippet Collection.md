@@ -6590,19 +6590,19 @@ Zero.SetPaintingStrategy(PaintingStrategy.LINE_VS_POINTS);
 Zero.SetLineWeight(1);
 Zero.SetDefaultColor(Color.YELLOW);
 
-===== labels defining sectors ======
-put showLabel = Yes;
-dLabel(showLabel, symbol1  + " = S&P 500 SECTORS >>>>>", D1_SPX .TakeValueColor());
-dLabel(showLabel, symbol2 + ", cyclicals", D2_XLY.TakeValueColor());
-dLabel(showLabel, symbol3 + ", technology", D3_XLK.TakeValueColor());
-dLabel(showLabel, symbol4 + ", industrials", D4_XLI.TakeValueColor());
-dLabel(showLabel, symbol5 + ",materials" , D5_XLB .TakeValueColor());
-dLabel(showLabel, symbol6 + ", energy", D6_XLE.TakeValueColor());
-dLabel(showLabel, symbol7 + ",consumer staples" , D7_XLP.TakeValueColor());
-dLabel(showLabel, symbol8 + ", health care", D8_XLV.TakeValueColor());
-dLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
-dLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
-dLabel(showLabel, "....... = zero line. This plot is the ' % change since chart's beginning'", color.YELLOW);
+# ===== labels defining sectors ======
+input showLabel = Yes;
+addLabel(showLabel, symbol1  + " = S&P 500 SECTORS >>>>>", D1_SPX .TakeValueColor());
+addLabel(showLabel, symbol2 + ", cyclicals", D2_XLY.TakeValueColor());
+addLabel(showLabel, symbol3 + ", technology", D3_XLK.TakeValueColor());
+addLabel(showLabel, symbol4 + ", industrials", D4_XLI.TakeValueColor());
+addLabel(showLabel, symbol5 + ",materials" , D5_XLB .TakeValueColor());
+addLabel(showLabel, symbol6 + ", energy", D6_XLE.TakeValueColor());
+addLabel(showLabel, symbol7 + ",consumer staples" , D7_XLP.TakeValueColor());
+addLabel(showLabel, symbol8 + ", health care", D8_XLV.TakeValueColor());
+addLabel(showLabel, symbol9 + ", utilities", D9_XLU.TakeValueColor());
+addLabel(showLabel, symbol10 + ", Financials", D10_XLF.TakeValueColor());
+addLabel(showLabel, "....... = zero line. This plot is the ' % change since chart's beginning'", color.YELLOW);
 
 #====== label to define cloud =======
 def Want_Cloud = If CloudSymbol == CloudSymbol.SPX then 1 else 0;
