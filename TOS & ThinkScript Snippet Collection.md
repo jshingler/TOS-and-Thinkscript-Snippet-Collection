@@ -2302,8 +2302,8 @@ line.assignValueColor((if price == close then color.cyan else if price == open t
 
 def monthday = if timetest then getdayOfMonth(date) else double.nan;
 def month = if timetest then getmonth() else double.nan;
-A
-ddChartBubble(timetest, price, 
+
+AddChartBubble(timetest, price, 
 concat(concat(concat("Date: ",Concat(month, "/")), monthday),  concat((if price == close
 then "   Close: $" else if price == open then "   Open: $" else if price == low then "   Low: $" else if price == high then "High: $" else "   Value:  "), price)),
 (if price == close then color.cyan else if price == open then color.pink else if price == low then color.yellow else if price == high then color.green else color.red)
