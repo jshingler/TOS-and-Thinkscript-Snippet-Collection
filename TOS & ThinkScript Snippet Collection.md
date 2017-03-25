@@ -194,37 +194,21 @@
 - [S-SCAN FOR HIGHS OR LOWS.....Page 183](#SCAN_FOR_HIGHS_OR_LOWS)
 - [S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA.....Page 184](#SCAN_RSI_UNDER_20_AND_CLOSE_>_200)
 - [S-SCAN FOR CROSS OF MOVING AVERAGES.....Page 184](#SCAN_FOR_CROSS_OF_MOVING_AVERAGES)
-<a name="SCAN_FOR_CROSS_OF_MOVING_AVERAGES"> </a>
 - [S-SCAN CROSS OF STANDARD DEVIATION CHANNEL.....Page 184](#SCAN_CROSS_OF_STANDARD_DEVIATION_CHANNEL)
-<a name="SCAN_CROSS_OF_STANDARD_DEVIATION_CHANNEL"> </a>
-- [S-ABOVE 20-DAY MA FOR 65 DAYS.....Page 185](#ABOVE_20)
-<a name="ABOVE_20"> </a>
-- [S-SCAN FOR 200-DAY MA.....Page 185](#SCAN_FOR_200)
-<a name="SCAN_FOR_200"> </a>
+- [S-ABOVE 20-DAY MA FOR 65 DAYS.....Page 185](#ABOVE_20_DAY_MA_FOR_65_DAYS)
+- [S-SCAN FOR 200-DAY MA.....Page 185](#SCAN_FOR_200_DAY_MA)
 - [S-SCAN FOR A BULLISH ADX.....Page 185](#SCAN_FOR_A_BULLISH_ADX)
-<a name="SCAN_FOR_A_BULLISH_ADX"> </a>
 - [S-SCAN FOR DMI.....Page 185](#SCAN_FOR_DMI)
-<a name="SCAN_FOR_DMI"> </a>
-- [S-SCAN USING PRE-DEFINED  CROSSOVERS.....Page 186](#SCAN_USING_PRE)
-<a name="SCAN_USING_PRE"> </a>
+- [S-SCAN USING PRE-DEFINED  CROSSOVERS.....Page 186](#SCAN_USING_PRE_DEFINED_CROSSOVERS)
 - [S-MACD SCAN.....Page 188](#MACD_SCAN)
-<a name="MACD_SCAN"> </a>
 - [S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS.....Page 188](#NEW_52_WEEK_HIGHS_IN_THE_PAST_?_DAYS)
-<a name="NEW_52_WEEK_HIGHS_IN_THE_PAST_?_DAYS"> </a>
 - [S-SCAN PRICE CORRELATION WITH THE SPX.....Page 189](#SCAN_PRICE_CORRELATION_WITH_THE_SPX)
-<a name="SCAN_PRICE_CORRELATION_WITH_THE_SPX"> </a>
 - [S-INCREASING EARNINGS SCAN.....Page 189](#INCREASING_EARNINGS_SCAN)
-<a name="INCREASING_EARNINGS_SCAN"> </a>
 - [S-SCAN FOR TOS' STRENGTH METER.....Page 190](#SCAN_FOR_TOS_STRENGTH_METER)
-<a name="SCAN_FOR_TOS_STRENGTH_METER"> </a>
 - [S-NOTEWORTHY RESOURCE FOR PREDEFINED SCANS.....Page 191](#NOTEWORTHY_RESOURCE_FOR_PREDEFINED_SCANS)
-<a name="NOTEWORTHY_RESOURCE_FOR_PREDEFINED_SCANS"> </a>
 - [S-MOVING AVERAGE COMPARISON.....Page 191](#MOVING_AVERAGE_COMPARISON)
-<a name="MOVING_AVERAGE_COMPARISON"> </a>
 - [S-NEW BULLISH CLOSE ABOVE THE ICHIMONU CLOUD.....Page 191](#NEW_BULLISH_CLOSE_ABOVE_THE_ICHIMONU_CLOUD)
-<a name="NEW_BULLISH_CLOSE_ABOVE_THE_ICHIMONU_CLOUD"> </a>
 - [S-CROSSING ABOVE & BELOW THE ICHIMOKU CLOUD.....Page 191](#CROSSING_ABOVE_AND_BELOW_THE_ICHIMOKU_CLOUD)
-<a name="CROSSING_ABOVE_AND_BELOW_THE_ICHIMOKU_CLOUD"> </a>
 - NEXT SCAN TO BE ADDED .....Page 191
 - NEXT SCAN TO BE ADDED .....Page 191
 - NEXT SCAN TO BE ADDED .....Page 191
@@ -241,47 +225,26 @@
 # 8 [USAGE TIPS](#USAGE_TIPS)
 
 - [T-USING CUSTOM COLUMN AGGREGATION.....Page 193](#USING_CUSTOM_COLUMN_AGGREGATION)
-<a name="USING_CUSTOM_COLUMN_AGGREGATION"> </a>
 - [T-HOW TO DECIPHER COMPLEX STUDY PLOTS.....Page 193](#HOW_TO_DECIPHER_COMPLEX_STUDY_PLOTS)
-<a name="HOW_TO_DECIPHER_COMPLEX_STUDY_PLOTS"> </a>
 - [T-A REFERENCE RECALL OF A STRATEGY'S RULES (SETUP).....Page 194](#A_REFERENCE_RECALL_OF_A_STRATEGYS_RULES_SETUP)
-<a name="A_REFERENCE_RECALL_OF_A_STRATEGYS_RULES_SETUP"> </a>
 - [T-FAST ACCESS TO EDITING A STUDY.....Page 194](#FAST_ACCESS_TO_EDITING_A_STUDY)
-<a name="FAST_ACCESS_TO_EDITING_A_STUDY"> </a>
-- [T-A NEW-TO-THINKSCRIPT MUST READ.....Page 194](#A_NEW)
-<a name="A_NEW"> </a>
+- [T-A NEW-TO-THINKSCRIPT MUST READ.....Page 194](#A_NEW_TO_THINKSCRIPT_MUST_READ)
 - [T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES .....Page 195](#USING_MULTIPLE_TIME_FRAMES_TO_PLAN_ENTRIES)
-<a name="USING_MULTIPLE_TIME_FRAMES_TO_PLAN_ENTRIES"> </a>
 - [T-WIZARD ACCESS FOR EDITING EXISTING STUDIES.....Page 195](#WIZARD_ACCESS_FOR_EDITING_EXISTING_STUDIES)
-<a name="WIZARD_ACCESS_FOR_EDITING_EXISTING_STUDIES"> </a>
 - [T-PRE MARKET MOVERS.....Page 195](#PRE_MARKET_MOVERS)
-<a name="PRE_MARKET_MOVERS"> </a>
 - [T-VERTICAL LINES AT MARKET OPEN AND CLOSED TIMES.....Page 195](#VERTICAL_LINES_AT_MARKET_OPEN_AND_CLOSED_TIMES)
-<a name="VERTICAL_LINES_AT_MARKET_OPEN_AND_CLOSED_TIMES"> </a>
 - [T-EASILY VIEWING CHARTS OF STOCKS IN A LIST.....Page 195](#EASILY_VIEWING_CHARTS_OF_STOCKS_IN_A_LIST)
-<a name="EASILY_VIEWING_CHARTS_OF_STOCKS_IN_A_LIST"> </a>
 - [T-CHANGING THE HEADER TEXT COLOR .....Page 196](#CHANGING_THE_HEADER_TEXT_COLOR)
-<a name="CHANGING_THE_HEADER_TEXT_COLOR"> </a>
 - [T-SEQUENCECOUNTER AND GRID UASGE.....Page 197](#SEQUENCECOUNTER_AND_GRID_UASGE)
-<a name="SEQUENCECOUNTER_AND_GRID_UASGE"> </a>
 - [T-ENHANCE THE LOOKS OF A HISTOGRAM PLOT.....Page 197](#ENHANCE_THE_LOOKS_OF_A_HISTOGRAM_PLOT)
-<a name="ENHANCE_THE_LOOKS_OF_A_HISTOGRAM_PLOT"> </a>
 - [T-PRIVACY TO NOT SHOW ACCOUNT DOLLARS.....Page 198](#PRIVACY_TO_NOT_SHOW_ACCOUNT_DOLLARS)
-<a name="PRIVACY_TO_NOT_SHOW_ACCOUNT_DOLLARS"> </a>
 - [T-NAVIGATION VIA KEYBOARD HOTKEYS vs THE MOUSE.....Page 198](#NAVIGATION_VIA_KEYBOARD_HOTKEYS_VS_THE_MOUSE)
-<a name="NAVIGATION_VIA_KEYBOARD_HOTKEYS_VS_THE_MOUSE"> </a>
 - [T-THE DREADED 'TOO COMPLEX ERROR'.....Page 199](#THE_DREADED_TOO_COMPLEX_ERROR)
-<a name="THE_DREADED_TOO_COMPLEX_ERROR"> </a>
 - [T-DEFINING AND APPLYING CONDITIONS IN A STUDY.....Page 200](#DEFINING_AND_APPLYING_CONDITIONS_IN_A_STUDY)
-<a name="DEFINING_AND_APPLYING_CONDITIONS_IN_A_STUDY"> </a>
 - [T-NAMING COPIED BUILTIN STUDIES.....Page 201](#NAMING_COPIED_BUILTIN_STUDIES)
-<a name="NAMING_COPIED_BUILTIN_STUDIES"> </a>
 - [T-'PERCENTAGE VIEW' ON PRICE CHARTS.....Page 201](#PERCENTAGE_VIEW_ON_PRICE_CHARTS)
-<a name="PERCENTAGE_VIEW_ON_PRICE_CHARTS"> </a>
 - [T-CHANGING RIGHT EXPANSION AREA SETTING.....Page 202](#CHANGING_RIGHT_EXPANSION_AREA_SETTING)
-<a name="CHANGING_RIGHT_EXPANSION_AREA_SETTING"> </a>
 - [T-RENAMING STUDIES CAUTION.....Page 203](#RENAMING_STUDIES_CAUTION)
-<a name="RENAMING_STUDIES_CAUTION"> </a>
 - NEXT TIP TO BE ADDED .....Page 203
 - NEXT TIP TO BE ADDED .....Page 203
 - NEXT TIP TO BE ADDED .....Page 203
@@ -9657,6 +9620,7 @@ Comment: Set agg to day.
 
 #end
 
+<a name="SCAN_FOR_CROSS_OF_MOVING_AVERAGES"> </a>
 ## S-SCAN FOR CROSS OF MOVING AVERAGES
 
 [Return to TOC](#toc)
@@ -9688,7 +9652,7 @@ Crossing.SetPaintingStrategy(PaintingStrategy.points);
 #end
 ```
 
-
+<a name="SCAN_CROSS_OF_STANDARD_DEVIATION_CHANNEL"> </a>
 ## S-SCAN CROSS OF STANDARD DEVIATION CHANNEL
 
 [Return to TOC](#toc)
@@ -9708,7 +9672,7 @@ plot scanSDC = close <= _sdcL and close[1] > _sdcL[1];
 #end
 ```
 
-
+<a name="ABOVE_20_DAY_MA_FOR_65_DAYS"> </a>
 ## S-ABOVE 20-DAY MA FOR 65 DAYS
 
 [Return to TOC](#toc)
@@ -9724,6 +9688,8 @@ plot scan = if above20 >= ConsecutiveClose then 1 else 0;
 
 #end
 
+
+<a name="SCAN_FOR_200_DAY_MA"> </a>
 ## S-SCAN FOR 200-DAY MA
 
 [Return to TOC](#toc)
@@ -9757,6 +9723,7 @@ Plot scan = below200;
 
 #end
 
+<a name="SCAN_FOR_A_BULLISH_ADX"> </a>
 ## S-SCAN FOR A BULLISH ADX
 
 [Return to TOC](#toc)
@@ -9767,6 +9734,7 @@ Plot scan = below200;
 
 #end
 
+<a name="SCAN_FOR_DMI"> </a>
 ## S-SCAN FOR DMI
 
 [Return to TOC](#toc)
@@ -9802,6 +9770,7 @@ plot Scan = DMIplus < DMIminus;
 ```
 #end
 
+<a name="SCAN_USING_PRE_DEFINED_CROSSOVERS"> </a>
 ## S-SCAN USING PRE-DEFINED  CROSSOVERS
 
 : Scan for the MACD Histogram value crossing from positive to negative or vice versa. Uses[Return to TOC](#toc)
@@ -9953,6 +9922,7 @@ Comment3: Each of the 11 crossover scans are selectable in the Scan/StockHacker 
 
 #end
 
+<a name="MACD_SCAN"> </a>
 ## S-MACD SCAN
 
 [Return to TOC](#toc)
@@ -9983,6 +9953,7 @@ Suggest: To get a meaningful scan use: 1) fundamental filter: close >=10, and 2)
 
 #end
 
+<a name="NEW_52_WEEK_HIGHS_IN_THE_PAST_?_DAYS"> </a>
 ## S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
 
 [Return to TOC](#toc)
@@ -9995,6 +9966,7 @@ plot h = Highest( high, lookback ) == hhy;
 ```
 #end
 
+<a name="SCAN_PRICE_CORRELATION_WITH_THE_SPX"> </a>
 ## S-SCAN PRICE CORRELATION WITH THE SPX
 
 [Return to TOC](#toc)
@@ -10016,6 +9988,8 @@ plot scan = sum(x, inarow) >= inarow;
 
 #end
 
+
+<a name="INCREASING_EARNINGS_SCAN"> </a>
 ## S-   INCREASING EARNINGS SCAN
 
 [Return to TOC](#toc)
@@ -10064,6 +10038,7 @@ plot scan = ern_up >= times_up;
 #end
 ```
 
+<a name="SCAN_FOR_TOS_STRENGTH_METER"> </a>
 ## S-SCAN FOR TOS' STRENGTH METER
 
 [Return to TOC](#toc)
@@ -10088,6 +10063,8 @@ Plot scan = close / close[3] >= 1.1;#scan agg is set to week
 
 #end
 
+
+<a name="NOTEWORTHY_RESOURCE_FOR_PREDEFINED_SCANS"> </a>
 ## S-NOTEWORTHY RESOURCE FOR PREDEFINED SCANS
 
 [Return to TOC](#toc)
@@ -10096,6 +10073,8 @@ Although TOS provides many powerful features, there are also other very useful r
 
 Realize that the data-feed for Stock Charts may not be the same as that for TOS but that should not likely cause any conflicts because the source of all data is the exchanges.  Visit the site
 
+
+<a name="MOVING_AVERAGE_COMPARISON"> </a>
 ## S-MOVING AVERAGE COMPARISON
 
 [Return to TOC](#toc)
@@ -10110,6 +10089,8 @@ Plot scan = Average(close, length) > Average(close, length)[LookBack]);
 
 If aggregation is 'week' then 'agg-bars ago' is 2 weeks ago. If aggregation is set to 'Day' then 'agg-bars ago' is 2 days go
 
+
+<a name="NEW_BULLISH_CLOSE_ABOVE_THE_ICHIMONU_CLOUD"> </a>
 ## S-NEW BULLISH CLOSE ABOVE THE ICHIMONU CLOUD
 
 [Return to TOC](#toc)
@@ -10122,6 +10103,7 @@ Ichimoku()."Span A" is greater than Ichimoku()."Span B" and
 Ichimoku()."Tenkan" is greater than or equal to Ichimoku()."Kijun"
 ```
 
+<a name="CROSSING_ABOVE_AND_BELOW_THE_ICHIMOKU_CLOUD"> </a>
 ## S-CROSSING ABOVE & BELOW THE ICHIMOKU CLOUD
 
 [Return to TOC](#toc)
@@ -10201,6 +10183,7 @@ The 'Next Pic' for 'step 4'is:
 <a name="USAGE_TIPS"> </a>
 # USAGE TIPS
 
+<a name="USING_CUSTOM_COLUMN_AGGREGATION"> </a>
 ## T-USING CUSTOM COLUMN AGGREGATION
 
 )  tells where, in today's prices, a stock is now i.e. 35% means it is now at 35% of today's[Return to TOC](#toc)
@@ -10229,6 +10212,7 @@ The 'Next Pic' for 'step 4'is:
 
 - snapshots below:
 
+<a name="HOW_TO_DECIPHER_COMPLEX_STUDY_PLOTS"> </a>
 ## T-HOW TO DECIPHER COMPLEX STUDY PLOTS
 
 [Return to TOC](#toc)
@@ -10241,6 +10225,7 @@ In this example, if you want to identify what plot is the ORH, you uncheck 'Show
 
 - #end
 
+<a name="A_REFERENCE_RECALL_OF_A_STRATEGYS_RULES_SETUP"> </a>
 ## T-A REFERENCE RECALL OF A STRATEGY'S RULES (SETUP)
 
 [Return to TOC](#toc)
@@ -10249,30 +10234,35 @@ A 'setup' is a term/title applied to a  group of charts and indicators that are 
 
 Setups frequently have rules re what needs to exist to implement its buy/sell strategy. Such rules may be simple or complex but, regardless, are not easy to remember. This tip is to use TOS 'ThinkLog' to store those rules for easy reference. ThinkLog is accessed via the 'Tools/ThinkLog' tab and is a ready reference place where you could  refresh you memory on the implementation details of the 9/30 strategy's particulars.
 
+<a name="FAST_ACCESS_TO_EDITING_A_STUDY"> </a>
 ## T-FAST ACCESS TO EDITING A STUDY
 
 [Return to TOC](#toc)
 
 The fastest way to edit a study is to double click on the plot on the chart. However, at times, clicking the right location can take many tries. This is where study highlighting can come in handy for finding the right place and time to double-click. Here is where highlighting hoovering is set:
 
+<a name="A_NEW_TO_THINKSCRIPT_MUST_READ"> </a>
 ## T-A NEW-TO-THINKSCRIPT MUST READ
 
 [Return to TOC](#toc)
 
 TOS has many valuable resources that may, for some, be hard to keep track of. This is a reminder of an especially valuable resource for new learners of ThinkScript as well as a refresher for you 'pros' out there. The Learning Center's 'charting/ThinkScript' ( Click here to see it ) is a must read for all newcomers to ThinkScript. Although this has three sections the 'ThinkScript Tutorials' are especially pertinent.
 
+<a name="USING_MULTIPLE_TIME_FRAMES_TO_PLAN_ENTRIES"> </a>
 ## T-USING MULTIPLE TIME FRAMES TO PLAN ENTRIES
 
 [Return to TOC](#toc)
 
 Using multiple time frames to plan entries is smart ( See Article ). To facilitate implementing a multiple-time-frame approach consider establishing a named grid with each grid component having the charts and indicators at the time frames that you are interested in. You can navigate from one grid-box to another with a single click of the grid navigation buttons. Giving the grid a name allows you to call it up whenever you want. A 'flexible grid' would be ideal for such a purpose.
 
+<a name="WIZARD_ACCESS_FOR_EDITING_EXISTING_STUDIES"> </a>
 ## T-WIZARD ACCESS FOR EDITING EXISTING STUDIES
 
 [Return to TOC](#toc)
 
 When editing existing studies and you want to use the wizard, you have two choices: 1. Open a new study. Copy the wizard result via CTRL-C and then 'CANCEL' the new study; or 2. Use the wizard in the 'scan/stock hacker' and copy the wizard result via CTRL-C for pasting into the existing study editing.
 
+<a name="PRE_MARKET_MOVERS"> </a>
 ## T-PRE MARKET MOVERS
 
 [Return to TOC](#toc)
@@ -10281,6 +10271,8 @@ Pre market scans are not very efficient.  TOS provides a good source for pre-mar
 
 Note that the columns can be customized and adding a 'Send to [4] Green', for example, gives a quick chart of the stock.
 
+
+<a name="VERTICAL_LINES_AT_MARKET_OPEN_AND_CLOSED_TIMES"> </a>
 ## T-   VERTICAL LINES AT MARKET OPEN AND CLOSED TIMES
 
 [Return to TOC](#toc)
@@ -10305,6 +10297,7 @@ AddVerticalLine(EndTime," Market Closed",Color.RED,Curve.SHORT_DASH);
 #end
 ```
 
+<a name="EASILY_VIEWING_CHARTS_OF_STOCKS_IN_A_LIST"> </a>
 ## T-EASILY VIEWING CHARTS OF STOCKS IN A LIST
 
 [Return to TOC](#toc)
@@ -10322,6 +10315,7 @@ The procedure for charting the stock is different in the two locations:
 
 #end
 
+<a name="CHANGING_THE_HEADER_TEXT_COLOR"> </a>
 ## T-CHANGING THE HEADER TEXT COLOR
 
 [Return to TOC](#toc)
@@ -10343,6 +10337,7 @@ However, there are unintended consequences as shown below in this 'edit studies'
 
 #end
 
+<a name="SEQUENCECOUNTER_AND_GRID_UASGE"> </a>
 ## T-SEQUENCECOUNTER AND GRID UASGE
 
 [Return to TOC](#toc)
@@ -10353,6 +10348,7 @@ Comment: The Sequence Counter is used as an example and is not a recommended ind
 
 #end
 
+<a name="ENHANCE_THE_LOOKS_OF_A_HISTOGRAM_PLOT"> </a>
 ## T-ENHANCE THE LOOKS OF A HISTOGRAM PLOT
 
 [Return to TOC](#toc)
@@ -10366,12 +10362,14 @@ Histogram_Liner.SetLineWeight(1);
 Histogram_Liner.SetDefaultColor(Color.CYAN);
 ```
 
+<a name="PRIVACY_TO_NOT_SHOW_ACCOUNT_DOLLARS"> </a>
 ## T-PRIVACY TO NOT SHOW ACCOUNT DOLLARS
 
 [Return to TOC](#toc)
 
 To activate privacy that shows ***** instead of the dollar values, click the blue dot left of the 'Net Liq & Day Trades' and check the privacy square.
 
+<a name="NAVIGATION_VIA_KEYBOARD_HOTKEYS_VS_THE_MOUSE"> </a>
 ## T-NAVIGATION VIA KEYBOARD HOTKEYS vs THE MOUSE
 
 [Return to TOC](#toc)
@@ -10460,6 +10458,7 @@ There may be other hotkeys of interest to you at Go Here
 
 - #end
 
+<a name="THE_DREADED_TOO_COMPLEX_ERROR"> </a>
 ## T-THE DREADED 'TOO COMPLEX ERROR'
 
 [Return to TOC](#toc)
@@ -10486,6 +10485,7 @@ Realize also that overly complex if-conditions are only one aspect that generate
 
 #end
 
+<a name="DEFINING_AND_APPLYING_CONDITIONS_IN_A_STUDY"> </a>
 ## T-DEFINING AND APPLYING CONDITIONS IN A STUDY
 
 [Return to TOC](#toc)
@@ -10498,6 +10498,8 @@ How to do this? You take your basic code study...the one that plotted the arrows
 
 Don't forget to delete the studies, 5 in this example, that plotted the cnditions to preclude accumulation of studies that have no further use.
 
+
+<a name="NAMING_COPIED_BUILTIN_STUDIES"> </a>
 ## T-NAMING COPIED BUILTIN STUDIES
 
 [Return to TOC](#toc)
@@ -10506,6 +10508,8 @@ There are many instances when the built-in studies are copied and reused so you 
 
 Builtin-name + _  + your-initials. So the MACD will look like 'MACD_ME'. The benefit of doing this is that the builtin  and your modified copy stay adjacent in the list and it helps you to keep track of what you may have done two months ago.
 
+
+<a name="PERCENTAGE_VIEW_ON_PRICE_CHARTS"> </a>
 ## T-'PERCENTAGE VIEW' ON PRICE CHARTS
 
 [Return to TOC](#toc)
@@ -10535,6 +10539,7 @@ The calculation for the percentage shown is: (current price – close price of 0
 
 #end
 
+<a name="CHANGING_RIGHT_EXPANSION_AREA_SETTING"> </a>
 ## T-CHANGING RIGHT EXPANSION AREA SETTING
 
 [Return to TOC](#toc)
@@ -10559,6 +10564,7 @@ This icon will now show on the chart in lieu of the cursor. Simply hold- down th
 
 - Clicking as shown will take you to 'Chart settings/time axis' where you set the'expansion bars to the right'.
 
+<a name="RENAMING_STUDIES_CAUTION"> </a>
 ## T-RENAMING STUDIES CAUTION
 
 [Return to TOC](#toc)
