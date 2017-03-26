@@ -1562,6 +1562,7 @@ HH_Lines.SetPaintingStrategy(paintingStrategy.horizontal);
 
 Alertnate 1:
 
+```
 #hint <b> Highest High and Lowest Low lines & bubble for 3, 6 or 12 momths</b>
 
 declare upper;
@@ -1609,6 +1610,7 @@ LowestLow.HideBubble();
 
 AddChartBubble( barNum == startBar, HighestHigh,  "Highest High in " +   numMonths +  " Months" , Color.cyan, yes );
 AddChartBubble( barNum == startBar, LowestLow,    "Lowest Low in " +  numMonths  + " Months" , Color.pink, no  );
+```
 
 Alertnate 2:
 
