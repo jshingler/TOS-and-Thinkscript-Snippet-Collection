@@ -1539,11 +1539,11 @@ Other examples of switch usage can be found at S-PRICE DIRECTION SCAN , S-PRICE 
 
 [Return to TOC](#toc)
 
+```
 #Hint: Plots Horizontal lines of highest-highs and lowest-lows
 #TOS Name = HorizLines_HH_LL
-input length = 20;#hint length: The number of bars being evaluated for the HH and LL. Also is the length of the longest lines. Longer lines may show when two adjacent lines have the same HH or LL values.
+input length = 20; #hint length: The number of bars being evaluated for the HH and LL. Also is the length of the longest lines. Longer lines may show when two adjacent lines have the same HH or LL values.
 
-```
 input ShowHi_Lines = yes;#hint ShowHi_Lines:Shows or hides HH lines
 input ShowLo_Lines = yes;#hint ShowLo_Lines:Shows or hides LL lines
 
