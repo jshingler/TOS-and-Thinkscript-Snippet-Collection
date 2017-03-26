@@ -1528,9 +1528,9 @@ The switch statement is used to control the flow of program execution via a mult
 - The variables being processed, i.e. 'def advances;' and 'def declines;', must be addressed in each case ????: 
 Otherwise an error is produced.
 
--- Any enum item having a space should have that item enclosed within quotes whenever used.
+  - Any enum item having a space should have that item enclosed within quotes whenever used.
 
--- Use of a switch inside a switch is possible but is very complex. Hence it is not addressed herein.
+  - Use of a switch inside a switch is possible but is very complex. Hence it is not addressed herein.
 
 Other examples of switch usage can be found at S-PRICE DIRECTION SCAN , S-PRICE DIRECTION SCAN, C-ATR TRAILING STOP and C- THE 'AdvanceDecline' STUDY
 
