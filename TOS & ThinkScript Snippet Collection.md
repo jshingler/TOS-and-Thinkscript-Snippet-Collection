@@ -1515,33 +1515,24 @@ AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
 
 [Return to TOC](#toc)
 
-- Here is a example of the 'switch' function being discussed:
+Here is a example of the 'switch' function being discussed:
 
-- The switch statement is used to control the flow of program execution via a multi-branch using the enum Def, and enum
+The switch statement is used to control the flow of program execution via a multi-branch using the enum Def, and enum input: Its features are:
 
-- input: Its features are:
+- It processes an enumeration: In this case 'input exchange'. Each enum value has a case ????: where ???? is the enum value.
 
-- • It processes an enumeration: In this case 'input exchange'. Each enum value has a case ????: where ???? is the
+- If each item in the enum's list i.e. {default NYSE, NASDAQ, AMEX}, does not have a case, then there must be a case default: In this example, each of the enums has a case so there is no case default:.
 
-- enum value.
+- If a case default: is present, its code is applicable to ALL the enum values that do not have a case.
 
-- • If each item in the enum's list i.e. {default NYSE, NASDAQ, AMEX}, does not have a case, then there must be a
+- The variables being processed, i.e. 'def advances;' and 'def declines;', must be addressed in each case ????: 
+Otherwise an error is produced.
 
-- case default: In this example, each of the enums has a case so there is no case default:.
+- Any enum item having a space should have that item enclosed within quotes whenever used.
 
-- • If a case default: is present, its code is applicable to ALL the enum values that do not have a case.
+- Use of a switch inside a switch is possible but is very complex. Hence it is not addressed herein.
 
-- • The variables being processed, i.e. 'def advances;' and 'def declines;', must be addressed in each case ????:
-
-- Otherwise an error is produced.
-
-- • Any enum item having a space should have that item enclosed within quotes whenever used.
-
-- • Use of a switch inside a switch is possible but is very complex. Hence it is not addressed herein.
-
-- Other examples of switch usage can be found at S-PRICE DIRECTION SCAN , S-PRICE DIRECTION SCAN,
-
-- C-ATR TRAILING STOP and C- THE 'AdvanceDecline' STUDY
+Other examples of switch usage can be found at S-PRICE DIRECTION SCAN , S-PRICE DIRECTION SCAN, C-ATR TRAILING STOP and C- THE 'AdvanceDecline' STUDY
 
 <a name="HORIZONTAL_LINES_OF_HIGHEST"> </a>
 ## C-HORIZONTAL LINES OF HIGHEST-HIGHS AND LOWEST-LOWS
@@ -3959,11 +3950,11 @@ AddLabel(1, "Time from last bar till end-of-day (midnight) = " +(Round( (24 + (T
 
 Returns the date of the current bar. If there is no bar on a chart, like in pre and after-market hours or weekends and holidays, then results, including label values, from the date/time functions are not reliable.
 
-A typical GetYYYYMMDD()  result date  is 20,131,107. This result doesn't look like a date especially with the commas but it is.
+A typical `GetYYYYMMDD()`  result date  is 20,131,107. This result doesn't look like a date especially with the commas but it is.
 
-When GetYYYYMMDD() is compared to an inputted date the commas are omitted  in the input date. An example is 'input endDate = 20100101;'
+When `GetYYYYMMDD()` is compared to an inputted date the commas are omitted  in the input date. An example is `input endDate = 20100101;`
 
-Functions that use GetYYYYMMDD() as a parameter are:
+Functions that use `GetYYYYMMDD()` as a parameter are:
 
 - `GetDayOfWeek(int yyyyMmDd);`#Returns the day of week from 1 (Monday) to 7 (Sunday).
 
