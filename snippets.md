@@ -2330,7 +2330,7 @@ C-PLOT THE CURRENT PRICE ACROSS AN ENTIRE CHART TOC Return
 ## <a name="89"></a>C-% VOLUME CHANGE FROM THE PREVIOUS BAR
 [TOC Return](#toc)
 
-
+```
 #hint:Shows the percentage volume change from the previous bar
 declare lower;
 input ShowBubble = No;#hint ShowBubble:Yes shows the over-reference-% bubble
@@ -2341,16 +2341,20 @@ Ratio_vol.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
 Ratio_vol.AssignValueColor(if Ratio_vol >= Ref_val then Color.green else if Ratio_vol < Ref_val and Ratio_vol > 0 then Color.Light_green else Color.Light_red);
 Ratio_vol.SetLineWeight(5);
 Ratio_vol.HideBubble();
-             #plots the current price across an entire chart..... a true snippet
+```
+
+#plots the current price across an entire chart..... a true snippet
  input price = close;
  plot price_across_chart = HighestAll(if !IsNaN(price) and IsNaN(price[-1]) then price else Double.NaN);
  #end
 
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 54 RefLine.SetDefaultColor(Color.Yellow);
+RefLine.SetDefaultColor(Color.Yellow);
  plot RefLine = Ref_val; RefLine.SetLineWeight(2);
 AddChartBubble(ShowBubble && Vol_Change > Ref_val, Ratio_vol, round(Ratio_vol,0) + "%", Color.green); addLabel(1,"Shows the % change in volume compared to the previous bar", Color.pink);
 addLabel(1,"Yellow line = " + Ref_val + "% reference line" , Color.yellow); addLabel(!ShowBubble,"%-value-bubbles available when above " + Ref_val + "% reference line", Color.white); addLabel(ShowBubble,"Bubble percent shown when above the " + Ref_val + "% reference line" , Color.Green);
-C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD
+
+
+##  C-INTRADAY CURRENT PRICE CLOUD ATOP DAY'S HIGHEST CLOUD
 [TOC Return](#toc)
 
 
@@ -2754,18 +2758,22 @@ plot cond = if close(priceType = "Mark") crosses above Data * 1.01 then low else
 cond.SetPaintingStrategy(PaintingStrategy.Arrow_Up);
 #Comment1: Pre-market scan and chart may be had by changing 'End' to 'Begin' in the above code
 Comment2: To display pre and post- market chart displays, click the wrench to open 'Chart Settings' and then go to 'equities' and check 'Show Extended Session'
-S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
+
+## S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
 [TOC Return](#toc)
 
 
 Scan for equities that have made new 52 week highs in the past 5 days.
+```
 input lookback = 5; # past N days
 def hhy = Highest( high, 252 );
 plot h = Highest( high, lookback ) == hhy;
-C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES
+```
+
+## C-ORDER BASED ON VALUE DIFFERENCE OF THREE AVERAGES
 [TOC Return](#toc)
 
-
+```
 #hint:Order based on value difference of three averages
 input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull}; input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull}; input averageType3 = {default Simple, Exponential, Weighted, Wilders, Hull}; input length1 = 10;
 input length2 = 46;
@@ -2776,14 +2784,15 @@ plot MovAvg1 = MovingAverage(averageType1,price, length1);
 plot MovAvg2 = MovingAverage(averageType2,price, length1);
 plot MovAvg3 = MovingAverage(averageType3,price, length1);
 
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 67
 plot condition = absValue(MovAvg1 - MovAvg2) <= val_diff AND absValue(MovAvg1 - MovAvg3) <= val_diff AND
 absValue(MovAvg2 - MovAvg3) <= val_diff; condition.setPaintingStrategy(paintingStrategy.BOOLEAN_ARROW_UP);
 addOrder(OrderType.BUY_AUTO, condition); addOrder(type = OrderType.SELL_TO_CLOSE,!condition);
-C-DEFINES AGGREGATION IN A LABEL
+```
+
+## C-DEFINES AGGREGATION IN A LABEL
 [TOC Return](#toc)
 
-
+```
 #hint:Defines the aggregation in a label
 def AggPeriod = getAggregationPeriod(); AddLabel(yes,concat("Aggregation Period = ",
 if AggPeriod == AggregationPeriod.min then "1 MIN"
@@ -2806,9 +2815,11 @@ else if AggPeriod == AggregationPeriod.week then "WEEK"
 else if AggPeriod == AggregationPeriod.MONTH then "MONTH"
 else "Use time charts only"),
   Color.cyan);
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 68 AddLabel(yes,"Not for TICK or RANGE bar usage",color.red);
+AddLabel(yes,"Not for TICK or RANGE bar usage",color.red);
 # end
-C-FIRST AND LAST BAR BUBBLES
+```
+
+## C-FIRST AND LAST BAR BUBBLES
 [TOC Return](#toc)
 
 
