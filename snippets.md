@@ -2301,12 +2301,13 @@ Comment: Each 'if...then...else' statement should be within parentheses to insur
 ## <a name="85"></a>C-PLOT FOR ? DAYS FROM A DATE
 [TOC Return](#toc)
 
-
+```
 #Hint: Plot for ? calendar (not trading) days from an inputted date\n This works only on a lower plot and <b>not for HA and EquiVolume charts.</b>
-Input DaysToPlot = 20;#hint DaysToPlot: the number of calendar days to plot.
+Input DaysToPlot = 20;  #hint DaysToPlot: the number of calendar days to plot.
 Input Price = Close;
-input BeginDate =20130810;#hint BeginDate: The start date in YYYYMMDD format
+input BeginDate =20130810;  #hint BeginDate: The start date in YYYYMMDD format
 plot Days = if DaysFromDate(BeginDate) >= 0 and DaysFromDate(BeginDate) <= DaysToPlot then Price else double.NaN; AddLabel(1, "If you do not see a plot, check if the chart timeframe cover the input date", Color.WHITE);
+```
 
 ## <a name="86"></a>B-ALERTS TUTORIAL
 [TOC Return](#toc)
