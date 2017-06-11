@@ -2045,22 +2045,26 @@ If you want to see a dot anytime the condition is true, then remove the '&& !cro
 [TOC Return](#toc)
 
 
-Scan for price crossing the upper/lower line of the Standard Deviation Channel (SDC). def _sdcU = StandardDevChannel().UpperLine;
-plot scanSDC = close >= _sdcU and close[1] < _sdcU[1];
+Scan for price crossing the upper/lower line of the Standard Deviation Channel (SDC).
+```
+def sdcU = StandardDevChannel().UpperLine;
+plot scanSDC = close >= sdcU and close[1] < sdcU[1];
 Following the same logic the sdcL would be :
-def _sdcL = StandardDevChannel().LowerLine;
-plot scanSDC = close <= _sdcL and close[1] > _sdcL[1];
+def sdcL = StandardDevChannel().LowerLine;
+plot scanSDC = close <= sdcL and close[1] > sdcL[1];
+```
 
 ## <a name="74"></a>S-ABOVE 20-DAY MA FOR 65 DAYS
 [TOC Return](#toc)
 
 
-Scan for stocks above their 20 day MA for 65 days. Set agg = day. input ConsecutiveClose = 65;#Number of days
+Scan for stocks above their 20 day MA for 65 days. Set agg = day.
+```
+input ConsecutiveClose = 65;#Number of days
 def avg = Average(close,20);# 20-bar average
 def above20 = if close >= avg then above20[1] + 1 else 0;
 plot scan = if above20 >= ConsecutiveClose then 1 else 0;
-
-TOS & THINKSCRIPT SNIPPET COLLECTION Page 47
+```
 
 ## <a name="75"></a>S-SCAN FOR 200-DAY MA
 [TOC Return](#toc)
