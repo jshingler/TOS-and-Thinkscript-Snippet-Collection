@@ -1,5 +1,7 @@
 # TOS-and-Thinkscript-Snippet-Collection
 
+require jim.md
+
 The "TOS and Thinkscript Snippet Collection" by [StanL]( http://mytrade.com/StanL) has been a great help in my thinkscript development journey.  I constantly look to this work for ideas and techniques.
 
 It appears that "TOS and Thinkscript Snippet Collection" hasn't been update in 3 years as of this righting, ...  I am not sure is something happened to StanL or what.
