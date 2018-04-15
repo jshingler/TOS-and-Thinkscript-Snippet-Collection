@@ -936,9 +936,12 @@ plot Over_Sold = 20;
 
 ```
 #hint produces a date label in MMDDYYYY format
-def year = (Round(GetYYYYMMDD() / 10000, 0));#Thie produces the year as1,210 def Month = GetMonth();
+def year = (Round(GetYYYYMMDD() / 10000, 0));#This produces the year as1,210 
+def Month = GetMonth();
 def Day = GetDayofMonth(GetYYYYMMDD());
-def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1; AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
+def date = GetYYYYMMDD() * 10000 + GetMonth() + GetDay() + 1; 
+
+AddLabel(yes,"date: " + Month +"/" + Day + "/" + AsPrice(Year) , Color.WHITE);
 ```
 ![label](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/images/24-1.png?raw=true "label")
 
