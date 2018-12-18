@@ -1,0 +1,1014 @@
+:imagesdir: images/
+=== Add Info Bubbles To a Study or a Study's Inputs
+
+
+image::2-1.png[Info Bubble]
+image::2-2.png[Info Bubble]
+
+
+As shown above the study list and the inputs have info bubbles. You may add these info bubbles to your studies.
+
+To make an 'Info Bubble' for a study and strategy:
+
+1. Above the code lines, place   `#hint: ????????`     where ???????? is the description you want displayed when the bubble is clicked.
+2. The tags listed under 'TAGS  and their PURPOSE:' may be used to format the ????????.
+3. An example is --->  `#hint: Plots a <b>trend line</b> between the two input dates.`
+
+To make an 'Info Bubble' for 'Edit Studies' input
+
+1. Immediately after the semi-colon on the input's line (preferred location), place   `#hint <the input variable name>: (the desired text you want displayed when the bubble is clicked)` .
+
+2. The tags listed under 'TAGS  and their PURPOSE:' may be used to format the desired text.
+
+3. An example is --->  `input Length = 10 #hint Length: The number of bars used to calculate the average.`
+
+4.  Notice that the colon is placed after the input variable name (in this case Length).
+
+Formatting is possible using HTML tags. Some of the common tags you may be interested in are listed below:
+
+__TAGS  and their PURPOSE:__
+
+
+```
+
+<b> ......... </b>     Makes the text between the tags bold.
+
+\n                       Starts a new line
+
+<li>........... </li>      Creates indented lists
+```
+
+Example of the following script and its result:
+
+`#hint: <b>Bar Count Between Highs</b>\n Counts the number of bars between each high in the specified length.`
+
+=== IF EXPRESSIONS AND STATEMENTS EXPLAINED
+
+
+
+There are three forms of if statements. The __'immediate-if'__ is the shortest and is documented at
+
+- http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Functions/Others/If.html . The other two are
+
+- the __'if-expression'__ and the __'if-statement'__, both of which are documented  at
+
+- http://demo.thinkorswim.com:7001/manual/metal/thinkscript/reference/Reserved%20Words/if.html . The thinkscript documentation infers that there are more forms of the if-then-else, but the additional examples are merely the base form shown with nested if-then-else statements/expressions.
+
+==== The 'immediate-if' explained
+
+The syntax is: `If(double condition, double true value, double false value);` This is the simplest and easiest to use. An  example is: `Plot Maximum1 = If(close > open, close, open);` This reads as “If the close is greater than the open, then plot the close. Otherwise/else, if the close is not greater than the open, then plot the open.”  This form is very useful as the right-hand side of the equal sign in a Plot or Def statement. Also this form can be used with `else` to create more complex conditions. This form is a function and returns a type of double that is very useful for the if-then-else statements/expressions when you are processing numbers and nesting.
+
+The word 'double' is often vague in its meaning in ThinkScript but it means a floating-decimal-point-number of double precision in programming terminology. Any further meaning-clarification is unnecessary here. The impact of 'double' is that constants such as the names of the 23 ThinkScript colors, like LIGHT_RED, BLUE, UPTICK, etc., are not floating point numbers and hence cannot be used in this immediate-if. In this case, the if-expression would be used.
+
+==== The 'if-expression' explained
+
+The syntax is: `if close > open then close else open;` An example is: `plot Maximum2 = if close > open then close else open;` An __IF....THEN....ELSE__ are all required. A nesting (putting if's within if's) example, in the recommended layout for easy reading, is:
+
+```
+plot Maximum2 = if close > open
+  then close
+  else if close = open
+  then (low + high)/2
+  else open;
+```
+
+Note that the last `'else open'` relates to the `'if close > open'` and applies when the intermediate 'else-if close = open' is not true. This nested-if reads as: If close is greater than the open then plot the close. If the close equals the open then plot the (low + high)/2 . If the close is not greater than the open and the close does not equal the open, then plot the open.
+
+The if-expression will have only one semi-colon that will terminate the entire expression, regardless of the complexity.
+
+==== The 'if-statement' explained
+
+The syntax and example is:
+
+```
+plot Maximum3;
+
+if close > open [then]{
+  Maximum3 = close;
+} else {
+  Maximum3 = open;
+}
+```
+
+The `'[then]'` above means that it is optional but it is recommended that it always be used for clarity. Notice that each statement is enclosed within a block __(the parts enclosed in the { } )__ and must end with a semi-colon.
+
+Comparison of all three 'if' syntaxs
+
+```
+plot Maximum1 = If(close > open, close, open); # This is the immediate-if syntax
+
+plot Maximum2 = if close > open then close else open; # This is an if-expression
+
+plot Maximum3; # This and the lines below make up an if-statement
+if close > open {
+  Maximum3 = close;
+} else {
+  Maximum3 = open;
+}
+```
+
+Excellent examples of the power of if..then..else can be seen in these documents herein:
+
+ADD AN INDEX OR FUTURE LOWER CHART and SLOPE OF AN AVERAGE
+
+=== CHANGE THE COLORING OF A PLOT BASED ON A CONDITION
+
+
+ A very favorite feature is to change the color of a plot based on a condition that you define. The 'HullMovingAvg' illustrates this very well. Here is its code:
+
+```
+input price = close;
+input length = 20;
+input displace = 0;
+
+plot HMA = MovingAverage(AverageType.HULL, price, length)[-displace];
+
+HMA.DefineColor("Up", GetColor(1));
+HMA.DefineColor("Down", GetColor(0));
+HMA.AssignValueColor(if HMA > HMA[1] then HMA.color("Up") else HMA.color("Down"));
+```
+
+In the above HMA>HMA[1] is the condition that says __IF__ the current HMA is greater than the previous value of the HMA, i.e. HMA > HMA[1] , __THEN__ paint the plot with the “Up” color which is defined as color(1) __OTHERWISE/ELSE__ paint the plot with the “Down” color which is defined as color (2). (1) and (2) are color index numbers. Color-assigned-index-numbers are explained in the separate topic.
+
+The condition is always in a 'if.... then.... else' format. If-statements may be nested without limits. The format thenbecomes 'if.....then..... else if.....then.....else if.....then......else'. The closing 'else' is always present and relates to the initialif.... then when none of the nested if ...then's produce a result.
+
+Example:
+
+`if SlowK > SlowD then color.green else if SlowK < SlowD then color.red else color.gray`
+
+The multiple conditions may be used to define a conditional statements. They are joined by `'and'` or its equivalent `'&&'`.
+
+Example:
+
+`def RangeCondition = ADX > 0 && ADX < 13;# ADX is between 0 and 13`
+
+Conditions may be nested as in this example:
+
+```
+Diamonds.AssignValueColor(
+  If BullishCondition then color.green else
+    If RangeCondition then color.white else
+      If BearishCondition then color.red else
+       color.black);
+```
+
+Note in the above, since color.green, color.white, color.red and color.black are constants and not double variables, the if-expression must be used and that requires the presence of all __IF.....THEN.....ELSE__ parts.
+
+Here is another example of multiple coloring in a label:
+
+```
+AddLabel(1, Concat("IV Percentile ", AsPercent(perct)), if perct > 0.80
+  then Color.Green
+  else if perct < 0.80 and perct > 0.50
+  then Color.Yellow
+  else color.Red);
+```
+
+=== HOW THINKSCRIPT CALCULATES
+
+
+In scans, conditional orders, and custom quotes there is only one bar, the latest or current bar. All scripts are run in  real-time and the script processor only runs one iteration of the script. So within that context, certain functions make no sense, like barNumber(), HighestAll() to name a few, also rec variables. Functions that take a look back value or length, such as average( data, length ), highest( data, length ), etc. work because the internal logic of the function performs the action of looking back. No matter what the timeframe, in those contexts (scans, etc.), your script only runs once and only  against the current (latest) bar.
+
+In studies or strategies, ThinkScript runs your script once __for each and every bar__ on your chart, regardless of the aggregation period.
+
+You will often hear knowledgeable programmers say with disappointment that 'ThinkScript' does not have arrays. Arrays are a common powerful programming feature for storing/recalling various data and data types. This is a limitation of ThinkScript that we must live with as best we can.
+
+=== COLORS AS USED IN TOS/THINKSCRIPT
+
+
+
+TOS has defined ten colors corresponding to index numbers on two different background colors as below:
+
+The colors are used via the function `'GetColor(index number);'` Example: GetColor(1) as used in the HullMovingAvg previous topic. Reference: [See Index Colors]((https://tlc.thinkorswim.com/center/charting/thinkscript/reference/Functions/Look---Feel/GetColor.html))
+
+image::6-1.png[]
+
+.Table Colors
+|===
+| Index | RGB Values  | Name of Color
+
+|   0   | 255,16,253  | magenta
+|   1   | 0,255,255   | cyan
+|   2   | 255,174,174 | pink
+|   3   | 191,191,191 | white
+|   4   | 254,199,22  | gold
+|   5   | 255,3,2     | red
+|   6   | 0,254,30    | green
+|   7   | 127,127,127 | dark_gray
+|   8   | 254,254,31  | yellow
+|   9   | 255,255,255 | white
+|===
+
+
+This free tool will help you to get the RGB values for any color you desire to compose.
+
+http://www.colorschemer.com/online.html
+
+TOS has also assigned names to 23 colors per the following:
+
+image::6-2.png[]
+
+
+Reference: [See all color constants](https://www.thinkorswim.com/tos/thinkScriptHelp.jsp?laf=dark#constants)
+
+Note that colors 'UPTICK' and 'DOWNTICK' are defined respectively as a red and green tone because they are frequently used in chart coloring. In the above chart the capitalized words are the names used to specify that color i.e. color.CYAN or color.LIGHT_RED.
+
+Not all colors are defined: for example, PURPLE. You may find any color at
+
+http://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F  or http://en.wikipedia.org/wiki/X11_color_names .
+
+You can create that color for use in TOS by using the function 'CreateColor(double red, double green, double blue); ' similar to the RGB Code in the chart above. Each RGB component ranges in value from 0 (meaning none or 0%) to 255 (meaning the max 100% value).
+
+You may also assign a text-name, for later use, to any color you create via
+
+`DefineGlobalColor("Purple" , CreateColor(160,32,240) );`
+
+=== OFTEN USED COLORING CODE STATEMENTS
+
+NOTE: When writing code you may not have the coloring coding at your finger tips. This provides a ready place to go to to get the code words to paste.
+
+==== Typical chart plot settings
+```
+Data.SetPaintingStrategy(PaintingStrategy.LINE);# See Others Painting Strategies below.
+Data.SetLineWeight(1);# 1 thru 5. 1 is the default if 'SetLineWeight' is not defined.
+Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
+```
+
+See all predefined color constants: See predefined color constants
+
+```
+######## Other Painting Stategies ########
+
+- ARROW_DOWN,  ARROW_UP, BOOLEAN_ARROW_DOWN, BOOLEAN_ARROW_UP, BOOLEAN_POINTS,
+- DASHES, HISTOGRAM,  HORIZONTAL, LINE,  LINE_VS_POINTS, LINE_VS_SQUARES,   LINE_VS_TRIANGLES,
+- POINTS, SQUARED_HISTOGRAM, SQUARES, TRIANGLES,  VALUES_ABOVE,  VALUES_BELOW
+```
+
+LINE is the default if none is specified.
+
+```
+##### For curves define the line styles ####
+Data.SetStyle(Curve.SHORT_DASH);
+```
+
+Other constants:
+
+- FIRM,  LONG_DASH, MEDIUM_DASH,  SHORT_DASH,  POINTS
+- SHORT_DASH is the default value of 'SetStyle'
+
+- ###### assign a name to a color ##########
+
+You may assign a name to a color like:
+
+```
+Plot RSI = 50 * (ChgRatio + 1);
+RSI.DefineColor("Normal", GetColor(7));
+```
+
+The name "normal" above is unique to the RSI plot. Another plot cannot use the name 'normal' without redefining it.
+
+To define and name a color for use in multiple plots do as follows:
+
+```
+DefineGlobalColor("normal", CreateColor(128, 0, 128));
+
+plot signal = high > Highest(high[1]);
+signal.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
+signal.SetDefaultColor(GlobalColor("normal"));
+
+plot NinetyPercent = 0.9*close;
+
+NinetyPercent.SetDefaultColor(GlobalColor("normal"));
+```
+
+
+
+```
+######### Color based on a condition ############
+plot Diff = close - close[1];
+Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK);
+```
+
+Note that UPTICK and DOWNTICK are TOS predefined color constants
+
+
+```
+####### Create your own color ###########
+plot Price = close;
+Price.SetDefaultColor(CreateColor(255, 220, 210));
+```
+
+Or
+
+`DefineGlobalColor("Purple" , CreateColor(160,32,240) );`
+
+After the above global definition, GlobalColor("Purple") can be use wherever a color is needed. For example:
+
+`Price.SetDefaultColor(GlobalColor("Purple"));`
+
+#### Use predefined index colors ##########
+
+```
+plot Price = close;
+Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9
+```
+
+Reference: See all color index numbers
+
+#### Default and global color text names #####
+
+```
+plot Data = close;
+Data.SetDefaultColor(color.RED);
+```
+
+or
+
+`Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.`
+
+##end
+
+=== IMPLEMENTING LABELS
+
+
+
+Labels are boxes of info placed at the top-left of a study. They are very useful and well worth the time to master them.
+
+The label function is `AddLabel(boolean visible, Any text, CustomColor color);` and has three components.
+
+1. `' boolean visible'` is a true or false statement that defines when the label shows or doesn't show. If you use a '1' or 'yes' here it will always show the label, Otherwise you define a condition or an input selection-value that evaluates to 'true' or 'false' and reference that condition statement here.
+
+2. `'Any text'` is what appears inside the label box. There are two way to compose this text using 'concat' or '+' syntax(known as the string concatenation symbol). Concat is a term that means to connect two text phrases together. This includes converting ThinkScript variable-values into text.
+
+3. `' CustomColor color'` defines the background color of the label box. The text font color is always black.
+
+==== boolean visible
+
+This can be a `'yes'` or `'no'`, or any condition statement or a reference to: (1) a previously defined condition statement;  or (2) an input true/false value. When this evaluates to 'true' then the label will show or, when false, will not show. This is very handy when referring to an input whose value choices are `'yes'` or `'no'`. Programmers use the yes/no input in condition statements to display or not-display certain features such as the labels or plots.
+
+==== Any text
+
+The label's text can be defined using  using `'concat'` or `'+'` which is known as the string concatenation symbol. Using the `'+'` symbol is much easier to master and is recommended. Examples will help explain:
+
+```
+input weeks = 4;
+AddLabel(yes, concat(weeks, " Weeks till expiration"),  color.YELLOW);
+```
+
+produces the following label:
+
+image::8-1.png[]
+
+
+Using the '+' symbol …. `AddLabel(yes, weeks + " Weeks till expiration",  color.YELLOW);` produces the same label as above. You will find that complex texts with numerous segments are much easier to compose using the '+' symbol. There is, however, one pitfall to be avoided using the '+' symbol as discussed below:
+
+The key is when using the + syntax, one must put all calculations-within-a-label inside of parentheses. Also multiple conditions such as HiTrue && LoTrue should be within parenthesis like (HiTrue && LoTrue).To illustrate this, a  right and wrong is shown below:
+
+This works:
+
+```
+input ManADR = 25;
+Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + (0.10 * ManADR) ,color.PINK);
+```
+
+image::8-2.png[]
+
+This is wrong and produces an error:
+
+`Addlabel(yes,"Exit = Stop Loss @ 10% of ADR = " + 0.10 * ManADR ,color.PINK);`
+
+See also LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE  and C-% CHANGE OF THE FIRST BAR VALUE and C-ADD AN INDEX OR FUTURE LOWER CHART for examples of putting drop-down literals into label text.
+
+==== CustomColor Color
+
+- Defines the color of the label box. Conditional coloring can also be had with the addition of if....then.....else statements. There are no limits to the number of conditional statements but they follow the format if.....then....else if.....then.....else if.....then.....else. Note the closing else that relates to the very first 'if.....then'.
+
+You may have a label take on the same color as a plot. The syntax is: `ChartPlotName.TakeValueColor()`
+
+__Tip for moving labels up__
+
+There are times when a label interferes with the top of a plotted chart's data. To avoid that, you can plot a line at the top of the chart at a value above the plots data. The labels will then have their centerline equal to the value of the line.
+
+To make the line invisible, paint it the same color as your background.
+
+__Tip for debugging__
+
+AddLabel is an excellent tool to observe a value for debugging purposes. In addition to that, a neat trick is, while in the code editor, drag the editor window down so that you can see the chart's label and header values. That way, when you change the code and press apply, you can see the value change while staying in the code editor.
+
+If you are inclined towards the use of concat, here is a guide on its use as well as an example of conditional coloring.
+
+image::8-3.png[Concat]
+image::8-4.png[Concat label]
+
+__The equivalent using the '+' syntax is:__
+
+```
+AddLabel(Display_Labels, "ADX(" + length + ") = " + Round(ADX,1) + " = Strong bullish (rating 3.5)", if "DI+" >"DI-" then
+Color.GREEN else if "DI-" > "DI+" then Color.RED else Color.WHITE);
+```
+
+The built-in ZigZagPercent study demonstrates the excellent use of conditional showing of the label itself, the use of the + syntax and conditional coloring. The code is duplicated below:
+
+```
+AddLabel(showLabel and barNumber != 1, (if isConf then "Confirmed " else "Unconfirmed ") + "ZigZag: " + round(chg) +
+"%", if !isConf then globalColor("Unconfirmed") else if isUp then globalColor("Up") else globalColor("Down"));
+```
+
+SLOPE OF AN AVERAGE herein shows how to reteieve the literal of 'AverageType' choices in a label.
+
+==== A trap to avoid:
+
+If your definition of the label text involves long and multiple 'if...then...else' statements, to insure that they all print, enclose each 'if...then   else' statement in parentheses e.g. '(if...then...else)'. Otherwise, you may not get an error but an 'if...then...else' statement may not print.  C- THE 'AdvanceDecline' STUDY  herein is an excellent example of this.
+
+=== AGGREGATION
+
+
+image::9-1.png[Length and Aggregation]
+image::9-2.png[Dropdown]
+
+Each bar on a plot represents a period of time known as the primary aggregation: one minute, five minutes, day, etc.
+
+A chart may also have one or more secondary aggregations. Variables are assumed to be of primary aggregation and those of a secondary aggregation must have their aggregation specified every time they are used.
+
+A very common way of specifying the secondary aggregation is:
+
+def Agg = AggregationPeriod.FIFTEEN_MIN;# Use the desired constant to specify the time
+plot Data = close(period = agg) / close(period = agg)[3];# The phrase 'period =' is always used when referring to the variable aggregation. In this case 'agg'.
+
+You may need to learn other ways of specifying aggregation to read other people's code such as in the built-in DailySMA.
+
+==== RULES
+
+1. The secondary aggregation period cannot be less than the primary aggregation period defined by chart settings. This is a hard-fast rule that often comes into play.
+
+2. Two different secondary aggregation periods cannot be used within a single variable. You can define each separately and then use the two definitions in a single statement.
+
+It has been observed that using more than one secondary aggregation may affect the proper plotting. Using 'Expansion Area: ? Bars to the right' in chart settings may have an improvement.
+
+There is a complete tutorial named Aggregation Tutorial,PDF available at http://mytrade.com/StanL
+
+=== EXPLANATION OF '=' , '==' AND '!'
+
+
+
+__The difference between = and ==__
+
+A single "=" is the assignment operator. The statement "input Show_ChartPeriod = yes;" reads: assign (or set) the memory location labeled 'Show_ChartPeriod' to yes (boolean TRUE);
+
+The double "==" is the logical equality operator. The statement "if AggPeriod == AggregationPeriod.DAY then ... else...;" reads: if the variable AggPeriod equals (is the same as) AggregationPeriod.DAY then do something else (otherwise) if it's not, then do some other thing. When evaluating equality in an 'if' statement, two equal signs must be used ('==').
+
+__The ! bang exclamation mark__
+
+Not related to the above = and == is the "bang" (exclamation mark). As an example, use isnan() which returns `true` if the specified parameter is __not a number__, returns `false` otherwise. The ! ( exclamation mark called "bang" ) is a logical NOT perator. So if `'isnan(close)'` is true i.e. since/when close is not a number then `'isnan(close)'` reads as true. Using the "bang" and close remains not being a number, then `'!isnan(close)'` reads as " NOT close is not a number" or  NOT true = false when close is not a number (<=0).
+
+=== REFERENCING OTHER STUDIES
+
+
+
+This subject is about including existing studies in your code 'by reference' in lieu of duplicating its actual code. The syntax for this procedure is: `reference <StudyName>(parameter1=value1,.., parameterN=valueN).<PlotName>`
+
+A simple example is: `plot MyMACD = reference MACDHistogram;`
+
+Occasionally a study and a function may have the same name e.g. vwap and moneyflow. In that case:
+- Call the vwap function like ....`plot MyVWAP1 = vwap;`
+- Reference the vwap study like ....`plot MyVWAP1 = reference VWAP;`
+- The use of the word 'reference' is optional but, if 'reference' is omitted, the () must always follow the study's name. Example: `plot MyVWAP1 = VWAP();`
+
+In studies, you may reference built-in studies but not user-defined studies in  (currently). However, user-defined studies may be referenced in scans.
+
+In the following, the 'StochasticSlow' study will be used as an example for explanation.
+
+==== Specifying plots
+
+Studies may have a single plot or multiple plots: ' StochasticSlow' has four plots named SlowK, SlowD, OverBought and OverSold. Referencing the SlowD plot would be via  `StochasticSlow().SlowD` Just using `StochasticSlow()` would plot the SlowK because SlowK is the first plot in the actual code and is the default. Since no parameters are specified, the default parameters specified in the actual code are automatically used. Using parameters is explained below.
+
+==== Specifying parameters
+
+If you look at the actual code of StochasticSlow study you'll see that it has a series of "input" variables. Those are the default parameters and cannot be changed because they are in a pre-defined study which is __not editable__. There are three ways to specify parameters: (1) Full form; (2) Compact form; and (3) A combo of (1) and (2). Specifying no parameters will use all the default values. The parameter list is in a fixed order of inputs from left to right i.e. each parameter/input has a fixed location in the list.
+
+==== Full form
+
+The full form specifies the input variable name with its intended value. An example is:
+
+`def SlowK = StochasticSlow( KPeriod = 10, DPeriod = 10, priceH = High, smoothingType = "SMA" );`
+
+Any parameter not listed herein takes on its default value. Note that the names like 'KPeriod', 'DPeriod', 'priceH', 'smoothingType' and others  are as defined in the actual code's input list.
+
+==== Compact Form
+
+The compact form is simplest in that you simply put your values in the place/position of the default parameter you wish to change. You start with the first input value as the left most value in the reference. An example is:
+
+`def SlowK = StochasticSlow( 80, 20, 10, 10, high, low, close, "SMA" ).SlowK;`
+
+Note that you cannot omit any intermediate values or modify their positions. Only the right-most parameters may be dropped off and those will then take on their default values.
+
+==== Combo Form
+
+This allows you to choose only the variables you want to change. An example is:
+
+`def SlowK = StochasticSlow( 80, 20, 10, 10, smoothingType = "SMA" ).SlowK;`
+
+Here you have omitted the price parameters. Once again, you must preserve the parameter's position rule.
+
+There are two ways of referencing constant inputs : `smoothingType = "SMA"` and `smoothingType == smoothingType.SMA` are equivalent.The first is the short syntax ("SMA"), while the second is the full syntax .
+
+A different but related subject is referencing pre-defined studies using 'Script'. See http://tda.thinkorswim.com/manual/metal/thinkscript/tutorials/advanced/referencing/other%20study.html
+
+image::12-1.png[]Click the Scroll]
+image::12-2.png[Click to Change Aggregation]
+
+=== B&C-NORMALIZATION
+
+
+
+If you want to compare two (or more) indicators that have values much different
+that are non-receptive to comparison, you can normalize each of the two (or more)
+indicators and compare them on a basis you define i.e. 0 to 100%, -1 to +1, -100
+to +100, or whatever you want. Below is the code to do  normalization and an example.
+Note that not all studies can be normalized e.g. 'AccDist' has no parameters and
+cannot be normalized.
+
+__Code that does normalization__
+
+```
+#Usage: 'input data = close' is substituted by an indicator and its parameters.
+declare lower;
+
+script normalizePlot {
+  input data = close;
+  input newRngMin = -1;
+  input newRngMax = 1;
+
+  def HHData = HighestAll( data );
+  def LLData = LowestAll( data );
+  plot nr = ((( newRngMax - newRngMin ) * ( data - LLData )) / ( HHData - LLData )) + newRngMin;
+}
+```
+
+Examples
+
+```
+input price = close;
+input CCI_length = 7;
+input Momentum_length = 12;
+input RSI_length = 4;
+input WR_length = 10;
+input newRngMax = 100;#Maximum normalized  value
+input newRngMin = 0;#Minimum normalized  value
+input OverBought = 80;#Fixed value upper line for reference
+input OverSold = 20;#Fixed lower value line for reference
+
+def newCCI = normalizePlot( CCI( CCI_length).CCI, newRngMin, newRngMax );
+def newMomentum = normalizePlot( Momentum( length = Momentum_length ).Momentum, newRngMin, newRngMax );
+def newWPR = normalizePlot( WilliamsPercentR( length = WR_length ).WR, newRngMin, newRngMax );
+def newRSIWilder = normalizePlot( RSIWilder( length = RSI_length ).RSI, newRngMin, newRngMax );
+
+plot CCI = newCCI;
+plot Momentum = newMomentum;
+plot WPR = newWPR;
+plot RSIWilder = newRSIWilder;
+plot Over_Bought = 80;
+plot Over_Sold = 20;
+```
+
+=== COUNTING AND USE OF 'COMPOUNDVALUE'
+
+Counting is often used. This shows the construct for a 'def count' variable and
+also takes this opportunity to define the  usage of CompoundValue to initialize
+this recursive variable. Previous versions of TS would require this to be written
+as 'Rec count =' statement but TS corrently recognizes both 'def' and 'rec' to
+define a recursive variable. The below annotated picture explains how counting i
+s accomplished. Naturally any valid condition may be substituted for the one shown.
+
+image::14-1.png[Count]
+
+By the way, you can identify a recursive variable definition when the variable itself, in this case 'count', also appears on right side of the equal sign/equation like, in this case, 'count[1]'.
+
+If you have a reason to re-start the counting from 0 or 1 based on a defined condition, you place the condition after the 'else' like 'else if <condition to restart counting> then 0 ' and close with 'else count[1]'.
+
+Refer to PastOffset discussed at [Click to read about it.](https://tlc.thinkorswim.com/center/charting/thinkscript/tutorials/Chapter-13---Past-Offset-and-Prefetch.html) In short, it says that if you have multiple past references in your code, for example `'Average(close, 11) or close[6]` ,' the longest past reference value will be used for all past reference' regardless of what your code says. You would use 'CompoundValue' to prevent the longest reference being used by initializing the affected calculation with the 'CompoundValue' function.
+
+=== LINEAR REGRESSION
+
+
+
+There are several built-in Linear Regression studies in ThinkScript. This section is intended to clarify their differences and usage.
+
+Definition = 'Linear regression' is a mathematical procedure know as the 'least-squares method', used for drawing the best straight line thruogh a group of data points. ThinkScript's linear regression function is titled __'Inertia'__. You may view it at
+
+http://tda.thinkorswim.com/manual/metal/thinkscript/reference/Functions/Statistical/Inertia.html
+
+The key studies are:
+
+1. LinearRegCh100
+2. LinearRegCh50
+3. LinearRegChVar
+4. LinearRegCurve
+5. LinearRegTrendline
+6. LinearRegrReversal
+7. LinearRegressionSlope
+
+==== LinearRegCh100
+
+Uses the data of the entire plot. The upper and lower channel lines, parallel to the centerline (the true linear regression)., indicate the furthest that the data has been from the middle line  The '100' in the title means that it shows the upper and lower lines at 100% of the data difference from the centerline .
+
+==== LinearRegCh50
+
+Is the same as the LinearRegCh100 except that the upper and lower lines ar at 50% of the of the data difference from the centerline in lieu of 100%.
+
+==== LinearRegChVar
+
+This version allows the user to define the 'percentage-distance-from-the-centerline' of the upper and lower lines. Also, this version allows the user to select the number of bars for the linear regression plot in lieu of the previous two studies that use the entire chart (all bars).
+
+==== LinearRegCurve
+
+Plots a single curve in which you have defined the type of price and the number of bars as the basis for the curve.
+
+==== LinearRegTrendline
+
+Uses the data of the entire chart. Plots a straight linear regression line for whichever of the eleven choices you have selected. The choices include other than price items such as volume and 'imp volatility'.
+
+==== LinearRegrReversal
+
+This study indicates "+1" when the current value of Linear Regression Curve is equal to or greater than that of the previous bar and "-1" otherwise. If you compare this to the  LinearRegCurve be sure to use the same number of bars input for each study.
+
+==== LinearRegressionSlope
+
+Plots the changing slope of the LinearRegCurve based on the price and length that you select.
+
+Note that  LinearRegCurve, LinearRegTrendline, and LinearRegressionSlope all have the same eleven price input choices.
+
+Studies #1, #2 and #3 are very popular in searching for stocks that are at buy-low prices. You may find these especially beneficial to learn and comfortably use them.
+
+=== TWO WAYS TO CALCULATE % CHANGE
+
+
+
+There are two ways to calculate a % change. You may see both ways used in coding.
+
+As an example let 10 be the original value (B4) and 15 the final value (NOW). NOW/B4 is the "RATIO"
+
+__First way:__
+
+In words, final value divided by the original value; minus one; times 100.
+or 15/10 = 1.5; 1.5 - 1 = 0.5;  0.5  X 100 = 50 % increase
+
+Example:
+
+
+[source]
+----------------------------
+def length = 10;# <1>
+def price = close; # The current close. This is the "NOW" value
+plot PercentChg = (price / price[length] - 1) * 100;  # or (NOW / B4) - 1 is RATIO  - 1 and "RATIO - 1" multiplied by 100 equals the PERCENT CHANGE. If the "RATIO' is below or above the value of ONE, then the % change is above or below 100% respectively
+----------------------------
+
+<1> [10] means 10 agg-bars ago This is the "B4" value
+
+
+__Second way:__
+
+In words, the change difference (NOW minus the B4) divided by the original (B4) value times 100.
+or 15 -10 = 5 = change difference;  5/10 = 0.5;  0.5 X 100 = 50% increase.
+
+If the difference (B4 - NOW) is negative the percent is also negative i.e. 'decrease'. Also if the "RATIO" (NOW/B4) is less than zero then the percent change will be negative.
+
+Example:
+
+```
+def length = 10;# [10] means 10 agg-bars ago
+def price = close; # The current close
+
+plot PercentChg = ((price  - price[length])/ price[length]) * 100;# ((NOW-B4) / B4) * 100 which is the same as (NOW/B4 B4/B4) * 100 which is the same as (NOW/B4 - 1) * 100.  The % change is up or down if the difference is plus or minus respectively.
+```
+
+__Additional Comments:__
+
+The two ways above example,  "value1 is what percent larger/smaller than value2."  For value1 = 85 and value2 = 38 then: 85 /38 = 2.24;  2.24 X 100 = 224%. In words value1 is 224% of value2. Or, in a different way, it can be said that 2.24 -1 = 1.24 X 100 = 124% which reads  that value1 is 124% larger than (or above) value2.
+
+__An aside:__ A calculated value of -0.0331 will be formatted with 'AsPercent' to show the below label in cyan.
+
+```
+input length = 9;
+AddLabel(yes, AsPercent((close - close[length]) / close[length]),color.cyan);
+```
+
+image::17-1.png[label]
+
+=== FORMATTING WITH 'AsText', 'AsDollars' AND OTHERS
+
+
+
+The following formatting functions are especially useful in custom columns and labels.
+
+==== An 'AsDollars' example
+
+```
+def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
+AddLabel(yes, "'Earnings = " + asDollars((round(x,2))) + "'", color.cyan);
+```
+
+image::18-1.png[Label]
+
+==== An 'AsText' plus 'decimal-places' example
+
+```
+def x = CompoundValue(1, if IsNan(GetActualEarnings()) then x[1] else GetActualEarnings(), GetActualEarnings());
+AddLabel(yes, "'Earnings = " + AsText(x,NumberFormat.TWO_DECIMAL_PLACES) + "'", color.cyan);
+```
+image::18-2.png[Label]
+
+Comment:  'NumberFormat.TWO_DECIMAL_PLACES', 'NumberFormat.THREE_DECIMAL_PLACES' and 'NumberFormat.DOLLAR' are the three choices that can be used with 'AsText'. Using 'NumberFormat.DOLLAR' produces the same look as using 'AsDollars'. Also the decimal places can be gotten by using the Round() function as shown above in the 'AsDollars' example.
+
+==== An AsDollars example
+
+`AddLabel(yes, "Current True Range is " + AsDollars(TrueRange(high, close, low)),color.cyan);`
+
+image::18-3.png[Label]
+
+==== An AsPercent example
+
+```
+def Range = 1 - ((high - close)/ (high - low));
+AddLabel(yes,"Range percent = " + asPercent(round(Range,2)),color.cyan);
+```
+
+image::18-4.png[Label]
+
+
+==== An AsPrice example
+
+`AddLabel(yes, "10 period SMA of Close price using 1/32nds price notation (XXX'YYZ) = "+ AsPrice(Average(close, 10)),color.cyan);`
+
+image::18-5.png[Label]
+
+=== LITERAL TEXT IN LABEL FOR THE 11 CHOICES OF INPUT PRICE
+
+
+
+```
+#Puts any of the 11 price choices into a literal text in a label like ohlc4 = 75
+
+input price = close;#Price automatically avails 11 choices and the label below tells which was selected.
+
+#Puts any of the 11 price-choices into a literal text in a label like ohlc4 = 75
+
+input price = close;#Price automatically avails 11 choices
+
+AddLabel(yes, if price == close then "The price-variable selected is close = " + Round(close,2)
+else if price == open then ""The price-variable selected is open = " + Round(open,2)
+else if price == high then ""The price-variable selected is high = " + Round(high,2)
+else if price == low then ""The price-variable selected is low = " + Round(low,2)
+else if price == hl2 then ""The price-variable selected is hl2 = " + Round(hl2,2)
+else if price == hlc3 then ""The price-variable selected is hlc3 = " + Round(hlc3,2)
+else if price == imp_volatility then ""The price-variable selected is current imp_volatility = " + AsPercent(imp_volatility)
+else if price == ohlc4 then ""The price-variable selected is ohlc4 = " + Round(ohlc4,2)
+else if price == open_interest then ""The price-variable selected is Open_interest = " + Round(open_interest,0)
+else if price == volume then ""The price-variable selected is Volume = " + Round(volume,0)
+else if price == VWAP then ""The price-variable selected is VWAP = " + Round(VWAP,0)
+else "N/A" + price,color.white);
+```
+
+Comments: The 11 choices of Price are close, high, hl2, hlc3, imp_volatility, low, ohlc4, open, open_interest, volume,  vwap.
+
+
+=== WHAT IS SWING-HIGH, SWING-LOW
+
+
+
+What is a swing high / low? Basically a swing high is the highest high looking a few bars back and a few bars forward. A swing low is the lowest low looking a few bars back and a few bars forward. The more bars you include in the series, the more significant the swing, but the confirmation comes further from the actual swing point. If you wanted to define a swing high as a bar high that is higher than the highs of the two bars just before it AND higher than the highs of the two bars just after it, the thinkscript code would look like this:
+
+`Def swinghigh = if high > high[1] and high > high[2] and high > high[-1] and high > high[-2] then 1 else 0;`
+
+Or if you are interested in the rise of the last 5 bars, you may use something like this:
+
+`plot pivotHigh = if high == (highest(high, 5) and sum(high > high[-1], 5) == 5) then high else Double.NAN;`
+
+The code for a swing low is similar. Note that the confirmation of a swing point does not come until 2 bars after the swing high in this case. If you wanted to extend the swing check to 3 bars before and after, you would add the checks  for a high > high[3] and high > high [-3]. The resulting swing will be more significant, but the signal comes 3 bars after the fact.
+
+To plot the swing high you could code it like this:
+
+```
+Plot swing_hi = if swinghigh then high else double.nan;
+swing_hi.setstyle(curve.points);
+```
+
+This would paint a dot on all the swing highs, and nothing everywhere else. The code for swing lows is similar.
+
+This is the simplified basics of swingHi/SwingLo. Many coders add all kinds of conditions to supplement the simplified code herein. Also the look-back and the look-forward lengths do not need to be the same.
+
+=== COMPARISON TO ANOTHER INSTRUMENT
+
+
+
+Comparison to another stock, index or any instrument having a symbol.
+
+- Click 'studies' then 'Add Study' then 'Compare With'
+- If none of the ready-made comparisons have what you want, then click 'Custom Symbol....'
+- You will then be presented with the following dialog:
+
+image::COMPARISON_TO_ANOTHER_INSTRUMENT_1.png[Insert the symbol]
+
+If you have forgotten or are unsure of the symbol, you can find it easily as follows:
+
+image::COMPARISON_TO_ANOTHER_INSTRUMENT_2.png[find the symbol]
+
+The comparison will be overlaid on the upper panel using the left-hand price scale. You can edit the study to change the symbol or the type of plot, i.e. Line, Bar, Candle, or the color. Choose any aggregation but 'day' is most meaningful.
+
+=== THE FOLD FUNCTION EXPLAINED
+
+
+
+The Fold syntax is:
+
+`def <result> = fold <index> = <start> to <end> [ with <variable> [ = <init> ] ] [ while <condition> ] do <expression>;`
+
+Each component of the fold function will be explained separately. The function is not easy to use but understanding the purpose of the components will help you to feel comfortable with it.
+
+General Comment:
+
+- The fold function is used to define the value for a named variable i.e. def <result>. You cannot operate on other variables or do anything within the fold. Studies may be used within a fold.
+
+- Rather than define a variable, the fold may be plotted directly i.e. def <result> =  becomes  Plot <result> =.
+
+- Remember that the fold calculation is executed at every bar as ThinkScript processes from bar 1 to the last bar.
+
+- As discussed in GetValue  below, studies may be used in the Fold function especially in the do <expression>.
+
+- The names assigned <index> and <variable> are persistent variables. Hence, if you have two folds in a study and you assign 'idx' to <index> in the first fold you cannot assign 'idx' to <index> in the second fold. This will create an error.
+
+- Fold will normally work in a scan and custom columns. Complexity may become an issue especially if the servers are loaded up.
+
+- fold
+
+- A fixed word that identifies the following as a 'Fold' function.
+
+- <index> = <start> to <end>
+
+
+- This defines how many times the fold calculation loops on each bar. You need to figure out how many times "fold" needs to repeat itself, OR at what value it is going to stop churning away. Let's say you want a calculation to repeat 5 times.  If the <start> is at 0 and the <end> is at 5, then the calculation will repeat 5 times. <start> is inclusive but <end> is exclusive. When the counter gets to 5, fold stops and there is no results related to loop 5. <index> can be any name you want but 'i' or 'index' is commonly used e.g. i = 0 to 50. The value of the index can be used in the do <expression>. When <index> is used in the do statement, the last value of <index> is used and not the current value. The current value would be  <index> + 1.
+
+- [ with <variable> [ = <init> ] ]
+
+- First of all, anything within brackets is optional. So when/why would you include this.?The answer lies in that this is an internal variable that fold uses. So when is it needed? If the 'do' section of the fold performs a activity like 'add to', 'multiply by' or similar, it must have a previous number to 'add to' for example.  This 'with <variable>' is the value that will be added to when you see code like 'do nice + idx3'. This means that 'nice' is the with <variable> that fold has been keeping tract of internally and '+ idx3' is the current loop's calculated value that is to be added to nice.  'nice + idx3' then becomes the new value of the internal variable nice and nice is available for the next loop's calculation. <variable> can be any name you want to assign. In this example, 'nice' was used.
+
+- [ = <init> ] is the initial value of the 'with <variable>' and is optional. If it is omitted, then the default value of 0 is used. <init> is a number. Since it is in brackets, it is optional if there is a  with <variable>.
+
+- [ while <condition> ]
+
+- This defines a condition, upon violation of which, the loop (not the fold itself) is terminated when calculating the fold function and TOS procedes to the next bar. The fold will do some action but that action may be subject to certain conditions. This [ while <condition> ] defines conditions/ limitations that are imposed on the actions that follow. The conditions may qualify the do-actions results or they may define conditions that terminate any further loops at the current bar. Conditions here do not preclude the 'do' statements from having an 'if' statement that may also set conditions but those conditions are used in getting the desired result from the 'do' statement. A example would look like
+
+- 'while close > 40'.
+
+- do <expression>
+
+- Defines an action to be performed, for each loop, when calculating the fold function. The  do <expression> may be  of numerous types. For example, if it is a true/false type then the fold results will be a true/false. Or it may be a arithmetic type like 'do nice * index' which multiplies fold's internal variable, nice, by the index value. Another example is 'do nice + getValue(close, n, length - 1)) / length'(a simple moving average) which gets a close value; divides it by a length variable; and adds it to the internal variable, nice. Or it may be a more complicated fold such as: fold i = 0 to 100 with price = Double.NaN while !IsNaN(price) do if getValue(high, -i) > 40 then getValue(high, -i) else Double.NaN; This finds the next high price value greater than 40 among the following 100 bars and terminates looping if price is no longer a number.
+
+- GetValue function
+
+- The syntax for GetValue is: GetValue(IDataHolder data, IDataHolder dynamic offset, int max offset);
+
+- A discussion of fold would not be complete without discussing the GetValue function. This function goes and gets data used in the do <expression>.
+
+- The third parameter, int max offset,is a fail stop value to prevent an endless loop in  the scripting engine. Ideally it  should be set to the maximum number that the dynamic index is expected to be. Set it too small and the script engine stops the loop before all index values are processed. Set it too high and you may unnecessarily be wasting server capacity. It would be OK to set it a little higher than you know is needed. If the script engine hits the stop value you'll get a run-time error message.
+
+Note that int max offset is a fixed integer value,  while  IDataHolder dynamic offset is an expression that defines the offset value.  The expression used for the  IDataHolder dynamic offset often has a length parameter in it and that length parameter is also the value used for  int max offset. Two very popular expressiona for  IDataHolder dynamic offset are LookUpHighest(price,'look up price',length) and LookUpLowest(price,'look up price',length). The length inthese two studies is often the value that  int max offset is set to.
+
+- do <expression>
+
+Examples of
+
+- The heart of the fold function is the 'do expression' which is crucial for success but is not naturally intuitive. A number
+
+- of examples may be helpful.
+
+- Example 1 :
+
+- input n = 10;
+
+- plot factorial = fold index = 1 to n + 1 with Var = 1 do Var * index;
+
+- Calculates the factorial of a number. 10 loops are executed and each loop is multiplied by the value of the previous loop.
+
+- The initial value for the start of the first loop is 1.
+
+Example 2 :
+
+```
+input price = close;
+input length = 9;
+plot SMA = (fold n = 0 to length with Var_ma do Var_ma + getValue(price, n, length - 1)) / length;
+```
+
+
+Calculates the simple moving average using fold. 9 loops are run i.e. 0 thru 8 with the internal variable named  Var_ma.
+
+Note the importance of the index starting with 0. The first value is getValue(price,n) or price[0] . If the index was to be 1 thru 10, the current value of price would not be included in the average because the first value would be price[1].
+
+Example 3:
+
+```
+input length = 10;
+def Test = fold index = 0 to length + 1 with nice = 0 do nice + index;
+AddLabel(1,"Test = " + test, color.green);
+```
+
+This simple fold sums the 'index' values. The AddLabel enables you to change any variable and predict what the label will show. If not determine where your thinking went astray.
+
+Example 4:
+
+```
+input length = 10;
+def bigCount = compoundValue( 1, fold idx = 1 to length with a = 0 do a + bigCount[1], 1 );
+```
+
+This is interesting because it illustrates the concept of the fold and def being applied to every bar. The def causes each bar to hold the value of bigCount and the fold's 'do a + bigCount[1]' essentially causes each bar to be increased by a factor of 9 due to its looping. It is easy to see that the result will eventually reach infinity for a normal sized chart. It's not likely that you will ever use a def value in a do statement of a fold like this. This is known as a runaway calculation.
+
+Example 5:
+
+```
+input length = 10
+def smlCount = compoundValue( 1, fold idx2 = 1 to length with b = 0 do if smlCount[1] >= 1000 and b >= 1000 then 1000 else b + smlCount[1], 1 );
+```
+
+This allows 'smlCount' to rise to 1000 and then it limits smlCount toa value of 1000.
+
+Example6:
+
+`plot Test = fold i = 0 to 4 with x = 1 do x + i;`
+
+What is the value of test? If your answer was not 7, rethink it.
+
+If we change it to:
+
+`plot Test = fold i = 1 to 5 with x = 10 do x + i; `
+
+What is its value?
+
+If your answer was not 20, rethink it.
+
+Example7:
+
+``` shell
+input period = 20; #hint period:Number of bars to look in
+def Hi = fold i = 0 to period with n = high do Max(n, GetValue(high, i, period - 1));
+def Lo = fold k = 0 to period with m = low do Min(m, GetValue(low, k, period - 1));
+AddLabel(1, "High in last " + period + " bars = " + Round(Hi,2), Color.GREEN);
+AddLabel(1, "Low in last " + period + " bars = "  + Round(Lo,2), Color.GREEN);
+```
+
+Labels allow you to look at the chart and verify the values.
+
+Example8:
+
+```
+input length = 21;
+def SDr = StDev(r, length);
+plot IVSwitch = ( fold i = 0 to length with count do count + if SDr[i] <= SDr  then 1   else 0 ) / length;
+```
+
+This fold counts the number of times, in the last 20 bars, the SDr (std dev of the change ratio) has fallen below the SD.
+
+Example9:
+
+```
+declare lower;
+input volTarget        = 200000;
+input length           = 20;
+plot atLeastVolumeTgt  = fold idx = 0 to length + 1 with s = yes while s == yes do if GetValue( volume, idx, length + 2 ) >volTarget then yes else no;
+```
+
+The above works as a study, omit the "declare lower;" if you want to use it directly in a scan or column.
+
+This code that will check for "daily" average volume greater than 200,000 in the last 20 days, meaning that the stock should have traded at least 200,000 shares every single day for at least the last 20 days. If it complies, 1 is plotted if not 0 is plotted. In a study, it is more meaningful to put the 1 or 0 result in an clarifying label.
+
+=== ACCESSING THE CONDITION WIZARD
+
+
+
+- The wizard, short for 'Condition Wizard', is a valuable and beneficial tool. This item is here to insure that it is clear about how to access the wizard. The wizard is auto accessible when coding new studies. Editing existing studies does not have the wizard accessible but the wizard in the following picture can be used and the wizard result can be copied for pasting in the existing study editing.
+
+In the above 'Scan/StockHacker' tab, all fundamental filters have been deleted using 'red-circled-X'.
+
+- To re-establish, click 'Add Fundamental Filter'. Only a 'Study Filter' is showing now.
+
+=== THE STOCHASTIC OSCILLATOR EXPLAINED
+
+
+
+Comment 1: The stochastics indicator can be confusing because it is referred to as: 1. Fast Stochastics; 2. Slow Stochastics; or 3. Full Stochastics. This video gives a clear explanation of the differences between the three in Part 1 and usage in Part 2. See video (2 parts)
+
+Comment 2: While at this site check out the other indicator tutorials that may interest you. View indicator tutorial list
+
+=== THE STANDAED DEVIATION (SD) EXPLAINED
+
+
+
+The Standard Deviation (SD) is used frequently in TOS studies and its concept needs understanding.If you have 100 random datapoints, they combine to have an average (a single value). The distance of each of the 100 datapoints from the average is used to calculate (via a mildly complex formula) what is called the Standard Deviation (often abbreviated as SD). In essece, the SD is a measure of dispersion of the 100 datapoints. If most datapoints are close to the average, the SD will be low (i.e. low dispersion or deviation). If most datapoints are widely scattered, the SD will be larger (i.e. high dispersion or deviation). The datapoints are assumed to be a normal distribution curve (is prevalent in most statistical analyses).
+
+See the picture below. SD of 1, 2 or 3 are arbitrary distances-from-the-average of a normal distribution curve, that people use for easy discussion or reference. A distance of +/- 1 SD from the average will include 68% of the 100
+ datapoints(0.68 X 100 = 68). A distance of +/- 2 SD from the average will include 95% of the 100 datapoints(0.95 X 100 = 95). A distance of +/- 3 SD from the average will include 99.7% of the 100 datapoints(0.997 X 100 = 99.7).
+
+Whenever you see 'squared' or 'square root' in a technical calculation, SD is likely involved because 'squared' and 'square  root' are used to calculate the SD in that mildly complex formula .  Also, whenever someone talks of a 'Gaussian distribution' they are talking of a 'normal distribution' curve. Likewise for 'Bell curve'.
+
+SD values

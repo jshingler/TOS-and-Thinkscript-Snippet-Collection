@@ -1,0 +1,70 @@
+
+
+
+
+A 'snippet' is a small piece(s) of script, oriented towards accomplishing a specific
+function identified by the snippet's title:Sort of a building block. This PDF takes
+the liberty to include TOS-platform-features that are not only script snippets but
+may be any TOS features worth knowing. Perhaps this document can, more appropriately,
+be call an 'Almanac'.
+
+The emphasis herein is for learning TOS and ThinkScript from the ground up.  Numerous examples are used as a learning tool ranging from simple/basic to complex. The PDF format was selected, with extra features, like the hyperlinked Table-of-Contents, to make subjects easily found. This document also proovides a reference for future coding activities.
+
+Hence being familar with what is available herein, will enhance recall when needed. A good PDF reader with search capability is also recommended.
+
+=== Legend
+
+Click the underlined Page ? to go to that page When there, you can return to to the TOC by clicking Return to TOC.
+
+Titles appearing in the Table Of Contents above are the same and colored blue throughout this document
+
+=== Revised: 07/25/14
+
+=== Organization:
+
+The first letter indicates the category of the subject.
+
+B-    = Basic platform or coding subjects, fundamental principles, fundamental examples and how-to-do's
+
+S-    = Scan
+
+C-   =  Coding of studies, strategies, snippets, et al that accomplish a purpose/result
+
+T-    =  A Tip or Trick on how you might use TOS or TS to accomplish a specific useful purpose
+
+?-   = In the  subject's heading, ? means that the data is variable 'inputted' data defined by the user
+
+C&S-    =  On occasion, a item may also have multiple codes defining what is included inside. For example, this symbol indicates when scan code is included.
+
+=== Acknowledgements
+
+The people on the ThinkScript Lounge and Yahoo TOS_ThinkScript generously contribute much time and effort helping those learning and using ThinkOrSwim and ThinkScript. Many items herein originated on the those chatroom postings.
+
+Much credit and thanks are due those people. We are all grateful to them for their selfless contributions.
+
+=== Usage
+
+Although a subject may not be of interest to you, the coding techniques involved may be pertinent to what you desire to code, either today or at some time in the future. It is useful to be aware of the techniques so that, when the time comes, you will know where to look to get the how-to-do specifics.
+
+Hope you find this document useful. Any suggestion for improvement or inclusion are welcome.
+
+=== Acronyms used herein
+
+|===
+| TOS  | ThinkOrSwim
+| TS   | ThinkScript
+| WLC  | An abbreviation for "WatchList Column"
+| TOC  | 'Table Of Contents' in this document
+| PDF  | Portable Document Format = the type of file format of this document. Readers of PDF files are readily available.  See REFERENCES for a reader source.
+| SD   | Standard Deviation
+|===
+
+Use of '...' and "..."    Often the single and double quotes are used to identify precise coding, words or statements whose use is not intended to include the quote marks themselves. At times coloring may also be used to do the same.
+
+'Pre-defined' and 'built-in' are  synonymous when referring to studies that are provided by TOS within the program. The coding of these may be copied and reused in your own studies but built-ins cannot be changed.
+
+=== Suggestion for Ease-of-Use
+
+As this Snippet Collection grows, finding what you want becomes more difficult. It is recommended that you use a good PDF reader that has good navigation and search/find capabilities. There are many readers available but the recommended one is listed in the References at the end of this document.
+
+If you want to find something, enter what you want into the 'find' tool of the PDF reader and it will navigate you to the possible matches.  Try different 'find' entries if you are not successful. Subjects are often named differently. The most expeditious search is looking over the TOC or using 'find' in the TOC as opposed to using 'find' throughout the body of the document.

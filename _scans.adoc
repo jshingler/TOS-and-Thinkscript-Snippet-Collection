@@ -1,0 +1,737 @@
+
+=== S-LINEAR REGRESSION-VAR SCAN
+
+
+
+This is a scan that works well in a dynamic watch list with your favorite companies to trade. It works well as a signal when a company is moving up through resistance in a trough or lower area for a long trade. Vary the "width of channel"  and “length” to suit your own preferences.
+
+`Plot scan = low crosses LinearRegChVar ("width of channel" = 69, "full range" = no, "length" = 252)."LowerLR"`
+
+
+=== S-SCAN FOR TRENDING CONDITIONS
+
+
+
+----------------------------
+input length = 20;#hint length:Number of agg-bars to test for ascending conditions
+input bars_up = 5;#hint bars_up:Number of agg-bars being evaluated in <b>sum</b>
+
+def trend_up = IsAscending(close,length);
+def trend_up2 = sum(close > close[1],Bars_up) >= Bars_up;
+
+plot scan = trend_up && trend_up2;
+----------------------------
+
+Another example
+
+----------------------------
+input length = 20;#hint length:Number of agg-bars to test for ascending conditions
+input bars = 5;#hint bars:Number of agg-bars being evaluated in <b>sum</b>
+def trendup = IsAscending(close,length);
+def trendup2 = sum(close > close[1],bars) >= bars;
+def mcd = MACD();
+def mcdtrend = sum(mcd > mcd[1],bars) == bars;
+plot scan = trendup && trendup2 && mcdtrend;
+#end
+----------------------------
+
+
+=== S-SCAN FOR MACD AVG AND MACD DIVERGENCE
+
+
+
+----------------------------
+Input Bars = 3;#hint bars:The consecutive number of agg-bars being evaluated.
+def mcda = MACD().Avg;
+def mcdv = MACD();
+def div = sum(mcda > mcda[1],Bars) == Bars ;
+def div2 = sum(mcdv < mcdv[1],Bars) == Bars;
+plot scan = div and div2;
+----------------------------
+
+
+This scan does a good job finding stocks that are tanking!
+
+`Plot scan = Crosses( MACD( 12, 26, 9, "SMA" ).Avg, 0, CrossingDirection.Below )`
+
+
+=== S-SCAN DECLINE FOR ? BARS
+
+
+
+----------------------------
+input Bars = 5;#hint bars:The consecutive number of agg-bars being evaluated.
+plot decline = sum(close < close[1],Bars) ==  Bars;
+#end
+----------------------------
+
+
+=== S-PRICE DIRECTION SCAN
+
+
+
+----------------------------
+input price = close;
+input length = 3;#hint length:Number of consecutive bars being evaluated
+input Choice = {default "increased", "decreased"};#hint choice:Choose direction up or down
+plot scan;
+switch (Choice){
+  case "increased":
+    scan = sum(price > price[1], length) == length;
+  case "decreased":
+    scan = sum(price < price[1], length) == length;
+}
+----------------------------
+
+Comment: When entering the scan, the set aggregation defines the length of a bar. It likely is 'day' but doesn't have to be. Also, this is a simple clear example of how the 'switch; function operates. Scan for a price increase
+
+----------------------------
+input price1 = low;
+input percentage = 2.0;#hint percentage: Percent increase in price
+input price2 = high;
+def x = 1+percentage/100;
+def term = x*price2[1];
+plot scan = price1 >= term;# The current low is 2% above the previous high
+scan.SetpaintingStrategy(paintingStrategy.BOOLEAN_ARROW_DOWN);
+#end
+----------------------------
+
+
+=== S-SCAN FOR HAS-EARNINGS IN FUTURE
+
+
+
+----------------------------
+Input length = 10;#Hint length:The number of future/ahead agg-bars to evaluate
+def earnings = hasearnings();#When true this evaluates to one which then appears in the following 'sum'
+plot scan = sum(earnings,length)[-length +1] > 0;
+Comment: This could be very useful as a watchlist custom column.
+#end
+----------------------------
+
+
+=== S-SCAN FOR CORRELATED STOCKS
+
+
+
+High correlation
+
+----------------------------
+input length = 10;#hint length: the agg-bar length being compared
+input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
+input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
+
+def x = Correlation(close, close(correlationWithSecurity), length) > .9;#greater then 0.9 indicates a high correlation
+
+plot scan = sum(x, inarow) >= inarow;
+----------------------------
+
+Low correlation
+----------------------------
+input length = 10;
+input correlationWithSecurity = "SPX";
+input inarow = 10;
+
+def x = Correlation(close, close(correlationWithSecurity), length) < =.5;
+plot scan = sum(x, inarow) >= inarow;
+#end
+----------------------------
+
+
+=== S-DMI_OSCILLATOR SCAN FOR TRENDING-UP STOCKS
+
+
+
+Comment: A good scan for stocks trending up. The aggregation for this is “day”. Change length or the value of 'X > 10' for a more powerful trend. This reads as 'scan for stocks with a DMI_Oscillator value greater than 10 and rising for the last 5 agg-bars.'
+
+----------------------------
+def length = 5;# The numbers of agg-bars DMI is climbing
+def x =DMI_Oscillator();
+def up = x > x[1];
+
+Plot Scan = x > 10 && sum(up,length) >= length;
+#end
+----------------------------
+
+
+=== S-EXAMPLE OF TIME BRACKETED SCAN
+
+
+
+Example of Time Bracketed Scan by Mobius
+
+----------------------------
+#Time Bracket
+input Begin  = 0930;
+input End    = 1030;
+
+def Active = if SecondsFromTime(Begin) > 0 and SecondsTillTime(End) >= 0 then 1 else 0;
+def Cond1 = if MACD()."Value" crosses above 0 then 1 else 0;
+
+plot Signal = Active == 1 and Cond1 == 1;
+----------------------------
+
+
+=== S-SCAN FOR HIGHS OR LOWS
+
+
+
+----------------------------
+#hint: scan for stocks with a new 52-week-high
+# BE SURE to change D to Wk for the filter's aggregation
+Plot scan = close > highest(high,52)
+----------------------------
+
+Alternate 1 = Stocks in top 10 percentile of their 52-week high-low range
+
+----------------------------
+#Hint: scan for stocks in the top 10 percentile of their 52-week high-low range
+# Set aggregation to 'day'
+input range = 252;#hint range:Number of trading days in a year
+input price = close;
+def hi = highest(high,range);
+def lo = lowest(low,range);
+def x = (price - lo) / (hi - lo) * 100;
+plot scan = x > 90;
+----------------------------
+
+Alternate 2 = Stocks between 47% and 53% (or the middle of) their 52-week-high-low range
+
+----------------------------
+#Hint: scan for stocks between 47% and 53% (or the middle of) their 52-week-high-low range
+input low_pct = 47;
+input hi_pct = 53;
+input range = 252;
+input price = close;
+def hi = highest(high,range);
+def lo = lowest(low,range);
+def x = (price - lo) / (hi - lo) * 100;
+plot scan = x <= hi_pct and x >= low_pct;
+----------------------------
+
+Alternate 3 = scan to find stocks which made new 20-day-low
+
+----------------------------
+input range = 20;
+plot scan = Low <= Lowest(Low, range)
+Alternate 4 = scan to find stocks which made new 20-day-high
+input range = 20;
+plot scan = High <= Highest(High, range);
+#end
+----------------------------
+
+
+=== S-SCAN RSI UNDER 20 & CLOSE > 200-DAY SMA
+
+
+
+Alternate 1: Stocks that have a RSI under 20 for 3 days and a closing price above the 200 SMA
+
+`Plot scan = (RSIWilder(length = 2) < 20 && RSIWilder(length = 2)[1] < 20 && RSIWilder(length = [2] < 20 && Close > SimpleMovingAvg(length = 200))`
+
+Alternate 2: stocks that have a 3-day RSI under 20 a closing price above the 200 SMA
+
+`Plot Scan =(RSIWilder(length = 3) < 20 && Close > SimpleMovingAvg(length = 200))`
+
+Comment: Set agg to day.
+
+#end
+
+
+=== S-SCAN FOR CROSS OF MOVING AVERAGES
+
+
+
+Alternate 1: Today's cross of a 10-bar MA above 20-bar EMA. Set agg = day.
+
+----------------------------
+def MA = average(close,10); #10 bar MA
+def EMA = expaverage(close,20); # 20-Bar EMA
+def cross = MA[1]<EMA[1] && MA>EMA;
+----------------------------
+
+Alternate 2: Cross 3 days back. Set agg = day.
+
+----------------------------
+input DaysBack = 3;
+def MA = average(close,10); #10 bar MA
+def EMA = expaverage(close,20); # 20-Bar EMA
+def cross = MA[DaysBack] < EMA[DaysBack] && MA>EMA;
+----------------------------
+
+Alternate 3: Plot a dot below the bar that crosses and only that bar.
+
+If you want to see a dot anytime the condition is true, then remove the '&& !cross[1]'
+
+----------------------------
+plot Crossing = if cross && !cross[1] then low else double.nan;
+Crossing.SetPaintingStrategy(PaintingStrategy.points);
+#end
+----------------------------
+
+
+=== S-SCAN CROSS OF STANDARD DEVIATION CHANNEL
+
+
+
+Scan for price crossing the upper/lower line of the Standard Deviation Channel (SDC).
+
+----------------------------
+def _sdcU = StandardDevChannel().UpperLine;
+plot scanSDC = close >= _sdcU and close[1] < _sdcU[1];
+----------------------------
+
+Following the same logic the sdcL would be :
+
+----------------------------
+def _sdcL = StandardDevChannel().LowerLine;
+plot scanSDC = close <= _sdcL and close[1] > _sdcL[1];
+#end
+----------------------------
+
+
+=== S-ABOVE 20-DAY MA FOR 65 DAYS
+
+
+
+Scan for stocks above their 20 day MA for 65 days. Set agg = day.
+
+----------------------------
+input ConsecutiveClose = 65;#Number of days
+def avg = Average(close,20);# 20-bar average
+def above20 = if close >= avg then above20[1] + 1 else 0;
+plot scan = if above20 >= ConsecutiveClose then 1 else 0;
+----------------------------
+
+#end
+
+
+
+=== S-SCAN FOR 200-DAY MA
+
+
+
+Alternate 1: A scan that looks for stocks touching the 200-day MA. Set agg = day.
+
+`Plot scan = high > average(close,200) && low < average(close,200)`
+
+Alternate 2: Price crosses the 200-day MA
+
+----------------------------
+def SMA = SimpleMovingAvg( close, 200, 0 );
+plot SmaScan = crosses( close, SMA, CrossingDirection.Any );
+----------------------------
+
+Alternate 3: For a better study for the scan, use this.  You’ll get more hits.  This one doesn’t care if the close is above the 200-day MA as long as EITHER the close is above the 200-day MA OR the 200-day MA is bracketed.  Same for the reverse case.
+
+----------------------------
+def avg = Average(close, 200);
+def Bracketing = high > average(close,200) && low < average(close,200);
+def above200 = if close >= avg or Bracketing then above200[1] + 1 else 0;
+Plot scan =  above200;
+----------------------------
+
+OR
+
+----------------------------
+def below200 = if close<=avg or Bracketing then below200[1] + 1 else 0;
+Plot scan = below200;
+----------------------------
+
+#end
+
+
+=== S-SCAN FOR A BULLISH ADX
+
+
+
+- Comment: Use the DMI along with the ADX. The ADX can be bullish or bearish depending on whether the DMIplus is greater than the DMIminus.
+
+`ADX()."ADX" > 40 && DIPlus()."DI+" > DIMinus()."DI-"`
+
+#end
+
+
+=== S-SCAN FOR DMI
+
+
+
+Comment: Use the DMI along with the ADX. The ADX can be bullish or bearish depending on whether the DMIplus is greater than the DMIminus.
+
+Alternate 1: DMI+ crosses above DMI-
+----------------------------
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus > DMIminus and DMIplus[1] <= DMIminus[1];
+----------------------------
+
+Alternate 2: DMI+ is above DMI-
+----------------------------
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus > DMIminus;
+----------------------------
+
+Alternate 2: DMI+ crosses below DMI-
+----------------------------
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus < DMIminus and DMIplus[1] >= DMIminus[1];
+----------------------------
+
+Alternate 2: DMI+ is below the DMI-
+----------------------------
+def DMIplus  = DMI(length = 25)."DI+";
+def DMIminus = DMI(length = 25)."DI-";
+plot Scan = DMIplus < DMIminus;
+----------------------------
+#end
+
+
+=== S-SCAN USING PRE-DEFINED CROSSOVERS
+
+
+Scan for the MACD Histogram value crossing from positive to negative or vice versa. Uses
+MACDHistogram Crossover default parameters of fastLength = 12, slowLength = 26, MACDLength = 9, AverageType = EMA
+
+----------------------------
+input crossingType = {default "Positive to Negative", "Negative to Positive"};
+def MACD_cross_above = MACDHistogramCrossover(crossingType == "Negative to Positive").signal;
+plot scan =  MACD_cross_above;
+----------------------------
+
+OR
+
+----------------------------
+def MACD_cross_below = MACDHistogramCrossover(crossingType == "Positive to Negative").signal;
+plot scan =  MACD_cross_below;
+----------------------------
+
+ADXCrossover: Scan for the ADX (bullish or bearish) crossing a specified level (threshold). The default parameters are
+length = 14, threshold = 20. When the DMIplus is greater than the DMIminus the ADX is 'Bullish' or vice versa is
+'Bearish'.
+
+----------------------------
+input crossingType = {default above, below};
+Plot ADX_Bull = ADXCrossover(crossingType = "above") .signal && DMI."DI+" > DMI."DI-";
+----------------------------
+
+OR
+
+`Plot ADX_Bear = ADXCrossover(crossingType = "above") .signal && DMI."DI-" > DMI."DI+";`
+
+#MomentumCrossover: Scans for the Momentum crosses the zero line. The default length = 12;
+
+----------------------------
+input crossingType = {default "Positive to Negative", "Negative to Positive"};
+plot RisingMomentum = MomentumCrossover(crossingType == CrossingType."Negative to Positive").signal;
+----------------------------
+
+OR
+
+`plot FallingMomentum = MomentumCrossover(crossingType == CrossingType."Positive to Negative").signal;`
+
+MoneyFlowIndexCrossover: Scans for the Money Flow Index crossing the specified level. The default parameters are
+
+----------------------------
+length = 14, threshold = 20.
+input crossingType = {default above, below};
+Plot MFI_above = MoneyFlowIndexCrossover(crossingType ==  crossingType.above).signal;
+----------------------------
+
+- OR
+
+`Plot MFI_below = MoneyFlowIndexCrossover(crossingType ==  crossingType.below).signal;`
+
+MovingAvgCrossover: Scans for crossovers of moving averages of different types and lengths. The defaults parameters are price = close, length1 = 15, length2 = 30. This example will specify all parameters to avoid confusion.
+
+----------------------------
+input averageType1 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input averageType2 = {default Simple, Exponential, Weighted, Wilders, Hull};
+input crossingType = {default above, below};
+Plot MA_above = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 = "Exponential", crossingType = "above").signal;
+----------------------------
+
+The above reads as a'based on the close, simple average1 of length = 15 crosses above  exponential average2 of length = 30.'
+
+OR
+
+`Plot MA_below = MovingAvgCrossover(price = close, Length1 = 15, length2 = 30, averageType1 = "simple",averageType2 = "Exponential", crossingType = "below").signal;`
+
+The above reads as a'based on the close, simple average1 of length = 15 crosses below exponential average2 of length =  30.'
+
+ParabolicSARCrossover: Scans for the Parabolic SAR crossing the price plot close. The defaults are accelerationFactor = 0.02, accelerationLimit = 0.2
+
+----------------------------
+input crossingType = {default Bearish, Bullish};
+Plot SAR_Bear = ParabolicSARCrossover(crossingType = "Bearish").signal;
+----------------------------
+
+OR
+
+`Plot SAR_Bull = ParabolicSARCrossover(crossingType = "Bullish").signal;`
+
+PriceAverageCrossover: The Price Average Crossover scans for crossovers of price with its moving average. The default parameters are price = close, length = 15
+
+----------------------------
+input averageType = {default Simple, Exponential, Weighted, Wilders, Hull};
+input crossingType = {default above, below};
+Plot PAC_above =  PriceAverageCrossover( averageType = "Exponential",  crossingType = "above").signal;
+----------------------------
+
+The above reads 'scan for when the 15 bar exponential moving average crosses above the close'.
+
+OR
+
+`Plot PAC_below =  PriceAverageCrossover( averageType = "Exponential",  crossingType = "below").signal;`
+
+The above reads 'scan for when the 15 bar exponential moving average crosses below the close'.
+
+RSIWilderCrossover: The RSI Wilder Crossover scans for an overbought-oversold indicator of specified levels.  The defaults are length = 14, threshold = 30. Specify the threshold for the overbought-oversold value desired
+
+----------------------------
+input crossingType = {default above, below};
+Plot RSI_Cross_Above = RSIWilderCrossover(threshold = 30, crossingType = "above").signal;
+----------------------------
+
+The above reads 'scan for when the RSI Wilder crosses above 30'.
+
+OR
+
+`Plot RSI_Cross_Below = RSIWilderCrossover(threshold = 30, crossingType = "Below").signal;`
+
+The above reads 'scan for when the RSI Wilder crosses below 30'.
+
+RateOfChangeCrossover: The Rate Of Change Crossover for where Rate Of Change crosses zero level. The default is length = 14.
+
+----------------------------
+input crossingType = {default "Positive to Negative", "Negative to Positive"};
+plot ROC_Neg =  RateOfChangeCrossover( crossingType = "Positive to Negative").signal;
+----------------------------
+
+The above reads as 'scan for when the rate of change crosses below zero (or goes negative).'
+
+OR
+
+`plot ROC_Pos =  RateOfChangeCrossover( crossingType = "Negative to Positive").signal;`
+
+The above reads as 'scan for when the rate of change crosses above zero (or goes positive).'
+
+StochasticCrossover: The Stochastic Crossover for when the Stochastic Slow or Stochastic Fast crosses overbought (80%) or oversold (20%) level. The default parameters are KPeriod = 14. Note the overbought and oversold levels are predefine as 80/20 respectively and can't be changed when using this crossover study.
+
+----------------------------
+input stochasticMode = {default StochasticFast, StochasticSlow};
+input crossingType = {default Overbought, Oversold};
+Plot Stoch_Fast_OB =  StochasticCrossover(stochasticMode = "StochasticFast",  crossingType = "Overbought").signal;
+----------------------------
+
+The above reads as 'scan for when the 14 period fast stochastic crosses above 80'.
+
+OR
+
+`Plot Stoch_Slow_OS =  StochasticCrossover(stochasticMode = "StochasticSlow",  crossingType = "Oversold").signal;`
+
+The above reads as 'scan for when the 14 period slow stochastic crosses below 20'.
+
+Comment1: Re all crossover scans, refer to "Referencing other studies" for a complete explanation of the applicable rules for specifying parameters
+
+Comment2: The examples shown above do not represent all possible combinations of the parameters available. Using the examples guides you re what parameters are applicable and how you may change them to suit your desires.
+
+Comment3: Each of the 11 crossover scans are selectable in the Scan/StockHacker tab. This is a very easy way toimplement these scans since all the parameters are presented for easy assgnment.
+
+#end
+
+
+=== S-MACD SCAN
+
+
+
+Bullish Scan: The MACD value crosses above the MACD average while both are below zero
+----------------------------
+def MACD_Val = MACD(12,26,9).Value;
+def MACD_Avg = MACD(12,26,9).Avg;
+def xOver = MACD_Val [1] < MACD_Avg [1] and MACD_Val >= MACD_Avg ;
+plot bullishScan = xOver and MACD_Val < 0 and MACD_Avg < 0;
+Bearish scan: The MACD value crosses above the MACD average while both are Above zero
+def MACD_Val = MACD(12,26,9).Value;
+def MACD_Avg = MACD(12,26,9).Avg;
+def xOver = MACD_Val [1] < MACD_Avg [1] and MACD_Val >= MACD_Avg ;
+plot bearishScan = xOver and MACD_Val > 0 and MACD_Avg > 0;
+----------------------------
+
+Scanning for stocks that have just crossed over produces less hits that a scan that looks for a xOver within one (1) day.
+
+----------------------------
+def MACD_Val = MACD(12,26,9).Value;
+def MACD_Avg = MACD(12,26,9).Avg;
+def xOver = MACD_Val[1] < MACD_Avg[1] and MACD_Val >= MACD_Avg;
+plot bearishScan = ( xOver or xOver[1] ) and MACD_Val > 0 and MACD_Avg > 0;
+----------------------------
+
+Suggest: To get a meaningful scan use: 1) fundamental filter: close >=10, and 2) study filter: VolumeAvg(50) >= 500000
+
+#end
+
+
+=== S-NEW 52 WEEK HIGHS IN THE PAST ? DAYS
+
+
+
+Scan for equities that have made new 52 week highs in the past 5 days.
+----------------------------
+input lookback = 5;  # past N days
+def hhy = Highest( high, 252 );
+plot h = Highest( high, lookback ) == hhy;
+----------------------------
+#end
+
+
+=== S-SCAN PRICE CORRELATION WITH THE SPX
+
+
+
+This is a price correlation scan compared to the SPX with a correlation of 0.95 to 1.0 for the last 50 bars. Below is the picture of the StockHacker composition. Use a 'day' aggregation:
+
+Alternate:
+
+----------------------------
+#hint:High correlation scan. By Mr Script
+input length = 10;#hint length: the agg-bar length being compared
+input correlationWithSecurity = "SPX";#hint  correlationWithSecurity; The security that the stock is correlated with
+
+input inarow = 10;#hint inarow:The number of agg-bars in a row with >0.9 correlation
+def x = Correlation(close, close(correlationWithSecurity), length) > .9;#greater then 0.9 indicates a high correlation
+
+plot scan = sum(x, inarow) >= inarow;
+----------------------------
+
+#end
+
+
+
+=== S-   INCREASING EARNINGS SCAN
+
+
+
+Comment 1: By Nick Name @ ThinkScript Lounge: Someone asked me about an increasing earnings scan for 2 quarters. This will do it.  I've written extensive notes for the curious to explain how it works, how and why the statements are built the way they are.  If you want to see it just make it a lower study.
+Comment 2: The annotation is excellent for learning ThinkScript. You don't see this often because doing it is very time consuming and coders are more forcused on results in lieu of explanations.
+
+----------------------------
+#Increasing Earnings Scan
+#v2.28.14.1
+#Scan for earnings > previous quarter earnings
+#times_up input determines the number of times earnings increased
+#Example: times_up = 4, scan checks for earnings increasing at least 4 quarters in a row
+#default = 2 since 2 was the requested number
+#extensive notes are provided for the curious
+
+input times_up = 2;
+#define a variable for GetActualEarnings() for efficiency
+def gae = GetActualEarnings();
+#Description of recs are written in plain English, followed by the corresponding script use
+# We need to get the earnings value and carry it forward so we can compare the next earnings to it
+#if earnings are reported: if(!isNaN(gae),
+#then get the earnings number: gae,
+#else keep the last earnings number: earn[1]);
+
+rec ern = if(!isNaN(gae), gae, ern[1]);
+#if there are never any earnings this will always = Double.NaN
+#Now to determine if earnings are increasing enough times in a row we need to count every time they increase.  If
+earnings are < prior quarter, we'll reset the count to 0.
+#CompoundValue is used to make sure the count initializes with a number: 0 in this case.  If it starts with Double.NaN, it
+may not work.
+#start this on the first bar: (CompoundValue(1,
+#if earnings are reported: if(!isNaN(gae),
+#then if earnings are greater than the prior earnings value: if(ern > ern[1],
+#count it by adding 1 to the previous count: ern_up[1] + 1,
+#else set the count to 0: 0),
+#else (if earnings aren't reported) keep the previous count value: ern_up[1]),
+#intialize the value of the variable to 0: 0);
+
+rec ern_up = CompoundValue(1, if(!isNaN(gae), if(ern > ern[1], ern_up[1] + 1, 0), ern_up[1]), 0);
+#plot the result of ern_up >= times_up
+#if you plot this in a study it will plot 1 (true, earnings have increased at least a number of quarters = to times_up input) or 0 (false, they haven't increased that many times)
+plot scan = ern_up >= times_up;
+
+#If you wanted to scan for earnings increasing only x number of times and not more, change >= to == .  e.g. with times_up == 2, using >= means earnings increasing 4 times in a row meet the criteria.
+#end
+----------------------------
+
+
+=== S-SCAN FOR TOS' STRENGTH METER
+
+
+
+Comment: TOS has a column heading titled 'Strength Meter' which reads "stocks that have risen 10% in the last three weeks will have their strength meter activated. The green sloped bar in the watchlist column wil then be activated. The code is presented here so you may change it to your liking. For example, you may want this to show based on 2 weeks in  lieu of 3 weeks. The reverse is also true when a down-sloped RED bar shows.This is the picture of the subject:
+
+[source]
+----------------------------
+declare lower;
+def Agg = AggregationPeriod.Week;
+plot Data = close(period = agg) / close(period = agg)[3];
+Data.SetPaintingStrategy(PaintingStrategy.Histogram);
+Data.AssignValueColor(if Data > 1.1
+  then Color.Green
+  else if Data < .9
+  then Color.Red
+  else Color.Yellow);
+Data.SetLineWeight(3);
+
+========= scan code =========
+----------------------------
+
+#end
+
+
+
+=== S-NOTEWORTHY RESOURCE FOR PREDEFINED SCANS
+
+
+
+Although TOS provides many powerful features, there are also other very useful resources on the Net. Here is a free one at a premier charting sites, Stock Charts, Check this out for Predefined Scans. Granted using this does not allow you to easily put stocks into a TOS watchlist but, nonetheless, this is very useful data.
+
+Realize that the data-feed for Stock Charts may not be the same as that for TOS but that should not likely cause any conflicts because the source of all data is the exchanges.  Visit the site
+
+
+
+=== S-MOVING AVERAGE COMPARISON
+
+
+[source]
+----------------------------
+#Scan for MA compared to MA ? agg-bars ago
+input length = 10;#hint length: The length of the moving average
+input LookBack = 2;#hint LookBack: The agg-bars back moving average being compared to
+Plot scan = Average(close, length) > Average(close, length)[LookBack]);
+# The above reads as SimpleMovingAvg("length" = 10) is greater than SimpleMovingAvg("length" = 10) from 2 agg-bars ago.
+----------------------------
+
+If aggregation is 'week' then 'agg-bars ago' is 2 weeks ago. If aggregation is set to 'Day' then 'agg-bars ago' is 2 days go
+
+
+
+=== S-NEW BULLISH CLOSE ABOVE THE ICHIMONU CLOUD
+
+
+
+new bullish close above the cloud
+
+[source]
+----------------------------
+close crosses above Ichimoku()."Span A" within 5 bars and
+Ichimoku()."Span A" is greater than Ichimoku()."Span B" and
+Ichimoku()."Tenkan" is greater than or equal to Ichimoku()."Kijun"
+----------------------------
+
+
+=== S-CROSSING ABOVE & BELOW THE ICHIMOKU CLOUD
+
+
+
+Ichimoku scan for crossing above the cloud
+
+`close crosses above Max(Ichimoku()."Span A", Ichimoku()."Span B")`
+
+Ichimoku scan for crossing below the cloud
+
+`close crosses below Min(Ichimoku()."Span A", Ichimoku()."Span B")`

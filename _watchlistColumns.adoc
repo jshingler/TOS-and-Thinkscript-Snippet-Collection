@@ -1,0 +1,66 @@
+
+=== WLC-PRICE-TO-EARNINGS (P/E) RATIO FOR A WATCHLIST COLUMN
+
+
+
+```
+#hint:For a WatchList Column (WLC), shows the price-to-earnings (P/E) ratio. In trader's jargon this tells how expensive a stock's earnings are. Discussions and the literature often relate this to the over-all-market P/E average.
+
+rec AE = if IsNaN(GetActualEarnings()) then 0 else GetActualEarnings();
+def EPS_TTM = Sum(AE, 252);#The sum of the trailing twelve months EPS
+def PE = close/EPS_TTM ;#The P/E ratio
+
+AddLabel(yes,  round(PE,1));
+#end
+```
+
+
+=== WLC-WHEN A DIVERGENCE EXISTS BETWEEN PRICE AND THE MACD
+
+
+
+```
+#hint:Looks for and indicates positive (price rising) and negative (price declining) divergences of price and the MACD
+Input Bars = 3;#Hint Bars:The number of bars in the pattern to evaluate
+
+def mcdv = MACD();
+def MACD_rising = sum(mcdv > mcdv[1],bars) == bars;#True if MACD is rising for the last number-of-bars (Bars)
+def price_rising = sum(close > close[1],bars) == bars;#True if close is rising for the last number-of-bars (Bars)
+def MACD_falling = sum(mcdv < mcdv[1],bars) == bars;#True if MACD is falling for the last number-of-bars (Bars)
+def price_falling = sum(close < close[1],bars) == bars;#True if close is falling for the last number-of-bars (Bars)
+def pos_div = price_rising && MACD_falling;
+def neg_div =  price_falling && MACD_rising;
+
+AddLabel(1, if pos_div  then "pos" else if neg_div then "neg" else "none",  if pos_div == 1 then color.green else if neg_div == 1 then color.red else color.pink );
+
+AssignBackgroundColor(if pos_div then color.dark_green
+  else if neg_div then
+  color.dark_RED
+  else color.current);#Divergence with MACD rising & price falling is RED. The opposite is GREEN. Neither is the normal
+  color.
+
+#=====to prove out the code or to use this as a study, plot the below
+#   and evaluate that the conditions and results are correct ========
+plot Positive = pos_div;# A CYAN value of 'one' plots where true exists
+Plot Negative = neg_div;# A PINK value of 'one' plots where true exists
+#==================================================================
+#end
+```
+
+
+=== WLC OF BARS-INTO-A-SQUEEZE
+
+
+
+```
+#hint;A WatchList Column (WLC) that shows whether an equity is in a squeeze and if so how many bars it has been in a squeeze. Be sure to set the agg to the chart agg you want to view this on. This is very efficient code.
+
+def Squeeze = if (BollingerBandsSMA()."UpperBand" - KeltnerChannels()."Upper_Band") < 0 then 1 else 0;
+def count = compoundvalue(1, If squeeze then count[1] + 1 else if !squeeze then 0 else 0,1);
+
+#addlabel(1, "Bars into a squeeze = " + count, If squeeze then Color.LIGHT_RED else color.Current);
+#if column width is a concern the label below shortens the word length and shows the count value
+
+addlabel(1, "SQZ= " + count, If squeeze then Color.LIGHT_RED else color.Current);
+# end
+```
