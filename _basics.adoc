@@ -236,9 +236,9 @@ Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'
 
 See all predefined color constants: See predefined color constants
 
-```
-######## Other Painting Stategies ########
 
+#### Other Painting Stategies
+```
 - ARROW_DOWN,  ARROW_UP, BOOLEAN_ARROW_DOWN, BOOLEAN_ARROW_UP, BOOLEAN_POINTS,
 - DASHES, HISTOGRAM,  HORIZONTAL, LINE,  LINE_VS_POINTS, LINE_VS_SQUARES,   LINE_VS_TRIANGLES,
 - POINTS, SQUARED_HISTOGRAM, SQUARES, TRIANGLES,  VALUES_ABOVE,  VALUES_BELOW
@@ -256,8 +256,7 @@ Other constants:
 - FIRM,  LONG_DASH, MEDIUM_DASH,  SHORT_DASH,  POINTS
 - SHORT_DASH is the default value of 'SetStyle'
 
-- ###### assign a name to a color ##########
-
+##### Assign a name to a color
 You may assign a name to a color like:
 
 ```
@@ -282,18 +281,16 @@ NinetyPercent.SetDefaultColor(GlobalColor("normal"));
 ```
 
 
-
+#### Color based on a condition
 ```
-######### Color based on a condition ############
 plot Diff = close - close[1];
 Diff.assignValueColor(if Diff >= 0 then Color.UPTICK else Color.DOWNTICK);
 ```
 
 Note that UPTICK and DOWNTICK are TOS predefined color constants
 
-
+#### Create your own color
 ```
-####### Create your own color ###########
 plot Price = close;
 Price.SetDefaultColor(CreateColor(255, 220, 210));
 ```
@@ -306,7 +303,7 @@ After the above global definition, GlobalColor("Purple") can be use wherever a c
 
 `Price.SetDefaultColor(GlobalColor("Purple"));`
 
-#### Use predefined index colors ##########
+#### Use predefined index colors
 
 ```
 plot Price = close;
@@ -315,7 +312,7 @@ Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9
 
 Reference: See all color index numbers
 
-#### Default and global color text names #####
+#### Default and global color text names
 
 ```
 plot Data = close;
@@ -326,7 +323,6 @@ or
 
 `Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.`
 
-##end
 
 === IMPLEMENTING LABELS
 

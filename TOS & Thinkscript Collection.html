@@ -472,8 +472,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_often_used_coloring_code_statements">OFTEN USED COLORING CODE STATEMENTS</a>
 <ul class="sectlevel3">
 <li><a href="#_typical_chart_plot_settings">Typical chart plot settings</a></li>
-<li><a href="#_use_predefined_index_colors">Use predefined index colors <mark><mark></mark><mark></mark></mark></a></li>
-<li><a href="#_default_and_global_color_text_names">Default and global color text names <mark>#</mark></a></li>
+<li><a href="#_other_painting_stategies">Other Painting Stategies</a></li>
+<li><a href="#_color_based_on_a_condition">Color based on a condition</a></li>
+<li><a href="#_create_your_own_color">Create your own color</a></li>
+<li><a href="#_use_predefined_index_colors">Use predefined index colors</a></li>
+<li><a href="#_default_and_global_color_text_names">Default and global color text names</a></li>
 </ul>
 </li>
 <li><a href="#_implementing_labels">IMPLEMENTING LABELS</a>
@@ -1253,11 +1256,12 @@ Data.SetDefaultColor(Color.White); #Color.'TOS predefined color constant'</code>
 <div class="paragraph">
 <p>See all predefined color constants: See predefined color constants</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_other_painting_stategies">Other Painting Stategies</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>######## Other Painting Stategies ########
-
-- ARROW_DOWN,  ARROW_UP, BOOLEAN_ARROW_DOWN, BOOLEAN_ARROW_UP, BOOLEAN_POINTS,
+<pre class="highlight"><code>- ARROW_DOWN,  ARROW_UP, BOOLEAN_ARROW_DOWN, BOOLEAN_ARROW_UP, BOOLEAN_POINTS,
 - DASHES, HISTOGRAM,  HORIZONTAL, LINE,  LINE_VS_POINTS, LINE_VS_SQUARES,   LINE_VS_TRIANGLES,
 - POINTS, SQUARED_HISTOGRAM, SQUARES, TRIANGLES,  VALUES_ABOVE,  VALUES_BELOW</code></pre>
 </div>
@@ -1282,11 +1286,10 @@ Data.SetStyle(Curve.SHORT_DASH);</code></pre>
 <li>
 <p>SHORT_DASH is the default value of 'SetStyle'</p>
 </li>
-<li>
-<p><mark><mark></mark></mark> assign a name to a color <mark><mark></mark><mark></mark></mark></p>
-</li>
 </ul>
 </div>
+<div class="sect4">
+<h5 id="_assign_a_name_to_a_color">Assign a name to a color</h5>
 <div class="paragraph">
 <p>You may assign a name to a color like:</p>
 </div>
@@ -1315,20 +1318,25 @@ plot NinetyPercent = 0.9*close;
 NinetyPercent.SetDefaultColor(GlobalColor("normal"));</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_color_based_on_a_condition">Color based on a condition</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>######### Color based on a condition ############
-plot Diff = close - close[1];
+<pre class="highlight"><code>plot Diff = close - close[1];
 Diff.assignValueColor(if Diff &gt;= 0 then Color.UPTICK else Color.DOWNTICK);</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Note that UPTICK and DOWNTICK are TOS predefined color constants</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_create_your_own_color">Create your own color</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>####### Create your own color ###########
-plot Price = close;
+<pre class="highlight"><code>plot Price = close;
 Price.SetDefaultColor(CreateColor(255, 220, 210));</code></pre>
 </div>
 </div>
@@ -1346,7 +1354,7 @@ Price.SetDefaultColor(CreateColor(255, 220, 210));</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_use_predefined_index_colors">Use predefined index colors <mark><mark></mark><mark></mark></mark></h4>
+<h4 id="_use_predefined_index_colors">Use predefined index colors</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>plot Price = close;
@@ -1358,7 +1366,7 @@ Price.SetDefaultColor(GetColor(1));# 1 is an index color of 0 thru 9</code></pre
 </div>
 </div>
 <div class="sect3">
-<h4 id="_default_and_global_color_text_names">Default and global color text names <mark>#</mark></h4>
+<h4 id="_default_and_global_color_text_names">Default and global color text names</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>plot Data = close;
@@ -1370,9 +1378,6 @@ Data.SetDefaultColor(color.RED);</code></pre>
 </div>
 <div class="paragraph">
 <p><code>Data.SetDefaultColor(GlobalColor("normal"));# Provided 'normal' is previously defined.</code></p>
-</div>
-<div class="paragraph">
-<p>##end</p>
 </div>
 </div>
 </div>
