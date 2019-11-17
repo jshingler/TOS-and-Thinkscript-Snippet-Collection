@@ -15,7 +15,8 @@ jobs:
     - name: Try some work
       run: |
         ls -la
-        pwd
+        git config --global user.email "shinglerjim@gmail.com"
+        git config --global user.name "Jim Shingler"
         git status
         git add .
         git status
