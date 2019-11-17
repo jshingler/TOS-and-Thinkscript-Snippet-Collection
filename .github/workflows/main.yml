@@ -12,3 +12,8 @@ jobs:
       with:
         args: |
           ls -la
+    - name: Try some work
+      run: |
+        ls -la
+        asciidoctor jim.adoc
+        git status
