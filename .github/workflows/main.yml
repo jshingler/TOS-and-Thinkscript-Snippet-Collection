@@ -15,5 +15,5 @@ jobs:
     - name: Try some work
       run: |
         ls -la
-        asciidoctor jim.adoc
+        pwd
         git status
