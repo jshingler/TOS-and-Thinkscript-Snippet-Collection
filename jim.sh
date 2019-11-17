@@ -2,4 +2,5 @@
 
 set -x
 
-asciidoctor ./jim.adoc
+asciidoctor -b pdf ./jim.adoc
+asciidoctor -b html5 ./jim.adoc
