@@ -10,4 +10,4 @@ jobs:
     # Include asciidoctor-action and run the cli tool
     - uses: jshingler/asciidoctor-action@master
       with:
-        args: "asciidoctor ./jim.adoc"
+        args: asciidoctor ./jim.adoc
