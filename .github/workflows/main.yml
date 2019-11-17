@@ -6,23 +6,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    # Include asciidoctor-action and run the cli tool
-    - uses: jshingler/asciidoctor-action@master
-      with:
-        args: |
-          ./jim.sh
-    - name: Try some work
-      run: |
-        ls -la
-        git config --global user.email "shinglerjim@gmail.com"
-        git config --global user.name "Jim Shingler"
-        git status
-        git add .
-        git status
-        git commit -m "CI:publish artifacts"
-        git status
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      # Include asciidoctor-action and run the cli tool
+      # - uses: jshingler/asciidoctor-action@master
+      #   with:
+      #     args: |
+      #       ./jim.sh
+      - name: Generate Artifacts
+        run: |
+          gradlew asciidoctor
+      - name: Push it back to the repo
+        run: |
+          ls -la
+          git config --global user.email "shinglerjim@gmail.com"
+          git config --global user.name "Jim Shingler"
+          git status
+          git add .
+          git status
+          git commit -m "CI:publish artifacts"
+          git status
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

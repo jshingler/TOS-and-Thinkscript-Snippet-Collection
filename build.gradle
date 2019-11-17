@@ -1,0 +1,54 @@
+buildscript {
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctorj-epub3:1.5.0-alpha.6'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.15'
+    }
+}
+
+plugins {
+  id 'org.asciidoctor.convert' version '1.5.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'org.asciidoctor.convert'
+
+version = '1.0.0-SNAPSHOT'
+
+asciidoctorj {
+    version = '1.5.5'
+
+}
+
+asciidoctor {
+  sourceDir 'src/docs/asciidoc'
+  sources {
+    include 'TOS & Thinkscript Collection.adoc'
+  }
+  outputDir './'
+  resources {
+    from(sourceDir) {
+      include 'images/**'
+    }
+  }
+  separateOutputDirs false
+  backends 'html5', 'pdf', 'epub3', 'docbook'
+}
+
+// asciidoctor {
+//     backends 'html5', 'pdf', 'epub3', 'docbook'
+//     attributes {
+//       outputDir = './'
+//     }
+        // 'build-gradle': file('build.gradle'),
+        // 'sourceDir' : project.sourceSets.main.java.srcDirs[0],
+        // 'outputDir' : './.',
+        // 'endpoint-url': 'http://example.org',
+        // 'source-highlighter': 'coderay',
+        // 'imagesdir': './images',
+        // 'toc': 'left',
+        // 'icons': 'font',
+        // 'setanchors': '',
+        // 'idprefix': '',
+        // 'idseparator': '-',
+        // 'docinfo1': ''
+// }

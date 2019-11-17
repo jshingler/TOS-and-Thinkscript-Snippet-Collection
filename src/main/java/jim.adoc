@@ -1,0 +1,68 @@
+= TOS & Thinkscript Collection
+Jim Shinger <shinglerjim@gmail.com>
+0.1, April 14, 2018
+:toc: left
+:toclevels: 3
+:icons: font
+:quick-uri: https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection
+:docinfo: shared
+
+== Preface
+
+The "TOS and Thinkscript Snippet Collection" by http://mytrade.com/StanL[Stanl]
+has been a great help in my thinkscript development journey.  I constantly look
+to this work for ideas and techniques.
+
+It appears that "TOS and Thinkscript Snippet Collection" hasn't been update in
+3 years as of this writing, ...  I am not sure if something happened to StanL or what.
+
+*My Motivations:*  I found the pdf hard to read at times and I want the great work
+StanL did to live on.  So I converted the PDF to Asciidoctor html format.
+https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection[TOS-and-Thinkscript-Snippet-Collection].
+
+As converting from PDF is a lot of work, ... This is a work in
+process and I will continue to work on the formatting and clean up.
+
+Please feel free to fork and send me pull requests or corrections and additions.
+
+Credits: http://mytrade.com/StanL[StanL]  http://mytrade.com/StanL
+
+TEST
+
+== Introduction
+include::_introduction.adoc[]
+
+== Basic Coding and Platform Principles
+include::_basics.adoc[]
+
+== Studies and Coding
+include::_studiesAndCoding.adoc[]
+
+== Watchlist Columns
+include::_watchlistColumns.adoc[]
+
+== Scans
+include::_scans.adoc[]
+
+== Tutorials (How-To-Do's)
+include::_tutorials.adoc[]
+
+== Alert Sounds
+include::_alertSounds.adoc[]
+
+== Usage Tips
+include::_usageTips.adoc[]
+
+== References
+include::_references.adoc[]
+
+== Contact Me
+Jim Shingler +
+shinglerjim@gmail.com +
+
+
+*Social Media*
+
+http://www.twitter.com/jshingler[Twitter] |
+https://www.linkedin.com/in/jimshingler/[LinkedIn] |
+https://github.com/jshingler/[Github]
