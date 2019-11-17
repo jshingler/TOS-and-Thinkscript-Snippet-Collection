@@ -14,7 +14,9 @@ jobs:
       #       ./jim.sh
       - name: Generate Artifacts
         run: |
-          gradlew asciidoctor
+          pwd
+          ls -la
+          ./gradlew asciidoctor
       - name: Push it back to the repo
         run: |
           ls -la
