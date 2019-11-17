@@ -22,4 +22,4 @@ jobs:
         git status
         git commit -m "CI:publish artifacts"
         git status
-        git push
+        git push origin HEAD:master
