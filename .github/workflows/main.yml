@@ -11,7 +11,7 @@ jobs:
     - uses: jshingler/asciidoctor-action@master
       with:
         args: |
-          ls -la
+          ./jim.sh
     - name: Try some work
       run: |
         ls -la
