@@ -8,6 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     # Include asciidoctor-action and run the cli tool
-    - uses: jshingler/asciidoctor-action@master
+    - uses: ascjshingler/asciidoctor-action@master
       with:
-        args: './jim.sh'
+        args: |
+          ls -la
