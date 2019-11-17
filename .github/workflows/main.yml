@@ -8,6 +8,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     # Include asciidoctor-action and run the cli tool
-    - uses: mgred/asciidoctor-action@master
+    - uses: jshingler/asciidoctor-action@master
       with:
-        args: asciidoctor -b pdf jim.adoc
+        args: asciidoctor jim.adoc
