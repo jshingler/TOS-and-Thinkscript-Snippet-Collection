@@ -17,3 +17,8 @@ jobs:
         ls -la
         pwd
         git status
+        git add .
+        git status
+        git commit -m "CI:publish artifacts"
+        git status
+        git push
