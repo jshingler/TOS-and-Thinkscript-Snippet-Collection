@@ -1,3 +1,6 @@
+[![Actions Status](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/workflows/CI/badge.svg)](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/actions)
+
+
 # TOS-and-Thinkscript-Snippet-Collection
 
 The "TOS and Thinkscript Snippet Collection" by [StanL]( http://mytrade.com/StanL) has been a great help in my thinkscript development journey.  I constantly look to this work for ideas and techniques.
@@ -14,8 +17,10 @@ Credits:
 - StanL  http://mytrade.com/StanL
 
 
-## Generation html
-`asciidoctor TOS\ \&\ Thinkscript\ Collection.adoc`
 
-## Generating pdf from Asciidoctor
-`asciidoctor-pdf TOS\ \&\ Thinkscript\ Collection.adoc`
+## Local Artifact Generation
+```
+gradlew asciidoctor
+```
+
+## CI Artifact Generation using GitHub Actions
