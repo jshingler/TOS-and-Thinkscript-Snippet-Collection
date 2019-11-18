@@ -17,7 +17,7 @@ jobs:
           pwd
           ls -la
           ./gradlew asciidoctor
-      - name: Push it back to the repo
+      - name: Prepare to push generated artifacts back to the repo
         run: |
           ls -la
           git config --global user.email "shinglerjim@gmail.com"
