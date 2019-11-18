@@ -27,7 +27,12 @@ Please feel free to fork and send me pull requests or corrections and additions.
 
 Credits: http://mytrade.com/StanL[StanL]  http://mytrade.com/StanL
 
-TEST - JIM
+TEST - Jim
+
+[source,java]
+----
+include::j.groovy[tag=eachLine]
+----
 
 == Introduction
 include::_introduction.adoc[]
