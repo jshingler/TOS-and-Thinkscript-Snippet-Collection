@@ -35,7 +35,28 @@ StanL did to live on.  So I converted the PDF to Asciidoctor html format.
 process and I will continue to work on the formatting and clean up.</simpara>
 <simpara>Please feel free to fork and send me pull requests or corrections and additions.</simpara>
 <simpara>Credits: <link xl:href="http://mytrade.com/StanL">StanL</link>  <link xl:href="http://mytrade.com/StanL">http://mytrade.com/StanL</link></simpara>
-<simpara>TEST - JIM</simpara>
+<simpara>TEST - Jim</simpara>
+<programlisting language="java" linenumbering="unnumbered">file1.eachLine { line -&gt;
+    //println "&gt;${line}&lt;"
+    if (line.startsWith("- ") &amp;&amp; !line.startsWith("- NEXT")) {
+        l1 = line.replace("- ","")
+        l2 = line.toUpperCase().split(/\./)[0].trim()
+        //println "l2&gt;${l2.split(/\-/).size()} &lt;l2"
+        if (l2.split(/\-/).size() &gt; 2) {
+            l3 = l2.split(/\-/)[2]
+                .replaceAll(" ","_")
+                .replaceAll("'","")
+                .replaceAll(",","")
+                .replaceAll("\\(","")
+                .replaceAll("\\)","")
+                .replaceAll("&amp;","AND")
+            println "- [${l1}](#$l3)"
+            println "&lt;a name=\"${l3}\"&gt; &lt;/a&gt;"
+        }
+    } else {
+        println line
+    }
+}</programlisting>
 </section>
 <section xml:id="_introduction">
 <title>Introduction</title>

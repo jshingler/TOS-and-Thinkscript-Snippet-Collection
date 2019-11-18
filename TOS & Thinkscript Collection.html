@@ -742,7 +742,32 @@ process and I will continue to work on the formatting and clean up.</p>
 <p>Credits: <a href="http://mytrade.com/StanL">StanL</a>  <a href="http://mytrade.com/StanL" class="bare">http://mytrade.com/StanL</a></p>
 </div>
 <div class="paragraph">
-<p>TEST - JIM</p>
+<p>TEST - Jim</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">file1.eachLine { line -&gt;
+    //println "&gt;${line}&lt;"
+    if (line.startsWith("- ") &amp;&amp; !line.startsWith("- NEXT")) {
+        l1 = line.replace("- ","")
+        l2 = line.toUpperCase().split(/\./)[0].trim()
+        //println "l2&gt;${l2.split(/\-/).size()} &lt;l2"
+        if (l2.split(/\-/).size() &gt; 2) {
+            l3 = l2.split(/\-/)[2]
+                .replaceAll(" ","_")
+                .replaceAll("'","")
+                .replaceAll(",","")
+                .replaceAll("\\(","")
+                .replaceAll("\\)","")
+                .replaceAll("&amp;","AND")
+            println "- [${l1}](#$l3)"
+            println "&lt;a name=\"${l3}\"&gt; &lt;/a&gt;"
+        }
+    } else {
+        println line
+    }
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -11812,7 +11837,7 @@ Clicking as shown will take you to 'Chart settings/time axis' where you set the&
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2019-11-18 00:05:49 UTC
+Last updated 2019-11-18 00:13:51 UTC
 </div>
 </div>
 </body>
