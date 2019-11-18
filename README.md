@@ -17,6 +17,10 @@ Credits:
 - StanL  http://mytrade.com/StanL
 
 
+[TOS & Thinkscript Collection - HTML](http://htmlpreview.github.io/?https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/TOS%20%26%20Thinkscript%20Collection.html)
+[TOS & Thinkscript Collection - PDF](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/raw/master/TOS%20%26%20Thinkscript%20Collection.pdf)
+
+
 
 ## Local Artifact Generation
 ```
