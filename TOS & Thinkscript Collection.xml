@@ -36,7 +36,7 @@ process and I will continue to work on the formatting and clean up.</simpara>
 <simpara>Please feel free to fork and send me pull requests or corrections and additions.</simpara>
 <simpara>Credits: <link xl:href="http://mytrade.com/StanL">StanL</link>  <link xl:href="http://mytrade.com/StanL">http://mytrade.com/StanL</link></simpara>
 <simpara>TEST - Jim</simpara>
-<programlisting language="java" linenumbering="unnumbered">file1.eachLine { line -&gt;
+<programlisting language="groovy" linenumbering="numbered">file1.eachLine { line -&gt;
     //println "&gt;${line}&lt;"
     if (line.startsWith("- ") &amp;&amp; !line.startsWith("- NEXT")) {
         l1 = line.replace("- ","")
@@ -60,6 +60,8 @@ process and I will continue to work on the formatting and clean up.</simpara>
 </section>
 <section xml:id="introduction">
 <title>Introduction</title>
+<section xml:id="snippet">
+<title>Snippet</title>
 <simpara>A 'snippet' is a small piece(s) of script, oriented towards accomplishing a specific
 function identified by the snippet&#8217;s title:Sort of a building block. This PDF takes
 the liberty to include TOS-platform-features that are not only script snippets but
@@ -67,6 +69,7 @@ may be any TOS features worth knowing. Perhaps this document can, more appropria
 be call an 'Almanac'.</simpara>
 <simpara>The emphasis herein is for learning TOS and ThinkScript from the ground up.  Numerous examples are used as a learning tool ranging from simple/basic to complex. The PDF format was selected, with extra features, like the hyperlinked Table-of-Contents, to make subjects easily found. This document also proovides a reference for future coding activities.</simpara>
 <simpara>Hence being familar with what is available herein, will enhance recall when needed. A good PDF reader with search capability is also recommended.</simpara>
+</section>
 <section xml:id="legend">
 <title>Legend</title>
 <simpara>Click the underlined Page ? to go to that page When there, you can return to to the TOC by clicking Return to TOC.</simpara>

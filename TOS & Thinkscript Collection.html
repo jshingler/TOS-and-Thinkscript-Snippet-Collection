@@ -526,6 +526,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#preface">Preface</a></li>
 <li><a href="#introduction">Introduction</a>
 <ul class="sectlevel2">
+<li><a href="#snippet">Snippet</a></li>
 <li><a href="#legend">Legend</a></li>
 <li><a href="#revised-07-25-14">Revised: 07/25/14</a></li>
 <li><a href="#organization">Organization:</a></li>
@@ -837,27 +838,51 @@ process and I will continue to work on the formatting and clean up.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">file1.eachLine { line -&gt;
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td>
+  <td class="code"><pre>file1.eachLine { line -&gt;
     <span class="comment">//println &quot;&gt;${line}&lt;&quot;</span>
     <span class="keyword">if</span> (line.startsWith(<span class="string"><span class="delimiter">&quot;</span><span class="content">- </span><span class="delimiter">&quot;</span></span>) &amp;&amp; !line.startsWith(<span class="string"><span class="delimiter">&quot;</span><span class="content">- NEXT</span><span class="delimiter">&quot;</span></span>)) {
         l1 = line.replace(<span class="string"><span class="delimiter">&quot;</span><span class="content">- </span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
-        l2 = line.toUpperCase().split(/<span class="error">\</span>./)[<span class="integer">0</span>].trim()
+        l2 = line.toUpperCase().split(<span class="regexp"><span class="delimiter">/</span><span class="content">\.</span><span class="delimiter">/</span></span>)[<span class="integer">0</span>].trim()
         <span class="comment">//println &quot;l2&gt;${l2.split(/\-/).size()} &lt;l2&quot;</span>
-        <span class="keyword">if</span> (l2.split(/<span class="error">\</span>-/).size() &gt; <span class="integer">2</span>) {
-            l3 = l2.split(/<span class="error">\</span>-/)[<span class="integer">2</span>]
+        <span class="keyword">if</span> (l2.split(<span class="regexp"><span class="delimiter">/</span><span class="content">\-</span><span class="delimiter">/</span></span>).size() &gt; <span class="integer">2</span>) {
+            l3 = l2.split(<span class="regexp"><span class="delimiter">/</span><span class="content">\-</span><span class="delimiter">/</span></span>)[<span class="integer">2</span>]
                 .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">_</span><span class="delimiter">&quot;</span></span>)
                 .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="content">'</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
                 .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
                 .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="char">\\</span><span class="content">(</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
                 .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="char">\\</span><span class="content">)</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
                 .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="content">&amp;</span><span class="delimiter">&quot;</span></span>,<span class="string"><span class="delimiter">&quot;</span><span class="content">AND</span><span class="delimiter">&quot;</span></span>)
-            println <span class="string"><span class="delimiter">&quot;</span><span class="content">- [${l1}](#$l3)</span><span class="delimiter">&quot;</span></span>
-            println <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;a name=</span><span class="char">\&quot;</span><span class="content">${l3}</span><span class="char">\&quot;</span><span class="content">&gt; &lt;/a&gt;</span><span class="delimiter">&quot;</span></span>
+            println <span class="string"><span class="delimiter">&quot;</span><span class="content">- [</span><span class="inline"><span class="inline-delimiter">${</span>l1<span class="inline-delimiter">}</span></span><span class="content">](#</span><span class="inline"><span class="inline-delimiter">$</span>l3</span><span class="content">)</span><span class="delimiter">&quot;</span></span>
+            println <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;a name=</span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">${</span>l3<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="content">&gt; &lt;/a&gt;</span><span class="delimiter">&quot;</span></span>
         }
     } <span class="keyword">else</span> {
         println line
     }
-}</code></pre>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -865,6 +890,8 @@ process and I will continue to work on the formatting and clean up.</p>
 <div class="sect1">
 <h2 id="introduction">Introduction</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="snippet">Snippet</h3>
 <div class="paragraph">
 <p>A 'snippet' is a small piece(s) of script, oriented towards accomplishing a specific
 function identified by the snippet&#8217;s title:Sort of a building block. This PDF takes
@@ -877,6 +904,7 @@ be call an 'Almanac'.</p>
 </div>
 <div class="paragraph">
 <p>Hence being familar with what is available herein, will enhance recall when needed. A good PDF reader with search capability is also recommended.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="legend">Legend</h3>
@@ -11928,7 +11956,7 @@ Clicking as shown will take you to 'Chart settings/time axis' where you set the&
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2019-11-18 00:40:02 UTC
+Last updated 2019-11-17 20:22:10 EST
 </div>
 </div>
 </body>

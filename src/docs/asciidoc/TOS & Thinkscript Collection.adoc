@@ -29,7 +29,7 @@ Credits: http://mytrade.com/StanL[StanL]  http://mytrade.com/StanL
 
 TEST - Jim
 
-[source,java]
+[source,groovy,linenums,highlights='2-5']
 ----
 include::j.groovy[tag=eachLine]
 ----

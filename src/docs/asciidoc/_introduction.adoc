@@ -1,6 +1,5 @@
-
-
-
+:imagesdir: images/
+=== Snippet
 
 A 'snippet' is a small piece(s) of script, oriented towards accomplishing a specific
 function identified by the snippet's title:Sort of a building block. This PDF takes
