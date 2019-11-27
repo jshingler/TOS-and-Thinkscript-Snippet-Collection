@@ -35,7 +35,7 @@ StanL did to live on.  So I converted the PDF to Asciidoctor html format.
 process and I will continue to work on the formatting and clean up.</simpara>
 <simpara>Please feel free to fork and send me pull requests or corrections and additions.</simpara>
 <simpara>Credits: <link xl:href="http://mytrade.com/StanL">StanL</link>  <link xl:href="http://mytrade.com/StanL">http://mytrade.com/StanL</link></simpara>
-<simpara>TEST - Jim</simpara>
+<simpara>TEST - Jim Shingler</simpara>
 <programlisting language="groovy" linenumbering="numbered">file1.eachLine { line -&gt;
     //println "&gt;${line}&lt;"
     if (line.startsWith("- ") &amp;&amp; !line.startsWith("- NEXT")) {
