@@ -27,7 +27,7 @@ Please feel free to fork and send me pull requests or corrections and additions.
 
 Credits: http://mytrade.com/StanL[StanL]  http://mytrade.com/StanL
 
-TEST - Jim
+TEST - Jim Shingler
 
 [source,groovy,linenums,highlights='2-5']
 ----
