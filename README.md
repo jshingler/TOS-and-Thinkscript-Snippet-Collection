@@ -9,8 +9,8 @@ It appears that "TOS and Thinkscript Snippet Collection" hasn't been update in 3
 
 My Motivations:  I found the pdf hard to read at times and I want the great work StanL did to live on. Converted the Markdown version to AsciiDoctor and generate with Gradle AsciDoctor Plugin.
 
-- [TOS & Thinkscript Collection - HTML](http://htmlpreview.github.io/?https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/blob/master/TOS%20%26%20Thinkscript%20Collection.html)
-- [TOS & Thinkscript Collection - PDF](https://github.com/jshingler/TOS-and-Thinkscript-Snippet-Collection/raw/master/TOS%20%26%20Thinkscript%20Collection.pdf)
+- [TOS & Thinkscript Collection - HTML](https://jshingler.github.io/TOS-and-Thinkscript-Snippet-Collection/TOS%20&%20Thinkscript%20Collection.html)
+- [TOS & Thinkscript Collection - PDF](https://jshingler.github.io/TOS-and-Thinkscript-Snippet-Collection/TOS%20&%20Thinkscript%20Collection.pdf)
 
 Please feel free to fork and send me pull requests or corrections and additions.
 
