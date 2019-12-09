@@ -23,3 +23,10 @@ gradlew asciidoctor
 ```
 
 ## CI Artifact Generation using GitHub Actions
+The workflow (.github/workflows/main.yaml) performs the following steps:
+
+-  Run actions/checkout
+-  Generate Artifacts
+-  Prepare to push generated artifacts back to the repo
+-  Push changes Masters
+ - Push changes gh-pages
