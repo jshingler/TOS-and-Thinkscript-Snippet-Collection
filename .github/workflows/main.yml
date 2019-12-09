@@ -34,4 +34,4 @@ jobs:
       - name: Push changes gh-pages
         uses: ad-m/github-push-action@gh-pages
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}:  
+          github_token: ${{ secrets.GITHUB_TOKEN }}
