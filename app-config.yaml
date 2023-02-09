@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tos-and-thinkscript-snippet-collection
+  description: TOS and Thinkscript Snippet Collection
+  tags:
+    - AsciiDoc
+    - TOS
+    - Thinkscript
+spec:
+  type: service
+  lifecycle: production
+  owner: jshingler
