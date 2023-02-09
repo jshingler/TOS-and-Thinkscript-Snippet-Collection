@@ -6,6 +6,8 @@ metadata:
   tags:
   - go
   - website
+  annotations:
+    github.com/project-slug: jshingler/TOS-and-Thinkscript-Snippet-Collection
 spec:
   type: service
   lifecycle: production
