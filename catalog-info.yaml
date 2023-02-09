@@ -4,9 +4,9 @@ metadata:
   name: tos-and-thinkscript-snippet-collection
   description: TOS and Thinkscript Snippet Collection
   tags:
-    - AsciiDoc
-    - TOS
-    - Thinkscript
+    - asciidoc
+    - tos
+    - thinkscript
 spec:
   type: service
   lifecycle: production
