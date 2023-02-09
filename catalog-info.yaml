@@ -3,6 +3,9 @@ kind: Component
 metadata:
   name: tos-and-thinkscript-snippet-collection
   description: TOS and Thinkscript Snippet Collection
+  links:
+  - url: https://jshingler.github.io/TOS-and-Thinkscript-Snippet-Collection/TOS%20&%20Thinkscript%20Collection.pdf
+    title: TOS & Thinkscript Collection PDF
   tags:
   - go
   - website
