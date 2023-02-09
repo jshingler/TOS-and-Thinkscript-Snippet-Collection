@@ -3,10 +3,6 @@ kind: Component
 metadata:
   name: tos-and-thinkscript-snippet-collection
   description: TOS and Thinkscript Snippet Collection
-  tags:
-    - asciidoc
-    - tos
-    - thinkscript
 spec:
   type: service
   lifecycle: production
